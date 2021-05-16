@@ -1,4 +1,3 @@
-Options All -Indexes
 RewriteEngine On
 
 RewriteCond %{REQUEST_FILENAME} !-d
