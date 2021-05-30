@@ -1,0 +1,251 @@
+/*Variables*/
+
+:root {
+    --fuenteQuicksand: 'Quicksand', sans-serif;
+    --fondo: linear-gradient( rgba(84, 108, 207), rgba(213, 238, 254));
+    --fuenteRoboto: 'Roboto', Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--fondo);
+    background-repeat: no-repeat;
+    color: #000;
+    font-family: var(--fuenteQuicksand);
+    padding: 0 1.5em;
+}
+
+/*navbar*/
+
+.header {
+    background: #060d2f;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 60px;
+    color: #fff;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: Quicksand;
+}
+
+.nav_ico {
+    display: inline-block;
+    position: relative;
+}
+
+.nav_ico label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+    font-family: roboto;
+}
+
+.nav_ico span {
+    display: block;
+    height: 4px;
+    width: 30px;
+    background: #fff;
+    margin: 4px 0;
+    font-family: roboto;
+}
+
+.nav-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 998;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.nav-overlay.active {
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: auto;
+}
+
+#menu_trigger {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.close_icon {
+    color: #fff;
+    font-size: 60px;
+    position: relative;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    line-height: 0.7;
+    transform: rotate(45deg);
+}
+
+.close_icon input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.side_nav {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #060d2f;
+    z-index: 1001;
+    padding-top: 100px;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(100%);
+    font-family: roboto;
+}
+
+#menu_trigger:checked+.side_nav {
+    transform: translateX(0%);
+}
+
+.side_nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.side_nav ul li {
+    margin: 0;
+}
+
+.side_nav ul li a {
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-bottom: 1px solid;
+    transition: all 0.3s ease-in-out;
+    font-family: roboto;
+}
+
+.side_nav ul li a:hover {
+    background: #546ccf;
+    color: #fff;
+}
+
+/*======================== ESTILOS PARA CONTRATANTE  ===========================*/
+
+.content {
+    max-width: 700px;
+    margin-top: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+}
+
+.name {
+    text-align: center;
+    font-size: 2em;
+    font-family: var(--fuenteQuicksand);
+}
+
+.name span {
+    color: #1e1e62;
+}
+
+.content>* {
+    padding: 1em;
+}
+
+.vac-form, .con-form {
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 1);
+    background: #daeefe;
+    border-radius: .5em;
+    font-family: var(--fuenteRoboto);
+}
+
+.vac-form form, .con-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.vac-form form label, .con-form form label {
+    display: block;
+}
+
+.vac-form form .block, .con-form form .block {
+    grid-column: 1/3;
+}
+
+.vac-form form p, .con-form form p {
+    margin: 0;
+    padding: 1em;
+}
+
+.vac-form form button, .con-form form button, .vac-form form input, .con-form form input, .vac-form form textarea, .con-form form textarea {
+    width: 100%;
+    padding: .7em;
+    border: none;
+    background: none;
+    border-bottom: 2px solid #708aa3;
+    outline: none;
+    border-radius: .4em;
+    color: #000;
+}
+
+.vac-form form button, .con-form form button {
+    background: #daeefe;
+    text-transform: uppercase;
+    padding: 1em;
+    border: none;
+}
+
+.vac-form form button:hover, .con-form form button:hover, .vac-form form button:focus, .con-form form button:focus {
+    background: #1e1e62;
+    color: #daeefe;
+    border: none;
+    transition: background-color 1s ease-out;
+    outline: none;
+}
+
+@media(min-width: 700px) {
+    body {
+        padding: 0 4em;
+    }
+    .content>* {
+        padding: 2em;
+    }
+}

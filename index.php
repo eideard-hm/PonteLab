@@ -17,11 +17,11 @@ $param = "";
 /*
 Validar si el método viene definido y los parametros también
 */
-if (isset($arrUrl[1]) && $arrUrl != '') {
+if (isset($arrUrl[1]) && $arrUrl !== '') {
     $method = $arrUrl[1];
 }
 
-if (isset($arrUrl[2]) && $arrUrl[2] != '') {
+if (isset($arrUrl[2]) && $arrUrl[2] !== '') {
     $param = $arrUrl[2];
 }
 
