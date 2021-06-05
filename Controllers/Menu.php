@@ -11,7 +11,7 @@ class Menu extends Controllers
 
     public function Menu()
     {
-        $data['titulo_pagina'] = 'Menu Principal | PonsLabor.';
+        $data['titulo_pagina'] = 'Menú Principal | PonsLabor.';
         $this->views->getView($this, 'Menu', $data);
     }
 }

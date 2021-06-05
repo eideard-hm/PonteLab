@@ -28,10 +28,10 @@
                 Martushis
             </a>
         </li>
-        <li><a href="#">Hoja de Vida </a></li>
-        <li><a href="#">Empresas </a></li>
-        <li><a href="#">Cambiar contraseña </a></li>
-        <li><a href="#">Consultar Aplicaciones </a></li>
+        <li><a href="Contratante">Contratante</a></li>
+        <li><a href="Vacante">Vacante</a></li>
+        <li><a href="Aspirante">Aspirante</a></li>
+        <li><a href="HojaVida">Hoja de Vida</a></li>
         <li><a href="#">Realizar Encuestas </a></li>
         <li><a href="#">Consultar contactos </a></li>
         <li><a href="<?= URL; ?>Login">Cerrar sesión</a></li>
