@@ -1,0 +1,363 @@
+/*
+    * Aqui van el cs que se van a utilizar en todos los archivos
+    * del programa
+*/
+
+:root {
+    --colorFondo: #111;
+    --colorFondoNavbar: #222;
+    --sombraForm: 10px 10px 20px rgba(0, 0, 0, 0.16);
+    --colorIconosFuente: #c8c8c8;
+    --azulMuyClaro: #daeefe;
+    --azulClaro: #97bbfe;
+    --azulMasClaro: #546ccf;
+    --blanco: #fff;
+    --fuenteQuicksand: 'Quicksand', sans-serif;
+    --fuenteRoboto: "Roboto", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    transition: background 0.4s, transform 0.4s linear
+}
+
+/*========================= NAVBAR =========================*/
+
+.header {
+    background: #060d2f;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px 60px;
+    color: #fff;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: var(--fuenteQuicksand);
+}
+
+.nav_ico {
+    display: inline-block;
+    position: relative;
+}
+
+.nav_ico label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+    font-family: var(--fuenteRoboto);
+}
+
+.nav_ico span {
+    display: block;
+    height: 4px;
+    width: 30px;
+    background: #fff;
+    margin: 4px 0;
+    font-family: var(--fuenteRoboto);
+}
+
+.nav-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 998;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.nav-overlay.active {
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: auto;
+}
+
+#menu_trigger {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.close_icon {
+    color: #fff;
+    font-size: 60px;
+    position: relative;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    line-height: 0.7;
+    transform: rotate(45deg);
+}
+
+.close_icon input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.side_nav {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    background: #060d2f;
+    z-index: 1001;
+    padding-top: 100px;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(100%);
+    font-family: var(--fuenteRoboto);
+}
+
+#menu_trigger:checked+.side_nav {
+    transform: translateX(0%);
+}
+
+.side_nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.side_nav ul li {
+    margin: 0;
+}
+
+.side_nav ul li a {
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-bottom: 1px solid;
+    transition: all 0.3s ease-in-out;
+    font-family: var(--fuenteRoboto);
+}
+
+.side_nav ul li a:hover {
+    background: #546ccf;
+    color: #fff;
+}
+
+/*========================= MODO OSCURO =========================*/
+
+.dark {
+    background: var(--colorFondo);
+}
+
+.switch {
+    width: 45px;
+    height: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: none;
+    outline: none;
+    position: relative;
+    background: darkblue
+}
+
+.switch .circulo {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    position: absolute;
+    top: -3.5px;
+    left: -3.5px;
+    right: unset;
+    background-color: #fff;
+    box-shadow: 0px 0px 2px 3px lightblue;
+    transition: background 0.4s, transform 0.4s, color 0.4s ease-out
+}
+
+.switch i {
+    width: 27px;
+    height: 27px;
+    display: flex;
+    margin-left: -1px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 100
+}
+
+.switch i.sol {
+    font-size: 20px;
+    color: orange
+}
+
+.switch i.luna {
+    font-size: 12px;
+    color: #fff
+}
+
+.switch.active {
+    background-color: orange
+}
+
+.switch.active .circulo {
+    transform: translateX(24px);
+    background-color: #000
+}
+
+.switch.active .sol {
+    font-size: 12px;
+    color: #fff;
+    background-color: none
+}
+
+.switch.active .luna {
+    font-size: 20px;
+    color: #fff
+}
+
+/*EDIER*/
+
+.dark .header {
+    background: var(--colorFondoNavbar);
+    box-shadow: var(--sombraForm);
+}
+
+.dark .side_nav {
+    background: var(--colorFondoNavbar);
+    box-shadow: var(--sombraForm);
+}
+
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form {
+    background: var(--colorFondoNavbar);
+    box-shadow: var(--sombraForm);
+}
+
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .title-form, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo label, .dark .contenedor-formulario header .title-principal, .dark .contenedor-formulario header .progress-bar .paso p {
+    color: var(--colorIconosFuente);
+}
+
+.dark .contenedor-formulario header .progress-bar .paso .num {
+    color: var(--colorIconosFuente);
+    border: 2px solid #fff;
+}
+
+.dark .contenedor-formulario header .progress-bar .paso .num.active {
+    border: 2px solid var(--azulMasClaro);
+}
+
+.dark .contenedor-formulario header .progress-bar .paso .num::before, .contenedor-formulario header .progress-bar .paso .num::after {
+    content: "";
+    background: var(--azulMuyClaro);
+    position: absolute;
+    width: 85px;
+    height: 4px;
+    top: 50%;
+    left: 50px
+}
+
+.dark .contenedor-formulario header .progress-bar .paso p.active {
+    color: var(--azulClaro);
+}
+
+.dark .contenedor-formulario header .progress-bar .paso .num.active::after {
+    animation: mov_Linea 0.4s linear forwards;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(var(--colorIconosFuente), #fff);
+}
+
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion {
+    color: var(--colorIconosFuente);
+}
+
+/*BECERRA*/
+
+.dark .vac-form, .dark .con-form, .dark .from-logi, .dark #msform fieldset {
+    background: var(--colorFondoNavbar);
+    box-shadow: var(--sombraForm);
+}
+
+.dark .name, .dark .from-logi h5, .dark .from-logi a, .dark .fs-title {
+    color: var(--blanco);
+}
+
+.dark .name span {
+    color: var(--azulMasClaro);
+}
+
+.dark .vac-form form label, .dark .con-form form label, .dark .fs-subtitle {
+    color: var(--colorIconosFuente);
+}
+
+.dark .vac-form form button, .dark .con-form form button, .dark .vac-form form input, .dark .con-form form input, .dark .vac-form form textarea, .dark .con-form form textarea {
+    border-bottom: 2px solid var(--azulMuyClaro);
+    color: var(--blanco);
+    font-size: 16px;
+    font-family: var(--fuenteRoboto);
+}
+
+.dark .con-form form button, .dark .vac-form .block button {
+    color: #000;
+    font-weight: 700;
+}
+
+.dark .con-form form button:hover, .dark .vac-form .block button:hover {
+    color: var(--blanco)
+}
+
+/*LUISA*/
+
+.dark .img-slider .navigation .btn.active {
+    background: var(--colorIconosFuente);
+    box-shadow: 0 0 2px rgb(12, 151, 140);
+}
+
+.dark .footer-index {
+    background: var(--colorFondoNavbar);
+    color: var(--blanco);
+}
+
+.dark #msform .action-button:hover {
+    box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
+}
+
+/*YESENIA*/
+
+.dark .from-logi {
+    border: 0px 0px 10px rgba(163, 163, 163, 0.4);
+}
+
+.dark .boton_3:hover {
+    text-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
+}
