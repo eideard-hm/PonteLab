@@ -19,9 +19,18 @@
         <input type="radio" name="menu_close">
     </span>
     <ul>
+        <li>
+            <a href="#">
+                <button class="switch" id="switch">
+                    <i class="fas fa-sun sol"></i>
+                    <i class="fas fa-moon luna"></i>
+                    <span class="circulo"></span>
+                </button>
+            </a>
+        </li>
         <li><a href="<?= URL; ?>">Página de incio</a></li>
         <li><a href="<?= URL; ?>Login">Iniciar Sesion</a></li>
-        <li><a href="#">Crear Cuenta</a></li>
+        <li><a href="Registro">Crear Cuenta</a></li>
         <li><a href="#">Contactanos</a></li>
     </ul>
 </nav>

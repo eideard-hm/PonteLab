@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/contratante.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -58,6 +59,9 @@
             </form>
         </div>
     </div>
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
 </body>
 
 </html>

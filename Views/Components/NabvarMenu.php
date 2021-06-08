@@ -28,6 +28,15 @@
                 Martushis
             </a>
         </li>
+        <li>
+            <a href="#">
+                <button class="switch" id="switch">
+                    <i class="fas fa-sun sol"></i>
+                    <i class="fas fa-moon luna"></i>
+                    <span class="circulo"></span>
+                </button>
+            </a>
+        </li>
         <li><a href="Contratante">Contratante</a></li>
         <li><a href="Vacante">Vacante</a></li>
         <li><a href="Aspirante">Aspirante</a></li>

@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -145,8 +146,9 @@
             </div>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/ff77c957bf.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
     <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
 </body>
 

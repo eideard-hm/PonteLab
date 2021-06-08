@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -56,12 +57,12 @@
             </div>
         </div>
 
-
         <div class="navigation">
             <div class="btn active"></div>
             <div class="btn"></div>
             <div class="btn"></div>
-        </div></br>
+        </div>
+        </br>
     </div>
 
     <script type="text/javascript">
@@ -121,16 +122,17 @@
         repeat();
     </script>
 
-    <footer>
+    <footer id="footer-index">
         <div class="text-center text-white" style="background-color: #1e1e62;">
             © Copyright TEAM BELAY SOFTWARE SOLUTION 2021: <br>
             <a id="textRef" class="text-white" href="#">Realizado por: Luisa Brigith Garzón Martin, Yesenia Rodriguez
                 Florez<br>
                 Santiago Andres Becerra Espitia, Edier Heraldo Hernandez Molano</a>
         </div>
-
     </footer>
-
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
 </body>
 
 </html>

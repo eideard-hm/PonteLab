@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -192,7 +193,9 @@
             </div>
         </div>
     </div>
-    <script src="https://kit.fontawesome.com/ff77c957bf.js" crossorigin="anonymous"></script>
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
 </body>
 
 </html>

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="<?= URL; ?>Assets/css/login.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -18,7 +19,9 @@
 
     <div class="banner">
     </div>
-
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
 </body>
 
 </html>
