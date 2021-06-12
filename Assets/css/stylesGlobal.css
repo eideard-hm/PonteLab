@@ -22,8 +22,13 @@
     box-sizing: border-box
 }
 
-body {
-    transition: background 0.4s, transform 0.4s linear
+body.dark, body {
+    transition: background 0.4s linear, transform 0.4s linear
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 /*========================= NAVBAR =========================*/
@@ -174,7 +179,7 @@ body {
 
 /*========================= MODO OSCURO =========================*/
 
-.dark {
+body.dark {
     background: var(--colorFondo);
 }
 
@@ -248,6 +253,27 @@ body {
 
 /*EDIER*/
 
+.dark #header_menu .barra .content-logo #icono-reponsive, .dark #header_menu .barra .content-logo #icono-regresar, .dark #header_menu .barra .content-logo .logo-nombre h2, .dark #header_menu .barra .nav a, .dark .info-persona h3, .dark .info-persona ul li i {
+    color: var(--colorIconosFuente);
+    opacity: 1;
+}
+
+.dark #header_menu .barra .nav a:hover {
+    color: #cecece;
+}
+
+.dark .info-persona, .dark .info-persona::before {
+    background-color: var(--colorFondoNavbar);
+}
+
+.dark .info-persona ul li {
+    border-top: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.dark .info-persona ul li a {
+    color: var(--blanco);
+}
+
 .dark .header {
     background: var(--colorFondoNavbar);
     box-shadow: var(--sombraForm);
@@ -276,9 +302,9 @@ body {
     border: 2px solid var(--azulMasClaro);
 }
 
-.dark .contenedor-formulario header .progress-bar .paso .num::before, .contenedor-formulario header .progress-bar .paso .num::after {
+.dark .contenedor-formulario header .progress-bar .paso .num::before, .dark .contenedor-formulario header .progress-bar .paso .num::after {
     content: "";
-    background: var(--azulMuyClaro);
+    background: var(--colorFondoNavbar);
     position: absolute;
     width: 85px;
     height: 4px;
@@ -299,6 +325,10 @@ body {
 
 .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion {
     color: var(--colorIconosFuente);
+}
+
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion.active, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion.active {
+    color: orange
 }
 
 /*BECERRA*/
@@ -334,6 +364,11 @@ body {
 
 .dark .con-form form button:hover, .dark .vac-form .block button:hover {
     color: var(--blanco)
+}
+
+.dark .ql-toolbar.ql-snow {
+    background: var(--blanco);
+    color: var(--colorFondo);
 }
 
 /*LUISA*/

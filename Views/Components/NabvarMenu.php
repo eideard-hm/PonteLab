@@ -41,8 +41,8 @@
         <li><a href="Vacante">Vacante</a></li>
         <li><a href="Aspirante">Aspirante</a></li>
         <li><a href="HojaVida">Hoja de Vida</a></li>
-        <li><a href="#">Realizar Encuestas </a></li>
-        <li><a href="#">Consultar contactos </a></li>
+        <li><a href="Estudios">Estudios</a></li>
+        <li><a href="Experiencia">Experiencia</a></li>
         <li><a href="<?= URL; ?>Login">Cerrar sesión</a></li>
     </ul>
 </nav>

@@ -16,9 +16,44 @@
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/NabvarMenu.php');
-    ?>
+    <header id="header_menu">
+        <div class="contenedor barra">
+            <span href="#" class="content-logo">
+                <a href="javascript:window.history.back();">
+                    <i class="fas fa-arrow-left" id="icono-regresar"></i>
+                </a>
+                <i class="fas fa-bars" id="icono-reponsive"></i>
+                <span href="#" class="logo-nombre">
+                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
+                    <h2>Pons<span>Labor.</span></h2>
+                </span>
+            </span>
+            <nav class="nav">
+                <a href="Aspirante">Aspirante</a>
+                <a href="Estudios">Estudios</a>
+                <a href="Experiencia">Experiencia</a>
+                <a href="HojaVida">Hoja de vida</a>
+                <button class="switch" id="switch">
+                    <i class="fas fa-sun sol"></i>
+                    <i class="fas fa-moon luna"></i>
+                    <span class="circulo"></span>
+                </button>
+                <div class="imagen-persona">
+                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                </div>
+            </nav>
+        </div>
+        <div class="info-persona">
+            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+            <ul>
+                <li><i class="fas fa-user-circle"></i><a href="#">Perfil</a></li>
+                <li><i class="fas fa-user-edit"></i><a href="#">Editar perfil</a></li>
+                <li>
+                    <i class="fas fa-sign-in-alt"></i><a href="#">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+    </header>
 
     <div class="contenedor-formulario">
         <div class="wrap">
@@ -155,6 +190,14 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script>
+        const imgPersona = document.querySelector('.imagen-persona');
+        const opcionesInfo = document.querySelector('.info-persona');
+
+        imgPersona.addEventListener('click', () => {
+            opcionesInfo.classList.toggle('active');
+        })
+    </script>
     <script src="<?= URL; ?>Assets/js/experienciaLaboral.js"></script>
     <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
 </body>

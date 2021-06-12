@@ -13,12 +13,6 @@
     --fuenteRoboto: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
-}
-
 body {
     min-height: 100vh;
     display: flex;
@@ -28,12 +22,319 @@ body {
     background: linear-gradient(to bottom, var(--azulMuyClaro), var(--azulMasClaro));
 }
 
+/*=================== ESTILOS PARA EL MENU ==============================*/
+
+body#menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fuenteRoboto);
+    flex-wrap: wrap;
+}
+
+/*Menu*/
+
+#header_menu {
+    width: 100%;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+#header_menu .barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+#header_menu .barra .content-logo {
+    text-decoration: none;
+    font-size: 27px;
+    font-weight: 900;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_menu .barra .content-logo #icono-reponsive {
+    display: none;
+    color: #fff;
+}
+
+#header_menu .barra .content-logo #icono-regresar {
+    margin-right: 20px;
+    color: #fff;
+}
+
+#header_menu .barra .content-logo #icono-regresar:hover {
+    color: #ff5d94;
+}
+
+#header_menu .barra .content-logo .logo-nombre {
+    display: flex;
+}
+
+#header_menu .barra .content-logo .logo-nombre .logo-empresa {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+#header_menu .barra .content-logo .logo-nombre h2 span {
+    color: orange;
+}
+
+#header_menu .barra .nav {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_menu .barra .nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: 12px;
+}
+
+#header_menu .barra .nav a:hover {
+    color: #555;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+/*Perfil*/
+
+.imagen-persona {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.imagen-persona img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-persona {
+    position: absolute;
+    top: 90px;
+    left: 80%;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+}
+
+.info-persona.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.1);
+    transition: 0.4s transform ease-out;
+}
+
+.info-persona h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 0px;
+    font-weight: 600;
+    color: #555;
+}
+
+.info-persona h3 span {
+    font-size: 14px;
+    color: #cecece;
+    font-weight: 400;
+}
+
+.info-persona::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 40px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+.info-persona ul li {
+    list-style: none;
+    padding: 10px 0px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.info-persona ul li i {
+    margin-right: 15px;
+    opacity: 0.5;
+    color: #cecece;
+    transition: 0.3s opacity ease;
+}
+
+.info-persona ul li:hover i {
+    opacity: 1;
+}
+
+.info-persona ul li a {
+    text-decoration: none;
+    color: #000
+}
+
+.info-persona ul li:hover a, .dark .info-persona ul li:hover a {
+    color: #ff5d94;
+}
+
+/*Tarjetas*/
+
+.contenedor-card {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    background-color: #fff;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.25);
+    margin: 20px;
+    margin-top: 130px;
+}
+
+.contenedor-card:hover .imagenes {
+    cursor: pointer;
+    transform: rotateY(-180deg)
+}
+
+.contenedor-card .imagenes {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    background: #000;
+    transition: transform 1s ease-in-out;
+    box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.25)
+}
+
+.contenedor-card .imagenes img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    image-rendering: pixelated;
+    transform-style: preserve-3d;
+    backface-visibility: hidden
+}
+
+.contenedor-card .imagenes img:nth-child(2) {
+    transform: rotateY(180deg);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    image-rendering: pixelated
+}
+
+.contenedor-card .imagenes .informacion-trabajador {
+    width: 100%;
+    height: 40%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #fff;
+    font-size: 14px
+}
+
+.contenedor-card .imagenes .informacion-trabajador h4 {
+    color: red;
+    font-size: 15px
+}
+
+.contenedor-card .info-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px
+}
+
+.contenedor-card .info-card .detalles-persona {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+}
+
+.contenedor-card .info-card .detalles-persona h2 {
+    font-size: 23px;
+    color: #000;
+    font-weight: 700
+}
+
+.contenedor-card .info-card .detalles-persona h2 span {
+    color: red;
+    font-size: 20px
+}
+
+.contenedor-card .info-card .detalles-persona .redes-sociales {
+    display: flex;
+    flex-direction: row
+}
+
+.contenedor-card .info-card .detalles-persona .redes-sociales a {
+    text-decoration: none;
+    width: 35px;
+    height: 35px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin: 6px;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 18px;
+    transition: background-color 0.2s linear
+}
+
+.contenedor-card .info-card .detalles-persona .redes-sociales a:hover {
+    background-color: red
+}
+
 /*========================= ESTILOS PARA EL ASPIRANTE =============================*/
 
 .contenedor-formulario {
     width: 90%;
     max-width: 800px;
-    margin-top: 130px
+    margin-top: 100px
 }
 
 .contenedor-formulario header .title-principal {
@@ -376,12 +677,9 @@ body {
 }
 
 .ql-toolbar.ql-snow {
-    margin-top: 10px;
-}
-
-.ql-toolbar.ql-snow {
     font-family: var(--fuenteRoboto);
     font-size: 20px;
+    margin-top: 10px;
 }
 
 .ql-editor {
