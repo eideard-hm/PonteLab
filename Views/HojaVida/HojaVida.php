@@ -27,10 +27,11 @@
                 </span>
             </span>
             <nav class="nav">
+                <a href="Menu">Inicio</a>
                 <a href="Aspirante">Aspirante</a>
                 <a href="Estudios">Estudios</a>
                 <a href="Experiencia">Experiencia</a>
-                <a href="HojaVida">Hoja de vida</a>
+                <a href="HojaVida" class="active">Hoja de vida</a>
                 <button class="switch" id="switch">
                     <i class="fas fa-sun sol"></i>
                     <i class="fas fa-moon luna"></i>

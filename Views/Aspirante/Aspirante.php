@@ -30,7 +30,8 @@
                 </span>
             </span>
             <nav class="nav">
-                <a href="Aspirante">Aspirante</a>
+                <a href="Menu">Inicio</a>
+                <a href="Aspirante" class="active">Aspirante</a>
                 <a href="Estudios">Estudios</a>
                 <a href="Experiencia">Experiencia</a>
                 <a href="HojaVida">Hoja de vida</a>
@@ -54,6 +55,25 @@
                 </li>
             </ul>
         </div>
+        <div class="contenedor-responsive">
+            <ul class="contenedor-responsive-lista">
+                <li>
+                    <a href="#">
+                        <button class="switch" id="switch">
+                            <i class="fas fa-sun sol"></i>
+                            <i class="fas fa-moon luna"></i>
+                            <span class="circulo"></span>
+                        </button>
+                    </a>
+                </li>
+                <li><a href="Contratante">Contratante</a></li>
+                <li><a href="Vacante">Vacante</a></li>
+                <li><a href="Aspirante">Aspirante</a></li>
+                <li><a href="HojaVida">Hoja de Vida</a></li>
+                <li><a href="Estudios">Estudios</a></li>
+                <li><a href="Experiencia">Experiencia</a></li>
+            </ul>
+        </div>
     </header>
 
     <div class="contenedor-formulario">
@@ -69,7 +89,7 @@
                 </div>
 
                 <div class="paso">
-                    <p>Perfil <br />Laboral</p>
+                    <p>Puesto<br />Interés</p>
                     <div class="num">
                         <span>2</span>
                     </div>
@@ -120,6 +140,11 @@
                             </p>
                         </div>
 
+                        <div class="contenedor-grupo w100" id="grupo-perfil">
+                            <label for="txtPerfil">Perfil laboral</label>
+                            <div id="editor"></div>
+                        </div>
+
                         <div class="contenedor-grupo w100" id="grupo-estado">
                             <label for="txtEstado">Estado laboral</label>
                             <select name="txtEstado" id="txtEstado">
@@ -140,11 +165,11 @@
                 <!-- PAGINA 2 -->
                 <div class="pagina">
                     <form action="#" id="perfil-laboral" class="contenedor-form">
-                        <h2 class="title-form">Perfil Laboral.</h2>
+                        <h2 class="title-form">Puesto interés.</h2>
 
-                        <div class="contenedor-grupo w100" id="grupo-estado">
-                            <label for="txtPerfil">Puesto interes.</label>
-                            <select name="txtPerfil" id="txtPerfil">
+                        <div class="contenedor-grupo w100" id="grupo-puesto">
+                            <label for="txtPuesto">Puesto interés</label>
+                            <select name="txtPuesto" id="txtPuesto">
                                 <option value="0">Desarrollador de software web.</option>
                                 <option value="1">Desarrollador front-end</option>
                                 <option value="2">Desarrollador back-end</option>
@@ -152,9 +177,19 @@
                             </select>
                         </div>
 
-                        <div class="contenedor-grupo w100" id="grupo-perfil">
-                            <label for="txtPerfil">Perfil laboral</label>
-                            <div id="editor"></div>
+                        <div class="contenedor-grupo w100" id="grupo-otro_puesto">
+                            <input type="checkbox" id="grupo-puesto-otro_puesto" />
+                            <label for="grupo-puesto-otro_puesto">Otro puesto de interés.</label>
+                        </div>
+
+                        <div class="contenedor-grupo w100" id="grupo-otro_puesto_interes">
+                            <label for="txtNombre">Otro puesto interés</label>
+                            <input type="text" name="txtOtroPuesto" id="txtOtroPuesto" placeholder="Desarrollador frontend con React" />
+                            <i class="estado-input fa fa-times-circle"></i>
+                            <p class="leyenda-input">
+                                El puesto de interés no debe contener números y debe tener mínimo 3
+                                letras.
+                            </p>
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">
@@ -175,15 +210,28 @@
                         <h2 class="title-form">Idiomas</h2>
 
                         <div class="contenedor-grupo w50" id="grupo-idioma">
-                            <div class="agrupar-estrellas">
-                                <label for="txtIdioma">Idioma</label>
-                                <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus />
+                            <div class="agrupar-estrellas" id="agrupar-estrellas-select">
+                                <label for="txtListIdiomas" id="grupo-idioma-idioma">Idiomas</label>
+                                <select name="txtListIdiomas" id="txtListIdiomas">
+                                    <option value="Inglés">Inglés</option>
+                                    <option value="Chino mandarín">Chino mandarín</option>
+                                    <option value="Hindi">Hindi</option>
+                                    <option value="Español">Español</option>
+                                    <option value="Francés">Francés</option>
+                                    <option value="Árabe">Árabe</option>
+                                    <option value="Bengalí">Bengalí</option>
+                                    <option value="Ruso">Ruso</option>
+                                    <option value="Portugués">Portugués</option>
+                                    <option value="Indonesio">Indonesio</option>
+                                </select>
+                                <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
+                                <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
-                                <p class="leyenda-input">
+                                <p class="leyenda-input" id="grupo-idioma-leyenda">
                                     El nombre del idioma no debe contener números.
                                 </p>
                             </div>
-                            <span class="estrellas">
+                            <span class="estrellas" id="grupo-idioma-estrellas">
                                 <label class="fas fa-star puntuacion idioma" id="1idioma">
                                     <input type="radio" name="txtNivelIdioma" class="input-radio" id="1idioma" checked value="1">
                                 </label>
@@ -200,6 +248,11 @@
                                     <input type="radio" name="txtNivelIdioma" class="input-radio" id="5idioma" value="5">
                                 </label>
                             </span>
+                        </div>
+
+                        <div class="contenedor-grupo w100" id="grupo-otro_idioma">
+                            <input type="checkbox" id="grupo-puesto-otro_idioma" />
+                            <label for="grupo-puesto-otro_idioma">Otro idioma.</label>
                         </div>
 
                         <div class="add-puntuacion">

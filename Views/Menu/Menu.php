@@ -16,9 +16,9 @@
     <header id="header_menu">
         <div class="contenedor barra">
             <span href="#" class="content-logo">
-                <a href="javascript:window.history.back();">
+                <!-- <a href="javascript:window.history.back();">
                     <i class="fas fa-arrow-left" id="icono-regresar"></i>
-                </a>
+                </a> -->
                 <i class="fas fa-bars" id="icono-reponsive"></i>
                 <span href="#" class="logo-nombre">
                     <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
@@ -26,13 +26,17 @@
                 </span>
             </span>
             <nav class="nav">
+                <a href="Menu" class="active">Inicio</a>
                 <a href="Aspirante">Aspirante</a>
                 <a href="Estudios">Estudios</a>
                 <a href="Experiencia">Experiencia</a>
                 <a href="HojaVida">Hoja de vida</a>
+                <div class="content-search">
+                    <i class="fas fa-search" id="icon-search" title="Buscar"></i>
+                </div>
                 <button class="switch" id="switch">
-                    <i class="fas fa-sun sol"></i>
-                    <i class="fas fa-moon luna"></i>
+                    <i class="fas fa-sun sol" title="Modo claro"></i>
+                    <i class="fas fa-moon luna" title="Modo oscuro"></i>
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
@@ -52,145 +56,150 @@
         </div>
     </header>
 
-    <div class="contenedor-card">
-        <div class="imagenes">
-            <img src="<?= URL; ?>Assets/img/perfil.png" alt="Perfil de empleado" />
-            <img src="<?= URL; ?>Assets/img/perfil.png" alt="Perfil de empleado" />
-            <div class="informacion-trabajador">
-                <h4>Nombre:</h4>
-                <b>Edier Heraldo Hernandez Molano</b>
-                <h4>Edad:</h4>
-                <span>17 años</span>
-                <h4>Profesión:</h4>
-                <span>Desarrollador de software</span>
-                <h4>Estado:</h4>
-                <span>Buscando empleo</span>
+    <form class="content-bar-search">
+        <input type="search" id="txtSearchAspirante" name="txtSearchAspirante" placeholder="Ingrese lo que desea buscar" autofocus>
+        <button id="icono-buscar"><i class="fas fa-search" title="Buscar"></i></button>
+        <i class="fas fa-times" id="borrar-contenido" title="Borrar"></i>
+    </form>
+
+    <div class="cover-ctn-search">
+
+    </div>
+
+    <div class="contenedor card">
+
+        <div class="contenedor-card">
+            <div class="imagenes">
+                <img src="<?= URL; ?>Assets/img/perfil.png" alt="Perfil de empleado" />
+                <img src="<?= URL; ?>Assets/img/perfil.png" alt="Perfil de empleado" />
+                <div class="informacion-trabajador">
+                    <h4>Nombre:</h4>
+                    <b>Edier Heraldo Hernandez Molano</b>
+                    <h4>Edad:</h4>
+                    <span>17 años</span>
+                    <h4>Profesión:</h4>
+                    <span>Desarrollador de software</span>
+                    <h4>Estado:</h4>
+                    <span>Buscando empleo</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="detalles-persona">
+                    <h2>
+                        Edier Hernandez <br />
+                        <span>Desarrollador web</span>
+                    </h2>
+
+                    <div class="redes-sociales">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="info-card">
-            <div class="detalles-persona">
-                <h2>
-                    Edier Hernandez <br />
-                    <span>Desarrollador web</span>
-                </h2>
 
-                <div class="redes-sociales">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <div class="contenedor-card">
+            <div class="imagenes">
+                <img src="<?= URL; ?>Assets/img/image2.jpg" alt="Perfil de empleado" />
+                <img src="<?= URL; ?>Assets/img/image2.jpg" alt="Perfil de empleado" />
+                <div class="informacion-trabajador">
+                    <h4>Nombre:</h4>
+                    <b>Edier Heraldo Hernandez Molano</b>
+                    <h4>Edad:</h4>
+                    <span>17 años</span>
+                    <h4>Profesión:</h4>
+                    <span>Desarrollador de software</span>
+                    <h4>Estado:</h4>
+                    <span>Buscando empleo</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="detalles-persona">
+                    <h2>
+                        Edier Hernandez <br />
+                        <span>Desarrollador web</span>
+                    </h2>
+
+                    <div class="redes-sociales">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contenedor-card">
+            <div class="imagenes">
+                <img src="<?= URL; ?>Assets/img/image.jpg" alt="Perfil de empleado" />
+                <img src="<?= URL; ?>Assets/img/image.jpg" alt="Perfil de empleado" />
+                <div class="informacion-trabajador">
+                    <h4>Nombre:</h4>
+                    <b>Edier Heraldo Hernandez Molano</b>
+                    <h4>Edad:</h4>
+                    <span>17 años</span>
+                    <h4>Profesión:</h4>
+                    <span>Desarrollador de software</span>
+                    <h4>Estado:</h4>
+                    <span>Buscando empleo</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="detalles-persona">
+                    <h2>
+                        Edier Hernandez <br />
+                        <span>Desarrollador web</span>
+                    </h2>
+
+                    <div class="redes-sociales">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contenedor-card">
+            <div class="imagenes">
+                <img src="<?= URL; ?>Assets/img/image3.jpg" alt="Perfil de empleado" />
+                <img src="<?= URL; ?>Assets/img/image3.jpg" alt="Perfil de empleado" />
+                <div class="informacion-trabajador">
+                    <h4>Nombre:</h4>
+                    <b>Edier Heraldo Hernandez Molano</b>
+                    <h4>Edad:</h4>
+                    <span>17 años</span>
+                    <h4>Profesión:</h4>
+                    <span>Desarrollador de software</span>
+                    <h4>Estado:</h4>
+                    <span>Buscando empleo</span>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="detalles-persona">
+                    <h2>
+                        Edier Hernandez <br />
+                        <span>Desarrollador web</span>
+                    </h2>
+
+                    <div class="redes-sociales">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="contenedor-card">
-        <div class="imagenes">
-            <img src="<?= URL; ?>Assets/img/image2.jpg" alt="Perfil de empleado" />
-            <img src="<?= URL; ?>Assets/img/image2.jpg" alt="Perfil de empleado" />
-            <div class="informacion-trabajador">
-                <h4>Nombre:</h4>
-                <b>Edier Heraldo Hernandez Molano</b>
-                <h4>Edad:</h4>
-                <span>17 años</span>
-                <h4>Profesión:</h4>
-                <span>Desarrollador de software</span>
-                <h4>Estado:</h4>
-                <span>Buscando empleo</span>
-            </div>
-        </div>
-        <div class="info-card">
-            <div class="detalles-persona">
-                <h2>
-                    Edier Hernandez <br />
-                    <span>Desarrollador web</span>
-                </h2>
-
-                <div class="redes-sociales">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="contenedor-card">
-        <div class="imagenes">
-            <img src="<?= URL; ?>Assets/img/image.jpg" alt="Perfil de empleado" />
-            <img src="<?= URL; ?>Assets/img/image.jpg" alt="Perfil de empleado" />
-            <div class="informacion-trabajador">
-                <h4>Nombre:</h4>
-                <b>Edier Heraldo Hernandez Molano</b>
-                <h4>Edad:</h4>
-                <span>17 años</span>
-                <h4>Profesión:</h4>
-                <span>Desarrollador de software</span>
-                <h4>Estado:</h4>
-                <span>Buscando empleo</span>
-            </div>
-        </div>
-        <div class="info-card">
-            <div class="detalles-persona">
-                <h2>
-                    Edier Hernandez <br />
-                    <span>Desarrollador web</span>
-                </h2>
-
-                <div class="redes-sociales">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="contenedor-card">
-        <div class="imagenes">
-            <img src="<?= URL; ?>Assets/img/image3.jpg" alt="Perfil de empleado" />
-            <img src="<?= URL; ?>Assets/img/image3.jpg" alt="Perfil de empleado" />
-            <div class="informacion-trabajador">
-                <h4>Nombre:</h4>
-                <b>Edier Heraldo Hernandez Molano</b>
-                <h4>Edad:</h4>
-                <span>17 años</span>
-                <h4>Profesión:</h4>
-                <span>Desarrollador de software</span>
-                <h4>Estado:</h4>
-                <span>Buscando empleo</span>
-            </div>
-        </div>
-        <div class="info-card">
-            <div class="detalles-persona">
-                <h2>
-                    Edier Hernandez <br />
-                    <span>Desarrollador web</span>
-                </h2>
-
-                <div class="redes-sociales">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const imgPersona = document.querySelector('.imagen-persona');
-        const opcionesInfo = document.querySelector('.info-persona');
-
-        imgPersona.addEventListener('click', () => {
-            opcionesInfo.classList.toggle('active');
-        })
-    </script>
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script src="<?= URL; ?>Assets/js/menu.js"></script>
 
 </body>
 

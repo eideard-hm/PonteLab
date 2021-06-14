@@ -28,6 +28,7 @@ body.dark, body {
 
 .contenedor {
     max-width: 1200px;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -253,7 +254,7 @@ body.dark {
 
 /*EDIER*/
 
-.dark #header_menu .barra .content-logo #icono-reponsive, .dark #header_menu .barra .content-logo #icono-regresar, .dark #header_menu .barra .content-logo .logo-nombre h2, .dark #header_menu .barra .nav a, .dark .info-persona h3, .dark .info-persona ul li i {
+.dark #header_menu .barra .content-logo #icono-reponsive, .dark #header_menu .barra .content-logo #icono-regresar, .dark #header_menu .barra .content-logo .logo-nombre h2, .dark #header_menu .barra .nav a, .dark .info-persona h3, .dark .info-persona ul li i, .dark #header_menu .barra .nav .content-search #icon-search {
     color: var(--colorIconosFuente);
     opacity: 1;
 }

@@ -19,11 +19,15 @@ const idiomas = document.getElementById('idiomas');
 const habilidades = document.getElementById('habilidades');
 
 const inputsInfoPersona = document.querySelectorAll('#info-persona .contenedor-grupo input');
+const inputsPuestoInteres = document.querySelectorAll('#perfil-laboral .contenedor-grupo input');
 const inputsEstudios = document.querySelectorAll('#estudios .contenedor-grupo input');
 const inputsExperienciaLaboral = document.querySelectorAll('#experiencia-laboral .contenedor-grupo input');
 const inputsIdiomas = document.querySelectorAll('#idiomas .contenedor-grupo input');
 const inputsHabilidades = document.querySelectorAll('#habilidades .contenedor-grupo input');
 
+const checkOtroPuestoInteres = document.querySelector('#grupo-puesto-otro_puesto');
+const inputOtroPuestoInteres = document.getElementById('grupo-otro_puesto_interes');
+const checkOtroIdioma = document.querySelector('#grupo-puesto-otro_idioma');
 
 const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,50}$/, // Letras y espacios, pueden llevar acentos.    
@@ -39,7 +43,7 @@ const campos = {
     institucion: false,
     titulo: false,
     empresa: false,
-    puesto: false,
+    otro_puesto_interes: false,
     funcion: false,
     idioma: false,
     habilidad: false
@@ -63,8 +67,8 @@ const validarFormulario = (e) => {
         case "txtEmpresa":
             validarCampo(expresiones.nombre, e.target, 'empresa');
             break;
-        case "txtPuesto":
-            validarCampo(expresiones.nombre, e.target, 'puesto');
+        case "txtOtroPuesto":
+            validarCampo(expresiones.nombre, e.target, 'otro_puesto_interes');
             break;
         case "txtIdioma":
             validarCampo(expresiones.idioma, e.target, 'idioma');
@@ -123,6 +127,17 @@ inputsInfoPersona.forEach(input => {
     input.addEventListener('blur', validarFormulario);
 });
 
+inputsPuestoInteres.forEach(input => {
+    // console.log(input);
+    //por cada input recorrio vamos a agregar un evento
+    /*
+    *Evento 'keyup', se ejecuta cada vez que el usuario oprime un tecla y la suelta
+    *Evento 'blur', se ejecuta cada vez que se da click fuera del input
+    */
+    input.addEventListener('keyup', validarFormulario);
+    input.addEventListener('blur', validarFormulario);
+});
+
 inputsEstudios.forEach(input => {
     input.addEventListener('keyup', validarFormulario);
     input.addEventListener('blur', validarFormulario);
@@ -143,6 +158,39 @@ inputsHabilidades.forEach(input => {
     input.addEventListener('blur', validarFormulario);
 })
 
+document.getElementById('grupo-otro_puesto').addEventListener('click', () => {
+    mostrarInputOtroPuestoInteres();
+});
+
+document.getElementById('grupo-otro_idioma').addEventListener('click', () => {
+    mostrarInputOtroIdioma();
+});
+
+const mostrarInputOtroPuestoInteres = () => {
+    if (checkOtroPuestoInteres.checked) {
+        inputOtroPuestoInteres.style.display = 'block';
+    } else {
+        inputOtroPuestoInteres.style.display = 'none';
+    }
+}
+
+const mostrarInputOtroIdioma = () => {
+    if (checkOtroIdioma.checked) {
+        document.getElementById('grupo-idioma-otro_idioma').style.display = 'block';
+        document.getElementById('txtIdioma').style.display = 'block';
+        // document.getElementById('grupo-idioma-leyenda').style.display = 'block';
+
+        document.getElementById('grupo-idioma-idioma').style.display = 'none';
+        document.getElementById('txtListIdiomas').style.display = 'none';
+    } else {
+        document.getElementById('grupo-idioma-otro_idioma').style.display = 'none';
+        document.getElementById('txtIdioma').style.display = 'none';
+        // document.getElementById('grupo-idioma-leyenda').style.display = 'none';
+
+        document.getElementById('grupo-idioma-idioma').style.display = 'block';
+        document.getElementById('txtListIdiomas').style.display = 'block';
+    }
+}
 
 /*
 =================== CÓDIGO PARA LAS ANIMACIONES DEL HEADER =========================
@@ -169,18 +217,23 @@ sigPagina.forEach(boton => {
     boton.addEventListener('click', e => {
         e.preventDefault();
         if (boton.classList.contains('sig-p2')) {
-            if (campos.nombre === false || campos.apellido === false) {
+            let contenidoEditorTexto = quill.container.firstChild.innerHTML;
+            if (campos.nombre === false || campos.apellido === false || contenidoEditorTexto === '<p><br></p>' || contenidoEditorTexto === '') {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
             } else {
                 siguientePagina('-25%');
             }
         } else if (boton.classList.contains('sig-p3')) {
-            let contenidoEditorTexto = quill.container.firstChild.innerHTML;
-            if (contenidoEditorTexto === '<p><br></p>' || contenidoEditorTexto === '') {
-                sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-            } else {
+            if (inputOtroPuestoInteres.style.display === 'block') {
+                if (campos.otro_puesto_interes === false) {
+                    sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+                } else {
+                    siguientePagina('-50%');
+                }
+            } else if (inputOtroPuestoInteres.style.display === 'none' || inputOtroPuestoInteres.style.display === '') {
                 siguientePagina('-50%');
             }
+
         } else if (boton.classList.contains('sig-p4')) {
             if (campos.institucion === false || campos.titulo === false) {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
@@ -191,11 +244,16 @@ sigPagina.forEach(boton => {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
             }
         } else if (boton.classList.contains('sig-p6')) {
-            if (campos.idioma === false) {
-                sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-            } else {
+            if (document.getElementById('txtIdioma').style.display === 'block') {
+                if (campos.idioma === false) {
+                    sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+                } else {
+                    siguientePagina('-75%');
+                }
+            } else if (document.getElementById('txtIdioma').style.display === 'none' || document.getElementById('txtIdioma').style.display === '') {
                 siguientePagina('-75%');
             }
+
         }
     })
 })
@@ -239,3 +297,17 @@ enviar.addEventListener('click', e => {
     // console.log(data.get('txtHabilidad'))
     // console.log(data.get('nivel_habilidad'))
 })
+
+/* ======================== RESPONSIVE DESIGN ================== */
+
+document.querySelector('#icono-reponsive').addEventListener('click', () => {
+    mostrarBarraResponsive();
+
+});
+
+const mostrarBarraResponsive = () => {
+    document.querySelector('.contenedor-responsive').classList.toggle('active');
+    document.querySelector('#icono-reponsive').classList.toggle('fa-bars');
+    document.querySelector('#icono-reponsive').classList.toggle('fa-times');
+}
+

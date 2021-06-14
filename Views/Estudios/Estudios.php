@@ -27,8 +27,9 @@
                 </span>
             </span>
             <nav class="nav">
+                <a href="Menu">Inicio</a>
                 <a href="Aspirante">Aspirante</a>
-                <a href="Estudios">Estudios</a>
+                <a href="Estudios" class="active">Estudios</a>
                 <a href="Experiencia">Experiencia</a>
                 <a href="HojaVida">Hoja de vida</a>
                 <button class="switch" id="switch">

@@ -22,31 +22,57 @@
         <div class="vac-form">
             <h2 class="name">Registro <span>Vacante</span></h2>
 
-            <form action="">
+            <form action="#">
                 <p>
-                    <label for="">ID</label>
-                    <input type="text" name="identificacion" id="" required />
-                </p>
-                <p>
-                    <label for="">Estado</label>
-                    <input type="text" name="estado" id="" required />
+                    <label for="txtNombreVacante">Nombre</label>
+                    <input type="text" name="txtNombreVacante" id="txtNombreVacante" required />
                 </p>
                 <p>
-                    <label for="">Direccion</label>
-                    <input type="text" name="direccion" id="" required />
+                    <label for="txtCantidadVacante">Cantidad de Vacantes</label>
+                    <input type="text" name="txtCantidadVacante" id="txtCantidadVacante" required />
                 </p>
                 <p class="block">
-                    <label for="">Publicacion</label>
-                    <input type="date" name="fechapublicacion" id="" required />
+                    <label for="txtEspecificacionesVacante">Especificaciones </label>
+                    <textarea name="txtEspecificacionesVacante" id="txtEspecificacionesVacante" rows="1" required></textarea>
                 </p>
                 <p class="block">
-                    <label for="">Fecha de Cierre</label>
-                    <input type="date" name="fechacierre" id="" required />
+                    <label for="txtPerfilTrabajador">Perfil del Trabajador</label>
+                    <textarea type="text" name="txtPerfilTrabajador" id="txtPerfilTrabajador" required></textarea>
+                </p>
+                <p>
+                    <label for="txtTipoContrato">Tipo de Contrato</label>
+                    <select name="txtTipoContrato" id="txtTipoContrato">
+                        <option value="Contrato por Obra o Labor">Contrato por Obra o Labor</option>
+                        <option value="Contrato a Termino Fijo">Contrato a Termino Fijo</option>
+                        <option value="Contrato a Termino Indefinido">Contrato a Termino Indefinido</option>
+                        <option value="Contrato de Aprendizaje">Contrato de Aprendizaje</option>
+                        <option value="Contrato Temporal, Ocacional o Accidental">Contrato Temporal, Ocacional o Accidental</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="txtSueldoVacante">Sueldo</label>
+                    <input type="text" name="txtSueldoVacante" id="txtSueldoVacante" required />
                 </p>
                 <p class="block">
-                    <label for="">Especificaciones</label>
-                    <textarea name="especificaciones" id="" rows="1"></textarea>
+                    <label for="txtFechaPublicacion">Fecha de Publicacion</label>
+                    <input type="date" name="txtFechaPublicacion" id="txtFechaPublicacion" required />
                 </p>
+                <p class="block">
+                    <label for="txtFechaCierre">Fecha de Cierre</label>
+                    <input type="date" name="txtFechaCierre" id="txtFechaCierre" required />
+                </p>
+                <p>
+                    <label for="txtDireccionVacante">Direccion</label>
+                    <input type="text" name="txtDireccionVacante" id="txtDireccionVacante" required />
+                </p>
+                <p>
+                    <label for="txtEstadoVacante">Estado</label>
+                    <select name="txtEstadoVacante" id="txtEstadoVacante">
+                        <option value="1">Activa</option>
+                        <option value="2">Inactiva</option>
+                    </select>
+                </p>
+
                 <p class="block">
                     <button type="submit">Registrar</button>
                 </p>
