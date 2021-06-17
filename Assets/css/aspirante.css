@@ -52,7 +52,7 @@ body#menu {
     height: 100%;
 }
 
-#header_menu .barra .content-logo {
+#header_menu .barra .content-logo, #header_menu .barra .content_logo_menu {
     text-decoration: none;
     font-size: 27px;
     font-weight: 900;
@@ -62,32 +62,32 @@ body#menu {
     align-items: center;
 }
 
-#header_menu .barra .content-logo #icono-reponsive {
+#header_menu .barra .content-logo #icono-reponsive, #header_menu .barra .content_logo_menu #icono-reponsive {
     display: none;
     color: #fff;
 }
 
-#header_menu .barra .content-logo #icono-regresar {
+#header_menu .barra .content-logo #icono-regresar, #header_menu .barra .content_logo_menu #icono-regresar {
     margin-right: 20px;
     color: #fff;
 }
 
-#header_menu .barra .content-logo #icono-regresar:hover {
+#header_menu .barra .content-logo #icono-regresar:hover, #header_menu .barra .content_logo_menu #icono-regresar:hover {
     color: #ff5d94;
 }
 
-#header_menu .barra .content-logo .logo-nombre {
+#header_menu .barra .content-logo .logo-nombre, #header_menu .barra .content_logo_menu .logo-nombre {
     display: flex;
 }
 
-#header_menu .barra .content-logo .logo-nombre .logo-empresa {
+#header_menu .barra .content-logo .logo-nombre .logo-empresa, #header_menu .barra .content_logo_menu .logo-nombre .logo-empresa {
     width: 50px;
     height: 50px;
     object-fit: cover;
     margin-right: 10px;
 }
 
-#header_menu .barra .content-logo .logo-nombre h2 span {
+#header_menu .barra .content-logo .logo-nombre h2 span, #header_menu .barra .content_logo_menu .logo-nombre h2 span {
     color: orange;
 }
 
@@ -126,6 +126,11 @@ body#menu {
     position: absolute;
     left: 0;
     background: var(--azulMuyClaro);
+}
+
+#header_menu .contenedor-responsive.active {
+    display: block;
+    transition: 500ms display linear;
 }
 
 #header_menu .contenedor-responsive ul li {
@@ -245,9 +250,10 @@ body#menu {
 }
 
 .info-persona {
+    width: 250px;
     position: absolute;
     top: 90px;
-    left: 80%;
+    right: 4%;
     background-color: #fff;
     padding: 10px 20px;
     border-radius: 10px;
@@ -832,13 +838,13 @@ body#menu {
 /*==================================== REPONSIEVE DESIGN ===========================*/
 
 @media screen and (max-width: 1110px) {
-    #header_menu .barra .content-logo .logo-nombre {
+    #header_menu .barra .content-logo .logo-nombre, #header_menu .barra .content_logo_menu .logo-nombre {
         align-items: center;
     }
-    #header_menu .barra .content-logo .logo-nombre h2 {
+    #header_menu .barra .content-logo .logo-nombre h2, #header_menu .barra .content_logo_menu .logo-nombre h2 {
         font-size: 25px;
     }
-    #header_menu .barra .content-logo .logo-nombre h2 span {
+    #header_menu .barra .content-logo .logo-nombre h2 span, #header_menu .barra .content_logo_menu .logo-nombre h2 span {
         font-size: 24px;
     }
     #header_menu .barra .nav {
@@ -847,21 +853,18 @@ body#menu {
 }
 
 @media screen and (max-width: 850px) {
-    #header_menu .barra .content-logo #icono-reponsive {
+    #header_menu .barra .content-logo #icono-reponsive, #header_menu .barra .content_logo_menu #icono-reponsive {
         display: block;
         cursor: pointer;
         position: absolute;
         top: 17px;
         line-height: 32px;
     }
-    #header_menu .barra .nav a, #header_menu .barra .nav #switch, #header_menu .barra .content-logo #icono-regresar {
+    #header_menu .barra .nav a, #header_menu .barra .content-logo #icono-regresar, #header_menu .barra .nav a, #header_menu .barra .content_logo_menu #icono-regresar {
         display: none;
     }
-    #header_menu .barra .content-logo .logo-nombre h2, #header_menu .barra .content-logo .logo-nombre h2 span {
+    #header_menu .barra .content-logo .logo-nombre h2, #header_menu .barra .content-logo .logo-nombre h2 span, #header_menu .barra .content_logo_menu .logo-nombre h2, #header_menu .barra .content_logo_menu .logo-nombre h2 span {
         display: none;
-    }
-    #header_menu .barra .nav {
-        width: 5%;
     }
     #header_menu .barra .nav .imagen-persona {
         right: 0px;
@@ -870,9 +873,28 @@ body#menu {
     }
     #header_menu .contenedor-responsive.active {
         display: block;
+        transition: 500ms display linear;
     }
     #header_menu .barra .content-logo {
-        width: 52.5%;
+        width: 55%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav {
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .content_logo_menu {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav_menu {
+        width: 40%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -892,8 +914,24 @@ body#menu {
 }
 
 @media screen and (max-width: 620px) {
+    #header_menu .barra .nav {
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav_menu {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     .contenedor-formulario {
         width: 95%;
+    }
+    .info-persona {
+        top: 90px;
+        right: 2%;
     }
     .contenedor-formulario header .progress-bar .paso p {
         font-size: 14px;
@@ -921,22 +959,6 @@ body#menu {
         display: block;
         width: 100%
     }
-}
-
-@media screen and (max-width: 620px) {
-    .contenedor-formulario header .progress-bar .paso .num::before, .contenedor-formulario header .progress-bar .paso .num::after {
-        content: "";
-        background: var(--negro);
-        position: absolute;
-        width: 35px;
-        height: 4px;
-        left: 35px;
-        top: 50%;
-    }
-    .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma, .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad {
-        width: 100%;
-        display: block;
-    }
     .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .agrupar-estrellas, .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .agrupar-estrellas {
         width: 100%
     }
@@ -947,9 +969,55 @@ body#menu {
     }
 }
 
+@media screen and (max-width: 515px) {
+    #header_menu .barra .content-logo {
+        width: 25%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav {
+        width: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav_menu {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    #header_menu .barra .content-logo {
+        width: 35%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav {
+        width: 35%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #header_menu .barra .nav_menu {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
 @media screen and (max-width: 350px) {
     .contenedor-formulario {
         width: 100%;
+    }
+    .info-persona {
+        top: 90px;
+        right: 4%;
     }
     .contenedor-formulario header .progress-bar .paso .num::before, .contenedor-formulario header .progress-bar .paso .num::after {
         content: "";

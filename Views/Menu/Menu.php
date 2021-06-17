@@ -15,17 +15,17 @@
 <body id="menu">
     <header id="header_menu">
         <div class="contenedor barra">
-            <span href="#" class="content-logo">
-                <!-- <a href="javascript:window.history.back();">
-                    <i class="fas fa-arrow-left" id="icono-regresar"></i>
-                </a> -->
+            <span href="#" class="content-logo content_logo_menu">
+                <a href="javascript:window.history.back();" style="visibility: hidden; opacity:0">
+                    <i class="fas fa-arrow-left" id="icono-regresar" style="display: none;"></i>
+                </a>
                 <i class="fas fa-bars" id="icono-reponsive"></i>
                 <span href="#" class="logo-nombre">
                     <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
                     <h2>Pons<span>Labor.</span></h2>
                 </span>
             </span>
-            <nav class="nav">
+            <nav class="nav nav_menu">
                 <a href="Menu" class="active">Inicio</a>
                 <a href="Aspirante">Aspirante</a>
                 <a href="Estudios">Estudios</a>
@@ -52,6 +52,16 @@
                 <li>
                     <i class="fas fa-sign-in-alt"></i><a href="#">Cerrar sesión</a>
                 </li>
+            </ul>
+        </div>
+        <div class="contenedor-responsive">
+            <ul class="contenedor-responsive-lista">
+                <li><a href="Contratante">Contratante</a></li>
+                <li><a href="Vacante">Vacante</a></li>
+                <li><a href="Aspirante">Aspirante</a></li>
+                <li><a href="HojaVida">Hoja de Vida</a></li>
+                <li><a href="Estudios">Estudios</a></li>
+                <li><a href="Experiencia">Experiencia</a></li>
             </ul>
         </div>
     </header>

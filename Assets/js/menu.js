@@ -40,3 +40,16 @@ const ocultarBarraBusqueda = () => {
     barraBusqueda.style.opacity = '0';
     coverContenedorBusqueda.style.display = 'none';
 }
+
+/* ======================== RESPONSIVE DESIGN ================== */
+
+document.querySelector('#icono-reponsive').addEventListener('click', () => {
+    mostrarBarraResponsive();
+
+});
+
+const mostrarBarraResponsive = () => {
+    document.querySelector('.contenedor-responsive').classList.toggle('active');
+    document.querySelector('#icono-reponsive').classList.toggle('fa-bars');
+    document.querySelector('#icono-reponsive').classList.toggle('fa-times');
+}
