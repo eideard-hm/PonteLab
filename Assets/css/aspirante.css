@@ -26,11 +26,7 @@ body {
 /*=================== ESTILOS PARA EL MENU ==============================*/
 
 body#menu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--fuenteRoboto);
-    flex-wrap: wrap;
+    
 }
 
 /*Menu*/
