@@ -48,10 +48,10 @@
         <div class="info-persona">
             <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="#">Perfil</a></li>
-                <li><i class="fas fa-user-edit"></i><a href="#">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Perfil</a></li>
+                <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="#">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
                 </li>
             </ul>
         </div>

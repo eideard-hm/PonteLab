@@ -233,7 +233,9 @@ body.dark {
 }
 
 .switch.active {
-    background-color: orange
+    background-color: orange;
+    outline: none;
+    border: none;
 }
 
 .switch.active .circulo {
@@ -373,6 +375,11 @@ body.dark {
 }
 
 /*LUISA*/
+
+.dark .contenedor-perfil_aspirante {
+    background-color: var(--colorFondoNavbar);
+    color: var(--colorIconosFuente);
+}
 
 .dark .img-slider .navigation .btn.active {
     background: var(--colorIconosFuente);

@@ -28,10 +28,10 @@
         </select>
         <center><a id="valida" class="boton_3">Iniciar Sesion</a> </center>
         <center>
-            <p><a class="a1" href="recuperarCon.html">¿Olvido su contraseña?</a></p>
+            <p style="color: black;"><a class="a1" href="Correo_Recuperar_Password">¿Olvido su contraseña?</a></p>
         </center>
         <center>
-            <p><a class="a2" href="crearCuenta.html">Crear cuenta</a></p>
+            <p><a class="a2" href="Registro">Crear cuenta</a></p>
         </center>
     </section>
     <?php

@@ -1,3 +1,8 @@
+:root {
+    --fuenteQuicksand: 'Quicksand', sans-serif;
+    --fuenteRoboto: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
 *, *:after, *:before {
     box-sizing: border-box;
     margin: 0;
@@ -11,11 +16,8 @@
 body {
     width: 100%;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient( rgba(84, 108, 207), rgba(218, 238, 254));
-    font-family: 'Roboto';
+    font-family: var(--fuenteRoboto);
     font-size: 16px;
     margin: 0;
 }
@@ -58,7 +60,7 @@ body {
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 2px;
-    font-family: Quicksand;
+    font-family: var(--fuenteQuicksand);
 }
 
 .img-slider .slide p {
@@ -68,7 +70,7 @@ body {
     width: 68%;
     padding: 10px;
     border-radius: 4px;
-    font-family: Roboto;
+    font-family: var(--fuenteRoboto);
     position: absolute;
 }
 
@@ -105,7 +107,7 @@ footer {
     height: auto;
     width: 100%;
     color: #fff;
-    font-family: Quicksand;
+    font-family: var(--fuenteQuicksand);
 }
 
 .footer-content {
@@ -189,25 +191,46 @@ footer {
     box-sizing: border-box;
     font-family: var(--fuenteRoboto);
     color: #2C3E50;
-    font-size: 15px;
+    font-size: 16px;
+    padding-right: 32px;
+}
+
+#spanMostrar {
+    bottom: 16px;
+    cursor: pointer;
+    height: 25px;
+    position: absolute;
+    right: 10px;
+    width: 100%;
+    z-index: 10;
+    top: 150px;
+    right: 45px;
+}
+
+.form-clear .material-icons {
+    font-size: 24px;
+    position: absolute;
+    top: 0px;
+    right: 0px!important;
 }
 
 /*buttons*/
 
 #msform .action-button {
     width: 100px;
-    background: #27AE60;
+    background: #1e1e62;
     font-weight: bold;
     color: white;
     border: 0 none;
-    border-radius: 1px;
+    border-radius: 5px;
+    outline: none;
     cursor: pointer;
     padding: 10px 5px;
-    margin: 10px 5px;
+    margin: 5px 5px;
 }
 
 #msform .action-button:hover, #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #546ccf;
 }
 
 /*headings*/
@@ -239,7 +262,7 @@ footer {
     list-style-type: none;
     color: white;
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: 13px;
     width: 33.33%;
     float: left;
     position: relative;
@@ -282,6 +305,6 @@ footer {
 /*The number of the step and the connector before it = green*/
 
 #progressbar li.active:before, #progressbar li.active:after {
-    background: #27AE60;
+    background: #1e1e62;
     color: white;
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once("Config/Config.php");
+require_once("Helpers/Helpers.php");
 /*
 obtenemos lo parametros que se pasen por la url del navegador en la variable $url, 
 donde se valida si trae algun valor, si no que le asigne como controlador Index y como
