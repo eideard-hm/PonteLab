@@ -4,7 +4,13 @@
     --fuenteQuicksand: 'Quicksand', sans-serif;
     --fondo: linear-gradient( rgba(84, 108, 207), rgba(213, 238, 254));
     --fuenteRoboto: 'Roboto', Arial, sans-serif;
-}
+    --hueso: #ebeaef;
+    --bsoft: #daeefe;
+    --cm: #97bbfe;
+    --medium: #546ccf;
+    --bdarck: #1e1e62;
+    --bsb: #060d2f;
+  }
 
 body {
     background: var(--fondo);
@@ -17,89 +23,95 @@ body {
 /*======================== ESTILOS PARA CONTRATANTE  ===========================*/
 
 .content {
-    max-width: 700px;
+    max-width: 625px;
     margin-left: auto;
     margin-right: auto;
     padding: 1.5em;
     margin-top: 130px;
 }
-
-.name {
+.content-vacs {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1.5em;
+  }
+  
+  .name {
     text-align: center;
     font-size: 2em;
-}
-
-.name span {
+    padding: .5em;
+  }
+  
+  .name span {
     color: #546ccf;
-}
-
-.content>* {
+  }
+  .content > * {
     padding: 1em;
-}
-
-.vac-form, .con-form {
+  }
+  
+  .vac-form,  .con-form {
     box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 1);
-    background: #97bbfe;
-    border-radius: .5em;
-}
-
-.vac-form form, .con-form form {
+    background: var(--hueso);
+    border-radius: 0.2em;
+  }
+  
+  .vac-form form, .con-form form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.vac-form form label, .con-form form label {
-    display: block;
-}
-
-.vac-form form .block, .con-form form .block {
     grid-column: 1/3;
-}
-
-.vac-form form .block textarea, .con-form form .block textarea {
+  }  
+  
+  .vac-form form label, .con-form form label {
+    display: block;
+  }
+  
+  .vac-form form .block textarea,  .con-form form .block textarea {
     max-width: 100%;
     min-width: 100%;
     min-height: 3em;
-    max-height: 12em;
-}
-
-.vac-form form p, .con-form form p {
+  }
+  
+  .vac-form form p,  .con-form form p {
     margin: 0;
     padding: 1em;
-}
-
-/*CSS PARA LOS ESPACIOS DE INGRESO DE INFORMACION */
-
-.vac-form form button, .con-form form button, .vac-form form input, .con-form form input, .vac-form form select, .vac-form form textarea, .con-form form textarea {
+  }
+  /*CSS PARA LOS ESPACIOS DE INGRESO DE INFORMACION */
+  .vac-form form button,  .con-form form button,  .vac-form form input,  .con-form form input,  .vac-form form select,  .vac-form form textarea,  .con-form form textarea {
     width: 100%;
-    padding: .7em;
+    padding: 0.7em;
     border: none;
     background: none;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--medium);
     outline: none;
-    border-radius: .4em;
-    color: #708aa3;
-    font-size: 18px;
-    font-family: var(--fuenteRoboto);
-}
-
-.vac-form form button, .con-form form button {
-    background: #daeefe;
+    border-radius: 0.4em;
+    color: var(--bdarck);
+  }
+  
+  .vac-form form button,  .con-form form button {
+    background: var(--bdarck);
+    color: var(--bsoft);
     text-transform: uppercase;
     padding: 1em;
     border: none;
-}
-
-.vac-form form button:hover, .con-form form button:hover, .vac-form form button:focus, .con-form form button:focus {
-    background: #1e1e62;
-    color: #daeefe;
+  }
+  
+  .vac-form form button:hover,  .con-form form button:hover,  .vac-form form button:focus,  .con-form form button:focus {
+    background: var(--bsoft);
+    color: var(--bdarck);
     border: none;
     transition: background-color 1s ease-out;
     outline: none;
-}
-
-@media(max-width: 700px) {
-    .vac-form form, .con-form form {
-        display: block;
+  }
+  @media (min-width: 426px) {
+    body {
+      padding: 0 4em;
     }
-}
+    .content > * {
+      padding: 1em;
+    }
+    .vac-form form, .con-form form {
+      grid-template-columns: 1fr 1fr;
+    }
+    .vac-form form .block, .con-form form .block{
+      grid-column: 1/3;
+    }
+  }
