@@ -25,8 +25,7 @@
                 <br><br><br><br><br>
                 <h2 align="left">¡Que esperas para <br> registrarte!</h2>
                 <br>
-                <p align="left">¡Hola!, ¿aun no has logrado conseguir empleo?, no hay problema con PonsLabor
-                    muestrale al mundo todos tus conocimientos y potencial, te ayudamos a conseguir tu trabajo deseado.</p>
+                <p align="left">¡Hola!, ¿aun no has logrado conseguir empleo?, no hay problema con PonsLabor muéstrale al mundo todos tus conocimientos y potencial, te ayudamos a conseguir tu trabajo deseado.</p>
             </div>
         </div>
 
@@ -37,9 +36,7 @@
                 <br><br><br><br><br>
                 <h2 align="left">¿Buscas Trabajo?</h2>
                 <br>
-                <p align="left">Te presentamos a PonsLabor una nueva y actualiza plataforma que te ayudara en
-                    tu valiosa busqueda de empleo, creando un perfil y una hoja de vida para que las grandes empresas vean todo tu potencial, que esperas preparate
-                    para conquistar tu empleo ideal con PonsLabor.</p>
+                <p align="left">Te presentamos a PonsLabor una nueva y actualiza plataforma que te ayudara en tu valiosa búsqueda de empleo, creando un perfil y una hoja de vida para que las grandes empresas vean todo tu potencial, que esperas prepárate para conquistar tu empleo ideal con PonsLabor.</p>
             </div>
         </div>
 
