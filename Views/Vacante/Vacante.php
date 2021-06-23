@@ -77,23 +77,23 @@
 
         <form action="">
           <p>
-            <label for="">Nombre</label>
+            <label for=""> Nombre</label>
             <input minlength="1" maxlength="10" pattern="[a-zA-Z]+" type="text" name="nombre" id="" placeholder="Nombre..." required />
           </p>
           <p>
-            <label for="">Cantidad de Vacantes</label>
+            <label for=""> Cantidad de Vacantes</label>
             <input minlength="4" maxlength="10" pattern="[0-9]+" type="number" name="cantidad" id="" placeholder="Cantida de Vacantes..." required />
           </p>
           <p class="block">
-            <label for="" >Especificaciones </label>
+            <label for="" > Especificaciones </label>
             <textarea name="especificaciones" id="" rows="1" placeholder="Especificaciones..." required></textarea>
           </p>          
           <p class="block">
-            <label for="">Perfil del Trabajador</label>
+            <label for=""> Perfil del Trabajador</label>
             <textarea type="text" name="perfil" id="" rows="1" placeholder="Perfil del Trabajador..." required></textarea>
           </p>
           <p>
-            <label for="">Tipo de Contrato</label>
+            <label for=""> Tipo de Contrato</label>
             <select>
               <option value="1">Contrato por Obra o Labor</option> 
               <option value="2">Contrato a Termino Fijo</option> 
@@ -103,23 +103,23 @@
             </select>
           </p>
           <p>
-            <label for="">Sueldo</label>
+            <label for=""> Sueldo</label>
             <input type="number" name="sueldo" id="" placeholder="Sueldo..." required />
           </p>
           <p class="block">
-            <label for="">Fecha de Publicacion</label>
+            <label for=""> Fecha de Publicacion</label>
             <input type="date" name="fechapublicacion" id="" required />
           </p>
           <p class="block">
-            <label for="">Fecha de Cierre</label>
+            <label for=""> Fecha de Cierre</label>
             <input type="date" name="fechacierre" id="" required />
           </p>
           <p>
-            <label for="">Direccion</label>
+            <label for=""> Direccion</label>
             <input type="text" name="direccion" id="" placeholder="Dirección..." required />
           </p>
           <p>
-            <label for="">Estado</label>
+            <label for=""> Estado</label>
             <select name="estado" id=""  required>
               <option value="1">Activo</option> 
               <option value="2">Inactivo</option>
