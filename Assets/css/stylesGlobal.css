@@ -32,7 +32,7 @@ body.dark, body {
     margin: 0 auto;
 }
 
-/*========================= NAVBAR =========================*/
+/*========================= NAVBAR 1=========================*/
 
 .header {
     background: #060d2f;
@@ -176,6 +176,132 @@ body.dark, body {
 .side_nav ul li a:hover {
     background: #546ccf;
     color: #fff;
+}
+
+/*========================= NAVBAR 2 =========================*/
+
+body#menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--fuenteRoboto);
+    flex-wrap: wrap;
+}
+
+/*Menu*/
+
+#header_menu {
+    width: 100%;
+    height: 65px;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+#header_menu .barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+#header_menu .barra .content-logo, #header_menu .barra .content_logo_menu {
+    text-decoration: none;
+    font-size: 27px;
+    font-weight: 900;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_menu .barra .content-logo #icono-reponsive, #header_menu .barra .content_logo_menu #icono-reponsive {
+    display: none;
+    color: #fff;
+}
+
+#header_menu .barra .content-logo #icono-regresar, #header_menu .barra .content_logo_menu #icono-regresar {
+    margin-right: 20px;
+    color: #fff;
+}
+
+#header_menu .barra .content-logo #icono-regresar:hover, #header_menu .barra .content_logo_menu #icono-regresar:hover {
+    color: #ff5d94;
+}
+
+#header_menu .barra .content-logo .logo-nombre, #header_menu .barra .content_logo_menu .logo-nombre {
+    display: flex;
+}
+
+#header_menu .barra .content-logo .logo-nombre .logo-empresa, #header_menu .barra .content_logo_menu .logo-nombre .logo-empresa {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+#header_menu .barra .content-logo .logo-nombre h2 span, #header_menu .barra .content_logo_menu .logo-nombre h2 span {
+    color: orange;
+}
+
+#header_menu .barra .nav {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header_menu .barra .nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: 12px;
+}
+
+#header_menu .barra .nav a:hover {
+    color: #555;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+}
+
+#header_menu .barra .nav a.active {
+    font-weight: 700;
+    font-size: 18px;
+    border-bottom: 4px solid var(--border);
+}
+
+#header_menu .contenedor-responsive {
+    display: none;
+    width: 250px;
+    min-height: 100vh;
+    position: absolute;
+    left: 0;
+    background: var(--azulMuyClaro);
+}
+
+#header_menu .contenedor-responsive.active {
+    display: block;
+    transition: 500ms display linear;
+}
+
+#header_menu .contenedor-responsive ul li {
+    list-style: none;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--azulMuyOscuro);
+    cursor: pointer;
+}
+
+#header_menu .contenedor-responsive ul li:hover {
+    background-color: rgba(163, 163, 163, 0.4);
+}
+
+#header_menu .contenedor-responsive ul li a {
+    text-decoration: none;
+    color: var(--azulOscuro);
 }
 
 /*========================= MODO OSCURO =========================*/
@@ -353,11 +479,15 @@ body.dark {
     color: var(--colorIconosFuente);
 }
 
-.dark .vac-form form button, .dark .con-form form button, .dark .vac-form form input, .dark .con-form form input, .dark .vac-form form textarea, .dark .con-form form textarea {
+.dark .vac-form form button, .dark .con-form form button, .dark .vac-form form input, .dark .con-form form input, .dark .vac-form form select, .dark .vac-form form textarea, .dark .con-form form textarea {
     border-bottom: 2px solid var(--azulMuyClaro);
     color: var(--blanco);
     font-size: 16px;
     font-family: var(--fuenteRoboto);
+}
+
+.dark .vac-form form select {
+    background-color: var(--colorFondoNavbar);
 }
 
 .dark .con-form form button, .dark .vac-form .block button {
@@ -403,4 +533,13 @@ body.dark {
 
 .dark .boton_3:hover {
     text-shadow: 0px 0px 10px rgba(163, 163, 163, 0.4);
+}
+
+.dark #FormPerfilCon {
+    background-color: var(--colorFondoNavbar);
+    color: var(--colorIconosFuente);
+}
+
+.dark .btn-reset {
+    background-color: var(--azulMuyClaro);
 }

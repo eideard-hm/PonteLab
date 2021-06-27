@@ -47,82 +47,81 @@ class Registro extends Controllers
     public function setUser()
     {
         if ($_POST) {
-            //verificar que ningun campo este vació
+            //verificar que los campos no vengan vacios
             if (
                 empty($_POST['email']) || empty($_POST['pass']) || empty($_POST['documento'])
                 || empty($_POST['numDoc']) || empty($_POST['numCel']) || empty($_POST['numFijo'])
                 || empty($_POST['estado']) || empty($_POST['rol']) || empty($_POST['barrio'])
                 || empty($_POST['direccion'])
             ) {
-                $arrResponse = array("estadoUser" => false, "msg" => "Los datos ingresado son incorrectos :(");
-            } else {
-                $intIdUsuario = intval($_POST['idUsuario']);
-                $strEmail = strtolower(limpiarCadena($_POST['email'])); //strtolower(convertir todos las letras en minusculas)
-                $strPass = limpiarCadena($_POST['pass']);
-                $strTipoDoc = intval(limpiarCadena($_POST['documento']));
-                $strNumDoc = limpiarCadena($_POST['numDoc']);
-                $strNumTel = limpiarCadena($_POST['numCel']);
-                $strNumTelFijo = limpiarCadena($_POST['numFijo']);
-                $strEstado = intval(limpiarCadena($_POST['estado']));
-                $rol = intval(limpiarCadena($_POST['rol']));
-                $barrio = intval(limpiarCadena($_POST['barrio']));
-                $direccion =  limpiarCadena($_POST['direccion']);
-                $strImagen = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
-
-                //método par actualizar e insertar
-                if ($intIdUsuario === 0 || $intIdUsuario === '' || $intIdUsuario === null) {
-                    /*-----------------INSERTAR USUARIO ---------------*/
-                    $option = 1;
-                    //INSERTAR LOS DATOS EN EL MODELO DEL USUARIO
-                    $request_user = $this->model->insertUser(
-                        $strEmail,
-                        $strPass,
-                        $strTipoDoc,
-                        $strNumDoc,
-                        $strNumTel,
-                        $strNumTelFijo,
-                        $strEstado,
-                        $rol,
-                        $barrio,
-                        $direccion,
-                        $strImagen
-                    );
-                } else {
-                    /*-----------------------------ACTUALIZAR USUARIO---------- */
-                    $option = 2;
-                    //INSERTAR LOS DATOS EN EL MODELO DEL ANUNCIO
-                    $request_user = $this->model->updateUser(
-                        $intIdUsuario,
-                        $strEmail,
-                        $strPass,
-                        $strTipoDoc,
-                        $strNumDoc,
-                        $strNumTel,
-                        $strNumTelFijo,
-                        $strEstado,
-                        $rol,
-                        $barrio,
-                        $direccion,
-                        $strImagen
-                    );
-                }
-
-                //evaluar si la respuesta es mayor a cero, quiero decir que si se inserto
-                if ($request_user > 0) {
-                    if ($option == 1) {
-                        $arrResponse = array('estadoUser' => true, 'msg' => 'Datos almacenados correctamente :)');
-                    } elseif ($option == 2) {
-                        $arrResponse = array('estadoUser' => true, 'msg' => 'Datos actualizados correctamente :)');
-                    }
-                } elseif ($request_user == 'exits') {
-                    $arrResponse = array('estadoUser' => false, 'msg' => '!Atención! el usuario ya existe. Intenta con otro!');
-                } else {
-                    $arrResponse = array('estadoUser' => false, 'msg' => 'No es posible almacenar los datos :(');
-                }
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, completelos correctamente e intente nuevamente!!'];
             }
-            //retornar el valor de array en formato json
+            /*
+            1. Se crean variables para almacenar los datos enviados en la petición
+            2. Se va hacer el proceso de insertar, y lo comprobamos si el id del usuario viene vacio 
+            */
+            $intId = intval($_POST['idUsuario']);
+            $strEmail = strtolower(limpiarCadena($_POST['email'])); //strtolower(convertir todos las letras en minusculas)
+            $strPass = limpiarCadena($_POST['pass']);
+            $intTipoDoc = intval($_POST['documento']);
+            $strNumDoc = limpiarCadena($_POST['numDoc']);
+            $strNumTel = limpiarCadena($_POST['numCel']);
+            $strNumTelFijo = limpiarCadena($_POST['numFijo']);
+            $intEstado = intval($_POST['estado']);
+            $intRol = intval($_POST['rol']);
+            $intBarrio = intval($_POST['barrio']);
+            $strDireccion = limpiarCadena($_POST['direccion']);
+            $blbImgen = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+
+            /*================== INSERTAR USUARIO =======================*/
+            if ($intId === 0 || empty($intId) || $intId === null) {
+                $option = 1;
+                $request = $this->model->insertUser(
+                    $strEmail,
+                    $strPass,
+                    $intTipoDoc,
+                    $strNumDoc,
+                    $strNumTel,
+                    $strNumTelFijo,
+                    $intEstado,
+                    $intRol,
+                    $intBarrio,
+                    $strDireccion,
+                    $blbImgen
+                );
+            } else {
+                /*================== EDITAR USUARIO =======================*/
+                $option = 2;
+                $request = $this->model->updateUser(
+                    $intId,
+                    $strEmail,
+                    $strPass,
+                    $intTipoDoc,
+                    $strNumDoc,
+                    $strNumTel,
+                    $strNumTelFijo,
+                    $intEstado,
+                    $intRol,
+                    $intBarrio,
+                    $strDireccion,
+                    $blbImgen
+                );
+            }
+
+            if ($request > 0) {
+                if ($option === 1) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'El usuario ha sido registrado existosamente :)'];
+                } else if ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)'];
+                }
+            } elseif ($request == 'exits') {
+                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro');
+            } else {
+                $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(');
+            }
+
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
-        die(); //detener o cerrar el proceso
+        die();
     }
 }

@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html class="html1" lang="en">
+<html class="html1" lang="es">
 
 <head>
-    
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
-    <title><?= $data['titulo_pagina']?></title>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-    <!--<link rel="icon" type="image/png"href="assets/img/favicon.png">-->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-   <!--FUNCIONALIDAD FORMULARIOS-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+    <title><?= $data['titulo_pagina'] ?></title>
+    <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!------ Include the above in your HEAD tag ---------->
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      
-       
-                <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
-                <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
-                <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
-    </head>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+</head>
 
 <body>
-
-<header id="header_menu">
+    <header id="header_menu">
         <div class="contenedor barra">
             <span href="#" class="content-logo">
                 <a href="javascript:window.history.back();">
@@ -40,10 +30,8 @@
             </span>
             <nav class="nav">
                 <a href="Menu">Inicio</a>
-                <a href="Aspirante">Aspirante</a>
-                <a href="Estudios">Estudios</a>
-                <a href="Experiencia">Experiencia</a>
-                <a href="HojaVida">Hoja de vida</a>
+                <a href="Contratante">Contratante</a>
+                <a href="Estudios">Vacante</a>
                 <button class="switch" id="switch">
                     <i class="fas fa-sun sol"></i>
                     <i class="fas fa-moon luna"></i>
@@ -55,10 +43,10 @@
             </nav>
         </div>
         <div class="info-persona">
-            <h3>Coca-Cola<br /><span>Desarrollador de software web.</span></h3>
+            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="#">Perfil</a></li>
-                <li><i class="fas fa-user-edit"></i><a href="#">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Perfil</a></li>
+                <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
                 <li>
                     <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
                 </li>
@@ -69,33 +57,21 @@
                 <li><a href="Menu">Inicio</a></li>
                 <li><a href="Contratante">Contratante</a></li>
                 <li><a href="Vacante">Vacante</a></li>
-                <li><a href="Aspirante">Aspirante</a></li>
-                <li><a href="HojaVida">Hoja de Vida</a></li>
-                <li><a href="Estudios">Estudios</a></li>
-                <li><a href="Experiencia">Experiencia</a></li>
             </ul>
         </div>
     </header>
-
 
     <div class="banner">
         <hr>
         <div class="container bootstrap snippet">
             <div class="row">
-
-
                 <div class="row" id="FormPerfilCon">
                     <div class="col-sm-3">
                         <!--left col-->
 
-
                         <div class="text-center">
-                            <img style="top: 50px;  position: relative;"
-                                src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png "
-                                class="avatar img-circle img-thumbnail" alt="avatar">
+                            <img style="top: 50px;  position: relative;" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png " class="avatar img-circle img-thumbnail" alt="avatar" />
                             <h2 style="top: -190px;  position: relative;">Coca-Cola </h2>
-
-
 
                             <a href="#" class="s3d forrst">
                                 Forrst
@@ -120,12 +96,7 @@
                                 Flickr
                                 <span class="icons flickr"></span>
                             </a>
-
-                             
-                                
                             </span>
-                            
-
                             <h3></h3>
                         </div>
                         </hr><br>
@@ -139,43 +110,33 @@
                             <li><a data-toggle="tab" href="#settings">Descripción</a></li>
                         </ul>
 
-
                         <div class="tab-content">
                             <div class="tab-pane active" id="home">
                                 <hr>
                                 <form class="form" action="##" method="post" id="registrationForm">
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="first_name">
                                                 <h4>Nombre</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="first_name" id="first_name"
-                                                placeholder="Coca-Cola" title="enter your first name if any." disabled
-                                                style="color:#000000">
+                                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
                                         </div>
                                     </div>
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="last_name">
                                                 <h4>Identificación</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="last_name" id="last_name"
-                                                placeholder="NIT:14,668,569-3" title="enter your last name if any."
-                                                disabled>
+                                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="phone">
                                                 <h4>Número de Contacto Fijó</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="phone" id="phone"
-                                                placeholder="303 3333333" title="enter your phone number if any."
-                                                disabled>
+                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="303 3333333" title="enter your phone number if any." disabled>
                                         </div>
                                     </div>
 
@@ -184,86 +145,67 @@
                                             <label for="mobile">
                                                 <h4>Número de Contacto Móvil</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile"
-                                                placeholder="310 3281558" title="enter your mobile number if any."
-                                                disabled>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="310 3281558" title="enter your mobile number if any." disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="email">
                                                 <h4>Email</h4>
                                             </label>
-                                            <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="cocacola@gmail.com" title="enter your email." disabled>
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="cocacola@gmail.com" title="enter your email." disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="email">
                                                 <h4>Contraseña</h4>
                                             </label>
-                                            <input type="password" class="form-control" id="password"
-                                                placeholder="********" title="enter a location" disabled>
+                                            <input type="password" class="form-control" id="password" placeholder="********" title="enter a location" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
-
-
                                     </div>
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <br>
-                                            <button class="btn btn-lg btn-success" type="submit"><i
-                                                    class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                            <button class="btn btn-lg" type="reset"><i
-                                                    class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                            <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                                         </div>
                                     </div>
                                 </form>
-
                                 <hr>
-
                             </div>
                             <!--/tab-pane-->
                             <div class="tab-pane" id="messages">
-
                                 <h2></h2>
 
                                 <hr>
                                 <form class="form" action="##" method="post" id="directionForm">
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="city">
                                                 <h4>Ciudad</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="city" id="city"
-                                                placeholder="Bogotá D.C" title="" disabled>
+                                            <input type="text" class="form-control" name="city" id="city" placeholder="Bogotá D.C" title="" disabled>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="phone">
                                                 <h4>Localidad</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="localidad" id="localida"
-                                                placeholder="Fontibón" title="enter your phone number if any." disabled>
+                                            <input type="text" class="form-control" name="localidad" id="localida" placeholder="Fontibón" title="enter your phone number if any." disabled>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="Barrio">
                                                 <h4>Barrio</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Barrio" id="Barrio"
-                                                placeholder="Los Monjes" title="enter your last name if any." disabled>
+                                            <input type="text" class="form-control" name="Barrio" id="Barrio" placeholder="Los Monjes" title="enter your last name if any." disabled>
                                         </div>
                                     </div>
 
@@ -272,32 +214,24 @@
                                             <label for="mobile">
                                                 <h4>Dirección</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Dirección" id="Dirección"
-                                                placeholder="Cl. 25d ##9550" title=""
-                                                disabled>
+                                            <input type="text" class="form-control" name="Dirección" id="Dirección" placeholder="Cl. 25d ##9550" title="" disabled>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <br>
-                                            <button class="btn btn-lg btn-success" type="submit"><i
-                                                    class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                            <button class="btn btn-lg" type="reset"><i
-                                                    class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                            <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                             <!--/tab-pane-->
                             <div class="tab-pane" id="settings">
-
-
                                 <hr>
                                 <form class="form" action="##" method="post" id="descripcionForm">
                                     <div class="form-group">
-
                                         <div class="col-xs-6">
                                             <label for="first_name">
                                                 <h4>First name</h4>
@@ -314,53 +248,46 @@
                                                         comercialización de concentrados
                                                         y jarabes para bebidas no alcohólicas.</p>
                                                 </center>
-
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="col-xs-12">
                                                 <br>
-                                                <button class="btn btn-lg btn-success" type="submit"><i
-                                                        class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                                <button class="btn btn-lg" type="reset"><i
-                                                        class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
+                                                <button class="btn btn-lg btn-reset" type="reset"><i class="glyphicon glyphicon-repeat"></i>Reset</button>
                                             </div>
-
                                         </div>
                                         <div class="form-group">
                                             <div class="col-xs-12">
                                                 <br>
-
                                             </div>
                                         </div>
                                 </form>
                             </div>
-
                         </div>
                         <!--/tab-pane-->
                     </div>
                     <!--/tab-content-->
-
                 </div>
                 <!--/col-9-->
             </div>
             <!--/row-->
-
         </div>
-                <script>
-        const imgPersona = document.querySelector('.imagen-persona');
-        const opcionesInfo = document.querySelector('.info-persona');
+        <!--FUNCIONALIDAD FORMULARIOS-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script>
+            const imgPersona = document.querySelector('.imagen-persona');
+            const opcionesInfo = document.querySelector('.info-persona');
 
-        imgPersona.addEventListener('click', () => {
-            opcionesInfo.classList.toggle('active');
-        })
-    </script>
-    <?php
-    require_once('./Views/Components/ScriptsJs.php');
-    ?>
+            imgPersona.addEventListener('click', () => {
+                opcionesInfo.classList.toggle('active');
+            })
+        </script>
+        <?php
+        require_once('./Views/Components/ScriptsJs.php');
+        ?>
 </body>
 <!--   Core JS Files   -->
-
-
 
 </html>

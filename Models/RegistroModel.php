@@ -92,10 +92,10 @@ class RegistroModel extends GestionCRUD
             VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
-                $this->strEmail,
+                $this->correoUsuario,
                 $this->passUsuario,
                 $this->idTipoDocumentoFK,
-                $this->intNumDoc,
+                $this->numDocUsuario,
                 $this->numTelUsuario,
                 $this->numTelFijo,
                 $this->estadoUsuario,

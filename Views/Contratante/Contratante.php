@@ -11,13 +11,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <!-- CSS -->
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/contratante.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/NabvarMenu.php');
-    ?>
+    <header id="header_menu">
+        <div class="contenedor barra">
+            <span href="#" class="content-logo">
+                <a href="javascript:window.history.back();">
+                    <i class="fas fa-arrow-left" id="icono-regresar"></i>
+                </a>
+                <i class="fas fa-bars" id="icono-reponsive"></i>
+                <span href="#" class="logo-nombre">
+                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
+                    <h2>Pons<span>Labor.</span></h2>
+                </span>
+            </span>
+            <nav class="nav">
+                <a href="Menu">Inicio</a>
+                <a href="#" class="active">Contratante</a>
+                <a href="Vacante">Vacante</a>
+                <button class="switch" id="switch">
+                    <i class="fas fa-sun sol"></i>
+                    <i class="fas fa-moon luna"></i>
+                    <span class="circulo"></span>
+                </button>
+                <div class="imagen-persona">
+                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                </div>
+            </nav>
+        </div>
+        <div class="info-persona">
+            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+            <ul>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Perfil</a></li>
+                <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
+                <li>
+                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                </li>
+            </ul>
+        </div>
+        <div class="contenedor-responsive">
+            <ul class="contenedor-responsive-lista">
+                <li><a href="Menu">Inicio</a></li>
+                <li><a href="#">Contratante</a></li>
+                <li><a href="Vacante">Vacante</a></li>
+            </ul>
+        </div>
+    </header>
     <!--
 contratante:
 -identificacion contratante
@@ -53,6 +95,14 @@ contratante:
             </form>
         </div>
     </div>
+    <script>
+        const imgPersona = document.querySelector('.imagen-persona');
+        const opcionesInfo = document.querySelector('.info-persona');
+
+        imgPersona.addEventListener('click', () => {
+            opcionesInfo.classList.toggle('active');
+        })
+    </script>
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>

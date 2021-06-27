@@ -35,7 +35,7 @@
         <fieldset>
             <h2 class="fs-title">Crear cuenta PonsLabor</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
-            <input type="email" name="email" id="email" placeholder="Email" />
+            <input type="email" name="email" id="email" placeholder="example@example.com" />
             <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
             <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />

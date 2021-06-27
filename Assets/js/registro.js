@@ -32,17 +32,19 @@ const insertUser = async () => {
     try {
         const res = await fetch(url, {
             method: 'POST',
-            body: formData,
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            body: formData
         })
         const data = await res.json();
-        console.log(data.estadoUser);
-        console.log(data.msg);
-        console.log('La data es:', data);
+        if (data.statusUser) {
+            formUser.reset();
+            swal("Registro usuario", data.msg, "success");//mostrar la alerta
+            window.location.href = 'Menu';
+        } else {
+            swal("Error", data.msg, "error");//mostrar la alerta
+        }
+
     } catch (error) {
-        console.log(error);
+        swal("Error", error, "error");
     }
 }
 
@@ -65,6 +67,13 @@ const validateFormUser = () => {
         swal(
             'Ha ocurrido un error',
             'Todos los campos son obligatorios.',
+            'error'
+        )
+        return false;
+    } else if (password !== confirmPass) {
+        swal(
+            'Error!! Contraseñas incorrectas',
+            'Las contraseñas no coinciden, por favor intente nuevamente!!',
             'error'
         )
         return false;
