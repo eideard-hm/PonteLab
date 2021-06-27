@@ -14,13 +14,73 @@ document.getElementById("spanMostrar").addEventListener("click", function () {
     }
 });
 
+const formUser = document.querySelector('#msform');
+const bntSubmit = document.getElementById('btn_submit');
+
+bntSubmit.addEventListener('click', e => {
+    e.preventDefault();
+
+    validateFormUser();
+});
+
+const insertUser = async () => {
+    //enviar los datos mediante una petición fetch
+    let formData = new FormData(formUser);
+    formData.delete('pass2');
+    const url = 'http://localhost/PonsLabor/Registro/setUser';
+
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await res.json();
+        console.log(data.estadoUser);
+        console.log(data.msg);
+        console.log('La data es:', data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const validateFormUser = () => {
+    const id = document.querySelector('#idUsuario').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#inputPassword').value;
+    const confirmPass = document.querySelector('#pass2').value;
+    const tipoDoc = document.querySelector('#documento').value;
+    const numDoc = document.querySelector('#numDoc').value;
+    const numCel = document.querySelector('#numCel').value;
+    const numFijo = document.querySelector('#numFijo').value;
+    const estado = document.querySelector('#estado').value;
+    const rol = document.querySelector('#rol').value;
+    const barrio = document.querySelector('#barrio').value;
+    const direccion = document.querySelector('#direccion').value;
+
+    if (email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
+        || numFijo === '' || estado === '' || rol === '' || barrio === '' || direccion === '') {
+        swal(
+            'Ha ocurrido un error',
+            'Todos los campos son obligatorios.',
+            'error'
+        )
+        return false;
+    } else {
+        insertUser();
+    }
+}
+
 //Funcionalidad botones
 
 let current_fs, next_fs, previous_fs;
 let left, opacity, scale;
 let animating;
 
-$(".next").click(function () {
+$(".next").click(function (e) {
+    e.preventDefault();
     if (animating) return false;
     animating = true;
 
@@ -53,7 +113,8 @@ $(".next").click(function () {
     });
 });
 
-$(".previous").click(function () {
+$(".previous").click(function (e) {
+    e.preventDefault();
     if (animating) return false;
     animating = true;
 
@@ -81,6 +142,6 @@ $(".previous").click(function () {
     });
 });
 
-$(".submit").click(function () {
-    return false;
-})
+// $(".submit").click(function () {
+//     return false;
+// })

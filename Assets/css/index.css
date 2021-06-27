@@ -198,7 +198,6 @@ footer {
 #spanMostrar {
     bottom: 16px;
     cursor: pointer;
-    height: 25px;
     position: absolute;
     right: 10px;
     width: 100%;
@@ -212,6 +211,11 @@ footer {
     position: absolute;
     top: 0px;
     right: 0px!important;
+}
+
+#spanMostrar {
+    width: 25px;
+    height: 25px;
 }
 
 /*buttons*/

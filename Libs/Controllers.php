@@ -24,7 +24,7 @@ class Controllers
         $routClass = "Models/" . $model . ".php";
         if (file_exists($routClass)) {
             require_once($routClass);
-            $model = new $model();
+            $this->model = new $model;
         }
     }
 }

@@ -12,13 +12,13 @@ body {
 .from-logi {
     width: 400px;
     height: 400px;
-    background: #000000;
+    background: #fff;
     margin: auto;
     margin-top: 180px;
     box-shadow: 7px 13px 37px #000;
     padding: 20px 30px;
     border-top: 4px solid #97bbfe;
-    color: #000000;
+    color: #000;
     border: #97bbfe 4px outset;
     position: relative;
     top: 4px;
