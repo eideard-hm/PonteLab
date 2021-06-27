@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
@@ -18,26 +20,26 @@
     require_once('./Views/Components/Navbar.php');
     ?>
 
-    <section class="from-logi">
-        <h5> Iniciar Sesión </h5>
-        <input class="controls" type="text" name="Usurario" id="Usuario" required placeholder="Usuario">
-        <input class="controls" type="password" name="Contraseña" id="Contraseña" placeholder="Contraseña">
-        <select class="despe" name="DESPLEGABLE">
-            <option value="1">Aspirante</option>
-            <option value="2">Contratante</option>
-        </select>
-        <center><a id="valida" class="boton_3">Iniciar Sesion</a> </center>
-        <center>
-            <p style="color: black;"><a class="a1" href="Correo_Recuperar_Password">¿Olvido su contraseña?</a></p>
-        </center>
-        <center>
-            <p><a class="a2" href="Registro">Crear cuenta</a></p>
-        </center>
+<section class="from-logi">
+        <form method="POST" action="">
+            <h5> Iniciar Sesión </h5>
+            <input class="controls" type="text" name="Usurario" id="Usuario" required placeholder="Usuario">
+            <input type="password" class="controls" name="Contraseña" id="Contraseña" placeholder="Contraseña">
+            <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
+            <center><button type="button" id="valida" class="boton_3">Iniciar Sesion</button></center>
+            <center>
+                <p><a class="a1" href="Correo_Recuperar_Password" style="color: black;">¿Olvido su contraseña?</a></p>
+            </center>
+            <center>
+                <p><a class="a2" href="Registro" style="color: black;">Crear cuenta</a></p>
+            </center>
+        </form>
     </section>
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
     <script src="<?= URL; ?>Assets/js/login.js"></script>
+    <script src="<?= URL; ?>Assets/js/ojoLogin.js"></script>
 </body>
 
 </html>
