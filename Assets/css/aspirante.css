@@ -50,6 +50,7 @@ body {
     padding: 10px;
     opacity: 0;
     transition: 500ms top linear;
+    
     z-index: 10;
 }
 
