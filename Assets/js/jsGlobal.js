@@ -28,3 +28,28 @@ if (localStorage.getItem('dark-mode') === 'true') {
     document.body.classList.remove('dark');
     btnSwitch.classList.remove('active');
 }
+
+/* ======================== RESPONSIVE DESIGN ================== */
+if (document.querySelector('#icono-reponsive')) {
+    document.querySelector('#icono-reponsive').addEventListener('click', () => {
+        mostrarBarraResponsive();
+
+    });
+}
+
+const mostrarBarraResponsive = () => {
+    document.querySelector('.contenedor-responsive').classList.toggle('active');
+    document.querySelector('#icono-reponsive').classList.toggle('fa-bars');
+    document.querySelector('#icono-reponsive').classList.toggle('fa-times');
+}
+
+/* ======================== IMAGEN PERFIL ================== */
+
+const imgPersona = document.querySelector('.imagen-persona');
+const opcionesInfo = document.querySelector('.info-persona');
+
+if (imgPersona) {
+    imgPersona.addEventListener('click', () => {
+        opcionesInfo.classList.toggle('active');
+    })
+}

@@ -11,8 +11,8 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
 </head>
 
 <body>
@@ -28,27 +28,28 @@
                     <h2>Pons<span>Labor.</span></h2>
                 </span>
             </span>
-            <nav class="nav">
-                <a href="Menu">Inicio</a>
-                <a href="Aspirante">Aspirante</a>
-                <a href="Estudios">Estudios</a>
-                <a href="Experiencia" class="active">Experiencia</a>
-                <a href="HojaVida">Hoja de vida</a>
+            <nav class="nav nav_menu">
+                <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
+                <a href="Aspirante"><i class="fas fa-user-tie"></i>Aspirante</a>
+                <a href="Estudios"><i class="fas fa-graduation-cap"></i>Estudios</a>
+                <a href="#" class="active"><i class="fas fa-briefcase"></i>Experiencia</a>
+                <a href="HojaVida"><i class="fas fa-folder"></i>Hoja de vida</a>
                 <button class="switch" id="switch">
-                    <i class="fas fa-sun sol"></i>
-                    <i class="fas fa-moon luna"></i>
+                    <i class="fas fa-sun sol" title="Modo claro"></i>
+                    <i class="fas fa-moon luna" title="Modo oscuro"></i>
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                    <img src="<?= URL; ?>Assets/img/upload.png" alt="" />
                 </div>
             </nav>
         </div>
         <div class="info-persona">
             <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Perfil</a></li>
                 <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
+                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
                     <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
                 </li>
@@ -56,7 +57,6 @@
         </div>
         <div class="contenedor-responsive">
             <ul class="contenedor-responsive-lista">
-                <li><a href="Menu">Inicio</a></li>
                 <li><a href="Contratante">Contratante</a></li>
                 <li><a href="Vacante">Vacante</a></li>
                 <li><a href="Aspirante">Aspirante</a></li>
@@ -202,14 +202,6 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script>
-        const imgPersona = document.querySelector('.imagen-persona');
-        const opcionesInfo = document.querySelector('.info-persona');
-
-        imgPersona.addEventListener('click', () => {
-            opcionesInfo.classList.toggle('active');
-        })
-    </script>
     <script src="<?= URL; ?>Assets/js/experienciaLaboral.js"></script>
     <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
 </body>

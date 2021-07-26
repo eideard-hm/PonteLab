@@ -28,10 +28,10 @@
           <h2>Pons<span>Labor.</span></h2>
         </span>
       </span>
-      <nav class="nav">
-        <a href="Menu">Inicio</a>
-        <a href="Contratante">Contratante</a>
-        <a href="#" class="active">Vacante</a>
+      <nav class="nav nav_menu">
+        <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
+        <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
+        <a href="#" class="active"><i class="fas fa-business-time"></i>Vacante</a>
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
           <i class="fas fa-moon luna"></i>
@@ -45,8 +45,9 @@
     <div class="info-persona">
       <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
       <ul>
-        <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Perfil</a></li>
         <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
+        <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
+        <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
         <li>
           <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
         </li>
@@ -55,8 +56,8 @@
     <div class="contenedor-responsive">
       <ul class="contenedor-responsive-lista">
         <li><a href="Menu">Inicio</a></li>
-        <li><a href="Contratante">Contratante</a></li>
-        <li><a href="#">Vacante</a></li>
+        <li><a href="#">Contratante</a></li>
+        <li><a href="Vacante">Vacante</a></li>
       </ul>
     </div>
   </header>
@@ -127,14 +128,6 @@
       </form>
     </div>
   </div>
-  <script>
-    const imgPersona = document.querySelector('.imagen-persona');
-    const opcionesInfo = document.querySelector('.info-persona');
-
-    imgPersona.addEventListener('click', () => {
-      opcionesInfo.classList.toggle('active');
-    })
-  </script>
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>

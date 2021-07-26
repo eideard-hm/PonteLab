@@ -22,7 +22,8 @@
     box-sizing: border-box
 }
 
-body.dark, body {
+body.dark,
+body {
     transition: background 0.4s linear, transform 0.4s linear
 }
 
@@ -207,7 +208,8 @@ body#menu {
     height: 100%;
 }
 
-#header_menu .barra .content-logo, #header_menu .barra .content_logo_menu {
+#header_menu .barra .content-logo,
+#header_menu .barra .content_logo_menu {
     text-decoration: none;
     font-size: 27px;
     font-weight: 900;
@@ -217,37 +219,50 @@ body#menu {
     align-items: center;
 }
 
-#header_menu .barra .content-logo #icono-reponsive, #header_menu .barra .content_logo_menu #icono-reponsive {
+#header_menu .barra .content-logo #icono-reponsive,
+#header_menu .barra .content_logo_menu #icono-reponsive {
     display: none;
     color: #fff;
 }
 
-#header_menu .barra .content-logo #icono-regresar, #header_menu .barra .content_logo_menu #icono-regresar {
+#header_menu .barra .content-logo #icono-regresar,
+#header_menu .barra .content_logo_menu #icono-regresar {
     margin-right: 20px;
     color: #fff;
 }
 
-#header_menu .barra .content-logo #icono-regresar:hover, #header_menu .barra .content_logo_menu #icono-regresar:hover {
+#header_menu .barra .content-logo #icono-regresar:hover,
+#header_menu .barra .content_logo_menu #icono-regresar:hover {
     color: #ff5d94;
 }
 
-#header_menu .barra .content-logo .logo-nombre, #header_menu .barra .content_logo_menu .logo-nombre {
+#header_menu .barra .content-logo .logo-nombre,
+#header_menu .barra .content_logo_menu .logo-nombre {
     display: flex;
+    align-items: center;
 }
 
-#header_menu .barra .content-logo .logo-nombre .logo-empresa, #header_menu .barra .content_logo_menu .logo-nombre .logo-empresa {
+#header_menu .barra .content-logo .logo-nombre .logo-empresa,
+#header_menu .barra .content_logo_menu .logo-nombre .logo-empresa {
     width: 50px;
     height: 50px;
     object-fit: cover;
     margin-right: 10px;
+    border-radius: 8px;
 }
 
-#header_menu .barra .content-logo .logo-nombre h2 span, #header_menu .barra .content_logo_menu .logo-nombre h2 span {
+#header_menu .barra .content-logo .logo-nombre h2,
+#header_menu .barra .content-logo .logo-nombre h2 span {
+    font-size: 30px;
+}
+
+#header_menu .barra .content-logo .logo-nombre h2 span,
+#header_menu .barra .content_logo_menu .logo-nombre h2 span {
     color: orange;
 }
 
 #header_menu .barra .nav {
-    width: 50%;
+    width: 55%;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -255,11 +270,17 @@ body#menu {
 }
 
 #header_menu .barra .nav a {
+    display: block;
     color: white;
+    text-align: center;
     text-decoration: none;
     font-size: 16px;
     font-weight: 300;
-    margin-right: 12px;
+}
+
+#header_menu .barra .nav a i {
+    width: 100%;
+    margin-bottom: 5px;
 }
 
 #header_menu .barra .nav a:hover {
@@ -340,7 +361,7 @@ body.dark {
     width: 27px;
     height: 27px;
     display: flex;
-    margin-left: -1px;
+    margin-left: -3px;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
@@ -381,8 +402,19 @@ body.dark {
 }
 
 /*EDIER*/
+.dark #header_menu {
+    background-color: var(--colorFondoNavbar);
+    box-shadow: var(--sombraForm);
+}
 
-.dark #header_menu .barra .content-logo #icono-reponsive, .dark #header_menu .barra .content-logo #icono-regresar, .dark #header_menu .barra .content-logo .logo-nombre h2, .dark #header_menu .barra .nav a, .dark .info-persona h3, .dark .info-persona ul li i, .dark #header_menu .barra .nav .content-search #icon-search {
+.dark #header_menu .barra .content-logo #icono-reponsive,
+.dark #header_menu .barra .content-logo #icono-regresar,
+.dark #header_menu .barra .content-logo .logo-nombre h2,
+.dark #header_menu .barra .nav a,
+.dark .info-persona h3,
+.dark .info-persona ul li i,
+.dark #header_menu .barra .nav .content-search #icon-search,
+.dark .contenedor .contenedor-card .contenedor-card__header .header-name span {
     color: var(--colorIconosFuente);
     opacity: 1;
 }
@@ -391,7 +423,8 @@ body.dark {
     color: #cecece;
 }
 
-.dark .info-persona, .dark .info-persona::before {
+.dark .info-persona,
+.dark .info-persona::before {
     background-color: var(--colorFondoNavbar);
 }
 
@@ -399,7 +432,9 @@ body.dark {
     border-top: 1px solid rgba(255, 255, 255, 0.7);
 }
 
-.dark .info-persona ul li a {
+.dark .info-persona ul li a,
+.dark .contenedor .contenedor-card .contenedor-card__header .header-name h3,
+.dark .contenedor .contenedor-card .contenedor-card__body p {
     color: var(--blanco);
 }
 
@@ -418,7 +453,10 @@ body.dark {
     box-shadow: var(--sombraForm);
 }
 
-.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .title-form, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo label, .dark .contenedor-formulario header .title-principal, .dark .contenedor-formulario header .progress-bar .paso p {
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .title-form,
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo label,
+.dark .contenedor-formulario header .title-principal,
+.dark .contenedor-formulario header .progress-bar .paso p {
     color: var(--colorIconosFuente);
 }
 
@@ -431,7 +469,8 @@ body.dark {
     border: 2px solid var(--azulMasClaro);
 }
 
-.dark .contenedor-formulario header .progress-bar .paso .num::before, .dark .contenedor-formulario header .progress-bar .paso .num::after {
+.dark .contenedor-formulario header .progress-bar .paso .num::before,
+.dark .contenedor-formulario header .progress-bar .paso .num::after {
     content: "";
     background: var(--colorFondoNavbar);
     position: absolute;
@@ -452,22 +491,35 @@ body.dark {
     background: linear-gradient(var(--colorIconosFuente), #fff);
 }
 
-.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion {
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion,
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion {
     color: var(--colorIconosFuente);
 }
 
-.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion.active, .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion.active {
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion.active,
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion.active {
     color: orange
+}
+
+/*card de mostrar los aspirantes*/
+.dark .contenedor .contenedor-card {
+    background-color: var(--colorFondoNavbar);
 }
 
 /*BECERRA*/
 
-.dark .vac-form, .dark .con-form, .dark .from-logi, .dark #msform fieldset {
+.dark .vac-form,
+.dark .con-form,
+.dark .from-logi,
+.dark #msform fieldset {
     background: var(--colorFondoNavbar);
     box-shadow: var(--sombraForm);
 }
 
-.dark .name, .dark .from-logi h5, .dark .from-logi a, .dark .fs-title {
+.dark .name,
+.dark .from-logi h5,
+.dark .from-logi a,
+.dark .fs-title {
     color: var(--blanco);
 }
 
@@ -475,11 +527,19 @@ body.dark {
     color: var(--azulMasClaro);
 }
 
-.dark .vac-form form label, .dark .con-form form label, .dark .fs-subtitle {
+.dark .vac-form form label,
+.dark .con-form form label,
+.dark .fs-subtitle {
     color: var(--colorIconosFuente);
 }
 
-.dark .vac-form form button, .dark .con-form form button, .dark .vac-form form input, .dark .con-form form input, .dark .vac-form form select, .dark .vac-form form textarea, .dark .con-form form textarea {
+.dark .vac-form form button,
+.dark .con-form form button,
+.dark .vac-form form input,
+.dark .con-form form input,
+.dark .vac-form form select,
+.dark .vac-form form textarea,
+.dark .con-form form textarea {
     border-bottom: 2px solid var(--azulMuyClaro);
     color: var(--blanco);
     font-size: 16px;
@@ -490,12 +550,14 @@ body.dark {
     background-color: var(--colorFondoNavbar);
 }
 
-.dark .con-form form button, .dark .vac-form .block button {
+.dark .con-form form button,
+.dark .vac-form .block button {
     color: #000;
     font-weight: 700;
 }
 
-.dark .con-form form button:hover, .dark .vac-form .block button:hover {
+.dark .con-form form button:hover,
+.dark .vac-form .block button:hover {
     color: var(--blanco)
 }
 

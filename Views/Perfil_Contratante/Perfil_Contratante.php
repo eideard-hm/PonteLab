@@ -10,9 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -28,25 +28,26 @@
                     <h2>Pons<span>Labor.</span></h2>
                 </span>
             </span>
-            <nav class="nav">
-                <a href="Menu">Inicio</a>
-                <a href="Contratante">Contratante</a>
-                <a href="Estudios">Vacante</a>
+            <nav class="nav nav_menu">
+                <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
+                <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
+                <a href="Vacante"><i class="fas fa-business-time"></i>Vacante</a>
                 <button class="switch" id="switch">
                     <i class="fas fa-sun sol"></i>
                     <i class="fas fa-moon luna"></i>
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                    <img src="<?= URL; ?>Assets/img/upload.png" alt="" />
                 </div>
             </nav>
         </div>
         <div class="info-persona">
             <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Perfil</a></li>
                 <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
+                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
                     <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
                 </li>
@@ -276,14 +277,6 @@
         <!--FUNCIONALIDAD FORMULARIOS-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script>
-            const imgPersona = document.querySelector('.imagen-persona');
-            const opcionesInfo = document.querySelector('.info-persona');
-
-            imgPersona.addEventListener('click', () => {
-                opcionesInfo.classList.toggle('active');
-            })
-        </script>
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>

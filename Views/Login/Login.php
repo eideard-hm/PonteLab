@@ -21,12 +21,12 @@
     ?>
 
     <section class="from-logi">
-        <form method="POST" action="">
+        <form method="POST" action="" id="form-login">
             <h5> Iniciar Sesión </h5>
-            <input class="controls" type="email" name="Usurario" id="Usuario" required placeholder="example@example.com">
-            <input type="password" class="controls" name="Contraseña" id="Contraseña" placeholder="Contraseña">
+            <input class="controls" type="email" name="Usuario" id="Usuario" required placeholder="example@example.com">
+            <input type="password" class="controls" name="Password" id="Contraseña" placeholder="Contraseña">
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
-            <center><button type="button" id="valida" class="boton_3">Iniciar Sesion</button></center>
+            <center><button type="submit" id="valida" class="boton_3">Iniciar Sesion</button></center>
             <center>
                 <p><a class="a1" href="Correo_Recuperar_Password" style="color: #d32f2f; font-size: 16px; font-weight:600">¿Olvido su contraseña?</a></p>
             </center>
