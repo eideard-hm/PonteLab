@@ -39,7 +39,7 @@ class Login extends Controllers
                             $_SESSION['login'] = true;
                             $_SESSION['user-data'] = $arrData;
 
-                            $arrResponse = array('statusLogin' => true, 'msg' => 'ok', 'rol' => $_SESSION['rol']);
+                            $arrResponse = array('statusLogin' => true, 'msg' => 'ok', 'rol' => $_SESSION['user-data']['nombreRol']);
                         } else {
                             $arrResponse = array('statusLogin' => false, 'msg' => 'El usuario se encuentra inhabilitado!.');
                         }

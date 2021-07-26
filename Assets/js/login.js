@@ -85,7 +85,7 @@ if (document.querySelector('#imagen_perfil')) {
   showImgProfile();
 }
 
-const showImgProfile = () => {
+const showImgProfile = async() => {
   const imgPerfil = document.querySelector('#imagen_perfil');
 
   //peticion mediante la API de fetch, peticion de tipo get
