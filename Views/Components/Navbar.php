@@ -1,6 +1,7 @@
 <header class="header">
     <!--header-start-->
     <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" width="65" height="65" alt="PonsLabor" class="logo1" />
+    
     <div class="logo">
         <h3>Pons<span></span>Labor.</span></h3>
     </div>

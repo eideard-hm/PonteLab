@@ -16,7 +16,6 @@
 body {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient( rgba(84, 108, 207), rgba(218, 238, 254));
     font-family: var(--fuenteRoboto);
     font-size: 16px;
     margin: 0;
@@ -55,7 +54,7 @@ body {
 }
 
 .img-slider .slide .info h2 {
-    color: white;
+    color: #000;
     font-size: 49px;
     text-transform: uppercase;
     font-weight: 800;
@@ -64,7 +63,7 @@ body {
 }
 
 .img-slider .slide p {
-    color: white;
+    color: #000;
     background: rgba(0, 0, 0, 0.212);
     font-size: 19px;
     width: 68%;

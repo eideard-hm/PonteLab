@@ -2,7 +2,7 @@
 
 :root {
   --fuenteQuicksand: 'Quicksand', sans-serif;
-  --fondo: linear-gradient( rgba(84, 108, 207), rgba(213, 238, 254));
+  /*--fondo: linear-gradient( rgba(84, 108, 207), rgba(213, 238, 254));*/
   --fuenteRoboto: 'Roboto', Arial, sans-serif;
   --hueso: #ebeaef;
   --bsoft: #daeefe;

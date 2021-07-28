@@ -20,7 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: var(--fuenteRoboto);
-    background: linear-gradient(to bottom, var(--azulMuyClaro), var(--azulMasClaro));
+    /*background: linear-gradient(to bottom, var(--azulMuyClaro), var(--azulMasClaro));*/
 }
 
 /*=================== ESTILOS PARA EL MENU ==============================*/

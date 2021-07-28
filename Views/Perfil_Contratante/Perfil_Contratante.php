@@ -71,7 +71,7 @@
 
                         <div class="text-center">
                             <img style="top: 50px;  position: relative;" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png " class="avatar img-circle img-thumbnail" alt="avatar" />
-                            <h2 style="top: -190px;  position: relative;">Coca-Cola </h2>
+                            <h2 style="top: -170px;  position: relative;">Coca-Cola </h2>
 
                             <a href="#" class="s3d forrst">
                                 Forrst

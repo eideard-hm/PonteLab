@@ -45,3 +45,44 @@ function validarFormulario() {
   }
 
 }
+/*
+// ================================= VALIDACION CAMPOS ==============================
+const formulario = document.getElementById('from-logi');
+const inputs = document.querySelectorAll('#controls');
+
+const expreciones = {
+  Usuario: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  Contraseña: /^.{4,16}$/,//de 4 a 16 digitos
+}
+
+const validarFormulario = (e) => {
+  switch (e.target.name) {
+    case "Usuario":
+      validarCampo(expresiones.Usuario, e.target, 'Usuario');
+      break;
+
+    case "Contraseña":
+      validarCampo(expresiones.Contraseña, e.target, 'Contraseña');
+      break;
+  }
+}
+
+
+
+const validarCampo = (expresion, input, campo) => {
+  if (expresion.test(input.value)) {
+    document.getElementById(`grupo__${campo}`).classList.remove('formulario_validacion-incorrecto');
+    document.getElementById(`grupo__${campo}`).classList.add('formulario_validacion-correcto');
+    document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+    document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+    document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__mensaje-activo');
+    campos[campo] = true;
+  } else {
+    document.getElementById(`grupo__${campo}`).classList.add('formulario_validacion-incorrecto');
+    document.getElementById(`grupo__${campo}`).classList.remove('formulario_validacion-correcto');
+    document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+    document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+    document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__mensaje-activo');
+    campos[campo] = false;
+  }
+}*/
