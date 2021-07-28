@@ -12,11 +12,24 @@
   --bsb: #060d2f;
 }
 
-body {
+.body-con,
+.body-vac{
   background: var(--fondo);
   background-repeat: no-repeat;
-  color: #000;
-  font-family: var(--fuenteRoboto);
+  background-size: cover;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+  padding: 0 1.5em;
+}
+.body-vacs{
+  justify-content: center;
+  align-items: center;
+  min-height: 10vh;
+  background: var(--fondo);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
   padding: 0 1.5em;
 }
 

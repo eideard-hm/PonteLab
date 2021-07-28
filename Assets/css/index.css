@@ -16,7 +16,7 @@
 body {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient( rgba(84, 108, 207), rgba(218, 238, 254));
+    background: #fff/*linear-gradient( rgba(84, 108, 207), rgba(218, 238, 254))*/;
     font-family: var(--fuenteRoboto);
     font-size: 16px;
     margin: 0;
