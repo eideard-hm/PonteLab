@@ -14,4 +14,10 @@ class Politicas_de_Datos extends Controllers
         $data['titulo_pagina'] = 'Políticas de Datos | PonsLabor.';
         $this->views->getView($this, 'Politicas_de_Datos', $data);
     }
+
+    public function Politicas_de_Cookies()
+    {
+        $data['titulo_pagina'] = 'Políticas de Cookies | PonsLabor.';
+        $this->views->getView($this, 'Politicas_de_Cookies', $data);
+    }
 }
