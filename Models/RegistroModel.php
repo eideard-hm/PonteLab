@@ -27,7 +27,7 @@ class RegistroModel extends GestionCRUD
         //extraer los administradores        
         $sql = "SELECT idUsuario, correoUsuario, passUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
-        direccionUsuario, imagenUsuario 
+        direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
         ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
         ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
@@ -41,11 +41,14 @@ class RegistroModel extends GestionCRUD
     {
         $this->idUsuario = $id;
         //consulta para extraerlo
-        $sql = "SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
-        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
-        direccionUsuario, imagenUsuario 
-        FROM USUARIO
-        WHERE idUsuario = " . $this->idUsuario;
+        $sql = "SELECT idUsuario, correoUsuario, passUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
+        direccionUsuario 
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE idUsuario = {$this->idUsuario}";
 
         $request = $this->select($sql);
         return $request;
@@ -79,13 +82,17 @@ class RegistroModel extends GestionCRUD
         $return = 0;
 
         //consutar si ya existe ese usuario
-        $sql = "SELECT * FROM usuario WHERE correoUsuario = '{$this->correoUsuario}' or 
-        numDocUsuario = '{$this->numDocUsuario}'";
+        $sql = "SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
+        direccionUsuario 
+        FROM USUARIO 
+        WHERE correoUsuario = '{$this->correoUsuario}' OR 
+        numDocUsuario = '{$this->numDocUsuario}' OR numTelUsuario = '{$this->numTelUsuario}'";
         $request = $this->selectAll($sql);
 
         //validar si ya existe el usuario
         //si esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
-        if (empty($request)) {
+        if (empty($request) || $request === '' || $request === null) {
             $sql = "INSERT INTO USUARIO(correoUsuario, passUsuario, idTipoDocumentoFK, 
             numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
             direccionUsuario, imagenUsuario)
@@ -107,7 +114,7 @@ class RegistroModel extends GestionCRUD
             $requestInsert = $this->insert($sql, $arrData);
             $return = $requestInsert;
         } else {
-            $return = "exits";
+            $return = 'exits';
         }
         return $return;
     }
@@ -147,12 +154,12 @@ class RegistroModel extends GestionCRUD
         $request = $this->selectAll($sql);
 
         //comprobar si existe para pasar a actualizar el registro
-        if (empty($request)) {
+        if (empty($request) || $request === '' || $request === null) {
             $query = "UPDATE USUARIO 
             SET correoUsuario=?, passUsuario=?, idTipoDocumentoFK=?, numDocUsuario=?, 
             numTelUsuario=?, numTelFijo=?, estadoUsuario=?, idRolFK=?, idBarrioFK=?, 
             direccionUsuario=?, imagenUsuario =?
-            WHERE idUsuario='{$this->idUsuario}'";
+            WHERE idUsuario={$this->idUsuario}";
 
             $arrData = array(
                 $this->strEmail,

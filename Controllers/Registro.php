@@ -36,7 +36,7 @@ class Registro extends Controllers
             if (empty($arrData)) {
                 $arrResponse = array('estadoUser' => false, 'msg' => 'Datos no encontrado');
             } else {
-                $arrResponse = array('estadoUser' => true, 'data' => $arrData);
+                $arrResponse = array('estadoUser' => true);
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
@@ -73,6 +73,9 @@ class Registro extends Controllers
             $strDireccion = limpiarCadena($_POST['direccion']);
             $blbImgen = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
 
+            //encriptar la contraseña ingresada
+            $strPass = password_hash($strPass, PASSWORD_DEFAULT, ['cost' => 10]);
+
             /*================== INSERTAR USUARIO =======================*/
             if ($intId === 0 || empty($intId) || $intId === null) {
                 $option = 1;
@@ -108,18 +111,17 @@ class Registro extends Controllers
                 );
             }
 
-            if ($request > 0) {
+            if ($request > 0 && is_numeric($request)) {
                 if ($option === 1) {
-                    $arrResponse = ['statusUser' => true, 'msg' => 'El usuario ha sido registrado existosamente :)'];
-                } else if ($option === 2) {
-                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)'];
+                    $arrResponse = ['statusUser' => true, 'msg' => 'El usuario ha sido registrado existosamente :)', 'value' => $request];
+                } elseif ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)', 'value' => $request];
                 }
-            } elseif ($request == 'exits') {
-                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro');
+            } elseif ($request === 'exits') {
+                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
-                $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(');
+                $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
             }
-
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();

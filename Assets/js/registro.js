@@ -1,86 +1,71 @@
-//ver contraseña
-
-document.getElementById("spanMostrar").addEventListener("click", function () {
-    const elementInput = document.getElementById("inputPassword");
-    const elementIcon = document.getElementById("iconMostrar");
-    if (elementIcon.classList.contains("active")) {
-        elementIcon.classList.remove("active");
-        elementIcon.innerHTML = "visibility";
-        elementInput.type = "password";
-    } else {
-        elementIcon.classList.add("active");
-        elementIcon.innerHTML = "visibility_off";
-        elementInput.type = "text";
-    }
-});
-
-const formUser = document.querySelector('#msform');
-const bntSubmit = document.getElementById('btn_submit');
-
-bntSubmit.addEventListener('click', e => {
-    e.preventDefault();
-
-    validateFormUser();
-});
-
-const insertUser = async () => {
-    //enviar los datos mediante una petición fetch
-    let formData = new FormData(formUser);
-    formData.delete('pass2');
-    const url = 'http://localhost/PonsLabor/Registro/setUser';
-
-    try {
-        const res = await fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        const data = await res.json();
-        if (data.statusUser) {
-            formUser.reset();
-            swal("Registro usuario", data.msg, "success");//mostrar la alerta
-            window.location.href = 'Menu';
-        } else {
-            swal("Error", data.msg, "error");//mostrar la alerta
+document.addEventListener('DOMContentLoaded', () => {
+    /*======================= FUNCIÓN PARA MOSTRAR LA IMAGEN =============== */
+    if (document.querySelector("#foto")) {
+        let foto = document.querySelector("#foto");
+        foto.onchange = function (e) {
+            let uploadFoto = document.querySelector("#foto").value;
+            let fileimg = document.querySelector("#foto").files;
+            let nav = window.URL || window.webkitURL;
+            let contactAlert = document.querySelector('#form_alert');
+            if (uploadFoto != '') {
+                let type = fileimg[0].type;
+                let name = fileimg[0].name;
+                if (type != 'image/jpeg' && type != 'image/jpg' && type != 'image/png') {
+                    contactAlert.innerHTML = '<p class="errorArchivo">El archivo no es válido.</p>';
+                    if (document.querySelector('#img')) {
+                        document.querySelector('#img').remove();
+                    }
+                    document.querySelector('.delPhoto').classList.add("notBlock");
+                    foto.value = "";
+                    return false;
+                } else {
+                    contactAlert.innerHTML = '';
+                    if (document.querySelector('#img')) {
+                        document.querySelector('#img').remove();
+                    }
+                    document.querySelector('.delPhoto').classList.remove("notBlock");
+                    let objeto_url = nav.createObjectURL(this.files[0]);
+                    document.querySelector('.prevPhoto div').innerHTML = "<img id='img' src=" + objeto_url + ">";
+                }
+            } else {
+                alert("No selecciono foto");
+                if (document.querySelector('#img')) {
+                    document.querySelector('#img').remove();
+                }
+            }
         }
-
-    } catch (error) {
-        swal("Error", error, "error");
     }
-}
 
-const validateFormUser = () => {
-    const id = document.querySelector('#idUsuario').value;
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#inputPassword').value;
-    const confirmPass = document.querySelector('#pass2').value;
-    const tipoDoc = document.querySelector('#documento').value;
-    const numDoc = document.querySelector('#numDoc').value;
-    const numCel = document.querySelector('#numCel').value;
-    const numFijo = document.querySelector('#numFijo').value;
-    const estado = document.querySelector('#estado').value;
-    const rol = document.querySelector('#rol').value;
-    const barrio = document.querySelector('#barrio').value;
-    const direccion = document.querySelector('#direccion').value;
-
-    if (email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
-        || numFijo === '' || estado === '' || rol === '' || barrio === '' || direccion === '') {
-        swal(
-            'Ha ocurrido un error',
-            'Todos los campos son obligatorios.',
-            'error'
-        )
-        return false;
-    } else if (password !== confirmPass) {
-        swal(
-            'Error!! Contraseñas incorrectas',
-            'Las contraseñas no coinciden, por favor intente nuevamente!!',
-            'error'
-        )
-        return false;
-    } else {
-        insertUser();
+    if (document.querySelector(".delPhoto")) {
+        let delPhoto = document.querySelector(".delPhoto");
+        delPhoto.onclick = function (e) {
+            removePhoto();
+        }
     }
-}
+
+    const removePhoto = () => {
+        document.querySelector('#foto').value = "";
+        document.querySelector('.delPhoto').classList.add("notBlock");
+        document.querySelector('#img').remove();
+    }
+
+    //ver contraseña
+    if (document.getElementById("spanMostrar")) {
+        document.getElementById("spanMostrar").addEventListener("click", function () {
+            const elementInput = document.getElementById("inputPassword");
+            const elementIcon = document.getElementById("iconMostrar");
+            if (elementIcon.classList.contains("active")) {
+                elementIcon.classList.remove("active");
+                elementIcon.innerHTML = "visibility";
+                elementInput.type = "password";
+            } else {
+                elementIcon.classList.add("active");
+                elementIcon.innerHTML = "visibility_off";
+                elementInput.type = "text";
+            }
+        });
+    }
+})
 
 //Funcionalidad botones
 
@@ -151,6 +136,71 @@ $(".previous").click(function (e) {
     });
 });
 
-// $(".submit").click(function () {
-//     return false;
-// })
+/* ==================== MÉTODOS PARA HACER TRANSACCIONES EN LA DB ============= */
+
+const formUser = document.querySelector('#msform');
+const bntSubmit = document.getElementById('btn_submit');
+
+bntSubmit.addEventListener('click', e => {
+    e.preventDefault();
+
+    validateFormUser();
+});
+
+const insertUser = async () => {
+    //enviar los datos mediante una petición fetch
+    let formData = new FormData(formUser);
+    formData.delete('pass2');
+    const url = 'http://localhost/PonsLabor/Registro/setUser';
+
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        const data = await res.json();
+        if (data.statusUser) {
+            formUser.reset();
+            swal("Registro usuario", data.msg, "success");//mostrar la alerta
+            window.location.href = 'Menu';
+        } else {
+            swal("Error", data.msg, "error");//mostrar la alerta
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
+const validateFormUser = () => {
+    const id = document.querySelector('#idUsuario').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#inputPassword').value;
+    const confirmPass = document.querySelector('#pass2').value;
+    const tipoDoc = document.querySelector('#documento').value;
+    const numDoc = document.querySelector('#numDoc').value;
+    const numCel = document.querySelector('#numCel').value;
+    const numFijo = document.querySelector('#numFijo').value;
+    const estado = document.querySelector('#estado').value;
+    const rol = document.querySelector('#rol').value;
+    const barrio = document.querySelector('#barrio').value;
+    const direccion = document.querySelector('#direccion').value;
+
+    if (email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
+        || numFijo === '' || estado === '' || rol === '' || barrio === '' || direccion === '') {
+        swal(
+            'Ha ocurrido un error',
+            'Todos los campos son obligatorios.',
+            'error'
+        )
+        return false;
+    } else if (password !== confirmPass) {
+        swal(
+            'Error!! Contraseñas incorrectas',
+            'Las contraseñas no coinciden, por favor intente nuevamente!!',
+            'error'
+        )
+        return false;
+    } else {
+        insertUser();
+    }
+}
