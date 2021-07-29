@@ -68,8 +68,7 @@
         </ul>
       </div>
     </header>
-    
-    <h1 class="name">Vacantes</h1>
+
     <div class="content-vacs">
       <!--<div class="vacs-form">-->
         <form id="form-vacs" action="">
@@ -83,6 +82,46 @@
                 BOGOTA D.C. - BOGOTA
                 <br>
                 Vacantes: 8
+                <br>
+                Fecha de creación: 03/05/2022
+                <br>
+                Fecha de cierre: 31/07/2022
+                <br>
+              </p>
+              <a type="">Ver | Aplicar</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="circle">
+              <h2>JSONGood S.A.</h2>
+            </div>
+            <div class="card-content">
+              <p>
+                <br>
+                BOGOTA D.C. - BOGOTA
+                <br>
+                Vacantes: 6
+                <br>
+                Fecha de creación: 03/05/2022
+                <br>
+                Fecha de cierre: 31/07/2022
+                <br>
+              </p>
+              <a type="">Ver | Aplicar</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="circle">
+              <h2>MK S.A.</h2>
+            </div>
+            <div class="card-content">
+              <p>
+                <br>
+                BOGOTA D.C. - BOGOTA
+                <br>
+                Vacantes: 7
                 <br>
                 Fecha de creación: 03/05/2022
                 <br>

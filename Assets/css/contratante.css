@@ -14,7 +14,7 @@
 
 .body-con,
 .body-vac{
-  background: var(--fondo);
+  background: var(--hueso);
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
@@ -24,15 +24,103 @@
 .body-vacs{
   justify-content: center;
   align-items: center;
-  min-height: 10vh;
-  background: var(--fondo);
+  min-height: 100vh;
+  background: var(--hueso);
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
   font-family: "Quicksand", sans-serif;
   padding: 0 1.5em;
 }
+/*VACANTES*/
+.content-vacs{
+  margin-top: 3em;
+  position: relative;
+  width: 1150px;
+  padding: 20em;
+  min-height: 40em; 
+}
+.content-vacs #form-vacs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.content-vacs .card{
+  position: relative;
+  width: 300px;
+  height: 420px;
+  background: var(--hueso);
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
 
+.content-vacs .card .circle{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  clip-path: circle(400px at center -225px);
+  text-align: center;
+}
+
+.content-vacs .card .circle h2{
+  padding: 2.5em  0; 
+  position: relative;
+}
+
+.content-vacs .card .card-content{
+  position: absolute;
+  bottom: 10px;
+  padding: 20px;
+  text-align: center;  
+  width: 100%;
+}
+
+.content-vacs .card .card-content p{
+  color: #000;
+}
+.content-vacs .card .card-content a{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.content-vacs .card:nth-child(1) .circle,
+.content-vacs .card:nth-child(1) .card-content a{
+  background: #1e1e62;
+}
+
+.content-vacs .card:nth-child(2) .circle,
+.content-vacs .card:nth-child(2) .card-content a{
+  background: #546ccf;
+}
+
+.content-vacs .card:nth-child(3) .circle,
+.content-vacs .card:nth-child(3) .card-content a{
+  background: #97bbfe;
+}
+
+.content-vacs .card:nth-child(4) .circle,
+.content-vacs .card:nth-child(4) .card-content a{
+  background: var(--cm);
+}
+.content-vacs .card:nth-child(5) .circle,
+.content-vacs .card:nth-child(5) .card-content a{
+  background: var(--medium);
+}
+.content-vacs .card:nth-child(6) .circle,
+.content-vacs .card:nth-child(6) .card-content a{
+  background: var(--bdarck);
+}
 /*======================== ESTILOS PARA CONTRATANTE  ===========================*/
 
 .content {
