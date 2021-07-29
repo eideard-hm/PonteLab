@@ -179,6 +179,10 @@ body {
     color: #fff;
 }
 
+.menu_icon{
+    margin-right: 10px;
+}
+
 /*========================= NAVBAR 2 =========================*/
 
 body#menu {
@@ -244,16 +248,16 @@ body#menu {
 
 #header_menu .barra .content-logo .logo-nombre .logo-empresa,
 #header_menu .barra .content_logo_menu .logo-nombre .logo-empresa {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
-    margin-right: 10px;
-    border-radius: 8px;
+    margin-right: 8px;
+    border-radius: 3px;
 }
 
 #header_menu .barra .content-logo .logo-nombre h2,
 #header_menu .barra .content-logo .logo-nombre h2 span {
-    font-size: 30px;
+    font-size: 22px;
 }
 
 #header_menu .barra .content-logo .logo-nombre h2 span,
@@ -274,7 +278,7 @@ body#menu {
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 300;
 }
 
@@ -291,7 +295,7 @@ body#menu {
 
 #header_menu .barra .nav a.active {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 17px;
     border-bottom: 4px solid var(--border);
 }
 

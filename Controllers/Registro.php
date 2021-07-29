@@ -74,7 +74,7 @@ class Registro extends Controllers
             $blbImgen = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
 
             //encriptar la contraseña ingresada
-            $strPass = password_hash($strPass, PASSWORD_DEFAULT, ['cost' => 10]);
+            $strPass = encriptarPassword($strPass);
 
             /*================== INSERTAR USUARIO =======================*/
             if ($intId === 0 || empty($intId) || $intId === null) {

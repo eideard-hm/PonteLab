@@ -113,8 +113,8 @@ body {
 
 .imagen-persona {
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
@@ -738,6 +738,12 @@ body {
 
     #header_menu .barra .nav {
         width: 67%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    #header_menu .barra .nav {
+        width: 75%;
     }
 }
 

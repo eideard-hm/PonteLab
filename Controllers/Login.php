@@ -39,7 +39,7 @@ class Login extends Controllers
                             $_SESSION['login'] = true;
                             $_SESSION['user-data'] = $arrData;
 
-                            $arrResponse = array('statusLogin' => true, 'msg' => 'ok', 'rol' => $_SESSION['rol']);
+                            $arrResponse = array('statusLogin' => true, 'msg' => 'ok', 'rol' => $_SESSION['user-data']['nombreRol']);
                         } else {
                             $arrResponse = array('statusLogin' => false, 'msg' => 'El usuario se encuentra inhabilitado!.');
                         }
@@ -53,19 +53,5 @@ class Login extends Controllers
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();
-    }
-
-    public function getImgProfile(int $id){
-        $idUser = intval(limpiarCadena($id));
-
-        if ($idUser > 0 || !empty($idUser)) {
-            $arrData = $this->model->selectImgProfile($idUser);
-            if (empty($arrData)) {
-                $arrResponse = array('statusImg' => false, 'msg' => 'No se encontró una imagen asociada a ese usuario.');
-            } else {
-                $arrResponse = array('statusImg' => true, 'data' => $arrData);
-            }
-            echo base64_encode($arrData['imagenUsuario']);
-        }
     }
 }

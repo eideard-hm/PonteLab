@@ -9,124 +9,159 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/Navbar.php');
-    ?>
+    <header class="menu_header">
+        <div class="contenedor barra">
+            <a href="#" class="content-logo">
+                <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo" />
+                <h2>Pons<span>Labor.</span></h2>
+            </a>
+            <nav class="navbar_menu">
+                <a href="#"><i class="fas fa-home" style="margin-right: 5px;"></i>Inicio</a>
+                <a href="#"><i class="fas fa-business-time" style="margin-right: 5px;"></i>Proyectos</a>
+                <a href="#">
+                    <button class="switch" id="switch">
+                        <i class="fas fa-sun sol"></i>
+                        <i class="fas fa-moon luna"></i>
+                        <span class="circulo"></span>
+                    </button>
+                </a>
+                <a href="Login" class="btn-init iniciar">Iniciar sesión</a>
+                <a href="Registro" class="btn-init registro">Registrarse</a>
+            </nav>
+        </div>
+    </header>
 
-    <div class="img-slider">
-        <div class="slide active">
-            <br><img src="<?= URL; ?>/Assets/img/image.jpg" align="right" width="480" height="480" alt="">
-            <div class="info">
-                <br><br><br><br><br>
-                <h2 align="left">¡Que esperas para <br> registrarte!</h2>
-                <br>
-                <p align="left">¡Hola!, ¿aun no has logrado conseguir empleo?, no hay problema con PonsLabor muéstrale al mundo todos tus conocimientos y potencial, te ayudamos a conseguir tu trabajo deseado.</p>
+    <section class="slider-img">
+        <div class="slider contenedor active">
+            <img src="<?= URL; ?>/Assets/img/image.jpg" alt="Front-end" />
+            <div class="info-slider">
+                <h2>¡Que esperas para <br> registrarte!</h2>
+                <p>
+                    ¡Hola!, ¿aun no has logrado conseguir empleo?, no hay problema
+                    con PonsLabor muéstrale al mundo todos tus conocimientos y
+                    potencial, te ayudamos a conseguir tu trabajo deseado.
+                </p>
             </div>
         </div>
 
-        <div class="slide">
-            <br> <img src="<?= URL; ?>/Assets/img/image2.jpg" align="right" width="480" height="480" alt="">
-            <div class="info">
-
-                <br><br><br><br><br>
-                <h2 align="left">¿Buscas Trabajo?</h2>
-                <br>
-                <p align="left">Te presentamos a PonsLabor una nueva y actualiza plataforma que te ayudara en tu valiosa búsqueda de empleo, creando un perfil y una hoja de vida para que las grandes empresas vean todo tu potencial, que esperas prepárate para conquistar tu empleo ideal con PonsLabor.</p>
+        <div class="slider contenedor">
+            <img src="<?= URL; ?>/Assets/img/image2.jpg" alt="Frameworks de js" />
+            <div class="info-slider">
+                <h2>¿Buscas Trabajo?</h2>
+                <p>
+                    Te presentamos a PonsLabor una nueva y actualizada plataforma que te
+                    ayudara en tu valiosa búsqueda de empleo, creando un perfil y una
+                    hoja de vida para que las grandes empresas vean todo tu potencial,
+                    que esperas prepárate para conquistar tu empleo ideal con PonsLabor.
+                </p>
             </div>
         </div>
 
-        <div class="slide">
-            <br> <img src="<?= URL; ?>/Assets/img/image3.jpg" align="right" width="480" height="480" alt="">
-            <div class="info">
-
-                <br><br><br><br><br>
+        <div class="slider contenedor">
+            <img src="<?= URL; ?>/Assets/img/image3.jpg" alt="React" />
+            <div class="info-slider">
                 <h2>¿Buscas personal?</h2>
-                <br>
-                <p>¡Bienvenido!, con PonsLabor has que tu negocio crezca cada dia mas
+                <p>
+                    ¡Bienvenido!, con PonsLabor has que tu negocio crezca cada dia mas
                     dando la oportunidad a todos nuestros aspirantes disponibles con todas las ganas de explotar
                     ese maravilloso potencial, que esperas para iniciar tu busqueda.
                 </p>
             </div>
         </div>
 
-        <div class="navigation">
+        <div class="slider contenedor">
+            <img src="<?= URL; ?>/Assets/img/image3.jpg" alt="Desarrollador" />
+            <div class="info-slider">
+                <h2>Sección 4</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+                    praesentium quia porro velit voluptatibus quam accusantium obcaecati
+                    sint? Expedita, quasi.
+                </p>
+            </div>
+        </div>
+
+        <div class="slider contenedor">
+            <img src="<?= URL; ?>/Assets/img/work.svg" alt="Programador" />
+            <div class="info-slider">
+                <h2>Sección 5</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
+                    praesentium quia porro velit voluptatibus quam accusantium obcaecati
+                    sint? Expedita, quasi.
+                </p>
+            </div>
+        </div>
+
+        <div class="btns">
             <div class="btn active"></div>
             <div class="btn"></div>
             <div class="btn"></div>
+            <div class="btn"></div>
+            <div class="btn"></div>
         </div>
-        </br>
-    </div>
+    </section>
 
-    <script type="text/javascript">
-        var slides = document.querySelectorAll('.slide');
-        var btns = document.querySelectorAll('.btn');
-        let currentSlide = 1;
-
-        //JavaScript for image slider manual navigation
-        var manualNav = function(manual) {
-            slides.forEach((slide) => {
-                slide.classList.remove('active');
-
-                btns.forEach((btn) => {
-                    btn.classList.remove('active');
-                });
-            });
-
-            slides[manual].classList.add('active');
-            btns[manual].classList.add('active');
-        }
-
-        btns.forEach((btn, i) => {
-            btn.addEventListener("click", () => {
-                manualNav(i);
-                currentSlide = i;
-            });
-        });
-
-        //  JavaScript for image slider autoplay navigation
-        var repeat = function(activeClass) {
-            let active = document.getElementsByClassName('active');
-            let i = 1;
-
-            var repeater = () => {
-                setTimeout(function() {
-                    [...active].forEach((activeSlide) => {
-                        activeSlide.classList.remove('active');
-                    });
-
-
-                    slides[i].classList.add('active');
-                    btns[i].classList.add('active');
-                    i++;
-
-
-                    if (slide.length == i) {
-                        i = 0;
-                    }
-                    if (i >= slides.length) {
-                        return;
-                    }
-                    repeater();
-                }, 10000);
-            }
-            repeater();
-        }
-        repeat();
-    </script>
-
-    <footer id="footer-index">
-        <div class="text-center text-white" style="background-color: #1e1e62;">
-            © Copyright TEAM BELAY SOFTWARE SOLUTION 2021: <br>
-            <a id="textRef" class="text-white" href="#">Realizado por: Luisa Brigith Garzón Martin, Yesenia Rodriguez
-                Florez<br>
-                Santiago Andres Becerra Espitia, Edier Heraldo Hernandez Molano</a>
+    <section class="section-welcome contenedor">
+        <div class="section-welcome__welcome">
+            <div class="welcome-title">
+                <h2>¡Te damos la bienvenida a tu comunidad profesional!</h2>
+                <img src="<?= URL; ?>Assets/img/welcome.svg" alt="welcome">
+            </div>
+            <ul class="list_categories">
+                <li><a href="#">Buscar empleo<i class="fas fa-chevron-right"></i></a></li>
+                <li><a href="#">Publicar ofertas de empleo<i class="fas fa-chevron-right"></i></a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="section_welcome__img">
+            <img src="<?= URL; ?>Assets/img/co-working.svg" alt="co-working">
+        </div>
+    </section>
+
+    <section class="section-aspirantes contenedor">
+        <h2>La forma más fácil de encontrar tu trabajo ideal</h2>
+        <div class="section-aspirante__card">
+            <div class="card-aspirante card">
+                <div class="img-search img">
+                    <img src="<?= URL; ?>/Assets/img/search.svg" alt="Buscador">
+                </div>
+                <div class="info-search info">
+                    <h4>Buscador de empleo</h4>
+                    <p>Registrese y encuentre las ofertas laborales de todos los
+                        prestadores de Bogotá D.C.</p>
+                    <a href="#">Ir</a>
+                </div>
+            </div>
+            <div class="card-contratante card">
+                <div class="img-bussiness img">
+                    <img src="<?= URL; ?>/Assets/img/businessman.svg" alt="Bussiness">
+                </div>
+                <div class="info-contratante info">
+                    <h4>Publicar u ofertar vacantes</h4>
+                    <p>Registre sus vacantes y encuentre el perfil más adecuado a su necesidad.</p>
+                    <a href="#">Ir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-contratante contenedor">
+        <h2>Nunca habia sido tan fácil</h2>
+        <div class="section-contratante__container">
+            <div class="section-contratante__aspirante">
+                <h3>Conseguir tu empleo ideal</h3>
+            </div>
+            <div class="section-contratante__contratante">
+                <h3> Registrar sus vacantes y encontrar el perfil más adecuado a sus necesidades</h3>
+            </div>
+        </div>
+    </section>
+
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>

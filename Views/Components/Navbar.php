@@ -28,9 +28,9 @@
                 </button>
             </a>
         </li>
-        <li><a href="<?= URL; ?>">Página de incio</a></li>
-        <li><a href="<?= URL; ?>Login">Iniciar Sesion</a></li>
-        <li><a href="Registro">Crear Cuenta</a></li>
-        <li><a href="#">Contactanos</a></li>
+        <li><a href="<?= URL; ?>"><i class="fas fa-home menu_icon"></i>Página de inicio</a></li>
+        <li><a href="<?= URL; ?>Login"><i class="fas fa-sign-in-alt menu_icon"></i>Iniciar Sesion</a></li>
+        <li><a href="Registro"><i class="fas fa-user-plus menu_icon"></i>Crear Cuenta</a></li>
+        <li><a href="#"><i class="fas fa-id-card menu_icon"></i>Contactanos</a></li>
     </ul>
 </nav>

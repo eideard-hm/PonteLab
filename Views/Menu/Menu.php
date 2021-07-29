@@ -40,7 +40,7 @@
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/upload.png" id="imagen_perfil" alt="" />
+                    <img src="<?= URL; ?>Assets/img/upload.png" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
                 </div>
             </nav>
         </div>

@@ -1,5 +1,11 @@
 <?php
 
+//funciones para encriptar la contraseña
+function encriptarPassword(string $password)
+{
+    return password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
+}
+
 //limpar las cadenas de texto para evitar inyecciones sql
 function limpiarCadena($strCadena)
 {

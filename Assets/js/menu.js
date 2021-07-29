@@ -34,3 +34,30 @@ const ocultarBarraBusqueda = () => {
     barraBusqueda.style.opacity = '0';
     coverContenedorBusqueda.style.display = 'none';
 }
+
+/* ========================= MOSTRAR IMAGEN DE PERFIL ====================== */
+
+const showImgProfile = async (id) => {
+    const imgPerfil = document.querySelector('#imagen_perfil');
+
+    //peticion mediante la API de fetch, peticion de tipo get
+    const url = `http://localhost/PonsLabor/Menu/getImgProfile/${id}`;
+
+    try {
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'image/jpeg',
+                'Content-type': 'image/png'
+            }
+        })
+        const img = await res.blob();
+        imgPerfil.src = URL.createObjectURL(img);
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
+if (document.querySelector('#imagen_perfil')) {
+    showImgProfile(parseInt(document.querySelector('#imagen_perfil').dataset.id));
+}

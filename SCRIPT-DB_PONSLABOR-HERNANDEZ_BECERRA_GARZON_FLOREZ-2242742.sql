@@ -460,9 +460,18 @@ CALL insertUser(NULL, 'edierhernandezmo@gmail.com', '1234', 01, '1002623988', '3
 'Calle 6B', NULL);
 SELECT * FROM USUARIO;
 
-/*CALL insertUser(NULL, 'edierhernandezmo@gmail.com', '1234', 1, '1002623988', '3132069129', '1234567', 1, 2,3,
-'Calle 6B', NULL);*/
+/*======================= PROCEDIMIENTOS ALMACENADOS  EDIER==============================*/
+
+SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
+FROM USUARIO
+WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
+OR idRolFK'%ROL%';
 
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
 
 SELECT * FROM selectUser;
+
+
+
+

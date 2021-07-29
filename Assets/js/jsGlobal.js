@@ -29,11 +29,69 @@ if (localStorage.getItem('dark-mode') === 'true') {
     btnSwitch.classList.remove('active');
 }
 
+/* ======================== SLIDER DE IMAGENES - index.php ================== */
+const slider = document.querySelectorAll('.slider');
+const btns = document.querySelectorAll('.btn');
+let currentSlider = 1;
+
+if (slider && btns) {
+
+    const sliderManual = (index) => {
+
+        slider.forEach(slides => {
+            slides.classList.remove('active');
+
+            btns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+        });
+
+        slider[index].classList.add('active');
+        btns[index].classList.add('active');
+    }
+
+    btns.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            sliderManual(i);
+            currentSlider = i;
+        })
+    })
+
+    //slider automatico
+
+    const sliderAuto = () => {
+        const classActive = document.getElementsByClassName('active');
+        let i = 1;
+
+        const repetir = () => {
+            setTimeout(() => {
+                [...classActive].forEach(activeSlider => {
+                    activeSlider.classList.remove('active');
+                })
+
+                slider[i].classList.add('active');
+                btns[i].classList.add('active');
+                i++;
+
+                if (slider.length == i) {
+                    i = 0;
+                }
+                if (i >= slider.length) {
+                    return;
+                }
+
+                repetir();
+
+            }, 10000)
+        }
+        repetir();
+    }
+    sliderAuto();
+}
 /* ======================== RESPONSIVE DESIGN ================== */
 if (document.querySelector('#icono-reponsive')) {
     document.querySelector('#icono-reponsive').addEventListener('click', () => {
         mostrarBarraResponsive();
-
     });
 }
 
