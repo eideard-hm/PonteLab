@@ -9,7 +9,7 @@
 }
 
 body {
-  background: linear-gradient( rgba(213, 238, 254), rgba(84, 108, 207));
+  background: #fff/*linear-gradient( rgba(213, 238, 254), rgba(84, 108, 207))*/;
   width: 100%;
   min-height: 100vh;
   font-family: var(--fuenteRoboto);

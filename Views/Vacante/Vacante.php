@@ -32,6 +32,7 @@
         <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
         <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
         <a href="#" class="active"><i class="fas fa-business-time"></i>Vacante</a>
+        <a href="Vacantes"><i class="fas fa-list-alt"></i>Vacantes</a>
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
           <i class="fas fa-moon luna"></i>
@@ -58,6 +59,7 @@
         <li><a href="Menu">Inicio</a></li>
         <li><a href="#">Contratante</a></li>
         <li><a href="Vacante">Vacante</a></li>
+        <li><a href="Vacantes">Vacantes</a></li>
       </ul>
     </div>
   </header>

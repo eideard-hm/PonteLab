@@ -18,7 +18,11 @@
 body {
     width: 100%;
     min-height: 100vh;
+<<<<<<< HEAD
     background: var(--blanco);
+=======
+    background: #fff/*linear-gradient( rgba(84, 108, 207), rgba(218, 238, 254))*/;
+>>>>>>> c7b3625ea1a3f6a64e7c9313975f07ce9732c9eb
     font-family: var(--fuenteRoboto);
     overflow-x: hidden;
 }

@@ -32,6 +32,7 @@
                 <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
                 <a href="#" class="active"><i class="fas fa-user-tie"></i>Contratante</a>
                 <a href="Vacante"><i class="fas fa-business-time"></i>Vacante</a>
+                <a href="Vacantes"><i class="fas fa-list-alt"></i>Vacantes</a>
                 <button class="switch" id="switch">
                     <i class="fas fa-sun sol"></i>
                     <i class="fas fa-moon luna"></i>
@@ -61,12 +62,7 @@
             </ul>
         </div>
     </header>
-    <!--
-contratante:
--identificacion contratante
--nombre contratante
--descripcion
--->
+
     <div class="content">
         <div class="con-form">
             <h2 class="name">Registro <span>Contratante</span></h2>
