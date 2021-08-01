@@ -31,7 +31,7 @@ estadoUsuario bool NOT NULL,
 idRolFK int,
 idBarrioFK int,
 direccionUsuario varchar(30) not null,
-imagenUsuario blob 
+imagenUsuario varchar(100) 
 );
 
 DROP TABLE IF EXISTS TIPODOCUMENTO;
@@ -431,7 +431,7 @@ ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
 ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
 ON b.idBarrio = u.idBarrioFK;
 
-/*======================= PROCEDIMIENTOS ALMACENADOS ==============================*/
+/*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
 
 DELIMITER $$
 CREATE PROCEDURE insertUser(
@@ -446,7 +446,7 @@ UestadoUsuario bool,
 UidRolFK int,
 UidBarrioFK int,
 UdireccionUsuario varchar(30),
-UimagenUsuario blob
+UimagenUsuario varchar(100)
 )
 BEGIN
 INSERT INTO USUARIO(idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
@@ -460,9 +460,18 @@ CALL insertUser(NULL, 'edierhernandezmo@gmail.com', '1234', 01, '1002623988', '3
 'Calle 6B', NULL);
 SELECT * FROM USUARIO;
 
-/*CALL insertUser(NULL, 'edierhernandezmo@gmail.com', '1234', 1, '1002623988', '3132069129', '1234567', 1, 2,3,
-'Calle 6B', NULL);*/
+/*======================= PROCEDIMIENTOS ALMACENADOS  EDIER==============================*/
+/*
+SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
+FROM USUARIO
+WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
+OR idRolFK'%ROL%';
 
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
 
 SELECT * FROM selectUser;
+
+
+
+

@@ -52,7 +52,7 @@ class LoginModel extends gestionCRUD
     public function selectImgProfile(int $id)
     {
         $this->intId = $id;
-        $sql = "SELECT imagenUsuario
+        $sql = "SELECT idUsuario, imagenUsuario
         FROM USUARIO 
         WHERE idUsuario = {$this->intId}";
         return $this->select($sql);

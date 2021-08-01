@@ -3,9 +3,9 @@
 class GestionCRUD extends Conexion
 {
     //atributos de la clase
-    private $conexion;
     private string $strquery;
     private array $arrValues;
+    private $conexion;
 
     public function __construct()
     {
@@ -24,8 +24,7 @@ class GestionCRUD extends Conexion
         $this->arrValues = $arrValues;
 
         $stmt = $this->conexion->prepare($sql);
-        $resInsert = $stmt->execute($arrValues);
-        if ($resInsert) {
+        if ($stmt->execute($arrValues)) {
             $result = $this->conexion->lastInsertId();
         } else {
             $result = 0;

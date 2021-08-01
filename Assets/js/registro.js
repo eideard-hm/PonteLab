@@ -158,13 +158,15 @@ const insertUser = async () => {
             method: 'POST',
             body: formData
         })
-        const data = await res.json();
-        if (data.statusUser) {
-            formUser.reset();
-            swal("Registro usuario", data.msg, "success");//mostrar la alerta
-            window.location.href = 'Menu';
+        const { statusUser, msg, rol } = await res.json();
+        if (statusUser && msg === 'ok') {
+            if (rol === 1) {
+                window.location.href = 'Menu_Contratante';
+            } else {
+                window.location.href = 'Menu';
+            }
         } else {
-            swal("Error", data.msg, "error");//mostrar la alerta
+            swal("Error", msg, "error");//mostrar la alerta
         }
     } catch (error) {
         swal("Error", error, "error");
