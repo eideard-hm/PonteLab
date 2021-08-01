@@ -14,7 +14,7 @@ class RegistroModel extends GestionCRUD
     private int $idRolFK;
     private int $idBarrioFK;
     private string $direccionUsuario;
-    private $imagenUsuario;
+    private string $imagenUsuario;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class RegistroModel extends GestionCRUD
     public function selectAllUsers()
     {
         //extraer los administradores        
-        $sql = "SELECT idUsuario, correoUsuario, passUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
         direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
@@ -41,7 +41,7 @@ class RegistroModel extends GestionCRUD
     {
         $this->idUsuario = $id;
         //consulta para extraerlo
-        $sql = "SELECT idUsuario, correoUsuario, passUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
         direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
@@ -50,8 +50,7 @@ class RegistroModel extends GestionCRUD
         ON b.idBarrio = u.idBarrioFK
         WHERE idUsuario = {$this->idUsuario}";
 
-        $request = $this->select($sql);
-        return $request;
+        return $this->select($sql);
     }
 
     //Método para insertar un usuario
@@ -66,7 +65,7 @@ class RegistroModel extends GestionCRUD
         int $rol,
         int $barrio,
         string $direccion,
-        $imagen
+        string $imagen
     ) {
         $this->correoUsuario = $email;
         $this->passUsuario = $pass;
@@ -111,8 +110,7 @@ class RegistroModel extends GestionCRUD
                 $this->direccionUsuario,
                 $this->imagenUsuario
             );
-            $requestInsert = $this->insert($sql, $arrData);
-            $return = $requestInsert;
+            $return = $this->insert($sql, $arrData);
         } else {
             $return = 'exits';
         }

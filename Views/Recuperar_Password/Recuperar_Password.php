@@ -43,13 +43,13 @@
         <fieldset>
             <h2 class="fs-title">Recupera tu cuenta</h2>
             <img src="<?= URL; ?>Assets/img/candado.png" width="150" height="150" alt="Candado" class="logo2" />
-            <input id="inputPassword" type="password" placeholder="Password" name="pass">
+            <input id="inputPassword" type="password" placeholder="Contraseña" name="pass">
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
-            <input type="password" name="confirm-nueva-contra" placeholder="Confirmar Password" />
+            <input type="password" name="confirm-nueva-contra" placeholder="Confirmar Contraseña" />
             <button name="cambiar" class="action-button" value="Cambiar"> Cambiar </button>
 
             <br><br>
-            <p><a class="a1" href="login.html" style="color: black;">Volver a iniciar sesion</a></p>
+            <p><a class="a1" href="Login" style="color: black;">Volver a iniciar sesion</a></p>
         </fieldset>
 
         </div>

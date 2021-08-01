@@ -38,18 +38,18 @@
           <span class="circulo"></span>
         </button>
         <div class="imagen-persona">
-          <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+          <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
         </div>
       </nav>
     </div>
     <div class="info-persona">
-      <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+      <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
       <ul>
-        <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
-        <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
+        <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
+        <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
         <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
         <li>
-          <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+          <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
         </li>
       </ul>
     </div>
@@ -68,24 +68,26 @@
 
       <form action="">
         <p>
-          <label for=""> Nombre</label>
-          <input minlength="1" maxlength="10" pattern="[a-zA-Z]+" type="text" name="nombre" id="" placeholder="Nombre..." required />
+          <label for="nombre"> Nombre</label>
+          <input minlength="1" maxlength="10" pattern="[a-zA-Z]+" type="text" name="nombre" id="nombre" placeholder="Nombre..." required />
         </p>
         <p>
-          <label for=""> Cantidad de Vacantes</label>
-          <input minlength="4" maxlength="10" pattern="[0-9]+" type="number" name="cantidad" id="" placeholder="Cantida de Vacantes..." required />
+          <label for="cantidad"> Cantidad de Vacantes</label>
+          <input minlength="4" maxlength="10" pattern="[0-9]+" type="number" name="cantidad" id="cantidad" placeholder="Cantida de Vacantes..." required />
         </p>
         <p class="block">
-          <label for=""> Especificaciones </label>
-          <textarea name="especificaciones" id="" rows="1" placeholder="Especificaciones..." required></textarea>
+          <label for="especificaciones"> Especificaciones </label>
+          <br>
+          <textarea name="especificaciones" id="especificaciones" rows="1" placeholder="Especificaciones..." required></textarea>
         </p>
         <p class="block">
-          <label for=""> Perfil del Trabajador</label>
-          <textarea type="text" name="perfil" id="" rows="1" placeholder="Perfil del Trabajador..." required></textarea>
+          <label for="perfil"> Perfil del Trabajador</label>
+          <textarea type="text" name="perfil" id="perfil" rows="1" placeholder="Perfil del Trabajador..." required></textarea>
         </p>
         <p>
-          <label for=""> Tipo de Contrato</label>
-          <select>
+          <label for="tipoContrato"> Tipo de Contrato</label>
+          <select name="tipoContrato" id="tipoContrato">
+            <option value="" disabled selected>Seleccione un tipo de contranto</option>
             <option value="1">Contrato por Obra o Labor</option>
             <option value="2">Contrato a Termino Fijo</option>
             <option value="3">Contrato a Termino Indefinido</option>
@@ -94,24 +96,24 @@
           </select>
         </p>
         <p>
-          <label for=""> Sueldo</label>
-          <input type="number" name="sueldo" id="" placeholder="Sueldo..." required />
+          <label for="sueldo">Sueldo</label>
+          <input type="number" name="sueldo" id="sueldo" placeholder="Sueldo..." required />
         </p>
         <p class="block">
-          <label for=""> Fecha de Publicacion</label>
-          <input type="date" name="fechapublicacion" id="" required />
+          <label for="fechapublicacion"> Fecha de Publicacion</label>
+          <input type="date" name="fechapublicacion" id="fechapublicacion" required />
         </p>
         <p class="block">
-          <label for=""> Fecha de Cierre</label>
-          <input type="date" name="fechacierre" id="" required />
+          <label for="fechacierre"> Fecha de Cierre</label>
+          <input type="date" name="fechacierre" id="fechacierre" required />
         </p>
         <p>
-          <label for=""> Direccion</label>
-          <input type="text" name="direccion" id="" placeholder="Dirección..." required />
+          <label for="direccion"> Dirección</label>
+          <input type="text" name="direccion" id="direccion" placeholder="Dirección..." required />
         </p>
         <p>
-          <label for=""> Estado</label>
-          <select name="estado" id="" required>
+          <label for="estado">Estado</label>
+          <select name="estado" id="estado" required>
             <option value="1">Activo</option>
             <option value="2">Inactivo</option>
           </select>
@@ -128,6 +130,8 @@
       </form>
     </div>
   </div>
+
+  <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>

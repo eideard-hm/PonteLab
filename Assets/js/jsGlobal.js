@@ -29,12 +29,12 @@ if (localStorage.getItem('dark-mode') === 'true') {
     btnSwitch.classList.remove('active');
 }
 
-/* ======================== SLIDER DE IMAGENES - index.php ================== */
+/* ===================================== CÓDIGO DE EL SLIDER =============================== */
 const slider = document.querySelectorAll('.slider');
 const btns = document.querySelectorAll('.btn');
 let currentSlider = 1;
 
-if (slider && btns) {
+if (document.querySelector('.slider-img')) {
 
     const sliderManual = (index) => {
 
@@ -88,6 +88,7 @@ if (slider && btns) {
     }
     sliderAuto();
 }
+
 /* ======================== RESPONSIVE DESIGN ================== */
 if (document.querySelector('#icono-reponsive')) {
     document.querySelector('#icono-reponsive').addEventListener('click', () => {
@@ -111,3 +112,22 @@ if (imgPersona) {
         opcionesInfo.classList.toggle('active');
     })
 }
+
+/* ======================== EDITOR DE TEXTO - SANTIAGO ================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('#especificaciones')) {
+        tinymce.init({
+            selector: '#especificaciones',
+            width: "100%",
+            height: 400,
+            statubar: true,
+            plugins: [
+                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+        });
+    }
+})

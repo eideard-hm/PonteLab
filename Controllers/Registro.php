@@ -5,6 +5,7 @@ class Registro extends Controllers
     public function __construct()
     {
         parent::__construct();
+        session_start();
     }
 
     //======================== ENVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
@@ -71,13 +72,21 @@ class Registro extends Controllers
             $intRol = intval($_POST['rol']);
             $intBarrio = intval($_POST['barrio']);
             $strDireccion = limpiarCadena($_POST['direccion']);
-            $blbImgen = addslashes(file_get_contents($_FILES['foto']['tmp_name']));
+
+            //guardar datos de la foto
+            $foto = $_FILES['foto'];
+            $nameFoto = $foto['name'];
+            $imgPerfil = 'upload.png';
+
+            if (!empty($nameFoto)) {
+                $imgPerfil = 'img_' . md5(date('d-m-Y H:m:s')) . '.jpg';
+            }
+
+            /*================== INSERTAR USUARIO =======================*/
 
             //encriptar la contraseña ingresada
             $strPass = encriptarPassword($strPass);
-
-            /*================== INSERTAR USUARIO =======================*/
-            if ($intId === 0 || empty($intId) || $intId === null) {
+            if ($intId === 0 || empty($intId)) {
                 $option = 1;
                 $request = $this->model->insertUser(
                     $strEmail,
@@ -90,7 +99,7 @@ class Registro extends Controllers
                     $intRol,
                     $intBarrio,
                     $strDireccion,
-                    $blbImgen
+                    $imgPerfil
                 );
             } else {
                 /*================== EDITAR USUARIO =======================*/
@@ -107,13 +116,27 @@ class Registro extends Controllers
                     $intRol,
                     $intBarrio,
                     $strDireccion,
-                    $blbImgen
+                    $imgPerfil
                 );
             }
 
             if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {
-                    $arrResponse = ['statusUser' => true, 'msg' => 'El usuario ha sido registrado existosamente :)', 'value' => $request];
+                if ($option === 1) {                    //cargar y guardar la imagen en el servidor
+                    if (!empty($nameFoto)) {
+                        uploadImages($foto, $imgPerfil);
+                    }
+
+                    //cargar las variables de sesión
+                    $arrData = $this->model->selectOneUser(intval($request));
+                    if (!empty($arrData)) {
+                        $_SESSION['id'] = $arrData['idUsuario'];
+                        $_SESSION['login'] = true;
+                        $_SESSION['user-data'] = $arrData;
+
+                        $arrResponse = ['statusUser' => true, 'msg' => 'ok', 'rol' => $_SESSION['user-data']['nombreRol']];
+                    } else {
+                        $arrResponse = array('statusUser' => false, 'msg' => 'El usuario no se encuentra registrado. Puedes crear una cuenta es gratis!!', 'data' => $arrData);
+                    }
                 } elseif ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)', 'value' => $request];
                 }
@@ -121,6 +144,9 @@ class Registro extends Controllers
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
+                if (!empty($nameFoto)) {
+                    uploadImages($foto, $imgPerfil);
+                }
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

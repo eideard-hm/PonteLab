@@ -331,7 +331,12 @@ body#menu {
 
 /*========================= MODO OSCURO =========================*/
 
-body.dark {
+body.dark,
+.dark .section-welcome,
+.dark .section-aspirantes,
+.dark .section-contratante,
+.dark .section-contratante-info,
+.dark .slider-img {
     background: var(--colorFondo);
 }
 
@@ -438,11 +443,13 @@ body.dark {
 
 .dark .info-persona ul li a,
 .dark .contenedor .contenedor-card .contenedor-card__header .header-name h3,
-.dark .contenedor .contenedor-card .contenedor-card__body p {
+.dark .contenedor .contenedor-card .contenedor-card__body p,
+.dark .section-welcome .section-welcome__welcome .list_categories li {
     color: var(--blanco);
 }
 
-.dark .header {
+.dark .header,
+.dark .menu_header {
     background: var(--colorFondoNavbar);
     box-shadow: var(--sombraForm);
 }
@@ -452,7 +459,13 @@ body.dark {
     box-shadow: var(--sombraForm);
 }
 
-.dark .contenedor-formulario .wrap .form .pagina .contenedor-form {
+.dark .contenedor-formulario .wrap .form .pagina .contenedor-form,
+.dark .contenedor,
+.dark .section-aspirantes .section-aspirante__card .card,
+.dark .section-contratante .section-contratante__aspirante,
+.dark .section-contratante .section-contratante__contratante,
+.dark .section-contratante-info .section-info__contratante .section-contratante-info__info,
+.dark .section-contratante-info .section-info__contratante .section-contratante-search {
     background: var(--colorFondoNavbar);
     box-shadow: var(--sombraForm);
 }
@@ -460,7 +473,11 @@ body.dark {
 .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .title-form,
 .dark .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo label,
 .dark .contenedor-formulario header .title-principal,
-.dark .contenedor-formulario header .progress-bar .paso p {
+.dark .contenedor-formulario header .progress-bar .paso p,
+.dark .section-welcome .section-welcome__welcome .welcome-title h2,
+.dark .section-aspirantes h2,
+.dark .section-contratante h2,
+.dark .section-contratante-info h2 {
     color: var(--colorIconosFuente);
 }
 

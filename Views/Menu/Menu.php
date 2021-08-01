@@ -40,7 +40,7 @@
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/upload.png" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
+                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
                 </div>
             </nav>
         </div>
@@ -51,7 +51,7 @@
                 <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
                 <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?=URL ?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>

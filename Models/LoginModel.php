@@ -48,4 +48,13 @@ class LoginModel extends gestionCRUD
         WHERE correoUsuario = '{$this->strUsuario}' AND estadoUsuario != 1";
         return $this->select($sql);
     }
+
+    public function selectImgProfile(int $id)
+    {
+        $this->intId = $id;
+        $sql = "SELECT idUsuario, imagenUsuario
+        FROM USUARIO 
+        WHERE idUsuario = {$this->intId}";
+        return $this->select($sql);
+    }
 }
