@@ -62,6 +62,7 @@ class Registro extends Controllers
             2. Se va hacer el proceso de insertar, y lo comprobamos si el id del usuario viene vacio 
             */
             $intId = intval($_POST['idUsuario']);
+            $strNombre = "";
             $strEmail = strtolower(limpiarCadena($_POST['email'])); //strtolower(convertir todos las letras en minusculas)
             $strPass = limpiarCadena($_POST['pass']);
             $intTipoDoc = intval($_POST['documento']);
@@ -72,6 +73,12 @@ class Registro extends Controllers
             $intRol = intval($_POST['rol']);
             $intBarrio = intval($_POST['barrio']);
             $strDireccion = limpiarCadena($_POST['direccion']);
+
+            if ($intRol === 1) {
+                $strNombre = ucwords(limpiarCadena($_POST['nombre']));
+            } else {
+                $strNombre = ucwords(limpiarCadena($_POST['nombre'])) . ' ' . ucwords(limpiarCadena($_POST['apellido'])); //ucwords (convierte las inciales de cada palabra en mayusculas)
+            }
 
             //guardar datos de la foto
             $foto = $_FILES['foto'];
@@ -89,6 +96,7 @@ class Registro extends Controllers
             if ($intId === 0 || empty($intId)) {
                 $option = 1;
                 $request = $this->model->insertUser(
+                    $strNombre,
                     $strEmail,
                     $strPass,
                     $intTipoDoc,
@@ -133,6 +141,10 @@ class Registro extends Controllers
                         $_SESSION['login'] = true;
                         $_SESSION['user-data'] = $arrData;
 
+                        //petición para cargar la imagen del usuario
+                        $imgProfile = $this->model->selectImgProfile($_SESSION['id']);
+                        $_SESSION['imgProfile'] = URL . "Assets/img/uploads/{$imgProfile['imagenUsuario']}";
+
                         $arrResponse = ['statusUser' => true, 'msg' => 'ok', 'rol' => $_SESSION['user-data']['nombreRol']];
                     } else {
                         $arrResponse = array('statusUser' => false, 'msg' => 'El usuario no se encuentra registrado. Puedes crear una cuenta es gratis!!', 'data' => $arrData);
@@ -144,9 +156,6 @@ class Registro extends Controllers
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
-                if (!empty($nameFoto)) {
-                    uploadImages($foto, $imgPerfil);
-                }
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

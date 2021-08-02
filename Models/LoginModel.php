@@ -38,7 +38,7 @@ class LoginModel extends gestionCRUD
         $this->strUsuario = $usuario;
         $this->strPassword = $password;
 
-        $sql = "SELECT idUsuario, correoUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
         nombreBarrio, direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td

@@ -141,6 +141,16 @@ $(".previous").click(function (e) {
 const formUser = document.querySelector('#msform');
 const bntSubmit = document.getElementById('btn_submit');
 
+document.querySelector('#rol').addEventListener('change', () => {
+    if (document.querySelector('#rol').value === '1') {
+        document.querySelector('#nombre').placeholder = "PonsLabor";
+        document.querySelector('#apellido').type = "hidden";
+    } else {
+        document.querySelector('#nombre').placeholder = "Carlos";
+        document.querySelector('#apellido').type = "text";
+    }
+});
+
 bntSubmit.addEventListener('click', e => {
     e.preventDefault();
 
@@ -151,6 +161,10 @@ const insertUser = async () => {
     //enviar los datos mediante una petición fetch
     let formData = new FormData(formUser);
     formData.delete('pass2');
+    if (document.querySelector('#apellido').value === '' || document.querySelector('#apellido').value === null) {
+        formData.delete('apellido');
+    }
+
     const url = 'http://localhost/PonsLabor/Registro/setUser';
 
     try {
@@ -159,8 +173,9 @@ const insertUser = async () => {
             body: formData
         })
         const { statusUser, msg, rol } = await res.json();
+
         if (statusUser && msg === 'ok') {
-            if (rol === 1) {
+            if (rol === 'Contratante') {
                 window.location.href = 'Menu_Contratante';
             } else {
                 window.location.href = 'Menu';
@@ -175,6 +190,7 @@ const insertUser = async () => {
 
 const validateFormUser = () => {
     const id = document.querySelector('#idUsuario').value;
+    const nombre = document.querySelector('#nombre').value;
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#inputPassword').value;
     const confirmPass = document.querySelector('#pass2').value;
@@ -187,7 +203,7 @@ const validateFormUser = () => {
     const barrio = document.querySelector('#barrio').value;
     const direccion = document.querySelector('#direccion').value;
 
-    if (email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
+    if (nombre === '' || email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
         || numFijo === '' || estado === '' || rol === '' || barrio === '' || direccion === '') {
         swal(
             'Ha ocurrido un error',

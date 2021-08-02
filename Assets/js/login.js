@@ -62,8 +62,9 @@ const signIn = async (e) => {
       body: formData
     })
     const { statusLogin, msg, rol } = await res.json();
+    console.log(rol);
     if (statusLogin && msg === 'ok') {
-      if (rol === 1) {
+      if (rol === 'Contratante') {
         window.location.href = 'Menu_Contratante';
       } else {
         window.location.href = 'Menu';

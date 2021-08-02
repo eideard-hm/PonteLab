@@ -4,6 +4,7 @@ class RegistroModel extends GestionCRUD
 {
     //atributos de la clase
     private int $idUsuario;
+    private string $nombre;
     private string $correoUsuario;
     private string $passUsuario;
     private int $idTipoDocumentoFK;
@@ -25,7 +26,7 @@ class RegistroModel extends GestionCRUD
     public function selectAllUsers()
     {
         //extraer los administradores        
-        $sql = "SELECT idUsuario, correoUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
         direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
@@ -41,7 +42,7 @@ class RegistroModel extends GestionCRUD
     {
         $this->idUsuario = $id;
         //consulta para extraerlo
-        $sql = "SELECT idUsuario, correoUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
         direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
@@ -55,6 +56,7 @@ class RegistroModel extends GestionCRUD
 
     //Método para insertar un usuario
     public function insertUser(
+        string $nombre,
         string $email,
         string $pass,
         int $tipoDoc,
@@ -67,6 +69,7 @@ class RegistroModel extends GestionCRUD
         string $direccion,
         string $imagen
     ) {
+        $this->nombre = $nombre;
         $this->correoUsuario = $email;
         $this->passUsuario = $pass;
         $this->idTipoDocumentoFK = $tipoDoc;
@@ -81,7 +84,7 @@ class RegistroModel extends GestionCRUD
         $return = 0;
 
         //consutar si ya existe ese usuario
-        $sql = "SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
         direccionUsuario 
         FROM USUARIO 
@@ -92,12 +95,13 @@ class RegistroModel extends GestionCRUD
         //validar si ya existe el usuario
         //si esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
         if (empty($request) || $request === '' || $request === null) {
-            $sql = "INSERT INTO USUARIO(correoUsuario, passUsuario, idTipoDocumentoFK, 
+            $sql = "INSERT INTO USUARIO(nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
             numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
             direccionUsuario, imagenUsuario)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
+                $this->nombre,
                 $this->correoUsuario,
                 $this->passUsuario,
                 $this->idTipoDocumentoFK,
@@ -177,6 +181,16 @@ class RegistroModel extends GestionCRUD
             $request = "exist";
         }
         return $request;
+    }
+
+    //Método para seleccionar la imagen de perfil
+    public function selectImgProfile(int $id)
+    {
+        $this->intId = $id;
+        $sql = "SELECT idUsuario, imagenUsuario
+        FROM USUARIO 
+        WHERE idUsuario = {$this->intId}";
+        return $this->select($sql);
     }
 
     //Método para traer los tipos de documentos registrados
