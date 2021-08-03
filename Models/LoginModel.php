@@ -38,7 +38,7 @@ class LoginModel extends gestionCRUD
         $this->strUsuario = $usuario;
         $this->strPassword = $password;
 
-        $sql = "SELECT idUsuario, correoUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
         nombreBarrio, direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
@@ -52,7 +52,7 @@ class LoginModel extends gestionCRUD
     public function selectImgProfile(int $id)
     {
         $this->intId = $id;
-        $sql = "SELECT imagenUsuario
+        $sql = "SELECT idUsuario, imagenUsuario
         FROM USUARIO 
         WHERE idUsuario = {$this->intId}";
         return $this->select($sql);

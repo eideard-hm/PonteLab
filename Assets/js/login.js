@@ -62,8 +62,9 @@ const signIn = async (e) => {
       body: formData
     })
     const { statusLogin, msg, rol } = await res.json();
+    console.log(rol);
     if (statusLogin && msg === 'ok') {
-      if (rol === 1) {
+      if (rol === 'Contratante') {
         window.location.href = 'Menu_Contratante';
       } else {
         window.location.href = 'Menu';
@@ -78,6 +79,7 @@ const signIn = async (e) => {
 }
 
 form.addEventListener('submit', signIn);
+<<<<<<< HEAD
 
 /* ========================= MOSTRAR IMAGEN DE PERFIL ====================== */
 
@@ -105,3 +107,5 @@ const showImgProfile = async() => {
     swal("Error", error, "error");
   }
 }
+=======
+>>>>>>> bf8f7ac3394ed49fe2ba6320cdbdf6619120bf47

@@ -35,6 +35,18 @@
         <fieldset>
             <h2 class="fs-title">Crear cuenta</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
+            <select name="rol" id="rol">
+                <option selected value="" disabled>Seleccione su rol</option>
+                <!-- 
+                    1. Contratante
+                    2. Aspirante
+                 -->
+                <?php foreach ($data['list_rol'] as $rol) : ?>
+                    <option value="<?php echo $rol['idRol'] ?>"><?php echo $rol['nombreRol'] ?></option>
+                <?php endforeach ?>
+            </select>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" />
+            <input type="hidden" name="apellido" id="apellido" placeholder="Arturo" />
             <input type="email" name="email" id="email" placeholder="example@example.com" />
             <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
@@ -46,12 +58,7 @@
             <h2 class="fs-title">Crear cuenta PonsLabor</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
             <select name="documento" id="documento">
-                <option selected disabled value="">Elige el tipo de documento</option>
-                <!-- <option value="1">Cédula de Ciudadanía</option>
-                <option value="2">Tarjeta de Identidad</option>
-                <option value="3">Registro civil</option>
-                <option value="4">Cedula de extranjeria</option>
-                <option value="5">Pasaporte</option> -->
+                <option selected disabled value="">Seleccione un tipo de documento</option>
                 <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                     <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                 <?php endforeach ?>
@@ -70,15 +77,6 @@
                 <option selected value="" disabled>Elige el estado del usuario</option>
                 <option value="0">Activo</option>
                 <option value="1">Inactivo</option>
-            </select>
-            <br>
-            <select name="rol" id="rol">
-                <option selected value="" disabled>Elige el rol que desees</option>
-                <!-- <option value="1">Contratante</option>
-                <option value="2">Aspirante</option> -->
-                <?php foreach ($data['list_rol'] as $rol) : ?>
-                    <option value="<?php echo $rol['idRol'] ?>"><?php echo $rol['nombreRol'] ?></option>
-                <?php endforeach ?>
             </select>
             <br>
             <select name="barrio" id="barrio">

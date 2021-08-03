@@ -1,5 +1,21 @@
 <?php
 
+//funciones para encriptar la contraseña
+function encriptarPassword(string $password)
+{
+    return password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
+}
+
+// función para subir las fotos al servidor
+
+function uploadImages(array $foto, string $nameFoto)
+{
+    $url_tmp = $foto['tmp_name'];
+    $destino = "Assets/img/uploads/{$nameFoto}";
+    $move = move_uploaded_file($url_tmp, $destino);
+    return $move;
+}
+
 //limpar las cadenas de texto para evitar inyecciones sql
 function limpiarCadena($strCadena)
 {

@@ -4,6 +4,7 @@ const barraBusqueda = document.querySelector('.content-bar-search');
 const coverContenedorBusqueda = document.querySelector('#menu .cover-ctn-search');
 const limpiarInputBuscador = document.querySelector('#borrar-contenido');
 
+
 /*=========================== BUSCADOR =========================*/
 contenedorBarraBusqueda.addEventListener('click', () => {
     mostrarBarraBusqueda();

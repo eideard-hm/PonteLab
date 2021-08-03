@@ -6,8 +6,9 @@ class Menu extends Controllers
     {
         parent::__construct();
         session_start();
-        if (!$_SESSION['login']) {
-            header('Location:' . URL . 'Login');
+        // //isset : verifica que la varible de sesion si exista
+        if (!isset($_SESSION['login'])) {
+            header('Location: http://localhost/PonsLabor/Login');
         }
     }
 

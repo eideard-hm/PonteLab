@@ -29,11 +29,70 @@ if (localStorage.getItem('dark-mode') === 'true') {
     btnSwitch.classList.remove('active');
 }
 
+/* ===================================== CÓDIGO DE EL SLIDER =============================== */
+const slider = document.querySelectorAll('.slider');
+const btns = document.querySelectorAll('.btn');
+let currentSlider = 1;
+
+if (document.querySelector('.slider-img')) {
+
+    const sliderManual = (index) => {
+
+        slider.forEach(slides => {
+            slides.classList.remove('active');
+
+            btns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+        });
+
+        slider[index].classList.add('active');
+        btns[index].classList.add('active');
+    }
+
+    btns.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            sliderManual(i);
+            currentSlider = i;
+        })
+    })
+
+    //slider automatico
+
+    const sliderAuto = () => {
+        const classActive = document.getElementsByClassName('active');
+        let i = 1;
+
+        const repetir = () => {
+            setTimeout(() => {
+                [...classActive].forEach(activeSlider => {
+                    activeSlider.classList.remove('active');
+                })
+
+                slider[i].classList.add('active');
+                btns[i].classList.add('active');
+                i++;
+
+                if (slider.length == i) {
+                    i = 0;
+                }
+                if (i >= slider.length) {
+                    return;
+                }
+
+                repetir();
+
+            }, 10000)
+        }
+        repetir();
+    }
+    sliderAuto();
+}
+
 /* ======================== RESPONSIVE DESIGN ================== */
 if (document.querySelector('#icono-reponsive')) {
     document.querySelector('#icono-reponsive').addEventListener('click', () => {
         mostrarBarraResponsive();
-
     });
 }
 
@@ -53,3 +112,22 @@ if (imgPersona) {
         opcionesInfo.classList.toggle('active');
     })
 }
+
+/* ======================== EDITOR DE TEXTO - SANTIAGO ================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('#especificaciones')) {
+        tinymce.init({
+            selector: '#especificaciones',
+            width: "100%",
+            height: 400,
+            statubar: true,
+            plugins: [
+                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+        });
+    }
+})

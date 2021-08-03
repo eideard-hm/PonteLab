@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS USUARIO;
 CREATE TABLE USUARIO
 (
 idUsuario int primary key auto_increment not null,
+nombreUsuario varchar(70) not null,
 correoUsuario varchar(30) not null unique,
 passUsuario varchar(100) not null,
 idTipoDocumentoFK int,
@@ -31,7 +32,7 @@ estadoUsuario bool NOT NULL,
 idRolFK int,
 idBarrioFK int,
 direccionUsuario varchar(30) not null,
-imagenUsuario blob 
+imagenUsuario varchar(100) 
 );
 
 DROP TABLE IF EXISTS TIPODOCUMENTO;
@@ -52,7 +53,6 @@ DROP TABLE IF EXISTS CONTRATANTE;
 CREATE TABLE CONTRATANTE
 (
 idContratante int primary key auto_increment not null,
-nombreContratante varchar(70) not null,
 descripcionContratante varchar(2500) not null,
 idUsuarioFK int
 );
@@ -94,8 +94,6 @@ DROP TABLE IF EXISTS ASPIRANTE;
 CREATE TABLE ASPIRANTE
 (
 idAspirante int primary key auto_increment not null,
-nombreAspirante varchar(50) not null,
-apellidoAspirante varchar(50) not null,
 descripcionPersonalAspirante varchar(2500) not null,
 idUsuarioFK int,
 idEstadoLaboralAspiranteFK int
@@ -262,6 +260,10 @@ VALUES(NULL, 'San Diego-Bosa', 1),
 SELECT * FROM BARRIO;
 -- DESCRIBE BARRIO;
 
+/*======================== TIPOS DE DOCUMENTOS DE IDENTIDAD ========================
+idTipoDocumento int primary key auto_increment not null,
+nombreTipoDocumento char(2) not null
+*/
 INSERT INTO TIPODOCUMENTO(idTipoDocumento, nombreTipoDocumento)
 VALUES(NULL, 'CC'),
 (NULL, 'TI'),
@@ -275,27 +277,27 @@ VALUES(NULL, 'Contratante'),
 (NULL, 'Aspirante');
 SELECT * FROM ROL;
 
-Insert into USUARIO (idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+Insert into USUARIO (idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
-values (NULL, 'samanta85@misena.edu.co', 'camila85', 1, '1087345189', '3214458790', '4536781',1, 2, 3, 
+values (NULL, 'Samanta', 'samanta85@misena.edu.co', 'camila85', 1, '1087345189', '3214458790', '4536781',1, 2, 3, 
 'Carrera 29 # 8 - 19', NULL);
-Insert into USUARIO (idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+Insert into USUARIO (idUsuario,  nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
-values (NULL, 'sara85@misena.edu.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
+values (NULL, 'Sara', 'sara85@misena.edu.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
 'Carrera 30 #20 - 19', NULL);
-INSERT INTO USUARIO(idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
-VALUES (NULL, 'ehernandez81@misena.edu.co', '123', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
+VALUES (NULL, 'Edier Hernández', 'ehernandez81@misena.edu.co', '123', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
 'Calle qc sur', NULL);
-INSERT INTO USUARIO(idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
-VALUES (NULL, 'ximena85@gmail.com', '987', 2, '1055552025', '3138569871', '1234567', 1, 1,10,
+VALUES (NULL, 'Ximena',  'ximena85@gmail.com', '987', 2, '1055552025', '3138569871', '1234567', 1, 1,10,
 'Calle 82 norte', NULL);
 
-Insert into CONTRATANTE (idContratante, nombreContratante, descripcionContratante, idUsuarioFK) 
-values (NULL, 'Camilo Pinzon', 'Soy ingeniero industrial con mi propia empresa, tengo 28 años y busco dar una oportunidad de trabajo a las personas', 1); 
-Insert into  CONTRATANTE (idContratante, nombreContratante, descripcionContratante, idUsuarioFK) 
-values (NULL, 'Sandra Duarte', 'Soy abogada penalista y busco empesar a crear mi propio bufete de abogados', 2);
+Insert into CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
+values (NULL ,'Soy ingeniero industrial con mi propia empresa, tengo 28 años y busco dar una oportunidad de trabajo a las personas', 1); 
+Insert into  CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
+values (NULL, 'Soy abogada penalista y busco empesar a crear mi propio bufete de abogados', 2);
 Select * from CONTRATANTE;
 
 Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
@@ -319,10 +321,10 @@ Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) values (NULL 
 select * from ESTADOLABORALASPIRANTE;
 -- DESCRIBE ESTADOLABORALASPIRANTE;
 
-Insert into ASPIRANTE (idAspirante, nombreAspirante, apellidoAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
-values (NULL, 'Samanta', 'Cruz Lopez', 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1);  
-Insert into ASPIRANTE (idAspirante, nombreAspirante, apellidoAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
-values (NULL, 'Sara', 'Cepeda Arboleda', 'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 4, 2); 
+Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
+values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1);  
+Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
+values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 4, 2); 
 select * from ASPIRANTE; 
 -- SELECT * FROM estadolaboralaspirante;
 -- SELECT * FROM USUARIO;
@@ -379,51 +381,10 @@ Insert into APLICACION_VACANTE (idAplicacionVacante, idAspiranteFK, idVacanteFK,
 values (NULL, 2, 2 , 1);
 select * from APLICACION_VACANTE;
 
-
-/*======================== TIPOS DE DOCUMENTOS DE IDENTIDAD ========================
-idTipoDocumento int primary key auto_increment not null,
-nombreTipoDocumento char(2) not null
-*/
-
-
-/* ================== ROLES DEL SISTEMA ============================
-idRol int primary key auto_increment not null,
-nombreRol varchar(15) not null
-*/
-
-
-/*
-idCiudad int primary key auto_increment not null,
-nombreCiudad varchar(20) not null
-*/
-
-
-/*
-idBarrio int primary key auto_increment not null,
-nombreBarrio varchar(20) not null,
-idCiudadFK int
-*/
-
-/*
-idUsuario int primary key auto_increment not null,
-correoUsuario varchar(30) not null,
-passUsuario varchar(16) not null,
-idTipoDocumentoFK int,
-numDocUsuario varchar(10) not null,
-numTelUsuario char(10) not null,
-numTelFijo varchar(7) not null,
-estadoUsuario bool NOT NULL,
-idRolFK int,
-idBarrioFK int,
-direccionUsuario varchar(30) not null,
-imagenUsuario blob
-*/
-
-
 /*========================= VISTAS ==============================*/
 
 CREATE VIEW selectUser AS 
-SELECT idUsuario, correoUsuario, passUsuario, nombreTipoDocumento, numDocUsuario, 
+SELECT idUsuario, nombreUsuario, correoUsuario, passUsuario, nombreTipoDocumento, numDocUsuario, 
 numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio, direccionUsuario, 
 imagenUsuario 
 FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
@@ -431,11 +392,12 @@ ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
 ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
 ON b.idBarrio = u.idBarrioFK;
 
-/*======================= PROCEDIMIENTOS ALMACENADOS ==============================*/
+/*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
 
 DELIMITER $$
 CREATE PROCEDURE insertUser(
 UidUsuario int,
+UnombreUsuario varchar(100),
 UcorreoUsuario varchar(30),
 UpassUsuario varchar(16),
 UidTipoDocumentoFK int,
@@ -446,23 +408,32 @@ UestadoUsuario bool,
 UidRolFK int,
 UidBarrioFK int,
 UdireccionUsuario varchar(30),
-UimagenUsuario blob
+UimagenUsuario varchar(70)
 )
 BEGIN
-INSERT INTO USUARIO(idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
-VALUES (UidUsuario, UcorreoUsuario, UpassUsuario, UidTipoDocumentoFK, UnumDocUsuario,
+VALUES (UidUsuario, UnombreUsuario, UcorreoUsuario, UpassUsuario, UidTipoDocumentoFK, UnumDocUsuario,
 UnumTelUsuario, UnumTelFijo, UestadoUsuario, UidRolFK, UidBarrioFK, UdireccionUsuario,
 UimagenUsuario);
 END $$
 
-CALL insertUser(NULL, 'edierhernandezmo@gmail.com', '1234', 01, '1002623988', '3132069129', '1234567', 1, 01,07,
+CALL insertUser(NULL, 'Edier Heraldo', 'edierhernandezmo@gmail.com', '1234', 01, '1002623988', '3132069129', '1234567', 1, 01,07,
 'Calle 6B', NULL);
 SELECT * FROM USUARIO;
 
-/*CALL insertUser(NULL, 'edierhernandezmo@gmail.com', '1234', 1, '1002623988', '3132069129', '1234567', 1, 2,3,
-'Calle 6B', NULL);*/
+/*======================= PROCEDIMIENTOS ALMACENADOS  EDIER==============================*/
+/*
+SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
+FROM USUARIO
+WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
+OR idRolFK'%ROL%';
 
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
 
 SELECT * FROM selectUser;
+
+
+
+

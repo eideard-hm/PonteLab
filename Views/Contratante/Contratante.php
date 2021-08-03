@@ -32,24 +32,25 @@
                 <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
                 <a href="#" class="active"><i class="fas fa-user-tie"></i>Contratante</a>
                 <a href="Vacante"><i class="fas fa-business-time"></i>Vacante</a>
+                <a href="Vacantes"><i class="fas fa-list-alt"></i>Vacantes</a>
                 <button class="switch" id="switch">
                     <i class="fas fa-sun sol"></i>
                     <i class="fas fa-moon luna"></i>
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
                 </div>
             </nav>
         </div>
         <div class="info-persona">
-            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+            <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
             <ul>
-                <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
+                <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
                 <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -61,28 +62,24 @@
             </ul>
         </div>
     </header>
-    <!--
-contratante:
--identificacion contratante
--nombre contratante
--descripcion
--->
+
     <div class="content">
         <div class="con-form">
             <h2 class="name">Registro <span>Contratante</span></h2>
 
             <form action="">
                 <p>
-                    <label for="">ID</label>
+                    <label for="identificacion">ID</label>
                     <input type="text" name="identificacion" id="identificacion" required />
                 </p>
                 <p>
-                    <label for="">Nombre</label>
+                    <label for="estado">Nombre</label>
                     <input type="text" name="estado" id="estado" required />
                 </p>
                 <p class="block">
-                    <label for="">Descripcion</label>
-                    <textarea name="especificaciones" id="especificaciones" rows="1"></textarea>
+                    <label for="especificaciones">Descripcion</label>
+                    <br>
+                    <textarea name="especificaciones" id="especificaciones" placeholder="Especificaciones..." rows="1" required></textarea>
                 </p>
                 <p class="block">
                     <button type="submit">Registrar</button>
@@ -96,9 +93,12 @@ contratante:
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script src="<?= URL ?>Assets/js/contratante.js"></script>
 </body>
 
 </html>
