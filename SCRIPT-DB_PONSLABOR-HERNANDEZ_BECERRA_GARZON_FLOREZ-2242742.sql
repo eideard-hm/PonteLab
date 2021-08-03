@@ -432,7 +432,8 @@ OR idRolFK'%ROL%';
 
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
 
-SELECT * FROM selectUser;
+SELECT * FROM USUARIO;
+
 
 
 
