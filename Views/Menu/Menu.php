@@ -51,7 +51,7 @@
                 <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
                 <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?php URL?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>

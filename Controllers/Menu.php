@@ -4,8 +4,11 @@ class Menu extends Controllers
 {
     public function __construct()
     {
-        session_start();
         parent::__construct();
+        session_start();
+        if (!$_SESSION['login']) {
+            header('Location:' . URL . 'Login');
+        }
     }
 
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
