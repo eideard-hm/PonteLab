@@ -56,10 +56,9 @@
     </div>
     <div class="contenedor-responsive">
       <ul class="contenedor-responsive-lista">
-        <li><a href="Menu">Inicio</a></li>
+        <li><a href="Menu_Contratante">Inicio</a></li>
         <li><a href="#">Contratante</a></li>
         <li><a href="Vacante">Vacante</a></li>
-        <li><a href="Vacantes">Vacantes</a></li>
       </ul>
     </div>
   </header>
