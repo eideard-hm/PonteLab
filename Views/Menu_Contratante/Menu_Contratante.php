@@ -27,10 +27,10 @@
         </span>
       </span>
       <nav class="nav nav_menu">
+        <a href="#" class="active"><i class="fas fa-home"></i>Inicio</a>
         <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
         <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
         <a href="Vacante" ><i class="fas fa-business-time"></i>Vacante</a>
-        <a href="#" class="active"><i class="fas fa-list-alt"></i>Vacantes</a>
         
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
