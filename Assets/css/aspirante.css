@@ -535,6 +535,11 @@ body {
     border: 3px solid var(--border);
 }
 
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo input:disabled{
+    background-color: var(--blanco);
+    font-weight: 700;
+}
+
 .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-idioma,
 .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-habilidad {
     width: 100%;

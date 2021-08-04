@@ -114,7 +114,7 @@
 
                         <div class="contenedor-grupo w50" id="grupo-nombre">
                             <label for="txtNombre">Nombre</label>
-                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Jhon" autofocus />
+                            <input type="text" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario']?>" disabled />
                             <i class="estado-input fa fa-times-circle"></i>
                             <p class="leyenda-input">
                                 El nombre no debe contener números y debe tener mínimo 3
@@ -277,7 +277,7 @@
                         <div class="contenedor-grupo w100" id="grupo-habilidad">
                             <div class="agrupar-estrellas">
                                 <label for="txtHabilidad">Habilidad</label>
-                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" autofocus />
+                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                 <p class="leyenda-input">
                                     El nombre de la habilidad no debe contener números.
