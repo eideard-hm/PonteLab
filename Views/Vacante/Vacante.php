@@ -136,6 +136,7 @@
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
+  <script src="<?= URL ?>Assets/js/vacante.js"></script>
 </body>
 
 </html>

@@ -21,7 +21,7 @@ class Vacante extends Controllers
     }
 
     //Método controlador para insertar y/o editar usuarios
-    public function setVacancy()
+    public function setVacante()
     {
         if ($_POST) {
             //verificar que los campos no vengan vacios
@@ -70,8 +70,7 @@ class Vacante extends Controllers
                     $intEstado,
                     $intRol,
                     $intBarrio,
-                    $strDireccion,
-                    $imgPerfil
+                    $strDireccion
                 );
             } else {
                 /*================== EDITAR USUARIO =======================*/
@@ -87,8 +86,7 @@ class Vacante extends Controllers
                     $intEstado,
                     $intRol,
                     $intBarrio,
-                    $strDireccion,
-                    $imgPerfil
+                    $strDireccion
                 );
             }
 
