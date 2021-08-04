@@ -79,33 +79,3 @@ const signIn = async (e) => {
 }
 
 form.addEventListener('submit', signIn);
-<<<<<<< HEAD
-
-/* ========================= MOSTRAR IMAGEN DE PERFIL ====================== */
-
-if (document.querySelector('#imagen_perfil')) {
-  showImgProfile();
-}
-
-const showImgProfile = async() => {
-  const imgPerfil = document.querySelector('#imagen_perfil');
-
-  //peticion mediante la API de fetch, peticion de tipo get
-  const url = 'http://localhost/PonsLabor/Login/getImgProfile';
-
-  try {
-    const res = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'Content-type: image/jpeg',
-        'Content-type': 'Content-type: image/png'
-      }
-    })
-    const data = await res.blob();
-    imgPerfil.src = URL.createObjectURL(data)
-  } catch (error) {
-    swal("Error", error, "error");
-  }
-}
-=======
->>>>>>> bf8f7ac3394ed49fe2ba6320cdbdf6619120bf47

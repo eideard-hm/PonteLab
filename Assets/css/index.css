@@ -157,32 +157,12 @@ section {
     border-radius: 5px;
 }
 
-<<<<<<< HEAD
-.img-slider .slide .info h2 {
-    color: #000;
-    font-size: 49px;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 2px;
-    font-family: var(--fuenteQuicksand);
-}
-
-.img-slider .slide p {
-    color: #000;
-    background: rgba(0, 0, 0, 0.212);
-    font-size: 19px;
-    width: 68%;
-    padding: 10px;
-    border-radius: 4px;
-    font-family: var(--fuenteRoboto);
-=======
 .slider-img .slider.active {
     clip-path: circle(150% at 0% 50%);
     transition: clip-path 0.4s ease-in-out;
 }
 
 .slider-img .slider img {
->>>>>>> bf8f7ac3394ed49fe2ba6320cdbdf6619120bf47
     position: absolute;
     width: 55%;
     height: 85%;
