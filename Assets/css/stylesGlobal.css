@@ -22,6 +22,7 @@
     box-sizing: border-box
 }
 
+
 body.dark, body {
     transition: background 0.4s linear, transform 0.4s linear
 }
