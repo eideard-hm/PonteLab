@@ -588,6 +588,12 @@ body.dark,
 }
 
 /*LUISA*/
+.dark .img-slider .slide .info h2{
+    color: #fff;
+}
+.dark .img-slider .slide p{
+color:#fff;
+}
 
 .dark .contenedor-perfil_aspirante {
     background-color: var(--colorFondoNavbar);
