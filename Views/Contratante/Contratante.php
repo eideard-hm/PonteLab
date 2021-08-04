@@ -67,11 +67,7 @@
             <h2 class="name">Registro <span>Contratante</span></h2>
 
             <form action="">
-                <p>
-                    <label for="identificacion">ID</label>
-                    <input type="text" name="identificacion" id="identificacion" required />
-                </p>
-                <p>
+                <p class="block">
                     <label for="estado">Nombre</label>
                     <input type="text" name="estado" id="estado" required />
                 </p>
