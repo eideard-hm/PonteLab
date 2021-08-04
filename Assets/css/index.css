@@ -268,7 +268,7 @@ body {
 }
 
 
-/*FOOTER*/
+/*FOOTER
 
 
    
@@ -381,7 +381,7 @@ div.social-redes {
     margin-bottom: 5px
 }
 
-/*IMAGENES*/
+/*IMAGENES
 .contenedor{
     width: 100%;
     display: flex;
@@ -450,7 +450,7 @@ margin-bottom: 15px;
     margin: auto;
 }
 
-/*CARDS*/
+/*CARDS
 
 .container {
     width: 100%;
@@ -495,7 +495,7 @@ margin-bottom: 15px;
     margin-top: 0;
 }
 
-/*MARGEN*/
+/*MARGEN
 
 h1 {
     margin: 30px;
@@ -503,4 +503,4 @@ h1 {
 
 p {
     margin: 30px;
-}
+}*/

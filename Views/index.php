@@ -68,7 +68,7 @@
         </div>
         </br>
     </div>
-    <br><br><br><br>
+  <!--  <br><br><br><br>
 
     <hr width ="" size="6">
  
@@ -154,7 +154,7 @@
 
 Qui asperiores recusandae et inventore commodi et delectus minima rem tempora quaerat ab sunt dolore ab esse voluptas id explicabo aliquam. Eum nobis temporibus 33 omnis dolorum et fuga earum. Cum repudiandae velit deleniti optio 33 architecto architecto est facere nobis aut provident perspiciatis At voluptatem eligendi hic provident obcaecati.
 
-Et veritatis nulla ea rerum debitis ex sunt praesentium. Cum nobis veritatis a quidem adipisci aut dolores debitis! </p>
+Et veritatis nulla ea rerum debitis ex sunt praesentium. Cum nobis veritatis a quidem adipisci aut dolores debitis! </p> -->
 
     <script type="text/javascript">
         var slides = document.querySelectorAll('.slide');
@@ -214,7 +214,7 @@ Et veritatis nulla ea rerum debitis ex sunt praesentium. Cum nobis veritatis a q
     </script>
 
 
-<footer class="footer">
+<!--<footer class="footer">
     <div class="row">
         <div class="col-sm-6 col-md-4 footer-navegacion">
             <h3>Pons<span>Labor</span></h3>
@@ -239,7 +239,7 @@ Et veritatis nulla ea rerum debitis ex sunt praesentium. Cum nobis veritatis a q
                 <a href="https://github.com/eideard-hm/proyecto-ponslabor.git"><i class="fa fa-github"></i></a></div>
         </div>
     </div>
-</footer>
+</footer> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
                     
                                 <?php
