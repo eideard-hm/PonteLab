@@ -68,93 +68,6 @@
         </div>
         </br>
     </div>
-  <!--  <br><br><br><br>
-
-    <hr width ="" size="6">
- 
-
-    <h1> ¡HOLA! </h1>
-<p style="font-size: 25px;"> Somos un equipo de desarrolladores que trabajamos de manera remota, nos encanta la tecnologia y es por ello que hemos construido
-    PonsLabor una pagina enfocada en el cumplimiento de sueños laborales, ayudando a contratantes pequeños y grandes a formar su gran equipo
-    asi como tambien ayudaremos a esos trabajores con ganas de salir adelante cada dia.
-<br><br>
-    Nuestra finalidad es realizar un trabajo real para nuestros clientes. <br>
-    Nos centramos en el buen y correcto diseño de este sistema para poder satifascer a todos los usuarios. 
- </p>
-<h1 class="title">OBJETIVOS PONSLABOR </h1>
-<br>
-<div class="container">
-<div class="card">
-<img src="<?= URL; ?>/Assets/img/Rapidez.jpg" alt="">
-<h4>Rapidez</h4>
-<p>Solo encontrar una oferta de empleo, envia tu curriculum de forma inmediata
-    tambien contacta con la empresa o intermediario. 
-</p>
-</div>
-<div class="card">
-<img src="<?= URL; ?>/Assets/img/Reduccion.jpg" alt="">
-<h4>Reduccion</h4>
-<p>Respecto a la búsqueda convencional ya no mas gastar papel, correspondencia, desplazamientos en coche y muchas cosas mas.
-</p>
-</div>
-<div class="card">
-<img src="<?= URL; ?>/Assets/img/Facilidad.jpg" alt="">
-<h4>Mas Facilidad</h4>
-<p>Cientos de ofertas por diversos canales. Con PonteLab se multiplican las vías de acceso a ofertas de trabajo
-    
-</p>
-</div>
-<div class="card">
-<img src="<?= URL; ?>/Assets/img/Busque.jpg" width="200" height="200" alt="">
-<h4>Mejor Busqueda</h4>
-<p> Se adecua entre el perfil profesional del candidato y el perfil que demanda la empresa ajustándose a los requisitos de la oferta.
-</p>
-</div>
-</div>
-
-<br><br>
-<h1> NUESTRO EQUIPO </h1>
-<div class="contenedor">
-<figure>
-<img src="<?= URL; ?>/Assets/img/Yesenia.jpeg" width="400" height="400" alt="">
-    <div class="capa">
-        <h2>Yesenia Rodriguez</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!</p>
-    </div>
-</figure>
-
-<figure>
-<img src="<?= URL; ?>/Assets/img/Luisa.jpeg" width="400" height="400"  alt="">
-    <div class="capa">
-        <h2>Luisa <br> Garzon</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!</p>
-    </div>
-</figure>
-
-<figure>
-<img src="<?= URL; ?>/Assets/img/Edier.jpeg" width="400" height="400"  alt="">
-    <div class="capa">
-        <h2>Edier <br> Hernandez</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!</p>
-    </div>
-</figure>
-
-<figure>
-<img src="<?= URL; ?>/Assets/img/Santiago.jpeg" width="400" height="400"  alt="">
-    <div class="capa">
-        <h2>Santiago <br> Becerra</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, quisquam!</p>
-    </div>
-</figure>
-
-</div>
-
-
-<p> Lorem ipsum dolor sit amet. Est assumenda velit et tempore molestiae eum molestias autem aut atque ducimus! A tenetur commodi nam galisum voluptatem quo magni galisum ut harum vero.
-
-Qui asperiores recusandae et inventore commodi et delectus minima rem tempora quaerat ab sunt dolore ab esse voluptas id explicabo aliquam. Eum nobis temporibus 33 omnis dolorum et fuga earum. Cum repudiandae velit deleniti optio 33 architecto architecto est facere nobis aut provident perspiciatis At voluptatem eligendi hic provident obcaecati.
-
-Et veritatis nulla ea rerum debitis ex sunt praesentium. Cum nobis veritatis a quidem adipisci aut dolores debitis! </p> -->
 
     <script type="text/javascript">
         var slides = document.querySelectorAll('.slide');
@@ -213,33 +126,6 @@ Et veritatis nulla ea rerum debitis ex sunt praesentium. Cum nobis veritatis a q
         repeat();
     </script>
 
-
-<!--<footer class="footer">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 footer-navegacion">
-            <h3>Pons<span>Labor</span></h3>
-            <p class="grupo">© Copyright TEAM BELAY SOFTWARE SOLUTION 2021</p>
-        </div>
-        <div class="col-sm-6 col-md-4 footer-contactos">
-            <div><i class="fa fa-phone footer-contactos-icono"></i>
-                <p class="footer-center-info email text-left"> +57 3195696021</p>
-            </div>
-            <div><i class="fa fa-envelope footer-contactos-icono"></i>
-                <p> <a target="_blank">PonsLabor.2021@gmail.com </a></p>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="col-md-4 footer-nosotros">
-            <h4>Mas sobre nosotros</h4>
-            <p>Queremos ayudar a personas de todas partes a lograr sus metas de trabajo</p>
-        <div class="clearfix"></div>
-            <div class="social-redes social-icons">
-                <a href="https://www.instagram.com/ponslabor/"><i class="fa fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/pons-labor-131760217/"><i class="fa fa-linkedin"></i></a>
-                <a href="https://github.com/eideard-hm/proyecto-ponslabor.git"><i class="fa fa-github"></i></a></div>
-        </div>
-    </div>
-</footer> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
                     
                                 <?php
