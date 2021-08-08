@@ -23,42 +23,20 @@
                     <i class="fas fa-arrow-left" id="icono-regresar"></i>
                 </a>
                 <i class="fas fa-bars" id="icono-reponsive"></i>
-                <span href="#" class="logo-nombre">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
-                    <h2>Pons<span>Labor.</span></h2>
-                </span>
+                <?php
+                require_once('./Views/Components/NabvarLogo.php');
+                ?>
             </span>
             <nav class="nav nav_menu">
-                <a href="Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
-                <a href="#" class="active"><i class="fas fa-user-tie"></i>Contratante</a>
-                <a href="Vacante"><i class="fas fa-business-time"></i>Vacante</a>
-                <button class="switch" id="switch">
-                    <i class="fas fa-sun sol"></i>
-                    <i class="fas fa-moon luna"></i>
-                    <span class="circulo"></span>
-                </button>
-                <div class="imagen-persona">
-                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
-                </div>
+                <?php
+                require_once('./Views/Components/NabvarContrantate.php');
+                ?>
             </nav>
         </div>
         <div class="info-persona">
-            <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
-            <ul>
-                <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
-                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
-                <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
-                </li>
-            </ul>
-        </div>
-        <div class="contenedor-responsive">
-            <ul class="contenedor-responsive-lista">
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="#">Contratante</a></li>
-                <li><a href="Vacante">Vacante</a></li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NabvarInfoContratante.php');
+            ?>
         </div>
     </header>
 

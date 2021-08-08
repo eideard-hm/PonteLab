@@ -38,14 +38,9 @@
             ?>
         </div>
         <div class="contenedor-responsive">
-            <ul class="contenedor-responsive-lista">
-                <li><a href="Contratante">Contratante</a></li>
-                <li><a href="Vacante">Vacante</a></li>
-                <li><a href="Aspirante">Aspirante</a></li>
-                <li><a href="HojaVida">Hoja de Vida</a></li>
-                <li><a href="Estudios">Estudios</a></li>
-                <li><a href="Experiencia">Experiencia</a></li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NabvarResponsive.php');
+            ?>
         </div>
     </header>
 
