@@ -35,6 +35,8 @@ direccionUsuario varchar(30) not null,
 imagenUsuario varchar(100) 
 );
 
+select * from usuario;
+
 DROP TABLE IF EXISTS TIPODOCUMENTO;
 CREATE TABLE TIPODOCUMENTO
 (
@@ -95,8 +97,8 @@ CREATE TABLE ASPIRANTE
 (
 idAspirante int primary key auto_increment not null,
 descripcionPersonalAspirante varchar(2500) not null,
-idUsuarioFK int,
-idEstadoLaboralAspiranteFK int
+idUsuarioFK int unique,
+idEstadoLaboralAspiranteFK int                               
 );
 
 DROP TABLE IF EXISTS PUESTOINTERES;
@@ -142,7 +144,7 @@ DROP TABLE IF EXISTS SECTOR;
 CREATE TABLE SECTOR
 (
 idSector int primary key auto_increment not null,
-nombreSector varchar(200) not null
+nombreSector varchar(100) not null
 );
 
 DROP TABLE IF EXISTS INFOLABORAL;
@@ -198,7 +200,7 @@ DROP TABLE IF EXISTS ESTADOLABORALASPIRANTE;
 CREATE TABLE ESTADOLABORALASPIRANTE
 (
 idEstadoLaboral int primary key auto_increment not null,
-nombreEstado char(1) not null
+nombreEstado varchar(20) not null
 );
 
 DROP TABLE IF EXISTS APLICACION_VACANTE;
@@ -320,6 +322,67 @@ VALUES(NULL, 'Contratante'),
 (NULL, 'Aspirante');
 SELECT * FROM ROL;
 
+Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
+values (NULL, 'Primer empleo');  
+Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
+values (NULL , 'Desempleado');
+Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
+values (NULL, 'Empleado');  
+Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
+values (NULL , 'Independiente');
+select * from ESTADOLABORALASPIRANTE;
+-- DESCRIBE ESTADOLABORALASPIRANTE;
+
+Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Ingeniera Industrial');  
+Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Abogada Penalista');
+select * from PUESTOINTERES;
+
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Preescolar');  
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Básica Primaria (1-5)');
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Básica secundaria (6-9)');  
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Media (10-11)');
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Técnico');  
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Tecnólogo');
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Pregrado');
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Especialización');  
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Maestria');
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Doctorado');  
+Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'PosDoctorado');
+Select * from GRADOESTUDIO;
+
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ingeniería');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Desarrollo empresarial');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Finanzas');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Asistente administrativo');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Empleado de tienda');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Servicio de atención al cliente');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Operaciones');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Tecnologías de la información');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Marketing');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Recursos humanos');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Servicios sanitarios');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ventas');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Gestión de programas y proyectos');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Contabilidad');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Arte y diseño');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Servicios sociales y comunitarios');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Consultoría');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Educación');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Liderazgo');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Jurídico');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Medios de comunicación');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Servicios militares y de protección');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Gestión de productos');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Compras');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Control de calidad');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Bienes raíces');
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Investigación');  
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Administración');	
+Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ayuda');	
+Select * from SECTOR;
+
+--
+
 Insert into USUARIO (idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
 values (NULL, 'Samanta', 'samanta85@misena.edu.co', 'camila85', 1, '1087345189', '3214458790', '4536781',1, 2, 3, 
@@ -359,11 +422,6 @@ Insert into  REQUISITOS_VACANTE (idRequisitosVacante, idVacanteFK, idRequisitosF
 values (NULL, 2, 2, 'Es necesario ser mayor de edad, tener un minimo de 5 años de experiencia y ser profesional en derecho especialistas en seguros');
 select * from REQUISITOS_VACANTE;
 
-Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) values (NULL, 1);  
-Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) values (NULL , 2);
-select * from ESTADOLABORALASPIRANTE;
--- DESCRIBE ESTADOLABORALASPIRANTE;
-
 Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
 values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1);  
 Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
@@ -372,23 +430,11 @@ select * from ASPIRANTE;
 -- SELECT * FROM estadolaboralaspirante;
 -- SELECT * FROM USUARIO;
 
-Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Ingeniera Industrial');  
-Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Abogada Penalista');
-select * from PUESTOINTERES;
-
 Insert into ASPIRANTE_PUESTOINTERES (idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK) 
 values (NULL, 1, 1);  
 Insert into ASPIRANTE_PUESTOINTERES (idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK) 
 values (NULL, 2, 2);
 select * from ASPIRANTE_PUESTOINTERES;
-
-Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Profesional');  
-Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Tecnólogo');
-Select * from GRADOESTUDIO;
-
-Insert into SECTOR (idSector, nombreSector) values (NULL, 'Construccion');  
-Insert into SECTOR (idSector, nombreSector) values (NULL, 'Finanzas, seguros y bienes raices');
-Select * from SECTOR;
 
 Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorEstudioFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK, idSectorFK) 
 values (NULL, 'Sergio Arboleda', 'Ingeniera Industrial', 1, 1, 2012, 2, 2017, 12, 1, 1, 1 );  
@@ -406,8 +452,16 @@ Insert into INFOLABORAL (idInfoLaboral, empresaLaboro, idSectorFK, idCiudadLabor
 values (NULL, 'C Legal Abogados', 2, 2, 2, 'Revisor Fiscal', 2015, 05, 2018, 05, 'Inspeccionar bienes de la sociedad y procurar su conservacion y seguridad', 2);
 select * from INFOLABORAL;
 
-Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Ingles y Mandarin');  
-Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Ingles, Frances y Mandarin');
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Inglés');  
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Chino mandarín');
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Hindi');  
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Español');
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Francés');  
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Árabe');
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Bengalí');  
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Ruso');
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Portugués');  
+Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Indonesio');
 select * from IDIOMA;
 
 Insert into IDIOMA_ASPIRANTE (idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma) values (NULL, 1, 1, 3);  
@@ -435,6 +489,20 @@ ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
 ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
 ON b.idBarrio = u.idBarrioFK;
 
+CREATE VIEW selectAspirante AS
+SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, nombreEstado,
+nombreUsuario
+FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
+ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
+ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
+
+DROP VIEW IF EXISTS aspirantePuestoInteresView;
+CREATE VIEW aspirantePuestoInteresView AS
+SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK, nombrePuesto, nombreUsuario
+FROM PUESTOINTERES AS pi INNER JOIN ASPIRANTE_PUESTOINTERES api 
+ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN ASPIRANTE AS a
+ON a.idAspirante = api.idAspiranteFK INNER JOIN USUARIO  AS u
+ON u.idusuario = a.idUsuarioFK;
 /*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
 
 DELIMITER $$

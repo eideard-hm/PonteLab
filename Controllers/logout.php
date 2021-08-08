@@ -1,13 +1,12 @@
 <?php
-
-class logout
+class Logout
 {
+
     public function __construct()
     {
-        session_start(); //inicializamos las sesiones
-        session_unset(); //limpiamos todas las variables de sesión
-        session_destroy(); //destruimos todas sesiones
-
-        header('Location: ' . URL . 'Login');
+        session_start();
+        session_unset();
+        session_destroy();
+        header('Location:' . URL . 'Login');
     }
 }

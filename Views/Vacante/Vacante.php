@@ -29,10 +29,9 @@
         </span>
       </span>
       <nav class="nav nav_menu">
-        <a href="Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
+        <a href="Menu_Contratante"><i class="fas fa-list-alt"></i>Inicio</a>
         <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
         <a href="#" class="active"><i class="fas fa-business-time"></i>Vacante</a>
-        
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
           <i class="fas fa-moon luna"></i>
@@ -67,7 +66,7 @@
     <div class="vac-form">
       <h2 class="name"><span>Registro</span> Vacante</h2>
 
-      <form action="">
+      <form method="POST" id="form-vacancy">
         <p>
           <label for="nombre"> Nombre</label>
           <input minlength="1" maxlength="10" pattern="[a-zA-Z]+" type="text" name="nombre" id="nombre" placeholder="Nombre..." required />
@@ -87,8 +86,8 @@
         </p>
         <p>
           <label for="tipoContrato"> Tipo de Contrato</label>
-          <select name="tipoContrato" id="tipoContrato">
-            <option value="" disabled selected>Seleccione un tipo de contranto</option>
+          <select name="tipoContrato" id="tipoContrato" required>
+            <option value="" disabled selected>Seleccion Tipo de Contranto</option>
             <option value="1">Contrato por Obra o Labor</option>
             <option value="2">Contrato a Termino Fijo</option>
             <option value="3">Contrato a Termino Indefinido</option>
@@ -102,11 +101,11 @@
         </p>
         <p class="block">
           <label for="fechapublicacion"> Fecha de Publicacion</label>
-          <input type="date" name="fechapublicacion" id="fechapublicacion" required />
+          <input type="datetime-local" name="fechapublicacion" id="fechapublicacion" required />
         </p>
         <p class="block">
           <label for="fechacierre"> Fecha de Cierre</label>
-          <input type="date" name="fechacierre" id="fechacierre" required />
+          <input type="datetime-local" name="fechacierre" id="fechacierre" required />
         </p>
         <p>
           <label for="direccion"> Dirección</label>
@@ -115,6 +114,7 @@
         <p>
           <label for="estado">Estado</label>
           <select name="estado" id="estado" required>
+            <option value="" disabled selected>Seleccion Estado</option>
             <option value="1">Activo</option>
             <option value="2">Inactivo</option>
           </select>
@@ -136,6 +136,7 @@
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
+  <script src="<?= URL ?>Assets/js/vacante.js"></script>
 </body>
 
 </html>

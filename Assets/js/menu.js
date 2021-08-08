@@ -35,3 +35,5 @@ const ocultarBarraBusqueda = () => {
     barraBusqueda.style.opacity = '0';
     coverContenedorBusqueda.style.display = 'none';
 }
+
+/*============ IMPLEMENTAR BUSCADOR Y AUTOCOMPLETADO ==========*/

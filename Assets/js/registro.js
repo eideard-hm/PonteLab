@@ -176,7 +176,7 @@ const insertUser = async () => {
 
         if (statusUser && msg === 'ok') {
             if (rol === 'Contratante') {
-                window.location.href = 'Menu_Contratante';
+                window.location.href = 'http://localhost/PonsLabor/Menu/Menu_Contratante';
             } else {
                 window.location.href = 'Menu';
             }

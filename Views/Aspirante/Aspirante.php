@@ -24,37 +24,18 @@
                     <i class="fas fa-arrow-left" id="icono-regresar"></i>
                 </a>
                 <i class="fas fa-bars" id="icono-reponsive"></i>
-                <span href="#" class="logo-nombre">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
-                    <h2>Pons<span>Labor.</span></h2>
-                </span>
+                <?php
+                require_once('./Views/Components/NabvarLogo.php');
+                ?>
             </span>
-            <nav class="nav nav_menu">
-                <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
-                <a href="#" class="active"><i class="fas fa-user-tie"></i>Aspirante</a>
-                <a href="Estudios"><i class="fas fa-graduation-cap"></i>Estudios</a>
-                <a href="Experiencia"><i class="fas fa-briefcase"></i>Experiencia</a>
-                <a href="HojaVida"><i class="fas fa-folder"></i>Hoja de vida</a>
-                <button class="switch" id="switch">
-                    <i class="fas fa-sun sol" title="Modo claro"></i>
-                    <i class="fas fa-moon luna" title="Modo oscuro"></i>
-                    <span class="circulo"></span>
-                </button>
-                <div class="imagen-persona">
-                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
-                </div>
-            </nav>
+            <?php
+            require_once('./Views/Components/NabvarAspirante.php');
+            ?>
         </div>
         <div class="info-persona">
-            <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
-            <ul>
-                <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
-                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
-                <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="<?=URL ?>logout">Cerrar sesión</a>
-                </li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NavbarInfoAspirante.php');
+            ?>
         </div>
         <div class="contenedor-responsive">
             <ul class="contenedor-responsive-lista">
@@ -112,9 +93,11 @@
                     <form action="#" id="info-persona" class="contenedor-form">
                         <h2 class="title-form">Información personal Aspirante</h2>
 
-                        <div class="contenedor-grupo w50" id="grupo-nombre">
+                        <input type="hidden" name="idUsuario" id="idUsuario" value="<?= $_SESSION['id'] ?>">
+
+                        <div class="contenedor-grupo w100" id="grupo-nombre">
                             <label for="txtNombre">Nombre</label>
-                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Jhon" autofocus />
+                            <input type="text" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" disabled />
                             <i class="estado-input fa fa-times-circle"></i>
                             <p class="leyenda-input">
                                 El nombre no debe contener números y debe tener mínimo 3
@@ -122,28 +105,20 @@
                             </p>
                         </div>
 
-                        <div class="contenedor-grupo w50" id="grupo-apellido">
-                            <label for="txtApellido">Apellidos</label>
-                            <input type="text" name="txtApellido" id="txtApellido" placeholder="Azaustre" />
-                            <i class="estado-input fa fa-times-circle"></i>
-                            <p class="leyenda-input">
-                                Los apellidos no debe contener numeros y debe tener mínimo 3
-                                letras.
-                            </p>
-                        </div>
-
                         <div class="contenedor-grupo w100" id="grupo-perfil">
                             <label for="txtPerfil">Perfil laboral</label>
-                            <div id="editor"></div>
+                            <br>
+                            <br>
+                            <textarea name="textPerfilLab" id="especificaciones" rows="1" placeholder="Perfil laboral..."></textarea>
                         </div>
 
                         <div class="contenedor-grupo w100" id="grupo-estado">
                             <label for="txtEstado">Estado laboral</label>
                             <select name="txtEstado" id="txtEstado">
-                                <option value="0">Primer empleo</option>
-                                <option value="1" selected>Desempleado</option>
-                                <option value="2">Empleado</option>
-                                <option value="3">Independiente</option>
+                                <option value="" disabled selected>Seleccione su estado laboral actual</option>
+                                <?php foreach ($data['list_workStatus'] as $listStatus) : ?>
+                                    <option value="<?= $listStatus['idEstadoLaboral'] ?>"><?= $listStatus['nombreEstado'] ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
 
@@ -158,24 +133,24 @@
                 <div class="pagina">
                     <form action="#" id="perfil-laboral" class="contenedor-form">
                         <h2 class="title-form">Puesto interés.</h2>
-
+                        <input type="hidden" name="idAspirante" value="<?= isset($_SESSION['data-aspirante']['idAspirante']) ? $_SESSION['data-aspirante']['idAspirante'] : 0 ?>">
                         <div class="contenedor-grupo w100" id="grupo-puesto">
                             <label for="txtPuesto">Puesto interés</label>
                             <select name="txtPuesto" id="txtPuesto">
-                                <option value="0">Desarrollador de software web.</option>
-                                <option value="1">Desarrollador front-end</option>
-                                <option value="2">Desarrollador back-end</option>
-                                <option value="3">Secretaria/o</option>
+                                <option value="" disabled selected>Seleccione un puesto de interes</option>
+                                <?php foreach ($data['list_puestoInteres'] as $puesto) : ?>
+                                    <option value="<?= $puesto['idPuestoInteres'] ?>"><?= $puesto['nombrePuesto'] ?></option>
+                                <?php endforeach ?>
                             </select>
                         </div>
 
                         <div class="contenedor-grupo w100" id="grupo-otro_puesto">
-                            <input type="checkbox" id="grupo-puesto-otro_puesto" />
+                            <input type="checkbox" id="grupo-puesto-otro_puesto" name="grupo-puesto-otro_puesto" />
                             <label for="grupo-puesto-otro_puesto">Otro puesto de interés.</label>
                         </div>
 
                         <div class="contenedor-grupo w100" id="grupo-otro_puesto_interes">
-                            <label for="txtNombre">Otro puesto interés</label>
+                            <label for="txtOtroPuesto">Otro puesto interés</label>
                             <input type="text" name="txtOtroPuesto" id="txtOtroPuesto" placeholder="Desarrollador frontend con React" />
                             <i class="estado-input fa fa-times-circle"></i>
                             <p class="leyenda-input">
@@ -184,12 +159,19 @@
                             </p>
                         </div>
 
+                        <div class="add-puntuacion">
+                            <button class="boton_add_puesto" id="boton_add_puesto">
+                                <i class="fas fa-plus"></i>
+                                Agregar puesto
+                            </button>
+                        </div>
+
                         <div class="contenedor-grupo btn-enviar">
                             <button class="btns atras atras-p1">
                                 <i class="fas fa-chevron-left icon-btn-atras"></i>
                                 Atrás
                             </button>
-                            <button class="btns siguiente sig-p3">
+                            <button class="btns siguiente sig-p3 btn-disable">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
                         </div>
@@ -277,7 +259,7 @@
                         <div class="contenedor-grupo w100" id="grupo-habilidad">
                             <div class="agrupar-estrellas">
                                 <label for="txtHabilidad">Habilidad</label>
-                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" autofocus />
+                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                 <p class="leyenda-input">
                                     El nombre de la habilidad no debe contener números.
@@ -337,8 +319,7 @@
         </div>
     </template>
 
-    <!-- Include the Quill library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
