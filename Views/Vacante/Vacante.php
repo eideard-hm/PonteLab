@@ -29,10 +29,10 @@
         </span>
       </span>
       <nav class="nav nav_menu">
-        <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
+        <a href="Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
         <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
         <a href="#" class="active"><i class="fas fa-business-time"></i>Vacante</a>
-        <a href="Vacantes"><i class="fas fa-list-alt"></i>Vacantes</a>
+        
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
           <i class="fas fa-moon luna"></i>
@@ -46,8 +46,8 @@
     <div class="info-persona">
       <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
       <ul>
-        <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
-        <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
+        <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
+        <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
         <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
         <li>
           <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
@@ -57,7 +57,7 @@
     <div class="contenedor-responsive">
       <ul class="contenedor-responsive-lista">
         <li><a href="Menu_Contratante">Inicio</a></li>
-        <li><a href="#">Contratante</a></li>
+        <li><a href="Contratante">Contratante</a></li>
         <li><a href="Vacante">Vacante</a></li>
       </ul>
     </div>

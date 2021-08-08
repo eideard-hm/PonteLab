@@ -71,33 +71,8 @@
                         <!--left col-->
 
                         <div class="text-center">
-                            <img style="top: 50px;  position: relative;" src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
-                            <h2 style="top: -170px;  position: relative;">Coca-Cola </h2>
+                            <img style="top: 110px;  position: relative; " src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
 
-                            <a href="#" class="s3d forrst">
-                                Forrst
-                                <span class="icons forrst"></span>
-                            </a>
-                            <a href="#" class="s3d twitter">
-                                Twitter
-                                <span class="icons twitter"></span>
-                            </a>
-
-                            <a href="#" class="s3d facebook">
-                                Facebook
-                                <span class="icons facebook"></span>
-                            </a>
-
-                            <a href="#" class="s3d designmoo">
-                                Designmoo
-                                <span class="icons designmoo"></span>
-                            </a>
-
-                            <a href="#" class="s3d flickr">
-                                Flickr
-                                <span class="icons flickr"></span>
-                            </a>
-                            </span>
                             <h3></h3>
                         </div>
                         </hr><br>
@@ -110,7 +85,7 @@
                             <li><a data-toggle="tab" href="#messages">Dirección</a></li>
                             <li><a data-toggle="tab" href="#settings">Descripción</a></li>
                         </ul>
-
+                        <!------------------------formulario1------------------------------->
                         <div class="tab-content">
                             <div class="tab-pane active" id="home">
                                 <hr>
@@ -120,7 +95,7 @@
                                             <label for="first_name">
                                                 <h4>Nombre</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="first_name" id="first_name" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
+                                            <input type="text" class="form-control" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -170,13 +145,14 @@
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <br>
-                                            <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                            <button class="btn btn-lg btn-success" id="edit"  type="submit"><i class="fas fa-user-edit"></i> Editar perfil</button>
+                                            <button class="btn btn-lg btn-primary" id="guardar"  type="submit"><i class="fas fa-user-edit"></i>Guardar cambios</button>   
                                         </div>
                                     </div>
                                 </form>
                                 <hr>
                             </div>
+                            <!------------------------formulario------------------------------->
                             <!--/tab-pane-->
                             <div class="tab-pane" id="messages">
                                 <h2></h2>
@@ -215,19 +191,12 @@
                                             <label for="mobile">
                                                 <h4>Dirección</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Dirección" id="Dirección" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-12">
-                                            <br>
-                                            <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                                            <input type="text" class="form-control" name="Dirección" id="Dirección" value="< >" placeholder="Cl. 25d ##9550" title="" disabled>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            <!------------------------formulario3------------------------------->
                             <!--/tab-pane-->
                             <div class="tab-pane" id="settings">
                                 <hr>
@@ -235,7 +204,7 @@
                                     <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="first_name">
-                                                <h4>First name</h4>
+                                                <h4>Descripción</h4>
                                             </label>
                                             <div style="border: #000000; width: 500px;
                                             height: 150px; background:#ffffff;
@@ -251,13 +220,7 @@
                                                 </center>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-xs-12">
-                                                <br>
-                                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
-                                                <button class="btn btn-lg btn-reset" type="reset"><i class="glyphicon glyphicon-repeat"></i>Reset</button>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="form-group">
                                             <div class="col-xs-12">
                                                 <br>
@@ -280,6 +243,7 @@
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>
+        <script src="<?= URL; ?>Assets/js/editarPerfil.js"></script>
 </body>
 <!--   Core JS Files   -->
 
