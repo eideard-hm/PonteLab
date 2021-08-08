@@ -8,6 +8,9 @@ const estrellas = document.querySelectorAll('.estrellas .puntuacion');
 let arrListaIdiomas = [];
 let arrListaHabilidades = [];
 let i = 1;
+
+const formInfoPersona = document.querySelector('#info-persona');
+const formPuestoInteres = document.getElementById('perfil-laboral');
 /*
 ===================== SISTEMA DE ESTRELLAS =============================
 */
@@ -31,14 +34,6 @@ estrellas.forEach(elemento => {
     })
 })
 
-
-/*
-===================== INICIALIZAR EL EDITOR DE TEXTO =============================
-*/
-
-const quill = new Quill('#editor', {
-    theme: 'snow'
-});
 
 /*
 ===================== AGREGAR LISTA DE PUNTUACION =============================
@@ -143,3 +138,134 @@ const eliminarPuntuacion = (e, array, campo) => {
         })
     }
 }
+
+const formData = (form) => {
+    return new FormData(form);
+}
+
+/*
+===================== LÓGICA CRUD ASPIRANTE =============================
+*/
+
+const saveDataAspirante = async () => {
+    tinyMCE.triggerSave();
+    const formData = new FormData(formInfoPersona);
+    formData.delete('txtNombre');
+
+    const url = 'http://localhost/PonsLabor/Aspirante/setAspirante';
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+
+        const { status, msg } = await req.json();
+        if (!status) {
+            swal("Error", msg, "error");
+            return false;
+        } else {
+            swal({
+                title: "Aspirante",
+                text: msg,
+                icon: "success",
+                buttons: ["Ok", "Continuar"],
+                dangerMode: false,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        siguientePagina('-25%');
+                    } else {
+                        siguientePagina('-25%');
+                    }
+                });
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
+formInfoPersona.addEventListener('submit', saveDataAspirante);
+
+/*
+===================== LÓGICA CRUD PUESTO INTERES =============================
+*/
+
+const insertPuestoInteres = async (e) => {
+    e.preventDefault();
+    const namePuesto = document.querySelector('#txtOtroPuesto');
+
+    //validar que el campo no venga vació
+    if (namePuesto.value.trim() === '' || namePuesto.value.length <= 3) {
+        sweetAlert("Campos obligatorios!!", "Atención, debe de rellenar correctamente el campo.", "warning");
+        return false;
+    } else {
+        const formData = new FormData(formPuestoInteres);
+
+        const url = 'http://localhost/PonsLabor/Aspirante/savePuestoInteres';
+
+        try {
+            const req = await fetch(url, {
+                method: 'POST',
+                body: formData
+            });
+            const { status, msg } = await req.json();
+
+            if (status) {
+                swal("Puesto interes", msg, "success");
+                document.querySelector('.btn-disable').removeAttribute('disabled');
+            } else {
+                swal("Error", msg, "warning");
+            }
+        } catch (error) {
+            swal("Error", error, "error");
+        }
+    }
+}
+
+const insertPuestoInteresAspirante = async () => {
+
+    if (document.getElementById('txtPuesto').value.trim() === '') {
+        swal("Campo obligatorio", "Por favor, seleccione un puesto de interés !!", "info");
+    } else {
+
+        const formData = new FormData(formPuestoInteres);
+
+        const url = 'http://localhost/PonsLabor/Aspirante/insertPuestoInteresAspirante';
+
+        try {
+            const req = await fetch(url, {
+                method: 'POST',
+                body: formData
+            });
+            const { status, msg } = await req.json();
+            if (status) {
+                swal({
+                    title: "Puesto de interes",
+                    text: msg,
+                    icon: "success",
+                    buttons: ["Ok", "Continuar"],
+                    dangerMode: false,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            siguientePagina('-50%');
+                        } else {
+                            siguientePagina('-50%');
+                        }
+                    });
+            } else {
+                sweetAlert("Error", msg, "error");
+            }
+        } catch (error) {
+            sweetAlert("Error", error, "error");
+        }
+    }
+}
+
+const refreshPuestoInteres = () => {
+    console.log('Refresh puesto interes');
+}
+
+document.querySelector('#boton_add_puesto').addEventListener('click', (e) => insertPuestoInteres(e));
+document.querySelector('#boton_add_puesto').addEventListener('click', (e) => refreshPuestoInteres);

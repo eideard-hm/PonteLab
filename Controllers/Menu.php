@@ -19,4 +19,10 @@ class Menu extends Controllers
         $data['titulo_pagina'] = 'Menú Principal | PonsLabor.';
         $this->views->getView($this, 'Menu', $data);
     }
+
+    public function Menu_Contratante()
+    {
+        $data['titulo_pagina'] = 'Menu Contratante | PonsLabor.';
+        $this->views->getView($this, 'Menu_Contratante', $data);
+    }
 }

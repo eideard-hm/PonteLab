@@ -66,7 +66,7 @@
     <div class="vac-form">
       <h2 class="name"><span>Registro</span> Vacante</h2>
 
-      <form action="POST" action="" id="form-vacancy">
+      <form method="POST" id="form-vacancy">
         <p>
           <label for="nombre"> Nombre</label>
           <input minlength="1" maxlength="10" pattern="[a-zA-Z]+" type="text" name="nombre" id="nombre" placeholder="Nombre..." required />

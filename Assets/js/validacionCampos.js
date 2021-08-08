@@ -11,13 +11,6 @@ const antPagina = document.querySelectorAll('.atras');
 /*
 ===================== VALIDACIÓN DE FORMULARIO =============================
 */
-const infoPersona = document.getElementById('info-persona');
-const perfilLaboral = document.getElementById('perfil-laboral');
-const estudios = document.getElementById('estudios');
-
-const idiomas = document.getElementById('idiomas');
-const habilidades = document.getElementById('habilidades');
-
 const inputsInfoPersona = document.querySelectorAll('#info-persona .contenedor-grupo input');
 const inputsPuestoInteres = document.querySelectorAll('#perfil-laboral .contenedor-grupo input');
 const inputsEstudios = document.querySelectorAll('#estudios .contenedor-grupo input');
@@ -38,8 +31,6 @@ const expresiones = {
 }
 
 const campos = {
-    nombre: false,
-    apellido: false,
     institucion: false,
     titulo: false,
     empresa: false,
@@ -52,12 +43,6 @@ const campos = {
 //crear la función para validar el formulario
 const validarFormulario = (e) => {
     switch (e.target.name) {
-        case "txtNombre":
-            validarCampo(expresiones.nombre, e.target, 'nombre');
-            break;
-        case "txtApellido":
-            validarCampo(expresiones.nombre, e.target, 'apellido');
-            break;
         case "txtInstitucion":
             validarCampo(expresiones.nombre, e.target, 'institucion');
             break;
@@ -172,8 +157,12 @@ if (document.getElementById('grupo-otro_idioma')) {
 const mostrarInputOtroPuestoInteres = () => {
     if (checkOtroPuestoInteres.checked) {
         inputOtroPuestoInteres.style.display = 'block';
+        document.querySelector('#boton_add_puesto').style.display = 'block';
+        document.querySelector('.btn-disable').setAttribute('disabled', 'disabled')
     } else {
         inputOtroPuestoInteres.style.display = 'none';
+        document.querySelector('#boton_add_puesto').style.display = 'none';
+        document.querySelector('.btn-disable').removeAttribute('disabled');
     }
 }
 
@@ -220,11 +209,11 @@ sigPagina.forEach(boton => {
     boton.addEventListener('click', e => {
         e.preventDefault();
         if (boton.classList.contains('sig-p2')) {
-            let contenidoEditorTexto = quill.container.firstChild.innerHTML;
-            if (campos.nombre === false || campos.apellido === false || contenidoEditorTexto === '<p><br></p>' || contenidoEditorTexto === '') {
+            tinyMCE.triggerSave();
+            if (document.querySelector('#especificaciones').value === '' || document.querySelector('#txtEstado').value === '') {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
             } else {
-                siguientePagina('-25%');
+                saveDataAspirante();
             }
         } else if (boton.classList.contains('sig-p3')) {
             if (inputOtroPuestoInteres.style.display === 'block') {
@@ -234,7 +223,7 @@ sigPagina.forEach(boton => {
                     siguientePagina('-50%');
                 }
             } else if (inputOtroPuestoInteres.style.display === 'none' || inputOtroPuestoInteres.style.display === '') {
-                siguientePagina('-50%');
+                insertPuestoInteresAspirante();
             }
 
         } else if (boton.classList.contains('sig-p4')) {
