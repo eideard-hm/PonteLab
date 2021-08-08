@@ -10,8 +10,9 @@ if (document.querySelector('#edit')) {
         e.preventDefault();
 
         const nombre = document.querySelector('#txtNombre');
-
         nombre.removeAttribute('disabled');
+        
+        const nombre = document.querySelector('#txtNombre');
         btnGuardar.style.display = 'block';
         document.querySelector('#edit').setAttribute('disabled', 'disabled');
     })

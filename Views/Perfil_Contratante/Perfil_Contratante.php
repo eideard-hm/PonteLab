@@ -103,7 +103,7 @@
                                             <label for="last_name">
                                                 <h4>Identificación</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
+                                            <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
                                         </div>
                                     </div>
 
@@ -112,7 +112,7 @@
                                             <label for="phone">
                                                 <h4>Número de Contacto Fijó</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                            <input type="text" class="form-control" name="phoneF" id="phoneF" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
                                         </div>
                                     </div>
 
@@ -121,7 +121,7 @@
                                             <label for="mobile">
                                                 <h4>Número de Contacto Móvil</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
+                                            <input type="text" class="form-control" name="mobileP" id="mobileP" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -137,7 +137,7 @@
                                             <label for="email">
                                                 <h4>Contraseña</h4>
                                             </label>
-                                            <input type="password" class="form-control" id="password" placeholder="********" title="enter a location" disabled>
+                                            <input type="password" class="form-control"name="password" id="password" placeholder="********" title="enter a location" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -152,7 +152,7 @@
                                 </form>
                                 <hr>
                             </div>
-                            <!------------------------formulario------------------------------->
+                            <!------------------------formulario2------------------------------->
                             <!--/tab-pane-->
                             <div class="tab-pane" id="messages">
                                 <h2></h2>
@@ -168,15 +168,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="phone">
-                                                <h4>Localidad</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="localidad" id="localida" placeholder="Fontibón" title="enter your phone number if any." disabled>
-                                        </div>
-                                    </div>
-
+                                    
                                     <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="Barrio">

@@ -46,7 +46,7 @@
     <div class="info-persona">
       <h3><?php echo $_SESSION['user-data']['nombreUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
       <ul>
-        <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
+        <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante"> Perfil</a></li>
         <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
         <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
         <li>
