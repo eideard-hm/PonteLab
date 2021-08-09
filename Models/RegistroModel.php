@@ -4,6 +4,7 @@ class RegistroModel extends GestionCRUD
 {
     //atributos de la clase
     private int $idUsuario;
+    private string $nombre;
     private string $correoUsuario;
     private string $passUsuario;
     private int $idTipoDocumentoFK;
@@ -14,7 +15,7 @@ class RegistroModel extends GestionCRUD
     private int $idRolFK;
     private int $idBarrioFK;
     private string $direccionUsuario;
-    private $imagenUsuario;
+    private string $imagenUsuario;
 
     public function __construct()
     {
@@ -25,9 +26,9 @@ class RegistroModel extends GestionCRUD
     public function selectAllUsers()
     {
         //extraer los administradores        
-        $sql = "SELECT idUsuario, correoUsuario, passUsuario, nombreTipoDocumento, 
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
-        direccionUsuario, imagenUsuario 
+        direccionUsuario 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
         ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
         ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
@@ -41,18 +42,21 @@ class RegistroModel extends GestionCRUD
     {
         $this->idUsuario = $id;
         //consulta para extraerlo
-        $sql = "SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
-        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
-        direccionUsuario, imagenUsuario 
-        FROM USUARIO
-        WHERE idUsuario = " . $this->idUsuario;
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
+        direccionUsuario 
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE idUsuario = {$this->idUsuario}";
 
-        $request = $this->select($sql);
-        return $request;
+        return $this->select($sql);
     }
 
     //Método para insertar un usuario
     public function insertUser(
+        string $nombre,
         string $email,
         string $pass,
         int $tipoDoc,
@@ -63,8 +67,9 @@ class RegistroModel extends GestionCRUD
         int $rol,
         int $barrio,
         string $direccion,
-        $imagen
+        string $imagen
     ) {
+        $this->nombre = $nombre;
         $this->correoUsuario = $email;
         $this->passUsuario = $pass;
         $this->idTipoDocumentoFK = $tipoDoc;
@@ -79,19 +84,24 @@ class RegistroModel extends GestionCRUD
         $return = 0;
 
         //consutar si ya existe ese usuario
-        $sql = "SELECT * FROM usuario WHERE correoUsuario = '{$this->correoUsuario}' or 
-        numDocUsuario = '{$this->numDocUsuario}'";
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
+        direccionUsuario 
+        FROM USUARIO 
+        WHERE correoUsuario = '{$this->correoUsuario}' OR 
+        numDocUsuario = '{$this->numDocUsuario}' OR numTelUsuario = '{$this->numTelUsuario}'";
         $request = $this->selectAll($sql);
 
         //validar si ya existe el usuario
         //si esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
-        if (empty($request)) {
-            $sql = "INSERT INTO USUARIO(correoUsuario, passUsuario, idTipoDocumentoFK, 
+        if (empty($request) || $request === '' || $request === null) {
+            $sql = "INSERT INTO USUARIO(nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
             numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
             direccionUsuario, imagenUsuario)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
+                $this->nombre,
                 $this->correoUsuario,
                 $this->passUsuario,
                 $this->idTipoDocumentoFK,
@@ -104,10 +114,9 @@ class RegistroModel extends GestionCRUD
                 $this->direccionUsuario,
                 $this->imagenUsuario
             );
-            $requestInsert = $this->insert($sql, $arrData);
-            $return = $requestInsert;
+            $return = $this->insert($sql, $arrData);
         } else {
-            $return = "exits";
+            $return = 'exits';
         }
         return $return;
     }
@@ -147,12 +156,12 @@ class RegistroModel extends GestionCRUD
         $request = $this->selectAll($sql);
 
         //comprobar si existe para pasar a actualizar el registro
-        if (empty($request)) {
+        if (empty($request) || $request === '' || $request === null) {
             $query = "UPDATE USUARIO 
             SET correoUsuario=?, passUsuario=?, idTipoDocumentoFK=?, numDocUsuario=?, 
             numTelUsuario=?, numTelFijo=?, estadoUsuario=?, idRolFK=?, idBarrioFK=?, 
             direccionUsuario=?, imagenUsuario =?
-            WHERE idUsuario='{$this->idUsuario}'";
+            WHERE idUsuario={$this->idUsuario}";
 
             $arrData = array(
                 $this->strEmail,
@@ -172,6 +181,16 @@ class RegistroModel extends GestionCRUD
             $request = "exist";
         }
         return $request;
+    }
+
+    //Método para seleccionar la imagen de perfil
+    public function selectImgProfile(int $id)
+    {
+        $this->intId = $id;
+        $sql = "SELECT idUsuario, imagenUsuario
+        FROM USUARIO 
+        WHERE idUsuario = {$this->intId}";
+        return $this->select($sql);
     }
 
     //Método para traer los tipos de documentos registrados

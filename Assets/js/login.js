@@ -15,33 +15,67 @@ document.getElementById("spanMostrar").addEventListener("click", function () {
 
 //validación del formulario de Login
 
-document.getElementById('valida').addEventListener('click', validar);
-document.getElementById('valida').addEventListener('click', validarFormulario);
-let contador = 0;
+// document.getElementById('valida').addEventListener('click', validar);
+// document.getElementById('valida').addEventListener('click', validarFormulario);
+// let contador = 0;
 
-function validar() {
-  let usuario = document.getElementById('Usuario');
-  let password = document.getElementById('Contraseña');
-  if (usuario.value == "yesenia@gmail.com" && password.value == 123456) {
-    alert("Bien")
-    window.location = "Menu";
-  } else {
-    alert("yuquita")
+// function validar() {
+//   let usuario = document.getElementById('Usuario');
+//   let password = document.getElementById('Contraseña');
+//   if (usuario.value == "yesenia@gmail.com" && password.value == 123456) {
+//     alert("Bien")
+//     window.location = "Menu";
+//   } else {
+//     alert("yuquita")
+//   }
+// }
+
+// function validarFormulario() {
+//   let usuario = document.getElementById('Usuario').value;
+//   let password = document.getElementById('Contraseña').value;
+//   if (usuario.length == 0 && password.length < 6) {
+//     alert('No has escrito nada en el Usurario y la Contraseña');
+//     return;
+//   } else if (usuario.length == 0) {
+//     alert('No has escrito nada en el Usurario');
+//     return;
+//   } else if (password.length < 6) {
+//     alert('La Contraseña no es válida');
+//     return;
+//   }
+
+// }
+
+/* =============== INICIO DE SESIÓN ===================== */
+const form = document.querySelector('#form-login');
+
+const signIn = async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+
+  //peticion mediante la API de fetch, peticion de tipo post
+  const url = 'http://localhost/PonsLabor/Login/loginUser';
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    const { statusLogin, msg, rol } = await res.json();
+    console.log(rol);
+    if (statusLogin && msg === 'ok') {
+      if (rol === 'Contratante') {
+        window.location.href = 'Menu_Contratante';
+      } else {
+        window.location.href = 'Menu';
+      }
+    } else {
+      form.reset();
+      swal("Error", msg, "error");//mostrar la alerta
+    }
+  } catch (error) {
+    swal("Error", error, "error");
   }
 }
 
-function validarFormulario() {
-  let usuario = document.getElementById('Usuario').value;
-  let password = document.getElementById('Contraseña').value;
-  if (usuario.length == 0 && password.length < 6) {
-    alert('No has escrito nada en el Usurario y la Contraseña');
-    return;
-  } else if (usuario.length == 0) {
-    alert('No has escrito nada en el Usurario');
-    return;
-  } else if (password.length < 6) {
-    alert('La Contraseña no es válida');
-    return;
-  }
-
-}
+form.addEventListener('submit', signIn);

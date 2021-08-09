@@ -10,9 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!------ Include the above in your HEAD tag ---------->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
@@ -28,27 +28,28 @@
                     <h2>Pons<span>Labor.</span></h2>
                 </span>
             </span>
-            <nav class="nav">
-                <a href="Menu">Inicio</a>
-                <a href="Contratante">Contratante</a>
-                <a href="Estudios">Vacante</a>
+            <nav class="nav nav_menu">
+                <a href="Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
+                <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
+                <a href="Vacante"><i class="fas fa-business-time"></i>Vacante</a>
                 <button class="switch" id="switch">
                     <i class="fas fa-sun sol"></i>
                     <i class="fas fa-moon luna"></i>
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
                 </div>
             </nav>
         </div>
         <div class="info-persona">
-            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+            <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Perfil</a></li>
                 <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
+                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -70,8 +71,8 @@
                         <!--left col-->
 
                         <div class="text-center">
-                            <img style="top: 50px;  position: relative;" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png " class="avatar img-circle img-thumbnail" alt="avatar" />
-                            <h2 style="top: -190px;  position: relative;">Coca-Cola </h2>
+                            <img style="top: 50px;  position: relative;" src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
+                            <h2 style="top: -170px;  position: relative;">Coca-Cola </h2>
 
                             <a href="#" class="s3d forrst">
                                 Forrst
@@ -119,7 +120,7 @@
                                             <label for="first_name">
                                                 <h4>Nombre</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
+                                            <input type="text" class="form-control" name="first_name" id="first_name" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -136,7 +137,7 @@
                                             <label for="phone">
                                                 <h4>Número de Contacto Fijó</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                            <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
                                         </div>
                                     </div>
 
@@ -145,7 +146,7 @@
                                             <label for="mobile">
                                                 <h4>Número de Contacto Móvil</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile" placeholder="310 3281558" title="enter your mobile number if any." disabled>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -153,7 +154,7 @@
                                             <label for="email">
                                                 <h4>Email</h4>
                                             </label>
-                                            <input type="email" class="form-control" name="email" id="email" placeholder="cocacola@gmail.com" title="enter your email." disabled>
+                                            <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['user-data']['correoUsuario'] ?>" placeholder="cocacola@gmail.com" title="enter your email." disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -205,7 +206,7 @@
                                             <label for="Barrio">
                                                 <h4>Barrio</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Barrio" id="Barrio" placeholder="Los Monjes" title="enter your last name if any." disabled>
+                                            <input type="text" class="form-control" name="Barrio" id="Barrio" value="<?= $_SESSION['user-data']['nombreBarrio'] ?>" placeholder="Los Monjes" title="enter your last name if any." disabled>
                                         </div>
                                     </div>
 
@@ -214,7 +215,7 @@
                                             <label for="mobile">
                                                 <h4>Dirección</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Dirección" id="Dirección" placeholder="Cl. 25d ##9550" title="" disabled>
+                                            <input type="text" class="form-control" name="Dirección" id="Dirección" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
                                         </div>
                                     </div>
 
@@ -276,14 +277,6 @@
         <!--FUNCIONALIDAD FORMULARIOS-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script>
-            const imgPersona = document.querySelector('.imagen-persona');
-            const opcionesInfo = document.querySelector('.info-persona');
-
-            imgPersona.addEventListener('click', () => {
-                opcionesInfo.classList.toggle('active');
-            })
-        </script>
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>

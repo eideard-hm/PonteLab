@@ -158,13 +158,16 @@ inputsHabilidades.forEach(input => {
     input.addEventListener('blur', validarFormulario);
 })
 
-document.getElementById('grupo-otro_puesto').addEventListener('click', () => {
-    mostrarInputOtroPuestoInteres();
-});
-
-document.getElementById('grupo-otro_idioma').addEventListener('click', () => {
-    mostrarInputOtroIdioma();
-});
+if (document.getElementById('grupo-otro_puesto')) {
+    document.getElementById('grupo-otro_puesto').addEventListener('click', () => {
+        mostrarInputOtroPuestoInteres();
+    });
+}
+if (document.getElementById('grupo-otro_idioma')) {
+    document.getElementById('grupo-otro_idioma').addEventListener('click', () => {
+        mostrarInputOtroIdioma();
+    });
+}
 
 const mostrarInputOtroPuestoInteres = () => {
     if (checkOtroPuestoInteres.checked) {
@@ -288,26 +291,16 @@ const anteriorPagina = valor => {
 }
 
 //enviar los datos
-enviar.addEventListener('click', e => {
-    e.preventDefault();
-    if (campos.habilidad === false) {
-        sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-    }
-    // let data = new FormData(habilidades);
-    // console.log(data.get('txtHabilidad'))
-    // console.log(data.get('nivel_habilidad'))
-})
-
-/* ======================== RESPONSIVE DESIGN ================== */
-
-document.querySelector('#icono-reponsive').addEventListener('click', () => {
-    mostrarBarraResponsive();
-
-});
-
-const mostrarBarraResponsive = () => {
-    document.querySelector('.contenedor-responsive').classList.toggle('active');
-    document.querySelector('#icono-reponsive').classList.toggle('fa-bars');
-    document.querySelector('#icono-reponsive').classList.toggle('fa-times');
+if (enviar) {
+    enviar.addEventListener('click', e => {
+        e.preventDefault();
+        if (campos.habilidad === false) {
+            sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+        }
+        // let data = new FormData(habilidades);
+        // console.log(data.get('txtHabilidad'))
+        // console.log(data.get('nivel_habilidad'))
+    })
 }
+
 

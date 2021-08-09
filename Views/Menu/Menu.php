@@ -2,14 +2,14 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
     <title><?= $data['titulo_pagina'] ?></title>
     <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="<?= URL; ?>Assets/css/aspirante.css">
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <link rel="stylesheet" type="text/css" href="<?= URL; ?>Assets/css/aspirante.css">
 </head>
 
 <body id="menu">
@@ -26,11 +26,11 @@
                 </span>
             </span>
             <nav class="nav nav_menu">
-                <a href="Menu" class="active">Inicio</a>
-                <a href="Aspirante">Aspirante</a>
-                <a href="Estudios">Estudios</a>
-                <a href="Experiencia">Experiencia</a>
-                <a href="HojaVida">Hoja de vida</a>
+                <a href="#" class="active"><i class="fas fa-home"></i>Inicio</a>
+                <a href="Aspirante"><i class="fas fa-user-tie"></i>Aspirante</a>
+                <a href="Estudios"><i class="fas fa-graduation-cap"></i>Estudios</a>
+                <a href="Experiencia"><i class="fas fa-briefcase"></i>Experiencia</a>
+                <a href="HojaVida"><i class="fas fa-folder"></i>Hoja de vida</a>
                 <div class="content-search">
                     <i class="fas fa-search" id="icon-search" title="Buscar"></i>
                 </div>
@@ -40,17 +40,18 @@
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['nombreUsuario'] ?>" />
                 </div>
             </nav>
         </div>
         <div class="info-persona">
-            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+            <h3><?php echo $_SESSION['user-data']['nombreUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Perfil</a></li>
                 <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
+                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?=URL ?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -72,140 +73,90 @@
         <i class="fas fa-times" id="borrar-contenido" title="Borrar"></i>
     </form>
 
-    <div class="cover-ctn-search">
-
-    </div>
+    <div class="cover-ctn-search"></div>
 
     <div class="contenedor card">
-
         <div class="contenedor-card">
-            <div class="imagenes">
-                <img src="<?= URL; ?>Assets/img/perfil.png" alt="Perfil de empleado" />
-                <img src="<?= URL; ?>Assets/img/perfil.png" alt="Perfil de empleado" />
-                <div class="informacion-trabajador">
-                    <h4>Nombre:</h4>
-                    <b>Edier Heraldo Hernandez Molano</b>
-                    <h4>Edad:</h4>
-                    <span>17 años</span>
-                    <h4>Profesión:</h4>
-                    <span>Desarrollador de software</span>
-                    <h4>Estado:</h4>
-                    <span>Buscando empleo</span>
+            <div class="contenedor-card__header contenedor-card__padding">
+                <div class="header-img">
+                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+                </div>
+                <div class="header-name">
+                    <h3>Joeylene Rivera</h3>
+                    <span>Web Developer</span>
                 </div>
             </div>
-            <div class="info-card">
-                <div class="detalles-persona">
-                    <h2>
-                        Edier Hernandez <br />
-                        <span>Desarrollador web</span>
-                    </h2>
-
-                    <div class="redes-sociales">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
+            <div class="contenedor-card__body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
+            </div>
+            <div class="contenedor-card__footer">
+                <a href="#">Ver más</a>
             </div>
         </div>
 
         <div class="contenedor-card">
-            <div class="imagenes">
-                <img src="<?= URL; ?>Assets/img/image2.jpg" alt="Perfil de empleado" />
-                <img src="<?= URL; ?>Assets/img/image2.jpg" alt="Perfil de empleado" />
-                <div class="informacion-trabajador">
-                    <h4>Nombre:</h4>
-                    <b>Edier Heraldo Hernandez Molano</b>
-                    <h4>Edad:</h4>
-                    <span>17 años</span>
-                    <h4>Profesión:</h4>
-                    <span>Desarrollador de software</span>
-                    <h4>Estado:</h4>
-                    <span>Buscando empleo</span>
+            <pre>
+                <?php
+                print_r($_SESSION['user-data']);
+                ?>
+            </pre>
+        </div>
+
+        <div class="contenedor-card">
+            <div class="contenedor-card__header contenedor-card__padding">
+                <div class="header-img">
+                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+                </div>
+                <div class="header-name">
+                    <h3>Joeylene Rivera</h3>
+                    <span>Web Developer</span>
                 </div>
             </div>
-            <div class="info-card">
-                <div class="detalles-persona">
-                    <h2>
-                        Edier Hernandez <br />
-                        <span>Desarrollador web</span>
-                    </h2>
-
-                    <div class="redes-sociales">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
+            <div class="contenedor-card__body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
+            </div>
+            <div class="contenedor-card__footer">
+                <a href="#">Ver más</a>
             </div>
         </div>
 
         <div class="contenedor-card">
-            <div class="imagenes">
-                <img src="<?= URL; ?>Assets/img/image.jpg" alt="Perfil de empleado" />
-                <img src="<?= URL; ?>Assets/img/image.jpg" alt="Perfil de empleado" />
-                <div class="informacion-trabajador">
-                    <h4>Nombre:</h4>
-                    <b>Edier Heraldo Hernandez Molano</b>
-                    <h4>Edad:</h4>
-                    <span>17 años</span>
-                    <h4>Profesión:</h4>
-                    <span>Desarrollador de software</span>
-                    <h4>Estado:</h4>
-                    <span>Buscando empleo</span>
+            <div class="contenedor-card__header contenedor-card__padding">
+                <div class="header-img">
+                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+                </div>
+                <div class="header-name">
+                    <h3>Joeylene Rivera</h3>
+                    <span>Web Developer</span>
                 </div>
             </div>
-            <div class="info-card">
-                <div class="detalles-persona">
-                    <h2>
-                        Edier Hernandez <br />
-                        <span>Desarrollador web</span>
-                    </h2>
-
-                    <div class="redes-sociales">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
+            <div class="contenedor-card__body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
+            </div>
+            <div class="contenedor-card__footer">
+                <a href="#">Ver más</a>
             </div>
         </div>
 
         <div class="contenedor-card">
-            <div class="imagenes">
-                <img src="<?= URL; ?>Assets/img/image3.jpg" alt="Perfil de empleado" />
-                <img src="<?= URL; ?>Assets/img/image3.jpg" alt="Perfil de empleado" />
-                <div class="informacion-trabajador">
-                    <h4>Nombre:</h4>
-                    <b>Edier Heraldo Hernandez Molano</b>
-                    <h4>Edad:</h4>
-                    <span>17 años</span>
-                    <h4>Profesión:</h4>
-                    <span>Desarrollador de software</span>
-                    <h4>Estado:</h4>
-                    <span>Buscando empleo</span>
+            <div class="contenedor-card__header contenedor-card__padding">
+                <div class="header-img">
+                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+                </div>
+                <div class="header-name">
+                    <h3>Joeylene Rivera</h3>
+                    <span>Web Developer</span>
                 </div>
             </div>
-            <div class="info-card">
-                <div class="detalles-persona">
-                    <h2>
-                        Edier Hernandez <br />
-                        <span>Desarrollador web</span>
-                    </h2>
-
-                    <div class="redes-sociales">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
+            <div class="contenedor-card__body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
             </div>
-        </div>
+            <div class="contenedor-card__footer">
+                <a href="#">Ver más</a>
+            </div>
+        </div>  
     </div>
+
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>

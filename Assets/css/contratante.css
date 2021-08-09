@@ -2,7 +2,7 @@
 
 :root {
   --fuenteQuicksand: 'Quicksand', sans-serif;
-  --fondo: linear-gradient( rgba(84, 108, 207), rgba(213, 238, 254));
+  --fondo: linear-gradient(rgba(84, 108, 207), rgba(213, 238, 254));
   --fuenteRoboto: 'Roboto', Arial, sans-serif;
   --hueso: #ebeaef;
   --bsoft: #daeefe;
@@ -12,14 +12,115 @@
   --bsb: #060d2f;
 }
 
-body {
-  background: var(--fondo);
+.body-con,
+.body-vac{
+  background: var(--hueso);
   background-repeat: no-repeat;
-  color: #000;
-  font-family: var(--fuenteRoboto);
+  background-size: cover;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
   padding: 0 1.5em;
 }
+.body-vacs{
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--hueso);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-family: "Quicksand", sans-serif;
+  padding: 0 1.5em;
+}
+/*VACANTES*/
+.content-vacs{
+  margin-top: 3em;
+  position: relative;
+  width: 1150px;
+  padding: 20em;
+  min-height: 40em; 
+}
+.content-vacs #form-vacs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.content-vacs .card{
+  position: relative;
+  width: 300px;
+  height: 420px;
+  background: var(--hueso);
+  margin: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
 
+.content-vacs .card .circle{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  clip-path: circle(400px at center -225px);
+  text-align: center;
+}
+
+.content-vacs .card .circle h2{
+  padding: 2.5em  0; 
+  position: relative;
+}
+
+.content-vacs .card .card-content{
+  position: absolute;
+  bottom: 10px;
+  padding: 20px;
+  text-align: center;  
+  width: 100%;
+}
+
+.content-vacs .card .card-content p{
+  color: #000;
+}
+.content-vacs .card .card-content a{
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.content-vacs .card:nth-child(1) .circle,
+.content-vacs .card:nth-child(1) .card-content a{
+  background: #1e1e62;
+}
+
+.content-vacs .card:nth-child(2) .circle,
+.content-vacs .card:nth-child(2) .card-content a{
+  background: #546ccf;
+}
+
+.content-vacs .card:nth-child(3) .circle,
+.content-vacs .card:nth-child(3) .card-content a{
+  background: #97bbfe;
+}
+
+.content-vacs .card:nth-child(4) .circle,
+.content-vacs .card:nth-child(4) .card-content a{
+  background: var(--cm);
+}
+.content-vacs .card:nth-child(5) .circle,
+.content-vacs .card:nth-child(5) .card-content a{
+  background: var(--medium);
+}
+.content-vacs .card:nth-child(6) .circle,
+.content-vacs .card:nth-child(6) .card-content a{
+  background: var(--bdarck);
+}
 /*======================== ESTILOS PARA CONTRATANTE  ===========================*/
 
 .content {
@@ -52,37 +153,48 @@ body {
   padding: 1em;
 }
 
-.vac-form, .con-form {
+.vac-form,
+.con-form {
   box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 1);
   background: var(--hueso);
   border-radius: 0.2em;
 }
 
-.vac-form form, .con-form form {
+.vac-form form,
+.con-form form {
   display: grid;
   grid-column: 1/3;
   font-family: var(--fuenteRoboto);
 }
 
-.vac-form form label, .con-form form label {
+.vac-form form label,
+.con-form form label {
   display: block;
 }
 
-.vac-form form .block textarea, .con-form form .block textarea {
+.vac-form form .block textarea,
+.con-form form .block textarea {
   max-width: 100%;
   min-width: 100%;
   min-height: 3em;
   max-height: 18em;
 }
 
-.vac-form form p, .con-form form p {
+.vac-form form p,
+.con-form form p {
   margin: 0;
   padding: 1em;
 }
 
 /*CSS PARA LOS ESPACIOS DE INGRESO DE INFORMACION */
 
-.vac-form form button, .con-form form button, .vac-form form input, .con-form form input, .vac-form form select, .vac-form form textarea, .con-form form textarea {
+.vac-form form button,
+.con-form form button,
+.vac-form form input,
+.con-form form input,
+.vac-form form select,
+.vac-form form textarea,
+.con-form form textarea {
   width: 100%;
   padding: 0.7em;
   border: none;
@@ -95,7 +207,8 @@ body {
   font-size: 16px;
 }
 
-.vac-form form button, .con-form form button {
+.vac-form form button,
+.con-form form button {
   background: var(--bdarck);
   color: var(--bsoft);
   text-transform: uppercase;
@@ -103,7 +216,10 @@ body {
   border: none;
 }
 
-.vac-form form button:hover, .con-form form button:hover, .vac-form form button:focus, .con-form form button:focus {
+.vac-form form button:hover,
+.con-form form button:hover,
+.vac-form form button:focus,
+.con-form form button:focus {
   background: var(--bsoft);
   color: var(--bdarck);
   border: none;
@@ -111,17 +227,25 @@ body {
   outline: none;
 }
 
+@media (min-width: 630px) {
+
+  .vac-form form,
+  .con-form form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .vac-form form .block,
+  .con-form form .block {
+    grid-column: 1/3;
+  }
+}
+
 @media (min-width: 426px) {
   body {
     padding: 0 4em;
   }
+
   .content>* {
     padding: 1em;
-  }
-  .vac-form form, .con-form form {
-    grid-template-columns: 1fr 1fr;
-  }
-  .vac-form form .block, .con-form form .block {
-    grid-column: 1/3;
   }
 }

@@ -33,8 +33,20 @@
         </ul>
 
         <fieldset>
-            <h2 class="fs-title">Crear cuenta PonsLabor</h2>
+            <h2 class="fs-title">Crear cuenta</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
+            <select name="rol" id="rol">
+                <option selected value="" disabled>Seleccione su rol</option>
+                <!-- 
+                    1. Contratante
+                    2. Aspirante
+                 -->
+                <?php foreach ($data['list_rol'] as $rol) : ?>
+                    <option value="<?php echo $rol['idRol'] ?>"><?php echo $rol['nombreRol'] ?></option>
+                <?php endforeach ?>
+            </select>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" />
+            <input type="hidden" name="apellido" id="apellido" placeholder="Arturo" />
             <input type="email" name="email" id="email" placeholder="example@example.com" />
             <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
@@ -46,12 +58,7 @@
             <h2 class="fs-title">Crear cuenta PonsLabor</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
             <select name="documento" id="documento">
-                <option selected disabled value="">Elige el tipo de documento</option>
-                <!-- <option value="1">Cédula de Ciudadanía</option>
-                <option value="2">Tarjeta de Identidad</option>
-                <option value="3">Registro civil</option>
-                <option value="4">Cedula de extranjeria</option>
-                <option value="5">Pasaporte</option> -->
+                <option selected disabled value="">Seleccione un tipo de documento</option>
                 <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                     <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                 <?php endforeach ?>
@@ -72,15 +79,6 @@
                 <option value="1">Inactivo</option>
             </select>
             <br>
-            <select name="rol" id="rol">
-                <option selected value="" disabled>Elige el rol que desees</option>
-                <!-- <option value="1">Contratante</option>
-                <option value="2">Aspirante</option> -->
-                <?php foreach ($data['list_rol'] as $rol) : ?>
-                    <option value="<?php echo $rol['idRol'] ?>"><?php echo $rol['nombreRol'] ?></option>
-                <?php endforeach ?>
-            </select>
-            <br>
             <select name="barrio" id="barrio">
                 <option selected disabled value=""> Elija el barrio donde vive </option>
                 <?php foreach ($data['list_barrio'] as $barrio) : ?>
@@ -88,9 +86,24 @@
                 <?php endforeach ?>
             </select>
             <input type="text" name="direccion" id="direccion" placeholder="Ingrese la dirección de residencia" />
-            <input type="file" name="foto" id="foto" multiple="multiple" />
+            <!-- <input type="file" name="foto" id="foto" multiple="multiple" /> -->
+            <div class="photo">
+                <label for="imagenAnuncio" class="label">Por favor añade una foto.</label>
+                <!--Caja de texto en el formulario y su contenido-->
+                <div class="prevPhoto">
+                    <span class="delPhoto notBlock">X</span>
+                    <label for="foto"></label>
+                    <div class="prevPhoto__img">
+                        <img id="img" src="<?php echo URL; ?>Assets/Img/upload.png" />
+                    </div>
+                </div>
+                <div class="upimg">
+                    <input type="file" name="foto" id="foto" data-toggle="tooltip" data-placement="bottom" title="Ingresar imagen" multiple="multiple">
+                </div>
+                <div id="form_alert"></div>
+            </div>
             <br>
-            <h5 style="font-size: 15px;">Al hacer clic en "Registrarse", aceptas nuestra <a href="Politicas_de_Datos">Politica de datos</a> y la <a href="Politicas_de_Cookies">Politica de Cookies.</a>
+            <h5 style="font-size: 15px;">Al hacer clic en "Registrarse", aceptas nuestra <a href="Politicas_de_Datos">Politica de datos</a> y la <a href="Politicas_de_Datos/Politicas_de_Cookies">Politica de Cookies.</a>
             </h5>
             <br>
             <button type="button" name="previous" class="previous action-button" value="Atras"> Atras </button>

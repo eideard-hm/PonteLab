@@ -12,8 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
 </head>
 
 <body>
@@ -29,35 +29,35 @@
                     <h2>Pons<span>Labor.</span></h2>
                 </span>
             </span>
-            <nav class="nav">
-                <a href="Menu">Inicio</a>
-                <a href="Aspirante" class="active">Aspirante</a>
-                <a href="Estudios">Estudios</a>
-                <a href="Experiencia">Experiencia</a>
-                <a href="HojaVida">Hoja de vida</a>
+            <nav class="nav nav_menu">
+                <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
+                <a href="#" class="active"><i class="fas fa-user-tie"></i>Aspirante</a>
+                <a href="Estudios"><i class="fas fa-graduation-cap"></i>Estudios</a>
+                <a href="Experiencia"><i class="fas fa-briefcase"></i>Experiencia</a>
+                <a href="HojaVida"><i class="fas fa-folder"></i>Hoja de vida</a>
                 <button class="switch" id="switch">
-                    <i class="fas fa-sun sol"></i>
-                    <i class="fas fa-moon luna"></i>
+                    <i class="fas fa-sun sol" title="Modo claro"></i>
+                    <i class="fas fa-moon luna" title="Modo oscuro"></i>
                     <span class="circulo"></span>
                 </button>
                 <div class="imagen-persona">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="" />
+                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
                 </div>
             </nav>
         </div>
         <div class="info-persona">
-            <h3>Edier Heraldo<br /><span>Desarrollador de software web.</span></h3>
+            <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
             <ul>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Perfil</a></li>
                 <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
+                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
+                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="Login">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?=URL ?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
         <div class="contenedor-responsive">
             <ul class="contenedor-responsive-lista">
-                <li><a href="Menu">Inicio</a></li>
                 <li><a href="Contratante">Contratante</a></li>
                 <li><a href="Vacante">Vacante</a></li>
                 <li><a href="Aspirante">Aspirante</a></li>
@@ -114,7 +114,7 @@
 
                         <div class="contenedor-grupo w50" id="grupo-nombre">
                             <label for="txtNombre">Nombre</label>
-                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Jhon" autofocus />
+                            <input type="text" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario']?>" disabled />
                             <i class="estado-input fa fa-times-circle"></i>
                             <p class="leyenda-input">
                                 El nombre no debe contener números y debe tener mínimo 3
@@ -277,7 +277,7 @@
                         <div class="contenedor-grupo w100" id="grupo-habilidad">
                             <div class="agrupar-estrellas">
                                 <label for="txtHabilidad">Habilidad</label>
-                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" autofocus />
+                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                 <p class="leyenda-input">
                                     El nombre de la habilidad no debe contener números.
@@ -342,14 +342,6 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script>
-        const imgPersona = document.querySelector('.imagen-persona');
-        const opcionesInfo = document.querySelector('.info-persona');
-
-        imgPersona.addEventListener('click', () => {
-            opcionesInfo.classList.toggle('active');
-        })
-    </script>
     <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
     <script src="<?= URL; ?>Assets/js/informacionAspirante.js"></script>
 </body>
