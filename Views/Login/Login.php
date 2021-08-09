@@ -13,12 +13,30 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
+    
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/Navbar.php');
-    ?>
+   
+
+      <header class="menu_header">
+        <div class="contenedor barra">
+            <a href="#" class="content-logo">
+                <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo" />
+                <h2>Pons<span>Labor.</span></h2>
+            </a>
+            <nav class="navbar_menu">
+                <a href="index.php"><i class="fas fa-home" style="margin-right: 5px;"></i>Inicio</a>
+                <a href="index#section-nosotros"><i class="fas fa-business-time" style="margin-right: 5px;"></i>Nosotros</a>
+                <button class="switch dark-mode" id="switch">
+                    <i class="fas fa-sun sol"></i>
+                    <i class="fas fa-moon luna"></i>
+                    <span class="circulo"></span>
+                </button>
+               <a href="Registro" class="btn-init registro">Registrarse</a>
+            </nav>
+        </div>
+    </header>
 
     <section class="from-logi">
         <form method="POST" action="" id="form-login">

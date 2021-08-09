@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="<?= URL; ?>Assets/css/aspirante.css">
 </head>
 
-<body id="menu">
+<body class="body-vacs" id="menu">
     <header id="header_menu">
         <div class="contenedor barra">
             <span href="#" class="content-logo content_logo_menu">
@@ -51,7 +51,7 @@
                 <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
                 <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
                 <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="<?=URL ?>logout">Cerrar sesión</a>
+                    <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
                 </li>
             </ul>
         </div>
@@ -75,86 +75,131 @@
 
     <div class="cover-ctn-search"></div>
 
-    <div class="contenedor card">
-        <div class="contenedor-card">
-            <div class="contenedor-card__header contenedor-card__padding">
-                <div class="header-img">
-                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+    <div class="content-vacs">
+        <!--<div class="vacs-form">-->
+        <form id="form-vacs" action="">
+            <div class="card">
+                <div class="circle">
+                    <h2>Impresiones Yoda S.A.S.</h2>
                 </div>
-                <div class="header-name">
-                    <h3>Joeylene Rivera</h3>
-                    <span>Web Developer</span>
+                <div class="card-content">
+                    <p>
+                        <br>
+                        BOGOTA D.C. - BOGOTA
+                        <br>
+                        Vacantes: 8
+                        <br>
+                        Fecha de creación: 03/05/2022
+                        <br>
+                        Fecha de cierre: 31/07/2022
+                        <br>
+                    </p>
+                    <a type="">Ver | Aplicar</a>
                 </div>
             </div>
-            <div class="contenedor-card__body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
-            </div>
-            <div class="contenedor-card__footer">
-                <a href="#">Ver más</a>
-            </div>
-        </div>
 
-        <div class="contenedor-card">
-            <pre>
-                <?php
-                print_r($_SESSION['user-data']);
-                ?>
-            </pre>
-        </div>
+            <div class="card">
+                <div class="circle">
+                    <h2>JSONGood S.A.</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        <br>
+                        BOGOTA D.C. - BOGOTA
+                        <br>
+                        Vacantes: 6
+                        <br>
+                        Fecha de creación: 03/05/2022
+                        <br>
+                        Fecha de cierre: 31/07/2022
+                        <br>
+                    </p>
+                    <a type="">Ver | Aplicar</a>
+                </div>
+            </div>
 
-        <div class="contenedor-card">
-            <div class="contenedor-card__header contenedor-card__padding">
-                <div class="header-img">
-                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+            <div class="card">
+                <div class="circle">
+                    <h2>MK S.A.</h2>
                 </div>
-                <div class="header-name">
-                    <h3>Joeylene Rivera</h3>
-                    <span>Web Developer</span>
+                <div class="card-content">
+                    <p>
+                        <br>
+                        BOGOTA D.C. - BOGOTA
+                        <br>
+                        Vacantes: 7
+                        <br>
+                        Fecha de creación: 03/05/2022
+                        <br>
+                        Fecha de cierre: 31/07/2022
+                        <br>
+                    </p>
+                    <a type="">Ver | Aplicar</a>
                 </div>
             </div>
-            <div class="contenedor-card__body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
-            </div>
-            <div class="contenedor-card__footer">
-                <a href="#">Ver más</a>
-            </div>
-        </div>
 
-        <div class="contenedor-card">
-            <div class="contenedor-card__header contenedor-card__padding">
-                <div class="header-img">
-                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+            <div class="card">
+                <div class="circle">
+                    <h2>ImproTech S.A.</h2>
                 </div>
-                <div class="header-name">
-                    <h3>Joeylene Rivera</h3>
-                    <span>Web Developer</span>
+                <div class="card-content">
+                    <p>
+                        <br>
+                        BOGOTA D.C. - BOGOTA
+                        <br>
+                        Vacantes: 4
+                        <br>
+                        Fecha de creación: 06/07/2021
+                        <br>
+                        Fecha de cierre: 31/07/2021
+                        <br>
+                    </p>
+                    <a type="button">Ver | Aplicar</a>
                 </div>
             </div>
-            <div class="contenedor-card__body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
-            </div>
-            <div class="contenedor-card__footer">
-                <a href="#">Ver más</a>
-            </div>
-        </div>
 
-        <div class="contenedor-card">
-            <div class="contenedor-card__header contenedor-card__padding">
-                <div class="header-img">
-                    <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
+            <div class="card">
+                <div class="circle">
+                    <h2>Farmacol S.A.S.</h2>
                 </div>
-                <div class="header-name">
-                    <h3>Joeylene Rivera</h3>
-                    <span>Web Developer</span>
+                <div class="card-content">
+                    <p>
+                        <br>
+                        BOGOTA D.C. - BOGOTA
+                        <br>
+                        Vacantes: 4
+                        <br>
+                        Fecha de creación: 06/07/2021
+                        <br>
+                        Fecha de cierre: 31/07/2021
+                        <br>
+                    </p>
+                    <a type="">Ver | Aplicar</a>
                 </div>
             </div>
-            <div class="contenedor-card__body">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
+
+            <div class="card">
+                <div class="circle">
+                    <h2>Qompaq S.A.S.</h2>
+                </div>
+                <div class="card-content">
+                    <p>
+                        <br>
+                        BOGOTA D.C. - BOGOTA
+                        <br>
+                        Vacantes: 16
+                        <br>
+                        Fecha de creación: 08/07/2021
+                        <br>
+                        Fecha de cierre: 01/12/2021
+                        <br>
+                    </p>
+                    <a type="">Ver | Aplicar</a>
+                </div>
             </div>
-            <div class="contenedor-card__footer">
-                <a href="#">Ver más</a>
-            </div>
-        </div>  
+
+        </form>
+        <!--</div>-->
     </div>
 
     <?php
