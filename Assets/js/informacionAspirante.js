@@ -11,6 +11,7 @@ let i = 1;
 
 const formInfoPersona = document.querySelector('#info-persona');
 const formPuestoInteres = document.getElementById('perfil-laboral');
+const formIdioma = document.querySelector('#idiomas');
 /*
 ===================== SISTEMA DE ESTRELLAS =============================
 */
@@ -42,14 +43,10 @@ estrellas.forEach(elemento => {
 botonAgregarPuntuacion.forEach(puntuacion => {
     puntuacion.addEventListener('click', e => {
         e.preventDefault();
-        if (campos.idioma === false) {
-            sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-        } else {
-            if (e.target.classList.contains('boton_add_idioma')) {
-                setPuntuacion(idiomas, 'Idioma', 'idioma', arrListaIdiomas);
-            } else if (e.target.classList.contains('boton_add_habilidad')) {
-                setPuntuacion(habilidades, 'Habilidades', 'habi', arrListaHabilidades);
-            }
+        if (e.target.classList.contains('boton_add_idioma')) {
+            setPuntuacion(idiomas, 'Idioma', 'idioma', arrListaIdiomas);
+        } else if (e.target.classList.contains('boton_add_habilidad')) {
+            setPuntuacion(habilidades, 'Habilidades', 'habi', arrListaHabilidades);
         }
     })
 })
@@ -60,6 +57,12 @@ const setPuntuacion = (form, name, campo, array) => {
     const puntuacion = {
         nombre: data.get(`txt${name}`),
         puntuacion: data.get(`txtNivel${name}`)
+    }
+
+    if (name === 'Idioma') {
+        insertNewIdioma(data)
+    } else if (name === 'Habilidades') {
+        insertHabilidad(data);
     }
 
     array.push(puntuacion);
@@ -137,10 +140,6 @@ const eliminarPuntuacion = (e, array, campo) => {
             }
         })
     }
-}
-
-const formData = (form) => {
-    return new FormData(form);
 }
 
 /*
@@ -267,5 +266,87 @@ const refreshPuestoInteres = () => {
     console.log('Refresh puesto interes');
 }
 
+/*
+===================== LÓGICA CRUD PARA INSERTAR UN NUEVO IDIOMA =============================
+*/
+
+const insertIdiomaAspirante = async (formData) => {
+    const url = 'http://localhost/PonsLabor/Aspirante/setIdiomaAspirante';
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+
+        const { status, msg } = await req.json();
+        if (status) {
+            sweetAlert("Idioma aspirante", msg, "success");
+            arrListaIdiomas = [];
+            pintarPuntuacion(listaIdiomas, arrListaIdiomas);
+            mostrarInputOtroIdioma();
+        } else {
+            sweetAlert("Error", msg, "warning");
+        }
+    } catch (error) {
+        sweetAlert("Error", error, "error");
+    }
+}
+
+const insertNewIdioma = async (formData) => {
+    // formData.forEach(idioma => console.log(idioma))
+
+    const url = 'http://localhost/PonsLabor/Aspirante/setIdioma';
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+
+        const { status, msg } = await req.json();
+        if (status) {
+            sweetAlert("Idioma", msg, "success");
+            insertIdiomaAspirante(formData)
+            arrListaIdiomas = [];
+            pintarPuntuacion(listaIdiomas, arrListaIdiomas);
+            mostrarInputOtroIdioma();
+        } else {
+            sweetAlert("Error", msg, "warning");
+        }
+    } catch (error) {
+        sweetAlert("Error", error, "error");
+    }
+}
+
 document.querySelector('#boton_add_puesto').addEventListener('click', (e) => insertPuestoInteres(e));
 document.querySelector('#boton_add_puesto').addEventListener('click', (e) => refreshPuestoInteres);
+
+/*
+===================== LÓGICA CRUD PARA INSERTAR UNA HABILIDAD =============================
+*/
+
+const insertHabilidad = async (formData) => {
+    // formData.forEach(idioma => console.log(idioma))
+
+    const url = 'http://localhost/PonsLabor/Aspirante/setHabilidad';
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+
+        const { status, msg } = await req.json();
+        if (status) {
+            sweetAlert("Habilidad", msg, "success");
+            arrListaHabilidades = [];
+            pintarPuntuacion(listaHabilidades, arrListaHabilidades);
+            mostrarInputOtroIdioma();
+        } else {
+            sweetAlert("Error", msg, "warning");
+        }
+    } catch (error) {
+        sweetAlert("Error", error, "error");
+    }
+}
