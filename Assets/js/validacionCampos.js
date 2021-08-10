@@ -174,6 +174,7 @@ const mostrarInputOtroIdioma = () => {
 
         document.getElementById('grupo-idioma-idioma').style.display = 'none';
         document.getElementById('txtListIdiomas').style.display = 'none';
+        document.getElementById('boton_add_idioma').style.display = 'block';
     } else {
         document.getElementById('grupo-idioma-otro_idioma').style.display = 'none';
         document.getElementById('txtIdioma').style.display = 'none';
@@ -181,6 +182,7 @@ const mostrarInputOtroIdioma = () => {
 
         document.getElementById('grupo-idioma-idioma').style.display = 'block';
         document.getElementById('txtListIdiomas').style.display = 'block';
+        document.getElementById('boton_add_idioma').style.display = 'none';
     }
 }
 
@@ -240,6 +242,7 @@ sigPagina.forEach(boton => {
                 if (campos.idioma === false) {
                     sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
                 } else {
+                    insertIdiomaSelect();
                     siguientePagina('-75%');
                 }
             } else if (document.getElementById('txtIdioma').style.display === 'none' || document.getElementById('txtIdioma').style.display === '') {

@@ -176,22 +176,17 @@
                 <!-- PAGINA 3 -->
                 <div class="pagina">
                     <form action="#" id="idiomas" class="contenedor-form">
+                        <input type="hidden" name="idIdioma" id="idIdioma" value="0">
                         <h2 class="title-form">Idiomas</h2>
 
                         <div class="contenedor-grupo w50" id="grupo-idioma">
                             <div class="agrupar-estrellas" id="agrupar-estrellas-select">
                                 <label for="txtListIdiomas" id="grupo-idioma-idioma">Idiomas</label>
                                 <select name="txtListIdiomas" id="txtListIdiomas">
-                                    <option value="Inglés">Inglés</option>
-                                    <option value="Chino mandarín">Chino mandarín</option>
-                                    <option value="Hindi">Hindi</option>
-                                    <option value="Español">Español</option>
-                                    <option value="Francés">Francés</option>
-                                    <option value="Árabe">Árabe</option>
-                                    <option value="Bengalí">Bengalí</option>
-                                    <option value="Ruso">Ruso</option>
-                                    <option value="Portugués">Portugués</option>
-                                    <option value="Indonesio">Indonesio</option>
+                                    <option value="" disabled selected>Seleccione un idioma</option>
+                                    <?php foreach ($data['list_idiomas'] as $idioma) : ?>
+                                        <option value="<?= $idioma['idIdioma'] ?>"><?= $idioma['nombreIdioma'] ?></option>
+                                    <?php endforeach ?>
                                 </select>
                                 <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
                                 <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
@@ -249,6 +244,7 @@
                 <!-- PAGINA 4 -->
                 <div class="pagina">
                     <form action="#" id="habilidades" class="contenedor-form">
+                        <input type="hidden" name="idHabilidad" id="idHabilidad" value="0">
                         <h2 class="title-form">Habilidades</h2>
 
                         <div class="contenedor-grupo w100" id="grupo-habilidad">

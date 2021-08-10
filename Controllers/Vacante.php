@@ -102,4 +102,15 @@ class Vacante extends Controllers
         die();
     }
 
+    // método para traer todas las vacantes
+    public function getAllVacantes()
+    {
+        $request = $this->model->selectAllVacantes();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
 }

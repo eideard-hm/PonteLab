@@ -606,6 +606,7 @@ body {
     font-weight: 200;
 }
 
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto{
     display: none;
 }
