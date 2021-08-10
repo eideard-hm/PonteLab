@@ -31,84 +31,65 @@ class Vacante extends Controllers
                 || empty($_POST['fechapublicacion']) || empty($_POST['fechacierre']) || empty($_POST['direccion'])
                 || empty($_POST['estado'])
             ) {
-                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, completelos correctamente e intente nuevamente!!'];
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, Legamos al controller!!'];
             }
             /*
             1. Se crean variables para almacenar los datos enviados en la petición
             2. Se va hacer el proceso de insertar, y lo comprobamos si el id del usuario viene vacio 
             */
-            $intId = intval($_POST['idUsuario']);
-            $strNombre = "";
-            $strEmail = strtolower(limpiarCadena($_POST['email'])); //strtolower(convertir todos las letras en minusculas)
-            $strPass = limpiarCadena($_POST['pass']);
-            $intTipoDoc = intval($_POST['documento']);
-            $strNumDoc = limpiarCadena($_POST['numDoc']);
-            $strNumTel = limpiarCadena($_POST['numCel']);
-            $strNumTelFijo = limpiarCadena($_POST['numFijo']);
+            $intId = intval($_POST['idVacancy']);
+            $strNombre = limpiarCadena(strtolower(ucfirst ($_POST['nombre'])));//strtolower(convertir todos las letras en minusculas) 
+            $strCantidad = intval($_POST['cantidad']); 
+            $strEspecificaciones = limpiarCadena($_POST['especificaciones']);
+            $intPerfil = limpiarCadena($_POST['perfil']);
+            $strTipoContrato = limpiarCadena($_POST['tipoContrato']);
+            $strSueldo = doubleval($_POST['sueldo']);
+            $strFechaPublicacion = limpiarCadena($_POST['fechapublicacion']);
+            $intFechacierre = limpiarCadena($_POST['fechacierre']);
+            $intDireccion = limpiarCadena($_POST['direccion']);
             $intEstado = intval($_POST['estado']);
-            $intRol = intval($_POST['rol']);
-            $intBarrio = intval($_POST['barrio']);
-            $strDireccion = limpiarCadena($_POST['direccion']);
+            $intIdContractFK = $_SESSION['idContractorFK'];
 
-            if ($intRol === 1) {
-                $strNombre = ucwords(limpiarCadena($_POST['nombre']));
-            } else {
-                $strNombre = ucwords(limpiarCadena($_POST['nombre'])) . ' ' . ucwords(limpiarCadena($_POST['apellido'])); //ucwords (convierte las inciales de cada palabra en mayusculas)
-            }
-            /*================== INSERTAR USUARIO =======================*/
+            /*================== INSERTAR VACANTE =======================*/
 
             if ($intId === 0 || empty($intId)) {
                 $option = 1;
-                $request = $this->model->insertUser(
+                $request = $this->model->insertVacancy(
                     $strNombre,
-                    $strEmail,
-                    $strPass,
-                    $intTipoDoc,
-                    $strNumDoc,
-                    $strNumTel,
-                    $strNumTelFijo,
+                    $strCantidad,
+                    $strEspecificaciones,
+                    $intPerfil,
+                    $strTipoContrato,
+                    $strSueldo,
+                    $strFechaPublicacion,
+                    $intFechacierre,
+                    $intDireccion,
                     $intEstado,
-                    $intRol,
-                    $intBarrio,
-                    $strDireccion
+                    $intIdContractFK
                 );
             } else {
-                /*================== EDITAR USUARIO =======================*/
+                /*================== EDITAR VACANTE =======================*/
                 $option = 2;
                 $request = $this->model->updateUser(
-                    $intId,
-                    $strEmail,
-                    $strPass,
-                    $intTipoDoc,
-                    $strNumDoc,
-                    $strNumTel,
-                    $strNumTelFijo,
+                    $strNombre,
+                    $strCantidad,
+                    $strEspecificaciones,
+                    $intPerfil,
+                    $strTipoContrato,
+                    $strSueldo,
+                    $strFechaPublicacion,
+                    $intFechacierre,
+                    $intDireccion,
                     $intEstado,
-                    $intRol,
-                    $intBarrio,
-                    $strDireccion
+                    $idContratante
                 );
             }
 
             if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {               
-                    
-                    //cargar las variables de sesión
-                    $arrData = $this->model->selectOneUser(intval($request));
-                    if (!empty($arrData)) {
-                        $_SESSION['id'] = $arrData['idUsuario'];
-                        $_SESSION['login'] = true;
-                        $_SESSION['user-data'] = $arrData;
-
-                        //petición para cargar la imagen del usuario
-                        $imgProfile = $this->model->selectImgProfile($_SESSION['id']);
-                        $_SESSION['imgProfile'] = URL . "Assets/img/uploads/{$imgProfile['imagenUsuario']}";
-
-                        $arrResponse = ['statusUser' => true, 'msg' => 'ok', 'rol' => $_SESSION['user-data']['nombreRol']];
-                    } else {
-                        $arrResponse = array('statusUser' => false, 'msg' => 'El usuario no se encuentra registrado. Puedes crear una cuenta es gratis!!', 'data' => $arrData);
-                    }
-                } elseif ($option === 2) {
+                if ($option === 1) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'El registro de la vacante ha sido exitoso :)', 'value' => $request];
+                }
+                elseif ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)', 'value' => $request];
                 }
             } elseif ($request === 'exits') {

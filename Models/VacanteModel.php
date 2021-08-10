@@ -8,7 +8,7 @@ class VacanteModel extends GestionCRUD{
     private string $descripcionVacante;
     private string $perfilAspirante;
     private string $tipoContratoVacante;
-    private string $sueldoVacante;
+    private float $sueldoVacante;
     private string $fechaHoraPublicacion;
     private string $fechaHoraCierre;
     private string $direccionVacante;
@@ -45,7 +45,7 @@ class VacanteModel extends GestionCRUD{
         string $descripcionVacante,
         string $perfilAspirante,
         string $tipoContratoVacante,
-        string $sueldoVacante,
+        float $sueldoVacante,
         string $fechaHoraPublicacion,
         string $fechaHoraCierre,
         string $direccionVacante,
@@ -63,6 +63,8 @@ class VacanteModel extends GestionCRUD{
         $this->direccionVacante = $direccionVacante;
         $this->estadoVacante = $estadoVacante;
         $this->idContratanteFK = $idContratante;
+
+        $return = 0;
         
         //consutar si ya existe esta vacante
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante,
@@ -75,23 +77,23 @@ class VacanteModel extends GestionCRUD{
         //validacion de la vacante
         //sí esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
         if (empty($request) || $request === '' || $request === null) {
-            $sql = "INSERT INTO VACANTE(idVacante, nombreVacante, cantidadVacante, descripcionVacante,
-            perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, direccionVacante,
-            estadoVacante, idContratanteFK)
+            $sql = "INSERT INTO VACANTE(nombreVacante, cantidadVacante, descripcionVacante, 
+            perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, 
+            fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
             VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
                 $this->nombreVacante,
                 $this->cantidadVacante ,
-                $this->descripcionVacane,
+                $this->descripcionVacante,
                 $this->perfilAspirante,
                 $this->tipoContratoVacante,
                 $this->sueldoVacante,
-                $this->fechaHoraPublicacionn,
+                $this->fechaHoraPublicacion,
                 $this->fechaHoraCierre,
                 $this->direccionVacante,
                 $this->estadoVacante,
-                $this->idContratanteFK,
+                $this->idContratanteFK
             );
             $return = $this->insert($sql, $arrData);
         } else {
