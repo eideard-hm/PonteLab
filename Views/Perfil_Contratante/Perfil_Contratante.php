@@ -103,27 +103,27 @@
                                             <label for="last_name">
                                                 <h4>Identificación</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
+                                            <select name="tipoDoc"id="tipoDoc" class="form-control" disabled value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>">
+                                            <option value="1">CC</option> 
+                                            <option value="2">TI</option> 
+                                            <option value="3">RC</option>
+                                            <option value="10">CE</option> 
+                                            <option value="11">PE</option> 
+                                            </select>
+                                            <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="phone">
-                                                <h4>Número de Contacto Fijó</h4>
+                                                <h4>Número de Identificación</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="phoneF" id="phoneF" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                            <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="mobile">
-                                                <h4>Número de Contacto Móvil</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="mobileP" id="mobileP" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="email">
@@ -159,7 +159,24 @@
 
                                 <hr>
                                 <form class="form" action="##" method="post" id="directionForm">
+                                <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="phone">
+                                                <h4>Número de Contacto Fijó</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="phoneF" id="phoneF" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="mobile">
+                                                <h4>Número de Contacto Móvil</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="mobileP" id="mobileP" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
+                                        </div>
+                                    </div>
+                                <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="city">
                                                 <h4>Ciudad</h4>
@@ -230,10 +247,14 @@
             <!--/row-->
         </div>
         <!--FUNCIONALIDAD FORMULARIOS-->
+        
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <?php
         require_once('./Views/Components/ScriptsJs.php');
+        ?>
+        <?php
+        require_once("Config/Config.php")
         ?>
         <script src="<?= URL; ?>Assets/js/editarPerfil.js"></script>
 </body>

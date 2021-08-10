@@ -34,21 +34,9 @@
       </nav>
     </div>
     <div class="info-persona">
-<<<<<<< HEAD
-      <h3><?php echo $_SESSION['user-data']['nombreUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
-      <ul>
-        <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante"> Perfil</a></li>
-        <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
-        <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
-        <li>
-          <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
-        </li>
-      </ul>
-=======
       <?php
       require_once('./Views/Components/NabvarInfoContratante.php');
       ?>
->>>>>>> afc9b008fb8942bd358e084714aee365b720cf17
     </div>
     <div class="contenedor-responsive">
       <ul class="contenedor-responsive-lista">
