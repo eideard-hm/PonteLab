@@ -115,7 +115,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script src="<?= URL; ?>Assets/js/registro.js"></script>
+    <!--<script src="<?= URL; ?>Assets/js/registro.js"></script>-->
     <!-- <script>
         mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
     </script> -->

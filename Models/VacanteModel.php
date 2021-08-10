@@ -1,6 +1,7 @@
 <?php
 
-class VacanteModel extends GestionCRUD{
+class VacanteModel extends GestionCRUD
+{
     //atributos
     private int $idVacante;
     private string $nombreVacante;
@@ -16,11 +17,22 @@ class VacanteModel extends GestionCRUD{
     private int $idContratanteFK;
 
     //constructor
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    //metodos
+    //metodo para traer todas las vacantes
+    public function selectAllVacantes()
+    {
+        $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+                tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, 
+                estadoVacante, idContratanteFK, nombreUsuario
+                FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+                ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+                ON u.idUsuario = c.idUsuarioFK";
+        return $this->selectAll($sql);
+    }
 
     //metodo de consulta una sola vacante por id 
     public function selectOneVacancy(int $id)
@@ -51,7 +63,7 @@ class VacanteModel extends GestionCRUD{
         string $direccionVacante,
         int $estadoVacante,
         int $idContratante,
-    ){
+    ) {
         $this->nombreVacante = $nombreVacante;
         $this->cantidadVacante = $cantidadVacante;
         $this->descripcionVacante = $descripcionVacante;
@@ -63,7 +75,7 @@ class VacanteModel extends GestionCRUD{
         $this->direccionVacante = $direccionVacante;
         $this->estadoVacante = $estadoVacante;
         $this->idContratanteFK = $idContratante;
-        
+
         //consutar si ya existe esta vacante
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante,
         perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, direccionVacante,
@@ -82,7 +94,7 @@ class VacanteModel extends GestionCRUD{
             //almacena los valores en un arreglo
             $arrData = array(
                 $this->nombreVacante,
-                $this->cantidadVacante ,
+                $this->cantidadVacante,
                 $this->descripcionVacane,
                 $this->perfilAspirante,
                 $this->tipoContratoVacante,
@@ -99,6 +111,4 @@ class VacanteModel extends GestionCRUD{
         }
         return $return;
     }
-
-
 }

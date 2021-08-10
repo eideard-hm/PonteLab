@@ -15,6 +15,24 @@ class AspiranteModel extends GestionCRUD
     //atributos de la clase - Tabla aspirantePuestoInteres
     private int $idAspirantePuestoInteres;
 
+    //atributos de la clase - Tabla Idioma
+    private int $idIdioma;
+    private string $nombreIdioma;
+
+    //atributos de la clase - Tabla Idioma_Aspirante
+    private int $idIdiomaAspirante;
+    private string $nivelIdioma;
+
+    //atributos de la clase - Tabla Habilidad
+    private int $idHabilidad;
+    private string $nameHabilidad;
+    private string $nivelHabilidad;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     // Método para traer un unico aspirante por su id
     public function selectOneAspirante(int $id)
     {
@@ -26,6 +44,17 @@ class AspiranteModel extends GestionCRUD
                 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK
                 WHERE idAspirante = {$this->Id}";
         return $this->select($sql);
+    }
+
+    //Método para obtener todos los aspirantes registrados
+    public function selectAllAspirantes()
+    {
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, nombreEstado,
+                nombreUsuario, imagenUsuario
+                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
+                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
+                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK";
+        return $this->selectAll($sql);
     }
 
     //Método para registrar aspirantes
@@ -64,6 +93,14 @@ class AspiranteModel extends GestionCRUD
     {
         $sql = "SELECT idPuestoInteres, nombrePuesto
                 FROM PUESTOINTERES";
+        return $this->selectAll($sql);
+    }
+
+    //método para traer todos los idiomas
+    public function getAllIdiomas()
+    {
+        $sql = "SELECT idIdioma, nombreIdioma
+                FROM IDIOMA";
         return $this->selectAll($sql);
     }
 
@@ -106,6 +143,7 @@ class AspiranteModel extends GestionCRUD
         }
     }
 
+    //Método para insertar un puesto de Interes Aspirante
     public function puestoInteresAspirante(
         int $idAspirante,
         int $idPuesto
@@ -120,5 +158,88 @@ class AspiranteModel extends GestionCRUD
             $this->idPuesto
         ];
         return $this->insert($sql, $arrData);
+    }
+
+    //Método para insertar un nuevo idioma
+    public function insertNewIdioma(
+        string $nombre
+    ) {
+        $this->nombreIdioma = $nombre;
+        $sql = "SELECT idIdioma, nombreIdioma
+                FROM IDIOMA 
+                WHERE nombreIdioma LIKE '%{$this->nombreIdioma}%'";
+        $request  = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "INSERT INTO IDIOMA(nombreIdioma)
+                    VALUES(?)";
+            $arrData = [
+                $this->nombreIdioma
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
+    }
+
+    public function insertIdiomaAspirante(
+        int $idIdiomaFK,
+        int $idAspiranteFK,
+        string $nivelIdioma
+    ) {
+        $this->idIdioma = $idIdiomaFK;
+        $this->Id = $idAspiranteFK;
+        $this->nivelIdioma = $nivelIdioma;
+
+        $sql = "INSERT INTO IDIOMA_ASPIRANTE(idAspiranteFK, idIdiomaFK, nivelIdioma)
+                VALUES(?,?,?)";
+        $arrData = [
+            $this->idIdioma,
+            $this->Id,
+            $this->nivelIdioma
+        ];
+        return $this->insert($sql, $arrData);
+    }
+
+    public function updateIdioma(
+        int $idIdioma,
+        string $nameIdioma
+    ) {
+        $this->idIdioma = $idIdioma;
+        $this->nombreIdioma = $nameIdioma;
+
+        $sql = "UPDATE IDIOMA SET 
+                nombreIdioma = ? 
+                WHERE idIdioma = {$this->idIdioma}";
+        $arrData = [$this->nombreIdioma];
+        return $this->edit($sql, $arrData);
+    }
+
+    public function insertHabilidad(
+        string $nombreHab,
+        string $nivelHab,
+        int $idAspiranteFK
+    ) {
+        $this->nameHabilidad = $nombreHab;
+        $this->nivelHabilidad = $nivelHab;
+        $this->Id = $idAspiranteFK;
+
+        $sql = "SELECT idHabilidad, nombreHabilidad, nivelHabilidad
+                FROM HABILIDAD
+                WHERE nombreHabilidad LIKE '%{$this->nameHabilidad}%'";
+        $request = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "INSERT INTO HABILIDAD (nombreHabilidad, nivelHabilidad, idAspiranteFK)
+                    VALUES(?,?,?)";
+            $arrData = [
+                $this->nameHabilidad,
+                $this->nivelHabilidad,
+                $this->Id
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
     }
 }
