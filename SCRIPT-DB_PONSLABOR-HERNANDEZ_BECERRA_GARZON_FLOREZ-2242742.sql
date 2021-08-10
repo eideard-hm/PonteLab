@@ -411,6 +411,9 @@ values (NULL, 'Ingeniero Industrial Direccion Adminiistrativa', 5, 'Importante e
 Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
  values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2);
  Select * from VACANTE;
+ Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
+ values (NULL,'Ingeniero de Sistemas', 10, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2);
+ Select * from VACANTE;
 
 Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Ingeniero Industrial');  
 Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Axa Colpatria'); 
@@ -480,6 +483,10 @@ select * from APLICACION_VACANTE;
 
 /*========================= VISTAS ==============================*/
 
+/*
+La vista sirve para conocer el nombre de los  tipos de documentos de los usuarios registrados, el nombre del rol con el cual estan registrados,  y el barrio
+*/
+
 CREATE VIEW selectUser AS 
 SELECT idUsuario, nombreUsuario, correoUsuario, passUsuario, nombreTipoDocumento, numDocUsuario, 
 numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio, direccionUsuario, 
@@ -491,11 +498,15 @@ ON b.idBarrio = u.idBarrioFK;
 
 CREATE VIEW selectAspirante AS
 SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, nombreEstado,
-nombreUsuario
+nombreUsuario, imagenUsuario
 FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
 ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
 
+/*
+Vista que sirve para conocer el nombre y los datos del puesto de interés que tiene asociado cada aspirante, 
+además de conocer el nombre del mismo a través de una consulta a la tabla usuario.
+*/
 DROP VIEW IF EXISTS aspirantePuestoInteresView;
 CREATE VIEW aspirantePuestoInteresView AS
 SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK, nombrePuesto, nombreUsuario
@@ -503,6 +514,15 @@ FROM PUESTOINTERES AS pi INNER JOIN ASPIRANTE_PUESTOINTERES api
 ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN ASPIRANTE AS a
 ON a.idAspirante = api.idAspiranteFK INNER JOIN USUARIO  AS u
 ON u.idusuario = a.idUsuarioFK;
+
+DROP VIEW IF EXISTS vacanteView;
+CREATE VIEW  vacanteView AS
+SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, 
+sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK,
+nombreUsuario
+FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+ON u.idUsuario = c.idUsuarioFK;
 /*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
 
 DELIMITER $$

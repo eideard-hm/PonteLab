@@ -91,8 +91,8 @@ class Vacante extends Controllers
             }
 
             if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {               
-                    
+                if ($option === 1) {
+
                     //cargar las variables de sesión
                     $arrData = $this->model->selectOneUser(intval($request));
                     if (!empty($arrData)) {
@@ -121,4 +121,15 @@ class Vacante extends Controllers
         die();
     }
 
+    // método para traer todas las vacantes
+    public function getAllVacantes()
+    {
+        $request = $this->model->selectAllVacantes();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
 }
