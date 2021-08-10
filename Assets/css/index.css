@@ -1,3 +1,4 @@
+
 :root {
     --fuenteQuicksand: 'Quicksand', sans-serif;
     --fuenteRoboto: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -7,7 +8,7 @@
 *:after,
 *:before {
     box-sizing: border-box;
-    margin: 0;
+    margin: 0px;
     padding: 0;
 }
 
@@ -16,7 +17,6 @@
 */
 
 body {
-    width: 100%;
     min-height: 100vh;
     background: var(--blanco);
     font-family: var(--fuenteRoboto);
