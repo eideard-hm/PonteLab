@@ -24,7 +24,7 @@
     ?>
 
     <form id="msform" method="POST" enctype="multipart/form-data">
-        <input type="hidden" id="idUsuario" name="idUsuario" value="">
+        <input type="hidden" id="idUsuario" name="idUsuario" value="0">
         <br><br><br><br><br>
         <ul id="progressbar">
             <li class="active">Datos de cuenta</li>
@@ -115,10 +115,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <!--<script src="<?= URL; ?>Assets/js/registro.js"></script>-->
-    <!-- <script>
-        mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
-    </script> -->
+    <script src="<?= URL; ?>Assets/js/registro.js"></script>
 </body>
 
 </html>
