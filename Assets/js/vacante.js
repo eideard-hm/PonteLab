@@ -8,8 +8,8 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
     bntSubmit.addEventListener('click', e => {
         e.preventDefault();
 
-        /*validateFormVacancy();*/
-        insertVacancy();
+        validateFormVacancy();
+        // insertVacancy();
     });
 
     const insertVacancy = async () => {
@@ -39,6 +39,7 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
     }
 
     const validateFormVacancy = () => {
+        tinyMCE.triggerSave();
         const id = document.querySelector('#idVacancy').value;
         const nombre = document.querySelector('#nombre').value;
         const cantidad = document.querySelector('#cantidad').value;
@@ -61,6 +62,6 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
             return false;
         }
         else {
-            /*insertVacancy();*/
+            insertVacancy();
         }
     }
