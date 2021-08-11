@@ -8,7 +8,7 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
     bntSubmit.addEventListener('click', e => {
         e.preventDefault();
 
-        validateFormVacancy();
+        /*validateFormVacancy();*/
         insertVacancy();
     });
 
