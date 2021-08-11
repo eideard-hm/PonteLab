@@ -24,11 +24,11 @@ class Perfil_ContratanteModel extends gestionCRUD
 
     //======================================EDITAR DATOS=====================================
     
-public function Update (
-    int $idUsuario, 
+public function updateUser (
+    int $idUsuario,
     string $nombreUsuario,
-    string $numDoc,
     int $idTipoDocumentoFK, 
+    string $numDocUsuario,
     string $numTelUsuario, 
     string $numTelFijo, 
     int $idBarrioFK,
@@ -36,7 +36,7 @@ public function Update (
  
     $this->idUsuario = $idUsuario;
     $this->nombreUsuario = $nombreUsuario;
-    $this->numDocUsuario = $numDoc;
+    $this->numDocUsuario = $numDocUsuario;
     $this->idTipoDocumentoFK =$idTipoDocumentoFK; 
     $this->numTelUsuario = $numTelUsuario;
     $this->numTelFijo =$numTelFijo; 
@@ -44,18 +44,42 @@ public function Update (
     $this->direccionUsuario =$direccionUsuario; 
 
     $sql="UPDATE USUARIO SET 
-    idUsuario=?, nombreUsuario=?, idTipoDocumentoFK=?, numTelUsuario=?, numTelFijo=?, 
+    nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
+    numTelUsuario=?, numTelFijo=?, 
     idBarrioFK=?, direccionUsuario=? 
     WHERE idUsuario  = {$this->idUsuario}";
     $arrData = array(
         $this->nombreUsuario,  
         $this->numDocUsuario, 
-        $this->idTipoDocumentoFK, 
+        $this->idTipoDocumentoFK,
         $this->numTelUsuario, 
         $this->numTelFijo, 
         $this->idBarrioFK,
-        $this-> direccionUsuario);
+        $this->direccionUsuario);
 
    return $this->edit($sql, $arrData);
 }
+ //Método para traer los tipos de documentos registrados
+ public function selectTipoDoc()
+ {
+     $sql = "SELECT idTipoDocumento, nombreTipoDocumento FROM TIPODOCUMENTO";
+     $request = $this->selectAll($sql);
+     return $request;
+ }
+
+ //Método para traer todos los roles registrador
+ public function selectRol()
+ {
+     $sql = "SELECT idRol, nombreRol FROM ROL";
+     $request = $this->selectAll($sql);
+     return $request;
+ }
+
+ //Método para seleccionar todos los barrios registrador en la base de datos
+ public function selectBarrio()
+ {
+     $sql = "SELECT idBarrio, nombreBarrio FROM BARRIO";
+     $request = $this->selectAll($sql);
+     return $request;
+ }
 }

@@ -34,10 +34,9 @@ const formUser = document.querySelector('#formPrincipal');
 
 const editPerfil = async () => {
     //enviar los datos mediante una petición fetch
-    console.log('entro')
-    return
-    let formData = new FormData(formContractor);
-    const url = 'http://localhost/PonsLabor/Contratante/setContractor';
+    let formData = new FormData(formUser);
+    //formData.forEach(item => console.log(item))
+    const url = 'http://localhost/PonsLabor/Perfil_Contratante/updatePerfilContratante';
 
     try {
         const res = await fetch(url, {
@@ -58,9 +57,9 @@ const editPerfil = async () => {
     }
 }
 
-document.addEventListener('DOMContenLoaded'), function () {
-    var formUsuario = document.querySelector('#formPrincipal');
-    formUsuario.onsubmit = function (e) {
+document.addEventListener('DOMContentLoaded', () => {
+
+    formUser.onsubmit = function (e) {
         e.preventDefault();
         var nombre = document.querySelector('#txtNombre').value;
         var tipoDoc = document.querySelector('#tipoDoc').value;
@@ -75,9 +74,6 @@ document.addEventListener('DOMContenLoaded'), function () {
         } else {
             editPerfil();
         }
-
-
     }
-}
-
+})
 
