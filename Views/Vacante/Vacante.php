@@ -45,13 +45,14 @@
       <h2 class="name"><span>Registro</span> Vacante</h2>
 
       <form method="POST" id="form-vacancy">
+        <input type="hidden" id="idVacancy" name="idVacancy" value="">
         <p>
           <label for="nombre"> Nombre</label>
           <input minlength="1" maxlength="10" pattern="[a-zA-Z]+" type="text" name="nombre" id="nombre" placeholder="Nombre..." required />
         </p>
         <p>
           <label for="cantidad"> Cantidad de Vacantes</label>
-          <input minlength="4" maxlength="10" pattern="[0-9]+" type="number" name="cantidad" id="cantidad" placeholder="Cantida de Vacantes..." required />
+          <input minlength="1" maxlength="10" pattern="[0-9]+" type="number" name="cantidad" id="cantidad" placeholder="Cantida de Vacantes..." required />
         </p>
         <p class="block">
           <label for="especificaciones"> Especificaciones </label>
@@ -98,13 +99,13 @@
           </select>
         </p>
         <p class="block">
-          <button type="submit">Registrar</button>
+          <button type="submit" id="btn_submit">Registrar</button>
         </p>
         <p class="block">
-          <button type="submit">Modificar</button>
+          <button type="submit" id="btn_modify">Modificar</button>
         </p>
         <p class="block">
-          <button type="submit">Consultar</button>
+          <button type="submit" id="btn_srch">Consultar</button>
         </p>
       </form>
     </div>

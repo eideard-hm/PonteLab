@@ -140,7 +140,7 @@ $(".previous").click(function (e) {
 
 const formUser = document.querySelector('#msform');
 const bntSubmit = document.getElementById('btn_submit');
-
+/*  FUNCIONALIDAD DEL REGISTRO SEGUN ROL SOBRE EL NOMBRE */
 document.querySelector('#rol').addEventListener('change', () => {
     if (document.querySelector('#rol').value === '1') {
         document.querySelector('#nombre').placeholder = "PonsLabor";
@@ -150,6 +150,8 @@ document.querySelector('#rol').addEventListener('change', () => {
         document.querySelector('#apellido').type = "text";
     }
 });
+/*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
+caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 
 bntSubmit.addEventListener('click', e => {
     e.preventDefault();

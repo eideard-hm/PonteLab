@@ -44,24 +44,21 @@
         <div class="con-form">
             <h2 class="name">Registro <span>Contratante</span></h2>
 
-            <form action="">
-                <p class="block">
-                    <label for="estado">Nombre</label>
-                    <input type="text" name="estado" id="estado" required />
-                </p>
+            <form method="POST" id="form-contractor">
+                <input type="hidden" id="idContractor" name="idContractor" value="0">
                 <p class="block">
                     <label for="especificaciones">Descripcion</label>
                     <br>
-                    <textarea name="especificaciones" id="especificaciones" placeholder="Especificaciones..." rows="1" required></textarea>
+                    <input name="especificaciones" id="especificaciones" placeholder="Especificaciones..." rows="1" required></input>
                 </p>
                 <p class="block">
-                    <button type="submit">Registrar</button>
+                    <button type="submit" id="btn_submit">Registrar</button>
                 </p>
                 <p class="block">
-                    <button type="submit">Modificar</button>
+                    <button type="submit" id="btn_modify">Modificar</button>
                 </p>
                 <p class="block">
-                    <button type="submit">Consultar</button>
+                    <button type="submit" id="btn_srch">Consultar</button>
                 </p>
             </form>
         </div>
