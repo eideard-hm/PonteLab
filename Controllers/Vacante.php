@@ -81,7 +81,7 @@ class Vacante extends Controllers
                     $intFechacierre,
                     $intDireccion,
                     $intEstado,
-                    $idContratante
+                    $intIdContractFK
                 );
             }
 
