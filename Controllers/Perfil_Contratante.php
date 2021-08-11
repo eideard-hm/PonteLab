@@ -38,7 +38,7 @@ class Perfil_Contratante extends Controllers
                 $numMobil=limpiarCadena($_POST['mobile']);
                 $numPhone=limpiarCadena($_POST['phone']);
                 $Barrio =intval($_POST['Barrio']);
-                $direccion=limpiarCadena($_POST['mobile']);
+                $direccion=limpiarCadena($_POST['Dirección']);
 
                 $option = 2;
                 $request = $this->model->updateUser(
