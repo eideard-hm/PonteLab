@@ -160,6 +160,23 @@
                                 <hr>
                                 <form class="form" action="##" method="post" id="directionForm">
                                 <div class="form-group">
+
+                                <div class="col-xs-6">
+                                            <label for="rol">
+                                                <h4>Rol Usuario</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="rol" id="rol"  placeholder="rol" title="enter your phone number if any." disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                            <label for="estado">
+                                                <h4>Estado</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="estado" id="estado"  placeholder="activo" title="enter your phone number if any." disabled>
+                                        </div>
+                                    </div>
+                                    
                                         <div class="col-xs-6">
                                             <label for="phone">
                                                 <h4>Número de Contacto Fijó</h4>
