@@ -29,7 +29,7 @@
                 </span>
             </span>
             <nav class="nav nav_menu">
-                <a href="Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
+                <a href="Menu/Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
                 <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
                 <a href="Vacante"><i class="fas fa-business-time"></i>Vacante</a>
                 <button class="switch" id="switch">
