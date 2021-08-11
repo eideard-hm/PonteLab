@@ -61,7 +61,7 @@
             </ul>
         </div>
     </header>
-
+    <form  method="post" id="formPrincipal">
     <div class="banner">
         <hr>
         <div class="container bootstrap snippet">
@@ -89,7 +89,7 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="home">
                                 <hr>
-                                <form class="form" action="##" method="post" id="registrationForm">
+                                <div class="form" action="##" method="post" id="registrationForm">
                                     <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="first_name">
@@ -103,27 +103,25 @@
                                             <label for="last_name">
                                                 <h4>Identificación</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
+                                            <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="last_name">
+                                                <h4>Identificación</h4>
+                                            </label>
+                                            <select name="tipoDoc"id="tipoDoc" class="form-control"  disabled>
+                                            <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                            <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
+                                                    <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                            <?php endforeach ?>
+                                            </select>
+                                            <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="phone">
-                                                <h4>Número de Contacto Fijó</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="mobile">
-                                                <h4>Número de Contacto Móvil</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="email">
@@ -141,15 +139,24 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="phone">
+                                                <h4>Número de Contacto Fijó</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="btn-toolbar">
                                         <div class="col-xs-12">
                                             <br>
                                             <button class="btn btn-lg btn-success" id="edit"  type="submit"><i class="fas fa-user-edit"></i> Editar perfil</button>
-                                            <button class="btn btn-lg btn-primary" id="guardar"  type="submit"><i class="fas fa-user-edit"></i>Guardar cambios</button>   
+                                            
+                                              
+                                            
                                         </div>
                                     </div>
-                                </form>
+                                    
+                                </div>
                                 <hr>
                             </div>
                             <!------------------------formulario------------------------------->
@@ -158,8 +165,16 @@
                                 <h2></h2>
 
                                 <hr>
-                                <form class="form" action="##" method="post" id="directionForm">
+                                <div class="form" id="directionForm">
                                     <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="mobile">
+                                                <h4>Número de Contacto Móvil</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
+                                        </div>
+                                    </div>   
+                                <div class="form-group">
                                         <div class="col-xs-6">
                                             <label for="city">
                                                 <h4>Ciudad</h4>
@@ -170,10 +185,19 @@
 
                                     <div class="form-group">
                                         <div class="col-xs-6">
-                                            <label for="phone">
-                                                <h4>Localidad</h4>
+                                            <label for="rol">
+                                                <h4>Tipo de Usuario</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="localidad" id="localida" placeholder="Fontibón" title="enter your phone number if any." disabled>
+                                            <input type="text" class="form-control" name="rol" id="rol"  placeholder="Contratante" title="enter your phone number if any." disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <label for="rol">
+                                                <h4>Estado</h4>
+                                            </label>
+                                            <input type="text" class="form-control" name="estado" id="estados" value="<?= $_SESSION['user-data']['estadoUsuario'] ?>"placeholder="Fontibón" title="enter your phone number if any." disabled>
                                         </div>
                                     </div>
 
@@ -182,7 +206,14 @@
                                             <label for="Barrio">
                                                 <h4>Barrio</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Barrio" id="Barrio" value="<?= $_SESSION['user-data']['nombreBarrio'] ?>" placeholder="Los Monjes" title="enter your last name if any." disabled>
+                                            <select name="Barrio" id="Barrio" class="form-control"disabled>
+                                                <option selected disabled value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
+                                                <?php foreach ($data['list_barrio'] as $barrio) : ?>
+                                                    <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+
+                                            <!-- <input type="text" class="form-control" name="Barrio" id="Barrio" value="" placeholder="Los Monjes" title="enter your last name if any." disabled> -->
                                         </div>
                                     </div>
 
@@ -191,10 +222,20 @@
                                             <label for="mobile">
                                                 <h4>Dirección</h4>
                                             </label>
-                                            <input type="text" class="form-control" name="Dirección" id="Dirección" value="< >" placeholder="Cl. 25d ##9550" title="" disabled>
+                                            <input type="text" class="form-control" name="Dirección" id="Dirección" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="btn-toolbar">
+                                        <div class="col-xs-12">
+                                            <br>
+                                            
+                                            <button class="btn btn-lg btn-primary" id="cancelar"  type="submit"><i class="fas fa-user-edit"></i>Cancelar</button> 
+                                            <button class="btn btn-lg btn-primary" id="guardar"  type="submit"><i class="fas fa-user-edit"></i>Guardar cambios</button> 
+                                              
+                                            
+                                        </div>
+                                    </div>
                             </div>
                             <!------------------------formulario3------------------------------->
                             <!--/tab-pane-->
@@ -237,6 +278,7 @@
             </div>
             <!--/row-->
         </div>
+    </form>
         <!--FUNCIONALIDAD FORMULARIOS-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

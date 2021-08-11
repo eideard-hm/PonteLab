@@ -19,4 +19,6 @@ class Perfil_Aspirante extends Controllers
         $data['titulo_pagina'] = 'Perfil Aspirante | PonsLabor.';
         $this->views->getView($this, 'Perfil_Aspirante', $data);
     }
-}
+    
+
+ }
