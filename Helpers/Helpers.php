@@ -16,6 +16,18 @@ function uploadImages(array $foto, string $nameFoto)
     return $move;
 }
 
+//función para el envió de correos electronicos
+/*
+    @var $data = array con los datos para el envió del correo
+    @var $template = nombre de una plantilla para enviar el correo
+*/
+function sendEmail(array $data, $template){
+    $asunto = $data['asunto'];
+    $emailDestino = $data['email'];
+    $empresa = NOMBRE_REMITENTE;
+    $remitente = EMAIL_REMITENTE;
+}
+
 //limpar las cadenas de texto para evitar inyecciones sql
 function limpiarCadena($strCadena)
 {

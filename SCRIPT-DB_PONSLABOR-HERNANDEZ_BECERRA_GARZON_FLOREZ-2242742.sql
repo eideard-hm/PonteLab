@@ -399,6 +399,7 @@ INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipo
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
 VALUES (NULL, 'Ximena',  'ximena85@gmail.com', '987', 2, '1055552025', '3138569871', '1234567', 1, 1,10,
 'Calle 82 norte', NULL);
+SELECT * FROM USUARIO;
 
 Insert into CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
 values (NULL ,'Soy ingeniero industrial con mi propia empresa, tengo 28 años y busco dar una oportunidad de trabajo a las personas', 1); 
