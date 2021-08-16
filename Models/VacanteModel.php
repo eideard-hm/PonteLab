@@ -77,7 +77,7 @@ class VacanteModel extends GestionCRUD
         $this->idContratanteFK = $idContratante;
 
         $return = 0;
-        
+
         //consutar si ya existe esta vacante
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante,
         perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, direccionVacante,
@@ -96,7 +96,7 @@ class VacanteModel extends GestionCRUD
             //almacena los valores en un arreglo
             $arrData = array(
                 $this->nombreVacante,
-                $this->cantidadVacante ,
+                $this->cantidadVacante,
                 $this->descripcionVacante,
                 $this->perfilAspirante,
                 $this->tipoContratoVacante,
@@ -112,5 +112,19 @@ class VacanteModel extends GestionCRUD
             $return = 'exits';
         }
         return $return;
+    }
+
+    public function getFiltroVacantes($busqueda)
+    {
+        $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+                tipoContratoVacante, sueldoVacante, direccionVacante, estadoVacante, 
+                fechaHoraPublicacion, fechaHoraCierre
+                FROM VACANTE
+                WHERE idVacante LIKE '%{$busqueda}%' OR nombreVacante LIKE '%{$busqueda}%' 
+                OR cantidadVacante LIKE '%{$busqueda}%' OR descripcionVacante LIKE '%{$busqueda}%'
+                OR perfilAspirante LIKE'%{$busqueda}%' OR tipoContratoVacante LIKE'%{$busqueda}%'
+                OR sueldoVacante LIKE '%{$busqueda}%' OR direccionVacante LIKE '%{$busqueda}%'
+                OR estadoVacante LIKE '%{$busqueda}%'";
+        return $this->selectAll($sql);
     }
 }

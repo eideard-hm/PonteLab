@@ -22,8 +22,13 @@ if (isset($arrUrl[1]) && $arrUrl !== '') {
     $method = $arrUrl[1];
 }
 
-if (isset($arrUrl[2]) && $arrUrl[2] !== '') {
-    $param = $arrUrl[2];
+if (!empty($arrurl[2])) {
+    if ($arrurl != '') {
+        for ($i = 2; $i < count($arrurl); $i++) {
+            $param .= $arrurl[$i] . ',';
+        }
+        $param = trim($param, ',');
+    }
 }
 
 //requerir el archivo que carga automaticamente las clases de la carpeta Libs

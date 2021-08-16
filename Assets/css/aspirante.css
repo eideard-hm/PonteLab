@@ -113,6 +113,36 @@ body {
     transition: 500ms display linear, 500ms background-color linear;
 }
 
+#menu .list_vacantes {
+    max-width: 1200px;
+    width: 70%;
+    position: fixed;
+    top: 117px;
+    left: 15%;
+    z-index: 10;
+}
+
+
+#menu .list_vacantes li {
+    background-color: #fff;
+    border: 1px solid #d4d4d4;
+    border-radius: 3px;
+    width: 90%;
+    padding: 8px 15px;
+    list-style: none;
+    margin: auto;
+    cursor: pointer;
+}
+
+#menu .list_vacantes li:hover{
+    background-color: dodgerblue;
+}
+
+#menu .list_vacantes li.active{
+    background-color: dodgerblue !important;
+    color: #a1caff;
+}
+
 /*Perfil*/
 
 .imagen-persona {
@@ -607,7 +637,7 @@ body {
 }
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
-.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto{
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto {
     display: none;
 }
 

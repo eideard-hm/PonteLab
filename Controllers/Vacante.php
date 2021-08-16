@@ -16,8 +16,14 @@ class Vacante extends Controllers
 
     public function Vacante()
     {
-        $data['titulo_pagina'] = 'Vacante | PonsLabor.';
-        $this->views->getView($this, 'Vacante', $data);
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            $data['titulo_pagina'] = 'Vacante | PonsLabor.';
+            $this->views->getView($this, 'Vacante', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            header('Location: http://localhost/PonsLabor/Menu');
+        } else {
+            header('Location: http://localhost/PonsLabor/Login');
+        }
     }
 
     //Método controlador para insertar y/o editar usuarios
@@ -38,8 +44,8 @@ class Vacante extends Controllers
             2. Se va hacer el proceso de insertar, y lo comprobamos si el id del usuario viene vacio 
             */
             $intId = intval($_POST['idVacancy']);
-            $strNombre = limpiarCadena(strtolower(ucfirst ($_POST['nombre'])));//strtolower(convertir todos las letras en minusculas) 
-            $strCantidad = intval($_POST['cantidad']); 
+            $strNombre = limpiarCadena(strtolower(ucfirst($_POST['nombre']))); //strtolower(convertir todos las letras en minusculas) 
+            $strCantidad = intval($_POST['cantidad']);
             $strEspecificaciones = limpiarCadena($_POST['especificaciones']);
             $intPerfil = limpiarCadena($_POST['perfil']);
             $strTipoContrato = limpiarCadena($_POST['tipoContrato']);
@@ -88,8 +94,7 @@ class Vacante extends Controllers
             if ($request > 0 && is_numeric($request)) {
                 if ($option === 1) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro de la vacante ha sido exitoso :)', 'value' => $request];
-                }
-                elseif ($option === 2) {
+                } elseif ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)', 'value' => $request];
                 }
             } elseif ($request === 'exits') {
@@ -112,5 +117,16 @@ class Vacante extends Controllers
             $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+
+    //método que retorna el arreglo con las vacantes
+    public function getArregloVacantes()
+    {
+        $arrUrl = explode('/', implode($_GET));
+        $busqueda = limpiarCadena(strtolower($arrUrl[2]));
+
+        $request = $this->model->getFiltroVacantes($busqueda);
+        $arrResponse = ['status' => true, 'data' => $request];
+       echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 }

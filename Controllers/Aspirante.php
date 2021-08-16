@@ -10,6 +10,9 @@ class Aspirante extends Controllers
         if (!isset($_SESSION['login'])) {
             header('Location: http://localhost/PonsLabor/Login');
         }
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+        }
     }
 
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================

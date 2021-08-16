@@ -30,6 +30,7 @@
             <li class="active">Datos de cuenta</li>
             <li>Datos Personales</li>
             <li>Datos Finales</li>
+            <li>Sector</li>
         </ul>
 
         <fieldset>
@@ -55,7 +56,7 @@
         </fieldset>
 
         <fieldset>
-            <h2 class="fs-title">Crear cuenta PonsLabor</h2>
+            <h2 class="fs-title">Crear cuenta</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
             <select name="documento" id="documento">
                 <option selected disabled value="">Seleccione un tipo de documento</option>
@@ -71,20 +72,21 @@
         </fieldset>
 
         <fieldset>
-            <h2 class="fs-title">Crear cuenta PonsLabor</h2>
+            <h2 class="fs-title">Crear cuenta</h2>
             <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
-            <select name="estado" id="estado">
+            <!-- <select name="estado" id="estado">
                 <option selected value="" disabled>Elige el estado del usuario</option>
                 <option value="0">Activo</option>
                 <option value="1">Inactivo</option>
             </select>
-            <br>
+            <br> -->
             <select name="barrio" id="barrio">
                 <option selected disabled value=""> Elija el barrio donde vive </option>
                 <?php foreach ($data['list_barrio'] as $barrio) : ?>
                     <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
                 <?php endforeach ?>
             </select>
+
             <input type="text" name="direccion" id="direccion" placeholder="Ingrese la dirección de residencia" />
             <!-- <input type="file" name="foto" id="foto" multiple="multiple" /> -->
             <div class="photo">
@@ -107,7 +109,23 @@
             </h5>
             <br>
             <button type="button" name="previous" class="previous action-button" value="Atras"> Atras </button>
-            <button type="submit" name="submit" id="btn_submit" class="submit action-button" value="Registrarse"> Registrarse </button>
+            <button type="submit" name="submit" id="btn_submit" class="action-button" value="Registrarse"> Registrarse </button>
+        </fieldset>
+
+        <fieldset>
+            <h2 class="fs-title">Registro sector</h2>
+            <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
+            <br>
+            <label>Por favor seleccione el sector con el cual te identificas tu o tu empresa.</label>
+            <br>
+            <br>
+            <ul class="list_sectores" id="list_sectores">
+                <?php foreach ($data['list_sector'] as $barrio) : ?>
+                    <li data-id="<?php echo $barrio['idSector'] ?>"><?php echo $barrio['nombreSector'] ?></li>
+                <?php endforeach ?>
+            </ul>
+            <br>
+            <button type="submit" name="submit" id="btn_sector" class="submit action-button">Registrar sector</button>
         </fieldset>
     </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

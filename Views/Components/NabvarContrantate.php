@@ -1,4 +1,4 @@
-<a href="Menu/Menu_Contratante" class="active"><i class="fas fa-home"></i>Inicio</a>
+<a href="<?= URL ?>Menu/Menu_Contratante" class="active"><i class="fas fa-home"></i>Inicio</a>
 <a href="<?= URL ?>Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
 <a href="<?= URL ?>Vacante"><i class="fas fa-business-time"></i>Vacante</a>
 
