@@ -29,13 +29,20 @@ numDocUsuario varchar(10) not null unique,
 numTelUsuario char(10) not null unique,
 numTelFijo varchar(7) not null,
 estadoUsuario bool NOT NULL,
-idRolFK int,
-idBarrioFK int,
+idRolFK int not null,
+idBarrioFK int not null,
 direccionUsuario varchar(30) not null,
+token varchar(100),
 imagenUsuario varchar(100) 
 );
 
-select * from usuario;
+DROP TABLE IF EXISTS SECTOR_USUARIO;
+CREATE TABLE SECTOR_USUARIO
+(
+idSectorUsuario int primary key auto_increment not null,
+idUsuarioFK int not null,
+idSectorFK int not null
+);
 
 DROP TABLE IF EXISTS TIPODOCUMENTO;
 CREATE TABLE TIPODOCUMENTO
@@ -72,8 +79,9 @@ sueldoVacante decimal(10, 3) not null,
 fechaHoraPublicacion datetime not null,
 fechaHoraCierre datetime not null,
 direccionVacante varchar(50) not null,
-estadoVacante bool,
-idContratanteFK int
+estadoVacante bool not null,
+idContratanteFK int not null,
+idSectorFK int not null
 );
 
 DROP TABLE IF EXISTS REQUISITOS;
@@ -191,9 +199,16 @@ DROP TABLE IF EXISTS HABILIDAD;
 CREATE TABLE HABILIDAD
 (
 idHabilidad int primary key auto_increment not null,
-nombreHabilidad varchar(70) not null,
-nivelHabilidad char(1) not null,
-idAspiranteFK int
+nombreHabilidad varchar(70) not null
+);
+
+DROP TABLE IF EXISTS HABILIDAD_ASPIRANTE;
+CREATE TABLE HABILIDAD_ASPIRANTE
+(
+idHabilidadAspirante int primary key auto_increment not null,
+idAspiranteFK int not null,
+idHabilidadFK int not null,
+nivelHabilidad char(1) not null
 );
 
 DROP TABLE IF EXISTS ESTADOLABORALASPIRANTE;
@@ -218,9 +233,12 @@ ALTER TABLE BARRIO ADD FOREIGN KEY (idCiudadFK) REFERENCES CIUDAD (idCiudad);
 ALTER TABLE USUARIO ADD FOREIGN KEY (idBarrioFK) REFERENCES BARRIO (idBarrio);
 ALTER TABLE USUARIO ADD FOREIGN KEY (idTipoDocumentoFK) REFERENCES TIPODOCUMENTO (idTipoDocumento);
 ALTER TABLE USUARIO ADD FOREIGN KEY (idRolFK) REFERENCES ROL (idRol);
+ALTER TABLE SECTOR_USUARIO ADD FOREIGN KEY (idUsuarioFK) REFERENCES USUARIO (idUsuario);
+ALTER TABLE SECTOR_USUARIO ADD FOREIGN KEY (idSectorFK) REFERENCES SECTOR (idSector);
 ALTER TABLE CONTRATANTE ADD FOREIGN KEY (idUsuarioFK) REFERENCES USUARIO (idUsuario);
 ALTER TABLE ASPIRANTE ADD FOREIGN KEY (idUsuarioFK) REFERENCES USUARIO (idUsuario);
 ALTER TABLE VACANTE ADD FOREIGN KEY (idContratanteFK) REFERENCES CONTRATANTE (idContratante);
+ALTER TABLE VACANTE ADD FOREIGN KEY (idSectorFK) REFERENCES SECTOR (idSector);
 ALTER TABLE REQUISITOS_VACANTE ADD FOREIGN KEY (idVacanteFK) REFERENCES VACANTE (idVacante);
 ALTER TABLE REQUISITOS_VACANTE ADD FOREIGN KEY (idRequisitosFK) REFERENCES REQUISITOS (idRequisitos);
 ALTER TABLE ASPIRANTE_PUESTOINTERES ADD FOREIGN KEY (idAspiranteFK) REFERENCES ASPIRANTE (idAspirante);
@@ -233,16 +251,19 @@ ALTER TABLE INFOLABORAL ADD FOREIGN KEY (idTipoExperienciaFK) REFERENCES TIPOEXP
 ALTER TABLE INFOLABORAL ADD FOREIGN KEY (idSectorFK) REFERENCES SECTOR (idSector);
 ALTER TABLE IDIOMA_ASPIRANTE ADD FOREIGN KEY (idAspiranteFK) REFERENCES ASPIRANTE (idAspirante);
 ALTER TABLE IDIOMA_ASPIRANTE ADD FOREIGN KEY (idIdiomaFK) REFERENCES IDIOMA (idIdioma);
-ALTER TABLE HABILIDAD ADD FOREIGN KEY (idAspiranteFK) REFERENCES ASPIRANTE (idAspirante);
+ALTER TABLE HABILIDAD_ASPIRANTE ADD FOREIGN KEY (idAspiranteFK) REFERENCES ASPIRANTE (idAspirante);
+ALTER TABLE HABILIDAD_ASPIRANTE ADD FOREIGN KEY (idHabilidadFK) REFERENCES HABILIDAD (idHabilidad);
 ALTER TABLE ASPIRANTE ADD FOREIGN KEY (idEstadoLaboralAspiranteFK) REFERENCES ESTADOLABORALASPIRANTE (idEstadoLaboral);
 ALTER TABLE APLICACION_VACANTE ADD FOREIGN KEY (idAspiranteFK) REFERENCES ASPIRANTE (idAspirante);
 ALTER TABLE APLICACION_VACANTE ADD FOREIGN KEY (idVacanteFK) REFERENCES VACANTE (idVacante);
 
 /*=================================== INSERTAR ====================================*/
 
+/* ========================== TABLA CIUIDAD ========================*/
 INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(01, 'Bogotá D.C');
 SELECT * FROM CIUDAD;
 
+/* ========================== TABLA BARRIO ========================*/
 INSERT INTO BARRIO(idBarrio, nombreBarrio, idCiudadFK)
 VALUES(NULL, 'San Diego-Bosa', 1),
 (NULL, 'Villa Javier', 1),
@@ -303,12 +324,8 @@ VALUES(NULL, 'San Diego-Bosa', 1),
 (NULL, 'Danubio', 1),
 (NULL, 'Jiménez De Quesada', 1);
 SELECT * FROM BARRIO;
--- DESCRIBE BARRIO;
 
-/*======================== TIPOS DE DOCUMENTOS DE IDENTIDAD ========================
-idTipoDocumento int primary key auto_increment not null,
-nombreTipoDocumento char(2) not null
-*/
+/* ========================== TABLA TIPODOCUMENTO ========================*/
 INSERT INTO TIPODOCUMENTO(idTipoDocumento, nombreTipoDocumento)
 VALUES(NULL, 'CC'),
 (NULL, 'TI'),
@@ -317,11 +334,13 @@ VALUES(NULL, 'CC'),
 (NULL, 'PE');
 SELECT * FROM TIPODOCUMENTO;
 
+/* ========================== TABLA ROL ========================*/
 INSERT INTO ROL(idRol, nombreRol)
 VALUES(NULL, 'Contratante'),
 (NULL, 'Aspirante');
 SELECT * FROM ROL;
 
+/* ========================== TABLA ESTADO LABORAL ========================*/
 Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
 values (NULL, 'Primer empleo');  
 Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
@@ -333,10 +352,12 @@ values (NULL , 'Independiente');
 select * from ESTADOLABORALASPIRANTE;
 -- DESCRIBE ESTADOLABORALASPIRANTE;
 
+/* ========================== TABLA PUESTO_INTERES ========================*/
 Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Ingeniera Industrial');  
 Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Abogada Penalista');
 select * from PUESTOINTERES;
 
+/* ========================== TABLA GRADO_ESTUDIO ========================*/
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Preescolar');  
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Básica Primaria (1-5)');
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Básica secundaria (6-9)');  
@@ -350,6 +371,7 @@ Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Doctorado');
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'PosDoctorado');
 Select * from GRADOESTUDIO;
 
+/* ========================== TABLA SECTOR ========================*/
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ingeniería');  
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Desarrollo empresarial');
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Finanzas');  
@@ -381,81 +403,96 @@ Insert into SECTOR (idSector, nombreSector) values (NULL, 'Administración');
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ayuda');	
 Select * from SECTOR;
 
---
-
+/* ========================== TABLA USUARIO ========================*/
 Insert into USUARIO (idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
 values (NULL, 'Samanta', 'samanta85@misena.edu.co', 'camila85', 1, '1087345189', '3214458790', '4536781',1, 2, 3, 
-'Carrera 29 # 8 - 19', NULL);
+'Carrera 29 # 8 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL);
 Insert into USUARIO (idUsuario,  nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
 values (NULL, 'Sara', 'sara85@misena.edu.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
-'Carrera 30 #20 - 19', NULL);
+'Carrera 30 #20 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyz', NULL);
 INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
-VALUES (NULL, 'Edier Hernández', 'ehernandez81@misena.edu.co', '123', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
-'Calle qc sur', NULL);
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
+VALUES (NULL, 'Edier Hernández', 'ehernandez81@misena.edu.c', '123', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
+'Calle qc sur', '14WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL);
 INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
 VALUES (NULL, 'Ximena',  'ximena85@gmail.com', '987', 2, '1055552025', '3138569871', '1234567', 1, 1,10,
-'Calle 82 norte', NULL);
+'Calle 82 norte', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj', NULL);
 SELECT * FROM USUARIO;
 
+/* ========================== TABLA SECTOR_USUARIO ========================*/
+INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
+VALUES(NULL, 1,2);
+INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
+VALUES(NULL, 2,1);
+INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
+VALUES(NULL, 3,5);
+
+/* ========================== TABLA CONTRATANTE ========================*/
 Insert into CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
 values (NULL ,'Soy ingeniero industrial con mi propia empresa, tengo 28 años y busco dar una oportunidad de trabajo a las personas', 1); 
 Insert into  CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
 values (NULL, 'Soy abogada penalista y busco empesar a crear mi propio bufete de abogados', 2);
 Select * from CONTRATANTE;
 
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
-values (NULL, 'Ingeniero Industrial Direccion Adminiistrativa', 5, 'Importante empresa busca ingeniero industrial o civil con especializacion e gerencia de proyectos, con minimo 2 años de experiencia en direccion administrativa', 'Ingeniero Industrial o Civil con especializacion en Gerencia de Proyectos', 'Contrato a Termino Indefinido', '6.500.000', '2021-04-25 12:30:38', '2021-05-12 12:00:00', 'Calle 85 #35-28', 1, 1);  
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
- values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2);
+/* ========================== TABLA VACANTE ========================*/
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
+values (NULL, 'Ingeniero Industrial Direccion Adminiistrativa', 5, 'Importante empresa busca ingeniero industrial o civil con especializacion e gerencia de proyectos, con minimo 2 años de experiencia en direccion administrativa', 'Ingeniero Industrial o Civil con especializacion en Gerencia de Proyectos', 'Contrato a Termino Indefinido', '6.500.000', '2021-04-25 12:30:38', '2021-05-12 12:00:00', 'Calle 85 #35-28', 1, 1, 1);  
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
+ values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2, 3);
  Select * from VACANTE;
- Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
- values (NULL,'Ingeniero de Sistemas', 10, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2);
+ Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
+ values (NULL,'Desarrollador de software web', 10, 'Sohe Innovation Software requiere un desarrollador web con experiencia en react, java', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10);
  Select * from VACANTE;
 
+/* ========================== TABLA REQUISITOS ========================*/
 Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Ingeniero Industrial');  
 Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Axa Colpatria'); 
 Select * from REQUISITOS; 
 
+/* ========================== TABLA DEBIL REQUISITOS_VACANTE ========================*/
 Insert into REQUISITOS_VACANTE (idRequisitosVacante, idVacanteFK, idRequisitosFK, especficacionRequisitos)
  values (NULL, 1, 1, 'Para esta vacante es necesario ser mayor de 24 años, tener minimo 2 años de experiencia y tener una especializacion en gerencia de proyectos');  
 Insert into  REQUISITOS_VACANTE (idRequisitosVacante, idVacanteFK, idRequisitosFK, especficacionRequisitos) 
 values (NULL, 2, 2, 'Es necesario ser mayor de edad, tener un minimo de 5 años de experiencia y ser profesional en derecho especialistas en seguros');
 select * from REQUISITOS_VACANTE;
 
+/* ========================== TABLA ASPIRANTE ========================*/
 Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
 values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1);  
 Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
 values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 4, 2); 
 select * from ASPIRANTE; 
--- SELECT * FROM estadolaboralaspirante;
--- SELECT * FROM USUARIO;
 
+/* ========================== TABLA DEBIL ASPIRANTE_PUESTOINTERES ========================*/
 Insert into ASPIRANTE_PUESTOINTERES (idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK) 
 values (NULL, 1, 1);  
 Insert into ASPIRANTE_PUESTOINTERES (idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK) 
 values (NULL, 2, 2);
 select * from ASPIRANTE_PUESTOINTERES;
 
+/* ========================== TABLA ESTUDIO ========================*/
 Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorEstudioFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK, idSectorFK) 
 values (NULL, 'Sergio Arboleda', 'Ingeniera Industrial', 1, 1, 2012, 2, 2017, 12, 1, 1, 1 );  
 Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorEstudioFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK, idSectorFK) 
 values (NULL, 'Jorge Tadeo Lozano', 'Abogada', 1, 2, 2015, 1, 2020, 11, 2, 2, 2 );
 select * from ESTUDIO;
 
+/* ========================== TABLA TIPOEXPERIENCIA ========================*/
 Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) values (NULL, 'Experiencia en Gerencia de proyectos');  
 Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) values (NULL, 'Experiencia siendo Revisor fiscal');
 select * from TIPOEXPERIENCIA;
 
+/* ========================== TABLA INFOLABORAL ========================*/
 Insert into INFOLABORAL (idInfoLaboral, empresaLaboro, idSectorFK, idCiudadLaboroFK, idTipoExperienciaFK, nombrePuestoDesempeño, añoInicio, mesInicio, añoFin, mesFin, funcionDesempeño, idAspiranteFK) 
 values (NULL, 'Constructora Onix', 1, 1, 1,'Gerencia de proyectos', 2017, 04, 2019, 12, 'planificar, captar, dinamizar y organizar talentos y administrar recursos', 1);  
 Insert into INFOLABORAL (idInfoLaboral, empresaLaboro, idSectorFK, idCiudadLaboroFK, idTipoExperienciaFK, nombrePuestoDesempeño, añoInicio, mesInicio, añoFin, mesFin, funcionDesempeño, idAspiranteFK) 
 values (NULL, 'C Legal Abogados', 2, 2, 2, 'Revisor Fiscal', 2015, 05, 2018, 05, 'Inspeccionar bienes de la sociedad y procurar su conservacion y seguridad', 2);
 select * from INFOLABORAL;
 
+/* ========================== TABLA IDIOMA ========================*/
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Inglés');  
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Chino mandarín');
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Hindi');  
@@ -468,14 +505,23 @@ Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Portugués');
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Indonesio');
 select * from IDIOMA;
 
+/* ========================== TABLA DEBIL IDIOMA_ASPIRANTE ========================*/
 Insert into IDIOMA_ASPIRANTE (idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma) values (NULL, 1, 1, 3);  
 Insert into IDIOMA_ASPIRANTE (idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma) values (NULL, 2, 2, 4);
 select * from IDIOMA_ASPIRANTE;
 
-Insert into HABILIDAD (idHabilidad, nombreHabilidad, nivelHabilidad, idAspiranteFK) values (NULL, 'Innovacion y Trabajar en equipo', 4, 1);  
-Insert into HABILIDAD (idHabilidad, nombreHabilidad, nivelHabilidad, idAspiranteFK) values (NULL, 'Hablar mas de un idioma y Habilidades informaticas', 3, 2);
+/* ========================== TABLA HABILIDAD ========================*/
+Insert into HABILIDAD (idHabilidad, nombreHabilidad) values (NULL, 'Innovacion y Trabajar en equipo');  
+Insert into HABILIDAD (idHabilidad, nombreHabilidad) values (NULL, 'Hablar mas de un idioma y Habilidades informaticas');
 select * from HABILIDAD;
 
+/* ========================== TABLA DEBIL HABILIDAD_ASPIRANTE ========================*/
+INSERT INTO HABILIDAD_ASPIRANTE(idHabilidadAspirante, idAspiranteFK, idHabilidadFK, nivelHabilidad)
+VALUES(NULL, 1, 2, 4);
+INSERT INTO HABILIDAD_ASPIRANTE(idHabilidadAspirante, idAspiranteFK, idHabilidadFK, nivelHabilidad)
+VALUES(NULL, 2, 1, 3);
+
+/* ========================== TABLA DEBIL APLICACION_VACANTE ========================*/
 Insert into APLICACION_VACANTE (idAplicacionVacante, idAspiranteFK, idVacanteFK, estadoAplicacionVacante) 
 values (NULL, 1, 1, 1);  
 Insert into APLICACION_VACANTE (idAplicacionVacante, idAspiranteFK, idVacanteFK, estadoAplicacionVacante) 
@@ -485,12 +531,12 @@ select * from APLICACION_VACANTE;
 /*========================= VISTAS ==============================*/
 
 /*
-La vista sirve para conocer el nombre de los  tipos de documentos de los usuarios registrados, el nombre del rol con el cual estan registrados,  y el barrio
+La vista sirve para conocer el nombre de los  tipos de documentos de los usuarios registrados, el nombre del rol 
+con el cual estan registrados,  y el barrio
 */
-
 CREATE VIEW selectUser AS 
 SELECT idUsuario, nombreUsuario, correoUsuario, passUsuario, nombreTipoDocumento, numDocUsuario, 
-numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio, direccionUsuario, 
+numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio, direccionUsuario, token 
 imagenUsuario 
 FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
 ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
@@ -499,7 +545,7 @@ ON b.idBarrio = u.idBarrioFK;
 
 CREATE VIEW selectAspirante AS
 SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, nombreEstado,
-nombreUsuario, imagenUsuario
+nombreUsuario, token, imagenUsuario
 FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
 ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
@@ -510,7 +556,7 @@ además de conocer el nombre del mismo a través de una consulta a la tabla usua
 */
 DROP VIEW IF EXISTS aspirantePuestoInteresView;
 CREATE VIEW aspirantePuestoInteresView AS
-SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK, nombrePuesto, nombreUsuario
+SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK, nombrePuesto, token, nombreUsuario
 FROM PUESTOINTERES AS pi INNER JOIN ASPIRANTE_PUESTOINTERES api 
 ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN ASPIRANTE AS a
 ON a.idAspirante = api.idAspiranteFK INNER JOIN USUARIO  AS u
@@ -520,10 +566,20 @@ DROP VIEW IF EXISTS vacanteView;
 CREATE VIEW  vacanteView AS
 SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, 
 sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK,
-nombreUsuario
+token, nombreUsuario
 FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
 ON u.idUsuario = c.idUsuarioFK;
+
+DROP VIEW IF EXISTS sectorUsuarioView;
+CREATE VIEW sectorUsuarioView AS
+SELECT idSectorUsuario, idSectorFK, idUsuarioFK, nombreSector, nombreUsuario
+FROM SECTOR AS s INNER JOIN SECTOR_USUARIO AS su
+ON s.idSector = su.idSectorFK INNER JOIN USUARIO AS u 
+ON u.idUsuario = su.idUsuarioFK;
+
+SELECT * FROM sectorUsuarioView;
+
 /*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
 
 DELIMITER $$
@@ -540,18 +596,19 @@ UestadoUsuario bool,
 UidRolFK int,
 UidBarrioFK int,
 UdireccionUsuario varchar(30),
+Utoken varchar(100),
 UimagenUsuario varchar(70)
 )
 BEGIN
 INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
 VALUES (UidUsuario, UnombreUsuario, UcorreoUsuario, UpassUsuario, UidTipoDocumentoFK, UnumDocUsuario,
-UnumTelUsuario, UnumTelFijo, UestadoUsuario, UidRolFK, UidBarrioFK, UdireccionUsuario,
+UnumTelUsuario, UnumTelFijo, UestadoUsuario, UidRolFK, UidBarrioFK, UdireccionUsuario, Utoken,
 UimagenUsuario);
 END $$
 
-CALL insertUser(NULL, 'Edier Heraldo', 'edierhernandezmo@gmail.com', '1234', 01, '1002623988', '3132069129', '1234567', 1, 01,07,
-'Calle 6B', NULL);
+CALL insertUser(NULL, 'Edier Heraldo', 'edierhernandezmo@gmail.c', '1234', 01, '1002623988', '3132069129', '1234567', 1, 01,07,
+'Calle 6B', '7WK5Tu5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL);
 SELECT * FROM USUARIO;
 
 /*======================= PROCEDIMIENTOS ALMACENADOS  EDIER==============================*/
@@ -560,7 +617,7 @@ SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, 
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
 FROM USUARIO
 WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
-OR idRolFK'%ROL%';
+OR numTelUsuario LIKE'%id%' , numTelFijo LIKE'%id%' ;
 
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
 

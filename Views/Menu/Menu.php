@@ -22,7 +22,7 @@
                 <i class="fas fa-bars" id="icono-reponsive"></i>
                 <span href="#" class="logo-nombre">
                     <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
-                    <h2>Pons<span>Labor.</span></h2>
+                    <h2>Ponte<span>Lab.</span></h2>
                 </span>
             </span>
             <nav class="nav nav_menu">
@@ -68,10 +68,13 @@
     </header>
 
     <form class="content-bar-search">
-        <input type="search" id="txtSearchAspirante" name="txtSearchAspirante" placeholder="Ingrese lo que desea buscar" autofocus>
+        <input type="search" id="txtSearchVacantes" name="txtSearchVacantes" placeholder="Ingrese lo que desea buscar" autofocus>
         <button id="icono-buscar"><i class="fas fa-search" title="Buscar"></i></button>
         <i class="fas fa-times" id="borrar-contenido" title="Borrar"></i>
     </form>
+
+    <ul class="list_vacantes">
+    </ul>
 
     <div class="cover-ctn-search"></div>
 

@@ -13,4 +13,7 @@ const DB_NAME = 'db_proyectoponslabor';
 const NOMBRE_EMPRESA = 'Team Pontelab';
 const WEB_EMPRESA = URL;
 const NOMBRE_REMITENTE = 'Team Pontelab';
-const EMAIL_REMITENTE = "no-reply@pontelab.com";
+const EMAIL_REMITENTE = "team.pontelab@gmail.com";
+
+//email por defecto
+const EMAIL_DEFAULT = 'ehhernandez81@misena.edu.co';

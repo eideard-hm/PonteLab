@@ -106,10 +106,10 @@
                     <div class="x_sgwrap">
                         <p>Hola <?= $data['nombreUsuario']; ?></p>
                     </div>
-                    <p>Solicitud de acceso para el usuario: <strong><?= $data['email']; ?></strong></p>
-                    <p>Has solicitado los datos de tu usuario, accede al enlace de abajo para confirmar tu contraseña. </p>
+                    <p>Solicitud la activación del usuario: <strong><?= $data['email']; ?></strong></p>
+                    <p>Has solicitado los datos de tu usuario, accede al enlace de abajo para confirmar y activar tu cuenta. </p>
                     <p class="x_text_white">
-                        <a href="<?= $data['url_recovery']; ?>" target="_blank" class="x_button_link x_link_blue">Confirmar datos</a>
+                        <a href="<?= $data['url_recovery']; ?>" target="_blank" class="x_button_link x_link_blue">Activar cuenta</a>
                     </p>
                     <br>
                     <p>Si no te funciona el botón puedes copiar y pegar la siguiente dirección en tu navegador.</p>

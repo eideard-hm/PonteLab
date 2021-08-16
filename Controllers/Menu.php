@@ -11,18 +11,29 @@ class Menu extends Controllers
             header('Location: http://localhost/PonsLabor/Login');
         }
     }
-
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
 
     public function Menu()
     {
-        $data['titulo_pagina'] = 'Menú Principal | PonsLabor.';
-        $this->views->getView($this, 'Menu', $data);
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            $data['titulo_pagina'] = 'Menú Principal | PonsLabor.';
+            $this->views->getView($this, 'Menu', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+        } else {
+            header('Location: http://localhost/PonsLabor/Login');
+        }
     }
 
     public function Menu_Contratante()
     {
-        $data['titulo_pagina'] = 'Menu Contratante | PonsLabor.';
-        $this->views->getView($this, 'Menu_Contratante', $data);
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            $data['titulo_pagina'] = 'Menu Contratante | PonsLabor.';
+            $this->views->getView($this, 'Menu_Contratante', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            header('Location: http://localhost/PonsLabor/Menu');
+        } else {
+            header('Location: http://localhost/PonsLabor/Login');
+        }
     }
 }
