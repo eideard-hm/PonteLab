@@ -3,6 +3,8 @@
 //     window.location.href = "EditarPerfil";
 // }
 
+//constante qpara los botones, con una condicion que al momento de celeccionar el evento
+//click nos va a remover el atributo disabled para los campos
 const btnGuardar = document.getElementById('guardar');
 const btnCancelar = document.getElementById('cancelar');
 if (document.querySelector('#edit')) {
@@ -30,6 +32,10 @@ if (document.querySelector('#edit')) {
 }
 btnCancelar.style.display = 'none';
 btnGuardar.style.display = 'none';
+
+
+
+// constante que nos permite traer el formulario principal que corresponde a este ID
 const formUser = document.querySelector('#formPrincipal');
 
 const editPerfil = async () => {
@@ -38,7 +44,9 @@ const editPerfil = async () => {
     //formData.forEach(item => console.log(item))
     const url = 'http://localhost/PonsLabor/Perfil_Contratante/updatePerfilContratante';
 
+    //
     try {
+
         const res = await fetch(url, {
             method: 'POST',
             body: formData
@@ -57,6 +65,7 @@ const editPerfil = async () => {
     }
 }
 
+//campos vacio
 document.addEventListener('DOMContentLoaded', () => {
 
     formUser.onsubmit = function (e) {
