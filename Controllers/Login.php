@@ -8,7 +8,11 @@ class Login extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Menu');
+            if ($_SESSION['user-data']['nombreRol'] === 'Contratante') {
+                header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+            } else {
+                header('Location: http://localhost/PonsLabor/Menu');
+            }
         }
     }
 
@@ -18,6 +22,18 @@ class Login extends Controllers
     {
         $data['titulo_pagina'] = 'Iniciar Sesión | PonsLabor.';
         $this->views->getView($this, 'Login', $data);
+    }
+
+    public function Recuperar_Password()
+    {
+        $data['titulo_pagina'] = 'Recuperar Contraseña | PonsLabor.';
+        $this->views->getView($this, 'Recuperar_Password', $data);
+    }
+
+    public function Correo_Recuperar_Password()
+    {
+        $data['titulo_pagina'] = 'Recuperar Contraseña | PonsLabor.';
+        $this->views->getView($this, 'Correo_Recuperar_Password', $data);
     }
 
     public function loginUser()

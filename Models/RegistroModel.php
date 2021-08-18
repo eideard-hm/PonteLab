@@ -121,6 +121,17 @@ class RegistroModel extends GestionCRUD
         return $return;
     }
 
+    public function setEstadoUser(int $id, int $estadoUsuario)
+    {
+        $this->idUsuario = $id;
+        $this->estadoUsuario = $estadoUsuario;
+        $sql = "UPDATE USUARIO 
+                SET estadoUsuario=?
+                WHERE idUsuario = {$this->idUsuario}";
+        $arrData = [$this->estadoUsuario];
+        return $this->edit($sql, $arrData);
+    }
+
     //Método para actualizar usuarios
     public function updateUser(
         int $id,
@@ -215,5 +226,13 @@ class RegistroModel extends GestionCRUD
         $sql = "SELECT idBarrio, nombreBarrio FROM BARRIO";
         $request = $this->selectAll($sql);
         return $request;
+    }
+
+    //Método para seleccionar los sectores
+    public function selectAllSector()
+    {
+        $sql = "SELECT idSector, nombreSector
+                FROM SECTOR";
+        return $this->selectAll($sql);
     }
 }

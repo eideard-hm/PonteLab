@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    if (document.querySelector('#list_sectores')) {
+        const listSectores = document.querySelector('#list_sectores');
+        listSectores.addEventListener('click', seleccionarSector);
+    }
 })
 
 //Funcionalidad botones
@@ -81,9 +86,7 @@ $(".next").click(function (e) {
     current_fs = $(this).parent();
     next_fs = $(this).parent().next();
 
-
     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
 
     next_fs.show();
 
@@ -106,6 +109,7 @@ $(".next").click(function (e) {
         easing: 'easeInOutBack'
     });
 });
+
 
 $(".previous").click(function (e) {
     e.preventDefault();
@@ -136,9 +140,26 @@ $(".previous").click(function (e) {
     });
 });
 
+
 /* ==================== MÉTODOS PARA HACER TRANSACCIONES EN LA DB ============= */
 
+const listSectores = new Set();
+
+const seleccionarSector = e => {
+    if (e.target.tagName === 'LI') {
+        if (e.target.classList.contains('active')) {
+            listSectores.delete(e.target.dataset.id);
+            e.target.classList.remove('active');
+        } else {
+            listSectores.add(e.target.dataset.id);
+            e.target.classList.add('active');
+        }
+        console.log(listSectores)
+    }
+}
+
 const formUser = document.querySelector('#msform');
+const btnSector = document.querySelector('#btn_sector');
 const bntSubmit = document.getElementById('btn_submit');
 /*  FUNCIONALIDAD DEL REGISTRO SEGUN ROL SOBRE EL NOMBRE */
 document.querySelector('#rol').addEventListener('change', () => {
@@ -153,11 +174,46 @@ document.querySelector('#rol').addEventListener('change', () => {
 /*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
 caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 
-bntSubmit.addEventListener('click', e => {
+const validateFormUser = (e) => {
     e.preventDefault();
 
-    validateFormUser();
-});
+    const id = document.querySelector('#idUsuario').value;
+    const nombre = document.querySelector('#nombre').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#inputPassword').value;
+    const confirmPass = document.querySelector('#pass2').value;
+    const tipoDoc = document.querySelector('#documento').value;
+    const numDoc = document.querySelector('#numDoc').value;
+    const numCel = document.querySelector('#numCel').value;
+    const numFijo = document.querySelector('#numFijo').value;
+    const rol = document.querySelector('#rol').value;
+    const barrio = document.querySelector('#barrio').value;
+    const direccion = document.querySelector('#direccion').value;
+
+    if (nombre === '' || email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
+        || numFijo === '' || rol === '' || barrio === '' || direccion === '') {
+        swal(
+            'Ha ocurrido un error',
+            'Todos los campos son obligatorios.',
+            'error'
+        )
+        return false;
+    } else if (password !== confirmPass) {
+        swal(
+            'Error!! Contraseñas incorrectas',
+            'Las contraseñas no coinciden, por favor intente nuevamente!!',
+            'error'
+        )
+        return false;
+    } else {
+        insertUser();
+    }
+}
+
+if (bntSubmit) {
+    bntSubmit.addEventListener('click', validateFormUser);
+}
+
 
 const insertUser = async () => {
     //enviar los datos mediante una petición fetch
@@ -174,53 +230,52 @@ const insertUser = async () => {
             method: 'POST',
             body: formData
         })
-        const { statusUser, msg, rol } = await res.json();
+        const { statusUser, msg } = await res.json();
 
         if (statusUser && msg === 'ok') {
-            if (rol === 'Contratante') {
-                window.location.href = 'http://localhost/PonsLabor/Menu/Menu_Contratante';
-            } else {
-                window.location.href = 'Menu';
-            }
+            bntSubmit.classList.add('next');
+            bntSubmit.setAttribute('id', 'btn_submit-sig');
+            bntSubmit.removeEventListener('click', validateFormUser)
+            bntSubmit.textContent = 'Siguiente';
+            formUser.reset();
+            swal("Usuario", "Para continuar debe de confirmar su cuenta a través de su correo electronico. Gracias por preferir nuestros servicios :)", "success");
+
+            $("#btn_submit-sig").click(function (e) {
+                e.preventDefault();
+                if (animating) return false;
+                animating = true;
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                next_fs.show();
+
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        scale = 1 - (1 - now) * 0.2;
+                        left = (now * 50) + "%";
+                        opacity = 1 - now;
+                        current_fs.css({
+                            'transform': 'scale(' + scale + ')',
+                            'position': 'absolute'
+                        });
+                        next_fs.css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        current_fs.hide();
+                        animating = false;
+                    },
+                    easing: 'easeInOutBack'
+                });
+            });
+
         } else {
             swal("Error", msg, "error");//mostrar la alerta
         }
     } catch (error) {
         swal("Error", error, "error");
-    }
-}
-
-const validateFormUser = () => {
-    const id = document.querySelector('#idUsuario').value;
-    const nombre = document.querySelector('#nombre').value;
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#inputPassword').value;
-    const confirmPass = document.querySelector('#pass2').value;
-    const tipoDoc = document.querySelector('#documento').value;
-    const numDoc = document.querySelector('#numDoc').value;
-    const numCel = document.querySelector('#numCel').value;
-    const numFijo = document.querySelector('#numFijo').value;
-    const estado = document.querySelector('#estado').value;
-    const rol = document.querySelector('#rol').value;
-    const barrio = document.querySelector('#barrio').value;
-    const direccion = document.querySelector('#direccion').value;
-
-    if (nombre === '' || email === '' || password === '' || tipoDoc === '' || numDoc === '' || numCel === ''
-        || numFijo === '' || estado === '' || rol === '' || barrio === '' || direccion === '') {
-        swal(
-            'Ha ocurrido un error',
-            'Todos los campos son obligatorios.',
-            'error'
-        )
-        return false;
-    } else if (password !== confirmPass) {
-        swal(
-            'Error!! Contraseñas incorrectas',
-            'Las contraseñas no coinciden, por favor intente nuevamente!!',
-            'error'
-        )
-        return false;
-    } else {
-        insertUser();
     }
 }

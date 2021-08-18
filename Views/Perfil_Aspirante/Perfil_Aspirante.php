@@ -116,6 +116,7 @@
 
     <br><br>
     <form id="form-aspirante" method="POST">
+        <input type="hidden" name="idUsuario"/>
     <div class="container rounded mb-3 contenedor-perfil_aspirante">
         <div class="row mt-3">
             <div class="col-md-3 border-right">
@@ -128,18 +129,21 @@
                         </div>
 
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Nombres y Apellidos:</label><input id="nombreApellido" type="text" class="form-control" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" disabled></div>                    </div>
+                        <div class="col-md-6"><label class="labels">Nombres y Apellidos:</label><input id="nombreApellido" name="nombreApellido" type="text" class="form-control" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" disabled></div>                    </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Titulo:</label><input id="titulo" type="text" class="form-control" value="<?= $_SESSION['user-data']['tituloObtenido'] ?>" disabled></div>
-                        <div class="col-md-12"><label class="labels">Posicion Actual/Desarrollada:</label><input id="posicion" type="text" class="form-control" value="<?= $_SESSION['user-data']['nombrePuestoDesempeño'] ?>" disabled></div>
-                        <div class="col-md-12"><label class="labels">Educacion:</label><input type="text" id="educacion" class="form-control" value="<?= $_SESSION['user-data']['nombreInstitucion'] ?>" disabled></div>
-                        <div class="col-md-12"><label class="labels">Idiomas:</label><input type="text" id="idioma" class="form-control" value="<?= $_SESSION['user-data']['nombreIdioma'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Identificacion:</label><select id="titulo" name="titulo" class="form-control" disabled>
+                        <option selected disabled value="<?= $_SESSION['user-data']['nombreTipoDocumento'] ?>"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                        <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
+                        <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option><?php endforeach ?></select></div>
+                        <div class="col-md-12"><label class="labels">Numero Celular:</label><input id="posicion" name="posicion" type="text" class="form-control" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Contraseña:</label><input type="text" id="educacion" name="educacion" class="form-control" value="*******" disabled></div>
+                        <div class="col-md-12"><label class="labels">Numero Fijo:</label><input type="text" id="idioma" name="idioma" class="form-control" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Estado:</label>
+                        <select id="estado" name="estado" class="form-control" >
+                        <option selected  value="<?= $_SESSION['user-data']['estadoUsuario'] ?>">Activo</option>
+                        <option selected  value="1">Inactivo</option></select></div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Ciudad:</label><input type="text" id="ciudad" class="form-control" value="<?= $_SESSION['user-data']['nombreCiudad'] ?>" disabled></div>
-                        <div class="col-md-6"><label class="labels">Número Celular:</label><input type="text" id="numCel" class="form-control" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" disabled></div>
-                        <div class="col-md-6"><label class="labels">Direccion de residencia:</label><input type="text"  id="direccion" class="form-control" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" disabled></div>
-                    </div>
+
                     <div class="mt-5"><button class="btn btn-primary profile-button" id="editar" type="submit">Editar Perfil</button></div>
                     <div class="mt-5"><button class="btn btn-primary profile-button" id="inhabilitar" type="submit">Inactivar Cuenta</button></div>
                     <div class="mt-5"><button class="btn btn-primary profile-button" id="guardar" type="submit">Guardar</button></div>

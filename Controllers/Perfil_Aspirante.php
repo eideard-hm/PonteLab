@@ -12,6 +12,9 @@ class Perfil_Aspirante extends Controllers
         if (!isset($_SESSION['login'])) {
             header('Location: http://localhost/PonsLabor/Login');
         }
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+        }
     }
 
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
@@ -19,35 +22,31 @@ class Perfil_Aspirante extends Controllers
     public function Perfil_Aspirante()
     {
         $data['titulo_pagina'] = 'Perfil Aspirante | PonsLabor.';
+        $data['list_tipodoc'] = $this->model->selectTipoDoc();
         $this->views->getView($this, 'Perfil_Aspirante', $data);
     }
-
+    
     public function inhabilitarA ()
     {
-        $estadoUsuario = intvalt ("0");
         $idUsuario=intval($_SESSION['user-data']['idUsuario']);
-        $request = $this->model->updateState($estadoUsuario, 
-        $idUsuario);
+        $estadoUsuario=intval($_POST['estado']);
+        $request = $this->model->updateState($idUsuario,$estadoUsuario 
+        );
     }
-    
+
     public function updatePerfilAspirante(){
         if($_POST){
-            if(empty($_POST['nombreApellido'])||empty($_POST['titulo'])||empty($_POST['posicion'])
-            ||empty($_POST['educacion'])||empty($_POST['idioma'])||empty($_POST['ciudad'])
-            ||empty($_POST['numCel'])||empty($_POST['direccion'])){
+            if(
+            empty($_POST['nombreApellido']) ||empty($_POST['titulo']) ||empty($_POST['posicion'])
+            ||empty($_POST['idioma'])
+            ) {
                 $arrResponse=['statusUser' => false,'msg'=>'¡ERROR!, Debe llenar todo los campos.'];
-            }
-
-            else{
+            } else{
                 $idUsuario=intval($_SESSION['user-data']['idUsuario']);
                 $nombreApellido=limpiarCadena($_POST['nombreApellido']);
-                $titulo=limpiarCadena($_POST['titulo']);
-                $posicion=limpiarCadena($_POST['posicion']);
-                $educacion=limpiarCadena($_POST['educacion']);
-                $idioma=limpiarCadena($_POST['idioma']);
-                $ciudad =limpiarCadena($_POST['ciudad']);
-                $numCel=intval($_POST['numCel']);
-                $direccion=limpiarCadena($_POST['direccion']);
+                $titulo=intval($_POST['titulo']);
+                $posicion=intval($_POST['posicion']);
+                $idioma=intval($_POST['idioma']);
 
                 $option = 2;
                 $request = $this->model->updateUser(
@@ -55,15 +54,22 @@ class Perfil_Aspirante extends Controllers
                     $nombreApellido,
                     $titulo,
                     $posicion,
-                    $educacion,
-                    $idioma,
-                    $ciudad,
-                    $numCel,
-                    $direccion
-    
-                ); 
-            }
+                    $idioma
+                );
+                
+                if ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
+                } elseif ($request === 'exits') {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
+                } else {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente', 'value' => $request];
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }    
         }
+
+        die();
+    
         
             $arrDataAsp = $this->model->selectOneUser($request);
             if (!empty($arrDataAsp)) {

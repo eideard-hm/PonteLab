@@ -61,231 +61,226 @@
             </ul>
         </div>
     </header>
-    <form  method="post" id="formPrincipal">
-    <div class="banner">
-        <hr>
-        <div class="container bootstrap snippet">
-            <div class="row">
-                <div class="row" id="FormPerfilCon">
-                    <div class="col-sm-3">
-                        <!--left col-->
+    <form method="post" id="formPrincipal">
+        <div class="banner">
+            <hr>
+            <div class="container bootstrap snippet">
+                <div class="row">
+                    <div class="row" id="FormPerfilCon">
+                        <div class="col-sm-3">
+                            <!--left col-->
 
-                        <div class="text-center">
-                            <img style="top: 110px;  position: relative; " src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
+                            <div class="text-center">
+                                <img style="top: 110px;  position: relative; " src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
 
-                            <h3></h3>
+                                <h3></h3>
+                            </div>
+                            </hr><br>
+
                         </div>
-                        </hr><br>
+                        <!--/col-3-->
+                        <div class="col-sm-9">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#home">Datos</a></li>
+                                <li><a data-toggle="tab" href="#messages">Dirección</a></li>
+                                <li><a data-toggle="tab" href="#settings">Descripción</a></li>
+                            </ul>
+                            <!------------------------formulario1------------------------------->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home">
+                                    <hr>
+                                    <div class="form" action="##" method="post" id="registrationForm">
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="first_name">
+                                                    <h4>Nombre</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="last_name">
+                                                    <h4>Identificación</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="last_name">
+                                                    <h4>Identificación</h4>
+                                                </label>
+                                                <select name="tipoDoc" id="tipoDoc" class="form-control" disabled>
+                                                    <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                    <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
+                                                        <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
+                                                <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
+                                            </div>
+                                        </div>
 
-                    </div>
-                    <!--/col-3-->
-                    <div class="col-sm-9">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#home">Datos</a></li>
-                            <li><a data-toggle="tab" href="#messages">Dirección</a></li>
-                            <li><a data-toggle="tab" href="#settings">Descripción</a></li>
-                        </ul>
-                        <!------------------------formulario1------------------------------->
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="home">
-                                <hr>
-                                <div class="form" action="##" method="post" id="registrationForm">
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="first_name">
-                                                <h4>Nombre</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="last_name">
-                                                <h4>Identificación</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="last_name">
-                                                <h4>Identificación</h4>
-                                            </label>
-                                            <select name="tipoDoc"id="tipoDoc" class="form-control"  disabled>
-                                            <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
-                                            <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
-                                                    <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
-                                            <?php endforeach ?>
-                                            </select>
-                                            <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
-                                        </div>
-                                    </div>
 
-                                    
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="email">
-                                                <h4>Email</h4>
-                                            </label>
-                                            <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['user-data']['correoUsuario'] ?>" placeholder="cocacola@gmail.com" title="enter your email." disabled>
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="email">
+                                                    <h4>Email</h4>
+                                                </label>
+                                                <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['user-data']['correoUsuario'] ?>" placeholder="cocacola@gmail.com" title="enter your email." disabled>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="email">
-                                                <h4>Contraseña</h4>
-                                            </label>
-                                            <input type="password" class="form-control" id="password" placeholder="********" title="enter a location" disabled>
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="email">
+                                                    <h4>Contraseña</h4>
+                                                </label>
+                                                <input type="password" class="form-control" id="password" placeholder="********" title="enter a location" disabled>
+                                            </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="phone">
+                                                    <h4>Número de Contacto Fijó</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                            </div>
+                                        </div>
+                                        <div class="btn-toolbar">
+                                            <div class="col-xs-12">
+                                                <br>
+                                                <button class="btn btn-lg btn-success" id="edit" type="submit"><i class="fas fa-user-edit"></i> Editar perfil</button>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="phone">
-                                                <h4>Número de Contacto Fijó</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                    <hr>
+                                </div>
+                                <!------------------------formulario------------------------------->
+                                <!--/tab-pane-->
+                                <div class="tab-pane" id="messages">
+                                    <h2></h2>
+
+                                    <hr>
+                                    <div class="form" id="directionForm">
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="mobile">
+                                                    <h4>Número de Contacto Móvil</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="city">
+                                                    <h4>Ciudad</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="city" id="city" placeholder="Bogotá D.C" title="" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="rol">
+                                                    <h4>Tipo de Usuario</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="rol" id="rol" placeholder="Contratante" title="enter your phone number if any." disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="rol">
+                                                    <h4>Estado</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="estado" id="estados" value="<?= $_SESSION['user-data']['estadoUsuario'] ?>" placeholder="Fontibón" title="enter your phone number if any." disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="Barrio">
+                                                    <h4>Barrio</h4>
+                                                </label>
+                                                <select name="Barrio" id="Barrio" class="form-control" disabled>
+                                                    <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
+                                                    <?php foreach ($data['list_barrio'] as $barrio) : ?>
+                                                        <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="mobile">
+                                                    <h4>Dirección</h4>
+                                                </label>
+                                                <input type="text" class="form-control" name="Dirección" id="Dirección" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="btn-toolbar">
                                         <div class="col-xs-12">
                                             <br>
-                                            <button class="btn btn-lg btn-success" id="edit"  type="submit"><i class="fas fa-user-edit"></i> Editar perfil</button>
-                                            
-                                              
-                                            
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <hr>
-                            </div>
-                            <!------------------------formulario------------------------------->
-                            <!--/tab-pane-->
-                            <div class="tab-pane" id="messages">
-                                <h2></h2>
 
-                                <hr>
-                                <div class="form" id="directionForm">
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="mobile">
-                                                <h4>Número de Contacto Móvil</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
-                                        </div>
-                                    </div>   
-                                <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="city">
-                                                <h4>Ciudad</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="city" id="city" placeholder="Bogotá D.C" title="" disabled>
-                                        </div>
-                                    </div>
+                                            <button class="btn btn-lg btn-primary" id="cancelar" type="submit"><i class="fas fa-user-edit"></i>Cancelar</button>
+                                            <button class="btn btn-lg btn-primary" id="guardar" type="submit"><i class="fas fa-user-edit"></i>Guardar cambios</button>
 
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="rol">
-                                                <h4>Tipo de Usuario</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="rol" id="rol"  placeholder="Contratante" title="enter your phone number if any." disabled>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="rol">
-                                                <h4>Estado</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="estado" id="estados" value="<?= $_SESSION['user-data']['estadoUsuario'] ?>"placeholder="Fontibón" title="enter your phone number if any." disabled>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="Barrio">
-                                                <h4>Barrio</h4>
-                                            </label>
-                                            <select name="Barrio" id="Barrio" class="form-control"disabled>
-                                                <option selected disabled value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
-                                                <?php foreach ($data['list_barrio'] as $barrio) : ?>
-                                                    <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-
-                                            <!-- <input type="text" class="form-control" name="Barrio" id="Barrio" value="" placeholder="Los Monjes" title="enter your last name if any." disabled> -->
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="mobile">
-                                                <h4>Dirección</h4>
-                                            </label>
-                                            <input type="text" class="form-control" name="Dirección" id="Dirección" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-toolbar">
-                                        <div class="col-xs-12">
-                                            <br>
-                                            
-                                            <button class="btn btn-lg btn-primary" id="cancelar"  type="submit"><i class="fas fa-user-edit"></i>Cancelar</button> 
-                                            <button class="btn btn-lg btn-primary" id="guardar"  type="submit"><i class="fas fa-user-edit"></i>Guardar cambios</button> 
-                                              
-                                            
-                                        </div>
-                                    </div>
-                            </div>
-                            <!------------------------formulario3------------------------------->
-                            <!--/tab-pane-->
-                            <div class="tab-pane" id="settings">
-                                <hr>
-                                <form class="form" action="##" method="post" id="descripcionForm">
-                                    <div class="form-group">
-                                        <div class="col-xs-6">
-                                            <label for="first_name">
-                                                <h4>Descripción</h4>
-                                            </label>
-                                            <div style="border: #000000; width: 500px;
+                                <!------------------------formulario3------------------------------->
+                                <!--/tab-pane-->
+                                <div class="tab-pane" id="settings">
+                                    <hr>
+                                    <form class="form" action="##" method="post" id="descripcionForm">
+                                        <div class="form-group">
+                                            <div class="col-xs-6">
+                                                <label for="first_name">
+                                                    <h4>Descripción</h4>
+                                                </label>
+                                                <div style="border: #000000; width: 500px;
                                             height: 150px; background:#ffffff;
                                             border-top-left-radius: 20px;border-top-right-radius: 30px;">
-                                                <center>
-                                                    <p style="top:35px; position: relative;">The Coca-Cola Company es
-                                                        una corporación multinacional
-                                                        estadounidense de bebidas con sede en Atlanta, Georgia. The
-                                                        Coca-Cola Company
-                                                        tiene intereses en la fabricación, venta minorista y
-                                                        comercialización de concentrados
-                                                        y jarabes para bebidas no alcohólicas.</p>
-                                                </center>
+                                                    <center>
+                                                        <p style="top:35px; position: relative;">The Coca-Cola Company es
+                                                            una corporación multinacional
+                                                            estadounidense de bebidas con sede en Atlanta, Georgia. The
+                                                            Coca-Cola Company
+                                                            tiene intereses en la fabricación, venta minorista y
+                                                            comercialización de concentrados
+                                                            y jarabes para bebidas no alcohólicas.</p>
+                                                    </center>
+                                                </div>
                                             </div>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <div class="col-xs-12">
-                                                <br>
+
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <br>
+                                                </div>
                                             </div>
-                                        </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
+                            <!--/tab-pane-->
                         </div>
-                        <!--/tab-pane-->
+                        <!--/tab-content-->
                     </div>
-                    <!--/tab-content-->
+                    <!--/col-9-->
                 </div>
-                <!--/col-9-->
+                <!--/row-->
             </div>
-            <!--/row-->
-        </div>
     </form>
-        <!--FUNCIONALIDAD FORMULARIOS-->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <?php
-        require_once('./Views/Components/ScriptsJs.php');
-        ?>
-        <script src="<?= URL; ?>Assets/js/editarPerfil.js"></script>
+    <!--FUNCIONALIDAD FORMULARIOS-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
+    <script src="<?= URL; ?>Assets/js/editarPerfil.js"></script>
 </body>
 <!--   Core JS Files   -->
 
