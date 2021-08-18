@@ -69,14 +69,11 @@
                     <div class="row" id="FormPerfilCon">
                         <div class="col-sm-3">
                             <!--left col-->
-
                             <div class="text-center">
                                 <img style="top: 110px;  position: relative; " src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
-
                                 <h3></h3>
                             </div>
                             </hr><br>
-
                         </div>
                         <!--/col-3-->
                         <div class="col-sm-9">
@@ -120,8 +117,6 @@
                                                 <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
                                             </div>
                                         </div>
-
-
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="email">

@@ -143,9 +143,11 @@ const cerrarLista = () => {
 // autocompletar(["java", "react", "vue", "python", " javascript", "spring", "angular"])
 
 /*============ TRAER LA LISTA DE VACANTES ==========*/
-inputBusqueda.addEventListener('input', e => {
-    getArregloVacantes(e.target.value)
-})
+if (inputBusqueda) {
+    inputBusqueda.addEventListener('input', e => {
+        getArregloVacantes(e.target.value)
+    })
+}
 
 const getArregloVacantes = async (busqueda) => {
     const url = `http://localhost/PonsLabor/Vacante/getArregloVacantes/${busqueda}`;
