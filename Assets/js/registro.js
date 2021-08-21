@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     /*======================= FUNCIÓN PARA MOSTRAR LA IMAGEN =============== */
     if (document.querySelector("#foto")) {
         let foto = document.querySelector("#foto");
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.querySelector('#list_sectores')) {
         const listSectores = document.querySelector('#list_sectores');
-        listSectores.addEventListener('click', seleccionarSector);
+        listSectores.addEventListener('click', e => seleccionarSector(e));
     }
 })
 
@@ -142,21 +142,6 @@ $(".previous").click(function (e) {
 
 
 /* ==================== MÉTODOS PARA HACER TRANSACCIONES EN LA DB ============= */
-
-const listSectores = new Set();
-
-const seleccionarSector = e => {
-    if (e.target.tagName === 'LI') {
-        if (e.target.classList.contains('active')) {
-            listSectores.delete(e.target.dataset.id);
-            e.target.classList.remove('active');
-        } else {
-            listSectores.add(e.target.dataset.id);
-            e.target.classList.add('active');
-        }
-        console.log(listSectores)
-    }
-}
 
 const formUser = document.querySelector('#msform');
 const btnSector = document.querySelector('#btn_sector');
@@ -274,6 +259,50 @@ const insertUser = async () => {
 
         } else {
             swal("Error", msg, "error");//mostrar la alerta
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
+const listSectores = new Set();
+
+const seleccionarSector = async (e) => {
+    if (e.target.tagName === 'LI') {
+        if (e.target.classList.contains('active')) {
+            listSectores.delete(e.target.dataset.id);
+            e.target.classList.remove('active');
+        } else {
+            listSectores.add(e.target.dataset.id);
+            e.target.classList.add('active');
+        }
+    }
+}
+
+document.querySelector('#btn_sector').addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('#sectores').value = [...listSectores];
+    saveSectorUser();
+})
+
+const saveSectorUser = async () => {
+    const formData = new FormData(formUser);
+    console.log(formData.get('sectores'))
+    const url = `${base_url}Registro/saveSectorUser`;
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        const { status, msg } = await res.json();
+        if (status) {
+            swal("Usuario", msg, "success");
+            setTimeout(() => {
+                window.location.href = `${base_url}Login`;
+                swal("Usuario", "No te olvides de confirmar tu cuenta a través de tu correo eletronico. Gracias por preferirnos; PonteLab tu mejor opción de bolsa de empleo.", "info");
+            }, 5000)
+        } else {
+            swal("Error", msg, "error");
         }
     } catch (error) {
         swal("Error", error, "error");

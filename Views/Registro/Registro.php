@@ -119,6 +119,7 @@
             <label>Por favor seleccione el sector con el cual te identificas tu o tu empresa.</label>
             <br>
             <br>
+            <input type="hidden" id="sectores" name="sectores" value="">
             <ul class="list_sectores" id="list_sectores">
                 <?php foreach ($data['list_sector'] as $barrio) : ?>
                     <li data-id="<?php echo $barrio['idSector'] ?>"><?php echo $barrio['nombreSector'] ?></li>

@@ -189,6 +189,8 @@ const getArregloVacantes = async (busqueda) => {
                     </div>
                     `
             });
+        } else {
+            getAllVacantes();
         }
     } catch (error) {
         console.log('Error' + error)
@@ -196,7 +198,7 @@ const getArregloVacantes = async (busqueda) => {
 }
 
 const getAllVacantes = async () => {
-    const url = 'http://localhost/Pontelab/Vacante/getAllVacantes';
+    const url = `${base_url}Vacante/getAllVacantes`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
