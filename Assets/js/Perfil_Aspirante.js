@@ -13,6 +13,12 @@ if (document.querySelector('#editar')) {
         posicion.removeAttribute('disabled');
         const idioma = document.querySelector('#idioma');
         idioma.removeAttribute('disabled');
+        const numDoc = document.querySelector('#numDoc');
+        numDoc.removeAttribute('disabled');
+        const direccion = document.querySelector('#direccion');
+        direccion.removeAttribute('disabled');
+        const Barrio = document.querySelector('#Barrio');
+        Barrio.removeAttribute('disabled');
         btnGuardar.style.display = 'block';
         btnCancelar.style.display = 'block';
         document.querySelector('#editar').setAttribute('disabled', 'disabled');
@@ -56,7 +62,10 @@ const editPerfil = async () => {
             var titulo = document.querySelector('#titulo').value;
             var posicion = document.querySelector('#posicion').value;
             var idioma = document.querySelector('#idioma').value;
-            if (nombre == '' || titulo == '' || posicion == '' || idioma == '' ) {
+            var numDoc = document.querySelector('#numDoc').value;
+            var direccion = document.querySelector('#direccion').value;
+            var Barrio = document.querySelector('#Barrio').value;
+            if (nombre == '' || titulo == '' || posicion == '' || idioma == '' || numDoc == '' || direccion == '' || Barrio == '') {
                 swal("Atención", "Todos los campos son obligatorios", "error");
                 return false;
             } else {

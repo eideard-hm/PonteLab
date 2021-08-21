@@ -23,6 +23,7 @@ class Perfil_Aspirante extends Controllers
     {
         $data['titulo_pagina'] = 'Perfil Aspirante | PonsLabor.';
         $data['list_tipodoc'] = $this->model->selectTipoDoc();
+        $data['list_barrio'] = $this->model->selectBarrio();
         $this->views->getView($this, 'Perfil_Aspirante', $data);
     }
     
@@ -34,19 +35,23 @@ class Perfil_Aspirante extends Controllers
         );
     }
 
-    public function updatePerfilAspirante(){
+    public function updatePerfilAspirante()
+    {
         if($_POST){
             if(
-            empty($_POST['nombreApellido']) ||empty($_POST['titulo']) ||empty($_POST['posicion'])
-            ||empty($_POST['idioma'])
+            empty($_POST['nombreApellido']) || empty($_POST['titulo']) || empty($_POST['posicion'])
+            || empty($_POST['idioma']) || empty($_POST['numDoc']) || empty($_POST['direccion']) || empty($_POST['Barrio'])
             ) {
-                $arrResponse=['statusUser' => false,'msg'=>'¡ERROR!, Debe llenar todo los campos.'];
-            } else{
+                $arrResponse=['statusUser' => false, 'msg' => '¡ERROR!, Debe llenar todo los campos.'];
+            } else {
                 $idUsuario=intval($_SESSION['user-data']['idUsuario']);
                 $nombreApellido=limpiarCadena($_POST['nombreApellido']);
                 $titulo=intval($_POST['titulo']);
                 $posicion=intval($_POST['posicion']);
                 $idioma=intval($_POST['idioma']);
+                $numDoc=intval($_POST['numDoc']);
+                $direccion=limpiarCadena($_POST['direccion']);
+                $Barrio=limpiarCadena($_POST['Barrio']);
 
                 $option = 2;
                 $request = $this->model->updateUser(
@@ -54,7 +59,10 @@ class Perfil_Aspirante extends Controllers
                     $nombreApellido,
                     $titulo,
                     $posicion,
-                    $idioma
+                    $idioma,
+                    $numDoc,
+                    $direccion,
+                    $Barrio
                 );
                 
                 if ($option === 2) {
@@ -71,12 +79,11 @@ class Perfil_Aspirante extends Controllers
         die();
     
         
-            $arrDataAsp = $this->model->selectOneUser($request);
+           /* $arrDataAsp = $this->model->selectOneUser($request);
             if (!empty($arrDataAsp)) {
                 $_SESSION['user-data'] = $arrDataAsp;        
         
-        }
+        }*/
     
     }
-
 }
