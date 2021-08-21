@@ -150,7 +150,7 @@ if (inputBusqueda) {
 }
 
 const getArregloVacantes = async (busqueda) => {
-    const url = `http://localhost/PonsLabor/Vacante/getArregloVacantes/${busqueda}`;
+    const url = `${base_url}Vacante/getArregloVacantes/${busqueda}`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
@@ -196,7 +196,7 @@ const getArregloVacantes = async (busqueda) => {
 }
 
 const getAllVacantes = async () => {
-    const url = 'http://localhost/PonsLabor/Vacante/getAllVacantes';
+    const url = 'http://localhost/Pontelab/Vacante/getAllVacantes';
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();

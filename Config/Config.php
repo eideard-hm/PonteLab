@@ -1,7 +1,7 @@
 <?php
 
 //constante que contiene la ruta raiz del proyecto
-const URL = 'http://localhost/PonsLabor/';
+const URL = 'http://localhost/Pontelab/';
 
 // constante de conexión a la base de datos
 const DB_HOST = 'localhost';

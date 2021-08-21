@@ -33,156 +33,6 @@ body {
     margin: 0 auto;
 }
 
-/*========================= NAVBAR 1=========================*/
-
-.header {
-    background: #060d2f;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px 60px;
-    color: #fff;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-size: 30px;
-    font-weight: 700;
-    color: #fff;
-}
-
-.h1 {
-    text-align: center;
-    font-size: 40px;
-    font-family: var(--fuenteQuicksand);
-}
-
-.nav_ico {
-    display: inline-block;
-    position: relative;
-}
-
-.nav_ico label {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    cursor: pointer;
-    font-family: var(--fuenteRoboto);
-}
-
-.nav_ico span {
-    display: block;
-    height: 4px;
-    width: 30px;
-    background: #fff;
-    margin: 4px 0;
-    font-family: var(--fuenteRoboto);
-}
-
-.nav-overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 998;
-    background: transparent;
-    transition: all 0.3s ease-in-out;
-    pointer-events: none;
-}
-
-.nav-overlay.active {
-    background: rgba(0, 0, 0, 0.7);
-    pointer-events: auto;
-}
-
-#menu_trigger {
-    position: fixed;
-    opacity: 0;
-    pointer-events: none;
-    width: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-}
-
-.close_icon {
-    color: #fff;
-    font-size: 60px;
-    position: relative;
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    line-height: 0.7;
-    transform: rotate(45deg);
-}
-
-.close_icon input {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    margin: 0;
-    cursor: pointer;
-}
-
-.side_nav {
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 260px;
-    height: 100vh;
-    background: #060d2f;
-    z-index: 1001;
-    padding-top: 100px;
-    transition: all 0.3s ease-in-out;
-    transform: translateX(100%);
-    font-family: var(--fuenteRoboto);
-}
-
-#menu_trigger:checked+.side_nav {
-    transform: translateX(0%);
-}
-
-.side_nav ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.side_nav ul li {
-    margin: 0;
-}
-
-.side_nav ul li a {
-    display: block;
-    color: #fff;
-    font-size: 20px;
-    text-decoration: none;
-    padding: 12px 30px;
-    border-bottom: 1px solid;
-    transition: all 0.3s ease-in-out;
-    font-family: var(--fuenteRoboto);
-}
-
-.side_nav ul li a:hover {
-    background: #546ccf;
-    color: #fff;
-}
-
-.menu_icon{
-    margin-right: 10px;
-}
-
 /*========================= NAVBAR 2 =========================*/
 
 body#menu {
@@ -195,14 +45,15 @@ body#menu {
 
 /*Menu*/
 
-#header_menu {
+#header_menu,
+.menu_header {
     width: 100%;
     height: 65px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.09);
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 #header_menu .barra {
@@ -223,6 +74,14 @@ body#menu {
     align-items: center;
 }
 
+.menu_header .barra .content-logo .logo,
+#header_menu .barra .content-logo .logo-empresa {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
 #header_menu .barra .content-logo #icono-reponsive,
 #header_menu .barra .content_logo_menu #icono-reponsive {
     display: none;
@@ -240,31 +99,6 @@ body#menu {
     color: #ff5d94;
 }
 
-#header_menu .barra .content-logo .logo-nombre,
-#header_menu .barra .content_logo_menu .logo-nombre {
-    display: flex;
-    align-items: center;
-}
-
-#header_menu .barra .content-logo .logo-nombre .logo-empresa,
-#header_menu .barra .content_logo_menu .logo-nombre .logo-empresa {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    margin-right: 8px;
-    border-radius: 3px;
-}
-
-#header_menu .barra .content-logo .logo-nombre h2,
-#header_menu .barra .content-logo .logo-nombre h2 span {
-    font-size: 22px;
-}
-
-#header_menu .barra .content-logo .logo-nombre h2 span,
-#header_menu .barra .content_logo_menu .logo-nombre h2 span {
-    color: orange;
-}
-
 #header_menu .barra .nav {
     width: 55%;
     height: 100%;
@@ -272,6 +106,7 @@ body#menu {
     justify-content: space-between;
     align-items: center;
 }
+
 
 #header_menu .barra .nav a {
     display: block;
@@ -588,11 +423,12 @@ body.dark,
 }
 
 /*LUISA*/
-.dark .img-slider .slide .info h2{
+.dark .img-slider .slide .info h2 {
     color: #fff;
 }
-.dark .img-slider .slide p{
-color:#fff;
+
+.dark .img-slider .slide p {
+    color: #fff;
 }
 
 .dark .contenedor-perfil_aspirante {

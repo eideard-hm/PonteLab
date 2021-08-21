@@ -20,7 +20,7 @@
 
 <body>
     <?php
-    require_once('./Views/Components/Navbar.php');
+    require_once('./Views/Components/NabvarInicio.php');
     ?>
 
     <form id="msform" method="POST" enctype="multipart/form-data">

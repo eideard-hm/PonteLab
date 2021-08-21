@@ -223,7 +223,7 @@ const insertUser = async () => {
         formData.delete('apellido');
     }
 
-    const url = 'http://localhost/PonsLabor/Registro/setUser';
+    const url = `${base_url}Registro/setUser`;
 
     try {
         const res = await fetch(url, {
