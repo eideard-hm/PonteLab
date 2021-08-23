@@ -3,6 +3,7 @@
 class VacanteModel extends GestionCRUD
 {
     //atributos
+    //Tabla Vacante
     private int $idVacante;
     private string $nombreVacante;
     private int $cantidadVacante;
@@ -15,6 +16,10 @@ class VacanteModel extends GestionCRUD
     private string $direccionVacante;
     private int $estadoVacante;
     private int $idContratanteFK;
+    //Tabla Requisitos
+    private int $idVacanteFK;
+    private int $idRequisitosFK;
+    private string $especficacionRequisitos;
 
     //constructor
     public function __construct()
@@ -78,13 +83,39 @@ class VacanteModel extends GestionCRUD
 
         $return = 0;
 
-        //consutar si ya existe esta vacante
-        $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante,
-        perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, direccionVacante,
-        estadoVacante, idContratanteFK
-        FROM VACANTE 
-        WHERE nombreVacante = '{$this->nombreVacante}'";
-        $request = $this->selectAll($sql);
+        $sql = "INSERT INTO VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
+        values (?,?,?,?,?,?,?,?,?,?,?)";
+            //almacena los valores en un arreglo
+            $arrData = array(
+                $this->nombreVacante,
+                $this->cantidadVacante,
+                $this->descripcionVacante,
+                $this->perfilAspirante,
+                $this->tipoContratoVacante,
+                $this->sueldoVacante,
+                $this->fechaHoraPublicacion,
+                $this->fechaHoraCierre,
+                $this->direccionVacante,
+                $this->estadoVacante,
+                $this->idContratanteFK
+            );
+            $return = $this->insert($sql, $arrData);
+        } else {
+            $return = 'exits';
+        }
+        return $return;
+    }
+
+    //metodo para la insercion de una vacante
+    public function insertRequirement(      
+        int $idVacanteFK,
+        int $idRequisitosFK,
+        string $especficacionRequisitos
+    ) {
+        $this->idVacanteFK = $idVacanteFK;
+        $this->idRequisitosFK = $idRequisitosFK;
+        $this->descripcionVacante = $descripcionVacante;
+        $return = 0;
 
         //validacion de la vacante
         //sí esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
@@ -126,5 +157,19 @@ class VacanteModel extends GestionCRUD
                 OR sueldoVacante LIKE '%{$busqueda}%' OR direccionVacante LIKE '%{$busqueda}%'
                 OR estadoVacante LIKE '%{$busqueda}%'";
         return $this->selectAll($sql);
+    }
+
+    public function selectVacancy()
+    {
+        $sql = "SELECT idVacante FROM VACANTE
+        WHERE idUsuario = {$this->idUsuario}";
+        $request = $this->select($sql);
+        return $request;
+    }
+    public function selectRequirement()
+    {
+        $sql = "SELECT idTipoDocumento FROM TIPODOCUMENTO";
+        $request = $this->select($sql);
+        return $request;
     }
 }

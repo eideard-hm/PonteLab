@@ -18,6 +18,8 @@ class Vacante extends Controllers
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             $data['titulo_pagina'] = 'Vacante | PonsLabor.';
+            $data['list_vacante'] = $this->model->selectVacancy();
+            $data['list_requisitos'] = $this->model->selectRequirement();
             $this->views->getView($this, 'Vacante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
             header('Location: http://localhost/PonsLabor/Menu');
@@ -105,6 +107,59 @@ class Vacante extends Controllers
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();
+    }
+    
+    // método para traer todas las vacantes
+    public function setRequirement()
+    {
+        if ($_POST) {
+            if
+            (
+                empty($_POST['especificaciones'])
+            ) 
+            {
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, ctrl!!'];
+            }
+            //DEFINICION DE VARIABLES DE RECEPCION
+            $intidRequisitosVacante = intval($_POST['idRequisitosVacante']);
+            $intidVacanteFK = intval($_POST['']);
+            $intidRequisitosFK = intval($_POST['']);
+            $strEspecificaciones = limpiarCadena($_POST['especificaciones']);
+            /*================== INSERTAR USUARIO =======================*/
+            if ($intId === 0 || empty($intId)) {
+                $option = 1;
+                $request = $this->model->insertRequirement(
+                    $strDescripcion,
+                    $intidRequisitosVacante,
+                    $intidRequisitosFK                  
+                );
+            } else {
+                /*================== EDITAR USUARIO =======================*/
+                $option = 2;
+                $request = $this->model->updateRequirement(
+                    $intidRequisitosVacante,
+                    $intidVacanteFK,
+                    $intidRequisitosFK,
+                    $strEspecificaciones
+                );
+            }
+
+            if ($request > 0 && is_numeric($request)) {
+                if ($option === 1) {
+                    $_SESSION['idContractorFK'] = intval($request);
+
+                    $arrResponse = ['statusUser' => true, 'msg' => 'El registro del contrante ha sido exitoso :)', 'value' => $request];
+                } elseif ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del contratante han sido modificado existosamente :)', 'value' => $request];
+                }
+            } elseif ($request === 'exits') {
+                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el contratante ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
+            } else {
+                $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();        
     }
 
     // método para traer todas las vacantes

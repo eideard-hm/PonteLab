@@ -65,3 +65,59 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
             insertVacancy();
         }
     }
+
+    const formRequirement = document.querySelector('#form-requirement');
+    const bntSubmit_ = document.getElementById('btn_submit_');
+
+/*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
+caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
+
+    bntSubmit_.addEventListener('click', e => {
+        e.preventDefault();
+
+        validateFormRequirement();
+    });
+    
+    const insertRequirement = async () => {
+        //enviar los datos mediante una petición fetch
+        tinyMCE.triggerSave();
+        let formData_ = new FormData(formRequirement);
+        
+        const url = 'http://localhost/PonsLabor/Vacante/setRequirement';
+
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                body: formData_
+            })
+            const { statusUser, msg } = await res.json();
+
+            if (statusUser ) {
+                swal("Vacante", msg, "success");              
+            }
+            else {
+                swal("Error", msg, "error");//mostrar la alerta
+            }
+        } 
+        catch (error) {
+            swal("Error", error, "error");
+        }
+    }
+
+    const validateFormRequirement = () => {
+        tinyMCE.triggerSave();
+        const id = document.querySelector('#idRequisitosVacante').value;
+        const especificaciones = document.querySelector('#especificaciones').value;
+
+        if (especificaciones === '') {
+            swal(
+                'Ha ocurrido un error',
+                'Todos los campos son obligatorios.',
+                'error'
+            )
+            return false;
+        }
+        else {
+            insertRequirement();
+        }
+    }

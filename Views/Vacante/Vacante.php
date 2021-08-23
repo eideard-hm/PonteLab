@@ -109,6 +109,25 @@
         </p>
       </form>
     </div>
+    <div class="req-form">
+      <form method="POST" id="form-requirement">
+        <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
+        <p class="block">
+          <label for="especificaciones"> Especificaciones </label>
+          <br>
+          <textarea name="especificaciones" id="especificaciones" rows="1" placeholder="Especificaciones..." required></textarea>
+        </p>
+        <p class="block">
+            <button type="submit" id="btn_submit_">Registrar Requerimiento</button>
+        </p>
+        <p class="block">
+            <button type="submit" id="btn_modify_">Modificar Requerimiento</button>
+        </p>
+        <p class="block">
+            <button type="submit" id="btn_srch_">Consultar Requerimiento</button>
+        </p>
+      </form>
+    </div>
   </div>
 
   <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
