@@ -43,8 +43,8 @@ class RegistroModel extends GestionCRUD
         $this->idUsuario = $id;
         //consulta para extraerlo
         $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
-        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, nombreBarrio,
-        direccionUsuario 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK 
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
         ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
         ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b

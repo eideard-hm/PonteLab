@@ -11,7 +11,7 @@ class Perfil_ContratanteModel extends gestionCRUD
     private $numDocUsuario;
     private $numTelUsuario;
     private $numTelFijo;
-    //private $estadoUsuario; 
+    private $estadoUsuario; 
     //private $idRolFK ;
     private $idBarrioFK;
     private $direccionUsuario;
@@ -45,10 +45,10 @@ class Perfil_ContratanteModel extends gestionCRUD
         $this->direccionUsuario = $direccionUsuario;
 
         $sql = "UPDATE USUARIO SET 
-    nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
-    numTelUsuario=?, numTelFijo=?, 
-    idBarrioFK=?, direccionUsuario=? 
-    WHERE idUsuario  = {$this->idUsuario}";
+                nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
+                numTelUsuario=?, numTelFijo=?, 
+                idBarrioFK=?, direccionUsuario=? 
+                WHERE idUsuario  = {$this->idUsuario}";
         $arrData = array(
             $this->nombreUsuario,
             $this->numDocUsuario,
@@ -84,4 +84,16 @@ class Perfil_ContratanteModel extends gestionCRUD
         $request = $this->selectAll($sql);
         return $request;
     }
+    
+    public function inactivarCuenta(int $idUsuario, int $estadoUsuario){
+        $this->idUsuario=$idUsuario;
+        $this->estadoUsuario = $estadoUsuario;
+
+        $sql = "UPDATE USUARIO SET 
+                estadoUsuario= ?
+                WHERE idUsuario  = {$this->idUsuario}";
+        $arrData=array($this->estadoUsuario);
+        return $this->edit($sql,$arrData);
+    }
+
 }

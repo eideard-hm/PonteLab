@@ -1,5 +1,4 @@
 <?php
-
 class Perfil_Contratante extends Controllers
 {
     public function __construct()
@@ -24,7 +23,6 @@ class Perfil_Contratante extends Controllers
         $data['titulo_pagina'] = 'Perfil Contratante | PonsLabor.';
         $this->views->getView($this, 'Perfil_Contratante', $data);
     }
-
     public function updatePerfilContratante()
     {
         if ($_POST) {
@@ -43,7 +41,6 @@ class Perfil_Contratante extends Controllers
                 $numPhone = limpiarCadena($_POST['phone']);
                 $Barrio = intval($_POST['Barrio']);
                 $direccion = limpiarCadena($_POST['Dirección']);
-
                 $option = 2;
                 $request = $this->model->updateUser(
                     $idUsuario,
@@ -55,9 +52,7 @@ class Perfil_Contratante extends Controllers
                     $Barrio,
                     $direccion
                 );
-
-
-                if ($option === 2) {
+                if ($request > 0) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
                 } elseif ($request === 'exits') {
                     $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
@@ -67,7 +62,21 @@ class Perfil_Contratante extends Controllers
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
         }
+        die();
+    }
+    public function inactivarCuenta(){
+        if($_POST){
+            $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
+            $estadoUsuario = 1;
+            $request = $this->model->inactivarCuenta($idUsuario, $estadoUsuario);
 
+            if($request > 0){
+                $arrResponse = ['statusUser' => true, 'msg' => 'Usuario inactivado correctamente.'];
+            }else{
+                $arrResponse = ['statusUser' => false, 'msg' => 'Ha ocurrido un error en el servidor'];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }
