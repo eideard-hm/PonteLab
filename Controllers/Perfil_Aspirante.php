@@ -2,6 +2,8 @@
 
 class Perfil_Aspirante extends Controllers
 {
+
+
     public function __construct()
     {
         parent::__construct();
@@ -20,6 +22,61 @@ class Perfil_Aspirante extends Controllers
     public function Perfil_Aspirante()
     {
         $data['titulo_pagina'] = 'Perfil Aspirante | PonsLabor.';
+        $data['list_tipodoc'] = $this->model->selectTipoDoc();
         $this->views->getView($this, 'Perfil_Aspirante', $data);
     }
+    
+    public function inhabilitarA ()
+    {
+        $idUsuario=intval($_SESSION['user-data']['idUsuario']);
+        $estadoUsuario=intval($_POST['estado']);
+        $request = $this->model->updateState($idUsuario,$estadoUsuario 
+        );
+    }
+
+    public function updatePerfilAspirante(){
+        if($_POST){
+            if(
+            empty($_POST['nombreApellido']) ||empty($_POST['titulo']) ||empty($_POST['posicion'])
+            ||empty($_POST['idioma'])
+            ) {
+                $arrResponse=['statusUser' => false,'msg'=>'¡ERROR!, Debe llenar todo los campos.'];
+            } else{
+                $idUsuario=intval($_SESSION['user-data']['idUsuario']);
+                $nombreApellido=limpiarCadena($_POST['nombreApellido']);
+                $titulo=intval($_POST['titulo']);
+                $posicion=intval($_POST['posicion']);
+                $idioma=intval($_POST['idioma']);
+
+                $option = 2;
+                $request = $this->model->updateUser(
+                    $idUsuario,
+                    $nombreApellido,
+                    $titulo,
+                    $posicion,
+                    $idioma
+                );
+                
+                if ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
+                } elseif ($request === 'exits') {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
+                } else {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente', 'value' => $request];
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }    
+        }
+
+        die();
+    
+        
+            $arrDataAsp = $this->model->selectOneUser($request);
+            if (!empty($arrDataAsp)) {
+                $_SESSION['user-data'] = $arrDataAsp;        
+        
+        }
+    
+    }
+
 }

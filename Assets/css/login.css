@@ -11,62 +11,10 @@
 }
 
 body {
-  background: #fff/*linear-gradient( rgba(213, 238, 254), rgba(84, 108, 207))*/;
+  background: #fff;
   width: 100%;
   min-height: 100vh;
   font-family: var(--fuenteRoboto);
-  
-}
-
-/*====navbar*/
-.menu_header {
-  width: 100%;
-  height: 65px;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-}
-
-.menu_header .barra {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-}
-
-.menu_header .barra .content-logo {
-  text-decoration: none;
-  font-size: 27px;
-  font-weight: 900;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.menu_header .barra .content-logo .logo {
-  width: 45px;
-  height: 45px;
-  object-fit: cover;
-  margin-right: 8px;
-  border-radius: 5px;
-}
-
-
-.menu_header .barra .content-logo h2,
-.menu_header .barra .content-logo h2 span {
-  font-size: 25px;
-  font-weight: 700;
-}
-
-.menu_header .barra .content-logo h2 {
-  color: #000;
-}
-
-.menu_header .barra .content-logo h2 span {
-  color: orange;
 }
 
 .menu_header .barra .navbar_menu {
@@ -87,7 +35,7 @@ body {
   text-align: center;
 }
 
-.menu_header .barra .navbar_menu .dark-mode{
+.menu_header .barra .navbar_menu .dark-mode {
   margin-right: 12px;
 }
 
@@ -119,11 +67,6 @@ body {
   margin-bottom: 5px;
 }
 
-.contenedor {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 /*formulario*/
 .from-logi {
 
@@ -135,12 +78,12 @@ body {
   margin-top: 180px;
   padding: 40px 30px;
   color: #000;
-   position: relative;
+  position: relative;
   top: -50px;
   left: -250PX;
   font-family: var(--fuenteRoboto);
   border-radius: 20px;
-  float:right;
+  float: right;
   z-index: 100;
 }
 
@@ -173,25 +116,27 @@ body {
   font-weight: 400;
   transition: .3s ease all;
 }
+
 /*====================================IMAGEN LOGIN==========================================*/
-.job{
-  width:480px;
+.job {
+  width: 480px;
   height: 480px;
   position: relative;
-  top:70px;
+  top: 70px;
   float: left;
   left: -90;
   z-index: 100;
   top: 110px;
-  
+
 }
-.wave{
+
+.wave {
   position: fixed;
   height: 100%;
   left: 0;
   bottom: 0;
   z-index: -1;
-  
+
 }
 
 /*===================================ESTILO PARA VALIDACION===================================*/
@@ -348,20 +293,57 @@ body {
   height: 450px;
   top: -150px;
   position: relative;
-  border-radius: 5px; 
+  border-radius: 5px;
   font-family: var(--fuenteRoboto);
-  
+
 }
 
 /*====================================REPONSIEVE LOGIN===========================*/
 
 @media screen and (max-width: 820px) {
 
-  .header{
+  .header {
+    background-color: bisque;
+  }
+
+  .header .logo1 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+  }
+
+  .from-logi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 450px;
+    left: -130PX;
+    /* width:;
+    height: ; */
+  }
+
+  #spanMostrar {
+    top: 230px;
+    position: absolute;
+
+  }
+
+  .job {
+    display: none;
+  }
+
+
+}
+
+@media screen and (max-width: 990px) {
+
+  .header {
     background-color: #ffffff;
   }
 
-  .header .logo1{
+  .header .logo1 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -379,63 +361,48 @@ body {
     height: ; */
   }
 
-  #spanMostrar{
+  #spanMostrar {
     top: 230px;
     position: absolute;
 
   }
-  .job{
+
+  .job {
     display: none;
   }
-  
- 
-}
-@media screen and (max-width: 990px) {
 
-  .header{
-    background-color:#ffffff;
-  }
 
-  .header .logo1{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-
-  }
-
-  .from-logi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 450px;
-    left: -130PX;
-    /* width:;
-    height: ; */
-  }
-
-  #spanMostrar{
-    top: 230px;
-    position: absolute;
-
-  }
-  .job{
-    display: none;
-  }
-  
- 
 }
 
 
 @media screen and (max-width: 670px) {
 
-  .header{
-    background-color:#ffffff;
+  .header {
+    background-color: #ffffff;
   }
 
-  .header .logo1{
+  .header .logo1 {
     width: 50px;
     height: 50px;
+  }
+
+  .a1 {
+    color: #000;
+  }
+
+  .a2 {
+    color: #000;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .header {
+    background-color: rgba(0, 0, 0, .3);
+  }
+
+  .header .logo1 {
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 
   }
@@ -444,41 +411,44 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     width: 400px;
     height: 450px;
     left: -140PX;
- 
+
   }
+
   .from-logi {
     border-style: inset;
     border-width: 3px;
     border-color: rgb(38, 78, 93);
   }
-  
 
-  #spanMostrar{
+
+  #spanMostrar {
     top: 230px;
     position: absolute;
 
   }
-  .job{
+
+  .job {
     display: none;
   }
-  .wave{
+
+  .wave {
     display: none;
   }
-  
- 
+
+
 }
 
 @media screen and (max-width: 1071px) {
 
-  .header{
+  .header {
     background-color: #ffffff;
   }
 
-  .header .logo1{
+  .header .logo1 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -492,23 +462,25 @@ body {
     width: 400px;
     height: 450px;
     left: -120PX;
- 
+
   }
-  #spanMostrar{
+
+  #spanMostrar {
     top: 230px;
     position: absolute;
 
   }
- 
-  
- 
+
+
+
 }
- @media screen and (max-width: 620px) {
-  .header{
-    background-color:#ffffff;
+
+@media screen and (max-width: 620px) {
+  .header {
+    background-color: #ffffff;
   }
 
-  .header .logo1{
+  .header .logo1 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -522,13 +494,15 @@ body {
     width: 300px;
     height: 450px;
     left: -135PX;
- 
+
   }
+
   .from-logi {
     border-style: inset;
     border-width: 2px;
     border-color: rgb(38, 78, 93);
   }
+
   .controls {
     font-family: var(--fuenteRoboto);
     width: 100%;
@@ -545,6 +519,7 @@ body {
     font-weight: 400;
     transition: .3s ease all;
   }
+
   .boton_3 {
     cursor: pointer;
     text-decoration: none;
@@ -564,19 +539,29 @@ body {
     top: -2px;
     left: center;
   }
-  
-  #spanMostrar{
+
+  #spanMostrar {
     top: 227px;
     position: absolute;
 
   }
-  .job{
+
+  .job {
     display: none;
   }
-  .wave{
+
+  .wave {
     display: none;
   }
- }
+}
+
+/* background-color: yellowgreen;
+width: 300px;
+;
+height: 350px;
+;
+}
+} */
 
 /*
 @media screen and (max-width: 515px) {

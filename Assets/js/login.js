@@ -54,7 +54,7 @@ const signIn = async (e) => {
   const formData = new FormData(form);
 
   //peticion mediante la API de fetch, peticion de tipo post
-  const url = 'http://localhost/PonsLabor/Login/loginUser';
+  const url = `${base_url}Login/loginUser`;
 
   try {
     const res = await fetch(url, {
@@ -64,7 +64,7 @@ const signIn = async (e) => {
     const { statusLogin, msg, rol } = await res.json();
     if (statusLogin && msg === 'ok') {
       if (rol === 'Contratante') {
-        window.location.href = 'http://localhost/PonsLabor/Menu/Menu_Contratante';
+        window.location.href = `${base_url}Menu/Menu_Contratante`;
       } else {
         window.location.href = 'Menu';
       }

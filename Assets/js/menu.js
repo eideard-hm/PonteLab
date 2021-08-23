@@ -143,12 +143,14 @@ const cerrarLista = () => {
 // autocompletar(["java", "react", "vue", "python", " javascript", "spring", "angular"])
 
 /*============ TRAER LA LISTA DE VACANTES ==========*/
-inputBusqueda.addEventListener('input', e => {
-    getArregloVacantes(e.target.value)
-})
+if (inputBusqueda) {
+    inputBusqueda.addEventListener('input', e => {
+        getArregloVacantes(e.target.value)
+    })
+}
 
 const getArregloVacantes = async (busqueda) => {
-    const url = `http://localhost/PonsLabor/Vacante/getArregloVacantes/${busqueda}`;
+    const url = `${base_url}Vacante/getArregloVacantes/${busqueda}`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
@@ -187,6 +189,8 @@ const getArregloVacantes = async (busqueda) => {
                     </div>
                     `
             });
+        } else {
+            getAllVacantes();
         }
     } catch (error) {
         console.log('Error' + error)
@@ -194,7 +198,7 @@ const getArregloVacantes = async (busqueda) => {
 }
 
 const getAllVacantes = async () => {
-    const url = 'http://localhost/PonsLabor/Vacante/getAllVacantes';
+    const url = `${base_url}Vacante/getAllVacantes`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();

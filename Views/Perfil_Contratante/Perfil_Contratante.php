@@ -16,16 +16,9 @@
 <body>
     <header id="header_menu">
         <div class="contenedor barra">
-            <span href="#" class="content-logo">
-                <a href="javascript:window.history.back();">
-                    <i class="fas fa-arrow-left" id="icono-regresar"></i>
-                </a>
-                <i class="fas fa-bars" id="icono-reponsive"></i>
-                <span href="#" class="logo-nombre">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
-                    <h2>Pons<span>Labor.</span></h2>
-                </span>
-            </span>
+            <?php
+            require_once('./Views/Components/NabvarLogo.php');
+            ?>
             <nav class="nav nav_menu">
                 <a href="Menu/Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
                 <a href="Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
@@ -41,22 +34,14 @@
             </nav>
         </div>
         <div class="info-persona">
-            <h3><?php echo $_SESSION['user-data']['correoUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
-            <ul>
-                <li><i class="fas fa-user-edit"></i><a href="Perfil_Contratante">Editar perfil</a></li>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Contratante">Cambiar foto</a></li>
-                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
-                <li>
-                  <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
-                </li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NabvarInfoContratante.php');
+            ?>
         </div>
         <div class="contenedor-responsive">
-            <ul class="contenedor-responsive-lista">
-                <li><a href="Menu">Inicio</a></li>
-                <li><a href="Contratante">Contratante</a></li>
-                <li><a href="Vacante">Vacante</a></li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NabvarResponsiveContratante.php');
+            ?>
         </div>
     </header>
     <form method="POST" id="formPrincipal">
@@ -70,7 +55,6 @@
                             <!--left col-->
                             <div class="text-center">
                                 <img style="top: 110px;  position: relative; " src="<?php echo $_SESSION['imgProfile']; ?>" class="avatar img-circle img-thumbnail" alt="avatar" />
-
                                 <h3></h3>
                             </div>
                             </hr><br>

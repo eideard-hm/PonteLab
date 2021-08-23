@@ -31,8 +31,14 @@ const formUser = document.querySelector('#formPrincipal');
 const editPerfil = async () => {
     //enviar los datos mediante una petición fetch
     let formData = new FormData(formUser);
+<<<<<<< HEAD
     // formData.forEach(item => console.log(item))
     const url = 'http://localhost/PonsLabor/Perfil_Contratante/updatePerfilContratante';
+=======
+    //formData.forEach(item => console.log(item))
+    const url = `${base_url}Perfil_Contratante/updatePerfilContratante`;
+
+>>>>>>> d93e1617803c6a5b83c595eb8679053902ca796f
     try {
         const res = await fetch(url, {
             method: 'POST',
@@ -70,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+<<<<<<< HEAD
 const btnInhabilitar = document.querySelector('#inhabilitar');
 
 if (btnInhabilitar) {
@@ -96,4 +103,7 @@ const inactivarCuenta = async () => {
         console.log(error);
     }
 }
+=======
+//const form = document.querySelector('#formPrincipal') 
+>>>>>>> d93e1617803c6a5b83c595eb8679053902ca796f
 
