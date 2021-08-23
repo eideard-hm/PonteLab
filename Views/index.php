@@ -12,30 +12,14 @@
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
 
 <body>
-    <header class="menu_header">
-        <div class="contenedor barra">
-            <a href="#" class="content-logo">
-                <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo" />
-                <h2>Pons<span>Labor.</span></h2>
-            </a>
-            <nav class="navbar_menu">
-                <a href="#"><i class="fas fa-home" style="margin-right: 5px;"></i>Inicio</a>
-                <a href="#section-nosotros"><i class="fas fa-business-time" style="margin-right: 5px;"></i>Nosotros</a>
-                <button class="switch dark-mode" id="switch">
-                    <i class="fas fa-sun sol"></i>
-                    <i class="fas fa-moon luna"></i>
-                    <span class="circulo"></span>
-                </button>
-                <a href="Login" class="btn-init iniciar">Iniciar sesión</a>
-                <a href="Registro" class="btn-init registro">Registrarse</a>
-            </nav>
-        </div>
-    </header>
+    <?php
+    require_once('Components/NabvarInicio.php');
+    ?>
 
     <section class="slider-img">
         <div class="slider contenedor active">

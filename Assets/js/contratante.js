@@ -15,7 +15,7 @@ const insertContractor = async () => {
     //enviar los datos mediante una petición fetch
     tinyMCE.triggerSave();
     let formData = new FormData(formContractor);
-    const url = 'http://localhost/PonsLabor/Contratante/setContractor';
+    const url = `${base_url}Contratante/setContractor`;
 
     try {
         const res = await fetch(url, {

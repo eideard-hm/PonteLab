@@ -45,9 +45,9 @@ class Perfil_ContratanteModel extends gestionCRUD
         $this->direccionUsuario = $direccionUsuario;
 
         $sql = "UPDATE USUARIO SET 
-    nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
-    numTelUsuario=?, numTelFijo=?, 
-    idBarrioFK=?, direccionUsuario=? 
+                nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
+                numTelUsuario=?, numTelFijo=?, 
+                idBarrioFK=?, direccionUsuario=? 
     WHERE idUsuario  = {$this->idUsuario}";
         $arrData = array(
             $this->nombreUsuario,

@@ -151,7 +151,7 @@ const saveDataAspirante = async () => {
     const formData = new FormData(formInfoPersona);
     formData.delete('txtNombre');
 
-    const url = 'http://localhost/PonsLabor/Aspirante/setAspirante';
+    const url = `${base_url}Aspirante/setAspirante`;
 
     try {
         const req = await fetch(url, {
@@ -201,7 +201,7 @@ const insertPuestoInteres = async (e) => {
     } else {
         const formData = new FormData(formPuestoInteres);
 
-        const url = 'http://localhost/PonsLabor/Aspirante/savePuestoInteres';
+        const url = `${base_url}Aspirante/savePuestoInteres`;
 
         try {
             const req = await fetch(url, {
@@ -230,7 +230,7 @@ const insertPuestoInteresAspirante = async () => {
 
         const formData = new FormData(formPuestoInteres);
 
-        const url = 'http://localhost/PonsLabor/Aspirante/insertPuestoInteresAspirante';
+        const url = `${base_url}Aspirante/insertPuestoInteresAspirante`;
 
         try {
             const req = await fetch(url, {
@@ -271,7 +271,7 @@ const refreshPuestoInteres = () => {
 */
 
 const insertIdiomaAspirante = async (formData) => {
-    const url = 'http://localhost/PonsLabor/Aspirante/setIdiomaAspirante';
+    const url = `${base_url}Aspirante/setIdiomaAspirante`;
 
     try {
         const req = await fetch(url, {
@@ -296,7 +296,7 @@ const insertIdiomaAspirante = async (formData) => {
 const insertNewIdioma = async (formData) => {
     // formData.forEach(idioma => console.log(idioma))
 
-    const url = 'http://localhost/PonsLabor/Aspirante/setIdioma';
+    const url = `${base_url}Aspirante/setIdioma`;
 
     try {
         const req = await fetch(url, {
@@ -329,7 +329,7 @@ document.querySelector('#boton_add_puesto').addEventListener('click', (e) => ref
 const insertHabilidad = async (formData) => {
     // formData.forEach(idioma => console.log(idioma))
 
-    const url = 'http://localhost/PonsLabor/Aspirante/setHabilidad';
+    const url = `${base_url}Aspirante/setHabilidad`;
 
     try {
         const req = await fetch(url, {

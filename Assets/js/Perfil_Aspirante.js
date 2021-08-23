@@ -27,7 +27,7 @@ const editPerfil = async () => {
     //enviar los datos mediante una petición fetch
     let formData = new FormData(formUser);
     //formData.forEach(item => console.log(item))
-    const url = 'http://localhost/PonsLabor/Perfil_Aspirante/updatePerfilAspirante';
+    const url = `${base_url}Perfil_Aspirante/updatePerfilAspirante`;
 
     try {
         const res = await fetch(url, {
@@ -48,67 +48,67 @@ const editPerfil = async () => {
     }
 }
 
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-        formUser.onsubmit = function (e) {
-            e.preventDefault();
-            var nombre = document.querySelector('#nombreApellido').value;
-            var titulo = document.querySelector('#titulo').value;
-            var posicion = document.querySelector('#posicion').value;
-            var idioma = document.querySelector('#idioma').value;
-            if (nombre == '' || titulo == '' || posicion == '' || idioma == '' ) {
-                swal("Atención", "Todos los campos son obligatorios", "error");
-                return false;
-            } else {
-                editPerfil();
-            }
+    formUser.onsubmit = function (e) {
+        e.preventDefault();
+        var nombre = document.querySelector('#nombreApellido').value;
+        var titulo = document.querySelector('#titulo').value;
+        var posicion = document.querySelector('#posicion').value;
+        var idioma = document.querySelector('#idioma').value;
+        if (nombre == '' || titulo == '' || posicion == '' || idioma == '') {
+            swal("Atención", "Todos los campos son obligatorios", "error");
+            return false;
+        } else {
+            editPerfil();
         }
-    })
-    
-
-    if(document.querySelector('#inhabilitar')){
-        document.querySelector('#inhabilitar').addEventListener('click', (e) => {
-            e.preventDefault();
-            inhabilitarA ();
-        })
     }
-    
-    const inhabilitarA = async () => 
-    {
-        const url = 'http://localhost/PonsLabor/Perfil_Aspirante/inhabilitarA';
-        let formData = new FormData(formUser);
-       //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
-       /* swal({
-        title: "Completado!",
-        text: "Usuario inhabilitado correctamente.",
-        type: "success",
-        timer: 9000}).then(function(){
-            window.location = 'http://localhost/PonsLabor/logout';
-        });*/
+})
 
-        try {
-            const req = await fetch (url, {
-                method: 'POST',
-                body: formData
-            })  
-       swal({
-        title: "Completado!",
-        text: "Usuario inhabilitado correctamente.",
-        type: "success",
-        timer: 9000}).then(function(){
-            window.location = 'http://localhost/PonsLabor/logout';
+
+if (document.querySelector('#inhabilitar')) {
+    document.querySelector('#inhabilitar').addEventListener('click', (e) => {
+        e.preventDefault();
+        inhabilitarA();
+    })
+}
+
+const inhabilitarA = async () => {
+    const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
+    let formData = new FormData(formUser);
+    //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
+    /* swal({
+     title: "Completado!",
+     text: "Usuario inhabilitado correctamente.",
+     type: "success",
+     timer: 9000}).then(function(){
+         window.location = 'http://localhost/PonsLabor/logout';
+     });*/
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        swal({
+            title: "Completado!",
+            text: "Usuario inhabilitado correctamente.",
+            type: "success",
+            timer: 9000
+        }).then(function () {
+            window.location.href = `${base_url}logout`;
         });
-            const data = await req.json();
-            console.log (error);
-        } catch (error) {
-            console.log (error);
-        }
+        const data = await req.json();
+        console.log(error);
+    } catch (error) {
+        console.log(error);
+    }
 
-        //window.location = 'http://localhost/PonsLabor/logout'; 
-    
+    //window.location = `${base_url}logout`; 
+
     /*try {
         
-        const url = 'http://localhost/PonsLabor/Perfil_Aspirante/inhabilitarA';
+        const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
         const res = await url;
         const { statusUser, msg } = await res.json();
         if (statusUser) {
@@ -120,14 +120,13 @@ const editPerfil = async () => {
     } catch (error) {
         swal("Error", error, "error");
     }*/
-    
+
 
 }
 
 if (btnInhabilitar) {
-    btnInhabilitar.addEventListener('click', e=> {
+    btnInhabilitar.addEventListener('click', e => {
         e.preventDefault();
-        inhabilitarA(); 
+        inhabilitarA();
     })
-
- }
+}

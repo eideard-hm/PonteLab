@@ -6,6 +6,12 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once('vendor/autoload.php');
 
+//retorna la url del proyecto
+function base_url()
+{
+    return URL;
+}
+
 //funciones para encriptar la contraseña
 function encriptarPassword(string $password)
 {
