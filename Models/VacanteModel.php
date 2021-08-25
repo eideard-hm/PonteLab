@@ -161,8 +161,7 @@ class VacanteModel extends GestionCRUD
 
     public function selectVacancy()
     {
-        $sql = "SELECT idVacante FROM VACANTE
-        WHERE idUsuario = {$this->idUsuario}";
+        $sql = "SELECT idVacante FROM VACANTE";
         $request = $this->select($sql);
         return $request;
     }
@@ -171,7 +170,7 @@ class VacanteModel extends GestionCRUD
         $sql = "SELECT idTipoDocumento FROM TIPODOCUMENTO";
         $request = $this->select($sql);
         return $request;}
-        
+
     public function getVacantesSector(array $sector)
     {
         $this->nombreSector = $sector;
