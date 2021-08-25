@@ -7,10 +7,10 @@ class Perfil_Contratante extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Login');
+            header('Location:' . URL . 'Login');
         }
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            header('Location: http://localhost/PonsLabor/Menu');
+            header('Location:' . URL . 'Menu');
         }
     }
 
@@ -64,15 +64,16 @@ class Perfil_Contratante extends Controllers
         }
         die();
     }
-    public function inactivarCuenta(){
-        if($_POST){
+    public function inactivarCuenta()
+    {
+        if ($_POST) {
             $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
             $estadoUsuario = 1;
             $request = $this->model->inactivarCuenta($idUsuario, $estadoUsuario);
 
-            if($request > 0){
+            if ($request > 0) {
                 $arrResponse = ['statusUser' => true, 'msg' => 'Usuario inactivado correctamente.'];
-            }else{
+            } else {
                 $arrResponse = ['statusUser' => false, 'msg' => 'Ha ocurrido un error en el servidor'];
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
