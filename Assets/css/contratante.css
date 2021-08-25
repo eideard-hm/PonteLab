@@ -222,7 +222,8 @@
 .con-form form textarea,
 .req-form form button,
 .req-form form input,
-.req-form form textarea {
+.req-form form textarea,
+.req-form form select{
   width: 100%;
   padding: 0.7em;
   border: none;

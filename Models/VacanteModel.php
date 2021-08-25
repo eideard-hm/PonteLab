@@ -120,34 +120,21 @@ class VacanteModel extends GestionCRUD
     ) {
         $this->idVacanteFK = $idVacanteFK;
         $this->idRequisitosFK = $idRequisitosFK;
-        $this->descripcionVacante = $descripcionVacante;
+        $this->especficacionRequisitos = $especficacionRequisitos;
+
         $return = 0;
 
-        //validacion de la vacante
-        //sí esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
-        if (empty($request) || $request === '' || $request === null) {
-            $sql = "INSERT INTO VACANTE(nombreVacante, cantidadVacante, descripcionVacante, 
-            perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, 
-            fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-            //almacena los valores en un arreglo
-            $arrData = array(
-                $this->nombreVacante,
-                $this->cantidadVacante,
-                $this->descripcionVacante,
-                $this->perfilAspirante,
-                $this->tipoContratoVacante,
-                $this->sueldoVacante,
-                $this->fechaHoraPublicacion,
-                $this->fechaHoraCierre,
-                $this->direccionVacante,
-                $this->estadoVacante,
-                $this->idContratanteFK
-            );
-            $return = $this->insert($sql, $arrData);
-        } else {
-            $return = 'exits';
-        }
+        $sql = "INSERT INTO REQUISITOS_VACANTE
+        (idVacanteFK, idRequisitosFK, especficacionRequisitos)
+        VALUES (?,?,?)";
+        $arrData = array(
+        $this->idVacanteFK,
+        $this->idRequisitosFK,
+        $this->especficacionRequisitos
+        );
+
+        $return = $this->insert($sql,$arrData);
+
         return $return;
     }
 
@@ -165,18 +152,18 @@ class VacanteModel extends GestionCRUD
         return $this->selectAll($sql);
     }
 
-    public function selectVacancy()
+    public function selectAllVacancy()
     {
-        $sql = "SELECT idVacante FROM VACANTE";
-        $request = $this->select($sql);
+        $sql = "SELECT idVacante, nombreVacante FROM VACANTE";
+        $request = $this->selectAll($sql);
         return $request;
     }
-    public function selectRequirement()
+    public function selectAllReqs()
     {
-        $sql = "SELECT idTipoDocumento FROM TIPODOCUMENTO";
-        $request = $this->select($sql);
-        return $request;}
-    
+        $sql = "SELECT idRequisitos, nombreRequisitos FROM REQUISITOS";
+        $request = $this->selectAll($sql);
+        return $request;
+    }    
     //Método para seleccionar los sectores
     public function selectAllSector()
     {

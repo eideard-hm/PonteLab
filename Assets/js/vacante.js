@@ -82,10 +82,8 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
     const insertRequirement = async () => {
         //enviar los datos mediante una petición fetch
         tinyMCE.triggerSave();
-        let formData_ = new FormData(formRequirement);
-        
+        let formData_ = new FormData(formRequirement);        
         const url = `${base_url}Vacante/setRequirement`;
-
         try {
             const res = await fetch(url, {
                 method: 'POST',
@@ -107,10 +105,10 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 
     const validateFormRequirement = () => {
         tinyMCE.triggerSave();
-        const id = document.querySelector('#idRequisitosVacante').value;
-        const especificaciones = document.querySelector('#especificaciones').value;
-
-        if (especificaciones === '') {
+        const idVacanteFK = document.querySelector('#idVacanteFK').value;
+        const idRequisitosFK = document.querySelector('#idRequisitosFK').value;
+        const especficacionRequisitos = document.querySelector('#especficacionRequisitos').value;
+        if (especficacionRequisitos === '' || idRequisitosFK === '' || idVacanteFK === '') {
             swal(
                 'Ha ocurrido un error',
                 'Todos los campos son obligatorios.',

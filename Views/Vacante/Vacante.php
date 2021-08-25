@@ -110,11 +110,10 @@
         <p class="block">
         <label for="idSectorFK">Sector</label>
         <select name="idSectorFK" id="idSectorFK">
-          <option selected disabled value="">--- Selecciones el Sector ---</option>
+          <option selected disabled value="">--- Seleccione el Sector ---</option>
           <?php foreach ($data['list_sector'] as $sector) : ?>
             <option value="<?php echo $sector['idSector'] ?>"><?php echo $sector['nombreSector'] ?></option>
           <?php endforeach ?>
-
         </select>
         </p>
         <p class="block">
@@ -128,24 +127,47 @@
         </p>
       </form>
     </div>
+    <!-- FORM REQUISITOS -->
     <div class="req-form">
-      <form method="POST" id="form-requirement">
-        <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
-        <p class="block">
-          <label for="especficacionRequisitos"> Especificaciones Requisitos </label>
-          <br>
-          <textarea name="especficacionRequisitos" id="especficacionRequisitos" rows="1" placeholder="Especificaciones Requisitos..." required></textarea>
-        </p>
-        <p class="block">
-            <button type="submit" id="btn_submit_">Registrar Requerimiento</button>
-        </p>
-        <p class="block">
-            <button type="submit" id="btn_modify_">Modificar Requerimiento</button>
-        </p>
-        <p class="block">
-            <button type="submit" id="btn_srch_">Consultar Requerimiento</button>
-        </p>
-      </form>
+      <h2 class="name"><span>Registro</span> Vacante</h2>
+
+        <form method="POST" id="form-requirement">
+          <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
+
+          <p >
+          <label for="idVacanteFK">Requisito</label>
+          <select name="idVacanteFK" id="idVacanteFK">
+            <option selected disabled value="">--- Seleccione la Vacante ---</option>
+            <?php foreach ($data['list_vacante'] as $vacs) : ?>
+              <option value="<?php echo $vacs['idVacante'] ?>"><?php echo $vacs['nombreVacante'] ?></option>
+            <?php endforeach ?>
+          </select>
+          </p>
+          <p >
+          <label for="idRequisitosFK">Requisito</label>
+          <select name="idRequisitosFK" id="idRequisitosFK">
+            <option selected disabled value="">--- Seleccione el Requisito ---</option>
+            <?php foreach ($data['list_requisitos'] as $reqs) : ?>
+              <option value="<?php echo $reqs['idRequisitos'] ?>"><?php echo $reqs['nombreRequisitos'] ?></option>
+            <?php endforeach ?>
+          </select>
+          </p>
+
+          <p class="block">
+            <label for="especficacionRequisitos"> Especificaciones Requisitos </label>
+            <br>
+            <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especificaciones Requisitos..." required></textarea>
+          </p>
+          <p class="block">
+              <button type="submit" id="btn_submit_">Registrar Requerimiento</button>
+          </p>
+          <p class="block">
+              <button type="submit" id="btn_modify_">Modificar Requerimiento</button>
+          </p>
+          <p class="block">
+              <button type="submit" id="btn_srch_">Consultar Requerimiento</button>
+          </p>
+        </form>
     </div>
   </div>
   <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
