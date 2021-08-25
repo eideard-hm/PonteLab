@@ -7,8 +7,8 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 bntSubmit.addEventListener('click', e => {
     e.preventDefault();
 
-    /*validateFormVacancy();*/
-    insertContractor();
+    validateFormContractor();
+    // insertContractor();
 });
 
 const insertContractor = async () => {
@@ -37,14 +37,15 @@ const insertContractor = async () => {
 }
 
 const validateFormContractor = () => {
-    const id = document.querySelector('#idContractor').value;
+    // const id = document.querySelector('#idContractor').value;
+    tinyMCE.triggerSave();
     const especificaciones = document.querySelector('#especificaciones').value;
-    const idUsuarioFK = '';
+    // const idUsuarioFK = '';
 
-    if (especificaciones === '') {
+    if (especificaciones =='') {
         swal(
             'Error',
-            'Todos los campos son obligatorios.',
+            'Todos los campos son obligatorios',
             'error'
         )
         return false;

@@ -83,7 +83,7 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
         tinyMCE.triggerSave();
         let formData_ = new FormData(formRequirement);
         
-        const url = 'http://localhost/PonsLabor/Vacante/setRequirement';
+        const url = `${base_url}Vacante/setRequirement`;
 
         try {
             const res = await fetch(url, {

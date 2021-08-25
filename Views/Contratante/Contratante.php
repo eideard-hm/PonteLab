@@ -57,7 +57,7 @@
                 <p class="block">
                     <label for="especificaciones">Descripcion</label>
                     <br>
-                    <input name="especificaciones" id="especificaciones" placeholder="Especificaciones..." rows="1" required></input>
+                    <input name="especificaciones" id="especificaciones" placeholder="Especificaciones..." required></input>
                 </p>
                 <p class="block">
                     <button type="submit" id="btn_submit">Registrar</button>

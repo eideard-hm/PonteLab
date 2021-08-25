@@ -122,9 +122,9 @@
       <form method="POST" id="form-requirement">
         <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
         <p class="block">
-          <label for="especificaciones"> Especificaciones </label>
+          <label for="especificaciones"> Especificaciones Requisitos </label>
           <br>
-          <textarea name="especificaciones" id="especificaciones" rows="1" placeholder="Especificaciones..." required></textarea>
+          <textarea name="especficacionRequisitos" id="especficacionRequisitos" rows="1" placeholder="Especificaciones Requisitos..." required></textarea>
         </p>
         <p class="block">
             <button type="submit" id="btn_submit_">Registrar Requerimiento</button>
