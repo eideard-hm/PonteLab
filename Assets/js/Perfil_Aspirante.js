@@ -54,6 +54,7 @@ const editPerfil = async () => {
     }
 }
 
+
     document.addEventListener('DOMContentLoaded', () => {
 
         formUser.onsubmit = function (e) {
@@ -73,7 +74,7 @@ const editPerfil = async () => {
             }
         }
     })
-    
+   
 
     if(document.querySelector('#inhabilitar')){
         document.querySelector('#inhabilitar').addEventListener('click', (e) => {
@@ -138,5 +139,5 @@ if (btnInhabilitar) {
         e.preventDefault();
         inhabilitarA(); 
     })
-
- }
+    
+}

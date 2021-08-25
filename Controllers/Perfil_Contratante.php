@@ -4,6 +4,8 @@ class Perfil_Contratante extends Controllers
 {
     public function __construct()
     {
+
+
         parent::__construct();
         session_start();
         // //isset : verifica que la varible de sesion si exista
@@ -14,6 +16,7 @@ class Perfil_Contratante extends Controllers
             header('Location: http://localhost/PonsLabor/Menu');
         }
     }
+
 
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
 

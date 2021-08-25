@@ -6,6 +6,8 @@ class Perfil_Aspirante extends Controllers
 
     public function __construct()
     {
+
+
         parent::__construct();
         session_start();
         // //isset : verifica que la varible de sesion si exista
@@ -84,6 +86,7 @@ class Perfil_Aspirante extends Controllers
                 $_SESSION['user-data'] = $arrDataAsp;        
         
         }*/
+        
     
     }
 }
