@@ -21,9 +21,21 @@ class Aspirante extends Controllers
     {
         $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
         $data['list_workStatus'] = $this->model->getAllWorkStatus();
-        $data['list_puestoInteres'] = $this->model->getAllPuestoInteres();
         $data['list_idiomas'] = $this->model->getAllIdiomas();
         $this->views->getView($this, 'Aspirante', $data);
+    }
+
+    //método para traer toda la lista de puestos de interés
+    public function getAllPuestoInteres()
+    {
+        $request = $this->model->getAllPuestoInteres();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error en el servidor.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
     public function setAspirante()
@@ -70,18 +82,18 @@ class Aspirante extends Controllers
                 $request = $this->model->insertOtroPuestoInteres($strPuestoInteres);
 
                 if ($request > 0 && is_numeric($request)) {
-                    $puestoInteresAspirante = $this->model->puestoInteresAspirante(
-                        intval($_SESSION['data-aspirante']['idAspirante']),
-                        intval($request)
-                    );
+                    // $puestoInteresAspirante = $this->model->puestoInteresAspirante(
+                    //     intval($_SESSION['data-aspirante']['idAspirante']),
+                    //     intval($request)
+                    // );
 
-                    if (!empty($puestoInteresAspirante)) {
-                        $sesionPuestoInteres = $this->model->getOnePuestoInteres(intval($puestoInteresAspirante));
-                        $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
-                    } else {
-                        $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Intente más tarde !!'];
-                    }
-                    $arrResponse = ['status' => true, 'msg' => 'Puesto insertado correctamente!!', 'sesiones' => $_SESSION['puestoInteres-aspirante']];
+                    // if (!empty($puestoInteresAspirante)) {
+                    //     $sesionPuestoInteres = $this->model->getOnePuestoInteres(intval($puestoInteresAspirante));
+                    //     $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
+                    // } else {
+                    //     $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Intente más tarde !!'];
+                    // }
+                    $arrResponse = ['status' => true, 'msg' => 'Puesto insertado correctamente!!'];
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Lo puedes seleccionar la lista.'];
                 } else {
@@ -158,7 +170,7 @@ class Aspirante extends Controllers
                 if ($request > 0 && is_numeric($request)) {
                     $_SESSION['idIdioma'] = intval($request);
                     if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)'];
+                        $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)', 'id' => $request];
                     } else {
                         $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
                     }

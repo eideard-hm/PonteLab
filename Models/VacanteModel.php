@@ -16,6 +16,9 @@ class VacanteModel extends GestionCRUD
     private int $estadoVacante;
     private int $idContratanteFK;
 
+    //campos de la tabla sector
+    private array $nombreSector;
+
     //constructor
     public function __construct()
     {
@@ -125,6 +128,19 @@ class VacanteModel extends GestionCRUD
                 OR perfilAspirante LIKE'%{$busqueda}%' OR tipoContratoVacante LIKE'%{$busqueda}%'
                 OR sueldoVacante LIKE '%{$busqueda}%' OR direccionVacante LIKE '%{$busqueda}%'
                 OR estadoVacante LIKE '%{$busqueda}%'";
+        return $this->selectAll($sql);
+    }
+
+    public function getVacantesSector(array $sector)
+    {
+        $this->nombreSector = $sector;
+        $sql = "SELECT idVacante, nombreVacante, cantidadVacante,   
+                descripcionVacante, perfilAspirante, tipoContratoVacante, 
+                sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, 
+                direccionVacante, estadoVacante, idSectorFK
+                FROM VACANTE 
+                WHERE idSectorFK = {$this->nombreSector[0]}
+                OR idSectorFK = {$this->nombreSector[1]}";
         return $this->selectAll($sql);
     }
 }

@@ -131,14 +131,13 @@ idEstudio int primary key auto_increment not null,
 nombreInstitucion varchar(100) not null,
 tituloObtenido varchar(50) not null,
 idCiudadEstudio int,
-idSectorEstudioFK int,
+idSectorFK int,
 añoInicio year not null,
 mesInicio varchar(2) not null,
 añoFin year,
 mesFin varchar(2),
 idAspiranteFK int,
-idGradoFK int,
-idSectorFK int
+idGradoFK int
 );
 
 DROP TABLE IF EXISTS GRADOESTUDIO;
@@ -260,7 +259,14 @@ ALTER TABLE APLICACION_VACANTE ADD FOREIGN KEY (idVacanteFK) REFERENCES VACANTE 
 /*=================================== INSERTAR ====================================*/
 
 /* ========================== TABLA CIUIDAD ========================*/
-INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(01, 'Bogotá D.C');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Bogotá D.C');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Medellín');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Cali');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Barranquilla');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Cartagena de Indias');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Soacha');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Cúcuta');
+INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Medellín');
 SELECT * FROM CIUDAD;
 
 /* ========================== TABLA BARRIO ========================*/
@@ -403,6 +409,18 @@ Insert into SECTOR (idSector, nombreSector) values (NULL, 'Administración');
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ayuda');	
 Select * from SECTOR;
 
+/* ========================== TABLA TIPOEXPERIENCIA ========================*/
+Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
+values (NULL, 'Asalariado');  
+Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
+values (NULL, 'Idependiente');
+Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
+values (NULL, 'Pasantías');  
+Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
+values (NULL, 'Práctica laboral');
+Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
+values (NULL, 'Aprendiz'); 
+
 /* ========================== TABLA USUARIO ========================*/
 Insert into USUARIO (idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
@@ -474,16 +492,13 @@ values (NULL, 2, 2);
 select * from ASPIRANTE_PUESTOINTERES;
 
 /* ========================== TABLA ESTUDIO ========================*/
-Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorEstudioFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK, idSectorFK) 
-values (NULL, 'Sergio Arboleda', 'Ingeniera Industrial', 1, 1, 2012, 2, 2017, 12, 1, 1, 1 );  
-Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorEstudioFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK, idSectorFK) 
-values (NULL, 'Jorge Tadeo Lozano', 'Abogada', 1, 2, 2015, 1, 2020, 11, 2, 2, 2 );
+Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
+values (NULL, 'Sergio Arboleda', 'Ingeniera Industrial', 1, 1, 2012, 2, 2017, 12, 1, 1);  
+Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
+values (NULL, 'Jorge Tadeo Lozano', 'Abogada', 1, 2, 2015, 1, 2020, 11, 2, 2);
+Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
+values (NULL, '4545454', 'Abogada', 1, 2, 2015, 1, 2020, 11, 7, 2);
 select * from ESTUDIO;
-
-/* ========================== TABLA TIPOEXPERIENCIA ========================*/
-Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) values (NULL, 'Experiencia en Gerencia de proyectos');  
-Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) values (NULL, 'Experiencia siendo Revisor fiscal');
-select * from TIPOEXPERIENCIA;
 
 /* ========================== TABLA INFOLABORAL ========================*/
 Insert into INFOLABORAL (idInfoLaboral, empresaLaboro, idSectorFK, idCiudadLaboroFK, idTipoExperienciaFK, nombrePuestoDesempeño, añoInicio, mesInicio, añoFin, mesFin, funcionDesempeño, idAspiranteFK) 
@@ -570,6 +585,14 @@ token, nombreUsuario
 FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
 ON u.idUsuario = c.idUsuarioFK;
+
+DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
+CREATE VIEW  recomendacionVacanteSectorusuarioView AS
+SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, 
+sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idSectorFK
+FROM VACANTE 
+WHERE idSectorFK = 10 ; 
 
 DROP VIEW IF EXISTS sectorUsuarioView;
 CREATE VIEW sectorUsuarioView AS

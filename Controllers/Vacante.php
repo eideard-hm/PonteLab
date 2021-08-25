@@ -107,6 +107,24 @@ class Vacante extends Controllers
         die();
     }
 
+    //Método para mostrar las vacantes relacionadas con los sectores que el
+    //usuario registro
+    public function getVacantesSector()
+    {
+        $sectorUsuario = explode(',', $_SESSION['data-sector-user']);
+        $request =  $this->model->getVacantesSector(
+            $sectorUsuario,
+        );
+
+        if ($request > 0) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'No hemos encontrado ninguna sugerencia para tí. Por favor intente más tarde :('];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     // método para traer todas las vacantes
     public function getAllVacantes()
     {
@@ -127,6 +145,6 @@ class Vacante extends Controllers
 
         $request = $this->model->getFiltroVacantes($busqueda);
         $arrResponse = ['status' => true, 'data' => $request];
-       echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 }

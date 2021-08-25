@@ -90,7 +90,7 @@
         <div class="wrap">
             <div id="form" class="form">
                 <!-- PAGINA 1 -->
-                <div class="pagina movPag">
+                <div class="pagina movPag" style="margin-left: -50%;">
                     <form action="#" id="info-persona" class="contenedor-form">
                         <h2 class="title-form">Información personal Aspirante</h2>
 
@@ -136,13 +136,9 @@
                         <h2 class="title-form">Puesto interés.</h2>
                         <input type="hidden" name="idAspirante" value="<?= isset($_SESSION['data-aspirante']['idAspirante']) ? $_SESSION['data-aspirante']['idAspirante'] : 0 ?>">
                         <div class="contenedor-grupo w100" id="grupo-puesto">
-                            <label for="txtPuesto">Puesto interés</label>
-                            <select name="txtPuesto" id="txtPuesto">
-                                <option value="" disabled selected>Seleccione un puesto de interes</option>
-                                <?php foreach ($data['list_puestoInteres'] as $puesto) : ?>
-                                    <option value="<?= $puesto['idPuestoInteres'] ?>"><?= $puesto['nombrePuesto'] ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <input type="hidden" name="txtPuesto" id="txtPuesto" value="">
+                            <ul class="list_sectores" id="list_PuestoInteres">
+                            </ul>
                         </div>
 
                         <div class="contenedor-grupo w100" id="grupo-otro_puesto">
@@ -172,7 +168,7 @@
                                 <i class="fas fa-chevron-left icon-btn-atras"></i>
                                 Atrás
                             </button>
-                            <button class="btns siguiente sig-p3 btn-disable">
+                            <button class="btns siguiente sig-p3 btn-disable" id="btn-puesto-interes">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
                         </div>
@@ -187,8 +183,8 @@
 
                         <div class="contenedor-grupo w50" id="grupo-idioma">
                             <div class="agrupar-estrellas" id="agrupar-estrellas-select">
-                                <label for="txtListIdiomas" id="grupo-idioma-idioma">Idiomas</label>
-                                <select name="txtListIdiomas" id="txtListIdiomas">
+                                <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
+                                <select name="txtListIdioma" id="txtListIdioma">
                                     <option value="" disabled selected>Seleccione un idioma</option>
                                     <?php foreach ($data['list_idiomas'] as $idioma) : ?>
                                         <option value="<?= $idioma['idIdioma'] ?>"><?= $idioma['nombreIdioma'] ?></option>

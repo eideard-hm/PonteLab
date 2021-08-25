@@ -12,6 +12,18 @@ let i = 1;
 const formInfoPersona = document.querySelector('#info-persona');
 const formPuestoInteres = document.getElementById('perfil-laboral');
 const formIdioma = document.querySelector('#idiomas');
+
+const listIdiomas = new Set();
+
+document.addEventListener('DOMContentLoaded', () => {
+    refreshPuestoInteres();
+
+    if (document.querySelector('#list_PuestoInteres')) {
+        const listSectores = document.querySelector('#list_PuestoInteres');
+        listSectores.addEventListener('click', e => seleccionarPuestoInteres(e));
+    }
+})
+
 /*
 ===================== SISTEMA DE ESTRELLAS =============================
 */
@@ -56,6 +68,7 @@ const setPuntuacion = (form, name, campo, array) => {
     //crear un objeto
     const puntuacion = {
         nombre: data.get(`txt${name}`),
+        listElementos: data.get(`txtList${name}`),
         puntuacion: data.get(`txtNivel${name}`)
     }
 
@@ -77,12 +90,19 @@ const setPuntuacion = (form, name, campo, array) => {
 }
 
 const pintarPuntuacion = (lista, array) => {
+    console.log(array)
     lista.innerHTML = '';
-    array.map(puntuacion => {
+    array.forEach(puntuacion => {
         const clone = template.cloneNode(true);
-        clone.querySelector(`.contenedor-grupo__lista #contenedor-grupo__p`).textContent = puntuacion.nombre;
-        clone.querySelector(`.contenedor-grupo__icono #contenedor-grupo__puntuacion`).textContent = puntuacion.puntuacion;
-        clone.querySelector(`.contenedor-grupo__icono .contenedor-grupo__eliminar`).dataset.name = puntuacion.nombre;
+        if (puntuacion.nombre !== '') {
+            clone.querySelector(`.contenedor-grupo__lista #contenedor-grupo__p`).textContent = puntuacion.nombre;
+            clone.querySelector(`.contenedor-grupo__icono .contenedor-grupo__eliminar`).dataset.name = puntuacion.nombre;
+            clone.querySelector(`.contenedor-grupo__icono #contenedor-grupo__puntuacion`).textContent = puntuacion.puntuacion;
+        } else {
+            clone.querySelector(`.contenedor-grupo__lista #contenedor-grupo__p`).textContent = puntuacion.listElementos;
+            clone.querySelector(`.contenedor-grupo__icono .contenedor-grupo__eliminar`).dataset.name = puntuacion.listElementos;
+            clone.querySelector(`.contenedor-grupo__icono #contenedor-grupo__puntuacion`).textContent = puntuacion.puntuacion;
+        }
         fragment.appendChild(clone);
     })
     lista.appendChild(fragment);
@@ -118,10 +138,10 @@ const eliminarValorPuntuacion = (arr, item, campo) => {
 const eliminarPuntuacion = (e, array, campo) => {
     if (e.target.classList.contains('contenedor-grupo__eliminar')) {
         array.find(element => {
-            if (element.nombre === e.target.dataset.name) {
+            if (element.nombre === e.target.dataset.name || element.listElementos === e.target.dataset.listElementos) {
                 swal({
-                    title: `Eliminar ${campo} ${element.nombre}`,
-                    text: `¿ Esta seguro de eliminar el campo ${campo} ${element.nombre} ?`,
+                    title: element.nombre ? `Eliminar ${campo} ${element.nombre}` : `Eliminar ${campo} ${element.listElementos}`,
+                    text: `¿ Esta seguro de eliminar el campo ${campo} ?`,
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -134,7 +154,7 @@ const eliminarPuntuacion = (e, array, campo) => {
                                 eliminarValorPuntuacion(arrListaHabilidades, element, campo);
                             }
                         } else {
-                            swal(`No has eliminado el campo ${campo} ${element.nombre}`, "Sus datos estan ha salvo!", "success");
+                            swal(`No has eliminado el campo ${campo}`, "Sus datos estan ha salvo!", "success");
                         }
                     });
             }
@@ -164,32 +184,40 @@ const saveDataAspirante = async () => {
             swal("Error", msg, "error");
             return false;
         } else {
-            swal({
-                title: "Aspirante",
-                text: msg,
-                icon: "success",
-                buttons: ["Ok", "Continuar"],
-                dangerMode: false,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        siguientePagina('-25%');
-                    } else {
-                        siguientePagina('-25%');
-                    }
-                });
+            sweetAlert("Aspirante", msg, "success");
         }
     } catch (error) {
         swal("Error", error, "error");
     }
 }
 
-formInfoPersona.addEventListener('submit', saveDataAspirante);
+// formInfoPersona.addEventListener('submit', saveDataAspirante);
 
 /*
 ===================== LÓGICA CRUD PUESTO INTERES =============================
 */
 
+const listPuestoInteres = new Set();
+
+const seleccionarPuestoInteres = e => {
+    if (e.target.tagName === 'LI') {
+        if (e.target.classList.contains('active')) {
+            listPuestoInteres.delete(e.target.dataset.id);
+            e.target.classList.remove('active');
+        } else {
+            listPuestoInteres.add(e.target.dataset.id);
+            e.target.classList.add('active');
+        }
+    }
+    console.log(listPuestoInteres)
+}
+
+document.querySelector('#btn-puesto-interes').addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('#txtPuesto').value = [...listPuestoInteres];
+})
+
+//insertar el puesto de interes desde el input
 const insertPuestoInteres = async (e) => {
     e.preventDefault();
     const namePuesto = document.querySelector('#txtOtroPuesto');
@@ -211,6 +239,10 @@ const insertPuestoInteres = async (e) => {
             const { status, msg } = await req.json();
 
             if (status) {
+                refreshPuestoInteres();
+                formPuestoInteres.reset();
+                document.querySelector('#grupo-puesto-otro_puesto').checked = true;
+                mostrarInputOtroPuestoInteres();
                 swal("Puesto interes", msg, "success");
                 document.querySelector('.btn-disable').removeAttribute('disabled');
             } else {
@@ -222,6 +254,7 @@ const insertPuestoInteres = async (e) => {
     }
 }
 
+//insertar el puesto de interes desde el select
 const insertPuestoInteresAspirante = async () => {
 
     if (document.getElementById('txtPuesto').value.trim() === '') {
@@ -262,14 +295,34 @@ const insertPuestoInteresAspirante = async () => {
     }
 }
 
-const refreshPuestoInteres = () => {
-    console.log('Refresh puesto interes');
+const refreshPuestoInteres = async () => {
+    const selectListPuestoInteres = document.querySelector('#list_PuestoInteres');
+    const url = `${base_url}Aspirante/getAllPuestoInteres`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status) {
+            selectListPuestoInteres.innerHTML = '';
+            data.forEach(item => {
+                selectListPuestoInteres.innerHTML += `
+                    <li data-id="${item['idPuestoInteres']}">${item['nombrePuesto']}</li>
+                `;
+            });
+        } else {
+            swal("Error", data, "error");
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
 }
+
+document.querySelector('#boton_add_puesto').addEventListener('click', (e) => insertPuestoInteres(e));
+document.querySelector('#boton_add_puesto').addEventListener('click', (e) => refreshPuestoInteres);
 
 /*
 ===================== LÓGICA CRUD PARA INSERTAR UN NUEVO IDIOMA =============================
 */
-
+//insertar los elementos que vienen desde la lista
 const insertIdiomaAspirante = async (formData) => {
     const url = `${base_url}Aspirante/setIdiomaAspirante`;
 
@@ -293,9 +346,8 @@ const insertIdiomaAspirante = async (formData) => {
     }
 }
 
+//insertar el elemento que viene desde el input
 const insertNewIdioma = async (formData) => {
-    // formData.forEach(idioma => console.log(idioma))
-
     const url = `${base_url}Aspirante/setIdioma`;
 
     try {
@@ -304,11 +356,13 @@ const insertNewIdioma = async (formData) => {
             body: formData
         });
 
-        const { status, msg } = await req.json();
+        const { status, msg, id } = await req.json();
         if (status) {
+            listIdiomas.add(id);
+            console.log(listIdiomas)
             sweetAlert("Idioma", msg, "success");
-            insertIdiomaAspirante(formData)
-            arrListaIdiomas = [];
+            // insertIdiomaAspirante(formData)
+            arrListaIdiomas = [...listIdiomas];
             pintarPuntuacion(listaIdiomas, arrListaIdiomas);
             mostrarInputOtroIdioma();
         } else {
@@ -318,9 +372,6 @@ const insertNewIdioma = async (formData) => {
         sweetAlert("Error", error, "error");
     }
 }
-
-document.querySelector('#boton_add_puesto').addEventListener('click', (e) => insertPuestoInteres(e));
-document.querySelector('#boton_add_puesto').addEventListener('click', (e) => refreshPuestoInteres);
 
 /*
 ===================== LÓGICA CRUD PARA INSERTAR UNA HABILIDAD =============================
