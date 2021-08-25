@@ -3,6 +3,7 @@
 class VacanteModel extends GestionCRUD
 {
     //atributos
+    //Tabla Vacante
     private int $idVacante;
     private string $nombreVacante;
     private int $cantidadVacante;
@@ -15,6 +16,14 @@ class VacanteModel extends GestionCRUD
     private string $direccionVacante;
     private int $estadoVacante;
     private int $idContratanteFK;
+    private int $idSectorFK;
+    //Tabla Requisitos
+    private int $idVacanteFK;
+    private int $idRequisitosFK;
+    private string $especficacionRequisitos;
+
+    //campos de la tabla sector
+    private array $nombreSector;
 
     //constructor
     public function __construct()
@@ -63,6 +72,7 @@ class VacanteModel extends GestionCRUD
         string $direccionVacante,
         int $estadoVacante,
         int $idContratante,
+        int $idSectorFK
     ) {
         $this->nombreVacante = $nombreVacante;
         $this->cantidadVacante = $cantidadVacante;
@@ -75,24 +85,14 @@ class VacanteModel extends GestionCRUD
         $this->direccionVacante = $direccionVacante;
         $this->estadoVacante = $estadoVacante;
         $this->idContratanteFK = $idContratante;
+        $this->idSectorFK = $idSectorFK;
 
         $return = 0;
 
-        //consutar si ya existe esta vacante
-        $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante,
-        perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, direccionVacante,
-        estadoVacante, idContratanteFK
-        FROM VACANTE 
-        WHERE nombreVacante = '{$this->nombreVacante}'";
-        $request = $this->selectAll($sql);
-
-        //validacion de la vacante
-        //sí esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
-        if (empty($request) || $request === '' || $request === null) {
-            $sql = "INSERT INTO VACANTE(nombreVacante, cantidadVacante, descripcionVacante, 
-            perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, 
-            fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO VACANTE (nombreVacante, cantidadVacante, descripcionVacante,
+        perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion,
+        fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
+        values (?,?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
                 $this->nombreVacante,
@@ -105,12 +105,36 @@ class VacanteModel extends GestionCRUD
                 $this->fechaHoraCierre,
                 $this->direccionVacante,
                 $this->estadoVacante,
-                $this->idContratanteFK
+                $this->idContratanteFK,
+                $this->idSectorFK
             );
             $return = $this->insert($sql, $arrData);
-        } else {
-            $return = 'exits';
-        }
+            return $return;
+    }
+
+    //metodo para la insercion de una vacante
+    public function insertRequirement(      
+        int $idVacanteFK,
+        int $idRequisitosFK,
+        string $especficacionRequisitos
+    ) {
+        $this->idVacanteFK = $idVacanteFK;
+        $this->idRequisitosFK = $idRequisitosFK;
+        $this->especficacionRequisitos = $especficacionRequisitos;
+
+        $return = 0;
+
+        $sql = "INSERT INTO REQUISITOS_VACANTE
+        (idVacanteFK, idRequisitosFK, especficacionRequisitos)
+        VALUES (?,?,?)";
+        $arrData = array(
+        $this->idVacanteFK,
+        $this->idRequisitosFK,
+        $this->especficacionRequisitos
+        );
+
+        $return = $this->insert($sql,$arrData);
+
         return $return;
     }
 
@@ -125,6 +149,39 @@ class VacanteModel extends GestionCRUD
                 OR perfilAspirante LIKE'%{$busqueda}%' OR tipoContratoVacante LIKE'%{$busqueda}%'
                 OR sueldoVacante LIKE '%{$busqueda}%' OR direccionVacante LIKE '%{$busqueda}%'
                 OR estadoVacante LIKE '%{$busqueda}%'";
+        return $this->selectAll($sql);
+    }
+
+    public function selectAllVacancy()
+    {
+        $sql = "SELECT idVacante, nombreVacante FROM VACANTE";
+        $request = $this->selectAll($sql);
+        return $request;
+    }
+    public function selectAllReqs()
+    {
+        $sql = "SELECT idRequisitos, nombreRequisitos FROM REQUISITOS";
+        $request = $this->selectAll($sql);
+        return $request;
+    }    
+    //Método para seleccionar los sectores
+    public function selectAllSector()
+    {
+        $sql = "SELECT idSector, nombreSector
+                FROM SECTOR";
+        return $this->selectAll($sql);
+    }
+
+    public function getVacantesSector(array $sector)
+    {
+        $this->nombreSector = $sector;
+        $sql = "SELECT idVacante, nombreVacante, cantidadVacante,   
+                descripcionVacante, perfilAspirante, tipoContratoVacante, 
+                sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, 
+                direccionVacante, estadoVacante, idSectorFK
+                FROM VACANTE 
+                WHERE idSectorFK = {$this->nombreSector[0]}
+                OR idSectorFK = {$this->nombreSector[1]}";
         return $this->selectAll($sql);
     }
 }
