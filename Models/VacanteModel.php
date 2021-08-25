@@ -16,6 +16,7 @@ class VacanteModel extends GestionCRUD
     private string $direccionVacante;
     private int $estadoVacante;
     private int $idContratanteFK;
+    private int $idSectorFK;
     //Tabla Requisitos
     private int $idVacanteFK;
     private int $idRequisitosFK;
@@ -71,6 +72,7 @@ class VacanteModel extends GestionCRUD
         string $direccionVacante,
         int $estadoVacante,
         int $idContratante,
+        int $idSectorFK
     ) {
         $this->nombreVacante = $nombreVacante;
         $this->cantidadVacante = $cantidadVacante;
@@ -83,11 +85,14 @@ class VacanteModel extends GestionCRUD
         $this->direccionVacante = $direccionVacante;
         $this->estadoVacante = $estadoVacante;
         $this->idContratanteFK = $idContratante;
+        $this->idSectorFK = $idSectorFK;
 
         $return = 0;
 
-        $sql = "INSERT INTO VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
-        values (?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO VACANTE (nombreVacante, cantidadVacante, descripcionVacante,
+        perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion,
+        fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
+        values (?,?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
                 $this->nombreVacante,
@@ -100,7 +105,8 @@ class VacanteModel extends GestionCRUD
                 $this->fechaHoraCierre,
                 $this->direccionVacante,
                 $this->estadoVacante,
-                $this->idContratanteFK
+                $this->idContratanteFK,
+                $this->idSectorFK
             );
             $return = $this->insert($sql, $arrData);
             return $return;
@@ -170,6 +176,14 @@ class VacanteModel extends GestionCRUD
         $sql = "SELECT idTipoDocumento FROM TIPODOCUMENTO";
         $request = $this->select($sql);
         return $request;}
+    
+    //Método para seleccionar los sectores
+    public function selectAllSector()
+    {
+        $sql = "SELECT idSector, nombreSector
+                FROM SECTOR";
+        return $this->selectAll($sql);
+    }
 
     public function getVacantesSector(array $sector)
     {

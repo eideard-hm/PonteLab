@@ -108,6 +108,16 @@
           </select>
         </p>
         <p class="block">
+        <label for="idSectorFK">Sector</label>
+        <select name="idSectorFK" id="idSectorFK">
+          <option selected disabled value="">--- Selecciones el Sector ---</option>
+          <?php foreach ($data['list_sector'] as $sector) : ?>
+            <option value="<?php echo $sector['idSector'] ?>"><?php echo $sector['nombreSector'] ?></option>
+          <?php endforeach ?>
+
+        </select>
+        </p>
+        <p class="block">
           <button type="submit" id="btn_submit">Registrar</button>
         </p>
         <p class="block">
@@ -122,7 +132,7 @@
       <form method="POST" id="form-requirement">
         <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
         <p class="block">
-          <label for="especificaciones"> Especificaciones Requisitos </label>
+          <label for="especficacionRequisitos"> Especificaciones Requisitos </label>
           <br>
           <textarea name="especficacionRequisitos" id="especficacionRequisitos" rows="1" placeholder="Especificaciones Requisitos..." required></textarea>
         </p>
@@ -138,11 +148,10 @@
       </form>
     </div>
   </div>
-
   <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <?php
-  require_once('./Views/Components/ScriptsJs.php');
-  ?>
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
   <script src="<?= URL ?>Assets/js/vacante.js"></script>
 </body>
 

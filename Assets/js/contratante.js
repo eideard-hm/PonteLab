@@ -8,7 +8,6 @@ bntSubmit.addEventListener('click', e => {
     e.preventDefault();
 
     validateFormContractor();
-    // insertContractor();
 });
 
 const insertContractor = async () => {

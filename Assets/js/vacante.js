@@ -9,7 +9,6 @@ bntSubmit.addEventListener('click', e => {
     e.preventDefault();
 
     validateFormVacancy();
-    // insertVacancy();
 });
 
 const insertVacancy = async () => {
@@ -51,9 +50,11 @@ const validateFormVacancy = () => {
     const fechacierre = document.querySelector('#fechacierre').value;
     const direccion = document.querySelector('#direccion').value;
     const estado = document.querySelector('#estado').value;
+    const sector = document.querySelector('#idSectorFK').value;
+
 
     if (nombre === '' || cantidad === '' || especificaciones === '' || perfil === '' || tipoContrato === ''
-        || sueldo === '' || fechapublicacion === '' || fechacierre === '' || direccion === '' || estado === '') {
+        || sueldo === '' || fechapublicacion === '' || fechacierre === '' || direccion === '' || estado === '' || sector === '') {
             swal(
                 'Ha ocurrido un error',
                 'Todos los campos son obligatorios.',

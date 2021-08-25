@@ -18,8 +18,9 @@ class Vacante extends Controllers
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             $data['titulo_pagina'] = 'Vacante | PonsLabor.';
-            $data['list_vacante'] = $this->model->selectVacancy();
-            $data['list_requisitos'] = $this->model->selectRequirement();
+            // $data['list_vacante'] = $this->model->selectVacancy();
+            // $data['list_requisitos'] = $this->model->selectRequirement();
+            $data['list_sector'] = $this->model->selectAllSector();
             $this->views->getView($this, 'Vacante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
             header('Location: http://localhost/PonsLabor/Menu');
@@ -57,6 +58,7 @@ class Vacante extends Controllers
             $intDireccion = limpiarCadena($_POST['direccion']);
             $intEstado = intval($_POST['estado']);
             $intIdContractFK = $_SESSION['idContractorFK'];
+            $idSectorFK = intval($_POST['idSectorFK']);
 
             /*================== INSERTAR VACANTE =======================*/
 
@@ -73,12 +75,13 @@ class Vacante extends Controllers
                     $intFechacierre,
                     $intDireccion,
                     $intEstado,
-                    $intIdContractFK
+                    $intIdContractFK,
+                    $idSectorFK
                 );
             } else {
                 /*================== EDITAR VACANTE =======================*/
                 $option = 2;
-                $request = $this->model->updateUser(
+                $request = $this->model->updateVacancy(
                     $strNombre,
                     $strCantidad,
                     $strEspecificaciones,
