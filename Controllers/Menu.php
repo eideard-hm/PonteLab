@@ -8,7 +8,7 @@ class Menu extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Login');
+            header('Location:' . URL . 'Login');
         }
     }
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
@@ -19,9 +19,9 @@ class Menu extends Controllers
             $data['titulo_pagina'] = 'Menú Principal | PonsLabor.';
             $this->views->getView($this, 'Menu', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+            header('Location:' . URL . 'Menu/Menu_Contratante');
         } else {
-            header('Location: http://localhost/PonsLabor/Login');
+            header('Location:' . URL . 'Login');
         }
     }
 
@@ -31,9 +31,9 @@ class Menu extends Controllers
             $data['titulo_pagina'] = 'Menu Contratante | PonsLabor.';
             $this->views->getView($this, 'Menu_Contratante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            header('Location: http://localhost/PonsLabor/Menu');
+            header('Location:' . URL . 'Menu');
         } else {
-            header('Location: http://localhost/PonsLabor/Login');
+            header('Location:' . URL . 'Login');
         }
     }
 }

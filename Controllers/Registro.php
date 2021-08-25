@@ -9,9 +9,9 @@ class Registro extends Controllers
         // //isset : verifica que la varible de sesion si exista
         if (isset($_SESSION['login'])) {
             if ($_SESSION['user-data']['nombreRol'] === 'Contratante') {
-                header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+                header('Location: ' . URL . 'Menu/Menu_Contratante');
             } else {
-                header('Location: http://localhost/PonsLabor/Menu');
+                header('Location: ' . URL . 'Menu');
             }
         }
     }
@@ -227,6 +227,7 @@ class Registro extends Controllers
     public function saveSectorUser()
     {
         if ($_POST) {
+            $sesionSector = limpiarCadena($_POST["sectores"]);
             $sectorUsuario = limpiarCadena($_POST["sectores"]);
             $sectorUsuario = explode(',', $sectorUsuario);
             foreach ($sectorUsuario as $sector) {
@@ -237,6 +238,7 @@ class Registro extends Controllers
             }
             if ($request > 0) {
                 $arrResponse = ['status' => true, 'msg' => 'Sector/es almacedos correctamente :).'];
+                $_SESSION['data-sector-user'] = $sesionSector;
             } elseif ($request == 'exists') {
                 $arrResponse = ['status' => false, 'msg' => 'Este usuario ya tiene asociados estos sectores.'];
             } else {

@@ -21,6 +21,9 @@ class VacanteModel extends GestionCRUD
     private int $idRequisitosFK;
     private string $especficacionRequisitos;
 
+    //campos de la tabla sector
+    private array $nombreSector;
+
     //constructor
     public function __construct()
     {
@@ -100,10 +103,7 @@ class VacanteModel extends GestionCRUD
                 $this->idContratanteFK
             );
             $return = $this->insert($sql, $arrData);
-        } else {
-            $return = 'exits';
-        }
-        return $return;
+            return $return;
     }
 
     //metodo para la insercion de una vacante
@@ -170,6 +170,18 @@ class VacanteModel extends GestionCRUD
     {
         $sql = "SELECT idTipoDocumento FROM TIPODOCUMENTO";
         $request = $this->select($sql);
-        return $request;
+        return $request;}
+        
+    public function getVacantesSector(array $sector)
+    {
+        $this->nombreSector = $sector;
+        $sql = "SELECT idVacante, nombreVacante, cantidadVacante,   
+                descripcionVacante, perfilAspirante, tipoContratoVacante, 
+                sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, 
+                direccionVacante, estadoVacante, idSectorFK
+                FROM VACANTE 
+                WHERE idSectorFK = {$this->nombreSector[0]}
+                OR idSectorFK = {$this->nombreSector[1]}";
+        return $this->selectAll($sql);
     }
 }

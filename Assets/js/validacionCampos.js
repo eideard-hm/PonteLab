@@ -170,19 +170,15 @@ const mostrarInputOtroIdioma = () => {
     if (checkOtroIdioma.checked) {
         document.getElementById('grupo-idioma-otro_idioma').style.display = 'block';
         document.getElementById('txtIdioma').style.display = 'block';
-        // document.getElementById('grupo-idioma-leyenda').style.display = 'block';
 
         document.getElementById('grupo-idioma-idioma').style.display = 'none';
-        document.getElementById('txtListIdiomas').style.display = 'none';
-        document.getElementById('boton_add_idioma').style.display = 'block';
+        document.getElementById('txtListIdioma').style.display = 'none';
     } else {
         document.getElementById('grupo-idioma-otro_idioma').style.display = 'none';
         document.getElementById('txtIdioma').style.display = 'none';
-        // document.getElementById('grupo-idioma-leyenda').style.display = 'none';
 
         document.getElementById('grupo-idioma-idioma').style.display = 'block';
-        document.getElementById('txtListIdiomas').style.display = 'block';
-        document.getElementById('boton_add_idioma').style.display = 'none';
+        document.getElementById('txtListIdioma').style.display = 'block';
     }
 }
 
@@ -215,7 +211,7 @@ sigPagina.forEach(boton => {
             if (document.querySelector('#especificaciones').value === '' || document.querySelector('#txtEstado').value === '') {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
             } else {
-                saveDataAspirante();
+                siguientePagina('-25%');
             }
         } else if (boton.classList.contains('sig-p3')) {
             if (inputOtroPuestoInteres.style.display === 'block') {
@@ -225,30 +221,19 @@ sigPagina.forEach(boton => {
                     siguientePagina('-50%');
                 }
             } else if (inputOtroPuestoInteres.style.display === 'none' || inputOtroPuestoInteres.style.display === '') {
-                insertPuestoInteresAspirante();
+                siguientePagina('-50%');
             }
 
-        } else if (boton.classList.contains('sig-p4')) {
-            if (campos.institucion === false || campos.titulo === false) {
-                sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-            }
-        } else if (boton.classList.contains('sig-p5')) {
-            let contenidoEditorTexto = quill.container.firstChild.innerHTML;
-            if (campos.empresa === false || campos.puesto === false || contenidoEditorTexto === '<p><br></p>' || contenidoEditorTexto === '') {
-                sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-            }
         } else if (boton.classList.contains('sig-p6')) {
             if (document.getElementById('txtIdioma').style.display === 'block') {
                 if (campos.idioma === false) {
                     sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
                 } else {
-                    insertIdiomaSelect();
                     siguientePagina('-75%');
                 }
             } else if (document.getElementById('txtIdioma').style.display === 'none' || document.getElementById('txtIdioma').style.display === '') {
                 siguientePagina('-75%');
             }
-
         }
     })
 })

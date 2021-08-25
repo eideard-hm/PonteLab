@@ -65,10 +65,14 @@
     <div class="cover-ctn-search"></div>
 
     <div class="content-vacs">
-        <!--<div class="vacs-form">-->
+        <div class="filtro">
+            <span>Filtrar vacantes por el o los sectorese seleccionados</span>
+            <button class="switch" id="filtro">
+                <span class="circulo"></span>
+            </button>
+        </div>
         <div id="form-vacs">
         </div>
-        <!--</div>-->
     </div>
 
     <?php
