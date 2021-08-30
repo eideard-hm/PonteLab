@@ -11,7 +11,12 @@ let contenedorCardsAspirantes = document.getElementById('contenedor-card');
 let arrNombreVacantes = new Set();
 let arregloSugerenciasVacantes = [];
 
-btnSwitch = document.getElementById('filtro');
+const switchBtn = document.getElementById('filtro');
+
+document.addEventListener('DOMContentLoaded', () => {
+    getUserVacanteSector();
+    routesAspirante();
+})
 
 /*=========================== BUSCADOR =========================*/
 if (contenedorBarraBusqueda) {
@@ -311,29 +316,70 @@ const getAllVacantes = async () => {
 
 
 /*============ APLICAR UN FILTRO DE VACANTES SEGUN EL SECTOR ==========*/
-btnSwitch.addEventListener('click', () => {
-    document.body.classList.toggle('filtro');
-    btnSwitch.classList.toggle('active');
 
-    //guardamos el modo actual en el que estamos
-    //classList.contains: permite saber si la clase contiene
-    if (document.body.classList.contains('filtro')) {
-        localStorage.setItem('filtro-vacante', 'true');
+if (switchBtn) {
+    switchBtn.addEventListener('click', () => {
+        document.body.classList.toggle('filtro');
+        switchBtn.classList.toggle('active');
+
+        //guardamos el modo actual en el que estamos
+        //classList.contains: permite saber si la clase contiene
+        if (document.body.classList.contains('filtro')) {
+            localStorage.setItem('filtro-vacante', 'true');
+            getAllVacantes();
+        } else {
+            localStorage.setItem('filtro-vacante', 'false');
+            getVacantesSector();
+        }
+    });
+
+    //obtener el modo actual en el que estamos
+
+    if (localStorage.getItem('filtro-vacante') === 'true') {
+        document.body.classList.add('filtro');
+        switchBtn.classList.add('active');
         getAllVacantes();
     } else {
-        localStorage.setItem('filtro-vacante', 'false');
+        document.body.classList.remove('filtro');
+        switchBtn.classList.remove('active');
         getVacantesSector();
     }
-});
+}
 
-//obtener el modo actual en el que estamos
+/*
+- Esta función sirve para cargar la variable de sesión que contiene los datos o la información
+  del o de los sectores que el usuario selecciono para de esa forma poder hacerle recomendaciones
+  o filtros
+*/
+const getUserVacanteSector = async () => {
+    const url = `${base_url}Vacante/getUserVacanteSector`;
+    try {
+        const req = await fetch(url);
+        const { status, msg, data } = await req.json();
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
 
-if (localStorage.getItem('filtro-vacante') === 'true') {
-    document.body.classList.add('filtro');
-    btnSwitch.classList.add('active');
-    getAllVacantes();
-} else {
-    document.body.classList.remove('filtro');
-    btnSwitch.classList.remove('active');
-    getVacantesSector();
+/*
+- Función que sirve para habilitar o inhabilitar las opciones de experiencia,
+  estudios y hoja de vida en caso de que aun no se haya registrado nigun aspirante.
+*/
+
+const routesAspirante = async () => {
+    const url = `${base_url}Aspirante/routesAspirante`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (!status && data === 'no') {
+            if (document.querySelector('.enlaces-aspirante')) {
+                document.querySelectorAll('.nav .enlaces-aspirante').forEach(enlace => enlace.href = '#')
+                contenedorBarraBusqueda.style.display = 'none';
+            }
+        } else {
+            contenedorBarraBusqueda.style.display = 'block';
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
 }

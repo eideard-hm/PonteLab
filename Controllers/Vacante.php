@@ -8,7 +8,7 @@ class Vacante extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Login');
+            header('Location: ' . URL . 'Login');
         }
     }
 
@@ -23,13 +23,13 @@ class Vacante extends Controllers
             $data['list_sector'] = $this->model->selectAllSector();
             $this->views->getView($this, 'Vacante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            header('Location: http://localhost/PonsLabor/Menu');
+            header('Location:' . URL . 'Menu');
         } else {
-            header('Location: http://localhost/PonsLabor/Login');
+            header('Location: ' . URL . 'Login');
         }
     }
 
-    //Método controlador para insertar y/o editar usuarios
+    //Método controlador para insertar y/o editar vacantes
     public function setVacante()
     {
         if ($_POST) {
@@ -90,17 +90,15 @@ class Vacante extends Controllers
         }
         die();
     }
-    
-    // método para traer todas las vacantes
+
+    // método para registrar los requerimientos de las vacantes
     public function setRequirement()
     {
         if ($_POST) {
-            if
-            (
+            if (
                 empty($_POST['idVacanteFK']) || empty($_POST['idRequisitosFK'])
                 || empty($_POST['especficacionRequisitos'])
-            ) 
-            {
+            ) {
                 $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, ctrl!!'];
             }
             //DEFINICION DE VARIABLES DE RECEPCION
@@ -114,7 +112,7 @@ class Vacante extends Controllers
                 $request = $this->model->insertRequirement(
                     $intidVacanteFK,
                     $intidRequisitosFK,
-                    $strEspecificaciones                  
+                    $strEspecificaciones
                 );
             } else {
                 /*================== EDITAR USUARIO =======================*/
@@ -133,16 +131,16 @@ class Vacante extends Controllers
 
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso :)', 'value' => $request];
                 } elseif ($option === 2) {
-                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del contratante han sido modificado existosamente :)', 'value' => $request];
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
                 }
             } elseif ($request === 'exits') {
-                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el contratante ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
+                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! los requisitos ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
-        die();        
+        die();
     }
 
     //Método para mostrar las vacantes relacionadas con los sectores que el
@@ -184,5 +182,21 @@ class Vacante extends Controllers
         $request = $this->model->getFiltroVacantes($busqueda);
         $arrResponse = ['status' => true, 'data' => $request];
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+
+    //Método para cargar el sector o los sectores que el usuario tiene asociado
+    public function getUserVacanteSector()
+    {
+        $idUsuario = intval($_SESSION['id']);
+        $request = $this->model->loadSectorUser($idUsuario);
+        $sectores = '';
+        foreach ($request as $sector) {
+            if (!empty($sector['idSectorFK'])) {
+                $sectores .= $sector['idSectorFK'] . ',';
+            }
+        }
+        $_SESSION['data-sector-user'] = $sectores;
+        $arrResponse = ['status' => true, 'msg' => 'Lista de sectores del usuario', 'data' => $_SESSION['data-sector-user']];
+        echo  json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 }

@@ -66,7 +66,7 @@ const signIn = async (e) => {
       if (rol === 'Contratante') {
         window.location.href = `${base_url}Menu/Menu_Contratante`;
       } else {
-        window.location.href = 'Menu';
+        window.location.href = `${base_url}Menu`;
       }
     } else {
       form.reset();
