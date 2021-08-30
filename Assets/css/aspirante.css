@@ -134,11 +134,11 @@ body {
     cursor: pointer;
 }
 
-#menu .list_vacantes li:hover{
+#menu .list_vacantes li:hover {
     background-color: dodgerblue;
 }
 
-#menu .list_vacantes li.active{
+#menu .list_vacantes li.active {
     background-color: dodgerblue !important;
     color: #a1caff;
 }
@@ -242,8 +242,17 @@ body {
 .content-vacs {
     margin-top: 4em;
     width: 1200px;
-    /* padding: 20em;
-    min-height: 40em; */
+}
+
+.content-vacs .filtro {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.content-vacs .filtro span {
+    margin-right: 30px;
 }
 
 .content-vacs #form-vacs {
@@ -636,10 +645,10 @@ body {
     font-weight: 200;
 }
 
-.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
+/* .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto {
     display: none;
-}
+} */
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puntuacion i,
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto i {
@@ -737,6 +746,33 @@ body {
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 16px;
     background: var(--blanco);
+}
+
+/*--------------------- CÓDIGO DE LA LISTA SECTORES ---------------------------*/
+
+.list_sectores {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.list_sectores li {
+    height: 55px;
+    list-style: none;
+    background-color: #97bbfe;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.list_sectores li.active {
+    background: #1e1e62;
+    color: #fff;
+    font-weight: 500;
 }
 
 /*==================================== REPONSIEVE DESIGN ===========================*/

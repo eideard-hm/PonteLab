@@ -20,10 +20,7 @@
                     <i class="fas fa-arrow-left" id="icono-regresar" style="display: none;"></i>
                 </a>
                 <i class="fas fa-bars" id="icono-reponsive"></i>
-                <span href="#" class="logo-nombre">
-                    <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
-                    <h2>Ponte<span>Lab.</span></h2>
-                </span>
+                <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
             </span>
             <nav class="nav nav_menu">
                 <a href="#" class="active"><i class="fas fa-home"></i>Inicio</a>
@@ -45,25 +42,14 @@
             </nav>
         </div>
         <div class="info-persona">
-            <h3><?php echo $_SESSION['user-data']['nombreUsuario'] ?><br /><span><?php echo $_SESSION['user-data']['nombreRol'] ?></span></h3>
-            <ul>
-                <li><i class="fas fa-user-edit"></i><a href="Perfil_Aspirante">Editar perfil</a></li>
-                <li><i class="fas fa-user-circle"></i><a href="Perfil_Aspirante">Cambiar foto</a></li>
-                <li><i class="fas fa-key"></i><a href="Recuperar_Password">Cambiar contraseña</a></li>
-                <li>
-                    <i class="fas fa-sign-in-alt"></i><a href="<?= URL ?>logout">Cerrar sesión</a>
-                </li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NavbarInfoAspirante.php');
+            ?>
         </div>
         <div class="contenedor-responsive">
-            <ul class="contenedor-responsive-lista">
-                <li><a href="Contratante">Contratante</a></li>
-                <li><a href="Vacante">Vacante</a></li>
-                <li><a href="Aspirante">Aspirante</a></li>
-                <li><a href="HojaVida">Hoja de Vida</a></li>
-                <li><a href="Estudios">Estudios</a></li>
-                <li><a href="Experiencia">Experiencia</a></li>
-            </ul>
+            <?php
+            require_once('./Views/Components/NabvarResponsive.php');
+            ?>
         </div>
     </header>
 
@@ -79,10 +65,14 @@
     <div class="cover-ctn-search"></div>
 
     <div class="content-vacs">
-        <!--<div class="vacs-form">-->
+        <div class="filtro">
+            <span>Filtrar vacantes por el o los sectorese seleccionados</span>
+            <button class="switch" id="filtro">
+                <span class="circulo"></span>
+            </button>
+        </div>
         <div id="form-vacs">
         </div>
-        <!--</div>-->
     </div>
 
     <?php

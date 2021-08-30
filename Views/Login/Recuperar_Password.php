@@ -20,23 +20,9 @@
 </head>
 
 <body>
-
     <?php
-    require_once('./Views/Components/Navbar.php');
+    require_once('./Views/Components/NabvarInicio.php');
     ?>
-
-    <input type="radio" id="menu_trigger" name="menu_close">
-    <nav class="side_nav">
-        <span class="close_icon">+
-            <input type="radio" name="menu_close">
-        </span>
-        <ul>
-            <li><a href="index.html">Pagina de incio</a></li>
-            <li><a href="login.html">Iniciar Sesion</a></li>
-            <li><a href="registro.html">Crear Cuenta</a></li>
-            <li><a href="#">Contactanos</a></li>
-        </ul>
-    </nav>
 
     <form id="msform">
         <br><br><br><br><br><br><br>

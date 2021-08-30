@@ -22,56 +22,6 @@ body {
     overflow-x: hidden;
 }
 
-.menu_header {
-    width: 100%;
-    height: 65px;
-    background: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-}
-
-.menu_header .barra {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-}
-
-.menu_header .barra .content-logo {
-    text-decoration: none;
-    font-size: 27px;
-    font-weight: 900;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.menu_header .barra .content-logo .logo {
-    width: 45px;
-    height: 45px;
-    object-fit: cover;
-    margin-right: 8px;
-    border-radius: 5px;
-}
-
-
-.menu_header .barra .content-logo h2,
-.menu_header .barra .content-logo h2 span {
-    font-size: 25px;
-    font-weight: 700;
-}
-
-.menu_header .barra .content-logo h2 {
-    color: #000;
-}
-
-.menu_header .barra .content-logo h2 span {
-    color: orange;
-}
-
 .menu_header .barra .navbar_menu {
     display: flex;
     align-items: center;
@@ -122,10 +72,6 @@ body {
     margin-bottom: 5px;
 }
 
-.contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
-}
 
 section {
     width: 100vw;

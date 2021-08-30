@@ -35,23 +35,13 @@ class ContratanteModel extends GestionCRUD
     }
 
     //Método para actualizar usuarios
-    public function updateUser(
+    public function updateContractor(
         int $id,
         string $descrpcion,
         string $direccion
     ) {
-        $this->idUsuario = $id;
-        $this->correoUsuario = $email;
-        $this->passUsuario = $pass;
-        $this->idTipoDocumentoFK = $tipoDoc;
-        $this->numDocUsuario = $numDoc;
-        $this->numTelUsuario = $tel;
-        $this->numTelFijo = $telFijo;
-        $this->estadoUsuario = $estado;
-        $this->idRolFK = $rol;
-        $this->idBarrioFK = $barrio;
-        $this->direccionUsuario = $direccion;
-        $this->imagenUsuario = $imagen;
+        $this->descripcionContratante = $especificaciones;
+        $this->idUsuarioFK = $idusuario;
 
         //verificar si existe el usuario
         $sql = "SELECT * FROM USUARIO WHERE (correoUsuario = '{$this->correoUsuario}' 

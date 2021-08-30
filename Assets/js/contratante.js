@@ -7,15 +7,14 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 bntSubmit.addEventListener('click', e => {
     e.preventDefault();
 
-    /*validateFormVacancy();*/
-    insertContractor();
+    validateFormContractor();
 });
 
 const insertContractor = async () => {
     //enviar los datos mediante una petición fetch
     tinyMCE.triggerSave();
     let formData = new FormData(formContractor);
-    const url = 'http://localhost/PonsLabor/Contratante/setContractor';
+    const url = `${base_url}Contratante/setContractor`;
 
     try {
         const res = await fetch(url, {
@@ -37,14 +36,15 @@ const insertContractor = async () => {
 }
 
 const validateFormContractor = () => {
-    const id = document.querySelector('#idContractor').value;
+    // const id = document.querySelector('#idContractor').value;
+    tinyMCE.triggerSave();
     const especificaciones = document.querySelector('#especificaciones').value;
-    const idUsuarioFK = '';
+    // const idUsuarioFK = '';
 
-    if (especificaciones === '') {
+    if (especificaciones =='') {
         swal(
             'Error',
-            'Todos los campos son obligatorios.',
+            'Todos los campos son obligatorios',
             'error'
         )
         return false;

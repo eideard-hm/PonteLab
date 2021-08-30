@@ -16,24 +16,9 @@
 </head>
 
 <body>
-    <header class="menu_header">
-        <div class="contenedor barra">
-            <a href="#" class="content-logo">
-                <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo" />
-                <h2>Pons<span>Labor.</span></h2>
-            </a>
-            <nav class="navbar_menu">
-                <a href="index.php"><i class="fas fa-home" style="margin-right: 5px;"></i>Inicio</a>
-                <a href="index#section-nosotros"><i class="fas fa-business-time" style="margin-right: 5px;"></i>Nosotros</a>
-                <button class="switch dark-mode" id="switch">
-                    <i class="fas fa-sun sol"></i>
-                    <i class="fas fa-moon luna"></i>
-                    <span class="circulo"></span>
-                </button>
-                <a href="Registro" class="btn-init registro">Registrarse</a>
-            </nav>
-        </div>
-    </header>
+    <?php
+    require_once('./Views/Components/NabvarInicio.php');
+    ?>
 
     <section class="from-logi">
         <form method="POST" action="" id="form-login">
@@ -43,10 +28,10 @@
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
             <center><button type="submit" id="valida" class="boton_3">Iniciar Sesión</button></center>
             <center>
-                <p><a class="a1" href="Login/Correo_Recuperar_Password" style="color: #d32f2f; font-size: 16px; font-weight:600; position: relative; top: 30px;">¿Olvido su contraseña?</a></p>
+                <p><a class="a1" href="<?=URL?>Login/Correo_Recuperar_Password" style="color: #d32f2f; font-size: 16px; font-weight:600; position: relative; top: 30px;">¿Olvido su contraseña?</a></p>
             </center>
             <center>
-                <p><a class="a2" href="Registro" style="color: #303f9f; font-size: 15px; font-weight:500;position: relative; top: 50px; ">Crear cuenta</a></p>
+                <p><a class="a2" href="<?=URL?>Registro" style="color: #303f9f; font-size: 15px; font-weight:500;position: relative; top: 50px; ">Crear cuenta</a></p>
             </center>
         </form>
     </section>

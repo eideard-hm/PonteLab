@@ -18,24 +18,32 @@
 <body>
   <header id="header_menu">
     <div class="contenedor barra">
-      <span href="#" class="content-logo">
-        <a href="javascript:window.history.back();">
-          <i class="fas fa-arrow-left" id="icono-regresar"></i>
-        </a>
-        <i class="fas fa-bars" id="icono-reponsive"></i>
-        <?php
-        require_once('./Views/Components/NabvarLogo.php');
-        ?>
-      </span>
+      <?php
+      require_once('./Views/Components/NabvarLogo.php');
+      ?>
       <nav class="nav nav_menu">
-        <?php
-        require_once('./Views/Components/NabvarContrantate.php');
-        ?>
+        <a href="<?= URL ?>Menu/Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
+        <a href="<?= URL ?>Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
+        <a href="#" class="active"><i class="fas fa-business-time"></i>Vacante</a>
+
+        <button class="switch" id="switch">
+          <i class="fas fa-sun sol"></i>
+          <i class="fas fa-moon luna"></i>
+          <span class="circulo"></span>
+        </button>
+        <div class="imagen-persona">
+          <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['nombreUsuario'] ?>" />
+        </div>
       </nav>
     </div>
     <div class="info-persona">
       <?php
       require_once('./Views/Components/NabvarInfoContratante.php');
+      ?>
+    </div>
+    <div class="contenedor-responsive">
+      <?php
+      require_once('./Views/Components/NabvarResponsiveContratante.php');
       ?>
     </div>
   </header>
@@ -61,6 +69,7 @@
         </p>
         <p class="block">
           <label for="perfil"> Perfil del Trabajador</label>
+          <br>
           <textarea type="text" name="perfil" id="perfil" rows="1" placeholder="Perfil del Trabajador..." required></textarea>
         </p>
         <p>
@@ -99,6 +108,15 @@
           </select>
         </p>
         <p class="block">
+        <label for="idSectorFK">Sector</label>
+        <select name="idSectorFK" id="idSectorFK">
+          <option selected disabled value="">--- Seleccione el Sector ---</option>
+          <?php foreach ($data['list_sector'] as $sector) : ?>
+            <option value="<?php echo $sector['idSector'] ?>"><?php echo $sector['nombreSector'] ?></option>
+          <?php endforeach ?>
+        </select>
+        </p>
+        <p class="block">
           <button type="submit" id="btn_submit">Registrar</button>
         </p>
         <p class="block">
@@ -109,12 +127,53 @@
         </p>
       </form>
     </div>
-  </div>
+    <!-- FORM REQUISITOS -->
+    <div class="req-form">
+      <h2 class="name"><span>Registro</span> Vacante</h2>
 
+        <form method="POST" id="form-requirement">
+          <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
+
+          <p >
+          <label for="idVacanteFK">Requisito</label>
+          <select name="idVacanteFK" id="idVacanteFK">
+            <option selected disabled value="">--- Seleccione la Vacante ---</option>
+            <?php foreach ($data['list_vacante'] as $vacs) : ?>
+              <option value="<?php echo $vacs['idVacante'] ?>"><?php echo $vacs['nombreVacante'] ?></option>
+            <?php endforeach ?>
+          </select>
+          </p>
+          <p >
+          <label for="idRequisitosFK">Requisito</label>
+          <select name="idRequisitosFK" id="idRequisitosFK">
+            <option selected disabled value="">--- Seleccione el Requisito ---</option>
+            <?php foreach ($data['list_requisitos'] as $reqs) : ?>
+              <option value="<?php echo $reqs['idRequisitos'] ?>"><?php echo $reqs['nombreRequisitos'] ?></option>
+            <?php endforeach ?>
+          </select>
+          </p>
+
+          <p class="block">
+            <label for="especficacionRequisitos"> Especificaciones Requisitos </label>
+            <br>
+            <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especificaciones Requisitos..." required></textarea>
+          </p>
+          <p class="block">
+              <button type="submit" id="btn_submit_">Registrar Requerimiento</button>
+          </p>
+          <p class="block">
+              <button type="submit" id="btn_modify_">Modificar Requerimiento</button>
+          </p>
+          <p class="block">
+              <button type="submit" id="btn_srch_">Consultar Requerimiento</button>
+          </p>
+        </form>
+    </div>
+  </div>
   <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <?php
-  require_once('./Views/Components/ScriptsJs.php');
-  ?>
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
   <script src="<?= URL ?>Assets/js/vacante.js"></script>
 </body>
 

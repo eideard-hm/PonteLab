@@ -122,7 +122,7 @@ class AspiranteModel extends GestionCRUD
         string $nombrePuesto
     ) {
         $this->namePuesto = $nombrePuesto;
-        //consultar en la base de datos para verificar si existe o no ese puestp de interés
+        //consultar en la base de datos para verificar si existe o no ese puesto de interés
         $sql = "SELECT nombrePuesto 
                 FROM PUESTOINTERES
                 WHERE nombrePuesto = '{$this->namePuesto}'";

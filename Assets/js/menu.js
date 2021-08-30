@@ -10,13 +10,8 @@ let contenedorCardsAspirantes = document.getElementById('contenedor-card');
 
 let arrNombreVacantes = new Set();
 let arregloSugerenciasVacantes = [];
-// //Evento para cargar las card cuando de carge por completo el documento HTML
-document.addEventListener('DOMContentLoaded', () => {
-    //     getListAspirantes();
-    if (document.querySelector('#form-vacs')) {
-        getAllVacantes();
-    }
-})
+
+btnSwitch = document.getElementById('filtro');
 
 /*=========================== BUSCADOR =========================*/
 if (contenedorBarraBusqueda) {
@@ -150,7 +145,7 @@ if (inputBusqueda) {
 }
 
 const getArregloVacantes = async (busqueda) => {
-    const url = `http://localhost/PonsLabor/Vacante/getArregloVacantes/${busqueda}`;
+    const url = `${base_url}Vacante/getArregloVacantes/${busqueda}`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
@@ -189,14 +184,54 @@ const getArregloVacantes = async (busqueda) => {
                     </div>
                     `
             });
+        } else {
+            getAllVacantes();
         }
     } catch (error) {
         console.log('Error' + error)
     }
 }
 
+const getVacantesSector = async () => {
+    const url = `${base_url}Vacante/getVacantesSector`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+
+        contenedorCardsVacantes.innerHTML = '';
+
+        if (status) {
+            data.forEach(vacante => {
+                contenedorCardsVacantes.innerHTML += `
+                    <div class="card">
+                        <div class="circle">
+                            <h2>${vacante['nombreVacante']}</h2>
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                <br>
+                                BOGOTA D.C. - BOGOTA
+                                <br>
+                                Vacantes: ${vacante['cantidadVacante']}
+                                <br>
+                                Fecha de creación: ${vacante['fechaHoraPublicacion']}
+                                <br>
+                                Fecha de cierre: ${vacante['fechaHoraCierre']}
+                                <br>
+                            </p>
+                            <a type="">Ver | Aplicar</a>
+                        </div>
+                    </div>
+                    `
+            });
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
 const getAllVacantes = async () => {
-    const url = 'http://localhost/PonsLabor/Vacante/getAllVacantes';
+    const url = `${base_url}Vacante/getAllVacantes`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
@@ -273,3 +308,32 @@ const getAllVacantes = async () => {
 //         swal("Error", error, "error");
 //     }
 // }
+
+
+/*============ APLICAR UN FILTRO DE VACANTES SEGUN EL SECTOR ==========*/
+btnSwitch.addEventListener('click', () => {
+    document.body.classList.toggle('filtro');
+    btnSwitch.classList.toggle('active');
+
+    //guardamos el modo actual en el que estamos
+    //classList.contains: permite saber si la clase contiene
+    if (document.body.classList.contains('filtro')) {
+        localStorage.setItem('filtro-vacante', 'true');
+        getAllVacantes();
+    } else {
+        localStorage.setItem('filtro-vacante', 'false');
+        getVacantesSector();
+    }
+});
+
+//obtener el modo actual en el que estamos
+
+if (localStorage.getItem('filtro-vacante') === 'true') {
+    document.body.classList.add('filtro');
+    btnSwitch.classList.add('active');
+    getAllVacantes();
+} else {
+    document.body.classList.remove('filtro');
+    btnSwitch.classList.remove('active');
+    getVacantesSector();
+}

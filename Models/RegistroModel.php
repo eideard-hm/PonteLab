@@ -17,6 +17,9 @@ class RegistroModel extends GestionCRUD
     private string $direccionUsuario;
     private string $imagenUsuario;
 
+    //sector usuario
+    private int $idSector;
+
     public function __construct()
     {
         parent::__construct();
@@ -234,5 +237,27 @@ class RegistroModel extends GestionCRUD
         $sql = "SELECT idSector, nombreSector
                 FROM SECTOR";
         return $this->selectAll($sql);
+    }
+
+    //Método para insertar los sectores a los cuales pertenece un usuario
+    public function insertSectorUser(
+        int $idUsuario,
+        int $idSector
+    ) {
+        $this->idUsuario = $idUsuario;
+        $this->idSector = $idSector;
+
+        $sql = "SELECT idSectorUsuario, idUsuarioFK, idSectorFK
+                FROM SECTOR_USUARIO
+                WHERE idUsuarioFK = {$this->idUsuario} AND idSectorFK = {$this->idSector}";
+        $request = $this->selectAll($sql);
+        if (empty($request)) {
+            $sql = "INSERT INTO SECTOR_USUARIO(idUsuarioFK, idSectorFK)
+            VALUES(?,?)";
+            $arrData = [$this->idUsuario, $this->idSector];
+            return $this->insert($sql, $arrData);
+        }else{
+            return 'exists';
+        }
     }
 }

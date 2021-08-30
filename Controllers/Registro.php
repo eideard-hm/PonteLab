@@ -9,9 +9,9 @@ class Registro extends Controllers
         // //isset : verifica que la varible de sesion si exista
         if (isset($_SESSION['login'])) {
             if ($_SESSION['user-data']['nombreRol'] === 'Contratante') {
-                header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+                header('Location: ' . URL . 'Menu/Menu_Contratante');
             } else {
-                header('Location: http://localhost/PonsLabor/Menu');
+                header('Location: ' . URL . 'Menu');
             }
         }
     }
@@ -138,7 +138,9 @@ class Registro extends Controllers
             }
 
             if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {                    //cargar y guardar la imagen en el servidor
+                if ($option === 1) {
+                    $_SESSION['idUser'] = intval($request);
+                    //cargar y guardar la imagen en el servidor
                     //Almacenar la imagen en la carpeta del servidor
                     if (!empty($nameFoto)) {
                         uploadImages($foto, $imgPerfil);
@@ -218,6 +220,32 @@ class Registro extends Controllers
             $arrResponse = ['statusUser' => false, 'msg' => 'Ha fallado la activación de la cuenta. Intenta más tarde :c'];
         }
         json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    //Método para guardar el sector del usuario
+    public function saveSectorUser()
+    {
+        if ($_POST) {
+            $sesionSector = limpiarCadena($_POST["sectores"]);
+            $sectorUsuario = limpiarCadena($_POST["sectores"]);
+            $sectorUsuario = explode(',', $sectorUsuario);
+            foreach ($sectorUsuario as $sector) {
+                $request =  $this->model->insertSectorUser(
+                    $_SESSION['idUser'],
+                    $sector
+                );
+            }
+            if ($request > 0) {
+                $arrResponse = ['status' => true, 'msg' => 'Sector/es almacedos correctamente :).'];
+                $_SESSION['data-sector-user'] = $sesionSector;
+            } elseif ($request == 'exists') {
+                $arrResponse = ['status' => false, 'msg' => 'Este usuario ya tiene asociados estos sectores.'];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intente más tarde :('];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }

@@ -19,18 +19,24 @@
 <body>
     <header id="header_menu">
         <div class="contenedor barra">
-            <span href="#" class="content-logo">
-                <a href="javascript:window.history.back();">
-                    <i class="fas fa-arrow-left" id="icono-regresar"></i>
-                </a>
-                <i class="fas fa-bars" id="icono-reponsive"></i>
-                <?php
-                require_once('./Views/Components/NabvarLogo.php');
-                ?>
-            </span>
             <?php
-            require_once('./Views/Components/NabvarAspirante.php');
+            require_once('./Views/Components/NabvarLogo.php');
             ?>
+            <nav class="nav nav_menu">
+                <a href="Menu"><i class="fas fa-home"></i>Inicio</a>
+                <a href="#" class="active"><i class="fas fa-user-tie"></i>Aspirante</a>
+                <a href="Estudios"><i class="fas fa-graduation-cap"></i>Estudios</a>
+                <a href="Experiencia"><i class="fas fa-briefcase"></i>Experiencia</a>
+                <a href="HojaVida"><i class="fas fa-folder"></i>Hoja de vida</a>
+                <button class="switch" id="switch">
+                    <i class="fas fa-sun sol" title="Modo claro"></i>
+                    <i class="fas fa-moon luna" title="Modo oscuro"></i>
+                    <span class="circulo"></span>
+                </button>
+                <div class="imagen-persona">
+                    <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['nombreUsuario'] ?>" />
+                </div>
+            </nav>
         </div>
         <div class="info-persona">
             <?php
@@ -84,7 +90,7 @@
         <div class="wrap">
             <div id="form" class="form">
                 <!-- PAGINA 1 -->
-                <div class="pagina movPag">
+                <div class="pagina movPag" style="margin-left: -50%;">
                     <form action="#" id="info-persona" class="contenedor-form">
                         <h2 class="title-form">Información personal Aspirante</h2>
 
@@ -130,13 +136,9 @@
                         <h2 class="title-form">Puesto interés.</h2>
                         <input type="hidden" name="idAspirante" value="<?= isset($_SESSION['data-aspirante']['idAspirante']) ? $_SESSION['data-aspirante']['idAspirante'] : 0 ?>">
                         <div class="contenedor-grupo w100" id="grupo-puesto">
-                            <label for="txtPuesto">Puesto interés</label>
-                            <select name="txtPuesto" id="txtPuesto">
-                                <option value="" disabled selected>Seleccione un puesto de interes</option>
-                                <?php foreach ($data['list_puestoInteres'] as $puesto) : ?>
-                                    <option value="<?= $puesto['idPuestoInteres'] ?>"><?= $puesto['nombrePuesto'] ?></option>
-                                <?php endforeach ?>
-                            </select>
+                            <input type="hidden" name="txtPuesto" id="txtPuesto" value="">
+                            <ul class="list_sectores" id="list_PuestoInteres">
+                            </ul>
                         </div>
 
                         <div class="contenedor-grupo w100" id="grupo-otro_puesto">
@@ -166,7 +168,7 @@
                                 <i class="fas fa-chevron-left icon-btn-atras"></i>
                                 Atrás
                             </button>
-                            <button class="btns siguiente sig-p3 btn-disable">
+                            <button class="btns siguiente sig-p3 btn-disable" id="btn-puesto-interes">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
                         </div>
@@ -181,8 +183,8 @@
 
                         <div class="contenedor-grupo w50" id="grupo-idioma">
                             <div class="agrupar-estrellas" id="agrupar-estrellas-select">
-                                <label for="txtListIdiomas" id="grupo-idioma-idioma">Idiomas</label>
-                                <select name="txtListIdiomas" id="txtListIdiomas">
+                                <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
+                                <select name="txtListIdioma" id="txtListIdioma">
                                     <option value="" disabled selected>Seleccione un idioma</option>
                                     <?php foreach ($data['list_idiomas'] as $idioma) : ?>
                                         <option value="<?= $idioma['idIdioma'] ?>"><?= $idioma['nombreIdioma'] ?></option>

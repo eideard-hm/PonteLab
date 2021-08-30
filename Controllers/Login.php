@@ -9,9 +9,9 @@ class Login extends Controllers
         // //isset : verifica que la varible de sesion si exista
         if (isset($_SESSION['login'])) {
             if ($_SESSION['user-data']['nombreRol'] === 'Contratante') {
-                header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+                header('Location: ' . URL . 'Menu/Menu_Contratante');
             } else {
-                header('Location: http://localhost/PonsLabor/Menu');
+                header('Location:' . URL . 'Menu');
             }
         }
     }

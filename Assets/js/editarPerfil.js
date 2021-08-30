@@ -36,7 +36,7 @@ const editPerfil = async () => {
     //enviar los datos mediante una petición fetch
     let formData = new FormData(formUser);
     //formData.forEach(item => console.log(item))
-    const url = 'http://localhost/PonsLabor/Perfil_Contratante/updatePerfilContratante';
+    const url = `${base_url}Perfil_Contratante/updatePerfilContratante`;
 
     try {
         const res = await fetch(url, {

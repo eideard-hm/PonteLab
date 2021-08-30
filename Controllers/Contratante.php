@@ -49,7 +49,7 @@ class Contratante extends Controllers
             } else {
                 /*================== EDITAR USUARIO =======================*/
                 $option = 2;
-                $request = $this->model->updateUser(
+                $request = $this->model->updateContractor(
                     $intId,
                     $strDescripcion
                 );

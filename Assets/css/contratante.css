@@ -174,26 +174,30 @@
 }
 
 .vac-form,
-.con-form {
+.con-form,
+.req-form {
   box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 1);
   background: var(--hueso);
   border-radius: 0.2em;
 }
 
 .vac-form form,
-.con-form form {
+.con-form form,
+.req-form form {
   display: grid;
   grid-column: 1/3;
   font-family: var(--fuenteRoboto);
 }
 
 .vac-form form label,
-.con-form form label {
+.con-form form label,
+.req-form form label{
   display: block;
 }
 
 .vac-form form .block textarea,
-.con-form form .block textarea {
+.con-form form .block textarea,
+.req-form form .block textarea{
   max-width: 100%;
   min-width: 100%;
   min-height: 3em;
@@ -201,7 +205,8 @@
 }
 
 .vac-form form p,
-.con-form form p {
+.con-form form p,
+.req-form form p {
   margin: 0;
   padding: 1em;
 }
@@ -214,7 +219,11 @@
 .con-form form input,
 .vac-form form select,
 .vac-form form textarea,
-.con-form form textarea {
+.con-form form textarea,
+.req-form form button,
+.req-form form input,
+.req-form form textarea,
+.req-form form select{
   width: 100%;
   padding: 0.7em;
   border: none;
@@ -228,7 +237,8 @@
 }
 
 .vac-form form button,
-.con-form form button {
+.con-form form button,
+.req-form form button {
   background: var(--bdarck);
   color: var(--bsoft);
   text-transform: uppercase;
@@ -239,7 +249,9 @@
 .vac-form form button:hover,
 .con-form form button:hover,
 .vac-form form button:focus,
-.con-form form button:focus {
+.con-form form button:focus,
+.req-form form button:hover,
+.req-form form button:focus{
   background: var(--bsoft);
   color: var(--bdarck);
   border: none;
@@ -250,12 +262,14 @@
 @media (min-width: 630px) {
 
   .vac-form form,
-  .con-form form {
+  .con-form form,
+  .req-form form{
     grid-template-columns: 1fr 1fr;
   }
 
   .vac-form form .block,
-  .con-form form .block {
+  .con-form form .block,
+  .req-form form .block{
     grid-column: 1/3;
   }
 }
