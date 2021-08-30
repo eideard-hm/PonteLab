@@ -93,27 +93,27 @@ class VacanteModel extends GestionCRUD
         perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion,
         fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
         values (?,?,?,?,?,?,?,?,?,?,?,?)";
-            //almacena los valores en un arreglo
-            $arrData = array(
-                $this->nombreVacante,
-                $this->cantidadVacante,
-                $this->descripcionVacante,
-                $this->perfilAspirante,
-                $this->tipoContratoVacante,
-                $this->sueldoVacante,
-                $this->fechaHoraPublicacion,
-                $this->fechaHoraCierre,
-                $this->direccionVacante,
-                $this->estadoVacante,
-                $this->idContratanteFK,
-                $this->idSectorFK
-            );
-            $return = $this->insert($sql, $arrData);
-            return $return;
+        //almacena los valores en un arreglo
+        $arrData = array(
+            $this->nombreVacante,
+            $this->cantidadVacante,
+            $this->descripcionVacante,
+            $this->perfilAspirante,
+            $this->tipoContratoVacante,
+            $this->sueldoVacante,
+            $this->fechaHoraPublicacion,
+            $this->fechaHoraCierre,
+            $this->direccionVacante,
+            $this->estadoVacante,
+            $this->idContratanteFK,
+            $this->idSectorFK
+        );
+        $return = $this->insert($sql, $arrData);
+        return $return;
     }
 
     //metodo para la insercion de una vacante
-    public function insertRequirement(      
+    public function insertRequirement(
         int $idVacanteFK,
         int $idRequisitosFK,
         string $especficacionRequisitos
@@ -128,12 +128,12 @@ class VacanteModel extends GestionCRUD
         (idVacanteFK, idRequisitosFK, especficacionRequisitos)
         VALUES (?,?,?)";
         $arrData = array(
-        $this->idVacanteFK,
-        $this->idRequisitosFK,
-        $this->especficacionRequisitos
+            $this->idVacanteFK,
+            $this->idRequisitosFK,
+            $this->especficacionRequisitos
         );
 
-        $return = $this->insert($sql,$arrData);
+        $return = $this->insert($sql, $arrData);
 
         return $return;
     }
@@ -158,12 +158,14 @@ class VacanteModel extends GestionCRUD
         $request = $this->selectAll($sql);
         return $request;
     }
+
     public function selectAllReqs()
     {
         $sql = "SELECT idRequisitos, nombreRequisitos FROM REQUISITOS";
         $request = $this->selectAll($sql);
         return $request;
-    }    
+    }
+
     //Método para seleccionar los sectores
     public function selectAllSector()
     {
@@ -175,13 +177,35 @@ class VacanteModel extends GestionCRUD
     public function getVacantesSector(array $sector)
     {
         $this->nombreSector = $sector;
+        $return = '';
+        $operadorOr = 'OR';
+        for ($i = 0; $i < count($this->nombreSector); $i++) {
+            if (!empty($this->nombreSector[$i])) {
+                if($this->nombreSector[$i] == count($this->nombreSector) -1){
+                    $return .= "idSectorFK = {$this->nombreSector[$i]}";
+                    break;
+                }
+                $return .= "idSectorFK = {$this->nombreSector[$i]} {$operadorOr} ";
+            }
+        }
+
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante,   
                 descripcionVacante, perfilAspirante, tipoContratoVacante, 
                 sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, 
                 direccionVacante, estadoVacante, idSectorFK
                 FROM VACANTE 
-                WHERE idSectorFK = {$this->nombreSector[0]}
-                OR idSectorFK = {$this->nombreSector[1]}";
+                WHERE {$return}";
+        return $this->selectAll($sql);
+    }
+
+    public function loadSectorUser(
+        int $idUsuario
+    ) {
+        $this->idUsuario = $idUsuario;
+
+        $sql = "SELECT idSectorFK
+                FROM SECTOR_USUARIO
+                WHERE idUsuarioFK = {$this->idUsuario}";
         return $this->selectAll($sql);
     }
 }

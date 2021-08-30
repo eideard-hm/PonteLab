@@ -149,7 +149,7 @@ const bntSubmit = document.getElementById('btn_submit');
 /*  FUNCIONALIDAD DEL REGISTRO SEGUN ROL SOBRE EL NOMBRE */
 document.querySelector('#rol').addEventListener('change', () => {
     if (document.querySelector('#rol').value === '1') {
-        document.querySelector('#nombre').placeholder = "PonsLabor";
+        document.querySelector('#nombre').placeholder = "PonteLab";
         document.querySelector('#apellido').type = "hidden";
     } else {
         document.querySelector('#nombre').placeholder = "Carlos";
@@ -285,6 +285,10 @@ document.querySelector('#btn_sector').addEventListener('click', e => {
     saveSectorUser();
 })
 
+/*
+- Función sirve para insertar el sector o los sectores a los usuarios. Esto es importante dado 
+  que con esta información se va a poder hacer filtros o sugerencias.
+*/
 const saveSectorUser = async () => {
     const formData = new FormData(formUser);
     console.log(formData.get('sectores'))

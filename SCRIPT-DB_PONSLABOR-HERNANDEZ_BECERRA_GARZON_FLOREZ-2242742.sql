@@ -497,7 +497,7 @@ values (NULL, 'Sergio Arboleda', 'Ingeniera Industrial', 1, 1, 2012, 2, 2017, 12
 Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
 values (NULL, 'Jorge Tadeo Lozano', 'Abogada', 1, 2, 2015, 1, 2020, 11, 2, 2);
 Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
-values (NULL, '4545454', 'Abogada', 1, 2, 2015, 1, 2020, 11, 7, 2);
+values (NULL, '4545454', 'Abogada', 1, 2, 2015, 1, 2020, 11, 1, 2);
 select * from ESTUDIO;
 
 /* ========================== TABLA INFOLABORAL ========================*/
@@ -604,6 +604,11 @@ ON u.idUsuario = su.idUsuarioFK;
 SELECT * FROM sectorUsuarioView;
 
 /*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
+/*
+En la plataforma de empleo PonteLab se quiere implementar la funcionalidad de registrar usuarios,
+por ello que se necesita un procedimiento de almacenado que lleve a cabo dicha funcionalidad; es con el fin
+de proveer una mayor seguridad al usuario.
+*/
 
 DELIMITER $$
 CREATE PROCEDURE insertUser(
@@ -635,6 +640,34 @@ CALL insertUser(NULL, 'Edier Heraldo', 'edierhernandezmo@gmail.c', '1234', 01, '
 SELECT * FROM USUARIO;
 
 /*======================= PROCEDIMIENTOS ALMACENADOS  EDIER==============================*/
+
+/*
+Se desea implementar un busacador en la plataforma de PonteLab con el fin de poder mostrar al usuario todos
+aquellas vacantes que cumplan o que concuerden con la palabra clave ingresada. Se va a implementar un 
+procedimiento de almacenado el cual debe de recibir como parametro la palabra clave ingresada por el usuario
+y de acuerdo a eso compararla con el nombre de la vacante, la descripcion, perfil del aspirante, tipo de contrato
+para dicha vacante y la direccion; se debe de retornar todas las coincidencias.
+*/
+
+DROP PROCEDURE IF EXISTS SP_buscarVacantes;
+DELIMITER $$
+CREATE PROCEDURE SP_buscarVacantes
+(
+VBusqueda varchar(70)
+)
+BEGIN 
+SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, direccionVacante, estadoVacante, 
+fechaHoraPublicacion, fechaHoraCierre
+FROM VACANTE
+WHERE nombreVacante LIKE CONCAT('%', VBusqueda, '%') OR descripcionVacante LIKE CONCAT('%', VBusqueda, '%')
+OR perfilAspirante LIKE CONCAT('%', VBusqueda, '%') OR tipoContratoVacante LIKE CONCAT('%', VBusqueda, '%')
+OR direccionVacante LIKE CONCAT('%', VBusqueda, '%');
+END $$
+
+-- CALL SP_buscarVacantes('Axa');
+
+-- DESCRIBE VACANTE
 /*
 SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario

@@ -16,6 +16,7 @@ const formIdioma = document.querySelector('#idiomas');
 const listIdiomas = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
+    routesAspirante();
     refreshPuestoInteres();
 
     if (document.querySelector('#list_PuestoInteres')) {
@@ -399,5 +400,24 @@ const insertHabilidad = async (formData) => {
         }
     } catch (error) {
         sweetAlert("Error", error, "error");
+    }
+}
+
+const routesAspirante = async () => {
+    const url = `${base_url}Aspirante/routesAspirante`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        console.log(status)
+        console.log(data)
+        if (!status && data === 'no') {
+            if (document.querySelector('.enlaces-aspirante')) {
+                document.querySelectorAll('.nav .enlaces-aspirante').forEach(enlace => enlace.href = '#')
+            }
+        } else {
+            console.log(data)
+        }
+    } catch (error) {
+        swal("Error", error, "error");
     }
 }

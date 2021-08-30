@@ -279,4 +279,14 @@ class Aspirante extends Controllers
         }
         die();
     }
+
+    public function routesAspirante()
+    {
+        if (isset($_SESSION['data-aspirante'])) {
+            $arrResponse = ['status' => true, 'data' => 'ok'];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
 }
