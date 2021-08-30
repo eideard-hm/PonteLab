@@ -15,19 +15,15 @@
 <body class="body-vacs" id="menu">
     <header id="header_menu">
         <div class="contenedor barra">
-            <span href="#" class="content-logo content_logo_menu">
-                <a href="javascript:window.history.back();" style="visibility: hidden; opacity:0">
-                    <i class="fas fa-arrow-left" id="icono-regresar" style="display: none;"></i>
-                </a>
-                <i class="fas fa-bars" id="icono-reponsive"></i>
-                <img src="<?= URL; ?>Assets/img/Logo_ponslabor.png" alt="PonsLabor" class="logo-empresa" />
-            </span>
+            <?php
+            require_once('./Views/Components/NabvarLogo.php');
+            ?>
             <nav class="nav nav_menu">
                 <a href="#" class="active"><i class="fas fa-home"></i>Inicio</a>
                 <a href="Aspirante"><i class="fas fa-user-tie"></i>Aspirante</a>
-                <a href="Estudios"><i class="fas fa-graduation-cap"></i>Estudios</a>
-                <a href="Experiencia"><i class="fas fa-briefcase"></i>Experiencia</a>
-                <a href="HojaVida"><i class="fas fa-folder"></i>Hoja de vida</a>
+                <a href="Estudios" class="enlaces-aspirante"><i class="fas fa-graduation-cap"></i>Estudios</a>
+                <a href="Experiencia" class="enlaces-aspirante"><i class="fas fa-briefcase"></i>Experiencia</a>
+                <a href="HojaVida" class="enlaces-aspirante"><i class="fas fa-folder"></i>Hoja de vida</a>
                 <div class="content-search">
                     <i class="fas fa-search" id="icon-search" title="Buscar"></i>
                 </div>
