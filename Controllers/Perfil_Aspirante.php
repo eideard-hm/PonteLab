@@ -46,7 +46,7 @@ class Perfil_Aspirante extends Controllers
             ) {
                 $arrResponse=['statusUser' => false, 'msg' => '¡ERROR!, Debe llenar todo los campos.'];
             } else {
-                $idUsuario=intval($_SESSION['user-data']['idUsuario']);
+                $idUsuario=intval($_SESSION['id']);
                 $nombreApellido=limpiarCadena($_POST['nombreApellido']);
                 $titulo=intval($_POST['titulo']);
                 $posicion=intval($_POST['posicion']);
@@ -69,6 +69,12 @@ class Perfil_Aspirante extends Controllers
                 
                 if ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
+                    $arrData = $this->model->selectOneUser($idUsuario);
+                    if (!empty($arrData)) {
+                        $_SESSION['user-data'] = $arrData;
+                        //header ('location: http/localhost/PonteLab/Perfil_Aspirante');
+                        //echo '<script type="text/JavaScript"> location.reload(); </script>';
+                    }
                 } elseif ($request === 'exits') {
                     $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
                 } else {

@@ -43,7 +43,18 @@ const editPerfil = async () => {
         const { statusUser, msg } = await res.json();
 
         if (statusUser) {
-            swal("Aspirante", msg, "success");
+         //   swal("Aspirante", msg, "success" );
+
+
+            swal({
+                title: "Aspirante",
+                text: msg,
+                type: "success",
+                timer: 9000
+            }).then(function () {
+                window.location.href = `${base_url}Perfil_Aspirante`;
+            });
+
         }
         else {
             swal("Error", msg, "error");//mostrar la alerta
@@ -141,4 +152,10 @@ if (btnInhabilitar) {
     })
     
 }
+
+function Cancelar() {
+    alert ("Actualizacion cancelada correctamente")
+    window.location.href =  `${base_url}Perfil_Aspirante`;
 }
+}
+

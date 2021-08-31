@@ -117,7 +117,7 @@
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Identificacion:</label>
                         <select name="titulo" id="titulo" class="form-control" disabled>
-                                                    <option selected value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                        <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
                                                     <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                                                         <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                     <?php endforeach ?>
@@ -129,7 +129,7 @@
                         <div class="col-md-12"><label class="labels">Direccion:</label><input id="direccion" name="direccion" type="text" class="form-control" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" disabled></div>
                         <div class="col-md-12"><label class="labels">Barrio:</label>
                         <select name="Barrio" id="Barrio" class="form-control" disabled>
-                                                    <option selected value="<?= $_SESSION['user-data']['idBarrioFK'] ?>"><?= $_SESSION['user-data']['nombreBarrio'] ?></option>
+                        <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
                                                     <?php foreach ($data['list_barrio'] as $barrio) : ?>
                                                         <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
                                                     <?php endforeach ?>
@@ -144,7 +144,7 @@
                     <div class="mt-5"><button class="btn btn-primary profile-button" id="editar" type="submit">Editar Perfil</button></div>
                     <div class="mt-5"><button class="btn btn-primary profile-button" id="inhabilitar" type="submit">Inactivar Cuenta</button></div>
                     <div class="mt-5"><button class="btn btn-primary profile-button" id="guardar" type="submit">Guardar</button></div>
-                    <div class="mt-5"><button class="btn btn-primary profile-button" id="cancelar" type="submit">Cancelar</button></div>
+                    <div class="mt-5"><button class="btn btn-primary profile-button" id="cancelar" type="submit" onclick="Cancelar();">Cancelar</button></div>
 
 
                 

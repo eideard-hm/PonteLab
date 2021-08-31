@@ -89,6 +89,23 @@
         return $this->select($sql);
     }*/
 
+        //Método para extraer un unico usuario de la base de datos por el id
+    public function selectOneUser(int $idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        //consulta para extraerlo
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE idUsuario = {$this->idUsuario}";
+
+        return $this->select($sql);
+    }
+
 	public function updateState(int $idUsuario,int $estadoUsuario)
 	{
 		$this->idUsuario=$idUsuario;
