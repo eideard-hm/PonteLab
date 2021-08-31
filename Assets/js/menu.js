@@ -14,7 +14,6 @@ let arregloSugerenciasVacantes = [];
 const switchBtn = document.getElementById('filtro');
 
 document.addEventListener('DOMContentLoaded', () => {
-    getUserVacanteSector();
     routesAspirante();
 })
 
@@ -229,6 +228,8 @@ const getVacantesSector = async () => {
                     </div>
                     `
             });
+        } else {
+            getAllVacantes();
         }
     } catch (error) {
         swal("Error", error, "error");
@@ -314,6 +315,26 @@ const getAllVacantes = async () => {
 //     }
 // }
 
+/*
+- Esta función sirve para cargar la variable de sesión que contiene los datos o la información
+  del o de los sectores que el usuario selecciono para de esa forma poder hacerle recomendaciones
+  o filtros
+*/
+const getUserVacanteSector = async () => {
+    const url = `${base_url}Vacante/getUserVacanteSector`;
+    try {
+        const req = await fetch(url);
+        const { status, msg } = await req.json();
+
+        if (!status && msg === 'no') {
+            getAllVacantes();
+        } else {
+            getVacantesSector();
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
 
 /*============ APLICAR UN FILTRO DE VACANTES SEGUN EL SECTOR ==========*/
 
@@ -329,7 +350,8 @@ if (switchBtn) {
             getAllVacantes();
         } else {
             localStorage.setItem('filtro-vacante', 'false');
-            getVacantesSector();
+            // getVacantesSector();
+            getUserVacanteSector();
         }
     });
 
@@ -342,22 +364,8 @@ if (switchBtn) {
     } else {
         document.body.classList.remove('filtro');
         switchBtn.classList.remove('active');
-        getVacantesSector();
-    }
-}
-
-/*
-- Esta función sirve para cargar la variable de sesión que contiene los datos o la información
-  del o de los sectores que el usuario selecciono para de esa forma poder hacerle recomendaciones
-  o filtros
-*/
-const getUserVacanteSector = async () => {
-    const url = `${base_url}Vacante/getUserVacanteSector`;
-    try {
-        const req = await fetch(url);
-        const { status, msg, data } = await req.json();
-    } catch (error) {
-        swal("Error", error, "error");
+        // getVacantesSector();
+        getUserVacanteSector();
     }
 }
 
