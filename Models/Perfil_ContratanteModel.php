@@ -11,7 +11,7 @@ class Perfil_ContratanteModel extends gestionCRUD
     private $numDocUsuario;
     private $numTelUsuario;
     private $numTelFijo;
-    //private $estadoUsuario; 
+    private $estadoUsuario; 
     //private $idRolFK ;
     private $idBarrioFK;
     private $direccionUsuario;
@@ -48,7 +48,7 @@ class Perfil_ContratanteModel extends gestionCRUD
                 nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
                 numTelUsuario=?, numTelFijo=?, 
                 idBarrioFK=?, direccionUsuario=? 
-    WHERE idUsuario  = {$this->idUsuario}";
+                WHERE idUsuario  = {$this->idUsuario}";
         $arrData = array(
             $this->nombreUsuario,
             $this->numDocUsuario,
@@ -83,5 +83,33 @@ class Perfil_ContratanteModel extends gestionCRUD
         $sql = "SELECT idBarrio, nombreBarrio FROM BARRIO";
         $request = $this->selectAll($sql);
         return $request;
+    }
+    
+    public function inactivarCuenta(int $idUsuario, int $estadoUsuario){
+        $this->idUsuario=$idUsuario;
+        $this->estadoUsuario = $estadoUsuario;
+
+        $sql = "UPDATE USUARIO SET 
+                estadoUsuario= ?
+                WHERE idUsuario  = {$this->idUsuario}";
+        $arrData=array($this->estadoUsuario);
+        return $this->edit($sql,$arrData);
+    }
+
+    //Método para extraer un unico usuario de la base de datos por el id
+    public function selectOneUser(int $idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        //consulta para extraerlo
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE idUsuario = {$this->idUsuario}";
+
+        return $this->select($sql);
     }
 }

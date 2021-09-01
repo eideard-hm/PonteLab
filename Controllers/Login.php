@@ -15,7 +15,6 @@ class Login extends Controllers
             }
         }
     }
-
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
 
     public function Login()
@@ -74,4 +73,53 @@ class Login extends Controllers
         }
         die();
     }
+
+
+    /*-------------------------RECUPERAR CONTRASEÑA -----------------*/ 
+   /* public function resetPass(){
+        if($_POST){
+            error_reporting(0);
+    
+            if(empty($_POST['txtEmailReset'])){
+                $arrResponse = array('status' => false, 'msg' => 'Error de datos' );
+            }else{
+                $token = token();
+                $strEmail  =  strtolower(strClean($_POST['txtEmailReset']));
+                $arrData = $this->model->getUserEmail($strEmail);
+    
+                if(empty($arrData)){
+                    $arrResponse = array('status' => false, 'msg' => 'Usuario no existente.' ); 
+                }else{
+                    $idpersona = $arrData['idpersona'];
+                    $nombreUsuario = $arrData['nombres'].' '.$arrData['apellidos'];
+    
+                    $url_recovery = base_url().'/login/confirmUser/'.$strEmail.'/'.$token;
+                    $requestUpdate = $this->model->setTokenUser($idpersona,$token);
+    
+                    $dataUsuario = array('nombreUsuario' => $nombreUsuario,
+                                         'email' => $strEmail,
+                                         'asunto' => 'Recuperar cuenta - '.NOMBRE_REMITENTE,
+                                         'url_recovery' => $url_recovery);
+                    if($requestUpdate){
+                        $sendEmail = sendEmail($dataUsuario,'email_cambioPassword');
+    
+                        if($sendEmail){
+                            $arrResponse = array('status' => true, 
+                                             'msg' => 'Se ha enviado un email a tu cuenta de correo para cambiar tu contraseña.');
+                        }else{
+                            $arrResponse = array('status' => false, 
+                                             'msg' => 'No es posible realizar el proceso, intenta más tarde.' );
+                        }
+                    }else{
+                        $arrResponse = array('status' => false, 
+                                             'msg' => 'No es posible realizar el proceso, intenta más tarde.' );
+                    }
+                }
+            }
+            echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }*/
 }
+
+ 
