@@ -25,7 +25,9 @@
         <a href="<?= URL ?>Menu/Menu_Contratante" class="active"><i class="fas fa-home"></i>Inicio</a>
         <a href="<?= URL ?>Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
         <a href="<?= URL ?>Vacante"><i class="fas fa-business-time"></i>Vacante</a>
-
+        <div class="content-search">
+          <i class="fas fa-search" id="icon-search" title="Buscar"></i>
+        </div>
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
           <i class="fas fa-moon luna"></i>
