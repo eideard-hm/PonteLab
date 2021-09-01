@@ -13,6 +13,12 @@ if (document.querySelector('#editar')) {
         posicion.removeAttribute('disabled');
         const idioma = document.querySelector('#idioma');
         idioma.removeAttribute('disabled');
+        const numDoc = document.querySelector('#numDoc');
+        numDoc.removeAttribute('disabled');
+        const direccion = document.querySelector('#direccion');
+        direccion.removeAttribute('disabled');
+        const Barrio = document.querySelector('#Barrio');
+        Barrio.removeAttribute('disabled');
         btnGuardar.style.display = 'block';
         btnCancelar.style.display = 'block';
         document.querySelector('#editar').setAttribute('disabled', 'disabled');
@@ -37,7 +43,18 @@ const editPerfil = async () => {
         const { statusUser, msg } = await res.json();
 
         if (statusUser) {
-            swal("Aspirante", msg, "success");
+         //   swal("Aspirante", msg, "success" );
+
+
+            swal({
+                title: "Aspirante",
+                text: msg,
+                type: "success",
+                timer: 9000
+            }).then(function () {
+                window.location.href = `${base_url}Perfil_Aspirante`;
+            });
+
         }
         else {
             swal("Error", msg, "error");//mostrar la alerta
@@ -48,22 +65,26 @@ const editPerfil = async () => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
 
-    formUser.onsubmit = function (e) {
-        e.preventDefault();
-        var nombre = document.querySelector('#nombreApellido').value;
-        var titulo = document.querySelector('#titulo').value;
-        var posicion = document.querySelector('#posicion').value;
-        var idioma = document.querySelector('#idioma').value;
-        if (nombre == '' || titulo == '' || posicion == '' || idioma == '') {
-            swal("Atención", "Todos los campos son obligatorios", "error");
-            return false;
-        } else {
-            editPerfil();
+    document.addEventListener('DOMContentLoaded', () => {
+
+        formUser.onsubmit = function (e) {
+            e.preventDefault();
+            var nombre = document.querySelector('#nombreApellido').value;
+            var titulo = document.querySelector('#titulo').value;
+            var posicion = document.querySelector('#posicion').value;
+            var idioma = document.querySelector('#idioma').value;
+            var numDoc = document.querySelector('#numDoc').value;
+            var direccion = document.querySelector('#direccion').value;
+            var Barrio = document.querySelector('#Barrio').value;
+            if (nombre == '' || titulo == '' || posicion == '' || idioma == '' || numDoc == '' || direccion == '' || Barrio == '') {
+                swal("Atención", "Todos los campos son obligatorios", "error");
+                return false;
+            } else {
+                editPerfil();
+            }
         }
-    }
-})
+    })
 
 
 if (document.querySelector('#inhabilitar')) {
@@ -71,7 +92,7 @@ if (document.querySelector('#inhabilitar')) {
         e.preventDefault();
         inhabilitarA();
     })
-}
+   
 
 const inhabilitarA = async () => {
     const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
@@ -129,4 +150,12 @@ if (btnInhabilitar) {
         e.preventDefault();
         inhabilitarA();
     })
+    
 }
+
+function Cancelar() {
+    alert ("Actualizacion cancelada correctamente")
+    window.location.href =  `${base_url}Perfil_Aspirante`;
+}
+}
+

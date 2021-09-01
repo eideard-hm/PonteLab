@@ -1,3 +1,50 @@
+<?php 
+ /* require_once('Libs/Conexion.php');
+  require_once('Models/Perfil_AspiranteModel.php');
+
+
+  $consultas = new ConsultasAspirante();
+
+ 
+  $nombreApellido=null;
+  $titulo=null;
+  $poscionActual=null;  
+  $educacion=null;
+  $idiomas=null;
+  $ciudad=null;
+  $numCelular=null;
+  $direccion=null;
+
+
+  if (isset($_GET['email'])) {
+    $email=$_GET['email'];
+  
+
+    $emailF=$email;
+
+
+    $rows = $consultas->mostrarAspirante($emailF);
+
+    if (is_array($rows) || is_object($rows))
+      {
+      
+    foreach ($rows as $row) {
+
+        $nombreApellido=$row['nombreUsuario'];
+        $titulo=$row['tituloObtenido'];
+        $poscionActual=$row['nombrePuestoDesempeño'];  
+        $educacion=$row['nombreInstitucion'];
+        $idiomas=$row['nombreIdioma'];
+        $ciudad=$row['nombreCiudad'];
+        $numCelular=$row['numTelUsuario'];
+        $direccion=$row['direccionUsuario'];
+    }
+    
+  }
+  }*/
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -50,36 +97,60 @@
     </header>
 
     <br><br>
+    <form id="form-aspirante" method="POST">
+        <input type="hidden" name="idUsuario"/>
     <div class="container rounded mb-3 contenedor-perfil_aspirante">
         <div class="row mt-3">
             <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://image.freepik.com/vector-gratis/dibujos-animados-perfil-mujer_18591-58478.jpg" width="250" height="250"><span class="font-weight-bold">Emily Camargo</span><span>emily_c12@gmail.com</span><span>Colombia</span></div>
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="250" height="250" src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['correoUsuario'] ?>" />
+                    <span class="font-weight-bold"><?= $_SESSION['user-data']['nombreUsuario'] ?></span><span>Aspirante</span><span><?= $_SESSION['user-data']['correoUsuario'] ?></span><span>Bogotá D.C</span></div>
             </div>
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h6 class="text-right">Perfil Aspirante</h6>
-                    </div>
+                        </div>
+
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Nombres:</label><input type="text" class="form-control" value="Emily" readonly onmousedown="return false;"></div>
-                        <div class="col-md-6"><label class="labels">Apellidos:</label><input type="text" class="form-control" value="Camargo Lopez" readonly onmousedown="return false;"></div>
-                    </div>
+                        <div class="col-md-6"><label class="labels">Nombres y Apellidos:</label><input id="nombreApellido" name="nombreApellido" type="text" class="form-control" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" disabled></div>                    </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Titulo:</label><input type="text" class="form-control" value="Ingeniera en Sistemas" readonly onmousedown="return false;"></div>
-                        <div class="col-md-12"><label class="labels">Posicion Actual/Desarrollada:</label><input type="text" class="form-control" value="Diseñadora FrontEnd y analista de bases de datos" readonly onmousedown="return false;"></div>
-                        <div class="col-md-12"><label class="labels">Educacion:</label><input type="text" class="form-control" value="Universidad Jorge Tadeo Lozano" readonly onmousedown="return false;"></div>
-                        <div class="col-md-12"><label class="labels">Idiomas:</label><input type="text" class="form-control" value="Ingles b2 y Frances c1" readonly onmousedown="return false;"></div>
+                        <div class="col-md-12"><label class="labels">Identificacion:</label>
+                        <select name="titulo" id="titulo" class="form-control" disabled>
+                        <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                    <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
+                                                        <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select></div>
+                        <div class="col-md-12"><label class="labels">Numero Celular:</label><input id="posicion" name="posicion" type="text" class="form-control" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Contraseña:</label><input type="text" id="educacion" name="educacion" class="form-control" value="***" disabled></div>
+                        <div class="col-md-12"><label class="labels">Numero Fijo:</label><input type="text" id="idioma" name="idioma" class="form-control" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Numero Identificacion:</label><input id="numDoc" name="numDoc" type="text" class="form-control" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Direccion:</label><input id="direccion" name="direccion" type="text" class="form-control" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" disabled></div>
+                        <div class="col-md-12"><label class="labels">Barrio:</label>
+                        <select name="Barrio" id="Barrio" class="form-control" disabled>
+                        <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
+                                                    <?php foreach ($data['list_barrio'] as $barrio) : ?>
+                                                        <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
+                                            </div>
+                        <div class="col-md-12"><label class="labels">Estado:</label>
+                        <select id="estado" name="estado" class="form-control" disabled>
+                        <option selected value="<?= $_SESSION['user-data']['estadoUsuario'] ?>">Activo</option>
+                        <option selected value="1">Inactivo</option></select></div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Ciudad:</label><input type="text" class="form-control" value="Bogotá" readonly onmousedown="return false;"></div>
-                        <div class="col-md-6"><label class="labels">Número Celular:</label><input type="text" class="form-control" value="312 8956471" readonly onmousedown="return false;"></div>
-                        <div class="col-md-6"><label class="labels">Direccion de residencia:</label><input type="text" class="form-control" value="Carrera 28 #7-51" readonly onmousedown="return false;"></div>
-                    </div>
-                    <div class="mt-5"><button class="btn btn-primary profile-button" type="button">Editar Perfil</button></div>
-                    <div class="mt-5"><button class="btn btn-primary profile-button" type="button">Inactivar Cuenta</button></div>
-                    <div class="mt-5"><button class="btn btn-primary profile-button" type="button">Activar Cuenta</button></div>
+
+                    <div class="mt-5"><button class="btn btn-primary profile-button" id="editar" type="submit">Editar Perfil</button></div>
+                    <div class="mt-5"><button class="btn btn-primary profile-button" id="inhabilitar" type="submit">Inactivar Cuenta</button></div>
+                    <div class="mt-5"><button class="btn btn-primary profile-button" id="guardar" type="submit">Guardar</button></div>
+                    <div class="mt-5"><button class="btn btn-primary profile-button" id="cancelar" type="submit" onclick="Cancelar();">Cancelar</button></div>
+
+
+                
                 </div>
             </div>
+</form>
             <div class="col-md-4">
                 <div class="p-3 py-5">
                     <div class="d-flex flex-row mt-3 exp-container"><img src="https://i.imgur.com/azSfBM3.png" width="45" height="45">
@@ -102,6 +173,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+      <script src="<?= URL; ?>Assets/js/Perfil_Aspirante.js"></script>
 </body>
 
 </html>

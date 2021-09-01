@@ -147,15 +147,14 @@ class Vacante extends Controllers
     //usuario registro
     public function getVacantesSector()
     {
-        $sectorUsuario = explode(',', $_SESSION['data-sector-user']);
-        $request =  $this->model->getVacantesSector(
-            $sectorUsuario,
-        );
-
-        if ($request > 0) {
+        if (isset($_SESSION['data-sector-user'])) {
+            $sectorUsuario = explode(',', $_SESSION['data-sector-user']);
+            $request =  $this->model->getVacantesSector(
+                $sectorUsuario,
+            );
             $arrResponse = ['status' => true, 'data' => $request];
-        } else {
-            $arrResponse = ['status' => false, 'data' => 'No hemos encontrado ninguna sugerencia para tí. Por favor intente más tarde :('];
+        }else{
+            $arrResponse = ['status' => false, 'data' => 'no'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
@@ -189,14 +188,20 @@ class Vacante extends Controllers
     {
         $idUsuario = intval($_SESSION['id']);
         $request = $this->model->loadSectorUser($idUsuario);
-        $sectores = '';
-        foreach ($request as $sector) {
-            if (!empty($sector['idSectorFK'])) {
-                $sectores .= $sector['idSectorFK'] . ',';
+
+        if (!empty($request)) {
+            $sectores = '';
+            foreach ($request as $sector) {
+                if (!empty($sector['idSectorFK'])) {
+                    $sectores .= $sector['idSectorFK'] . ',';
+                }
             }
+            $_SESSION['data-sector-user'] = $sectores;
+            $arrResponse = ['status' => true, 'msg' => 'ok'];
+        } else {
+            $arrResponse = ['status' => false, 'msg' => 'no'];
         }
-        $_SESSION['data-sector-user'] = $sectores;
-        $arrResponse = ['status' => true, 'msg' => 'Lista de sectores del usuario', 'data' => $_SESSION['data-sector-user']];
+
         echo  json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 }
