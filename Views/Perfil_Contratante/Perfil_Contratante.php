@@ -99,7 +99,6 @@
                                                         <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                     <?php endforeach ?>
                                                 </select>
-                                                <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -203,7 +202,7 @@
                                     <div class="btn-toolbar">
                                         <div class="col-xs-12">
                                             <br>
-                                            <a href="Perfil_Contratante/Perfil_Contratante"class="btn btn-lg btn-danger" id="cancelar" ><i class="far fa-times-circle"></i> Cancelar</a>
+                                            <button class="btn btn-lg btn-danger" id="cancelar" type="submit" onclick="Cancelar();"><i class="far fa-times-circle"></i>Cancelar</button>
                                             <button class="btn btn-lg btn-success" id="guardar" type="submit" ><i class="far fa-save"></i> Guardar cambios</button>
                                         </div>
                                     </div>

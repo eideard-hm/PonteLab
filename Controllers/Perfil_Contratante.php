@@ -54,6 +54,10 @@ class Perfil_Contratante extends Controllers
                 );
                 if ($request > 0) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
+                    $arrData = $this->model->selectOneUser($idUsuario);
+                    if (!empty($arrData)) {
+                        $_SESSION['user-data'] = $arrData;
+                    }
                 } elseif ($request === 'exits') {
                     $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
                 } else {

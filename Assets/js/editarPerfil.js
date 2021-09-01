@@ -41,7 +41,15 @@ const editPerfil = async () => {
         })
         const { statusUser, msg } = await res.json();
         if (statusUser) {
-            swal("Contratante", msg, "success");
+            // swal("Contratante", msg, "success");
+            swal({
+                title: "Contratante",
+                text: msg,
+                type: "success",
+                timer: 9000
+            }).then(function () {
+                window.location.href = `${base_url}Perfil_Contratante`;
+            });
         }
         else {
             swal("Error", msg, "error");//mostrar la alerta
@@ -94,15 +102,20 @@ const inactivarCuenta = async () => {
         })
         swal({
             title: "Inactivar cuenta",
-            text: "!Usuario Inhabilitado Corectamnete!",
+            text: "!Usuario Inhabilitado Correctamente!",
             type: "success",
             timer:9000}).then(function(){
-                window.location = 'http://localhost/Pontelab/Login'
+                window.location.href = `${base_url}logout`;
             });
         const data = await req.json();
         console.log(data);
     } catch (error) {
         console.log(error);
     }
+    
 }
 
+function Cancelar() {
+    alert ("Actualizacion cancelada correctamente")
+    window.location.href =  `${base_url}Perfil_Contratante`;
+}

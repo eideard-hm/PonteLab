@@ -15,7 +15,6 @@ class Login extends Controllers
             }
         }
     }
-
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
 
     public function Login()
