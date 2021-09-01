@@ -185,10 +185,6 @@
                             <div class="agrupar-estrellas" id="agrupar-estrellas-select">
                                 <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
                                 <select name="txtListIdioma" id="txtListIdioma">
-                                    <option value="" disabled selected>Seleccione un idioma</option>
-                                    <?php foreach ($data['list_idiomas'] as $idioma) : ?>
-                                        <option value="<?= $idioma['idIdioma'] ?>"><?= $idioma['nombreIdioma'] ?></option>
-                                    <?php endforeach ?>
                                 </select>
                                 <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
                                 <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
@@ -222,6 +218,10 @@
                         </div>
 
                         <div class="add-puntuacion">
+                            <button class="boton_add_puntuacion" id="agregar_idioma">
+                                <i class="fas fa-plus"></i>
+                                Agregar idioma
+                            </button>
                             <button class="boton_add_idioma boton_add_puntuacion" id="boton_add_idioma">
                                 <i class="fas fa-plus"></i>
                                 Agregar nuevo idioma
@@ -229,6 +229,12 @@
                         </div>
 
                         <div class="contenedor-grupo w100" id="lista_idiomas">
+                        </div>
+
+                        <div class="contenedor-grupo w100" id="select-idiomas">
+                            <input type="hidden" name="idSelectIdioma" id="idSelectIdioma" value="">
+                            <ul id="select-idiomas-list">
+                            </ul>
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">

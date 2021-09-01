@@ -1,3 +1,4 @@
+//variables constante de los elementos html
 const estrellasNivelHabilidad = document.querySelectorAll('.nivel-hab');
 const botonAgregarPuntuacion = document.querySelectorAll('.boton_add_puntuacion');
 const listaIdiomas = document.querySelector('#lista_idiomas');
@@ -5,18 +6,23 @@ const listaHabilidades = document.querySelector('#lista_habilidades');
 const template = document.querySelector('#template-lista_puntuacion').content;
 const fragment = document.createDocumentFragment();
 const estrellas = document.querySelectorAll('.estrellas .puntuacion');
-let arrListaIdiomas = [];
-let arrListaHabilidades = [];
-let i = 1;
-
+const listSelectIdiomas = document.getElementById('select-idiomas-list');
+//formularios
 const formInfoPersona = document.querySelector('#info-persona');
 const formPuestoInteres = document.getElementById('perfil-laboral');
 const formIdioma = document.querySelector('#idiomas');
 
+
+let arrListaIdiomas = [];
+let arrListaHabilidades = [];
+let i = 1;
+
 const listIdiomas = new Set();
+const selectIdiomas = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
     routesAspirante();
+    refreshIdiomasAspirante();
     refreshPuestoInteres();
 
     if (document.querySelector('#list_PuestoInteres')) {
@@ -48,7 +54,6 @@ estrellas.forEach(elemento => {
     })
 })
 
-
 /*
 ===================== AGREGAR LISTA DE PUNTUACION =============================
 */
@@ -64,46 +69,33 @@ botonAgregarPuntuacion.forEach(puntuacion => {
     })
 })
 
-const setPuntuacion = (form, name, campo, array) => {
+const setPuntuacion = async (form, name, campo, array) => {
     const data = new FormData(form);
+    if (data.get(`txt${name}`) === '') {
+        swal("Error", "Debe de ingresar el nombre del idioma y el nivel considera tiene del mismo.", "warning");
+        return false;
+    }
     //crear un objeto
     const puntuacion = {
         nombre: data.get(`txt${name}`),
-        listElementos: data.get(`txtList${name}`),
         puntuacion: data.get(`txtNivel${name}`)
     }
 
     if (name === 'Idioma') {
-        insertNewIdioma(data)
+        insertNewIdioma(data, puntuacion, campo, array, form);
     } else if (name === 'Habilidades') {
         insertHabilidad(data);
-    }
-
-    array.push(puntuacion);
-    form.reset();
-    puntuacionEstrellas(0, campo);
-
-    if (name === 'Idioma') {
-        pintarPuntuacion(listaIdiomas, arrListaIdiomas);
-    } else if (name === 'Habilidades') {
         pintarPuntuacion(listaHabilidades, arrListaHabilidades);
     }
 }
 
-const pintarPuntuacion = (lista, array) => {
-    console.log(array)
+const pintarPuntuacion = (lista, array = []) => {
     lista.innerHTML = '';
     array.forEach(puntuacion => {
         const clone = template.cloneNode(true);
-        if (puntuacion.nombre !== '') {
-            clone.querySelector(`.contenedor-grupo__lista #contenedor-grupo__p`).textContent = puntuacion.nombre;
-            clone.querySelector(`.contenedor-grupo__icono .contenedor-grupo__eliminar`).dataset.name = puntuacion.nombre;
-            clone.querySelector(`.contenedor-grupo__icono #contenedor-grupo__puntuacion`).textContent = puntuacion.puntuacion;
-        } else {
-            clone.querySelector(`.contenedor-grupo__lista #contenedor-grupo__p`).textContent = puntuacion.listElementos;
-            clone.querySelector(`.contenedor-grupo__icono .contenedor-grupo__eliminar`).dataset.name = puntuacion.listElementos;
-            clone.querySelector(`.contenedor-grupo__icono #contenedor-grupo__puntuacion`).textContent = puntuacion.puntuacion;
-        }
+        clone.querySelector(`.contenedor-grupo__lista #contenedor-grupo__p`).textContent = puntuacion.nombre;
+        clone.querySelector(`.contenedor-grupo__icono #contenedor-grupo__puntuacion`).textContent = puntuacion.puntuacion;
+        clone.querySelector(`.contenedor-grupo__icono .contenedor-grupo__eliminar`).dataset.name = puntuacion.nombre;
         fragment.appendChild(clone);
     })
     lista.appendChild(fragment);
@@ -161,6 +153,44 @@ const eliminarPuntuacion = (e, array, campo) => {
             }
         })
     }
+}
+
+/*
+===================== LÓGICA PARA SELECCIONAR VARIOS IDIOMAS =============================
+*/
+
+const seleccionarIdioma = () => {
+    document.querySelectorAll('#txtListIdioma .opciones-idiomas').forEach(option => {
+        if (option.selected) {
+            selectIdiomas.add(option.value);
+        }
+    })
+    let strSelectIdiomas = '';
+    const setIdIdioma = new Set();
+    const valoresAceptados = /^[0-9]+$/;
+
+    [...selectIdiomas].forEach(idioma => strSelectIdiomas += idioma + '-')
+
+    const arrIdiomas = strSelectIdiomas.split('-')
+    listSelectIdiomas.innerHTML = '';
+    arrIdiomas.forEach(item => {
+        if (item !== '') {
+            if (valoresAceptados.test(item)) {
+                setIdIdioma.add(item)
+                document.querySelector('#idSelectIdioma').value = [...setIdIdioma];
+            }
+
+            if (!(valoresAceptados.test(item))) {
+                listSelectIdiomas.innerHTML += `
+                    <li>${item}</li>
+                `;
+            }
+        }
+    })
+}
+
+if (listSelectIdiomas) {
+    document.querySelector('#txtListIdioma').addEventListener('change', seleccionarIdioma)
 }
 
 /*
@@ -324,9 +354,9 @@ document.querySelector('#boton_add_puesto').addEventListener('click', (e) => ref
 ===================== LÓGICA CRUD PARA INSERTAR UN NUEVO IDIOMA =============================
 */
 //insertar los elementos que vienen desde la lista
-const insertIdiomaAspirante = async (formData) => {
+const insertIdiomaAspirante = async () => {
     const url = `${base_url}Aspirante/setIdiomaAspirante`;
-
+    const formData = new FormData(formIdioma);
     try {
         const req = await fetch(url, {
             method: 'POST',
@@ -336,9 +366,6 @@ const insertIdiomaAspirante = async (formData) => {
         const { status, msg } = await req.json();
         if (status) {
             sweetAlert("Idioma aspirante", msg, "success");
-            arrListaIdiomas = [];
-            pintarPuntuacion(listaIdiomas, arrListaIdiomas);
-            mostrarInputOtroIdioma();
         } else {
             sweetAlert("Error", msg, "warning");
         }
@@ -346,9 +373,10 @@ const insertIdiomaAspirante = async (formData) => {
         sweetAlert("Error", error, "error");
     }
 }
+listSelectIdiomas.addEventListener('click', insertIdiomaAspirante);
 
 //insertar el elemento que viene desde el input
-const insertNewIdioma = async (formData) => {
+const insertNewIdioma = async (formData, puntuacion, campo, array, form) => {
     const url = `${base_url}Aspirante/setIdioma`;
 
     try {
@@ -360,17 +388,39 @@ const insertNewIdioma = async (formData) => {
         const { status, msg, id } = await req.json();
         if (status) {
             listIdiomas.add(id);
-            console.log(listIdiomas)
-            sweetAlert("Idioma", msg, "success");
-            // insertIdiomaAspirante(formData)
-            arrListaIdiomas = [...listIdiomas];
+            swal("Idioma", msg, "success");
+            array.push(puntuacion);
+            form.reset();
+            puntuacionEstrellas(0, campo);
             pintarPuntuacion(listaIdiomas, arrListaIdiomas);
+            refreshIdiomasAspirante();
+            document.querySelector('#grupo-puesto-otro_idioma').checked = true;
             mostrarInputOtroIdioma();
         } else {
-            sweetAlert("Error", msg, "warning");
+            swal("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        swal("Error", error, "error");
+    }
+}
+
+const refreshIdiomasAspirante = async () => {
+    const url = `${base_url}Aspirante/getAllIdiomas`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status) {
+            document.querySelector('#txtListIdioma').innerHTML = '<option value="" disabled selected>Seleccione un idioma</option>';
+            data.forEach(item => {
+                document.querySelector('#txtListIdioma').innerHTML += `
+                    <option value="${item['idIdioma']}-${item['nombreIdioma']}" class="opciones-idiomas">${item['nombreIdioma']}</option>
+                `;
+            });
+        } else {
+            swal("Error", data, "error");
+        }
+    } catch (error) {
+        swal("Error", error, "error");
     }
 }
 

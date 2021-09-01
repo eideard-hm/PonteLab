@@ -21,7 +21,6 @@ class Aspirante extends Controllers
     {
         $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
         $data['list_workStatus'] = $this->model->getAllWorkStatus();
-        $data['list_idiomas'] = $this->model->getAllIdiomas();
         $this->views->getView($this, 'Aspirante', $data);
     }
 
@@ -143,6 +142,18 @@ class Aspirante extends Controllers
             $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error al intentar cargar la lista de aspirantes. Por favor intenta más tarde !!'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getAllIdiomas()
+    {
+        $request = $this->model->getAllIdiomas();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error en el servidor.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
     //Método para insertar un idioma

@@ -173,12 +173,18 @@ const mostrarInputOtroIdioma = () => {
 
         document.getElementById('grupo-idioma-idioma').style.display = 'none';
         document.getElementById('txtListIdioma').style.display = 'none';
+
+        document.getElementById('boton_add_idioma').style.display = 'block';
+        document.getElementById('agregar_idioma').style.display = 'none';
     } else {
         document.getElementById('grupo-idioma-otro_idioma').style.display = 'none';
         document.getElementById('txtIdioma').style.display = 'none';
 
         document.getElementById('grupo-idioma-idioma').style.display = 'block';
         document.getElementById('txtListIdioma').style.display = 'block';
+
+        document.getElementById('boton_add_idioma').style.display = 'none';
+        document.getElementById('agregar_idioma').style.display = 'block';
     }
 }
 

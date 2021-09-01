@@ -525,6 +525,29 @@ body {
     transition: 500ms display linear;
 }
 
+/*=============== LISTA DE IDIOMAS ASPIRANTE Y HABILIDADES ==========*/
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas {
+    border-radius: 5px;
+}
+
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas ul {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas ul li {
+    list-style: none;
+    background-color: #97bbfe;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 3px;
+}
+
 .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100 textarea {
     min-width: 100%;
     max-width: 100%;
@@ -645,10 +668,10 @@ body {
     font-weight: 200;
 }
 
-/* .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto {
     display: none;
-} */
+}
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puntuacion i,
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto i {

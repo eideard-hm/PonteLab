@@ -167,7 +167,7 @@ class AspiranteModel extends GestionCRUD
         $this->nombreIdioma = $nombre;
         $sql = "SELECT idIdioma, nombreIdioma
                 FROM IDIOMA 
-                WHERE nombreIdioma LIKE '%{$this->nombreIdioma}%'";
+                WHERE nombreIdioma = '{$this->nombreIdioma}'";
         $request  = $this->selectAll($sql);
 
         if (empty($request)) {
