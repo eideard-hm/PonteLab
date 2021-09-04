@@ -6,7 +6,6 @@ const movPagina = document.querySelector(".movPag");
 //seleccionar los botones
 const enviar = document.querySelector(".enviar");
 const sigPagina = document.querySelectorAll('.siguiente');
-const antPagina = document.querySelectorAll('.atras');
 
 /*
 ===================== VALIDACIÓN DE FORMULARIO =============================
@@ -185,6 +184,10 @@ const mostrarInputOtroIdioma = () => {
 
         document.getElementById('boton_add_idioma').style.display = 'none';
         document.getElementById('agregar_idioma').style.display = 'block';
+
+        document.getElementById(`grupo-idioma`).classList.remove('incorrecto');
+        //quitar la leyenda
+        document.querySelector('#grupo-idioma .leyenda-input').classList.remove('active');
     }
 }
 
@@ -217,28 +220,54 @@ sigPagina.forEach(boton => {
             if (document.querySelector('#especificaciones').value === '' || document.querySelector('#txtEstado').value === '') {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
             } else {
-                siguientePagina('-25%');
+                swal({
+                    title: "¿ Esta seguro de querer continuar ?",
+                    text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para cambiar algun dato. Por favor asegurese de que sean correctos.",
+                    icon: "info",
+                    buttons: ["Esperar", "Continuar"]
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            saveDataAspirante();
+                        }
+                    });
             }
         } else if (boton.classList.contains('sig-p3')) {
             if (inputOtroPuestoInteres.style.display === 'block') {
                 if (campos.otro_puesto_interes === false) {
                     sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-                } else {
-                    siguientePagina('-50%');
                 }
             } else if (inputOtroPuestoInteres.style.display === 'none' || inputOtroPuestoInteres.style.display === '') {
-                siguientePagina('-50%');
+                swal({
+                    title: "¿ Esta seguro de querer continuar ?",
+                    text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para cambiar algun dato. Por favor asegurese de que sean correctos.",
+                    icon: "info",
+                    buttons: ["Esperar", "Continuar"]
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            insertPuestoInteresAspirante();
+                        }
+                    });
             }
 
         } else if (boton.classList.contains('sig-p6')) {
             if (document.getElementById('txtIdioma').style.display === 'block') {
                 if (campos.idioma === false) {
                     sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-                } else {
-                    siguientePagina('-75%');
                 }
             } else if (document.getElementById('txtIdioma').style.display === 'none' || document.getElementById('txtIdioma').style.display === '') {
-                siguientePagina('-75%');
+                swal({
+                    title: "¿ Esta seguro de querer continuar ?",
+                    text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para agregar un nuevo idioma. Por favor asegurese que haya agregado lo que considera pertinentes.",
+                    icon: "info",
+                    buttons: ["Esperar", "Continuar"]
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            siguientePagina('-75%');
+                        }
+                    });
             }
         }
     })
@@ -252,27 +281,6 @@ const siguientePagina = valor => {
     contador += 1;
 }
 
-antPagina.forEach(boton => {
-    boton.addEventListener('click', e => {
-        e.preventDefault();
-        if (boton.classList.contains('atras-p1')) {
-            anteriorPagina('0%');
-        } else if (boton.classList.contains('atras-p4')) {
-            anteriorPagina('-25%')
-        } else if (boton.classList.contains('atras-p5')) {
-            anteriorPagina('-50%')
-        }
-    })
-})
-
-const anteriorPagina = valor => {
-    movPagina.style.marginLeft = valor;
-    numero[contador - 1].classList.remove('active');
-    icono[contador - 1].classList.remove('active');
-    parrafo[contador - 1].classList.remove('active');
-    contador -= 1;
-}
-
 //enviar los datos
 if (enviar) {
     enviar.addEventListener('click', e => {
@@ -280,9 +288,6 @@ if (enviar) {
         if (campos.habilidad === false) {
             sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
         }
-        // let data = new FormData(habilidades);
-        // console.log(data.get('txtHabilidad'))
-        // console.log(data.get('nivel_habilidad'))
     })
 }
 

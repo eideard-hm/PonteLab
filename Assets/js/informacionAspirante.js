@@ -27,7 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.querySelector('#list_PuestoInteres')) {
         const listSectores = document.querySelector('#list_PuestoInteres');
-        listSectores.addEventListener('click', e => seleccionarPuestoInteres(e));
+        listSectores.addEventListener('click', e => {
+            seleccionarPuestoInteres(e);
+
+        });
     }
 })
 
@@ -71,7 +74,8 @@ botonAgregarPuntuacion.forEach(puntuacion => {
 
 const setPuntuacion = async (form, name, campo, array) => {
     const data = new FormData(form);
-    if (data.get(`txt${name}`) === '') {
+
+    if (data.get(`txt${name}`) === '' || data.get(`txtNivel${name}`) === null) {
         swal("Error", "Debe de ingresar el nombre del idioma y el nivel considera tiene del mismo.", "warning");
         return false;
     }
@@ -158,40 +162,70 @@ const eliminarPuntuacion = (e, array, campo) => {
 /*
 ===================== LÓGICA PARA SELECCIONAR VARIOS IDIOMAS =============================
 */
+//objeto que va a renderizar
+let arrObjIdiomas = [];
 
-const seleccionarIdioma = () => {
-    document.querySelectorAll('#txtListIdioma .opciones-idiomas').forEach(option => {
-        if (option.selected) {
-            selectIdiomas.add(option.value);
-        }
-    })
-    let strSelectIdiomas = '';
+const seleccionarIdioma = async () => {
     const setIdIdioma = new Set();
+    const formData = new FormData(formIdioma);
     const valoresAceptados = /^[0-9]+$/;
+    let existeIdioma = false;
+    let strNombreIdiomas = '';
+    let arrNombreIdiomas = [];
 
-    [...selectIdiomas].forEach(idioma => strSelectIdiomas += idioma + '-')
-
-    const arrIdiomas = strSelectIdiomas.split('-')
-    listSelectIdiomas.innerHTML = '';
-    arrIdiomas.forEach(item => {
-        if (item !== '') {
-            if (valoresAceptados.test(item)) {
-                setIdIdioma.add(item)
-                document.querySelector('#idSelectIdioma').value = [...setIdIdioma];
+    document.querySelectorAll('#txtListIdioma .opciones-idiomas').forEach(option => {
+        if ((option.selected) && (formData.get('txtNivelIdioma') !== null) && (option.value !== '' && option.disabled === false)) {
+            existeIdioma = arrObjIdiomas.some(item => item.nombre === option.value);
+            if (existeIdioma) {
+                swal("Error", "Aspirante ya tiene asociado este idioma.", "warning");
             }
 
+            arrObjIdiomas.push(
+                {
+                    nombre: option.value,
+                    nivel: formData.get('txtNivelIdioma')
+                }
+            )
+
+            arrObjIdiomas.forEach(idioma => strNombreIdiomas += `${idioma.nombre}-`);
+            arrNombreIdiomas = strNombreIdiomas.split('-');
+            arrNombreIdiomas.forEach(item => {
+                if (valoresAceptados.test(item)) {
+                    document.querySelector('#idSelectIdioma').value = item;
+                }
+            })
+            document.querySelector('#nivelIdioma').value = formData.get('txtNivelIdioma');
+
+            option.classList.add('active');
+            option.setAttribute('disabled', 'disabled');
+            formIdioma.reset();
+            puntuacionEstrellas(0, 'idioma');
+            return false;
+        } else {
+            if (!option.classList.contains('active')) {
+                option.classList.remove('active');
+                option.removeAttribute('disabled');
+            }
+        }
+    })
+
+    listSelectIdiomas.innerHTML = '';
+    document.querySelector('#nivelIdioma').value = '';
+    arrObjIdiomas.forEach(item => {
+        if (item !== '') {
             if (!(valoresAceptados.test(item))) {
+                document.querySelector('#nivelIdioma').value = `${item['nivel']}`;
                 listSelectIdiomas.innerHTML += `
-                    <li>${item}</li>
+                    <li>${item['nombre']} ---- <b>${item['nivel']}</b></li>
                 `;
             }
         }
     })
+
+    await insertIdiomaAspirante();
 }
 
-if (listSelectIdiomas) {
-    document.querySelector('#txtListIdioma').addEventListener('change', seleccionarIdioma)
-}
+document.querySelector('#agregar_idioma').addEventListener('click', seleccionarIdioma);
 
 /*
 ===================== LÓGICA CRUD ASPIRANTE =============================
@@ -211,11 +245,13 @@ const saveDataAspirante = async () => {
         })
 
         const { status, msg } = await req.json();
+
         if (!status) {
             swal("Error", msg, "error");
             return false;
         } else {
             sweetAlert("Aspirante", msg, "success");
+            siguientePagina('-25%');
         }
     } catch (error) {
         swal("Error", error, "error");
@@ -235,53 +271,47 @@ const seleccionarPuestoInteres = e => {
         if (e.target.classList.contains('active')) {
             listPuestoInteres.delete(e.target.dataset.id);
             e.target.classList.remove('active');
+            document.querySelector('#txtPuesto').value = [...listPuestoInteres];
         } else {
             listPuestoInteres.add(e.target.dataset.id);
             e.target.classList.add('active');
+            document.querySelector('#txtPuesto').value = [...listPuestoInteres];
         }
     }
-    console.log(listPuestoInteres)
 }
-
-document.querySelector('#btn-puesto-interes').addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector('#txtPuesto').value = [...listPuestoInteres];
-})
 
 //insertar el puesto de interes desde el input
 const insertPuestoInteres = async (e) => {
     e.preventDefault();
-    const namePuesto = document.querySelector('#txtOtroPuesto');
+    const formData = new FormData(formPuestoInteres);
+    const url = `${base_url}Aspirante/savePuestoInteres`;
 
-    //validar que el campo no venga vació
-    if (namePuesto.value.trim() === '' || namePuesto.value.length <= 3) {
-        sweetAlert("Campos obligatorios!!", "Atención, debe de rellenar correctamente el campo.", "warning");
-        return false;
-    } else {
-        const formData = new FormData(formPuestoInteres);
-
-        const url = `${base_url}Aspirante/savePuestoInteres`;
-
-        try {
-            const req = await fetch(url, {
-                method: 'POST',
-                body: formData
-            });
-            const { status, msg } = await req.json();
-
-            if (status) {
-                refreshPuestoInteres();
-                formPuestoInteres.reset();
-                document.querySelector('#grupo-puesto-otro_puesto').checked = true;
-                mostrarInputOtroPuestoInteres();
-                swal("Puesto interes", msg, "success");
-                document.querySelector('.btn-disable').removeAttribute('disabled');
-            } else {
-                swal("Error", msg, "warning");
-            }
-        } catch (error) {
-            swal("Error", error, "error");
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+        const { status, msg, data } = await req.json();
+        if (status) {
+            await refreshPuestoInteres();
+            formPuestoInteres.reset();
+            document.querySelector('#grupo-puesto-otro_puesto').checked = true;
+            mostrarInputOtroPuestoInteres();
+            swal("Puesto interes", msg, "success");
+            document.querySelectorAll('#list_PuestoInteres li').forEach(item => {
+                if (parseInt(item.dataset.id) === parseInt(data)) {
+                    item.classList.add('active');
+                    item.classList.add('disabled');
+                    item.removeEventListener('click', seleccionarPuestoInteres)
+                }
+            })
+            listPuestoInteres.delete(data);
+            document.querySelector('.btn-disable').removeAttribute('disabled');
+        } else {
+            swal("Error", msg, "warning");
         }
+    } catch (error) {
+        swal("Error", error, "error");
     }
 }
 
@@ -293,7 +323,6 @@ const insertPuestoInteresAspirante = async () => {
     } else {
 
         const formData = new FormData(formPuestoInteres);
-
         const url = `${base_url}Aspirante/insertPuestoInteresAspirante`;
 
         try {
@@ -303,20 +332,8 @@ const insertPuestoInteresAspirante = async () => {
             });
             const { status, msg } = await req.json();
             if (status) {
-                swal({
-                    title: "Puesto de interes",
-                    text: msg,
-                    icon: "success",
-                    buttons: ["Ok", "Continuar"],
-                    dangerMode: false,
-                })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            siguientePagina('-50%');
-                        } else {
-                            siguientePagina('-50%');
-                        }
-                    });
+                sweetAlert("Puesto interes aspirante", msg, "success");
+                siguientePagina('-50%');
             } else {
                 sweetAlert("Error", msg, "error");
             }
@@ -326,7 +343,7 @@ const insertPuestoInteresAspirante = async () => {
     }
 }
 
-const refreshPuestoInteres = async () => {
+const refreshPuestoInteres = async (e) => {
     const selectListPuestoInteres = document.querySelector('#list_PuestoInteres');
     const url = `${base_url}Aspirante/getAllPuestoInteres`;
     try {
@@ -347,8 +364,10 @@ const refreshPuestoInteres = async () => {
     }
 }
 
-document.querySelector('#boton_add_puesto').addEventListener('click', (e) => insertPuestoInteres(e));
-document.querySelector('#boton_add_puesto').addEventListener('click', (e) => refreshPuestoInteres);
+document.querySelector('#boton_add_puesto').addEventListener('click', (e) => {
+    insertPuestoInteres(e)
+    refreshPuestoInteres(e)
+});
 
 /*
 ===================== LÓGICA CRUD PARA INSERTAR UN NUEVO IDIOMA =============================
@@ -357,6 +376,7 @@ document.querySelector('#boton_add_puesto').addEventListener('click', (e) => ref
 const insertIdiomaAspirante = async () => {
     const url = `${base_url}Aspirante/setIdiomaAspirante`;
     const formData = new FormData(formIdioma);
+
     try {
         const req = await fetch(url, {
             method: 'POST',
@@ -364,6 +384,7 @@ const insertIdiomaAspirante = async () => {
         });
 
         const { status, msg } = await req.json();
+
         if (status) {
             sweetAlert("Idioma aspirante", msg, "success");
         } else {
@@ -373,7 +394,6 @@ const insertIdiomaAspirante = async () => {
         sweetAlert("Error", error, "error");
     }
 }
-listSelectIdiomas.addEventListener('click', insertIdiomaAspirante);
 
 //insertar el elemento que viene desde el input
 const insertNewIdioma = async (formData, puntuacion, campo, array, form) => {
@@ -387,16 +407,23 @@ const insertNewIdioma = async (formData, puntuacion, campo, array, form) => {
 
         const { status, msg, id } = await req.json();
         if (status) {
-            listIdiomas.add(id);
+            // listIdiomas.add(id);
             swal("Idioma", msg, "success");
+            await refreshIdiomasAspirante();
+            document.querySelectorAll('#txtListIdioma option').forEach(item => {
+                if (parseInt(item.dataset.id) === parseInt(id)) {
+                    item.classList.add('active', 'disabled');
+                    item.setAttribute('disabled', 'disabled');
+                }
+            })
             array.push(puntuacion);
             form.reset();
             puntuacionEstrellas(0, campo);
             pintarPuntuacion(listaIdiomas, arrListaIdiomas);
-            refreshIdiomasAspirante();
             document.querySelector('#grupo-puesto-otro_idioma').checked = true;
             mostrarInputOtroIdioma();
         } else {
+            pintarPuntuacion(listaIdiomas, arrListaIdiomas);
             swal("Error", msg, "warning");
         }
     } catch (error) {
@@ -413,7 +440,7 @@ const refreshIdiomasAspirante = async () => {
             document.querySelector('#txtListIdioma').innerHTML = '<option value="" disabled selected>Seleccione un idioma</option>';
             data.forEach(item => {
                 document.querySelector('#txtListIdioma').innerHTML += `
-                    <option value="${item['idIdioma']}-${item['nombreIdioma']}" class="opciones-idiomas">${item['nombreIdioma']}</option>
+                    <option data-id="${item['idIdioma']}" value="${item['idIdioma']}-${item['nombreIdioma']}" class="opciones-idiomas">${item['nombreIdioma']}</option>
                 `;
             });
         } else {

@@ -79,20 +79,17 @@ class Aspirante extends Controllers
                 $strPuestoInteres = limpiarCadena(ucfirst($strPuestoInteres));
 
                 $request = $this->model->insertOtroPuestoInteres($strPuestoInteres);
-
                 if ($request > 0 && is_numeric($request)) {
-                    // $puestoInteresAspirante = $this->model->puestoInteresAspirante(
-                    //     intval($_SESSION['data-aspirante']['idAspirante']),
-                    //     intval($request)
-                    // );
+                    $puestoInteresAspirante = $this->model->puestoInteresAspirante(
+                        intval($_SESSION['data-aspirante']['idAspirante']),
+                        intval($request)
+                    );
 
-                    // if (!empty($puestoInteresAspirante)) {
-                    //     $sesionPuestoInteres = $this->model->getOnePuestoInteres(intval($puestoInteresAspirante));
-                    //     $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
-                    // } else {
-                    //     $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Intente más tarde !!'];
-                    // }
-                    $arrResponse = ['status' => true, 'msg' => 'Puesto insertado correctamente!!'];
+                    if (!empty($puestoInteresAspirante)) {
+                        $arrResponse = ['status' => true, 'msg' => 'Puesto insertado correctamente!!', 'data' => $request];
+                    } else {
+                        $arrResponse = ['status' => false, 'msg' => 'Ocurrio un error al intentar asociar el idioma al asipirante.'];
+                    }
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Lo puedes seleccionar la lista.'];
                 } else {
@@ -110,17 +107,18 @@ class Aspirante extends Controllers
             if (empty($_POST['txtPuesto'])) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
             } else {
-                $intPuestoInteres = limpiarCadena(intval($_POST['txtPuesto']));
-
-                $request = $this->model->puestoInteresAspirante(
-                    intval($_SESSION['data-aspirante']['idAspirante']),
-                    $intPuestoInteres
-                );
+                $sesionPuestoInteres = limpiarCadena($_POST['txtPuesto']);
+                $puestoInteres = limpiarCadena($_POST['txtPuesto']);
+                $puestoInteres = explode(',', $puestoInteres);
+                foreach ($puestoInteres as $puesto) {
+                    $request = $this->model->puestoInteresAspirante(
+                        intval($_SESSION['data-aspirante']['idAspirante']),
+                        $puesto
+                    );
+                }
 
                 if ($request > 0 && is_numeric($request)) {
-                    $sesionPuestoInteres = $this->model->getOnePuestoInteres(intval($request));
                     $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
-
                     $arrResponse = ['status' => true, 'msg' => 'Puesto de interés almacenado exitosamente :)', 'sesiones' => $_SESSION['puestoInteres-aspirante']];
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Lo puedes seleccionar la lista.'];
@@ -164,24 +162,34 @@ class Aspirante extends Controllers
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
             } else {
                 $idIdioma = intval($_POST['idIdioma']);
+                $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
+                $nivelIdioma = intval(limpiarCadena($_POST['txtNivelIdioma']));
+
                 $nameIdioma = limpiarCadena(ucfirst(strtolower($_POST['txtIdioma'])));
 
                 if ($idIdioma == 0) {
                     $option = 1;
-
                     $request = $this->model->insertNewIdioma($nameIdioma);
                 } else {
                     $option = 2;
-
                     $request = $this->model->updateIdioma(
                         $idIdioma,
                         $nameIdioma
                     );
                 }
+
                 if ($request > 0 && is_numeric($request)) {
-                    $_SESSION['idIdioma'] = intval($request);
                     if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)', 'id' => $request];
+                        $idiomaAspirante = $this->model->insertIdiomaAspirante(
+                            $idAspiranteFK,
+                            $request,
+                            $nivelIdioma
+                        );
+                        if (!empty($idiomaAspirante)) {
+                            $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)', 'id' => $request];
+                        } else {
+                            $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error interno y no se ha podido asociar el idioma al aspirante.'];
+                        }
                     } else {
                         $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
                     }
@@ -199,44 +207,38 @@ class Aspirante extends Controllers
     public function setIdiomaAspirante()
     {
         if ($_POST) {
-            if (empty($_POST['txtNivelIdioma'])) {
-                $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
+            $idIdioma = intval($_POST['idIdioma']);
+            $idIdiomaFK = intval(limpiarCadena($_POST['idSelectIdioma']));
+            $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
+            $nivelIdioma = intval(limpiarCadena($_POST['nivelIdioma']));
+
+            if ($idIdioma == 0) {
+                $option = 1;
+                $request = $this->model->insertIdiomaAspirante(
+                    $idAspiranteFK,
+                    $idIdiomaFK,
+                    $nivelIdioma
+                );
             } else {
-                $idIdioma = intval($_POST['idIdioma']);
-                $idIdiomaFK = $_SESSION['idIdioma'];
-                $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
-                $nivelIdioma = limpiarCadena($_POST['txtNivelIdioma']);
+                $option = 2;
+                $request = $this->model->updateIdiomaAspirante(
+                    $idIdioma,
+                    $idIdiomaFK,
+                    $idAspiranteFK,
+                    $nivelIdioma
+                );
+            }
 
-                if ($idIdioma == 0) {
-                    $option = 1;
-
-                    $request = $this->model->insertIdiomaAspirante(
-                        $idAspiranteFK,
-                        $idIdiomaFK,
-                        $nivelIdioma
-                    );
+            if ($request > 0 && is_numeric($request)) {
+                if ($option == 1) {
+                    $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)'];
                 } else {
-                    $option = 2;
-
-                    $request = $this->model->updateIdiomaAspirante(
-                        $idIdioma,
-                        $idIdiomaFK,
-                        $idAspiranteFK,
-                        $nivelIdioma
-                    );
+                    $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
                 }
-                if ($request > 0 && is_numeric($request)) {
-                    $_SESSION['idIdiomaAspirante'] = intval($request);
-                    if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)'];
-                    } else {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
-                    }
-                } elseif ($request == 'exists') {
-                    $arrResponse = ['status' => false, 'msg' => 'El idioma ya se encuentra registrado. Seleccionalo en la lista !!'];
-                } else {
-                    $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
-                }
+            } elseif ($request == 'exists') {
+                $arrResponse = ['status' => false, 'msg' => 'El aspirante ya tiene ese idioma asociado. Seleccionalo en la lista !!'];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

@@ -164,10 +164,6 @@
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">
-                            <button class="btns atras atras-p1">
-                                <i class="fas fa-chevron-left icon-btn-atras"></i>
-                                Atrás
-                            </button>
                             <button class="btns siguiente sig-p3 btn-disable" id="btn-puesto-interes">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
@@ -184,8 +180,7 @@
                         <div class="contenedor-grupo w50" id="grupo-idioma">
                             <div class="agrupar-estrellas" id="agrupar-estrellas-select">
                                 <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
-                                <select name="txtListIdioma" id="txtListIdioma">
-                                </select>
+                                <select name="txtListIdioma" id="txtListIdioma"></select>
                                 <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
                                 <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
@@ -195,7 +190,7 @@
                             </div>
                             <span class="estrellas" id="grupo-idioma-estrellas">
                                 <label class="fas fa-star puntuacion idioma" id="1idioma">
-                                    <input type="radio" name="txtNivelIdioma" class="input-radio" id="1idioma" checked value="1">
+                                    <input type="radio" name="txtNivelIdioma" class="input-radio" id="1idioma" value="1">
                                 </label>
                                 <label class="fas fa-star puntuacion idioma" id="2idioma">
                                     <input type="radio" name="txtNivelIdioma" class="input-radio" id="2idioma" value="2">
@@ -233,15 +228,12 @@
 
                         <div class="contenedor-grupo w100" id="select-idiomas">
                             <input type="hidden" name="idSelectIdioma" id="idSelectIdioma" value="">
+                            <input type="hidden" name="nivelIdioma" id="nivelIdioma" value="">
                             <ul id="select-idiomas-list">
                             </ul>
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">
-                            <button class="btns atras atras-p4">
-                                <i class="fas fa-chevron-left icon-btn-atras"></i>
-                                Atrás
-                            </button>
                             <button class="btns siguiente sig-p6">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
@@ -294,10 +286,6 @@
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">
-                            <button class="btns atras atras-p5">
-                                <i class="fas fa-chevron-left icon-btn-atras"></i>
-                                Atrás
-                            </button>
                             <button type="submit" class="btns siguiente enviar">
                                 Enviar<i class="fas fa-paper-plane icon-btn"></i>
                             </button>
@@ -322,8 +310,8 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
     <script src="<?= URL; ?>Assets/js/informacionAspirante.js"></script>
+    <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
 </body>
 
 </html>

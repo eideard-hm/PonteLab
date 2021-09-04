@@ -181,7 +181,7 @@ class VacanteModel extends GestionCRUD
         $operadorOr = 'OR';
         for ($i = 0; $i < count($this->nombreSector); $i++) {
             if (!empty($this->nombreSector[$i])) {
-                if($this->nombreSector[$i] == count($this->nombreSector) -1){
+                if ($this->nombreSector[$i] === $this->nombreSector[count($this->nombreSector) - 2]) {
                     $return .= "idSectorFK = {$this->nombreSector[$i]}";
                     break;
                 }
