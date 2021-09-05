@@ -50,8 +50,23 @@
     </div>
   </header>
 
+  <form class="content-bar-search">
+        <input type="search" id="txtSearchPerfiles" name="txtSearchPerfiles" placeholder="Ingrese lo que desea buscar" autofocus>
+        <button id="icono-buscar"><i class="fas fa-search" title="Buscar"></i></button>
+        <i class="fas fa-times" id="borrar-contenido" title="Borrar"></i>
+    </form>
+
+    <ul class="list_perfiles">
+    </ul>
+<!--     
+    <ul class="list_vacantes">
+    </ul> -->
+
+    <div class="cover-ctn-search"></div>
+
+
   <div class="contenedor card">
-    <div class="contenedor-card">
+    <!-- <div class="contenedor-card">
       <div class="contenedor-card__header contenedor-card__padding">
         <div class="header-img">
           <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
@@ -67,7 +82,7 @@
       <div class="contenedor-card__footer">
         <a href="#">Ver más</a>
       </div>
-    </div>
+    </div> -->
 
     <div class="contenedor-card">
       <pre>
@@ -77,7 +92,7 @@
             </pre>
     </div>
 
-    <div class="contenedor-card">
+    <!-- <div class="contenedor-card">
       <div class="contenedor-card__header contenedor-card__padding">
         <div class="header-img">
           <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
@@ -129,7 +144,7 @@
       <div class="contenedor-card__footer">
         <a href="#">Ver más</a>
       </div>
-    </div>
+    </div> -->
   </div>
   <?php
   require_once('./Views/Components/ScriptsJs.php');
