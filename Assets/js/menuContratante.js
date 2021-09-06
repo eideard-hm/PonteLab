@@ -1,5 +1,5 @@
 const contenedorBarraBusqueda = document.querySelector('.content-search #icon-search');
-const inputBusquedaP = document.querySelector('#txtSearchVacantes');
+const inputBusquedaP = document.querySelector('#txtSearchPerfiles');
 const barraBusqueda = document.querySelector('.content-bar-search');
 const coverContenedorBusqueda = document.querySelector('#menu .cover-ctn-search');
 const limpiarInputBuscador = document.querySelector('#borrar-contenido');
@@ -32,8 +32,8 @@ if (coverContenedorBusqueda) {
 
 if (limpiarInputBuscador) {
     limpiarInputBuscador.addEventListener('click', () => {
-        inputBusqueda.value = '';
-        inputBusqueda.focus();
+        inputBusquedaP.value = '';
+        inputBusquedaP.focus();
     });
 }
 
@@ -143,23 +143,24 @@ const cerrarLista = () => {
 // autocompletar(["java", "react", "vue", "python", " javascript", "spring", "angular"])
 
 /*============ TRAER LA LISTA DE VACANTES ==========*/
-if (inputBusqueda) {
-    inputBusqueda.addEventListener('input', e => {
+if (inputBusquedaP) {
+    inputBusquedaP.addEventListener('input', e => {
         getArregloPerfiles(e.target.value)
     })
 }
 
 const getArregloPerfiles = async (busqueda) => {
-    const url = `${base_url}Vacante/getArregloVacantes/${busqueda}`;
+    const url = `${base_url}Vacante/getArregloPerfiles/${busqueda}`;
+    console.log(url);
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
-
-        data.forEach(vacante => {
-            if (vacante['nombreVacante'].search(inputBusqueda) || vacante['descripcionVacante'].search(inputBusqueda))
+        console.log(data);
+        data.forEach(perfil => {
+            if (perfil['nombreUsuario'].search(inputBusquedaP) || perfil['descripcionPersonalAspirante'].search(inputBusquedaP))
             {
-                arrNombrePerfiles.add(vacante['nombreVacante'], vacante['descripcionVacante']);
-                arrNombrePerfiles.add(vacante['descripcionVacante']);
+                arrNombrePerfiles.add(perfil['nombreUsuario'], perfil['descripcionPersonalAspirante']);
+                arrNombrePerfiles.add(perfil['descripcionPersonalAspirante']);
             }
         });
         arregloSugerenciasPerfiles = [...arrNombrePerfiles];
@@ -167,25 +168,23 @@ const getArregloPerfiles = async (busqueda) => {
         contenedorCardsPerfiles.innerHTML = '';
 
         if (status) {
-            data.forEach(vacante => {
+            data.forEach(perfil => {
                 contenedorCardsPerfiles.innerHTML += `
-                    <div class="card">
-                        <div class="circle">
-                            <h2>${vacante['nombreVacante']}</h2>
+                    <div class="contenedor-card">
+                        <div class="contenedor-card__header contenedor-card__padding">
+                            <div class="header-img">
+                            <img src="http://localhost/Pontelab/Assets/img/upload.png" alt="Uplopad">
+                            </div>
+                            <div class="header-name">
+                            <h3>${perfil['nombreUsuario']}</h3>
+                            <span>${perfil['nombreEstado']}</span>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <p>
-                                <br>
-                                BOGOTA D.C. - BOGOTA
-                                <br>
-                                Vacantes: ${vacante['cantidadVacante']}
-                                <br>
-                                Fecha de creación: ${vacante['fechaHoraPublicacion']}
-                                <br>
-                                Fecha de cierre: ${vacante['fechaHoraCierre']}
-                                <br>
-                            </p>
-                            <a type="">Ver | Aplicar</a>
+                        <div class="contenedor-card__body">
+                            <p>${perfil['descripcionPersonalAspirante']}</p>
+                        </div>
+                        <div class="contenedor-card__footer">
+                            <a href="#">Ver más</a>
                         </div>
                     </div>
                     `
@@ -209,26 +208,24 @@ const getVacantesSector = async () => {
         if (status) {
             data.forEach(vacante => {
                 contenedorCardsPerfiles.innerHTML += `
-                    <div class="card">
-                        <div class="circle">
-                            <h2>${vacante['nombreVacante']}</h2>
+                <div class="contenedor-card">
+                    <div class="contenedor-card__header contenedor-card__padding">
+                        <div class="header-img">
+                        <img src="http://localhost/Pontelab/Assets/img/upload.png" alt="Uplopad">
                         </div>
-                        <div class="card-content">
-                            <p>
-                                <br>
-                                BOGOTA D.C. - BOGOTA
-                                <br>
-                                Vacantes: ${vacante['cantidadVacante']}
-                                <br>
-                                Fecha de creación: ${vacante['fechaHoraPublicacion']}
-                                <br>
-                                Fecha de cierre: ${vacante['fechaHoraCierre']}
-                                <br>
-                            </p>
-                            <a type="">Ver | Aplicar</a>
+                        <div class="header-name">
+                        <h3>${perfil['nombreUsuario']}</h3>
+                        <span>${perfil['nombreEstado']}</span>
                         </div>
                     </div>
-                    `
+                    <div class="contenedor-card__body">
+                        <p>${perfil['descripcionPersonalAspirante']}</p>
+                    </div>
+                    <div class="contenedor-card__footer">
+                        <a href="#">Ver más</a>
+                    </div>
+                </div>
+                `
             });
         } else {
             getAllPerfiles();
@@ -238,8 +235,13 @@ const getVacantesSector = async () => {
     }
 }
 
+
+document.addEventListener('DOMContentLoaded', () => {
+        getAllPerfiles();
+})
+
 const getAllPerfiles = async () => {
-    const url = `${base_url}Vacante/getAllVacantes`;
+    const url = `${base_url}Vacante/getAllPerfiles`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
@@ -247,97 +249,32 @@ const getAllPerfiles = async () => {
         contenedorCardsPerfiles.innerHTML = '';
 
         if (status) {
-            data.forEach(vacante => {
+            data.forEach(perfil => {
                 contenedorCardsPerfiles.innerHTML += `
-                    <div class="contenedor-card">
-                        <div class="contenedor-card__header contenedor-card__padding">
-                            <div class="header-img">
-                                <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
-                            </div>
-                            <div class="header-name">
-                            <h3>Joeylene Rivera</h3>
-                                <span>Web Developer</span>
-                            </div>
+                <div class="contenedor-card">
+                    <div class="contenedor-card__header contenedor-card__padding">
+                        <div class="header-img">
+                        <img src="http://localhost/Pontelab/Assets/img/upload.png" alt="Uplopad">
                         </div>
-                        <div class="contenedor-card__body">
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque
-                            </p>
-                        </div>
-                        <div class="contenedor-card__footer">
-                            <a href="#">Ver más</a>
+                        <div class="header-name">
+                        <h3>${perfil['nombreUsuario']}</h3>
+                        <span>${perfil['nombreEstado']}</span>
                         </div>
                     </div>
-
-                    <div class="card">
-                        <div class="circle">
-                            <h2>${vacante['nombreVacante']}</h2>
-                        </div>
-                        <div class="card-content">
-                            <p>
-                                <br>
-                                BOGOTA D.C. - BOGOTA
-                                <br>
-                                Vacantes: ${vacante['cantidadVacante']}
-                                <br>
-                                Fecha de creación: ${vacante['fechaHoraPublicacion']}
-                                <br>
-                                Fecha de cierre: ${vacante['fechaHoraCierre']}
-                                <br>
-                            </p>
-                            <a type="">Ver | Aplicar</a>
-                        </div>
+                    <div class="contenedor-card__body">
+                        <p>${perfil['descripcionPersonalAspirante']}</p>
                     </div>
-                    `
+                    <div class="contenedor-card__footer">
+                        <a href="#">Ver más</a>
+                    </div>
+                </div>
+                `
             });
         }
     } catch (error) {
         swal("Error", error, "error");
     }
 }
-
-
-/*============ TRAER LA LISTA DE ASPIRANTES ==========*/
-// const getListAspirantes = async () => {
-
-//     const url = `${base_url}Aspirante/getListAspirantes`;
-//     try {
-//         const req = await fetch(url);
-//         const { status, data } = await req.json();
-
-//         console.log(status, data);
-
-//         if (status) {
-//             contenedorCardsAspirantes.innerHTML = '';
-//             data.forEach(aspirante => {
-//                 contenedorCardsAspirantes.innerHTML = `
-//                     <div class="contenedor-card">
-//                         <div class="contenedor-card__header contenedor-card__padding">
-//                             <div class="header-img">
-//                                 <img src="http://localhost/PonsLabor/Assets/img/uploads/${aspirante['imagenUsuario']}" alt="${aspirante['nombreUsuario']}">
-//                             </div>
-//                             <div class="header-name">
-//                                 <h3>${aspirante['nombreUsuario']}</h3>
-//                                 <span>Web Developer</span>
-//                             </div>
-//                         </div>
-//                         <div class="contenedor-card__body">
-//                             <p>${aspirante['descripcionPersonalAspirante']}</p>
-//                         </div>
-//                         <div class="contenedor-card__footer">
-//                             <a href="#">Ver más</a>
-//                         </div>
-//                     </div>
-//                     `
-//             })
-//         } else {
-//             swal("Lista aspirantes", data, "error");
-//         }
-//     } catch (error) {
-//         swal("Error", error, "error");
-//     }
-// }
-
 /*
 - Esta función sirve para cargar la variable de sesión que contiene los datos o la información
   del o de los sectores que el usuario selecciono para de esa forma poder hacerle recomendaciones

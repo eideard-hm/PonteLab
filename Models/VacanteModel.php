@@ -31,6 +31,19 @@ class VacanteModel extends GestionCRUD
         parent::__construct();
     }
 
+    //metodo para traer todas los perfiles
+    public function selectAllPerfiles()
+    {
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
+                idEstadoLaboralAspiranteFK, nombreEstado,
+                nombreUsuario, token, imagenUsuario
+                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
+                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
+                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK";
+        return $this->selectAll($sql);
+    }
+
+    
     //metodo para traer todas las vacantes
     public function selectAllVacantes()
     {
@@ -136,6 +149,23 @@ class VacanteModel extends GestionCRUD
         $return = $this->insert($sql, $arrData);
 
         return $return;
+    }
+    
+    public function getFiltroPerfiles($busqueda)
+    {
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
+                idEstadoLaboralAspiranteFK, nombreEstado, nombreUsuario
+                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
+                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
+                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
+                WHERE idAspirante LIKE '%{$busqueda}%' 
+                OR descripcionPersonalAspirante LIKE '%{$busqueda}%' 
+                OR idUsuarioFK LIKE '%{$busqueda}%'
+                OR idEstadoLaboralAspiranteFK LIKE '%{$busqueda}%'
+                OR nombreEstado LIKE '%{$busqueda}%'
+                OR nombreUsuario LIKE '%{$busqueda}%'";
+
+        return $this->selectAll($sql);
     }
 
     public function getFiltroVacantes($busqueda)
