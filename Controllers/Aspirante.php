@@ -11,7 +11,7 @@ class Aspirante extends Controllers
             header('Location: http://localhost/PonsLabor/Login');
         }
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+            header('Location: http://localhost/PonteLab/Menu/Menu_Contratante');
         }
     }
 
@@ -130,14 +130,26 @@ class Aspirante extends Controllers
         }
         die();
     }
-
-    public function getListAspirantes()
+    
+    //método que retorna el arreglo con los perfiles
+    public function getArregloPerfiles()
     {
-        $request = $this->model->selectAllAspirantes();
+        $arrUrl = explode('/', implode($_GET));
+        $busqueda = limpiarCadena(strtolower($arrUrl[2]));
+
+        $request = $this->model->getFiltroPerfiles($busqueda);
+        $arrResponse = ['status' => true, 'data' => $request];
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+    
+    // método para traer todas los perfiles
+    public function getAllPerfiles()
+    {
+        $request = $this->model->selectAllPerfiles();
         if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => $request];
         } else {
-            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error al intentar cargar la lista de aspirantes. Por favor intenta más tarde !!'];
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }

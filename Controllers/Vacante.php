@@ -160,18 +160,6 @@ class Vacante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
-    
-    // método para traer todas los perfiles
-    public function getAllPerfiles()
-    {
-        $request = $this->model->selectAllPerfiles();
-        if (!empty($request)) {
-            $arrResponse = ['status' => true, 'data' => $request];
-        } else {
-            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
-        }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-    }
 
     // método para traer todas las vacantes
     public function getAllVacantes()
@@ -184,19 +172,7 @@ class Vacante extends Controllers
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
-
     
-    //método que retorna el arreglo con los perfiles
-    public function getArregloPerfiles()
-    {
-        $arrUrl = explode('/', implode($_GET));
-        $busqueda = limpiarCadena(strtolower($arrUrl[2]));
-
-        $request = $this->model->getFiltroPerfiles($busqueda);
-        $arrResponse = ['status' => true, 'data' => $request];
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-    }
-
     //método que retorna el arreglo con las vacantes
     public function getArregloVacantes()
     {
