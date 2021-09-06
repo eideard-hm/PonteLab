@@ -5,9 +5,12 @@
 	{
 		private $idUsuario;
 	private $nombreUsuario;
+    private $idTipoDocumentoFK;
 	private $numTelUsuario;
 	private $numTelFijo;
+    private $numDocUsuario;
 	private $direccionUsuario;
+    private $idBarrioFK;
 	private $nombreTipoDocumento;
 	private $estadoUsuario;
 
@@ -19,39 +22,58 @@
 
 	  //======================================EDITAR DATOS=====================================
     
-public function updateUser (
-	int $idUsuario,
-	String $nombreApellido,
-	String $titulo,
-	String $posicion,
-	String $idioma
-	){
- 
-    $this->idUsuario = $idUsuario;
-    $this->nombreApellido = $nombreApellido;
-    $this->titulo = $titulo;
-    $this->posicion =$posicion; 
-    $this->idioma =$idioma; 
 
+	  public function updateUser(
+        int $idUsuario,
+        string $nombreUsuario,
+        int $idTipoDocumentoFK,
+        string $numTelUsuario,
+        string $numTelFijo,
+        string $numDocUsuario,
+        string $direccionUsuario,
+        int $idBarrioFK
+    ) {
 
-    $sql=" UPDATE USUARIO SET 
-    nombreUsuario=?,
-    numTelUsuario=?, numTelFijo=?, nombreTipoDocumento=?
+        $this->idUsuario = $idUsuario;
+        $this->nombreUsuario = $nombreUsuario;
+        $this->idTipoDocumentoFK = $idTipoDocumentoFK;
+        $this->numTelUsuario = $numTelUsuario;
+        $this->numTelFijo = $numTelFijo;
+        $this->numDocUsuario = $numDocUsuario;
+        $this->direccionUsuario = $direccionUsuario;
+        $this->idBarrioFK = $idBarrioFK;
+
+        $sql = "UPDATE USUARIO SET 
+                nombreUsuario=?, idTipoDocumentoFK=?, numTelUsuario=?,
+                numTelFijo=?, numDocUsuario=?,  
+                direccionUsuario=?, idBarrioFK=? 
     WHERE idUsuario  = {$this->idUsuario}";
+        $arrData = array(
+            $this->nombreUsuario,
+            $this->idTipoDocumentoFK,
+            $this->numTelUsuario,
+            $this->numTelFijo,
+            $this->numDocUsuario,
+            $this->direccionUsuario,
+            $this->idBarrioFK
+        );
+
+        return $this->edit($sql, $arrData);
+
+        /*$sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE correoUsuario = '{$this->strUsuario}' AND estadoUsuario != 1";
+        return $this->select($sql);  POR IMPLEMENTAR CUANDO SE REALICE COMPLETAMENTE LA ACTUALIZACION Y RECARGAR LA VARIABLE DE SESION*/
+    }
 
 
-    $arrData = array(
-        $this->nombreApellido,  
-        $this->titulo, 
-        $this->posicion,
-		$this->idioma
-	);
 
-   return $this->edit($sql, $arrData);
-}
-
-
-public function selectOneUser(int $id)
+/*public function selectOneUser(int $id)
     {
         $this->idUsuario = $id;
         //consulta para extraerlo
@@ -62,6 +84,23 @@ public function selectOneUser(int $id)
 		 and b.idCiudadFK= c.idCiudad and u.idBarrioFK = b.idBarrio and e.idAspiranteFK = a.idAspirante 
 		 and ilaboral.idAspiranteFK
 		 = a.idAspirante and ia.idAspiranteFK = a.idAspirante and ia.idIdiomaFK = i.idIdioma
+        WHERE idUsuario = {$this->idUsuario}";
+
+        return $this->select($sql);
+    }*/
+
+        //Método para extraer un unico usuario de la base de datos por el id
+    public function selectOneUser(int $idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        //consulta para extraerlo
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
         WHERE idUsuario = {$this->idUsuario}";
 
         return $this->select($sql);
@@ -81,7 +120,14 @@ public function selectOneUser(int $id)
 
 	public function selectTipoDoc()
     {
-        $sql = "SELECT idTipoDocumento FROM TIPODOCUMENTO";
+        $sql = "SELECT idTipoDocumento, nombreTipoDocumento FROM TIPODOCUMENTO";
+        $request = $this->selectAll($sql);
+        return $request;
+    }
+
+	public function selectBarrio()
+    {
+        $sql = "SELECT idBarrio, nombreBarrio FROM BARRIO";
         $request = $this->selectAll($sql);
         return $request;
     }

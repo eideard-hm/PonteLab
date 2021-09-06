@@ -1,14 +1,9 @@
-
-// document.getElementById('edit').onclick= function btnEdit (){
-//     window.location.href = "EditarPerfil";
-// }
-
 const btnGuardar = document.getElementById('guardar');
 const btnCancelar = document.getElementById('cancelar');
+
 if (document.querySelector('#edit')) {
     document.querySelector('#edit').addEventListener('click', (e) => {
         e.preventDefault();
-
         const nombre = document.querySelector('#txtNombre');
         nombre.removeAttribute('disabled');
         const tipoDoc = document.querySelector('#tipoDoc');
@@ -30,6 +25,7 @@ if (document.querySelector('#edit')) {
 }
 btnCancelar.style.display = 'none';
 btnGuardar.style.display = 'none';
+// constante que nos permite traer el formulario principal que corresponde a este ID
 const formUser = document.querySelector('#formPrincipal');
 
 const editPerfil = async () => {
@@ -44,9 +40,16 @@ const editPerfil = async () => {
             body: formData
         })
         const { statusUser, msg } = await res.json();
-
         if (statusUser) {
-            swal("Contratante", msg, "success");
+            // swal("Contratante", msg, "success");
+            swal({
+                title: "Contratante",
+                text: msg,
+                type: "success",
+                timer: 9000
+            }).then(function () {
+                window.location.href = `${base_url}Perfil_Contratante`;
+            });
         }
         else {
             swal("Error", msg, "error");//mostrar la alerta
@@ -56,9 +59,8 @@ const editPerfil = async () => {
         swal("Error", error, "error");
     }
 }
-
+//campos vacio
 document.addEventListener('DOMContentLoaded', () => {
-
     formUser.onsubmit = function (e) {
         e.preventDefault();
         var nombre = document.querySelector('#txtNombre').value;
@@ -77,5 +79,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-//const form = document.querySelector('#formPrincipal') 
+const btnInhabilitar = document.querySelector('#inhabilitar');
 
+if (btnInhabilitar) {
+    btnInhabilitar.addEventListener('click', e => {
+        e.preventDefault();
+        inactivarCuenta();
+    })
+}
+
+const inactivarCuenta = async () => {
+    const formData = new FormData(formUser);
+     
+    formData.forEach(item => console.log(item));
+    // console.log(formData.get('estadoUsuarios'));
+
+    const url = `${base_url}Perfil_Contratante/inactivarCuenta`;
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        swal({
+            title: "Inactivar cuenta",
+            text: "!Usuario Inhabilitado Correctamente!",
+            type: "success",
+            timer:9000}).then(function(){
+                window.location.href = `${base_url}logout`;
+            });
+        const data = await req.json();
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
+
+function Cancelar() {
+    alert ("Actualizacion cancelada correctamente")
+    window.location.href =  `${base_url}Perfil_Contratante`;
+}

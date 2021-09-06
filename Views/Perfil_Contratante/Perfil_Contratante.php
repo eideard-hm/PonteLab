@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="html1" lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/aspirante.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/login.css">
 </head>
-
 <body>
     <header id="header_menu">
         <div class="contenedor barra">
@@ -46,7 +44,8 @@
             ?>
         </div>
     </header>
-    <form method="post" id="formPrincipal">
+    <form method="POST" id="formPrincipal">
+    <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" value="<?= $_SESSION['user-data']['idUsuario'] ?>" />
         <div class="banner">
             <hr>
             <div class="container bootstrap snippet">
@@ -68,10 +67,11 @@
                                 <li><a data-toggle="tab" href="#settings">Descripción</a></li>
                             </ul>
                             <!------------------------formulario1------------------------------->
+                            
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home">
                                     <hr>
-                                    <div class="form" action="##" method="post" id="registrationForm">
+                                    <div class="form" id="registrationForm">
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="first_name">
@@ -83,7 +83,7 @@
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="last_name">
-                                                    <h4>Identificación</h4>
+                                                    <h4> Numero de Identificación</h4>
                                                 </label>
                                                 <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
                                             </div>
@@ -94,12 +94,11 @@
                                                     <h4>Identificación</h4>
                                                 </label>
                                                 <select name="tipoDoc" id="tipoDoc" class="form-control" disabled>
-                                                    <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                    <option selected disabled value="<?=$_SESSION['user-data']['idTipoDocumentoFK'] ?>"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
                                                     <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                                                         <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                     <?php endforeach ?>
                                                 </select>
-                                                <!-- <input type="text" class="form-control" name="indentificacion" id="indentificacion" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled> -->
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -129,10 +128,10 @@
                                         <div class="btn-toolbar">
                                             <div class="col-xs-12">
                                                 <br>
-                                                <button class="btn btn-lg btn-success" id="edit" type="submit"><i class="fas fa-user-edit"></i> Editar perfil</button>
-                                            </div>
+                                            <button class="btn btn-lg btn-primary" id="edit" type="submit"><i class="fas fa-user-edit"></i> Editar perfil</button>
+                                            <button class="btn btn-lg btn-warning" id="inhabilitar" type="submit" ><i class="fas fa-user-times"></i> Inhabilitar Cuenta</button>
                                         </div>
-
+                                        </div>
                                     </div>
                                     <hr>
                                 </div>
@@ -140,7 +139,6 @@
                                 <!--/tab-pane-->
                                 <div class="tab-pane" id="messages">
                                     <h2></h2>
-
                                     <hr>
                                     <div class="form" id="directionForm">
                                         <div class="form-group">
@@ -159,25 +157,26 @@
                                                 <input type="text" class="form-control" name="city" id="city" placeholder="Bogotá D.C" title="" disabled>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="rol">
                                                     <h4>Tipo de Usuario</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="rol" id="rol" placeholder="Contratante" title="enter your phone number if any." disabled>
+                                                <input type="text" class="form-control" name="rol" id="rol" value="<?= $_SESSION['user-data']['nombreRol'] ?>"placeholder="Contratante" title="enter your phone number if any." disabled>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="rol">
                                                     <h4>Estado</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="estado" id="estados" value="<?= $_SESSION['user-data']['estadoUsuario'] ?>" placeholder="Fontibón" title="enter your phone number if any." disabled>
+                                                <select name="estadoUsuario" id="estadoUsuario" class="form-control" disabled>
+                                                    <option selected value="<?=$_SESSION['user-data']['estadoUsuario'] ?>">Activo</option>
+                                                    <option value="1">Inactivo</option>
+                                                </select>
+                                               
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="Barrio">
@@ -191,7 +190,6 @@
                                                 </select>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="mobile">
@@ -204,11 +202,8 @@
                                     <div class="btn-toolbar">
                                         <div class="col-xs-12">
                                             <br>
-
-                                            <button class="btn btn-lg btn-primary" id="cancelar" type="submit"><i class="fas fa-user-edit"></i>Cancelar</button>
-                                            <button class="btn btn-lg btn-primary" id="guardar" type="submit"><i class="fas fa-user-edit"></i>Guardar cambios</button>
-
-
+                                            <button class="btn btn-lg btn-danger" id="cancelar" type="submit" onclick="Cancelar();"><i class="far fa-times-circle"></i>Cancelar</button>
+                                            <button class="btn btn-lg btn-success" id="guardar" type="submit" ><i class="far fa-save"></i> Guardar cambios</button>
                                         </div>
                                     </div>
                                 </div>
@@ -216,7 +211,7 @@
                                 <!--/tab-pane-->
                                 <div class="tab-pane" id="settings">
                                     <hr>
-                                    <form class="form" action="##" method="post" id="descripcionForm">
+                                    
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="first_name">
@@ -236,14 +231,12 @@
                                                     </center>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <div class="col-xs-12">
                                                     <br>
                                                 </div>
                                             </div>
-                                    </form>
-                                </div>
+                                    </div>
                             </div>
                             <!--/tab-pane-->
                         </div>
@@ -253,6 +246,7 @@
                 </div>
                 <!--/row-->
             </div>
+        </div>
     </form>
     <!--FUNCIONALIDAD FORMULARIOS-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
