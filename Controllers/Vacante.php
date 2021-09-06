@@ -57,23 +57,24 @@ class Vacante extends Controllers
                     $idRequisitosFK,
                     $strEspecificaciones
                 );
-            } else {
-                /*================== EDITAR VACANTE =======================*/
-                $option = 2;
-                $request = $this->model->updateVacancy(
-                    $strNombre,
-                    $strCantidad,
-                    $strEspecificaciones,
-                    $intPerfil,
-                    $strTipoContrato,
-                    $strSueldo,
-                    $strFechaPublicacion,
-                    $intFechacierre,
-                    $intDireccion,
-                    $intEstado,
-                    $intIdContractFK
-                );
             }
+            // else {
+            //     /*================== EDITAR VACANTE =======================*/
+            //     $option = 2;
+            //     $request = $this->model->updateVacancy(
+            //         $strNombre,
+            //         $strCantidad,
+            //         $strEspecificaciones,
+            //         $intPerfil,
+            //         $strTipoContrato,
+            //         $strSueldo,
+            //         $strFechaPublicacion,
+            //         $intFechacierre,
+            //         $intDireccion,
+            //         $intEstado,
+            //         $intIdContractFK
+            //     );
+            // }
 
             if ($request > 0 && is_numeric($request)) {
                 if ($option === 1) {
@@ -153,7 +154,7 @@ class Vacante extends Controllers
                 $sectorUsuario,
             );
             $arrResponse = ['status' => true, 'data' => $request];
-        }else{
+        } else {
             $arrResponse = ['status' => false, 'data' => 'no'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
