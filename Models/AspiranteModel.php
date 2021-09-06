@@ -45,15 +45,37 @@ class AspiranteModel extends GestionCRUD
                 WHERE idAspirante = {$this->Id}";
         return $this->select($sql);
     }
-
-    //Método para obtener todos los aspirantes registrados
-    public function selectAllAspirantes()
+    
+    //metodo para traer todas los perfiles
+    public function selectAllPerfiles()
     {
-        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, nombreEstado,
-                nombreUsuario, imagenUsuario
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
+                idEstadoLaboralAspiranteFK, nombreEstado,
+                nombreUsuario, token, imagenUsuario
                 FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
                 ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
                 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK";
+        return $this->selectAll($sql);
+    }
+    
+    public function getFiltroPerfiles($busqueda)
+    {
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
+                idEstadoLaboralAspiranteFK, nombreEstado, nombreUsuario
+                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
+                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
+                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK              
+                WHERE idAspirante LIKE '%{$busqueda}%'
+                OR descripcionPersonalAspirante LIKE '%{$busqueda}%' 
+                OR idUsuarioFK LIKE '%{$busqueda}%'
+                OR idEstadoLaboralAspiranteFK LIKE '%{$busqueda}%'
+                OR nombreEstado LIKE '%{$busqueda}%'
+                OR nombreUsuario LIKE '%{$busqueda}%'";
+                
+                // -- WHERE descripcionPersonalAspirante LIKE '%{$busqueda}%' 
+                // -- OR nombreEstado LIKE '%{$busqueda}%'
+                // -- OR nombreUsuario LIKE '%{$busqueda}%'"                  
+
         return $this->selectAll($sql);
     }
 
@@ -101,6 +123,13 @@ class AspiranteModel extends GestionCRUD
     {
         $sql = "SELECT idIdioma, nombreIdioma
                 FROM IDIOMA";
+        return $this->selectAll($sql);
+    }
+
+    public function getAllHabilidades()
+    {
+        $sql = "SELECT idHabilidad, nombreHabilidad	
+                FROM HABILIDAD";
         return $this->selectAll($sql);
     }
 
@@ -167,7 +196,7 @@ class AspiranteModel extends GestionCRUD
         $this->nombreIdioma = $nombre;
         $sql = "SELECT idIdioma, nombreIdioma
                 FROM IDIOMA 
-                WHERE nombreIdioma LIKE '%{$this->nombreIdioma}%'";
+                WHERE nombreIdioma = '{$this->nombreIdioma}'";
         $request  = $this->selectAll($sql);
 
         if (empty($request)) {
@@ -191,14 +220,23 @@ class AspiranteModel extends GestionCRUD
         $this->Id = $idAspiranteFK;
         $this->nivelIdioma = $nivelIdioma;
 
-        $sql = "INSERT INTO IDIOMA_ASPIRANTE(idAspiranteFK, idIdiomaFK, nivelIdioma)
-                VALUES(?,?,?)";
-        $arrData = [
-            $this->idIdioma,
-            $this->Id,
-            $this->nivelIdioma
-        ];
-        return $this->insert($sql, $arrData);
+        $sql = "SELECT idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma
+                FROM IDIOMA_ASPIRANTE 
+                WHERE idAspiranteFK = {$this->Id} AND idIdiomaFK = {$this->idIdioma}";
+        $request = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "INSERT INTO IDIOMA_ASPIRANTE(idAspiranteFK, idIdiomaFK, nivelIdioma)
+                    VALUES(?,?,?)";
+            $arrData = [
+                $this->idIdioma,
+                $this->Id,
+                $this->nivelIdioma
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
     }
 
     public function updateIdioma(
@@ -216,30 +254,61 @@ class AspiranteModel extends GestionCRUD
     }
 
     public function insertHabilidad(
-        string $nombreHab,
-        string $nivelHab,
-        int $idAspiranteFK
+        string $nombreHab
     ) {
         $this->nameHabilidad = $nombreHab;
-        $this->nivelHabilidad = $nivelHab;
-        $this->Id = $idAspiranteFK;
 
-        $sql = "SELECT idHabilidad, nombreHabilidad, nivelHabilidad
+        $sql = "SELECT idHabilidad, nombreHabilidad
                 FROM HABILIDAD
-                WHERE nombreHabilidad LIKE '%{$this->nameHabilidad}%'";
+                WHERE nombreHabilidad = '{$this->nameHabilidad}'";
         $request = $this->selectAll($sql);
 
         if (empty($request)) {
-            $sql = "INSERT INTO HABILIDAD (nombreHabilidad, nivelHabilidad, idAspiranteFK)
-                    VALUES(?,?,?)";
+            $sql = "INSERT INTO HABILIDAD(nombreHabilidad)
+                    VALUES(?)";
             $arrData = [
-                $this->nameHabilidad,
-                $this->nivelHabilidad,
-                $this->Id
+                $this->nameHabilidad
             ];
             return $this->insert($sql, $arrData);
         } else {
             return 'exists';
         }
+    }
+
+    public function insertNewHabilidad(
+        int $idAspiranteFK,
+        int $idHabilidadFK,
+        int $nivelHabilidad
+    ) {
+        $this->Id = $idAspiranteFK;
+        $this->idHabilidad = $idHabilidadFK;
+        $this->nivelHabilidad = $nivelHabilidad;
+
+        $sql = "SELECT idHabilidadAspirante, idAspiranteFK, idHabilidadFK
+                FROM HABILIDAD_ASPIRANTE
+                WHERE idAspiranteFK = {$this->Id} AND idHabilidadFK = {$this->idHabilidad}";
+        $request = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "INSERT INTO HABILIDAD_ASPIRANTE(idAspiranteFK, idHabilidadFK, nivelHabilidad)
+                    VALUES(?,?,?)";
+            $arrData = [
+                $this->Id,
+                $this->idHabilidad,
+                $this->nivelHabilidad
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
+    }
+
+    public function routesAspirante(int $idUsuario)
+    {
+        $this->idUsuarioFK = $idUsuario;
+        $sql = "SELECT idAspirante, idUsuarioFK
+                FROM ASPIRANTE
+                WHERE idUsuarioFK = {$this->idUsuarioFK}";
+        return $this->selectAll($sql);
     }
 }

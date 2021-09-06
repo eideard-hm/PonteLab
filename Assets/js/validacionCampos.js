@@ -6,7 +6,6 @@ const movPagina = document.querySelector(".movPag");
 //seleccionar los botones
 const enviar = document.querySelector(".enviar");
 const sigPagina = document.querySelectorAll('.siguiente');
-const antPagina = document.querySelectorAll('.atras');
 
 /*
 ===================== VALIDACIÓN DE FORMULARIO =============================
@@ -21,6 +20,7 @@ const inputsHabilidades = document.querySelectorAll('#habilidades .contenedor-gr
 const checkOtroPuestoInteres = document.querySelector('#grupo-puesto-otro_puesto');
 const inputOtroPuestoInteres = document.getElementById('grupo-otro_puesto_interes');
 const checkOtroIdioma = document.querySelector('#grupo-puesto-otro_idioma');
+const checkOtraHabilidad = document.querySelector('#grupo-puesto-otra_habilidad');
 
 const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,50}$/, // Letras y espacios, pueden llevar acentos.    
@@ -148,6 +148,12 @@ if (document.getElementById('grupo-otro_puesto')) {
         mostrarInputOtroPuestoInteres();
     });
 }
+if (document.getElementById('grupo-otra_habilidad')) {
+    document.getElementById('grupo-otra_habilidad').addEventListener('click', () => {
+        mostrarInputOtraHabilidad();
+    });
+}
+
 if (document.getElementById('grupo-otro_idioma')) {
     document.getElementById('grupo-otro_idioma').addEventListener('click', () => {
         mostrarInputOtroIdioma();
@@ -173,15 +179,50 @@ const mostrarInputOtroIdioma = () => {
 
         document.getElementById('grupo-idioma-idioma').style.display = 'none';
         document.getElementById('txtListIdioma').style.display = 'none';
+
+        document.getElementById('boton_add_idioma').style.display = 'block';
+        document.getElementById('agregar_idioma').style.display = 'none';
     } else {
         document.getElementById('grupo-idioma-otro_idioma').style.display = 'none';
         document.getElementById('txtIdioma').style.display = 'none';
 
         document.getElementById('grupo-idioma-idioma').style.display = 'block';
         document.getElementById('txtListIdioma').style.display = 'block';
+
+        document.getElementById('boton_add_idioma').style.display = 'none';
+        document.getElementById('agregar_idioma').style.display = 'block';
+
+        document.getElementById(`grupo-idioma`).classList.remove('incorrecto');
+        //quitar la leyenda
+        document.querySelector('#grupo-idioma .leyenda-input').classList.remove('active');
     }
 }
 
+const mostrarInputOtraHabilidad = () => {
+    if (checkOtraHabilidad.checked) {
+        document.getElementById('grupo-idioma-otra_habilidad').style.display = 'block';
+        document.getElementById('txtHabilidad').style.display = 'block';
+
+        document.getElementById('grupo-idioma-habilidad').style.display = 'none';
+        document.getElementById('txtListHabilidad').style.display = 'none';
+
+        document.getElementById('boton_add_habilidad').style.display = 'block';
+        document.getElementById('agregar_habilidad').style.display = 'none';
+    } else {
+        document.getElementById('grupo-idioma-otra_habilidad').style.display = 'none';
+        document.getElementById('txtHabilidad').style.display = 'none';
+
+        document.getElementById('grupo-idioma-habilidad').style.display = 'block';
+        document.getElementById('txtListHabilidad').style.display = 'block';
+
+        document.getElementById('boton_add_habilidad').style.display = 'none';
+        document.getElementById('agregar_habilidad').style.display = 'block';
+
+        document.getElementById(`grupo-habilidad`).classList.remove('incorrecto');
+        //quitar la leyenda
+        document.querySelector('#grupo-habilidad .leyenda-input').classList.remove('active');
+    }
+}
 /*
 =================== CÓDIGO PARA LAS ANIMACIONES DEL HEADER =========================
 */
@@ -211,28 +252,54 @@ sigPagina.forEach(boton => {
             if (document.querySelector('#especificaciones').value === '' || document.querySelector('#txtEstado').value === '') {
                 sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
             } else {
-                siguientePagina('-25%');
+                swal({
+                    title: "¿ Esta seguro de querer continuar ?",
+                    text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para cambiar algun dato. Por favor asegurese de que sean correctos.",
+                    icon: "info",
+                    buttons: ["Esperar", "Continuar"]
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            saveDataAspirante();
+                        }
+                    });
             }
         } else if (boton.classList.contains('sig-p3')) {
             if (inputOtroPuestoInteres.style.display === 'block') {
                 if (campos.otro_puesto_interes === false) {
                     sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-                } else {
-                    siguientePagina('-50%');
                 }
             } else if (inputOtroPuestoInteres.style.display === 'none' || inputOtroPuestoInteres.style.display === '') {
-                siguientePagina('-50%');
+                swal({
+                    title: "¿ Esta seguro de querer continuar ?",
+                    text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para cambiar algun dato. Por favor asegurese de que sean correctos.",
+                    icon: "info",
+                    buttons: ["Esperar", "Continuar"]
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            insertPuestoInteresAspirante();
+                        }
+                    });
             }
 
         } else if (boton.classList.contains('sig-p6')) {
             if (document.getElementById('txtIdioma').style.display === 'block') {
                 if (campos.idioma === false) {
                     sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
-                } else {
-                    siguientePagina('-75%');
                 }
             } else if (document.getElementById('txtIdioma').style.display === 'none' || document.getElementById('txtIdioma').style.display === '') {
-                siguientePagina('-75%');
+                swal({
+                    title: "¿ Esta seguro de querer continuar ?",
+                    text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para agregar un nuevo idioma. Por favor asegurese que haya agregado lo que considera pertinentes.",
+                    icon: "info",
+                    buttons: ["Esperar", "Continuar"]
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            siguientePagina('-75%');
+                        }
+                    });
             }
         }
     })
@@ -246,37 +313,30 @@ const siguientePagina = valor => {
     contador += 1;
 }
 
-antPagina.forEach(boton => {
-    boton.addEventListener('click', e => {
-        e.preventDefault();
-        if (boton.classList.contains('atras-p1')) {
-            anteriorPagina('0%');
-        } else if (boton.classList.contains('atras-p4')) {
-            anteriorPagina('-25%')
-        } else if (boton.classList.contains('atras-p5')) {
-            anteriorPagina('-50%')
-        }
-    })
-})
-
-const anteriorPagina = valor => {
-    movPagina.style.marginLeft = valor;
-    numero[contador - 1].classList.remove('active');
-    icono[contador - 1].classList.remove('active');
-    parrafo[contador - 1].classList.remove('active');
-    contador -= 1;
-}
-
 //enviar los datos
 if (enviar) {
     enviar.addEventListener('click', e => {
         e.preventDefault();
-        if (campos.habilidad === false) {
-            sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+        if (document.getElementById('txtHabilidad').style.display === 'block') {
+            if (campos.habilidad === false) {
+                sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+            }
+        } else if (document.getElementById('txtHabilidad').style.display === 'none' || document.getElementById('txtHabilidad').style.display === '') {
+            swal({
+                title: "¿ Esta seguro de querer continuar ?",
+                text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para agregar una nueva habilidad. Por favor asegurese que haya agregado lo que considera pertinentes.",
+                icon: "info",
+                buttons: ["Esperar", "Continuar"]
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        setTimeout(()=>{
+                            swal("Aspirante", "Gracias por registrar sus datos. Por favor continuar con el registro de los estudios e información laboral.", "success")
+                        }, 5000)
+                        window.location.href = `${base_url}Estudios`;
+                    }
+                });
         }
-        // let data = new FormData(habilidades);
-        // console.log(data.get('txtHabilidad'))
-        // console.log(data.get('nivel_habilidad'))
     })
 }
 
