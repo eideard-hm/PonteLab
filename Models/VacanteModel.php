@@ -158,12 +158,17 @@ class VacanteModel extends GestionCRUD
                 FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
                 ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
                 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
+                WHERE descripcionPersonalAspirante LIKE '%{$busqueda}%' 
+                OR nombreEstado LIKE '%{$busqueda}%'
+                OR nombreUsuario LIKE '%{$busqueda}%'";
+                /*
                 WHERE idAspirante LIKE '%{$busqueda}%' 
                 OR descripcionPersonalAspirante LIKE '%{$busqueda}%' 
                 OR idUsuarioFK LIKE '%{$busqueda}%'
                 OR idEstadoLaboralAspiranteFK LIKE '%{$busqueda}%'
                 OR nombreEstado LIKE '%{$busqueda}%'
                 OR nombreUsuario LIKE '%{$busqueda}%'";
+                 */
 
         return $this->selectAll($sql);
     }

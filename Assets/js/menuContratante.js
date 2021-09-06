@@ -157,7 +157,10 @@ const getArregloPerfiles = async (busqueda) => {
         const { status, data } = await req.json();
         console.log(data);
         data.forEach(perfil => {
-            if (perfil['nombreUsuario'].search(inputBusquedaP) || perfil['descripcionPersonalAspirante'].search(inputBusquedaP))
+            if (perfil['nombreUsuario'].search(inputBusquedaP) ||
+            perfil['descripcionPersonalAspirante'].search(inputBusquedaP) ||
+            perfil['nombreEstado'].search(inputBusquedaP))
+            console.log(data)
             {
                 arrNombrePerfiles.add(perfil['nombreUsuario'], perfil['descripcionPersonalAspirante']);
                 arrNombrePerfiles.add(perfil['descripcionPersonalAspirante']);
@@ -206,7 +209,7 @@ const getVacantesSector = async () => {
         contenedorCardsPerfiles.innerHTML = '';
 
         if (status) {
-            data.forEach(vacante => {
+            data.forEach(perfil => {
                 contenedorCardsPerfiles.innerHTML += `
                 <div class="contenedor-card">
                     <div class="contenedor-card__header contenedor-card__padding">
