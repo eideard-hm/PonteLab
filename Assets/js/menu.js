@@ -157,7 +157,6 @@ const getArregloVacantes = async (busqueda) => {
         data.forEach(vacante => {
             if (vacante['nombreVacante'].search(inputBusqueda) || vacante['descripcionVacante'].search(inputBusqueda)) {
                 arrNombreVacantes.add(vacante['nombreVacante'], vacante['descripcionVacante']);
-                arrNombreVacantes.add(vacante['descripcionVacante']);
             }
         });
         arregloSugerenciasVacantes = [...arrNombreVacantes];
@@ -273,47 +272,6 @@ const getAllVacantes = async () => {
         swal("Error", error, "error");
     }
 }
-
-
-/*============ TRAER LA LISTA DE ASPIRANTES ==========*/
-// const getListAspirantes = async () => {
-//     const url = 'http://localhost/PonsLabor/Aspirante/getListAspirantes';
-//     try {
-//         const req = await fetch(url);
-//         const { status, data } = await req.json();
-
-//         console.log(status, data);
-
-//         // if (status) {
-//         //     contenedorCardsAspirantes.innerHTML = '';
-//         //     data.forEach(aspirante => {
-//         //         contenedorCardsAspirantes.innerHTML = `
-//         //             <div class="contenedor-card">
-//         //                 <div class="contenedor-card__header contenedor-card__padding">
-//         //                     <div class="header-img">
-//         //                         <img src="http://localhost/PonsLabor/Assets/img/uploads/${aspirante['imagenUsuario']}" alt="${aspirante['nombreUsuario']}">
-//         //                     </div>
-//         //                     <div class="header-name">
-//         //                         <h3>${aspirante['nombreUsuario']}</h3>
-//         //                         <span>Web Developer</span>
-//         //                     </div>
-//         //                 </div>
-//         //                 <div class="contenedor-card__body">
-//         //                     <p>${aspirante['descripcionPersonalAspirante']}</p>
-//         //                 </div>
-//         //                 <div class="contenedor-card__footer">
-//         //                     <a href="#">Ver más</a>
-//         //                 </div>
-//         //             </div>
-//         //             `
-//         //     })
-//         // } else {
-//         //     swal("Lista aspirantes", data, "error");
-//         // }
-//     } catch (error) {
-//         swal("Error", error, "error");
-//     }
-// }
 
 /*
 - Esta función sirve para cargar la variable de sesión que contiene los datos o la información
