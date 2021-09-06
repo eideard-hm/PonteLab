@@ -17,20 +17,14 @@ class Aspirante extends Controllers
     public function Aspirante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            $data['titulo_pagina'] = 'Vacante | PonsLabor.';
-            $data['list_vacante'] = $this->model->selectAllVacancy();
-            $data['list_requisitos'] = $this->model->selectAllReqs();
-            $data['list_sector'] = $this->model->selectAllSector();
-            $this->views->getView($this, 'Vacante', $data);
+            $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
+            $data['list_workStatus'] = $this->model->getAllWorkStatus();
+            $this->views->getView($this, 'Aspirante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             header('Location:' . URL . 'Menu/Menu_Contratante');
         } else {
             header('Location: ' . URL . 'Login');
         }
-
-        $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
-        $data['list_workStatus'] = $this->model->getAllWorkStatus();
-        $this->views->getView($this, 'Aspirante', $data);
     }
 
     //método para traer toda la lista de puestos de interés
