@@ -90,7 +90,7 @@
         <div class="wrap">
             <div id="form" class="form">
                 <!-- PAGINA 1 -->
-                <div class="pagina movPag" style="margin-left: -50%;">
+                <div class="pagina movPag">
                     <form action="#" id="info-persona" class="contenedor-form">
                         <h2 class="title-form">Información personal Aspirante</h2>
 
@@ -249,8 +249,10 @@
 
                         <div class="contenedor-grupo w100" id="grupo-habilidad">
                             <div class="agrupar-estrellas">
-                                <label for="txtHabilidad">Habilidad</label>
-                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" />
+                                <label for="txtListHabilidad" id="grupo-idioma-habilidad">Habilidades</label>
+                                <select name="txtListHabilidad" id="txtListHabilidad"></select>
+                                <label for="txtHabilidad" id="grupo-idioma-otra_habilidad" style="display: none;">Nueva Habilidad</label>
+                                <input type="text" name="txtHabilidad" id="txtHabilidad" placeholder="JavaScript" autofocus style="display: none;" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                 <p class="leyenda-input">
                                     El nombre de la habilidad no debe contener números.
@@ -275,7 +277,16 @@
                             </span>
                         </div>
 
+                        <div class="contenedor-grupo w100" id="grupo-otra_habilidad">
+                            <input type="checkbox" id="grupo-puesto-otra_habilidad" />
+                            <label for="grupo-puesto-otra_habilidad">Otro Habilidad.</label>
+                        </div>
+
                         <div class="add-puntuacion">
+                            <button class="boton_add_puntuacion" id="agregar_habilidad">
+                                <i class="fas fa-plus"></i>
+                                Agregar habilidad
+                            </button>
                             <button class="boton_add_habilidad boton_add_puntuacion" id="boton_add_habilidad">
                                 <i class="fas fa-plus"></i>
                                 Agregar nueva habilidad
@@ -283,6 +294,13 @@
                         </div>
 
                         <div class="contenedor-grupo w100" id="lista_habilidades">
+                        </div>
+
+                        <div class="contenedor-grupo w100" id="select-habilidad">
+                            <input type="hidden" name="idSelectHabilidad" id="idSelectHabilidad" value="">
+                            <input type="hidden" name="nivelHabilidad" id="nivelHabilidad" value="">
+                            <ul id="select-habilidad-list">
+                            </ul>
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">

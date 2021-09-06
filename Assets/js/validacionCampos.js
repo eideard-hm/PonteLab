@@ -20,6 +20,7 @@ const inputsHabilidades = document.querySelectorAll('#habilidades .contenedor-gr
 const checkOtroPuestoInteres = document.querySelector('#grupo-puesto-otro_puesto');
 const inputOtroPuestoInteres = document.getElementById('grupo-otro_puesto_interes');
 const checkOtroIdioma = document.querySelector('#grupo-puesto-otro_idioma');
+const checkOtraHabilidad = document.querySelector('#grupo-puesto-otra_habilidad');
 
 const expresiones = {
     nombre: /^[a-zA-ZÀ-ÿ\s]{3,50}$/, // Letras y espacios, pueden llevar acentos.    
@@ -147,6 +148,12 @@ if (document.getElementById('grupo-otro_puesto')) {
         mostrarInputOtroPuestoInteres();
     });
 }
+if (document.getElementById('grupo-otra_habilidad')) {
+    document.getElementById('grupo-otra_habilidad').addEventListener('click', () => {
+        mostrarInputOtraHabilidad();
+    });
+}
+
 if (document.getElementById('grupo-otro_idioma')) {
     document.getElementById('grupo-otro_idioma').addEventListener('click', () => {
         mostrarInputOtroIdioma();
@@ -191,6 +198,31 @@ const mostrarInputOtroIdioma = () => {
     }
 }
 
+const mostrarInputOtraHabilidad = () => {
+    if (checkOtraHabilidad.checked) {
+        document.getElementById('grupo-idioma-otra_habilidad').style.display = 'block';
+        document.getElementById('txtHabilidad').style.display = 'block';
+
+        document.getElementById('grupo-idioma-habilidad').style.display = 'none';
+        document.getElementById('txtListHabilidad').style.display = 'none';
+
+        document.getElementById('boton_add_habilidad').style.display = 'block';
+        document.getElementById('agregar_habilidad').style.display = 'none';
+    } else {
+        document.getElementById('grupo-idioma-otra_habilidad').style.display = 'none';
+        document.getElementById('txtHabilidad').style.display = 'none';
+
+        document.getElementById('grupo-idioma-habilidad').style.display = 'block';
+        document.getElementById('txtListHabilidad').style.display = 'block';
+
+        document.getElementById('boton_add_habilidad').style.display = 'none';
+        document.getElementById('agregar_habilidad').style.display = 'block';
+
+        document.getElementById(`grupo-habilidad`).classList.remove('incorrecto');
+        //quitar la leyenda
+        document.querySelector('#grupo-habilidad .leyenda-input').classList.remove('active');
+    }
+}
 /*
 =================== CÓDIGO PARA LAS ANIMACIONES DEL HEADER =========================
 */
@@ -285,8 +317,25 @@ const siguientePagina = valor => {
 if (enviar) {
     enviar.addEventListener('click', e => {
         e.preventDefault();
-        if (campos.habilidad === false) {
-            sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+        if (document.getElementById('txtHabilidad').style.display === 'block') {
+            if (campos.habilidad === false) {
+                sweetAlert("Campos obligatorios!", "Se debe  rellenar todos lo campos. Todos son obligatorios!", "error");
+            }
+        } else if (document.getElementById('txtHabilidad').style.display === 'none' || document.getElementById('txtHabilidad').style.display === '') {
+            swal({
+                title: "¿ Esta seguro de querer continuar ?",
+                text: "Señor/a aspirante después de aceptar continuar no va a poder regresar para agregar una nueva habilidad. Por favor asegurese que haya agregado lo que considera pertinentes.",
+                icon: "info",
+                buttons: ["Esperar", "Continuar"]
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        setTimeout(()=>{
+                            swal("Aspirante", "Gracias por registrar sus datos. Por favor continuar con el registro de los estudios e información laboral.", "success")
+                        }, 5000)
+                        window.location.href = `${base_url}Estudios`;
+                    }
+                });
         }
     })
 }

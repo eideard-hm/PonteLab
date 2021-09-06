@@ -507,14 +507,16 @@ body {
 }
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otro_puesto,
-.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otro_idioma {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otro_idioma,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otra_habilidad {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#grupo-otro_puesto #grupo-puesto-otro_puesto,
-.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otro_idioma #grupo-puesto-otro_idioma {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otro_idioma #grupo-puesto-otro_idioma,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo.w100#grupo-otra_habilidad #grupo-puesto-otra_habilidad {
     margin: 0;
     width: 17px;
     height: 17px;
@@ -526,11 +528,13 @@ body {
 }
 
 /*=============== LISTA DE IDIOMAS ASPIRANTE Y HABILIDADES ==========*/
-.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-habilidad {
     border-radius: 5px;
 }
 
-.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas ul {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas ul,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-habilidad ul {
     border: 1px solid #ccc;
     border-radius: 3px;
     width: 100%;
@@ -540,7 +544,8 @@ body {
     gap: 10px;
 }
 
-.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas ul li {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-idiomas ul li,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .contenedor-grupo#select-habilidad ul li {
     list-style: none;
     background-color: #97bbfe;
     border-radius: 3px;
@@ -674,12 +679,14 @@ body {
 }
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_idioma,
-.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_habilidad {
     display: none;
 }
 
 .contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puntuacion i,
-.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto i {
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_puesto i,
+.contenedor-formulario .wrap .form .pagina .contenedor-form .add-puntuacion .boton_add_habilidad i {
     margin-right: 5px;
 }
 

@@ -7,10 +7,12 @@ const template = document.querySelector('#template-lista_puntuacion').content;
 const fragment = document.createDocumentFragment();
 const estrellas = document.querySelectorAll('.estrellas .puntuacion');
 const listSelectIdiomas = document.getElementById('select-idiomas-list');
+const listSelectHabilidades = document.getElementById('select-habilidad-list');
 //formularios
 const formInfoPersona = document.querySelector('#info-persona');
 const formPuestoInteres = document.getElementById('perfil-laboral');
 const formIdioma = document.querySelector('#idiomas');
+const formHabilidad = document.querySelector('#habilidades');
 
 
 let arrListaIdiomas = [];
@@ -24,12 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     routesAspirante();
     refreshIdiomasAspirante();
     refreshPuestoInteres();
+    refreshHabilidadAspirante();
 
     if (document.querySelector('#list_PuestoInteres')) {
         const listSectores = document.querySelector('#list_PuestoInteres');
         listSectores.addEventListener('click', e => {
             seleccionarPuestoInteres(e);
-
         });
     }
 })
@@ -88,8 +90,7 @@ const setPuntuacion = async (form, name, campo, array) => {
     if (name === 'Idioma') {
         insertNewIdioma(data, puntuacion, campo, array, form);
     } else if (name === 'Habilidades') {
-        insertHabilidad(data);
-        pintarPuntuacion(listaHabilidades, arrListaHabilidades);
+        insertHabilidad(data, puntuacion, campo, array, form);
     }
 }
 
@@ -455,10 +456,74 @@ const refreshIdiomasAspirante = async () => {
 ===================== LÓGICA CRUD PARA INSERTAR UNA HABILIDAD =============================
 */
 
-const insertHabilidad = async (formData) => {
-    // formData.forEach(idioma => console.log(idioma))
+let arrObjHabilidad = [];
 
-    const url = `${base_url}Aspirante/setHabilidad`;
+const seleccionarHabilidad = async () => {
+    const setIdIdioma = new Set();
+    const formData = new FormData(formHabilidad);
+    const valoresAceptados = /^[0-9]+$/;
+    let existeHabilidad = false;
+    let strNombrehabilidad = '';
+    let arrNombreHabilidad = [];
+
+    document.querySelectorAll('#txtListHabilidad .opciones-habilidad').forEach(option => {
+        if ((option.selected) && (formData.get('txtNivelHabilidades') !== null) && (option.value !== '' && option.disabled === false)) {
+            existeHabilidad = arrObjHabilidad.some(item => item.nombre === option.value);
+            if (existeHabilidad) {
+                swal("Error", "Aspirante ya tiene asociado este idioma.", "warning");
+            }
+
+            arrObjHabilidad.push(
+                {
+                    nombre: option.value,
+                    nivel: formData.get('txtNivelHabilidades')
+                }
+            )
+
+            arrObjHabilidad.forEach(idioma => strNombrehabilidad += `${idioma.nombre}-`);
+            arrNombreHabilidad = strNombrehabilidad.split('-');
+            arrNombreHabilidad.forEach(item => {
+                if (valoresAceptados.test(item)) {
+                    document.querySelector('#idSelectHabilidad').value = item;
+                }
+            })
+            document.querySelector('#nivelHabilidad').value = formData.get('txtNivelHabilidades');
+
+            option.classList.add('active');
+            option.setAttribute('disabled', 'disabled');
+            formHabilidad.reset();
+            puntuacionEstrellas(0, 'habi');
+            return false;
+        } else {
+            if (!option.classList.contains('active')) {
+                option.classList.remove('active');
+                option.removeAttribute('disabled');
+            }
+        }
+    })
+
+    listSelectHabilidades.innerHTML = '';
+    document.querySelector('#nivelHabilidad').value = '';
+    arrObjHabilidad.forEach(item => {
+        if (item !== '') {
+            if (!(valoresAceptados.test(item))) {
+                document.querySelector('#nivelHabilidad').value = `${item['nivel']}`;
+                listSelectHabilidades.innerHTML += `
+                    <li>${item['nombre']} ---- <b>${item['nivel']}</b></li>
+                `;
+            }
+        }
+    })
+
+    await inserHabilidadAspirante();
+}
+
+document.querySelector('#agregar_habilidad').addEventListener('click', seleccionarHabilidad);
+
+//insertar los elementos que vienen desde la lista
+const inserHabilidadAspirante = async () => {
+    const url = `${base_url}Aspirante/setHabilidadAspirante`;
+    const formData = new FormData(formHabilidad);
 
     try {
         const req = await fetch(url, {
@@ -467,16 +532,69 @@ const insertHabilidad = async (formData) => {
         });
 
         const { status, msg } = await req.json();
+
         if (status) {
-            sweetAlert("Habilidad", msg, "success");
-            arrListaHabilidades = [];
-            pintarPuntuacion(listaHabilidades, arrListaHabilidades);
-            mostrarInputOtroIdioma();
+            sweetAlert("Habilidad aspirante", msg, "success");
         } else {
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
         sweetAlert("Error", error, "error");
+    }
+}
+
+const insertHabilidad = async (formData, puntuacion, campo, array, form) => {
+    const url = `${base_url}Aspirante/setHabilidad`;
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+
+        const { status, msg, id } = await req.json();
+        if (status) {
+            // listIdiomas.add(id);
+            swal("Idioma", msg, "success");
+            await refreshHabilidadAspirante();
+            document.querySelectorAll('#txtListHabilidad option').forEach(item => {
+                if (parseInt(item.dataset.id) === parseInt(id)) {
+                    item.classList.add('active', 'disabled');
+                    item.setAttribute('disabled', 'disabled');
+                }
+            })
+            array.push(puntuacion);
+            form.reset();
+            puntuacionEstrellas(0, campo);
+            pintarPuntuacion(listaHabilidades, arrListaIdiomas);
+            document.querySelector('#grupo-puesto-otra_habilidad').checked = true;
+            mostrarInputOtraHabilidad();
+        } else {
+            pintarPuntuacion(listaHabilidades, arrListaIdiomas);
+            swal("Error", msg, "warning");
+        }
+    } catch (error) {
+        sweetAlert("Error", error, "error");
+    }
+}
+
+const refreshHabilidadAspirante = async () => {
+    const url = `${base_url}Aspirante/getAllHabilidades`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status) {
+            document.querySelector('#txtListHabilidad').innerHTML = '<option value="" disabled selected>Seleccione una habilidad</option>';
+            data.forEach(item => {
+                document.querySelector('#txtListHabilidad').innerHTML += `
+                    <option data-id="${item['idHabilidad']}" value="${item['idHabilidad']}-${item['nombreHabilidad']}" class="opciones-habilidad">${item['nombreHabilidad']}</option>
+                `;
+            });
+        } else {
+            swal("Error", data, "error");
+        }
+    } catch (error) {
+        swal("Error", error, "error");
     }
 }
 

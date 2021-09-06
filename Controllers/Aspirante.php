@@ -249,17 +249,16 @@ class Aspirante extends Controllers
     public function setHabilidad()
     {
         if ($_POST) {
-            if (empty($_POST['txtHabilidades']) || empty($_POST['txtNivelHabilidades'])) {
+            if (empty($_POST['txtHabilidad']) || empty($_POST['txtNivelHabilidades'])) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
             } else {
                 $idHabilidad = intval($_POST['idHabilidad']);
-                $nameHabilidad = limpiarCadena(ucfirst(strtolower($_POST['txtHabilidades'])));
+                $nameHabilidad = limpiarCadena(ucfirst(strtolower($_POST['txtHabilidad'])));
                 $nivelHabilidad = limpiarCadena($_POST['txtNivelHabilidades']);
                 $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
 
                 if ($idHabilidad == 0) {
                     $option = 1;
-
                     $request = $this->model->insertHabilidad(
                         $nameHabilidad,
                         $nivelHabilidad,
@@ -267,7 +266,6 @@ class Aspirante extends Controllers
                     );
                 } else {
                     $option = 2;
-
                     $request = $this->model->updateHabilidad(
                         $idHabilidad,
                         $nameHabilidad,
@@ -276,9 +274,17 @@ class Aspirante extends Controllers
                     );
                 }
                 if ($request > 0 && is_numeric($request)) {
-                    $_SESSION['idHabilidad'] = intval($request);
                     if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Habilidad almacenado correctamente :)'];
+                        $habilidadAspirante = $this->model->insertNewHabilidad(
+                            $idAspiranteFK,
+                            $request,
+                            $nivelHabilidad
+                        );
+                        if (!empty($habilidadAspirante)) {
+                            $arrResponse = ['status' => true, 'msg' => 'Habilidad almacenado correctamente :)', 'id' => $request];
+                        } else {
+                            $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error interno y no se ha podido asociar la habilidad al aspirante.'];
+                        }
                     } else {
                         $arrResponse = ['status' => true, 'msg' => 'Habilidad actualizado correctamente :)'];
                     }
@@ -290,6 +296,59 @@ class Aspirante extends Controllers
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
+        die();
+    }
+
+    public function setHabilidadAspirante()
+    {
+        if ($_POST) {
+            $idHabilidad = intval($_POST['idHabilidad']);
+            $idHabilidadFK = intval(limpiarCadena($_POST['idSelectHabilidad']));
+            $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
+            $nivelHabilidad = intval(limpiarCadena($_POST['nivelHabilidad']));
+
+            if ($idHabilidad == 0) {
+                $option = 1;
+                $request = $this->model->insertNewHabilidad(
+                    $idAspiranteFK,
+                    $idHabilidadFK,
+                    $nivelHabilidad
+                );
+            } else {
+                $option = 2;
+                $request = $this->model->updateHabilidadAspirante(
+                    $idHabilidad,
+                    $idHabilidadFK,
+                    $idAspiranteFK,
+                    $nivelHabilidad
+                );
+            }
+
+            if ($request > 0 && is_numeric($request)) {
+                if ($option == 1) {
+                    $arrResponse = ['status' => true, 'msg' => 'Habilidad almacenada correctamente :)'];
+                } else {
+                    $arrResponse = ['status' => true, 'msg' => 'Habilidad actualizada correctamente :)'];
+                }
+            } elseif ($request == 'exists') {
+                $arrResponse = ['status' => false, 'msg' => 'El aspirante ya tiene esa habilidad asociada. Seleccionalo en la lista !!'];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    public function getAllHabilidades()
+    {
+        $request = $this->model->getAllHabilidades();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error en el servidor.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
