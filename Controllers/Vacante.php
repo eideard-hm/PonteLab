@@ -160,7 +160,7 @@ class Vacante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
-    
+
     // método para traer todas los perfiles
     public function getAllPerfiles()
     {
@@ -185,7 +185,7 @@ class Vacante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 
-    
+
     //método que retorna el arreglo con los perfiles
     public function getArregloPerfiles()
     {

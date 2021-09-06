@@ -280,4 +280,13 @@ class AspiranteModel extends GestionCRUD
             return 'exists';
         }
     }
+
+    public function routesAspirante(int $idUsuario)
+    {
+        $this->idUsuarioFK = $idUsuario;
+        $sql = "SELECT idAspirante, idUsuarioFK
+                FROM ASPIRANTE
+                WHERE idUsuarioFK = {$this->idUsuarioFK}";
+        return $this->selectAll($sql);
+    }
 }

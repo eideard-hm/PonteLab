@@ -8,10 +8,7 @@ class Aspirante extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Login');
-        }
-        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+            header('Location:' . URL . 'Login');
         }
     }
 
@@ -19,6 +16,18 @@ class Aspirante extends Controllers
 
     public function Aspirante()
     {
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            $data['titulo_pagina'] = 'Vacante | PonsLabor.';
+            $data['list_vacante'] = $this->model->selectAllVacancy();
+            $data['list_requisitos'] = $this->model->selectAllReqs();
+            $data['list_sector'] = $this->model->selectAllSector();
+            $this->views->getView($this, 'Vacante', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location:' . URL . 'Menu/Menu_Contratante');
+        } else {
+            header('Location: ' . URL . 'Login');
+        }
+
         $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
         $data['list_workStatus'] = $this->model->getAllWorkStatus();
         $this->views->getView($this, 'Aspirante', $data);
@@ -354,7 +363,8 @@ class Aspirante extends Controllers
 
     public function routesAspirante()
     {
-        if (isset($_SESSION['data-aspirante'])) {
+        $request = $this->model->routesAspirante(intval($_SESSION['id']));
+        if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => 'ok'];
         } else {
             $arrResponse = ['status' => false, 'data' => 'no'];
