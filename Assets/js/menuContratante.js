@@ -164,11 +164,7 @@ const getArregloPerfiles = async (busqueda) => {
                 )
             // console.log(data)
             {
-                arrNombrePerfiles.add(perfil['nombreUsuario'], perfil['descripcionPersonalAspirante']);
-                arrNombrePerfiles.add(perfil['descripcionPersonalAspirante']);
-                arrNombrePerfiles.add(perfil['nombreEstado']);
-            console.log(perfil['nombreUsuario'])
-
+                arrNombrePerfiles.add(perfil['nombreUsuario'], perfil['descripcionPersonalAspirante'], perfil['nombreEstado']) 
             }
         });
         arregloSugerenciasPerfiles = [...arrNombrePerfiles];
@@ -207,8 +203,6 @@ const getArregloPerfiles = async (busqueda) => {
 
 const getAllPerfiles = async () => {
     const url = `${base_url}Aspirante/getAllPerfiles`;
-    console.log(url);
-    
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
