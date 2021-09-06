@@ -92,6 +92,8 @@ if (document.querySelector('#inhabilitar')) {
         e.preventDefault();
         inhabilitarA();
     })
+
+    
    
 
 const inhabilitarA = async () => {
@@ -155,6 +157,7 @@ if (btnInhabilitar) {
 
 function Cancelar() {
     alert ("Actualizacion cancelada correctamente")
+    //swal("Correcto!", "Actualizacion cancelada correctamente", "success");
     window.location.href =  `${base_url}Perfil_Aspirante`;
 }
 }

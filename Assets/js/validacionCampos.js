@@ -27,7 +27,7 @@ const expresiones = {
     // telefono: /^\d{7,10}$/, // 7 a 10 numeros.
     idioma: /^[a-zA-ZÀ-ÿ\s]{1,50}$/,
     puntuacion: /^[a-zA-ZÀ-ÿ\s]{1,50}/,
-    // perfil: /^[a-zA-ZÀ-ÿ\s0-9]{4,1000}/,
+    // perfil: /^[a-zA-ZÀ-ÿ\s0-9]{4,1000}/, 
 }
 
 const campos = {

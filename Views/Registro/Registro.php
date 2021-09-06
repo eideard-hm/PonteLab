@@ -52,7 +52,7 @@
             <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
             <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
-            <button name="next" class="next action-button" value="Siguiente"> Siguiente </button>
+            <button name="next" class="next action-button" value="Siguiente" id="siguiente1" onclick="validarCampos()"> Siguiente </button>
         </fieldset>
 
         <fieldset>
@@ -68,7 +68,7 @@
             <input type="number" name="numCel" id="numCel" placeholder="Ingrese su número de teléfono celular" required />
             <input type="number" name="numFijo" id="numFijo" placeholder="Ingrese su número de teléfono fijo" required />
             <button name="previous" class="previous action-button" value="Atras">Atras</button>
-            <button name="next" class="next action-button" value="Siguiente">Siguiente</button>
+            <button name="next2" class="next action-button" value="Siguiente" id="siguiente2" onclick="validarCamposFildset2();">Siguiente</button>
         </fieldset>
 
         <fieldset>
