@@ -30,7 +30,7 @@ class VacanteModel extends GestionCRUD
     {
         parent::__construct();
     }
-
+    
     //metodo para traer todas las vacantes
     public function selectAllVacantes()
     {
@@ -137,7 +137,7 @@ class VacanteModel extends GestionCRUD
 
         return $return;
     }
-
+    
     public function getFiltroVacantes($busqueda)
     {
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
@@ -181,7 +181,7 @@ class VacanteModel extends GestionCRUD
         $operadorOr = 'OR';
         for ($i = 0; $i < count($this->nombreSector); $i++) {
             if (!empty($this->nombreSector[$i])) {
-                if($this->nombreSector[$i] == count($this->nombreSector) -1){
+                if ($this->nombreSector[$i] === $this->nombreSector[count($this->nombreSector) - 2]) {
                     $return .= "idSectorFK = {$this->nombreSector[$i]}";
                     break;
                 }

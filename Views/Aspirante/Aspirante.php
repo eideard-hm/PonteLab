@@ -90,7 +90,7 @@
         <div class="wrap">
             <div id="form" class="form">
                 <!-- PAGINA 1 -->
-                <div class="pagina movPag" style="margin-left: -50%;">
+                <div class="pagina movPag">
                     <form action="#" id="info-persona" class="contenedor-form">
                         <h2 class="title-form">Información personal Aspirante</h2>
 
@@ -164,10 +164,6 @@
                         </div>
 
                         <div class="contenedor-grupo btn-enviar">
-                            <button class="btns atras atras-p1">
-                                <i class="fas fa-chevron-left icon-btn-atras"></i>
-                                Atrás
-                            </button>
                             <button class="btns siguiente sig-p3 btn-disable" id="btn-puesto-interes">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
@@ -184,12 +180,7 @@
                         <div class="contenedor-grupo w50" id="grupo-idioma">
                             <div class="agrupar-estrellas" id="agrupar-estrellas-select">
                                 <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
-                                <select name="txtListIdioma" id="txtListIdioma">
-                                    <option value="" disabled selected>Seleccione un idioma</option>
-                                    <?php foreach ($data['list_idiomas'] as $idioma) : ?>
-                                        <option value="<?= $idioma['idIdioma'] ?>"><?= $idioma['nombreIdioma'] ?></option>
-                                    <?php endforeach ?>
-                                </select>
+                                <select name="txtListIdioma" id="txtListIdioma"></select>
                                 <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
                                 <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
@@ -199,7 +190,7 @@
                             </div>
                             <span class="estrellas" id="grupo-idioma-estrellas">
                                 <label class="fas fa-star puntuacion idioma" id="1idioma">
-                                    <input type="radio" name="txtNivelIdioma" class="input-radio" id="1idioma" checked value="1">
+                                    <input type="radio" name="txtNivelIdioma" class="input-radio" id="1idioma" value="1">
                                 </label>
                                 <label class="fas fa-star puntuacion idioma" id="2idioma">
                                     <input type="radio" name="txtNivelIdioma" class="input-radio" id="2idioma" value="2">
@@ -222,6 +213,10 @@
                         </div>
 
                         <div class="add-puntuacion">
+                            <button class="boton_add_puntuacion" id="agregar_idioma">
+                                <i class="fas fa-plus"></i>
+                                Agregar idioma
+                            </button>
                             <button class="boton_add_idioma boton_add_puntuacion" id="boton_add_idioma">
                                 <i class="fas fa-plus"></i>
                                 Agregar nuevo idioma
@@ -231,11 +226,14 @@
                         <div class="contenedor-grupo w100" id="lista_idiomas">
                         </div>
 
+                        <div class="contenedor-grupo w100" id="select-idiomas">
+                            <input type="hidden" name="idSelectIdioma" id="idSelectIdioma" value="">
+                            <input type="hidden" name="nivelIdioma" id="nivelIdioma" value="">
+                            <ul id="select-idiomas-list">
+                            </ul>
+                        </div>
+
                         <div class="contenedor-grupo btn-enviar">
-                            <button class="btns atras atras-p4">
-                                <i class="fas fa-chevron-left icon-btn-atras"></i>
-                                Atrás
-                            </button>
                             <button class="btns siguiente sig-p6">
                                 Siguiente<i class="fas fa-chevron-right icon-btn"></i>
                             </button>
@@ -251,8 +249,10 @@
 
                         <div class="contenedor-grupo w100" id="grupo-habilidad">
                             <div class="agrupar-estrellas">
-                                <label for="txtHabilidad">Habilidad</label>
-                                <input type="text" name="txtHabilidades" id="txtHabilidad" placeholder="JavaScript" />
+                                <label for="txtListHabilidad" id="grupo-idioma-habilidad">Habilidades</label>
+                                <select name="txtListHabilidad" id="txtListHabilidad"></select>
+                                <label for="txtHabilidad" id="grupo-idioma-otra_habilidad" style="display: none;">Nueva Habilidad</label>
+                                <input type="text" name="txtHabilidad" id="txtHabilidad" placeholder="JavaScript" autofocus style="display: none;" />
                                 <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                 <p class="leyenda-input">
                                     El nombre de la habilidad no debe contener números.
@@ -277,7 +277,16 @@
                             </span>
                         </div>
 
+                        <div class="contenedor-grupo w100" id="grupo-otra_habilidad">
+                            <input type="checkbox" id="grupo-puesto-otra_habilidad" />
+                            <label for="grupo-puesto-otra_habilidad">Otro Habilidad.</label>
+                        </div>
+
                         <div class="add-puntuacion">
+                            <button class="boton_add_puntuacion" id="agregar_habilidad">
+                                <i class="fas fa-plus"></i>
+                                Agregar habilidad
+                            </button>
                             <button class="boton_add_habilidad boton_add_puntuacion" id="boton_add_habilidad">
                                 <i class="fas fa-plus"></i>
                                 Agregar nueva habilidad
@@ -287,11 +296,14 @@
                         <div class="contenedor-grupo w100" id="lista_habilidades">
                         </div>
 
+                        <div class="contenedor-grupo w100" id="select-habilidad">
+                            <input type="hidden" name="idSelectHabilidad" id="idSelectHabilidad" value="">
+                            <input type="hidden" name="nivelHabilidad" id="nivelHabilidad" value="">
+                            <ul id="select-habilidad-list">
+                            </ul>
+                        </div>
+
                         <div class="contenedor-grupo btn-enviar">
-                            <button class="btns atras atras-p5">
-                                <i class="fas fa-chevron-left icon-btn-atras"></i>
-                                Atrás
-                            </button>
                             <button type="submit" class="btns siguiente enviar">
                                 Enviar<i class="fas fa-paper-plane icon-btn"></i>
                             </button>
@@ -316,8 +328,8 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
     <script src="<?= URL; ?>Assets/js/informacionAspirante.js"></script>
+    <script src="<?= URL; ?>Assets/js/validacionCampos.js"></script>
 </body>
 
 </html>

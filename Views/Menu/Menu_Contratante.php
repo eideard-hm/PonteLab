@@ -25,7 +25,9 @@
         <a href="<?= URL ?>Menu/Menu_Contratante" class="active"><i class="fas fa-home"></i>Inicio</a>
         <a href="<?= URL ?>Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
         <a href="<?= URL ?>Vacante"><i class="fas fa-business-time"></i>Vacante</a>
-
+        <div class="content-search">
+          <i class="fas fa-search" id="icon-search" title="Buscar"></i>
+        </div>
         <button class="switch" id="switch">
           <i class="fas fa-sun sol"></i>
           <i class="fas fa-moon luna"></i>
@@ -48,7 +50,20 @@
     </div>
   </header>
 
-  <div class="contenedor card">
+  <form class="content-bar-search">
+        <input type="search" id="txtSearchPerfiles" name="txtSearchPerfiles" autocomplete="off" placeholder="Ingrese lo que desea buscar" autofocus>
+        <button id="icono-buscar"><i class="fas fa-search" title="Buscar"></i></button>
+        <i class="fas fa-times" id="borrar-contenido" title="Borrar"></i>
+    </form>
+    
+    <ul class="list_vacantes">
+    </ul>
+
+    <div class="cover-ctn-search"></div>
+
+
+  <div class="contenedor card" id="contenedor card" name="contenedor card">
+<!-- 
     <div class="contenedor-card">
       <div class="contenedor-card__header contenedor-card__padding">
         <div class="header-img">
@@ -73,66 +88,13 @@
                 print_r($_SESSION['user-data']);
                 ?>
             </pre>
-    </div>
+    </div> -->
 
-    <div class="contenedor-card">
-      <div class="contenedor-card__header contenedor-card__padding">
-        <div class="header-img">
-          <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
-        </div>
-        <div class="header-name">
-          <h3>Joeylene Rivera</h3>
-          <span>Web Developer</span>
-        </div>
-      </div>
-      <div class="contenedor-card__body">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
-      </div>
-      <div class="contenedor-card__footer">
-        <a href="#">Ver más</a>
-      </div>
-    </div>
-
-    <div class="contenedor-card">
-      <div class="contenedor-card__header contenedor-card__padding">
-        <div class="header-img">
-          <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
-        </div>
-        <div class="header-name">
-          <h3>Joeylene Rivera</h3>
-          <span>Web Developer</span>
-        </div>
-      </div>
-      <div class="contenedor-card__body">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
-      </div>
-      <div class="contenedor-card__footer">
-        <a href="#">Ver más</a>
-      </div>
-    </div>
-
-    <div class="contenedor-card">
-      <div class="contenedor-card__header contenedor-card__padding">
-        <div class="header-img">
-          <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
-        </div>
-        <div class="header-name">
-          <h3>Joeylene Rivera</h3>
-          <span>Web Developer</span>
-        </div>
-      </div>
-      <div class="contenedor-card__body">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni accusamus eos enim consequatur deserunt! Minus, nulla at a sapiente tempora mollitia sint quo possimus repellat, saepe ex aliquid nesciunt nostrum earum facere, maxime harum ea eius unde in similique. Alias unde atque officia accusamus placeat, porro facere distinctio esse cumque.</p>
-      </div>
-      <div class="contenedor-card__footer">
-        <a href="#">Ver más</a>
-      </div>
-    </div>
   </div>
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
-  <script src="<?= URL ?>Assets/js/menu.js"></script>
+  <script src="<?= URL ?>Assets/js/menuContratante.js"></script>
 </body>
 
 </html>

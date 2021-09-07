@@ -8,10 +8,7 @@ class Aspirante extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Login');
-        }
-        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            header('Location: http://localhost/PonsLabor/Menu/Menu_Contratante');
+            header('Location:' . URL . 'Login');
         }
     }
 
@@ -19,10 +16,15 @@ class Aspirante extends Controllers
 
     public function Aspirante()
     {
-        $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
-        $data['list_workStatus'] = $this->model->getAllWorkStatus();
-        $data['list_idiomas'] = $this->model->getAllIdiomas();
-        $this->views->getView($this, 'Aspirante', $data);
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            $data['titulo_pagina'] = 'Aspirante | PonsLabor.';
+            $data['list_workStatus'] = $this->model->getAllWorkStatus();
+            $this->views->getView($this, 'Aspirante', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location:' . URL . 'Menu/Menu_Contratante');
+        } else {
+            header('Location: ' . URL . 'Login');
+        }
     }
 
     //método para traer toda la lista de puestos de interés
@@ -80,20 +82,17 @@ class Aspirante extends Controllers
                 $strPuestoInteres = limpiarCadena(ucfirst($strPuestoInteres));
 
                 $request = $this->model->insertOtroPuestoInteres($strPuestoInteres);
-
                 if ($request > 0 && is_numeric($request)) {
-                    // $puestoInteresAspirante = $this->model->puestoInteresAspirante(
-                    //     intval($_SESSION['data-aspirante']['idAspirante']),
-                    //     intval($request)
-                    // );
+                    $puestoInteresAspirante = $this->model->puestoInteresAspirante(
+                        intval($_SESSION['data-aspirante']['idAspirante']),
+                        intval($request)
+                    );
 
-                    // if (!empty($puestoInteresAspirante)) {
-                    //     $sesionPuestoInteres = $this->model->getOnePuestoInteres(intval($puestoInteresAspirante));
-                    //     $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
-                    // } else {
-                    //     $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Intente más tarde !!'];
-                    // }
-                    $arrResponse = ['status' => true, 'msg' => 'Puesto insertado correctamente!!'];
+                    if (!empty($puestoInteresAspirante)) {
+                        $arrResponse = ['status' => true, 'msg' => 'Puesto insertado correctamente!!', 'data' => $request];
+                    } else {
+                        $arrResponse = ['status' => false, 'msg' => 'Ocurrio un error al intentar asociar el idioma al asipirante.'];
+                    }
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Lo puedes seleccionar la lista.'];
                 } else {
@@ -111,17 +110,18 @@ class Aspirante extends Controllers
             if (empty($_POST['txtPuesto'])) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
             } else {
-                $intPuestoInteres = limpiarCadena(intval($_POST['txtPuesto']));
-
-                $request = $this->model->puestoInteresAspirante(
-                    intval($_SESSION['data-aspirante']['idAspirante']),
-                    $intPuestoInteres
-                );
+                $sesionPuestoInteres = limpiarCadena($_POST['txtPuesto']);
+                $puestoInteres = limpiarCadena($_POST['txtPuesto']);
+                $puestoInteres = explode(',', $puestoInteres);
+                foreach ($puestoInteres as $puesto) {
+                    $request = $this->model->puestoInteresAspirante(
+                        intval($_SESSION['data-aspirante']['idAspirante']),
+                        $puesto
+                    );
+                }
 
                 if ($request > 0 && is_numeric($request)) {
-                    $sesionPuestoInteres = $this->model->getOnePuestoInteres(intval($request));
                     $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
-
                     $arrResponse = ['status' => true, 'msg' => 'Puesto de interés almacenado exitosamente :)', 'sesiones' => $_SESSION['puestoInteres-aspirante']];
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Lo puedes seleccionar la lista.'];
@@ -133,16 +133,40 @@ class Aspirante extends Controllers
         }
         die();
     }
-
-    public function getListAspirantes()
+    
+    //método que retorna el arreglo con los perfiles
+    public function getArregloPerfiles()
     {
-        $request = $this->model->selectAllAspirantes();
+        $arrUrl = explode('/', implode($_GET));
+        $busqueda = limpiarCadena(strtolower($arrUrl[2]));
+
+        $request = $this->model->getFiltroPerfiles($busqueda);
+        $arrResponse = ['status' => true, 'data' => $request];
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+    
+    // método para traer todas los perfiles
+    public function getAllPerfiles()
+    {
+        $request = $this->model->selectAllPerfiles();
         if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => $request];
         } else {
-            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error al intentar cargar la lista de aspirantes. Por favor intenta más tarde !!'];
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getAllIdiomas()
+    {
+        $request = $this->model->getAllIdiomas();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error en el servidor.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
     //Método para insertar un idioma
@@ -153,24 +177,34 @@ class Aspirante extends Controllers
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
             } else {
                 $idIdioma = intval($_POST['idIdioma']);
+                $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
+                $nivelIdioma = intval(limpiarCadena($_POST['txtNivelIdioma']));
+
                 $nameIdioma = limpiarCadena(ucfirst(strtolower($_POST['txtIdioma'])));
 
                 if ($idIdioma == 0) {
                     $option = 1;
-
                     $request = $this->model->insertNewIdioma($nameIdioma);
                 } else {
                     $option = 2;
-
                     $request = $this->model->updateIdioma(
                         $idIdioma,
                         $nameIdioma
                     );
                 }
+
                 if ($request > 0 && is_numeric($request)) {
-                    $_SESSION['idIdioma'] = intval($request);
                     if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)', 'id' => $request];
+                        $idiomaAspirante = $this->model->insertIdiomaAspirante(
+                            $idAspiranteFK,
+                            $request,
+                            $nivelIdioma
+                        );
+                        if (!empty($idiomaAspirante)) {
+                            $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)', 'id' => $request];
+                        } else {
+                            $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error interno y no se ha podido asociar el idioma al aspirante.'];
+                        }
                     } else {
                         $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
                     }
@@ -188,44 +222,38 @@ class Aspirante extends Controllers
     public function setIdiomaAspirante()
     {
         if ($_POST) {
-            if (empty($_POST['txtNivelIdioma'])) {
-                $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
+            $idIdioma = intval($_POST['idIdioma']);
+            $idIdiomaFK = intval(limpiarCadena($_POST['idSelectIdioma']));
+            $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
+            $nivelIdioma = intval(limpiarCadena($_POST['nivelIdioma']));
+
+            if ($idIdioma == 0) {
+                $option = 1;
+                $request = $this->model->insertIdiomaAspirante(
+                    $idAspiranteFK,
+                    $idIdiomaFK,
+                    $nivelIdioma
+                );
             } else {
-                $idIdioma = intval($_POST['idIdioma']);
-                $idIdiomaFK = $_SESSION['idIdioma'];
-                $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
-                $nivelIdioma = limpiarCadena($_POST['txtNivelIdioma']);
+                $option = 2;
+                $request = $this->model->updateIdiomaAspirante(
+                    $idIdioma,
+                    $idIdiomaFK,
+                    $idAspiranteFK,
+                    $nivelIdioma
+                );
+            }
 
-                if ($idIdioma == 0) {
-                    $option = 1;
-
-                    $request = $this->model->insertIdiomaAspirante(
-                        $idAspiranteFK,
-                        $idIdiomaFK,
-                        $nivelIdioma
-                    );
+            if ($request > 0 && is_numeric($request)) {
+                if ($option == 1) {
+                    $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)'];
                 } else {
-                    $option = 2;
-
-                    $request = $this->model->updateIdiomaAspirante(
-                        $idIdioma,
-                        $idIdiomaFK,
-                        $idAspiranteFK,
-                        $nivelIdioma
-                    );
+                    $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
                 }
-                if ($request > 0 && is_numeric($request)) {
-                    $_SESSION['idIdiomaAspirante'] = intval($request);
-                    if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)'];
-                    } else {
-                        $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
-                    }
-                } elseif ($request == 'exists') {
-                    $arrResponse = ['status' => false, 'msg' => 'El idioma ya se encuentra registrado. Seleccionalo en la lista !!'];
-                } else {
-                    $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
-                }
+            } elseif ($request == 'exists') {
+                $arrResponse = ['status' => false, 'msg' => 'El aspirante ya tiene ese idioma asociado. Seleccionalo en la lista !!'];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
@@ -236,17 +264,16 @@ class Aspirante extends Controllers
     public function setHabilidad()
     {
         if ($_POST) {
-            if (empty($_POST['txtHabilidades']) || empty($_POST['txtNivelHabilidades'])) {
+            if (empty($_POST['txtHabilidad']) || empty($_POST['txtNivelHabilidades'])) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
             } else {
                 $idHabilidad = intval($_POST['idHabilidad']);
-                $nameHabilidad = limpiarCadena(ucfirst(strtolower($_POST['txtHabilidades'])));
+                $nameHabilidad = limpiarCadena(ucfirst(strtolower($_POST['txtHabilidad'])));
                 $nivelHabilidad = limpiarCadena($_POST['txtNivelHabilidades']);
                 $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
 
                 if ($idHabilidad == 0) {
                     $option = 1;
-
                     $request = $this->model->insertHabilidad(
                         $nameHabilidad,
                         $nivelHabilidad,
@@ -254,7 +281,6 @@ class Aspirante extends Controllers
                     );
                 } else {
                     $option = 2;
-
                     $request = $this->model->updateHabilidad(
                         $idHabilidad,
                         $nameHabilidad,
@@ -263,9 +289,17 @@ class Aspirante extends Controllers
                     );
                 }
                 if ($request > 0 && is_numeric($request)) {
-                    $_SESSION['idHabilidad'] = intval($request);
                     if ($option == 1) {
-                        $arrResponse = ['status' => true, 'msg' => 'Habilidad almacenado correctamente :)'];
+                        $habilidadAspirante = $this->model->insertNewHabilidad(
+                            $idAspiranteFK,
+                            $request,
+                            $nivelHabilidad
+                        );
+                        if (!empty($habilidadAspirante)) {
+                            $arrResponse = ['status' => true, 'msg' => 'Habilidad almacenado correctamente :)', 'id' => $request];
+                        } else {
+                            $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error interno y no se ha podido asociar la habilidad al aspirante.'];
+                        }
                     } else {
                         $arrResponse = ['status' => true, 'msg' => 'Habilidad actualizado correctamente :)'];
                     }
@@ -280,9 +314,63 @@ class Aspirante extends Controllers
         die();
     }
 
+    public function setHabilidadAspirante()
+    {
+        if ($_POST) {
+            $idHabilidad = intval($_POST['idHabilidad']);
+            $idHabilidadFK = intval(limpiarCadena($_POST['idSelectHabilidad']));
+            $idAspiranteFK = intval($_SESSION['data-aspirante']['idAspirante']);
+            $nivelHabilidad = intval(limpiarCadena($_POST['nivelHabilidad']));
+
+            if ($idHabilidad == 0) {
+                $option = 1;
+                $request = $this->model->insertNewHabilidad(
+                    $idAspiranteFK,
+                    $idHabilidadFK,
+                    $nivelHabilidad
+                );
+            } else {
+                $option = 2;
+                $request = $this->model->updateHabilidadAspirante(
+                    $idHabilidad,
+                    $idHabilidadFK,
+                    $idAspiranteFK,
+                    $nivelHabilidad
+                );
+            }
+
+            if ($request > 0 && is_numeric($request)) {
+                if ($option == 1) {
+                    $arrResponse = ['status' => true, 'msg' => 'Habilidad almacenada correctamente :)'];
+                } else {
+                    $arrResponse = ['status' => true, 'msg' => 'Habilidad actualizada correctamente :)'];
+                }
+            } elseif ($request == 'exists') {
+                $arrResponse = ['status' => false, 'msg' => 'El aspirante ya tiene esa habilidad asociada. Seleccionalo en la lista !!'];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    public function getAllHabilidades()
+    {
+        $request = $this->model->getAllHabilidades();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error en el servidor.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function routesAspirante()
     {
-        if (isset($_SESSION['data-aspirante'])) {
+        $request = $this->model->routesAspirante(intval($_SESSION['id']));
+        if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => 'ok'];
         } else {
             $arrResponse = ['status' => false, 'data' => 'no'];
