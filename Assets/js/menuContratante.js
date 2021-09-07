@@ -247,20 +247,20 @@ document.addEventListener('DOMContentLoaded', () => {
   estudios y hoja de vida en caso de que aun no se haya registrado nigun aspirante.
 */
 
-// const routesContratante = async () => {
-//     const url = `${base_url}Aspirante/routesAspirante`;
-//     try {
-//         const req = await fetch(url);
-//         const { status, data } = await req.json();
-//         if (!status && data === 'no') {
-//             if (document.querySelector('.enlaces-aspirante')) {
-//                 document.querySelectorAll('.nav .enlaces-aspirante').forEach(enlace => enlace.href = '#')
-//                 contenedorBarraBusqueda.style.display = 'none';
-//             }
-//         } else {
-//             contenedorBarraBusqueda.style.display = 'block';
-//         }
-//     } catch (error) {
-//         swal("Error", error, "error");
-//     }
-// }
+const routesContratante = async () => {
+    const url = `${base_url}Aspirante/routesAspirante`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (!status && data === 'no') {
+            if (document.querySelector('.enlaces-aspirante')) {
+                document.querySelectorAll('.nav .enlaces-aspirante').forEach(enlace => enlace.href = '#')
+                contenedorBarraBusqueda.style.display = 'none';
+            }
+        } else {
+            contenedorBarraBusqueda.style.display = 'block';
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}

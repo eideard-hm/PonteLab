@@ -306,8 +306,9 @@ class AspiranteModel extends GestionCRUD
     public function routesAspirante(int $idUsuario)
     {
         $this->idUsuarioFK = $idUsuario;
-        $sql = "SELECT idAspirante, idUsuarioFK
-                FROM ASPIRANTE
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboral, nombreEstado
+                FROM ASPIRANTE AS a INNER JOIN ESTADOLABORALASPIRANTE AS ela
+                ON ela.idEstadoLaboral = a.idEstadoLaboralAspiranteFK
                 WHERE idUsuarioFK = {$this->idUsuarioFK}";
         return $this->selectAll($sql);
     }

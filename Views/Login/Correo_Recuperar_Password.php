@@ -19,21 +19,22 @@
     require_once('./Views/Components/NabvarInicio.php');
     ?>
 
-    <form id="msform">
+    <form id="msform" name="msform" action="">
         <br><br><br><br><br><br><br>
-        <fieldset>
+        <fieldset id="formRecetPass">
             <h2 class="fs-title">Recupera tu cuenta</h2>
             <h3 class="fs-subtitle">Ingresa tu correo electronico, te enviaremos un link para su reestablecimiento</h3>
             <img src="<?= URL; ?>Assets/img/telefono.png" width="200" height="200" alt="telefono" class="logo3" />
-            <input type="email" name="recu-cuenta" required placeholder="Email" />
-            <button name="cambiar" class="action-button" value="Siguiente">Enviar</button>
+            <input type="email" id="email" name="email"  placeholder="Email" />
+            <button name="enviarEmail" id="enviarEmail" class="action-button" value="Siguiente">Enviar</button>
         </fieldset>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
         <?php
-        require_once('./Views/Components/ScriptsJs.php');
+                require_once('./Views/Components/ScriptsJs.php');
         ?>
+        <script src="<?= URL; ?>Assets/js/RecuperarContraseña.js"></script>
 </body>
 
 </html>

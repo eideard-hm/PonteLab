@@ -8,10 +8,7 @@ class Contratante extends Controllers
         session_start();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
-            header('Location: http://localhost/PonsLabor/Login');
-        }
-        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            header('Location: http://localhost/PonsLabor/Menu');
+            header('Location:' . URL . 'Login');
         }
     }
 

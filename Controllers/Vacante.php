@@ -35,27 +35,57 @@ class Vacante extends Controllers
         if ($_POST) {
             //verificar que los campos no vengan vacios
             if (
-                empty($_POST['idVacanteFK']) || empty($_POST['idRequisitosFK']) || empty($_POST['especficacionRequisitos'])
-            ) {
+                empty($_POST['idVacancy']) || empty($_POST['nombre']) || empty($_POST['cantidad']) ||
+                empty($_POST['especificaciones']) || empty($_POST['perfil']) ||
+                empty($_POST['tipoContrato']) || empty($_POST['sueldo']) || empty($_POST['fechapublicacion']) ||
+                empty($_POST['fechacierre']) || empty($_POST['direccion']) || empty($_POST['estado']) ||
+                empty($_POST['idSectorFK'])
+            )
+            {
                 $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, Legamos al controller!!'];
             }
+            /*Se realiza la consulta del idContratante por medio del id del usuario en
+            las cariables de session*/
+            $intIdUsuarioFK = intval($_SESSION['id']);
+            $arrData = $this->model->selectOneContractor($intIdUsuarioFK);
+            if (!empty($arrData)) {
+                $_SESSION['contractor-data'] = $arrData;
+            }            
             /*
             1. Se crean variables para almacenar los datos enviados en la petición
             2. Se va hacer el proceso de insertar, y lo comprobamos si el id del usuario viene vacio 
             */
-            $intId = intval($_POST['idRequisitosVacante']);
-            $idVacanteFK = intval($_POST['idVacanteFK']);
-            $idRequisitosFK = intval($_POST['idRequisitosFK']);
-            $strEspecificaciones = limpiarCadena($_POST['especficacionRequisitos']);
+            
 
+            $intidVacancy = intval($_POST['idVacancy']);
+            $strNombre =limpiarCadena($_POST['nombre']);
+            $intCantidad =intval($_POST['cantidad']);
+            $strEspecificaciones =limpiarCadena($_POST['especificaciones']);
+            $strPerfil = limpiarCadena($_POST['perfil']);
+            $strTipoContrato =limpiarCadena($_POST['tipoContrato']);
+            $floSueldo = floatval($_POST['sueldo']);
+            $strFechaPublicacion =limpiarCadena($_POST['fechapublicacion']);
+            $strFechacierre =limpiarCadena($_POST['fechacierre']);
+            $strDireccion =limpiarCadena($_POST['direccion']);
+            $intEstado =boolval($_POST['estado']);
+            $intIdContratanteFK =intval($_SESSION['contractor-data']['idContratante']);
+            $intIdsectorFK =intval($_POST['idSectorFK']);
             /*================== INSERTAR VACANTE =======================*/
-
-            if ($intId === 0 || empty($intId)) {
+            if ($intidVacancy === 0 || empty($intidVacancy)) {
                 $option = 1;
-                $request = $this->model->insertRequirement(
-                    $idVacanteFK,
-                    $idRequisitosFK,
-                    $strEspecificaciones
+                $request = $this->model->insertVacancy(
+                        $strNombre,
+                        $intCantidad,
+                        $strEspecificaciones,
+                        $strPerfil,
+                        $strTipoContrato,
+                        $floSueldo,
+                        $strFechaPublicacion,
+                        $strFechacierre,
+                        $strDireccion,
+                        $intEstado,
+                        $intIdContratanteFK,
+                        $intIdsectorFK
                 );
             }
             // else {
@@ -128,8 +158,6 @@ class Vacante extends Controllers
 
             if ($request > 0 && is_numeric($request)) {
                 if ($option === 1) {
-                    $_SESSION['idContractorFK'] = intval($request);
-
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso :)', 'value' => $request];
                 } elseif ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
@@ -180,7 +208,11 @@ class Vacante extends Controllers
         $busqueda = limpiarCadena(strtolower($arrUrl[2]));
 
         $request = $this->model->getFiltroVacantes($busqueda);
-        $arrResponse = ['status' => true, 'data' => $request];
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 

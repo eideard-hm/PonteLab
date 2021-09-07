@@ -110,7 +110,7 @@
                             <label for="txtPerfil">Perfil laboral</label>
                             <br>
                             <br>
-                            <textarea name="textPerfilLab" id="especificaciones" rows="1" placeholder="Perfil laboral..."></textarea>
+                            <textarea name="textPerfilLab" id="especificaciones" rows="1" placeholder="Perfil laboral..." readonly></textarea>
                         </div>
 
                         <div class="contenedor-grupo w100" id="grupo-estado">
