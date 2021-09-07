@@ -266,6 +266,8 @@ function validarCampos() {
                 easing: 'easeInOutBack'
             });
         });
+
+        
         // }else{      
         //   sigForm();
         // }    
@@ -276,9 +278,9 @@ function validarCampos() {
 document.getElementById('siguiente2').addEventListener('click', validarCamposFildset2);
 function validarCamposFildset2() {
 
-    let numDoc = document.getElementById('numDoc').value;
-    let numCel = document.getElementById('numCel').value;
-    let numFijo = document.getElementById('numFijo').value;
+    let numDoc = document.querySelector('#numDoc').value;
+    let numCel = document.querySelector('#numCel').value;
+    let numFijo = document.querySelector('#numFijo').value;
 
     let numDocRegex = /^\(?(\d{10})\)$/;
     let numCelRegex = /^\(?(\d{10})\)$/;
@@ -306,7 +308,7 @@ function validarCamposFildset2() {
             next_fs = $(this).parent().next();
 
             $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-            swal("Correcto!", "Siguiente para continuar con el formulario", "success");
+            swal("Correcto!", "Siguiente para terminar con el formulario", "success");
             next_fs.show();
 
             current_fs.animate({ opacity: 0 }, {
