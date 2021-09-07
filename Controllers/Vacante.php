@@ -71,7 +71,7 @@ class Vacante extends Controllers
             $intIdContratanteFK =intval($_SESSION['contractor-data']['idContratante']);
             $intIdsectorFK =intval($_POST['idSectorFK']);
             /*================== INSERTAR VACANTE =======================*/
-            if ($intId === 0 || empty($intId)) {
+            if ($intidVacancy === 0 || empty($intidVacancy)) {
                 $option = 1;
                 $request = $this->model->insertVacancy(
                         $strNombre,
@@ -158,8 +158,6 @@ class Vacante extends Controllers
 
             if ($request > 0 && is_numeric($request)) {
                 if ($option === 1) {
-                    $_SESSION['idContractorFK'] = intval($request);
-
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso :)', 'value' => $request];
                 } elseif ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];

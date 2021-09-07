@@ -91,7 +91,7 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
             const { statusUser, msg } = await res.json();
 
             if (statusUser ) {
-                swal("Vacante", msg, "success");              
+                swal("Requisito Vacante", msg, "success");              
             }
             else {
                 swal("Error", msg, "error");//mostrar la alerta
