@@ -23,6 +23,7 @@ const listIdiomas = new Set();
 const selectIdiomas = new Set();
 
 document.addEventListener('DOMContentLoaded', () => {
+    getDataAspirante();
     routesAspirante();
     refreshIdiomasAspirante();
     refreshPuestoInteres();
@@ -611,6 +612,24 @@ const routesAspirante = async () => {
             }
         } else {
             console.log(data)
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
+const getDataAspirante = async () => {
+    const url = `${base_url}Aspirante/getDataAspirante`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if(status){
+            tinyMCE.triggerSave();
+            data.forEach(item => {
+                document.getElementById('especificaciones').textContent = item.descripcionPersonalAspirante;
+                document.getElementById('especificaciones').setAttribute('readonly', 'readonly');
+                document.getElementById('txtEstado').textContent = item.nombreEstado;
+            })
         }
     } catch (error) {
         swal("Error", error, "error");

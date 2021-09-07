@@ -365,4 +365,16 @@ class Aspirante extends Controllers
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
+
+    public function getDataAspirante()
+    {
+        $request = $this->model->routesAspirante(intval($_SESSION['id']));
+        if (!empty($request)) {
+            $_SESSION['aspirante'] = $request;
+            $arrResponse = ['status' => true, 'data' =>  $_SESSION['aspirante']];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
 }

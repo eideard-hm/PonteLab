@@ -204,7 +204,11 @@ class Vacante extends Controllers
         $busqueda = limpiarCadena(strtolower($arrUrl[2]));
 
         $request = $this->model->getFiltroVacantes($busqueda);
-        $arrResponse = ['status' => true, 'data' => $request];
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 

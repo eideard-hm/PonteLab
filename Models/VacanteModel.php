@@ -43,7 +43,6 @@ class VacanteModel extends GestionCRUD
         return $this->selectAll($sql);
     }
 
-    
     //metodo para traer todas las vacantes
     public function selectAllVacantes()
     {

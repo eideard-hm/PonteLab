@@ -116,6 +116,7 @@ const autocompletar = (arreglo) => {
                             cerrarLista();
                         }
                     })
+                    // getArregloVacantes(inputBusquedaVacantes.value);
                     indexFocus = -1;
                     break;
 
@@ -153,15 +154,17 @@ const getArregloVacantes = async (busqueda) => {
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
-
-        data.forEach(vacante => {
-            if (vacante['nombreVacante'].search(inputBusqueda) || vacante['descripcionVacante'].search(inputBusqueda)) {
-                arrNombreVacantes.add(vacante['nombreVacante'], vacante['descripcionVacante']);
-            }
-        });
-        arregloSugerenciasVacantes = [...arrNombreVacantes];
-        autocompletar(arregloSugerenciasVacantes);
-        contenedorCardsVacantes.innerHTML = '';
+        if (data !== 'no') {
+            data.forEach(vacante => {
+                if (vacante['nombreVacante'].search(inputBusqueda) || vacante['descripcionVacante'].search(inputBusqueda)) {
+                    arrNombreVacantes.add(vacante['nombreVacante']);
+                    arrNombreVacantes.add(vacante['descripcionVacante']);
+                }
+            });
+            arregloSugerenciasVacantes = [...arrNombreVacantes];
+            autocompletar(arregloSugerenciasVacantes);
+            contenedorCardsVacantes.innerHTML = '';
+        }
 
         if (status) {
             data.forEach(vacante => {
@@ -188,10 +191,10 @@ const getArregloVacantes = async (busqueda) => {
                     `
             });
         } else {
-            getAllVacantes();
+            await getAllVacantes();
         }
     } catch (error) {
-        console.log('Error' + error)
+        swal("Error", error, "error");
     }
 }
 
