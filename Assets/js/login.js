@@ -52,10 +52,8 @@ const form = document.querySelector('#form-login');
 const signIn = async (e) => {
   e.preventDefault();
   const formData = new FormData(form);
-
   //peticion mediante la API de fetch, peticion de tipo post
   const url = `${base_url}Login/loginUser`;
-
   try {
     const res = await fetch(url, {
       method: 'POST',
@@ -76,6 +74,4 @@ const signIn = async (e) => {
     swal("Error", error, "error");
   }
 }
-
 form.addEventListener('submit', signIn);
-

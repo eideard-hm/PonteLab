@@ -135,7 +135,7 @@
           <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
 
           <p >
-          <label for="idVacanteFK">Requisito</label>
+          <label for="idVacanteFK">Vacante</label>
           <select name="idVacanteFK" id="idVacanteFK">
             <option selected disabled value="">--- Seleccione la Vacante ---</option>
             <?php foreach ($data['list_vacante'] as $vacs) : ?>

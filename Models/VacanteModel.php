@@ -3,6 +3,8 @@
 class VacanteModel extends GestionCRUD
 {
     //atributos
+    //Tabla CONTRATANTE
+    private int $idUsuarioFK;
     //Tabla Vacante
     private int $idVacante;
     private string $nombreVacante;
@@ -30,19 +32,7 @@ class VacanteModel extends GestionCRUD
     {
         parent::__construct();
     }
-
-    //metodo para traer todas los perfiles
-    public function selectAllPerfiles()
-    {
-        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
-                idEstadoLaboralAspiranteFK, nombreEstado,
-                nombreUsuario, token, imagenUsuario
-                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
-                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
-                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK";
-        return $this->selectAll($sql);
-    }
-
+    
     //metodo para traer todas las vacantes
     public function selectAllVacantes()
     {
@@ -53,6 +43,15 @@ class VacanteModel extends GestionCRUD
                 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
                 ON u.idUsuario = c.idUsuarioFK";
         return $this->selectAll($sql);
+    }
+
+    public function selectOneContractor($idUsuarioFK){
+        $this->idUsuarioFK = $idUsuarioFK;
+        //consulta
+        $sql = "SELECT idContratante, descripcionContratante
+        FROM CONTRATANTE WHERE idUsuarioFK ={$this->idUsuarioFK}";
+
+        return $this->select($sql);
     }
 
     //metodo de consulta una sola vacante por id 
@@ -150,28 +149,6 @@ class VacanteModel extends GestionCRUD
         return $return;
     }
     
-    public function getFiltroPerfiles($busqueda)
-    {
-        $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
-                idEstadoLaboralAspiranteFK, nombreEstado, nombreUsuario
-                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
-                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
-                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
-                WHERE descripcionPersonalAspirante LIKE '%{$busqueda}%' 
-                OR nombreEstado LIKE '%{$busqueda}%'
-                OR nombreUsuario LIKE '%{$busqueda}%'";
-                /*
-                WHERE idAspirante LIKE '%{$busqueda}%' 
-                OR descripcionPersonalAspirante LIKE '%{$busqueda}%' 
-                OR idUsuarioFK LIKE '%{$busqueda}%'
-                OR idEstadoLaboralAspiranteFK LIKE '%{$busqueda}%'
-                OR nombreEstado LIKE '%{$busqueda}%'
-                OR nombreUsuario LIKE '%{$busqueda}%'";
-                 */
-
-        return $this->selectAll($sql);
-    }
-
     public function getFiltroVacantes($busqueda)
     {
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 

@@ -37,13 +37,16 @@ class Login extends Controllers
 
     public function loginUser()
     {
+        //validamos que los campos no esten vacios retornando un mensaje
         if ($_POST) {
             if (empty($_POST['Usuario']) || empty($_POST['Password'])) {
                 $arrResponse = array('statusLogin' => false, 'msg' => 'Todos los campos son obligatorios.');
-            } else {
-                $Usuario = strtolower(limpiarCadena($_POST['Usuario'])); //convertir todas las letras en minusculas
+            }
+            //de no estar vacios creamos las variables para almacenar los datos que estamos resiviendo 
+            else {
+                $Usuario = strtolower(limpiarCadena($_POST['Usuario'])); //funcion que converte todas las letras en minusculas
                 $Password = limpiarCadena($_POST['Password']);
-
+                //esto es iguaal a  lo que nos va a retornar el metodo  que vamos a tener en el modelo y mandamos como parametro el usuario y el Password
                 $request = $this->model->validatePassword($Usuario, $Password);
 
                 if ($request) {
@@ -75,8 +78,8 @@ class Login extends Controllers
     }
 
 
-    /*-------------------------RECUPERAR CONTRASEÑA -----------------*/ 
-   /* public function resetPass(){
+    /*-------------------------RECUPERAR CONTRASEÑA -----------------*/
+    /* public function resetPass(){
         if($_POST){
             error_reporting(0);
     
@@ -121,5 +124,3 @@ class Login extends Controllers
         die();
     }*/
 }
-
- 

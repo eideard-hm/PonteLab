@@ -17,7 +17,7 @@ let arregloSugerenciasPerfiles = [];
 //     routesAspirante();
 // })
 
-/*=========================== BUSCADOR VACANTE =========================*/
+/*=========================== BUSCADOR PERFIL =========================*/
 if (contenedorBarraBusqueda) {
     contenedorBarraBusqueda.addEventListener('click', () => {
         mostrarBarraBusqueda();
@@ -150,20 +150,21 @@ if (inputBusquedaP) {
 }
 
 const getArregloPerfiles = async (busqueda) => {
-    const url = `${base_url}Vacante/getArregloPerfiles/${busqueda}`;
+    const url = `${base_url}Aspirante/getArregloPerfiles/${busqueda}`;
     console.log(url);
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
         console.log(data);
         data.forEach(perfil => {
-            if (perfil['nombreUsuario'].search(inputBusquedaP) ||
-            perfil['descripcionPersonalAspirante'].search(inputBusquedaP) ||
-            perfil['nombreEstado'].search(inputBusquedaP))
-            console.log(data)
+            if (
+                perfil['nombreUsuario'].search(inputBusquedaP) ||
+                perfil['descripcionPersonalAspirante'].search(inputBusquedaP) ||
+                perfil['nombreEstado'].search(inputBusquedaP)
+                )
+            // console.log(data)
             {
-                arrNombrePerfiles.add(perfil['nombreUsuario'], perfil['descripcionPersonalAspirante']);
-                arrNombrePerfiles.add(perfil['descripcionPersonalAspirante']);
+                arrNombrePerfiles.add(perfil['nombreUsuario'], perfil['descripcionPersonalAspirante'], perfil['nombreEstado']) 
             }
         });
         arregloSugerenciasPerfiles = [...arrNombrePerfiles];
@@ -200,11 +201,12 @@ const getArregloPerfiles = async (busqueda) => {
     }
 }
 
-const getVacantesSector = async () => {
-    const url = `${base_url}Aspirante/getListAspirantes`;
+const getAllPerfiles = async () => {
+    const url = `${base_url}Aspirante/getAllPerfiles`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
+        console.log(status, data);
 
         contenedorCardsPerfiles.innerHTML = '';
 
@@ -230,114 +232,22 @@ const getVacantesSector = async () => {
                 </div>
                 `
             });
-        } else {
-            getAllPerfiles();
         }
     } catch (error) {
         swal("Error", error, "error");
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
-        getAllPerfiles();
+    getAllPerfiles();
 })
-
-const getAllPerfiles = async () => {
-    const url = `${base_url}Vacante/getAllPerfiles`;
-    try {
-        const req = await fetch(url);
-        const { status, data } = await req.json();
-
-        contenedorCardsPerfiles.innerHTML = '';
-
-        if (status) {
-            data.forEach(perfil => {
-                contenedorCardsPerfiles.innerHTML += `
-                <div class="contenedor-card">
-                    <div class="contenedor-card__header contenedor-card__padding">
-                        <div class="header-img">
-                        <img src="http://localhost/Pontelab/Assets/img/upload.png" alt="Uplopad">
-                        </div>
-                        <div class="header-name">
-                        <h3>${perfil['nombreUsuario']}</h3>
-                        <span>${perfil['nombreEstado']}</span>
-                        </div>
-                    </div>
-                    <div class="contenedor-card__body">
-                        <p>${perfil['descripcionPersonalAspirante']}</p>
-                    </div>
-                    <div class="contenedor-card__footer">
-                        <a href="#">Ver más</a>
-                    </div>
-                </div>
-                `
-            });
-        }
-    } catch (error) {
-        swal("Error", error, "error");
-    }
-}
-/*
-- Esta función sirve para cargar la variable de sesión que contiene los datos o la información
-  del o de los sectores que el usuario selecciono para de esa forma poder hacerle recomendaciones
-  o filtros
-*/
-const getUserVacanteSector = async () => {
-    const url = `${base_url}Vacante/getUserVacanteSector`;
-    try {
-        const req = await fetch(url);
-        const { status, msg } = await req.json();
-
-        if (!status && msg === 'no') {
-            getAllPerfiles();
-        } else {
-            getVacantesSector();
-        }
-    } catch (error) {
-        swal("Error", error, "error");
-    }
-}
-
-/*============ APLICAR UN FILTRO DE VACANTES SEGUN EL SECTOR ==========*/
-
-// if (switchBtn) {
-//     switchBtn.addEventListener('click', () => {
-//         document.body.classList.toggle('filtro');
-//         switchBtn.classList.toggle('active');
-
-//         //guardamos el modo actual en el que estamos
-//         //classList.contains: permite saber si la clase contiene
-//         if (document.body.classList.contains('filtro')) {
-//             localStorage.setItem('filtro-vacante', 'true');
-//             getAllVacantes();
-//         } else {
-//             localStorage.setItem('filtro-vacante', 'false');
-//             // getVacantesSector();
-//             getUserVacanteSector();
-//         }
-//     });
-
-//     //obtener el modo actual en el que estamos
-
-//     if (localStorage.getItem('filtro-vacante') === 'true') {
-//         document.body.classList.add('filtro');
-//         switchBtn.classList.add('active');
-//         getAllVacantes();
-//     } else {
-//         document.body.classList.remove('filtro');
-//         switchBtn.classList.remove('active');
-//         // getVacantesSector();
-//         getUserVacanteSector();
-//     }
-// }
 
 /*
 - Función que sirve para habilitar o inhabilitar las opciones de experiencia,
   estudios y hoja de vida en caso de que aun no se haya registrado nigun aspirante.
 */
 
-const routesAspirante = async () => {
+const routesContratante = async () => {
     const url = `${base_url}Aspirante/routesAspirante`;
     try {
         const req = await fetch(url);
