@@ -63,8 +63,8 @@
 
 
   <div class="contenedor card" id="contenedor card" name="contenedor card">
-<!-- 
-    <div class="contenedor-card">
+
+    <!-- <div class="contenedor-card">
       <div class="contenedor-card__header contenedor-card__padding">
         <div class="header-img">
           <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
@@ -80,15 +80,15 @@
       <div class="contenedor-card__footer">
         <a href="#">Ver más</a>
       </div>
-    </div>
+    </div> -->
 
     <div class="contenedor-card">
       <pre>
-                <?php
-                print_r($_SESSION['user-data']);
-                ?>
-            </pre>
-    </div> -->
+          <?php
+          print_r($_SESSION['user-data']);
+          ?>
+      </pre>
+    </div>
 
   </div>
   <?php

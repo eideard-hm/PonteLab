@@ -15,7 +15,6 @@ const insertVacancy = async () => {
     tinyMCE.triggerSave();
     let formData = new FormData(formVacancy);
 
-    console.log(formData);
     const url = `${base_url}Vacante/setVacante`;
 
     try {

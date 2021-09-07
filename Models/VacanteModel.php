@@ -3,6 +3,8 @@
 class VacanteModel extends GestionCRUD
 {
     //atributos
+    //Tabla CONTRATANTE
+    private int $idUsuarioFK;
     //Tabla Vacante
     private int $idVacante;
     private string $nombreVacante;
@@ -41,6 +43,15 @@ class VacanteModel extends GestionCRUD
                 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
                 ON u.idUsuario = c.idUsuarioFK";
         return $this->selectAll($sql);
+    }
+
+    public function selectOneContractor($idUsuarioFK){
+        $this->idUsuarioFK = $idUsuarioFK;
+        //consulta
+        $sql = "SELECT idContratante, descripcionContratante
+        FROM CONTRATANTE WHERE idUsuarioFK ={$this->idUsuarioFK}";
+
+        return $this->select($sql);
     }
 
     //metodo de consulta una sola vacante por id 
