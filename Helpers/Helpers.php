@@ -4,8 +4,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-// Include library file
-require_once('VerifyEmail.php');
 require_once('vendor/autoload.php');
 
 //retorna la url del proyecto
@@ -86,35 +84,6 @@ function sendEmail(array $data, $template)
         $envioEmail = false;
     }
     return $envioEmail;
-}
-
-//función para verificar si un email existe
-function verifyEmail(string $emailCheck)
-{
-    // Initialize library class
-    $mail = new VerifyEmail();
-
-    // Set the timeout value on stream
-    $mail->setStreamTimeoutWait(20);
-
-    // Set debug output mode
-    $mail->Debug = TRUE;
-    $mail->Debugoutput = 'html';
-
-    // Set email address for SMTP request
-    $mail->setEmailFrom(EMAIL_REMITENTE);
-
-    // Email to check
-    $email = 'edierhernandezmo@gmail.com';
-
-    // Check if email is valid and exist
-    if ($mail->check($email)) {
-        echo "Email <{$email}> is exist!";
-    } elseif (verifyEmail::validate($email)) {
-        echo 'Email <' . $email . '> is valid, but not exist!';
-    } else {
-        echo 'Email <' . $email . '> is not valid and not exist!';
-    }
 }
 
 //función para generar un token
