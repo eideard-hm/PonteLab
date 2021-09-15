@@ -24,6 +24,7 @@ Azul (Degradado) #70FAFF
 Gris (PonteLab) #999999
 Gris (Bolsa de empleo) #676766 -->
 
+    <a class="home" href="<?= URL; ?>"><i id="home" class="fas fa-home"></i>Inicio</a>
     <section class="from-logi">
         <form method="POST" action="" id="form-login">
             <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
@@ -33,10 +34,10 @@ Gris (Bolsa de empleo) #676766 -->
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
             <button type="submit" id="valida" class="boton_3">Ingresar</button>
             <center>
-                <p><a class="a1" href="Login/Correo_Recuperar_Password" style="color: #676766; font-size: 16px; font-weight:600; position: relative; top: 30px;">¿Olvido su contraseña?</a></p>
+                <p><a class="a1" href="Login/Correo_Recuperar_Password">¿Olvido su contraseña?</a></p>
             </center>
             <center>
-                <p><a class="a2" href="Registro" style="color: #676766; font-size: 16px; font-weight:600;position: relative; top: 40px; ">Crear cuenta</a></p>
+                <p><a class="a2" href="Registro">Crear cuenta</a></p>
             </center>
         </form>
     </section>

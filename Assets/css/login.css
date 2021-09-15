@@ -17,7 +17,7 @@ body {
   font-family: var(--fuenteRoboto);
 }
 
-.menu_header .barra .navbar_menu {
+/* .menu_header .barra .navbar_menu {
   display: flex;
   align-items: center;
 }
@@ -65,20 +65,44 @@ body {
 .menu_header .barra .navbar_menu a i {
   width: 100%;
   margin-bottom: 5px;
-}
+} */
 
 /*formulario*/
+
+#home{
+  position: relative;
+  font-size: 34px;
+  color: #676766;
+  margin: 4px;
+}
+.home{
+  text-decoration: none;
+  color: #676766;
+  font-size: 16px;
+  font-weight: 500;  
+  margin: 1em 3em 0em 0em;
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
 .from-logi {
   display: grid;
   grid-template-columns: 1fr;
   width: 440px;
   height: 400px;
   margin: auto;
-  margin-top: 8em;
+  margin-top: 8.5%;
   padding: 40px 30px;
   position: relative;
-  top: -50px;
-  left: -6em;
+  top: 10%;
+  left: -1em;
   font-family: var(--fuenteRoboto);
   float: right;
   z-index: 100;
@@ -391,10 +415,20 @@ body {
 
   .a1 {
     color: #ffffff;
+    color: #676766;
+    font-size: 16px; 
+    font-weight:600;
+    position: relative;
+    top: 30px;
   }
 
   .a2 {
     color: #ffffff;
+    color: #676766;
+    font-size: 16px;
+    font-weight:600;
+    position: relative;
+    top: 40px;
   }
 }
 
