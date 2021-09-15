@@ -98,7 +98,7 @@ body {
   width: 440px;
   height: 400px;
   margin: auto;
-  margin-top: 8.5%;
+  margin-top: 7.5%;
   padding: 40px 30px;
   position: relative;
   top: 10%;
@@ -126,7 +126,7 @@ body {
   font-family: var(--fuenteRoboto);
   width: 100%;
   border: 2px solid rgb(187, 187, 187);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   border-radius: 13px;
   padding: 10px 12px;
   background: #fff;
@@ -231,7 +231,7 @@ body {
   right: 10px;
   width: 15px;
   z-index: 100;
-  top: 303px;
+  top: 293px;
   right: 40px;
   color: #000000;
 }
@@ -278,6 +278,22 @@ body {
   color: white;
   text-decoration: none;
   font-size: 14px;
+}
+
+p .a1 {
+  color: #676766;
+  font-size: 16px; 
+  font-weight:500;
+  position: relative;
+  top: 30px;
+}
+
+p .a2 {
+  color: #676766;
+  font-size: 16px;
+  font-weight:500;
+  position: relative;
+  top: 40px;
 }
 
 .from-logi a:hover {
@@ -413,20 +429,18 @@ body {
     height: 50px;
   }
 
-  .a1 {
-    color: #ffffff;
+  p .a1 {
     color: #676766;
     font-size: 16px; 
-    font-weight:600;
+    font-weight:500;
     position: relative;
     top: 30px;
   }
 
-  .a2 {
-    color: #ffffff;
+  p .a2 {
     color: #676766;
     font-size: 16px;
-    font-weight:600;
+    font-weight:500;
     position: relative;
     top: 40px;
   }
