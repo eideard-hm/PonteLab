@@ -18,18 +18,12 @@
 
 <body>
 <!-- Paleta de Colores
-
 Blanco #FFFFFF
-
 Azul (P) #009FE0
-
 Azul (Degradado) #70FAFF
-
 Gris (PonteLab) #999999
-
 Gris (Bolsa de empleo) #676766 -->
-    <!-- Hay que quitar el navbar
-Y los bordes de los inputs que sean más claros y tal vez un poco más delgados -->
+
     <section class="from-logi">
         <form method="POST" action="" id="form-login">
             <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
