@@ -28,7 +28,7 @@ Gris (Bolsa de empleo) #676766 -->
     <section class="from-logi">
         <form method="POST" action="" id="form-login">
             <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
-            <h5>Iniciar Sesión</h5>
+            <h1>Iniciar Sesión</h5>
             <input class="controls" type="email" name="Usuario" id="Usuario" required placeholder="example@example.com">
             <input type="password" class="controls" name="Password" id="Contraseña" placeholder="Contraseña">
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
