@@ -527,11 +527,41 @@ section {
 
 /*form styles*/
 
+.pontelab{
+    width: 178px;
+    height: 40px;
+    position: relative;
+    right: -500px;
+    top: 10px;
+  }
+
+  .wave {
+    position: fixed;
+    height: 140%;
+    width: 64%;
+    left: 0;
+    bottom: -40%;
+    z-index: -1;
+    /* transform: rotate(-90deg); */
+  }
+
+  .registro {
+    width: 480px;
+    height: 500px;
+    position: relative;
+    float: left;
+    left: 80px;
+    z-index: 100;
+    top: 70px;
+  }
+
 #msform {
-    width: 625px;
+    width: 580px;
     margin: 50px auto;
     text-align: center;
     position: relative;
+    right: -350px;
+    bottom: 120px;
 }
 
 #msform fieldset {
@@ -539,7 +569,7 @@ section {
     border: 0 none;
     border-radius: 3px;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-    padding: 20px 30px;
+    padding: 15px 25px;
     box-sizing: border-box;
     width: 80%;
     margin: 0 10%;
@@ -597,7 +627,7 @@ section {
 
 #msform .action-button {
     width: 100px;
-    background: #1e1e62;
+    background: #009FE0;
     font-weight: bold;
     color: white;
     border: 0 none;
@@ -610,7 +640,7 @@ section {
 
 #msform .action-button:hover,
 #msform .action-button:focus {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px #546ccf;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #009FE0;
 }
 
 /*headings*/
@@ -687,7 +717,7 @@ section {
 
 #progressbar li.active:before,
 #progressbar li.active:after {
-    background: #1e1e62;
+    background: #009FE0;
     color: #fff;
     font-weight: 500;
 }

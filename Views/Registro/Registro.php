@@ -19,7 +19,9 @@
 </head>
 
 <body>
-    
+<img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
+<img src="<?= URL; ?>Assets/img/registro.svg" class="registro">
+
 
     <form id="msform" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="idUsuario" name="idUsuario" value="0">
@@ -50,7 +52,7 @@
             <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
             <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
-            <button name="next" class="next action-button" value="Siguiente" id="siguiente1" onclick="validarCampos();"> Siguiente </button>
+            <button name="next" class="next action-button" value="Siguiente" id="siguiente1" style="width: 413px; height:48px" onclick="validarCampos();"> Siguiente </button>
         </fieldset>
 
         <fieldset>
@@ -65,8 +67,8 @@
             <input type="number" name="numDoc" id="numDoc" placeholder="Digite su número de documento" required />
             <input type="number" name="numCel" id="numCel" placeholder="Ingrese su número de teléfono celular" required />
             <input type="number" name="numFijo" id="numFijo" placeholder="Ingrese su número de teléfono fijo" required />
-            <button name="previous" class="previous action-button" value="Atras">Atras</button>
-            <button name="next2" class="next action-button" value="Siguiente" id="siguiente2" onclick="validarCamposFildset2();">Siguiente</button>
+            <button name="previous" class="previous action-button" style="width: 195px; height:48px" value="Atras">Atras</button>
+            <button name="next2" class="next action-button" style="width: 195px; height:48px" value="Siguiente" id="siguiente2" onclick="validarCamposFildset2();">Siguiente</button>
         </fieldset>
 
         <fieldset>
@@ -103,11 +105,11 @@
                 <div id="form_alert"></div>
             </div>
             <br>
-            <h5 style="font-size: 15px;">Al hacer clic en "Registrarse", aceptas nuestra <a href="Politicas_de_Datos">Politica de datos</a> y la <a href="Politicas_de_Datos/Politicas_de_Cookies">Politica de Cookies.</a>
+            <h5 style="font-size: 15px; color: #999999; text-align:left;">Al hacer clic en "Registrarse", aceptas nuestra <a style="color: #009FE0;"  href="Politicas_de_Datos">Politica de datos</a> y la <a style="color: #009FE0;" href="Politicas_de_Datos/Politicas_de_Cookies">Politica de Cookies.</a>
             </h5>
             <br>
-            <button type="button" name="previous" class="previous action-button" value="Atras"> Atras </button>
-            <button type="submit" name="submit" id="btn_submit" class="action-button" value="Registrarse"> Registrarse </button>
+            <button type="button" name="previous" class="previous action-button" style="width: 195px; height:48px" value="Atras"> Atras </button>
+            <button type="submit" name="submit" id="btn_submit" class="action-button" style="width: 195px; height:48px" value="Registrarse"> Registrarse </button>
         </fieldset>
 
         <fieldset>
@@ -127,6 +129,7 @@
             <button type="submit" name="submit" id="btn_sector" class="submit action-button">Registrar sector</button>
         </fieldset>
     </form>
+    <img src="<?= URL; ?>Assets/img/wave.jpg" class="wave">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <?php
