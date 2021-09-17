@@ -118,29 +118,6 @@ class Registro extends Controllers
                     $strDireccion,
                     $imgPerfil
                 );
-                // $verifyEmail = verifyEmail($strEmail);
-                // echo $verifyEmail;
-                // exit();
-                // if ($verifyEmail === 'ok') {
-                //     $request = $this->model->insertUser(
-                //         $strNombre,
-                //         $strEmail,
-                //         $strPass,
-                //         $intTipoDoc,
-                //         $strNumDoc,
-                //         $strNumTel,
-                //         $strNumTelFijo,
-                //         $intEstado,
-                //         $intRol,
-                //         $intBarrio,
-                //         $strDireccion,
-                //         $imgPerfil
-                //     );
-                // } elseif ($verifyEmail === 'ok-no') {
-                //     $arrResponse = ['statusUser' => false, 'msg' => 'Correo no enviado. La dirección de correo es valida, pero no existe.'];
-                // } else {
-                //     $arrResponse = ['statusUser' => false, 'msg' => 'Correo no enviado. La dirección de correo no es valida y tampoco existe.'];
-                // }
             } else {
                 /*================== EDITAR USUARIO =======================*/
                 $option = 2;
