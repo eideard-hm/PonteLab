@@ -19,9 +19,7 @@
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/NabvarInicio.php');
-    ?>
+    
 
     <form id="msform" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="idUsuario" name="idUsuario" value="0">
@@ -52,7 +50,7 @@
             <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
             <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
             <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
-            <button name="next" class="next action-button" value="Siguiente" id="siguiente1" onclick="validarCampos()"> Siguiente </button>
+            <button name="next" class="next action-button" value="Siguiente" id="siguiente1" onclick="validarCampos();"> Siguiente </button>
         </fieldset>
 
         <fieldset>

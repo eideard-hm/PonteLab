@@ -202,9 +202,7 @@ if (bntSubmit) {
     bntSubmit.addEventListener('click', validateFormUser);
 }
 
-document.getElementById('siguiente1').addEventListener('click', validarCampos);
 function validarCampos() {
-
 
     let nombre = document.querySelector('#nombre').value;
     let email = document.querySelector('#email').value;
@@ -273,14 +271,11 @@ function validarCampos() {
         // }    
     }
 }
-
-
-document.getElementById('siguiente2').addEventListener('click', validarCamposFildset2);
 function validarCamposFildset2() {
 
-    let numDoc = document.querySelector('#numDoc').value;
-    let numCel = document.querySelector('#numCel').value;
-    let numFijo = document.querySelector('#numFijo').value;
+    let numDoc = document.getElementById('numDoc').value;
+    let numCel = document.getElementById('numCel').value;
+    let numFijo = document.getElementById('numFijo').value;
 
     let numDocRegex = /^\(?(\d{10})\)$/;
     let numCelRegex = /^\(?(\d{10})\)$/;
@@ -289,7 +284,7 @@ function validarCamposFildset2() {
     if (numDoc === '' || numCel === '' || numFijo === '') {
         swal("Ups!", "Los datos estan vacios", "error");
     }
-    else if ((numDocRegex.test(numDoc)==false) && (numDoc.length != 10)) {
+    else if (numDocRegex.test(numDoc)==false && numDoc.length != 10) {
         swal("ERROR!", "El numero de documento es invalido", "error");
     }
     else if ((numCelRegex.test(numCel)==false) && (numCel.length != 10)) {
