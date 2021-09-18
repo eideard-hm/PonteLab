@@ -17,7 +17,7 @@ class Vacante extends Controllers
     public function Vacante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            $data['titulo_pagina'] = 'Vacante | PonsLabor.';
+            $data['titulo_pagina'] = 'Vacante | PonteLab.';
             $data['list_vacante'] = $this->model->selectAllVacancy();
             $data['list_requisitos'] = $this->model->selectAllReqs();
             $data['list_sector'] = $this->model->selectAllSector();
@@ -27,6 +27,18 @@ class Vacante extends Controllers
         } else {
             header('Location: ' . URL . 'Login');
         }
+    }
+
+    public function ListaEmpleos()
+    {
+        $data['titulo_pagina'] = 'Lista vacantes | PonteLab.';
+        $this->views->getView($this, 'ListaEmpleos', $data);
+    }
+
+    public function DetallesVacante()
+    {
+        $data['titulo_pagina'] = 'Detalles vacante | PonteLab.';
+        $this->views->getView($this, 'DetallesVacante', $data);
     }
 
     //Método controlador para insertar y/o editar vacantes
@@ -40,8 +52,7 @@ class Vacante extends Controllers
                 empty($_POST['tipoContrato']) || empty($_POST['sueldo']) || empty($_POST['fechapublicacion']) ||
                 empty($_POST['fechacierre']) || empty($_POST['direccion']) || empty($_POST['estado']) ||
                 empty($_POST['idSectorFK'])
-            )
-            {
+            ) {
                 $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, Legamos al controller!!'];
             }
             /*Se realiza la consulta del idContratante por medio del id del usuario en
@@ -50,42 +61,42 @@ class Vacante extends Controllers
             $arrData = $this->model->selectOneContractor($intIdUsuarioFK);
             if (!empty($arrData)) {
                 $_SESSION['contractor-data'] = $arrData;
-            }            
+            }
             /*
             1. Se crean variables para almacenar los datos enviados en la petición
             2. Se va hacer el proceso de insertar, y lo comprobamos si el id del usuario viene vacio 
             */
-            
+
 
             $intidVacancy = intval($_POST['idVacancy']);
-            $strNombre =limpiarCadena($_POST['nombre']);
-            $intCantidad =intval($_POST['cantidad']);
-            $strEspecificaciones =limpiarCadena($_POST['especificaciones']);
+            $strNombre = limpiarCadena($_POST['nombre']);
+            $intCantidad = intval($_POST['cantidad']);
+            $strEspecificaciones = limpiarCadena($_POST['especificaciones']);
             $strPerfil = limpiarCadena($_POST['perfil']);
-            $strTipoContrato =limpiarCadena($_POST['tipoContrato']);
+            $strTipoContrato = limpiarCadena($_POST['tipoContrato']);
             $floSueldo = floatval($_POST['sueldo']);
-            $strFechaPublicacion =limpiarCadena($_POST['fechapublicacion']);
-            $strFechacierre =limpiarCadena($_POST['fechacierre']);
-            $strDireccion =limpiarCadena($_POST['direccion']);
-            $intEstado =boolval($_POST['estado']);
-            $intIdContratanteFK =intval($_SESSION['contractor-data']['idContratante']);
-            $intIdsectorFK =intval($_POST['idSectorFK']);
+            $strFechaPublicacion = limpiarCadena($_POST['fechapublicacion']);
+            $strFechacierre = limpiarCadena($_POST['fechacierre']);
+            $strDireccion = limpiarCadena($_POST['direccion']);
+            $intEstado = boolval($_POST['estado']);
+            $intIdContratanteFK = intval($_SESSION['contractor-data']['idContratante']);
+            $intIdsectorFK = intval($_POST['idSectorFK']);
             /*================== INSERTAR VACANTE =======================*/
             if ($intidVacancy === 0 || empty($intidVacancy)) {
                 $option = 1;
                 $request = $this->model->insertVacancy(
-                        $strNombre,
-                        $intCantidad,
-                        $strEspecificaciones,
-                        $strPerfil,
-                        $strTipoContrato,
-                        $floSueldo,
-                        $strFechaPublicacion,
-                        $strFechacierre,
-                        $strDireccion,
-                        $intEstado,
-                        $intIdContratanteFK,
-                        $intIdsectorFK
+                    $strNombre,
+                    $intCantidad,
+                    $strEspecificaciones,
+                    $strPerfil,
+                    $strTipoContrato,
+                    $floSueldo,
+                    $strFechaPublicacion,
+                    $strFechacierre,
+                    $strDireccion,
+                    $intEstado,
+                    $intIdContratanteFK,
+                    $intIdsectorFK
                 );
             }
             // else {
@@ -200,7 +211,7 @@ class Vacante extends Controllers
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
-    
+
     //método que retorna el arreglo con las vacantes
     public function getArregloVacantes()
     {
