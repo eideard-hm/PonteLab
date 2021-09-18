@@ -163,7 +163,38 @@ Index Of Script
             });
         });
 
+        /*----------------------------------------------------
+                  INITIALIZE OWL SLIDER
+                ----------------------------------------------------*/
+        var
+            post_thumbnail_slider = $('.post-thumbnail-slider'),
+            productSlider = $('.product-slider'),
+            relatedJobs = $('.related-jobs');
 
+        // Initializing Owl Slider for Partners Section
+        $(relatedJobs).owlCarousel({
+            loop: true,
+            nav: false,
+            dots: true,
+            autoplay: false, // set to "false" if you want to deactive autoplay
+            margin: 20,
+
+            //Responsive
+            responsive: {
+                0: {
+                    items: 1
+                },
+                479: {
+                    items: 2
+                },
+                768: {
+                    items: 3
+                },
+                992: {
+                    items: 4
+                }
+            }
+        })
 
         /*------------------------------------------------------------------
         Flatpicker

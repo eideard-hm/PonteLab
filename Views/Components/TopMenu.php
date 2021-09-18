@@ -3,7 +3,7 @@
     <div class="iq-navbar-custom">
         <nav class="navbar navbar-expand-lg navbar-light p-0">
             <div class="iq-navbar-logo d-flex justify-content-between">
-                <a href="index.html">
+                <a href="<?= URL ?>Menu">
                     <img src="<?= URL ?>Assets/img/logo_pontelab.png" class="img-fluid" alt="PonteLab">
                 </a>
                 <div class="iq-menu-bt align-self-center">
@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="iq-waves-effect d-flex align-items-center" data-toggle="tooltip" data-placement="bottom" data-original-title="Inicio">
+                        <a href="<?= URL ?>Menu" class="iq-waves-effect d-flex align-items-center" data-toggle="tooltip" data-placement="bottom" data-original-title="Inicio">
                             <i class="las la-home"></i>
                         </a>
                     </li>

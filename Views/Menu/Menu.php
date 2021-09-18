@@ -30,7 +30,7 @@
         <?php
         require_once('./Views/Components/Layout.php');
         ?>
-
+    
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
             <div class="container">
