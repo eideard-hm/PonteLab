@@ -1721,8 +1721,6 @@ dl dd:last-child {
 }
 
 /* Table */
-th {
-}
 a:hover {
   text-decoration: none;
 }
@@ -5937,7 +5935,7 @@ div#profile-profile a {
   border-radius: 50%;
   height: 30px;
   width: 30px;
-  line-height: 28px;
+  line-height: 35px;
   text-align: center;
   font-size: 12px;
   cursor: pointer;

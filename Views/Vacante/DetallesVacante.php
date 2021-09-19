@@ -132,19 +132,15 @@
                             <div class="job-sidebar">
                                 <ul class="job-overview nopadding mt40">
                                     <li>
-                                        <h5><i class="fa fa-calendar"></i> Date Posted:</h5>
+                                        <h5><i class="fa fa-calendar"></i>Publicación:</h5>
                                         <span>Posted 1 year ago</span>
                                     </li>
                                     <li>
-                                        <h5><i class="fa fa-map-marker"></i> Location:</h5>
+                                        <h5><i class="fa fa-map-marker"></i>Dirección:</h5>
                                         <span>New York, NY, United States</span>
                                     </li>
                                     <li>
-                                        <h5><i class="fa fa-money"></i> Hourly Rate:</h5>
-                                        <span>$25-$35 per Hour</span>
-                                    </li>
-                                    <li>
-                                        <h5><i class="fa fa-money"></i> Salary:</h5>
+                                        <h5><i class="fa fa-money"></i>Salario:</h5>
                                         <span>$25.000-$35.000</span>
                                     </li>
                                 </ul>
@@ -242,7 +238,7 @@
                 </div>
             </section>
             <!-- ===== End of Main Wrapper Job Section ===== -->
-        </div id="content-page" class="content-page" v>
+        </div>
     </div>
     <!-- Wrapper END -->
     <!-- Footer -->

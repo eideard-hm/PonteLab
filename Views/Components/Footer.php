@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <ul class="list-inline mb-0">
-                    <li class="list-inline-item"><a href="#">Políticas de privacidad</a></li>
-                    <li class="list-inline-item"><a href="terms-of-service.html">Términos de uso</a></li>
+                    <li class="list-inline-item"><a href="<?= URL ?>Politicas_de_Datos/Politicas_de_Datos">Políticas de privacidad</a></li>
+                    <li class="list-inline-item"><a href="<?= URL ?>Politicas_de_Datos/Politicas_de_Cookies">Políticas de cookies</a></li>
                 </ul>
             </div>
             <div class="col-lg-6 text-right">

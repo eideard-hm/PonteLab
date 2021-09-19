@@ -4,13 +4,13 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="active">
-                    <a href="<?= URL ?>" class="iq-waves-effect">
+                    <a href="<?= URL ?>Menu" class="iq-waves-effect">
                         <i class="las la-home" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Inicio"></i>
                         <span>Inicio</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="iq-waves-effect">
+                    <a href="<?= URL ?>Perfil_Aspirante" class="iq-waves-effect">
                         <i class="las la-user" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Perfil"></i>
                         <span>Perfil</span>
                     </a>
