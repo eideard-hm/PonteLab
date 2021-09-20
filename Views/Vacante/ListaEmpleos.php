@@ -51,7 +51,7 @@
                             <!-- Job Title & Info -->
                             <div class="col-md-7 col-xs-6 ptb20">
                                 <div class="job-title">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">php senior developer</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">php senior developer</a>
                                 </div>
                                 <div class="job-info">
                                     <span class="company"><i class="fa fa-building-o"></i>envato</span>
@@ -61,7 +61,7 @@
                             <!-- Job Category -->
                             <div class="col-md-3 col-xs-3 ptb30">
                                 <div class="job-category">
-                                    <a href="<?= URL?>Vacante/DetallesVacante" class="btn btn-success capitalize">full time</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-success capitalize">full time</a>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                             <!-- Job Company -->
                             <div class="col-md-2 col-xs-3">
                                 <div class="job-company">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">
                                         <img src="images/companies/google.svg" alt="">
                                     </a>
                                 </div>
@@ -79,7 +79,7 @@
                             <!-- Job Title & Info -->
                             <div class="col-md-7 col-xs-6 ptb20">
                                 <div class="job-title">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">department head</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">department head</a>
                                 </div>
                                 <div class="job-info">
                                     <span class="company"><i class="fa fa-building-o"></i>google</span>
@@ -89,7 +89,7 @@
                             <!-- Job Category -->
                             <div class="col-md-3 col-xs-3 ptb30">
                                 <div class="job-category">
-                                    <a href="<?= URL?>Vacante/DetallesVacante" class="btn btn-info capitalize">part time</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-info capitalize">part time</a>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                             <!-- Job Company -->
                             <div class="col-md-2 col-xs-3">
                                 <div class="job-company">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">
                                         <img src="images/companies/facebook.svg" alt="">
                                     </a>
                                 </div>
@@ -107,7 +107,7 @@
                             <!-- Job Title & Info -->
                             <div class="col-md-7 col-xs-6 ptb20">
                                 <div class="job-title">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">graphic designer</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">graphic designer</a>
                                 </div>
                                 <div class="job-info">
                                     <span class="company"><i class="fa fa-building-o"></i>facebook</span>
@@ -117,7 +117,7 @@
                             <!-- Job Category -->
                             <div class="col-md-3 col-xs-3 ptb30">
                                 <div class="job-category">
-                                    <a href="<?= URL?>Vacante/DetallesVacante" class="btn btn-primary capitalize">freelancer</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-primary capitalize">freelancer</a>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             <!-- Job Company -->
                             <div class="col-md-2 col-xs-3">
                                 <div class="job-company">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">
                                         <img src="images/companies/envato.svg" alt="">
                                     </a>
                                 </div>
@@ -135,7 +135,7 @@
                             <!-- Job Title & Info -->
                             <div class="col-md-7 col-xs-6 ptb20">
                                 <div class="job-title">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">senior UI & UX designer</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">senior UI & UX designer</a>
                                 </div>
                                 <div class="job-info">
                                     <span class="company"><i class="fa fa-building-o"></i>envato</span>
@@ -145,7 +145,7 @@
                             <!-- Job Category -->
                             <div class="col-md-3 col-xs-3 ptb30">
                                 <div class="job-category">
-                                    <a href="<?= URL?>Vacante/DetallesVacante" class="btn btn-warning capitalize">intership</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-warning capitalize">intership</a>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                             <!-- Job Company -->
                             <div class="col-md-2 col-xs-3">
                                 <div class="job-company">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">
                                         <img src="images/companies/twitter.svg" alt="">
                                     </a>
                                 </div>
@@ -163,7 +163,7 @@
                             <!-- Job Title & Info -->
                             <div class="col-md-7 col-xs-6 ptb20">
                                 <div class="job-title">
-                                    <a href="<?= URL?>Vacante/DetallesVacante">senior health advisor</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante">senior health advisor</a>
                                 </div>
                                 <div class="job-info">
                                     <span class="company"><i class="fa fa-building-o"></i>twitter</span>
@@ -173,7 +173,7 @@
                             <!-- Job Category -->
                             <div class="col-md-3 col-xs-3 ptb30">
                                 <div class="job-category">
-                                    <a href="<?= URL?>Vacante/DetallesVacante" class="btn btn-danger capitalize">temporary</a>
+                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-danger capitalize">temporary</a>
                                 </div>
                             </div>
                         </div>
@@ -246,14 +246,10 @@
     require_once('./Views/Components/Footer.php');
     ?>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="<?= URL ?>Assets/js/jquery.min.js" defer></script>
-    <script src="<?= URL ?>Assets/js/popper.min.js" defer></script>
-    <script src="<?= URL ?>Assets/js/bootstrap.min.js" defer></script>
-    <!-- Custom JavaScript -->
-    <script src="https://kit.fontawesome.com/ff77c957bf.js" crossorigin="anonymous" defer></script>
-    <script src="<?= URL ?>Assets/js/custom.js" defer></script>
+    <!-- Scripts  -->
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
 </body>
 
 </html>

@@ -10,7 +10,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= URL ?>Perfil_Aspirante" class="iq-waves-effect">
+                    <a href="<?= URL ?>Aspirante/Perfil_Aspirante" class="iq-waves-effect">
                         <i class="las la-user" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Perfil"></i>
                         <span>Perfil</span>
                     </a>

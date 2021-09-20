@@ -546,13 +546,10 @@
     require_once('./Views/Components/Footer.php');
     ?>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="<?= URL ?>Assets/js/jquery.min.js" defer></script>
-    <script src="<?= URL ?>Assets/js/popper.min.js" defer></script>
-    <script src="<?= URL ?>Assets/js/bootstrap.min.js" defer></script>
-    <!-- Custom JavaScript -->
-    <script src="<?= URL ?>Assets/js/custom.js" defer></script>
+    <!-- Scripts  -->
+    <?php
+    require_once('./Views/Components/ScriptsJs.php');
+    ?>
 </body>
 
 </html>

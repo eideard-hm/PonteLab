@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-list">
                     <li>
-                        <a href="profile.html" class="iq-waves-effect d-flex align-items-center">
-                            <img src="<?= URL ?>Assets/img/Edier.jpeg" class="img-fluid rounded-circle mr-3" alt="user">
+                        <a href="<?= URL ?>Aspirante/Perfil_Aspirante" class="iq-waves-effect d-flex align-items-center">
+                            <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['nombreUsuario'] ?>" class="img-fluid rounded-circle mr-3" />
                             <div class="caption">
-                                <h6 class="mb-0 line-height" style="font-size: 15px;">Edier Heraldo <br> Hernandez Molano</h6>
+                                <h6 class="mb-0 line-height" style="font-size: 15px;"><?= $_SESSION['user-data']['nombreUsuario'] ?></h6>
                             </div>
                         </a>
                     </li>

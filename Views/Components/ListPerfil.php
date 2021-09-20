@@ -7,10 +7,10 @@
             <div class="iq-card shadow-none m-0">
                 <div class="iq-card-body p-0 ">
                     <div class="bg-primary p-3 line-height">
-                        <h5 class="mb-0 text-white line-height">Hola Edier Hernandez</h5>
-                        <span class="text-white font-size-12">Aspirante</span>
+                        <h5 class="mb-0 text-white line-height">Hola <?= $_SESSION['user-data']['nombreUsuario'] ?></h5>
+                        <span class="text-white font-size-12"><?= $_SESSION['user-data']['nombreRol'] ?></span>
                     </div>
-                    <a href="<?= URL ?>Perfil_Aspirante" class="iq-sub-card iq-bg-primary-hover">
+                    <a href="<?= URL ?>Aspirante/Perfil_Aspirante" class="iq-sub-card iq-bg-primary-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-primary">
                                 <i class="las la-user-circle"></i>
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="<?= URL ?>Perfil_Aspirante/Edit_Profile_Aspirante" class="iq-sub-card iq-bg-warning-hover">
+                    <a href="<?= URL ?>Aspirante/Edit_Profile_Aspirante" class="iq-sub-card iq-bg-warning-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-warning">
                                 <i class="las la-user-edit"></i>

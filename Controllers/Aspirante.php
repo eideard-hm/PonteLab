@@ -27,6 +27,93 @@ class Aspirante extends Controllers
         }
     }
 
+    public function Perfil_Aspirante()
+    {
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            $data['titulo_pagina'] = 'Perfil Aspirante | PonteLab.';
+            $data['list_workStatus'] = $this->model->getAllWorkStatus();
+            $this->views->getView($this, 'Perfil_Aspirante', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location:' . URL . 'Menu/Menu_Contratante');
+        } else {
+            header('Location: ' . URL . 'Login');
+        }
+    }
+
+    public function Edit_Profile_Aspirante()
+    {
+        $data['titulo_pagina'] = 'Editar Perfil Aspirante | PonteLab.';
+        $this->views->getView($this, 'Edit_Profile_Aspirante', $data);
+    }
+
+
+    public function inhabilitarA()
+    {
+        $idUsuario = intval($_SESSION['user-data']['idUsuario']);
+        $estadoUsuario = intval($_POST['estado']);
+        $request = $this->model->updateState(
+            $idUsuario,
+            $estadoUsuario
+        );
+    }
+
+    public function updatePerfilAspirante()
+    {
+        if ($_POST) {
+            if (
+                empty($_POST['nombreApellido']) || empty($_POST['titulo']) || empty($_POST['posicion'])
+                || empty($_POST['idioma']) || empty($_POST['numDoc']) || empty($_POST['direccion']) || empty($_POST['Barrio'])
+            ) {
+                $arrResponse = ['statusUser' => false, 'msg' => '¡ERROR!, Debe llenar todo los campos.'];
+            } else {
+                $idUsuario = intval($_SESSION['id']);
+                $nombreApellido = limpiarCadena($_POST['nombreApellido']);
+                $titulo = intval($_POST['titulo']);
+                $posicion = intval($_POST['posicion']);
+                $idioma = intval($_POST['idioma']);
+                $numDoc = intval($_POST['numDoc']);
+                $direccion = limpiarCadena($_POST['direccion']);
+                $Barrio = limpiarCadena($_POST['Barrio']);
+
+                $option = 2;
+                $request = $this->model->updateUser(
+                    $idUsuario,
+                    $nombreApellido,
+                    $titulo,
+                    $posicion,
+                    $idioma,
+                    $numDoc,
+                    $direccion,
+                    $Barrio
+                );
+
+                if ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
+                    $arrData = $this->model->selectOneUser($idUsuario);
+                    if (!empty($arrData)) {
+                        $_SESSION['user-data'] = $arrData;
+                        //header ('location: http/localhost/PonteLab/Perfil_Aspirante');
+                        //echo '<script type="text/JavaScript"> location.reload(); </script>';
+                    }
+                } elseif ($request === 'exits') {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
+                } else {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente', 'value' => $request];
+                }
+                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            }
+        }
+
+        die();
+
+
+        /* $arrDataAsp = $this->model->selectOneUser($request);
+            if (!empty($arrDataAsp)) {
+                $_SESSION['user-data'] = $arrDataAsp;        
+        
+        }*/
+    }
+
     //método para traer toda la lista de puestos de interés
     public function getAllPuestoInteres()
     {
@@ -46,26 +133,66 @@ class Aspirante extends Controllers
             if (empty($_POST['textPerfilLab']) || empty($_POST['idUsuario']) || empty($_POST['txtEstado'])) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos lo campos son obligatorios!!'];
             }
-
-            $strDescription = $_POST['textPerfilLab'];
+            $idAspirante = intval(limpiarCadena($_POST['idAspirante']));
+            $strDescription = limpiarCadena($_POST['textPerfilLab']);
             $idUsuario = intval($_POST['idUsuario']);
             $idEstadoLab = intval($_POST['txtEstado']);
 
-            $request = $this->model->insertAspirante(
-                $strDescription,
-                $idUsuario,
-                $idEstadoLab
-            );
+            $Object = new DateTime();
+            $Object->setTimezone(new DateTimeZone('America/Bogota'));
+            $created_at = $Object->format("Y-m-d h:i:s");
+            $update_at = $Object->format("Y-m-d h:i:s");
 
-            if ($request > 0 && is_numeric($request)) {
-                //creamos unas variables con los datos del nuevo aspirante
-                $ultimoAspiranteInsertado = $this->model->selectOneAspirante(intval($request));
-                $_SESSION['data-aspirante'] = $ultimoAspiranteInsertado;
-                $arrResponse = ['status' => true, 'msg' => 'Aspirante registrado correctamente :)', 'value' => $_SESSION['data-aspirante']];
+            if ($idAspirante === 0) {
+                $option = 1;
+                $request = $this->model->insertAspirante(
+                    $strDescription,
+                    $idUsuario,
+                    $idEstadoLab,
+                    $created_at,
+                    $update_at
+                );
+            } else {
+                $option = 2;
+                $request = $this->model->updateAspirante(
+                    $idAspirante,
+                    $strDescription,
+                    $idEstadoLab,
+                    $update_at
+                );
+            }
+
+            if (intval($request) > 0) {
+                if ($option === 1) {
+                    //creamos unas variables con los datos del nuevo aspirante
+                    $ultimoAspiranteInsertado = $this->model->selectOneAspirante(intval($request));
+                    $_SESSION['data-aspirante'] = $ultimoAspiranteInsertado;
+                    $arrResponse = ['status' => true, 'msg' => 'Aspirante registrado correctamente :)', 'value' => $_SESSION['data-aspirante']];
+                } else {
+                    //creamos unas variables con los datos del nuevo aspirante
+                    $ultimoAspiranteInsertado = $this->model->selectOneAspirante($_SESSION['data-aspirante']["idAspirante"]);
+                    $_SESSION['data-aspirante'] = $ultimoAspiranteInsertado;
+                    $arrResponse = ['status' => true, 'msg' => 'Aspirante modificado correctamente :)', 'value' => $_SESSION['data-aspirante']];
+                }
             } else {
                 $arrResponse = ['status' => false, 'msg' => 'No es posible almacenar los datos :('];
             }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
 
+    public function getOneDataAspirante()
+    {
+        $idAspirante = explode('/', $_GET['url']);
+        $idAspirante = $idAspirante[2];
+        if ($idAspirante > 0) {
+            $request = $this->model->selectOneAspirante($idAspirante);
+            if (!empty($request)) {
+                $arrResponse = ['status' => true, 'data' => $request];
+            } else {
+                $arrResponse = ['status' => false, 'data' => 'no'];
+            }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();
@@ -133,7 +260,7 @@ class Aspirante extends Controllers
         }
         die();
     }
-    
+
     //método que retorna el arreglo con los perfiles
     public function getArregloPerfiles()
     {
@@ -144,7 +271,7 @@ class Aspirante extends Controllers
         $arrResponse = ['status' => true, 'data' => $request];
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
-    
+
     // método para traer todas los perfiles
     public function getAllPerfiles()
     {
