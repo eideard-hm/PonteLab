@@ -1,4 +1,12 @@
 /**
+ * Declaración de variables globales
+ */
+const checkOtroPuestoInteres = document.querySelector('#grupo-puesto-otro_puesto');
+const checkOtroIdioma = document.querySelector('#grupo-puesto-otro_idioma');
+export const inputOtroPuestoInteres = document.getElementById('grupo-otro_puesto_interes');
+const checkOtraHabilidad = document.querySelector('#grupo-puesto-otra_habilidad');
+
+/**
  * Función para ejecutar una alerta de sweet alert
  * @param {string} titulo Titulo que va a tener la alerta
  * @param {string} cuerpo Mensaje que va a contener la alerta
@@ -39,6 +47,79 @@ const changeNameBtn = (formulario) => {
  */
 const formDataElement = (form) => {
     return new FormData(form);
+}
+
+/**
+ * Función para 
+ */
+const mostrarInputOtroPuestoInteres = () => {
+    if (checkOtroPuestoInteres.checked) {
+        inputOtroPuestoInteres.style.display = 'block';
+        document.querySelector('#boton_add_puesto').style.display = 'block';
+        document.querySelector('#btn-puesto-interes').style.display = 'none';
+    } else {
+        inputOtroPuestoInteres.style.display = 'none';
+        document.querySelector('#boton_add_puesto').style.display = 'none';
+        document.querySelector('#btn-puesto-interes').style.display = 'block';
+    }
+}
+
+/**
+ * Función
+ */
+const mostrarInputOtroIdioma = () => {
+    if (checkOtroIdioma.checked) {
+        document.getElementById('grupo-idioma-otro_idioma').style.display = 'block';
+        document.getElementById('txtIdioma').style.display = 'block';
+
+        document.getElementById('grupo-idioma-idioma').style.display = 'none';
+        document.getElementById('txtListIdioma').style.display = 'none';
+
+        document.getElementById('boton_add_idioma').style.display = 'block';
+        document.getElementById('agregar_idioma').style.display = 'none';
+    } else {
+        document.getElementById('grupo-idioma-otro_idioma').style.display = 'none';
+        document.getElementById('txtIdioma').style.display = 'none';
+
+        document.getElementById('grupo-idioma-idioma').style.display = 'block';
+        document.getElementById('txtListIdioma').style.display = 'block';
+
+        document.getElementById('boton_add_idioma').style.display = 'none';
+        document.getElementById('agregar_idioma').style.display = 'block';
+
+        document.getElementById(`grupo-idioma`).classList.remove('incorrecto');
+        //quitar la leyenda
+        document.querySelector('#grupo-idioma .leyenda-input').classList.remove('active');
+    }
+}
+
+/**
+ * Función
+ */
+const mostrarInputOtraHabilidad = () => {
+    if (checkOtraHabilidad.checked) {
+        document.getElementById('grupo-idioma-otra_habilidad').style.display = 'block';
+        document.getElementById('txtHabilidad').style.display = 'block';
+
+        document.getElementById('grupo-idioma-habilidad').style.display = 'none';
+        document.getElementById('txtListHabilidad').style.display = 'none';
+
+        document.getElementById('boton_add_habilidad').style.display = 'block';
+        document.getElementById('agregar_habilidad').style.display = 'none';
+    } else {
+        document.getElementById('grupo-idioma-otra_habilidad').style.display = 'none';
+        document.getElementById('txtHabilidad').style.display = 'none';
+
+        document.getElementById('grupo-idioma-habilidad').style.display = 'block';
+        document.getElementById('txtListHabilidad').style.display = 'block';
+
+        document.getElementById('boton_add_habilidad').style.display = 'none';
+        document.getElementById('agregar_habilidad').style.display = 'block';
+
+        document.getElementById(`grupo-habilidad`).classList.remove('incorrecto');
+        //quitar la leyenda
+        document.querySelector('#grupo-habilidad .leyenda-input').classList.remove('active');
+    }
 }
 
 /**
@@ -129,12 +210,6 @@ const validarCampo = (expresion, input, campo) => {
 }
 
 inputsPuestoInteres.forEach(input => {
-    // console.log(input);
-    //por cada input recorrio vamos a agregar un evento
-    /*
-    *Evento 'keyup', se ejecuta cada vez que el usuario oprime un tecla y la suelta
-    *Evento 'blur', se ejecuta cada vez que se da click fuera del input
-    */
     input.addEventListener('keyup', validarFormulario);
     input.addEventListener('blur', validarFormulario);
 });
@@ -164,5 +239,8 @@ export {
     lockIconRegister,
     changeNameBtn,
     formDataElement,
+    mostrarInputOtroPuestoInteres,
+    mostrarInputOtroIdioma,
+    mostrarInputOtraHabilidad,
     campos
 }

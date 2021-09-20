@@ -100,7 +100,22 @@ Font
   --iq-dark-title-text: #8c91b6;
   --iq-border-dark: #252e4b;
 
+  --azulMuyOscuro: #060d2f;
+  --azulOscuro: #1e1e62;
+  --azulMasClaro: #546ccf;
+  --azulClaro: #97bbfe;
+  --azulMuyClaro: #daeefe;
+  --colorIconosFuente: #c8c8c8;
+  --hueso: #ebeaef;
+  --cm: #97bbfe;
+  --medium: #546ccf;
+  --bdarck: #1e1e62;
+  --negro: #000;
+  --blanco: #fff;
   --error: #d32f2f;
+  --exito: #1ed12d;
+  --border: #303f9f;
+  --background: #f2f2f2;
 }
 
 /*--------------------------------------------------------------------
@@ -360,29 +375,6 @@ ul.list {
 
 .icon-btn {
   margin-left: 10px;
-}
-
-.contenedor-formulario
-  .wrap
-  .form
-  .pagina
-  .contenedor-form
-  .contenedor-grupo
-  .leyenda-input {
-  font-size: 12px;
-  display: none;
-  font-weight: 700;
-  color: var(--error);
-}
-
-.contenedor-formulario
-  .wrap
-  .form
-  .pagina
-  .contenedor-form
-  .contenedor-grupo
-  .leyenda-input.active {
-  display: block;
 }
 
 /*----------------------------------------------
@@ -6433,4 +6425,250 @@ section#job-page .related-jobs .owl-dots .owl-dot span {
 
 section#job-page .related-jobs .owl-dots .owl-dot.active span {
   background: #29b2fe;
+}
+
+/*---------------------------------------------------------------------
+                    Estilos personalizados
+----------------------------------------------------------------------*/
+
+/*--------------------- CÓDIGO DE LA LISTA SECTORES ---------------------------*/
+
+.list_sectores {
+  border-radius: 3px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.list_sectores li {
+  height: 55px;
+  list-style: none;
+  background-color: #97bbfe;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.list_sectores li.active {
+  background: #1e1e62;
+  color: #fff;
+  font-weight: 500;
+}
+
+.contenedor-form .contenedor-grupo#grupo-otro_puesto_interes {
+  display: none;
+  transition: 500ms display linear;
+}
+
+/*=============== LISTA DE IDIOMAS ASPIRANTE Y HABILIDADES ==========*/
+
+.contenedor-form .contenedor-grupo#select-idiomas,
+.contenedor-form .contenedor-grupo#select-habilidad {
+  border-radius: 5px;
+}
+
+.contenedor-form .contenedor-grupo#select-idiomas ul,
+.contenedor-form .contenedor-grupo#select-habilidad ul {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.contenedor-form .contenedor-grupo#select-idiomas ul li,
+.contenedor-form .contenedor-grupo#select-habilidad ul li {
+  list-style: none;
+  background-color: #97bbfe;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 3px;
+  text-align: center;
+}
+
+.contenedor-form
+  .contenedor-grupo#grupo-idioma
+  .agrupar-estrellas
+  #txtListIdioma
+  option.active {
+  background-color: #97bbfe;
+}
+
+.contenedor-form .contenedor-grupo#grupo-idioma,
+.contenedor-form .contenedor-grupo#grupo-habilidad {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contenedor-form .contenedor-grupo#grupo-idioma .agrupar-estrellas,
+.contenedor-form .contenedor-grupo#grupo-habilidad .agrupar-estrellas {
+  width: 50%;
+}
+
+.contenedor-form .contenedor-grupo#grupo-idioma .estrellas,
+.contenedor-form .contenedor-grupo#grupo-habilidad .estrellas {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion,
+.contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .puntuacion {
+  color: var(--negro);
+  font-size: 20px;
+}
+
+.contenedor-form .contenedor-grupo#grupo-idioma .estrellas .puntuacion.active,
+.contenedor-form
+  .contenedor-grupo#grupo-habilidad
+  .estrellas
+  .puntuacion.active {
+  color: orange;
+}
+
+.contenedor-form .contenedor-grupo#grupo-idioma .estrellas .input-radio,
+.contenedor-form .contenedor-grupo#grupo-habilidad .estrellas .input-radio {
+  display: none;
+}
+
+.contenedor-form .contenedor-grupo .estado-input {
+  position: absolute;
+  top: 86px;
+  right: 25px;
+  line-height: 35px;
+  font-size: 16px;
+  opacity: 0;
+}
+
+.contenedor-form .contenedor-grupo label {
+  cursor: pointer;
+}
+
+.contenedor-form .contenedor-grupo .leyenda-input {
+  font-size: 12px;
+  display: none;
+  font-weight: 700;
+  color: var(--error);
+}
+
+.contenedor-form .contenedor-grupo .leyenda-input.active {
+  display: block;
+}
+
+.contenedor-form .add-puntuacion {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 35px;
+}
+
+.contenedor-form .add-puntuacion .boton_add_puntuacion,
+.contenedor-form .add-puntuacion .boton_add_puesto {
+  background: var(--azulMuyClaro);
+  border: 2px solid var(--azulOscuro);
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  padding: 8px;
+  color: var(--azulMuyOscuro);
+  font-size: 15px;
+  font-weight: 200;
+}
+
+.contenedor-form .add-puntuacion .boton_add_idioma,
+.contenedor-form .add-puntuacion .boton_add_puesto,
+.contenedor-form .add-puntuacion .boton_add_habilidad {
+  display: none;
+}
+
+.contenedor-form .add-puntuacion .boton_add_puntuacion i,
+.contenedor-form .add-puntuacion .boton_add_puesto i,
+.contenedor-form .add-puntuacion .boton_add_habilidad i {
+  margin-right: 5px;
+}
+
+.contenedor-form .contenedor-grupo .contenedor-grupo__lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #a3a3a3;
+  padding: 8px 30px;
+  border-radius: 5px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.contenedor-form
+  .contenedor-grupo
+  .contenedor-grupo__lista
+  .contenedor-grupo__icono {
+  font-size: 18px;
+  cursor: pointer;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contenedor-form .contenedor-grupo.btn-enviar {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.contenedor-form .contenedor-grupo.btn-enviar .btns {
+  width: 35%;
+  height: 35px;
+  line-height: 35px;
+  border: none;
+  outline: none;
+  background-color: var(--azulMasClaro);
+  font-weight: 900;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
+  color: var(--blanco);
+  margin-bottom: 8px;
+  border-radius: 5px;
+  transition: 0.1s ease box-shadow;
+}
+
+.contenedor-form .contenedor-grupo.btn-enviar .btns:hover,
+.contenedor-form .add-puntuacion .boton_add_puntuacion:hover {
+  box-shadow: 3px 0px 30px #a3a3a3;
+}
+
+.contenedor-form .contenedor-grupo.btn-enviar .btns .icon-btn-atras {
+  margin-right: 20px;
+  color: var(--blanco);
+}
+
+.contenedor-form .contenedor-grupo.btn-enviar .btns .icon-btn {
+  margin-left: 20px;
+  color: var(--blanco);
+}
+
+.contenedor-form .contenedor-grupo.correcto .estado-input {
+  color: var(--exito);
+  opacity: 1;
+}
+
+.contenedor-form .contenedor-grupo.incorrecto label {
+  color: var(--error);
+}
+
+.contenedor-form .contenedor-grupo.incorrecto input {
+  border: 1px solid var(--error);
+}
+
+.contenedor-form .contenedor-grupo.incorrecto .estado-input {
+  color: var(--error);
+  opacity: 1;
 }

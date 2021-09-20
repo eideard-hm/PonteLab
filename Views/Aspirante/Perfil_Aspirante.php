@@ -169,19 +169,11 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title">Puesto de interés</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0">
-                                                        <i class="las la-plus" data-toggle="modal" data-target="#puesto-interes"></i>
+                                                    <a class="btn" role="button" tabindex="0" id="data-idPuestoInteres">
+                                                        <i class="las la-plus" data-toggle="modal" data-target="#puesto-interes" data-idPuestoInteres=""></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body">
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <div class="col-11">
-                                                            Desarrollador react
-                                                        </div>
-                                                        <a class="btn col-1 text-right" role="button">
-                                                            <i class="las la-pen" data-toggle="modal" data-target="#puesto-interes"></i>
-                                                        </a>
-                                                    </div>
+                                                <div class="iq-card-body" id="puesto-interes-aspirante">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="puesto-interes" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -195,13 +187,13 @@
                                                                 <form action="#" id="perfil-laboral" class="contenedor-form">
                                                                     <input type="hidden" name="idAspirante" value="<?= isset($_SESSION['data-aspirante']['idAspirante']) ? $_SESSION['data-aspirante']['idAspirante'] : 0 ?>">
                                                                     
-                                                                    <div class="contenedor-grupo w100" id="grupo-puesto">
+                                                                    <div class="contenedor-grupo form-group" id="grupo-puesto">
                                                                         <input type="hidden" name="txtPuesto" id="txtPuesto" value="">
                                                                         <ul class="list_sectores" id="list_PuestoInteres">
                                                                         </ul>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo" id="grupo-otro_puesto">
+                                                                    <div class="contenedor-grupo form-group" id="grupo-otro_puesto">
                                                                         <input type="checkbox" id="grupo-puesto-otro_puesto" name="grupo-puesto-otro_puesto" />
                                                                         <label for="grupo-puesto-otro_puesto">Otro puesto de interés.</label>
                                                                     </div>
@@ -224,7 +216,7 @@
                                                                     </div>
 
                                                                     <div class="contenedor-grupo btn-enviar">
-                                                                        <button class="btn btn-primary mr-2" id="btn-puesto-interes">
+                                                                        <button class="btn btn-primary mr-2 change-name-btn-PuestoInteres" id="btn-puesto-interes">
                                                                             Guardar<i class="far fa-save icon-btn"></i>
                                                                         </button>
                                                                     </div>

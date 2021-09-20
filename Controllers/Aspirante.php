@@ -127,6 +127,19 @@ class Aspirante extends Controllers
         die();
     }
 
+    //método para traer toda la lista de puestos de interés
+    public function getPuestoInteresAspirante()
+    {
+        $request = $this->model->getOnePuestoInteres(intval($_SESSION['aspirante'][0]['idAspirante']));
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'No se ha encontrado datos.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function setAspirante()
     {
         if ($_POST) {
