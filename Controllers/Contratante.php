@@ -14,6 +14,30 @@ class Contratante extends Controllers
 
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
 
+    /**
+     * Método que sirve para cargar la vista del perfil del aspirante
+     */
+    public function Perfil_Contratante()
+    {
+        if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            $data['titulo_pagina'] = 'Perfil Contratante | PonteLab.';
+            $this->views->getView($this, 'Perfil_Contratante', $data);
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
+            header('Location:' . URL . 'Menu/Menu_Contratante');
+        } else {
+            header('Location: ' . URL . 'Login');
+        }
+    }
+
+    /**
+     * Método para cargar la vista  de editar perfil del aspirante
+     */
+    public function Edit_Perfil_Contratante()
+    {
+        $data['titulo_pagina'] = 'Editar Perfil Contratante | PonteLab.';
+        $this->views->getView($this, 'Edit_Perfil_Contratante', $data);
+    }
+
     public function Contratante()
     {
         $data['titulo_pagina'] = 'Contratante | PonsLabor.';

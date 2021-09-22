@@ -32,16 +32,44 @@
     <div class="wrapper">
         <!-- Menu de navegación -->
         <?php
-        require_once('./Views/Components/Layout.php');
+        require_once('./Views/Components/LayoutC.php');
         ?>
 
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
             <div class="container">
-                <div class="row">
+              <div class="row" id="row" name="row">
+                <!-- card 1 -->
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="card">
+                    <div class="card-header">
+                      Card header Hola
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text mb-1">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- card 2 -->
+                <div class="col-12 col-md-6 col-xl-4 grid-margin grid-margin-md-0">
+                  <div class="card">
+                      <img  src="<?= URL ?>Assets/img/upload.png" class="card-img-top" alt="...">
+                    
+                    <div class="card-body">
+                      <h5 class="card-title">Special title treatment</h5>
+                      <p class="card-text mb-1">With supporting text below as a natural lead-in to additional content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </div>
 
-
-        <!-- Wrapper END -->
+              </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wrapper END -->
     <!-- Footer -->
     <?php
     require_once('./Views/Components/Footer.php');
