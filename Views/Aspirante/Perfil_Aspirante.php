@@ -96,6 +96,11 @@
                             </div>
                         </div>
                     </div>
+                    <pre>
+                        <?php
+                        print_r($_SESSION['aspirante'][0]['idAspirante'])
+                        ?>
+                    </pre>
                     <div class="col-sm-12">
                         <div class="tab-content">
                             <!-- Información personal  -->
@@ -109,12 +114,10 @@
                                                         <h4 class="card-title">Información personal</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0" id="data-idAspirante">
-                                                        <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal" data-idAspirante=""></i>
+                                                        <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body" id="info-descripcion-aspirante">
-                                                    <div class="d-flex align-items-center justify-content-around" id="perfil-laboral-aspirante">
-                                                    </div>
+                                                <div class="iq-card-body" id="perfil-laboral-aspirante">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="informacion-personal" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -169,19 +172,11 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title">Puesto de interés</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0">
+                                                    <a class="btn" role="button" tabindex="0" id="data-idPuestoInteres">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#puesto-interes"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body">
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <div class="col-11">
-                                                            Desarrollador react
-                                                        </div>
-                                                        <a class="btn col-1 text-right" role="button">
-                                                            <i class="las la-pen" data-toggle="modal" data-target="#puesto-interes"></i>
-                                                        </a>
-                                                    </div>
+                                                <div class="iq-card-body" id="puesto-interes-aspirante">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="puesto-interes" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -194,14 +189,14 @@
                                                             <div class="modal-body">
                                                                 <form action="#" id="perfil-laboral" class="contenedor-form">
                                                                     <input type="hidden" name="idAspirante" value="<?= isset($_SESSION['data-aspirante']['idAspirante']) ? $_SESSION['data-aspirante']['idAspirante'] : 0 ?>">
-                                                                    
-                                                                    <div class="contenedor-grupo w100" id="grupo-puesto">
+
+                                                                    <div class="contenedor-grupo form-group" id="grupo-puesto">
                                                                         <input type="hidden" name="txtPuesto" id="txtPuesto" value="">
                                                                         <ul class="list_sectores" id="list_PuestoInteres">
                                                                         </ul>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo" id="grupo-otro_puesto">
+                                                                    <div class="contenedor-grupo form-group" id="grupo-otro_puesto">
                                                                         <input type="checkbox" id="grupo-puesto-otro_puesto" name="grupo-puesto-otro_puesto" />
                                                                         <label for="grupo-puesto-otro_puesto">Otro puesto de interés.</label>
                                                                     </div>
@@ -224,7 +219,7 @@
                                                                     </div>
 
                                                                     <div class="contenedor-grupo btn-enviar">
-                                                                        <button class="btn btn-primary mr-2" id="btn-puesto-interes">
+                                                                        <button class="btn btn-primary mr-2 change-name-btn-PuestoInteres" id="btn-puesto-interes">
                                                                             Guardar<i class="far fa-save icon-btn"></i>
                                                                         </button>
                                                                     </div>
@@ -271,16 +266,15 @@
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="las la-times"></i></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="#" id="idiomas" class="contenedor-form">
+                                                                <form action="#" id="form-idiomas" class="contenedor-form">
                                                                     <input type="hidden" name="idIdioma" id="idIdioma" value="0">
-                                                                    <h2 class="title-form">Idiomas</h2>
-
-                                                                    <div class="contenedor-grupo w50" id="grupo-idioma">
+                                                                    
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-idioma">
                                                                         <div class="agrupar-estrellas" id="agrupar-estrellas-select">
                                                                             <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
-                                                                            <select name="txtListIdioma" id="txtListIdioma"></select>
+                                                                            <select name="txtListIdioma" class="form-control" id="txtListIdioma"></select>
                                                                             <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
-                                                                            <input type="text" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
+                                                                            <input type="text" class="form-control" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
                                                                             <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                                                             <p class="leyenda-input" id="grupo-idioma-leyenda">
                                                                                 El nombre del idioma no debe contener números.
@@ -305,7 +299,7 @@
                                                                         </span>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w100" id="grupo-otro_idioma">
+                                                                    <div class="contenedor-grupo" id="grupo-otro_idioma">
                                                                         <input type="checkbox" id="grupo-puesto-otro_idioma" />
                                                                         <label for="grupo-puesto-otro_idioma">Otro idioma.</label>
                                                                     </div>
@@ -321,19 +315,19 @@
                                                                         </button>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w100" id="lista_idiomas">
+                                                                    <div class="contenedor-grupo" id="lista_idiomas">
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w100" id="select-idiomas">
+                                                                    <div class="contenedor-grupo" id="select-idiomas">
                                                                         <input type="hidden" name="idSelectIdioma" id="idSelectIdioma" value="">
                                                                         <input type="hidden" name="nivelIdioma" id="nivelIdioma" value="">
                                                                         <ul id="select-idiomas-list">
                                                                         </ul>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo btn-enviar">
-                                                                        <button class="btns siguiente sig-p6">
-                                                                            Siguiente<i class="fas fa-chevron-right icon-btn"></i>
+                                                                    <div class="contenedor-grupo">
+                                                                        <button class="btn btn-primary mr-2 change-name-btn-Idiomas" id="btn-idiomas">
+                                                                            Guardar<i class="far fa-save icon-btn"></i>
                                                                         </button>
                                                                     </div>
                                                                 </form>
@@ -379,16 +373,15 @@
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="las la-times"></i></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="#" id="habilidades" class="contenedor-form">
+                                                                <form action="#" id="form-habilidades" class="contenedor-form">
                                                                     <input type="hidden" name="idHabilidad" id="idHabilidad" value="0">
-                                                                    <h2 class="title-form">Habilidades</h2>
 
                                                                     <div class="contenedor-grupo w100" id="grupo-habilidad">
-                                                                        <div class="agrupar-estrellas">
+                                                                        <div class="agrupar-estrellas form-group">
                                                                             <label for="txtListHabilidad" id="grupo-idioma-habilidad">Habilidades</label>
-                                                                            <select name="txtListHabilidad" id="txtListHabilidad"></select>
+                                                                            <select name="txtListHabilidad" class="form-control" id="txtListHabilidad"></select>
                                                                             <label for="txtHabilidad" id="grupo-idioma-otra_habilidad" style="display: none;">Nueva Habilidad</label>
-                                                                            <input type="text" name="txtHabilidad" id="txtHabilidad" placeholder="JavaScript" autofocus style="display: none;" />
+                                                                            <input type="text" class="form-control" name="txtHabilidad" id="txtHabilidad" placeholder="JavaScript" autofocus style="display: none;" />
                                                                             <i class="estado-input fa fa-times-circle" style="display: none"></i>
                                                                             <p class="leyenda-input">
                                                                                 El nombre de la habilidad no debe contener números.
@@ -490,27 +483,27 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form id="estudios" class="contenedor-form">
-                                                                    <div class="contenedor-grupo w50" id="grupo-institucion">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-institucion">
                                                                         <label for="input-institucion">Institución</label>
-                                                                        <input type="text" name="txtInstitucion" id="input-institucion" placeholder="Universidad Nacional de Colombia" />
+                                                                        <input type="text" class="form-control" name="txtInstitucion" id="input-institucion" placeholder="Universidad Nacional de Colombia" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
                                                                         <p class="leyenda-input">
                                                                             El nombre de la institución no puede contener numeros.
                                                                         </p>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-titulo">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-titulo">
                                                                         <label for="input-titulo">Titulo obtenido</label>
-                                                                        <input type="text" name="txtTitulo" id="input-titulo" placeholder="Ingeniero/a de sistemas y computación" />
+                                                                        <input type="text" class="form-control" name="txtTitulo" id="input-titulo" placeholder="Ingeniero/a de sistemas y computación" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
                                                                         <p class="leyenda-input">
                                                                             El nombre del titulo obtenido no puede contener numeros.
                                                                         </p>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-ciudad">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-ciudad">
                                                                         <label for="txtCiudad">Ciudad</label>
-                                                                        <select name="txtCiudad" id="txtCiudad">
+                                                                        <select class="form-control" name="txtCiudad" id="txtCiudad">
                                                                             <option value="0">Bogotá D.C</option>
                                                                             <option value="1">Medellin</option>
                                                                             <option value="2">Cali</option>
@@ -518,9 +511,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-gradoest">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-gradoest">
                                                                         <label for="txtGradoEst">Grado estudio</label>
-                                                                        <select name="txtGradoEst" id="txtGradoEst">
+                                                                        <select class="form-control" name="txtGradoEst" id="txtGradoEst">
                                                                             <option value="" disabled selected>Seleccione su grado de estudio</option>
                                                                             <?php foreach ($data['list_gradoEstudio'] as $grado) : ?>
                                                                                 <option value="<?= $grado['idGrado'] ?>"><?= $grado['nombreGrado'] ?></option>
@@ -528,9 +521,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w100" id="grupo-sector">
+                                                                    <div class="contenedor-grupo w100 form-group" id="grupo-sector">
                                                                         <label for="txtSector">Sector</label>
-                                                                        <select name="txtSector" id="txtSector">
+                                                                        <select class="form-control" name="txtSector" id="txtSector">
                                                                             <option value="" disabled selected>Seleccione su sector</option>
                                                                             <?php foreach ($data['list_sectores'] as $sector) : ?>
                                                                                 <option value="<?= $sector['idSector'] ?>"><?= $sector['nombreSector'] ?></option>
@@ -538,9 +531,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-anioini">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-anioini">
                                                                         <label for="txtAnioIni">Año inicio</label>
-                                                                        <select name="txtAnioIni" id="txtAnioIni">
+                                                                        <select class="form-control" name="txtAnioIni" id="txtAnioIni">
                                                                             <option value="" disabled selected>Seleccione el año de inicio de los estudios</option>
                                                                             <option value="1954">1954</option>
                                                                             <option value="1955">1955</option>
@@ -613,9 +606,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-mesini">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-mesini">
                                                                         <label for="txtMesIni">Mes inicio</label>
-                                                                        <select name="txtMesIni" id="txtMesIni">
+                                                                        <select class="form-control" name="txtMesIni" id="txtMesIni">
                                                                             <option value="" disabled selected>Seleccione el mes de inicio de los estudios</option>
                                                                             <option value="01">Enero</option>
                                                                             <option value="02">Febrero</option>
@@ -632,9 +625,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-aniofin">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-aniofin">
                                                                         <label for="txtAnioFin">Año finalización</label>
-                                                                        <select name="txtAnioFin" id="txtAnioFin">
+                                                                        <select class="form-control" name="txtAnioFin" id="txtAnioFin">
                                                                             <option value="" disabled selected>Seleccione el año de fin de los estudios</option>
                                                                             <option value="1954">1954</option>
                                                                             <option value="1955">1955</option>
@@ -707,9 +700,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-mesfin">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-mesfin">
                                                                         <label for="txtMesFin">Mes finalización</label>
-                                                                        <select name="txtMesFin" id="txtMesFin">
+                                                                        <select class="form-control" name="txtMesFin" id="txtMesFin">
                                                                             <option value="" disabled selected>Seleccione el mes de finalización de los estudios</option>
                                                                             <option value="01">Enero</option>
                                                                             <option value="02">Febrero</option>
@@ -750,7 +743,7 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title">Experiencia laboral</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0">
+                                                    <a class="btn" role="button" tabindex="0" id="data-idExperiencia">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#experiencia-laboral"></i>
                                                     </a>
                                                 </div>
@@ -770,7 +763,7 @@
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="experiencia-laboral" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
-                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-dialog modal-dialog-scrollable" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="post-modalLabel">Experiencia laboral</h5>
@@ -778,9 +771,9 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="#" id="experiencia-laboral" class="contenedor-form">
-                                                                    <div class="contenedor-grupo w50" id="grupo-empresa">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
                                                                         <label for="txtEmpresa">Empresa laboró</label>
-                                                                        <input type="text" name="txtEmpresa" id="txtEmpresa" autofocus placeholder="Microsoft" />
+                                                                        <input class="form-control" type="text" name="txtEmpresa" id="txtEmpresa" autofocus placeholder="Microsoft" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
                                                                         <p class="leyenda-input">
                                                                             El nombre de la empresa en la cual laboró no debe contener
@@ -788,9 +781,9 @@
                                                                         </p>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-sectorex">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-sectorex">
                                                                         <label for="txtSectorExp">Sector laboró</label>
-                                                                        <select name="txtSectorExp" id="txtSectorExp">
+                                                                        <select class="form-control" name="txtSectorExp" id="txtSectorExp">
                                                                             <option value="" disabled selected>Seleccione su sector</option>
                                                                             <?php foreach ($data['list_sectores'] as $sector) : ?>
                                                                                 <option value="<?= $sector['idSector'] ?>"><?= $sector['nombreSector'] ?></option>
@@ -798,9 +791,9 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-ciudadlab">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-ciudadlab">
                                                                         <label for="txtCiudadLab">Ciudad</label>
-                                                                        <select name="txtCiudadLab" id="txtCiudadLab">
+                                                                        <select class="form-control" name="txtCiudadLab" id="txtCiudadLab">
                                                                             <option value="0">Bogotá D.C</option>
                                                                             <option value="1">Medellin</option>
                                                                             <option value="2">Cali</option>
@@ -808,19 +801,19 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-tipoexp">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-tipoexp">
                                                                         <label for="txtTipoExp">Tipo experiencia</label>
-                                                                        <select name="txtTipoExp" id="txtTipoExp">
-                                                                            <option value="" disabled selected>Seleccione si tipo de experiencia</option>
+                                                                        <select class="form-control" name="txtTipoExp" id="txtTipoExp">
+                                                                            <option value="" disabled selected>---- Seleccione un tipo de experiencia ----</option>
                                                                             <?php foreach ($data['list_tipoExperiencia'] as $tipoExperiencia) : ?>
                                                                                 <option value="<?= $tipoExperiencia['idTipoExperiencia'] ?>"><?= $tipoExperiencia['nombreTipoExperiencia'] ?></option>
                                                                             <?php endforeach ?>
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w100" id="grupo-puesto">
+                                                                    <div class="contenedor-grupo w100 form-group" id="grupo-puesto">
                                                                         <label for="txtPuesto">Puesto desempeñado</label>
-                                                                        <input type="text" name="txtPuesto" id="txtPuesto" placeholder="Desarollador de software frontend" />
+                                                                        <input class="form-control" type="text" name="txtPuesto" id="txtPuesto" placeholder="Desarollador de software frontend" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
                                                                         <p class="leyenda-input">
                                                                             El nombre del puesto que desempeño no debe contener números, guines, carácteres
@@ -828,10 +821,10 @@
                                                                         </p>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-anioiniexp">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-anioiniexp">
                                                                         <label for="txtAnioIniExp">Año inicio</label>
-                                                                        <select name="txtAnioIniExp" id="txtAnioIniExp">
-                                                                            <option value="" disabled selected>Seleccione el año inicio comenzo a laborar</option>
+                                                                        <select class="form-control" name="txtAnioIniExp" id="txtAnioIniExp">
+                                                                            <option value="" disabled selected>---- Seleccione el año inicio comenzo a laborar ----</option>
                                                                             <option value="1954">1954</option>
                                                                             <option value="1955">1955</option>
                                                                             <option value="1956">1956</option>
@@ -903,10 +896,10 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-mesiniExp">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-mesiniExp">
                                                                         <label for="txtMesIniExp">Mes inicio</label>
-                                                                        <select name="txtMesIniExp" id="txtMesIniExp">
-                                                                            <option value="" disabled selected>Seleccione el mes en que inicio a laborar</option>
+                                                                        <select class="form-control" name="txtMesIniExp" id="txtMesIniExp">
+                                                                            <option value="" disabled selected>---- Seleccione el mes en que inicio a laborar ----</option>
                                                                             <option value="01">Enero</option>
                                                                             <option value="02">Febrero</option>
                                                                             <option value="03">Marzo</option>
@@ -922,10 +915,10 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-aniofinexp">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-aniofinexp">
                                                                         <label for="txtAnioFinExp">Año finalización</label>
-                                                                        <select name="txtAnioFinExp" id="txtAnioFinExp">
-                                                                            <option value="" disabled selected>Seleccione el año finalización laboral</option>
+                                                                        <select class="form-control" name="txtAnioFinExp" id="txtAnioFinExp">
+                                                                            <option value="" disabled selected>---- Seleccione el año finalización laboral ----</option>
                                                                             <option value="1954">1954</option>
                                                                             <option value="1955">1955</option>
                                                                             <option value="1956">1956</option>
@@ -997,10 +990,10 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w50" id="grupo-mesfinexp">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-mesfinexp">
                                                                         <label for="txtMesFinExp">Mes finalización</label>
-                                                                        <select name="txtMesFinExp" id="txtMesFinExp">
-                                                                            <option value="" disabled selected>Seleccione el mes de finalización laboral</option>
+                                                                        <select class="form-control" name="txtMesFinExp" id="txtMesFinExp">
+                                                                            <option value="" disabled selected>---- Seleccione el mes de finalización laboral ----</option>
                                                                             <option value="01">Enero</option>
                                                                             <option value="02">Febrero</option>
                                                                             <option value="03">Marzo</option>
@@ -1016,10 +1009,8 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="contenedor-grupo w100" id="grupo-funcion">
+                                                                    <div class="contenedor-grupo w100 form-group" id="grupo-funcion">
                                                                         <label for="txtFuncion">Funciones</label>
-                                                                        <br>
-                                                                        <br>
                                                                         <textarea name="textFunciones" id="funciones" rows="1" placeholder="Funciones que desempeño..."></textarea>
                                                                     </div>
 

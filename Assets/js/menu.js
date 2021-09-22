@@ -14,7 +14,7 @@ let arregloSugerenciasVacantes = [];
 const switchBtn = document.getElementById('filtro');
 
 document.addEventListener('DOMContentLoaded', () => {
-    routesAspirante();
+    getDataAspirante();
 })
 
 /*=========================== BUSCADOR =========================*/
@@ -238,44 +238,6 @@ const getVacantesSector = async () => {
     }
 }
 
-const getAllVacantes = async () => {
-    const url = `${base_url}Vacante/getAllVacantes`;
-    try {
-        const req = await fetch(url);
-        const { status, data } = await req.json();
-
-        contenedorCardsVacantes.innerHTML = '';
-
-        if (status) {
-            data.forEach(vacante => {
-                contenedorCardsVacantes.innerHTML += `
-                    <div class="card">
-                        <div class="circle">
-                            <h2>${vacante['nombreVacante']}</h2>
-                        </div>
-                        <div class="card-content">
-                            <p>
-                                <br>
-                                BOGOTA D.C. - BOGOTA
-                                <br>
-                                Vacantes: ${vacante['cantidadVacante']}
-                                <br>
-                                Fecha de creación: ${vacante['fechaHoraPublicacion']}
-                                <br>
-                                Fecha de cierre: ${vacante['fechaHoraCierre']}
-                                <br>
-                            </p>
-                            <a type="">Ver | Aplicar</a>
-                        </div>
-                    </div>
-                    `
-            });
-        }
-    } catch (error) {
-        swal("Error", error, "error");
-    }
-}
-
 /*
 - Esta función sirve para cargar la variable de sesión que contiene los datos o la información
   del o de los sectores que el usuario selecciono para de esa forma poder hacerle recomendaciones
@@ -330,24 +292,12 @@ if (switchBtn) {
     }
 }
 
-/*
-- Función que sirve para habilitar o inhabilitar las opciones de experiencia,
-  estudios y hoja de vida en caso de que aun no se haya registrado nigun aspirante.
-*/
-
-const routesAspirante = async () => {
-    const url = `${base_url}Aspirante/routesAspirante`;
+const getDataAspirante = async () => {
+    const url = `${base_url}Aspirante/getDataAspirante`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
-        if (!status && data === 'no') {
-            if (document.querySelector('.enlaces-aspirante')) {
-                document.querySelectorAll('.nav .enlaces-aspirante').forEach(enlace => enlace.href = '#')
-                contenedorBarraBusqueda.style.display = 'none';
-            }
-        } else {
-            contenedorBarraBusqueda.style.display = 'block';
-        }
+        console.log(status, data)
     } catch (error) {
         swal("Error", error, "error");
     }

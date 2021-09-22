@@ -550,6 +550,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script src="<?= URL ?>Assets/js/menu.js" defer></script>
 </body>
 
 </html>
