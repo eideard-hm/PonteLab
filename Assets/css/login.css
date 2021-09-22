@@ -17,56 +17,6 @@ body {
   font-family: var(--fuenteRoboto);
 }
 
-/* .menu_header .barra .navbar_menu {
-  display: flex;
-  align-items: center;
-}
-
-.menu_header .barra .navbar_menu a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 300;
-  margin-right: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.menu_header .barra .navbar_menu .dark-mode {
-  margin-right: 12px;
-}
-
-.menu_header .barra .navbar_menu a.btn-init {
-  width: 111px;
-  text-align: center;
-  padding: 8px;
-  font-size: 15px;
-  font-weight: 700;
-  border-radius: 5px;
-}
-
-.menu_header .barra .navbar_menu a.btn-init.iniciar {
-  background-color: #fff;
-  color: #000;
-}
-
-.menu_header .barra .navbar_menu a.btn-init.registro {
-  background-color: #000;
-  color: #fff;
-}
-
-.menu_header .barra .navbar_menu a:last-of-type {
-  margin: 0;
-}
-
-.menu_header .barra .navbar_menu a i {
-  width: 100%;
-  margin-bottom: 5px;
-} */
-
 /*formulario*/
 
 #home{
@@ -80,7 +30,7 @@ body {
   color: #999999;
   font-size: 16px;
   font-weight: 500;  
-  margin: 1em 3em 0em 0em;
+  margin: 2.5em 3em 0em 0em;
   height: 40px;
   width: 40px;
   float: right;
@@ -157,7 +107,6 @@ body {
   left: 0;
   bottom: -40%;
   z-index: -1;
-  /* transform: rotate(-90deg); */
 }
 
 .pontelab{
@@ -174,52 +123,6 @@ body {
   outline: none;
   box-shadow: 3px 0px 38px rgba(163, 163, 163, 1);
 }
-
-/* .formulario__input-error {
-  font-style: 12px;
-  margin-bottom: 0;
-  display: none;
-}
-
-.formulario__input-error-activo {
-  display: block;
-}
-
-.formulario_validacion {
-  position: absolute;
-  right: 15px;
-  bottom: 45px;
-  z-index: 100;
-  font-size: 16px;
-  opacity: 0;
-}
-
-.formulario__mensaje {
-  height: 45px;
-  line-height: 20px;
-  background: #F66060;
-  padding: 0 15px;
-  border-radius: 3px;
-  display: none;
-}
-
-.formulario__mensaje-activo {
-  display: block;
-}
-
-.formulario_validacion-correcto {
-  color: #1ed12d;
-  opacity: 1;
-}
-
-.formulario_validacion-incorrecto {
-  color: #bb2929;
-  opacity: 1;
-}
-
-.controls-incorrecto {
-  border: 3px solid #bb2929;
-} */
 
 /*=================================visibility===================================*/
 
@@ -312,8 +215,6 @@ p .a2 {
   color: #000000;
   position: relative;
   top: 50px;
-
-
 }
 
 .banner h1 {
@@ -338,7 +239,6 @@ p .a2 {
   position: relative;
   border-radius: 5px;
   font-family: var(--fuenteRoboto);
-
 }
 
 /*====================================REPONSIEVE LOGIN===========================*/
@@ -363,8 +263,6 @@ p .a2 {
     width: 400px;
     height: 450px;
     left: -130PX;
-    /* width:;
-    height: ; */
   }
 
   #spanMostrar {
@@ -376,8 +274,6 @@ p .a2 {
   .job {
     display: none;
   }
-
-
 }
 
 @media screen and (max-width: 990px) {
@@ -390,7 +286,6 @@ p .a2 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-
   }
 
   .from-logi {
@@ -400,8 +295,6 @@ p .a2 {
     width: 400px;
     height: 450px;
     left: -130PX;
-    /* width:;
-    height: ; */
   }
 
   #spanMostrar {
@@ -413,8 +306,6 @@ p .a2 {
   .job {
     display: none;
   }
-
-
 }
 
 
@@ -455,7 +346,6 @@ p .a2 {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-
   }
 
   .from-logi {
@@ -466,7 +356,6 @@ p .a2 {
     width: 400px;
     height: 450px;
     left: -140PX;
-
   }
 
   .from-logi {
@@ -479,7 +368,6 @@ p .a2 {
   #spanMostrar {
     top: 230px;
     position: absolute;
-
   }
 
   .job {
@@ -489,12 +377,10 @@ p .a2 {
   .wave {
     display: none;
   }
-
-
 }
 
 @media screen and (max-width: 1071px) {
-
+  
   .header {
     background-color: #ffffff;
   }
@@ -503,7 +389,6 @@ p .a2 {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-
   }
 
   .from-logi {
@@ -513,17 +398,22 @@ p .a2 {
     width: 400px;
     height: 450px;
     left: -120PX;
-
   }
 
   #spanMostrar {
-    top: 230px;
+    top: 278px;
     position: absolute;
-
   }
 
-
-
+  .boton_3 {
+    border: 3px solid white;
+  }
+  .job {
+    width: 310px;
+    height: 340px;
+    left: 6%;
+    top: 10em;
+  }
 }
 
 @media screen and (max-width: 620px) {
@@ -538,22 +428,22 @@ p .a2 {
 
   }
 
+  .home{
+    display: none;
+
+  }
   .from-logi {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 300px;
     height: 450px;
-    left: -135PX;
-
   }
-
-  .from-logi {
-    border-style: inset;
-    border-width: 2px;
-    border-color: rgb(38, 78, 93);
+  .form-login{
+    border: none;
+    
   }
-
   .controls {
     font-family: var(--fuenteRoboto);
     width: 100%;
@@ -574,7 +464,6 @@ p .a2 {
   #spanMostrar {
     top: 227px;
     position: absolute;
-
   }
 
   .job {
@@ -585,34 +474,3 @@ p .a2 {
     display: none;
   }
 }
-
-/* background-color: yellowgreen;
-width: 300px;
-;
-height: 350px;
-;
-}
-} */
-
-/*
-@media screen and (max-width: 515px) {
-  .from-logi .header {
-    align-items: center;
-  }
-}
-
-@media screen and (max-width: 415px) {
-  .from-logi .header {
-    align-items: center;
-  }
-}
-
-
-@media screen and (max-width: 350px) {
-  .from-logi .header {
-    align-items: center;
-    width: 80%;
-  }
-
-
-} */
