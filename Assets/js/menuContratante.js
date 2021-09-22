@@ -11,11 +11,6 @@ let contenedorCardsPerfiles = document.getElementById('contenedor card');
 let arrNombrePerfiles = new Set();
 let arregloSugerenciasPerfiles = [];
 
-// const switchBtn = document.getElementById('filtro');
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     routesAspirante();
-// })
 
 /*=========================== BUSCADOR PERFIL =========================*/
 if (contenedorBarraBusqueda) {

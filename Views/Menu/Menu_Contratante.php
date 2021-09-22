@@ -8,10 +8,8 @@
   <title><?= $data['titulo_pagina'] ?></title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
-  
-  <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
- 
+  <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" /> -->
   <!-- CSS -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
@@ -23,7 +21,7 @@
 
 </head>
 
-<body class="right-column-fixed">
+<body class="right-column-fixed" id="menu">
     <!-- loader Start -->
     <div id="loading">
         <div id="loading-center">
@@ -38,6 +36,9 @@
         ?>
 
         <!-- Page Content  -->
+        <div id="content-page" class="content-page">
+            <div class="container">
+                <div class="row">
 
 
         <!-- Wrapper END -->
@@ -50,9 +51,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-
-    <!--  -->
-
+    <script src="<?= URL ?>Assets/js/menuContratante.js"></script>
     </body>
 </html>
 <!-- 
@@ -71,8 +70,7 @@
 
 
   <div class="contenedor card" id="contenedor card" name="contenedor card">
-
-    <!-- <div class="contenedor-card">
+  <div class="contenedor-card">
       <div class="contenedor-card__header contenedor-card__padding">
         <div class="header-img">
           <img src="<?= URL ?>Assets/img/upload.png" alt="Uplopad">
@@ -102,4 +100,4 @@
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
-  <script src="<?= URL ?>Assets/js/menuContratante.js"></script> --> -->
+  <script src="<?= URL ?>Assets/js/menuContratante.js"></script> -->
