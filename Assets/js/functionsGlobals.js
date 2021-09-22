@@ -50,7 +50,7 @@ const formDataElement = (form) => {
 }
 
 /**
- * Función para 
+ * Función que sirve para mostrar u ocultar el input para agregar un nuevo puesto interés 
  */
 const mostrarInputOtroPuestoInteres = () => {
     if (checkOtroPuestoInteres.checked) {
@@ -65,7 +65,7 @@ const mostrarInputOtroPuestoInteres = () => {
 }
 
 /**
- * Función
+ * Función que sirve para mostrar u ocultar el input para agregar un nuevo idioma
  */
 const mostrarInputOtroIdioma = () => {
     if (checkOtroIdioma.checked) {
@@ -94,7 +94,7 @@ const mostrarInputOtroIdioma = () => {
 }
 
 /**
- * Función
+ * Función que sirve para mostrar u ocultar el input para agregar nueva habilidad
  */
 const mostrarInputOtraHabilidad = () => {
     if (checkOtraHabilidad.checked) {
@@ -121,6 +121,60 @@ const mostrarInputOtraHabilidad = () => {
         document.querySelector('#grupo-habilidad .leyenda-input').classList.remove('active');
     }
 }
+
+/**
+ * Función que sirve para implementar el sistema de puntuación mediante estrellas
+ * 
+ * @param {Number} puntuacion Valor de la puntuación que proviene desde la vista
+ * @param {String} campo Sirve para identificar a que campo se le va a aplicar el efecto de la puntuación
+ */
+const puntuacionEstrellas = (puntuacion, campo) => {
+    for (let i = 1; i <= 5; i++) {
+        if (i <= puntuacion) {
+            document.getElementById(`${i}${campo}`).classList.add('active');
+        } else {
+            document.getElementById(`${i}${campo}`).classList.remove('active');
+        }
+    }
+}
+
+const estrellas = document.querySelectorAll('.estrellas .puntuacion');
+
+estrellas.forEach(elemento => {
+    elemento.addEventListener('click', e => {
+        if (e.target.classList.contains('idioma')) {
+            puntuacionEstrellas(e.target.id[0], 'idioma');
+        } else if (e.target.classList.contains('habilidad')) {
+            puntuacionEstrellas(e.target.id[0], 'habi');
+        }
+    })
+})
+
+/**
+ * Función que sirve para inicializar el editor de texto dentro del sitio
+ * 
+ * @param {string} selector Elemento al cual se le va a aplicar o inializar el editor 
+ */
+const initTextEditorTinymce = (selector) => {
+    if (document.querySelector(`#${selector}`)) {
+        tinymce.init({
+            selector: `#${selector}`,
+            language: 'es',
+            encoding: 'UTF-8',
+            entity_encoding: 'raw',
+            width: "100%",
+            height: 300,
+            statubar: true,
+            plugins: [
+                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                "save table contextmenu directionality emoticons template paste textcolor"
+            ],
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+        });
+    }
+}
+
 
 /**
  * Función para validar los campos de los formularios
@@ -242,5 +296,6 @@ export {
     mostrarInputOtroPuestoInteres,
     mostrarInputOtroIdioma,
     mostrarInputOtraHabilidad,
+    initTextEditorTinymce,
     campos
 }

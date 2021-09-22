@@ -35,10 +35,17 @@ class Vacante extends Controllers
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 
-    public function DetallesVacante()
+    public function DetallesVacante($id)
     {
-        $data['titulo_pagina'] = 'Detalles vacante | PonteLab.';
-        $this->views->getView($this, 'DetallesVacante', $data);
+        $idVacante = explode('/', $_GET['url']);
+        if (isset($idVacante[2])) {
+            $idVacante = intval($idVacante[2]);
+            if ($idVacante > 0) {
+                $data['detail_vacante'] = $this->model->detailVacante($idVacante);
+                $data['titulo_pagina'] = 'Detalles vacante | PonteLab.';
+                $this->views->getView($this, 'DetallesVacante', $data);
+            }
+        }
     }
 
     //Método controlador para insertar y/o editar vacantes

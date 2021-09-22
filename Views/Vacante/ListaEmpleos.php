@@ -37,147 +37,7 @@
                 <div class="col-md-8 col-sm-12 col-xs-12 job-post-main">
                     <h2 class="capitalize"><i class="las la-briefcase"></i>Últimos trabajos</h2>
                     <!-- Start of Job Post Wrapper -->
-                    <div class="job-post-wrapper mt60">
-                        <!-- Start of Single Job Post 1 -->
-                        <div class="single-job-post row nomargin">
-                            <!-- Job Company -->
-                            <div class="col-md-2 col-xs-3">
-                                <div class="job-company">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">
-                                        <img src="images/companies/envato.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Job Title & Info -->
-                            <div class="col-md-7 col-xs-6 ptb20">
-                                <div class="job-title">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">php senior developer</a>
-                                </div>
-                                <div class="job-info">
-                                    <span class="company"><i class="fa fa-building-o"></i>envato</span>
-                                    <span class="location"><i class="fa fa-map-marker"></i>Melbourn, Australia</span>
-                                </div>
-                            </div>
-                            <!-- Job Category -->
-                            <div class="col-md-3 col-xs-3 ptb30">
-                                <div class="job-category">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-success capitalize">full time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Single Job Post 1 -->
-                        <!-- Start of Single Job Post 2 -->
-                        <div class="single-job-post row nomargin">
-                            <!-- Job Company -->
-                            <div class="col-md-2 col-xs-3">
-                                <div class="job-company">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">
-                                        <img src="images/companies/google.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Job Title & Info -->
-                            <div class="col-md-7 col-xs-6 ptb20">
-                                <div class="job-title">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">department head</a>
-                                </div>
-                                <div class="job-info">
-                                    <span class="company"><i class="fa fa-building-o"></i>google</span>
-                                    <span class="location"><i class="fa fa-map-marker"></i>berlin, germany</span>
-                                </div>
-                            </div>
-                            <!-- Job Category -->
-                            <div class="col-md-3 col-xs-3 ptb30">
-                                <div class="job-category">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-info capitalize">part time</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Single Job Post 2 -->
-                        <!-- Start of Single Job Post 3 -->
-                        <div class="single-job-post row nomargin">
-                            <!-- Job Company -->
-                            <div class="col-md-2 col-xs-3">
-                                <div class="job-company">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">
-                                        <img src="images/companies/facebook.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Job Title & Info -->
-                            <div class="col-md-7 col-xs-6 ptb20">
-                                <div class="job-title">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">graphic designer</a>
-                                </div>
-                                <div class="job-info">
-                                    <span class="company"><i class="fa fa-building-o"></i>facebook</span>
-                                    <span class="location"><i class="fa fa-map-marker"></i>london, UK</span>
-                                </div>
-                            </div>
-                            <!-- Job Category -->
-                            <div class="col-md-3 col-xs-3 ptb30">
-                                <div class="job-category">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-primary capitalize">freelancer</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Single Job Post 3 -->
-                        <!-- Start of Single Job Post 4 -->
-                        <div class="single-job-post row nomargin">
-                            <!-- Job Company -->
-                            <div class="col-md-2 col-xs-3">
-                                <div class="job-company">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">
-                                        <img src="images/companies/envato.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Job Title & Info -->
-                            <div class="col-md-7 col-xs-6 ptb20">
-                                <div class="job-title">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">senior UI & UX designer</a>
-                                </div>
-                                <div class="job-info">
-                                    <span class="company"><i class="fa fa-building-o"></i>envato</span>
-                                    <span class="location"><i class="fa fa-map-marker"></i>Melbourn, Australia</span>
-                                </div>
-                            </div>
-                            <!-- Job Category -->
-                            <div class="col-md-3 col-xs-3 ptb30">
-                                <div class="job-category">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-warning capitalize">intership</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Single Job Post 4 -->
-                        <!-- Start of Single Job Post 5 -->
-                        <div class="single-job-post row nomargin">
-                            <!-- Job Company -->
-                            <div class="col-md-2 col-xs-3">
-                                <div class="job-company">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">
-                                        <img src="images/companies/twitter.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Job Title & Info -->
-                            <div class="col-md-7 col-xs-6 ptb20">
-                                <div class="job-title">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante">senior health advisor</a>
-                                </div>
-                                <div class="job-info">
-                                    <span class="company"><i class="fa fa-building-o"></i>twitter</span>
-                                    <span class="location"><i class="fa fa-map-marker"></i>New York, USA</span>
-                                </div>
-                            </div>
-                            <!-- Job Category -->
-                            <div class="col-md-3 col-xs-3 ptb30">
-                                <div class="job-category">
-                                    <a href="<?= URL ?>Vacante/DetallesVacante" class="btn btn-danger capitalize">temporary</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End of Single Job Post 5 -->
+                    <div class="job-post-wrapper mt60" id="list-vacantes">
                     </div>
                     <!-- End of Job Post Wrapper -->
 
@@ -198,12 +58,12 @@
                 <!-- End of Job Post Main -->
                 <!-- Start of Job Post Sidebar -->
                 <div class="col-md-4 col-sm-12 col-xs-12 job-post-sidebar">
-                    <h2 class="capitalize"><i class="fa fa-star"></i>golden jobs</h2>
+                    <h2 class="capitalize"><i class="fa fa-star"></i>Recomendados</h2>
                     <!-- Start of Featured Job Widget -->
                     <div class="featured-job widget mt60">
                         <!-- Start of Company Logo -->
                         <div class="company">
-                            <img src="images/companies/cloudify.svg" alt="">
+                            <img src="<?= URL ?>Assets/img/upload.png" class="img-fluid" alt="">
                         </div>
                         <!-- End of Company Logo -->
                         <!-- Start of Featured Job Info -->
@@ -250,6 +110,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script src="<?= URL ?>Assets/js/vacante.js" type="module" defer></script>
 </body>
 
 </html>
