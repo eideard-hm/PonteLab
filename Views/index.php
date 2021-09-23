@@ -18,7 +18,7 @@
 
 <body>
     <?php
-    require_once('Components/NabvarInicio.php');
+    require_once('Components/TopMenu.php');
     ?>
 
     <section class="slider-img">
