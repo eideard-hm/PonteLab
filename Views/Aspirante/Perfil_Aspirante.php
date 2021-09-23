@@ -20,10 +20,9 @@
 
 <body class="right-column-fixed">
     <!-- loader Start -->
-    <div id="loading">
-        <div id="loading-center">
-        </div>
-    </div>
+    <?php
+    require_once('./Views/Components/loader.php');
+    ?>
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
@@ -111,7 +110,7 @@
                                             <div id="post-modal-data" class="iq-card">
                                                 <div class="iq-card-header d-flex justify-content-between">
                                                     <div class="iq-header-title">
-                                                        <h4 class="card-title">Información personal</h4>
+                                                        <h4 class="card-title titulo-perfil">Información personal</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0" id="data-idAspirante">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
@@ -170,7 +169,7 @@
                                             <div id="post-modal-data" class="iq-card">
                                                 <div class="iq-card-header d-flex justify-content-between">
                                                     <div class="iq-header-title">
-                                                        <h4 class="card-title">Puesto de interés</h4>
+                                                        <h4 class="card-title titulo-perfil">Puesto de interés</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0" id="data-idPuestoInteres">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#puesto-interes"></i>
@@ -240,7 +239,7 @@
                                             <div id="post-modal-data" class="iq-card">
                                                 <div class="iq-card-header d-flex justify-content-between">
                                                     <div class="iq-header-title">
-                                                        <h4 class="card-title">Idiomas</h4>
+                                                        <h4 class="card-title titulo-perfil">Idiomas</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#idiomas"></i>
@@ -347,7 +346,7 @@
                                             <div id="post-modal-data" class="iq-card">
                                                 <div class="iq-card-header d-flex justify-content-between">
                                                     <div class="iq-header-title">
-                                                        <h4 class="card-title">Habilidades</h4>
+                                                        <h4 class="card-title titulo-perfil">Habilidades</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#habilidades"></i>
@@ -454,7 +453,7 @@
                                             <div id="post-modal-data" class="iq-card">
                                                 <div class="iq-card-header d-flex justify-content-between">
                                                     <div class="iq-header-title">
-                                                        <h4 class="card-title">Educación</h4>
+                                                        <h4 class="card-title titulo-perfil">Educación</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#educacion"></i>
@@ -741,7 +740,7 @@
                                             <div id="post-modal-data" class="iq-card">
                                                 <div class="iq-card-header d-flex justify-content-between">
                                                     <div class="iq-header-title">
-                                                        <h4 class="card-title">Experiencia laboral</h4>
+                                                        <h4 class="card-title titulo-perfil">Experiencia laboral</h4>
                                                     </div>
                                                     <a class="btn" role="button" tabindex="0" id="data-idExperiencia">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#experiencia-laboral"></i>
