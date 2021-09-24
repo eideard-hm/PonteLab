@@ -6,20 +6,36 @@ use PHPMailer\PHPMailer\Exception;
 
 require_once('vendor/autoload.php');
 
-//retorna la url del proyecto
+/**
+ * Función que retorna la ruta raiz del proyecto
+ * 
+ * @return string Ruta raiz del proyecto
+ */
 function base_url()
 {
     return URL;
 }
 
-//funciones para encriptar la contraseña
+/**
+ * Función para encriptar contraseñas
+ * 
+ * @return void Retorna la contraseña encriptada
+ * @param string $password Cadena de caracteres que se quiere encriptar
+ * @author Edier Heraldo Hernandez Molano
+ */
 function encriptarPassword(string $password)
 {
     return password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 }
 
-// función para subir las fotos al servidor
-
+/**
+ * Función para subir las fotos al servidor
+ * 
+ * @return boolean true si se ha movido correctamente la imagen a la carpeta al servidor
+ * @param array $foto Arreglo con las especificaciones de la imagen
+ * @param string $nameFoto Nombre con el que se va a guardar la imagen
+ * @author Edier Heraldo Hernandez Molano
+ */
 function uploadImages(array $foto, string $nameFoto)
 {
     $url_tmp = $foto['tmp_name'];
@@ -28,10 +44,14 @@ function uploadImages(array $foto, string $nameFoto)
     return $move;
 }
 
-//función para el envió de correos electronicos
-/*
-    @param array $data = array con los datos para el envió del correo
-    @param $template = nombre de una plantilla para enviar el correo
+/**
+ * Función para el envió de correos electronicos con PHPMailer
+ * 
+ * @author Edier Heraldo Hernandez Molano
+ * @return boolean true si se envió el correo correctamente
+ * @param array $data arreglo con los datos para el envió del correo
+ * @param string $template nombre de una plantilla para enviar el correo
+ * @author Edier Heraldo Hernandez Molano
 */
 function sendEmail(array $data, $template)
 {
@@ -86,7 +106,13 @@ function sendEmail(array $data, $template)
     return $envioEmail;
 }
 
-//función para generar un token
+/**
+ * Generar un token de forma aleatoria
+ * 
+ * @return string Token aleatorio 
+ * @author Edier Heraldo Hernandez Molano
+ */
+
 function token()
 {
     $r1 = bin2hex(random_bytes(10));
@@ -96,7 +122,15 @@ function token()
     return $r1 . $r2 . $r3 . $r4;
 }
 
-//limpar las cadenas de texto para evitar inyecciones sql
+/**
+ * Función para limpiar datos provenientes de inputs, ayuda a prevenir inyecciones
+ * SQL o código que pueda alterar el funcionamiento del programa
+ * 
+ * @return string[]|string Cadena limpia o arreglo de cadenas
+ * @param string $strCadena Campo que se quiere limpiar
+ * @author Edier Heraldo Hernandez Molano
+ */
+
 function limpiarCadena($strCadena)
 {
     $cadena = preg_replace(['/\s+/', '/^\s|\s$/'], [' ', ''], $strCadena); //limpiar el exceso de espacios
@@ -112,7 +146,7 @@ function limpiarCadena($strCadena)
     $cadena = str_ireplace("INSERT INTO", "", $cadena); //limpiar el tipo de consulta
     $cadena = str_ireplace("UPDATE SET", "", $cadena); //limpiar el tipo de consulta
 
-    $cadena = str_ireplace("--", "", $cadena); //no queremos qie ingresen dobles guiones
+    $cadena = str_ireplace("--", "", $cadena); //no queremos que ingresen dobles guiones
     $cadena = str_ireplace("^", "", $cadena); //no queremos que ingresen el sibolo de exponente
     $cadena = str_ireplace("[", "", $cadena); //no queremos que ingresen corchetes
     $cadena = str_ireplace("]", "", $cadena); //no queremos que ingresen corchetes

@@ -18,10 +18,6 @@
 </head>
 
 <body>
-  <?php
-  require_once('./Views/Components/NabvarInicio.php');
-  ?>
-
   <br><br><br><br>
   <h1>
     <center>Politica de Datos</center>

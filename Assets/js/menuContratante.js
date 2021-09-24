@@ -5,17 +5,12 @@ const coverContenedorBusqueda = document.querySelector('#menu .cover-ctn-search'
 const limpiarInputBuscador = document.querySelector('#borrar-contenido');
 const listaAutocompletar = document.querySelector('.list_vacantes');
 
-let contenedorCardsPerfiles = document.getElementById('contenedor card');
+let contenedorCardsPerfiles = document.getElementById('row');
 // let contenedorCardsAspirantes = document.getElementById('contenedor-card');
 
 let arrNombrePerfiles = new Set();
 let arregloSugerenciasPerfiles = [];
 
-// const switchBtn = document.getElementById('filtro');
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     routesAspirante();
-// })
 
 /*=========================== BUSCADOR PERFIL =========================*/
 if (contenedorBarraBusqueda) {
@@ -174,21 +169,17 @@ const getArregloPerfiles = async (busqueda) => {
         if (status) {
             data.forEach(perfil => {
                 contenedorCardsPerfiles.innerHTML += `
-                    <div class="contenedor-card">
-                        <div class="contenedor-card__header contenedor-card__padding">
-                            <div class="header-img">
-                            <img src="http://localhost/Pontelab/Assets/img/upload.png" alt="Uplopad">
+                    <div class="col-12 col-md-6 col-xl-4 grid-margin grid-margin-md-0">
+                        <div class="card">
+                            <img  src="http://localhost/Pontelab/Assets/img/upload.png" class="card-img-top" alt="...">                 
+                            <div class="card-body">
+                                <h5 class="card-title">${perfil['nombreUsuario']}</h5>
+                                <p class="card-text mb-1">${perfil['descripcionPersonalAspirante']}</p>
+                                <div class="btn-group" role="group" aria-label="Opciones">
+                                    <a href="#" class="btn btn-primary">Ver Perfil</a>
+                                    <a href="#" class="btn btn-primary">Enviar Correo</a>
+                                </div>
                             </div>
-                            <div class="header-name">
-                            <h3>${perfil['nombreUsuario']}</h3>
-                            <span>${perfil['nombreEstado']}</span>
-                            </div>
-                        </div>
-                        <div class="contenedor-card__body">
-                            <p>${perfil['descripcionPersonalAspirante']}</p>
-                        </div>
-                        <div class="contenedor-card__footer">
-                            <a href="#">Ver más</a>
                         </div>
                     </div>
                     `
@@ -213,21 +204,17 @@ const getAllPerfiles = async () => {
         if (status) {
             data.forEach(perfil => {
                 contenedorCardsPerfiles.innerHTML += `
-                <div class="contenedor-card">
-                    <div class="contenedor-card__header contenedor-card__padding">
-                        <div class="header-img">
-                        <img src="http://localhost/Pontelab/Assets/img/upload.png" alt="Uplopad">
+                <div class="col-12 col-md-6 col-xl-4 grid-margin grid-margin-md-0">
+                    <div class="card">
+                        <img  src="http://localhost/Pontelab/Assets/img/upload.png" class="card-img-top" alt="...">                 
+                        <div class="card-body">
+                            <h5 class="card-title">${perfil['nombreUsuario']}</h5>
+                            <p class="card-text mb-1">${perfil['descripcionPersonalAspirante']}</p>
+                            <div class="btn-group" role="group" aria-label="Opciones">
+                                <a href="#" class="btn btn-primary">Ver Perfil</a>
+                                <a href="#" class="btn btn-primary">Enviar Correo</a>
+                            </div>
                         </div>
-                        <div class="header-name">
-                        <h3>${perfil['nombreUsuario']}</h3>
-                        <span>${perfil['nombreEstado']}</span>
-                        </div>
-                    </div>
-                    <div class="contenedor-card__body">
-                        <p>${perfil['descripcionPersonalAspirante']}</p>
-                    </div>
-                    <div class="contenedor-card__footer">
-                        <a href="#">Ver más</a>
                     </div>
                 </div>
                 `

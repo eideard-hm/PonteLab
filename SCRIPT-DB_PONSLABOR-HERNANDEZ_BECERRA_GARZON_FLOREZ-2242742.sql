@@ -33,7 +33,9 @@ idRolFK int not null,
 idBarrioFK int not null,
 direccionUsuario varchar(30) not null,
 token varchar(100),
-imagenUsuario varchar(100) 
+imagenUsuario varchar(100),
+created_at datetime,
+updated_at datetime
 );
 
 DROP TABLE IF EXISTS SECTOR_USUARIO;
@@ -81,7 +83,9 @@ fechaHoraCierre datetime not null,
 direccionVacante varchar(50) not null,
 estadoVacante bool not null,
 idContratanteFK int not null,
-idSectorFK int not null
+idSectorFK int not null,
+created_at datetime,
+updated_at datetime
 );
 
 DROP TABLE IF EXISTS REQUISITOS;
@@ -106,7 +110,9 @@ CREATE TABLE ASPIRANTE
 idAspirante int primary key auto_increment not null,
 descripcionPersonalAspirante varchar(2500) not null,
 idUsuarioFK int unique,
-idEstadoLaboralAspiranteFK int                               
+idEstadoLaboralAspiranteFK int,
+created_at datetime,
+updated_at datetime                         
 );
 
 DROP TABLE IF EXISTS PUESTOINTERES;
@@ -423,21 +429,21 @@ values (NULL, 'Aprendiz');
 
 /* ========================== TABLA USUARIO ========================*/
 Insert into USUARIO (idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
 values (NULL, 'Samanta', 'samanta85@misena.edu.co', 'camila85', 1, '1087345189', '3214458790', '4536781',1, 2, 3, 
-'Carrera 29 # 8 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL);
+'Carrera 29 # 8 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL, NOW(), NOW());
 Insert into USUARIO (idUsuario,  nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
 values (NULL, 'Sara', 'sara85@misena.edu.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
-'Carrera 30 #20 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyz', NULL);
+'Carrera 30 #20 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyz', NULL, NOW(), NOW());
 INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
-VALUES (NULL, 'Edier Hernández', 'ehernandez81@misena.edu.c', '123', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
-'Calle qc sur', '14WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL);
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
+VALUES (NULL, 'Edier Hernández', 'ehhernandez81@misena.edu.co', '$2y$10$orH6dJm6/t3F8C5VZLzTuuJef6Iv4tIBKQ64y4Kn9l0xp.02PlSEe', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
+'Calle qc sur', '14WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL, NOW(), NOW());
 INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
+numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
 VALUES (NULL, 'Ximena',  'ximena85@gmail.com', '987', 2, '1055552025', '3138569871', '1234567', 1, 1,10,
-'Calle 82 norte', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj', NULL);
+'Calle 82 norte', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj', NULL, NOW(), NOW());
 SELECT * FROM USUARIO;
 
 /* ========================== TABLA SECTOR_USUARIO ========================*/
@@ -456,13 +462,18 @@ values (NULL, 'Soy abogada penalista y busco empesar a crear mi propio bufete de
 Select * from CONTRATANTE;
 
 /* ========================== TABLA VACANTE ========================*/
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
-values (NULL, 'Ingeniero Industrial Direccion Adminiistrativa', 5, 'Importante empresa busca ingeniero industrial o civil con especializacion e gerencia de proyectos, con minimo 2 años de experiencia en direccion administrativa', 'Ingeniero Industrial o Civil con especializacion en Gerencia de Proyectos', 'Contrato a Termino Indefinido', '6.500.000', '2021-04-25 12:30:38', '2021-05-12 12:00:00', 'Calle 85 #35-28', 1, 1, 1);  
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
- values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2, 3);
- Select * from VACANTE;
- Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
- values (NULL,'Desarrollador de software web', 10, 'Sohe Innovation Software requiere un desarrollador web con experiencia en react, java', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10);
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+values (NULL, 'Ingeniero Industrial Direccion Adminiistrativa', 5, 'Importante empresa busca ingeniero industrial o civil con especializacion e gerencia de proyectos, con minimo 2 años de experiencia en direccion administrativa', 'Ingeniero Industrial o Civil con especializacion en Gerencia de Proyectos', 'Contrato a Termino Indefinido', '6.500.000', '2021-04-25 12:30:38', '2021-05-12 12:00:00', 'Calle 85 #35-28', 1, 1, 1, NOW(), NOW());  
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+ values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2, 3, NOW(), NOW());
+ Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+ values (NULL,'Desarrollador de software web', 10, 'Sohe Innovation Software requiere un desarrollador web con experiencia en react, java', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
  Select * from VACANTE;
 
 /* ========================== TABLA REQUISITOS ========================*/
@@ -478,10 +489,10 @@ values (NULL, 2, 2, 'Es necesario ser mayor de edad, tener un minimo de 5 años 
 select * from REQUISITOS_VACANTE;
 
 /* ========================== TABLA ASPIRANTE ========================*/
-Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
-values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1);  
-Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK) 
-values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 4, 2); 
+Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, created_at, updated_at) 
+values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1, NOW(), NOW());  
+Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, created_at, updated_at) 
+values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 4, 2, NOW(), NOW()); 
 select * from ASPIRANTE; 
 
 /* ========================== TABLA DEBIL ASPIRANTE_PUESTOINTERES ========================*/
@@ -579,12 +590,25 @@ ON u.idusuario = a.idUsuarioFK;
 
 DROP VIEW IF EXISTS vacanteView;
 CREATE VIEW  vacanteView AS
-SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, 
-sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK,
-token, nombreUsuario
+SELECT v.idVacante, v.nombreVacante, v.cantidadVacante, v.direccionVacante, v.estadoVacante, v.idContratanteFK,
+u.nombreUsuario, u.imagenUsuario 
 FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
-ON u.idUsuario = c.idUsuarioFK;
+ON u.idUsuario = c.idUsuarioFK
+ORDER BY v.idVacante DESC;
+
+DROP VIEW IF EXISTS detailVacanteView;
+CREATE VIEW  detailVacanteView AS
+SELECT v.idVacante, v.nombreVacante, v.cantidadVacante, v.descripcionVacante, v.perfilAspirante, v.tipoContratoVacante, 
+v.sueldoVacante, v.fechaHoraPublicacion, v.fechaHoraCierre, v.direccionVacante, v.estadoVacante, v.idContratanteFK, 
+u.nombreUsuario, u.imagenUsuario, r.idRequisitos,  r.nombreRequisitos, rv.especficacionRequisitos,  s.nombreSector,
+s.idSector
+FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+ON u.idUsuario = c.idUsuarioFK INNER JOIN REQUISITOS_VACANTE AS rv
+ON v.idVacante = rv.idVacanteFK INNER JOIN REQUISITOS AS r
+ON r.idRequisitos = rv.idRequisitosFK INNER JOIN SECTOR AS s
+ON s.idSector = v.idSectorFK;
 
 DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
 CREATE VIEW  recomendacionVacanteSectorusuarioView AS
@@ -665,7 +689,31 @@ OR perfilAspirante LIKE CONCAT('%', VBusqueda, '%') OR tipoContratoVacante LIKE 
 OR direccionVacante LIKE CONCAT('%', VBusqueda, '%');
 END $$
 
--- CALL SP_buscarVacantes('Axa');
+CALL SP_buscarVacantes('Axa');
+
+/*======================= FUNCIÓN BASE DE DATOS==============================*/
+/*
+Función que permita obtener el número de coincidencias de usuarios, de acuerdo a un parametro enviado pasado.
+Se debe de pasar como argumento un nombre o letra(s) del nombre de un usuario y de acuerdo a ello
+retornar el número de concidencias.
+*/
+DROP FUNCTION IF EXISTS F_numeroUsuario;
+DELIMITER //
+CREATE FUNCTION F_numeroUsuario
+(
+letraNombre varchar(20)
+)
+RETURNS tinyint
+BEGIN
+	DECLARE numeroCoincidencias int;
+    SELECT COUNT(*) INTO numeroCoincidencias
+    FROM usuario
+    WHERE nombreUsuario LIKE CONCAT('%', letraNombre, '%') ;
+    RETURN numeroCoincidencias;
+END //
+
+-- usar la vista
+SELECT  F_numeroUsuario('Edier') AS 'Número de coincidencias de nombres de usuarios encontradas para la palabra introducida';
 
 -- DESCRIBE VACANTE
 /*
@@ -676,10 +724,4 @@ WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%n
 OR numTelUsuario LIKE'%id%' , numTelFijo LIKE'%id%' ;
 
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
-
-SELECT * FROM USUARIO;
-
-
-
-
 

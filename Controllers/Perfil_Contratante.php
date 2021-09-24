@@ -3,8 +3,6 @@ class Perfil_Contratante extends Controllers
 {
     public function __construct()
     {
-
-
         parent::__construct();
         session_start();
         // //isset : verifica que la varible de sesion si exista
@@ -26,6 +24,13 @@ class Perfil_Contratante extends Controllers
         $data['titulo_pagina'] = 'Perfil Contratante | PonsLabor.';
         $this->views->getView($this, 'Perfil_Contratante', $data);
     }
+
+    public function Edit_Profile_Contratante()
+    {
+        $data['titulo_pagina'] = 'Editar Perfil Contratante | PonteLab.';
+        $this->views->getView($this, 'Edit_Profile_Contratante', $data);
+    }
+
     public function updatePerfilContratante()
     {
         if ($_POST) {

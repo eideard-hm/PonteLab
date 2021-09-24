@@ -20,9 +20,6 @@
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/NabvarInicio.php');
-    ?>
 
     <form id="msform">
         <br><br><br><br><br><br><br>
@@ -59,9 +56,6 @@
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>
-        <script>
-            mdc.textField.MDCTextField.attachTo(document.querySelector('.mdc-text-field'));
-        </script>
 </body>
 
 </html>

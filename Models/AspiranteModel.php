@@ -7,13 +7,12 @@ class AspiranteModel extends GestionCRUD
     private string $descripcion;
     private int $idUsuarioFK;
     private int $idEstadoLaboralAspiranteFK;
+    private $created_at;
+    private $updated_at;
 
     //atributos de la clase - Tabla Puesto interes
     private int $idPuesto;
     private string $namePuesto;
-
-    //atributos de la clase - Tabla aspirantePuestoInteres
-    private int $idAspirantePuestoInteres;
 
     //atributos de la clase - Tabla Idioma
     private int $idIdioma;
@@ -45,7 +44,7 @@ class AspiranteModel extends GestionCRUD
                 WHERE idAspirante = {$this->Id}";
         return $this->select($sql);
     }
-    
+
     //metodo para traer todas los perfiles
     public function selectAllPerfiles()
     {
@@ -57,7 +56,7 @@ class AspiranteModel extends GestionCRUD
                 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK";
         return $this->selectAll($sql);
     }
-    
+
     public function getFiltroPerfiles($busqueda)
     {
         $sql = "SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, 
@@ -71,10 +70,10 @@ class AspiranteModel extends GestionCRUD
                 OR idEstadoLaboralAspiranteFK LIKE '%{$busqueda}%'
                 OR nombreEstado LIKE '%{$busqueda}%'
                 OR nombreUsuario LIKE '%{$busqueda}%'";
-                
-                // -- WHERE descripcionPersonalAspirante LIKE '%{$busqueda}%' 
-                // -- OR nombreEstado LIKE '%{$busqueda}%'
-                // -- OR nombreUsuario LIKE '%{$busqueda}%'"                  
+
+        // -- WHERE descripcionPersonalAspirante LIKE '%{$busqueda}%' 
+        // -- OR nombreEstado LIKE '%{$busqueda}%'
+        // -- OR nombreUsuario LIKE '%{$busqueda}%'"                  
 
         return $this->selectAll($sql);
     }
@@ -83,24 +82,52 @@ class AspiranteModel extends GestionCRUD
     public function insertAspirante(
         string $descripcion,
         int $idUsuario,
-        int $idEstadoLaboral
+        int $idEstadoLaboral,
+        $created_at,
+        $updated_at
     ) {
         $this->descripcion = $descripcion;
         $this->idUsuarioFK = $idUsuario;
         $this->idEstadoLaboralAspiranteFK = $idEstadoLaboral;
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
 
-        $sql = "INSERT INTO ASPIRANTE(descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK)
-                VALUES(?,?,?)";
+        $sql = "INSERT INTO ASPIRANTE(descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK,
+                created_at, updated_at)
+                VALUES(?,?,?,?,?)";
         $arrData = [
             $this->descripcion,
             $this->idUsuarioFK,
-            $this->idEstadoLaboralAspiranteFK
+            $this->idEstadoLaboralAspiranteFK,
+            $this->created_at,
+            $this->updated_at
         ];
 
         return $this->insert($sql, $arrData);
     }
 
-    //Método para insertar 
+    //Método para actualizar aspirantes
+    public function updateAspirante(
+        int $id,
+        string $descripcion,
+        int $idEstadoLaboral,
+        $updated_at
+    ) {
+        $this->Id = $id;
+        $this->descripcion = $descripcion;
+        $this->idEstadoLaboralAspiranteFK = $idEstadoLaboral;
+        $this->updated_at = $updated_at;
+
+        $sql = "UPDATE ASPIRANTE SET descripcionPersonalAspirante = ?, idEstadoLaboralAspiranteFK = ?,
+                updated_at = ?
+                WHERE idAspirante = {$this->Id}";
+        $arrData = [
+            $this->descripcion,
+            $this->idEstadoLaboralAspiranteFK,
+            $this->updated_at
+        ];
+        return $this->edit($sql, $arrData);
+    }
 
     //Método para traer todos los estados laborales
     public function getAllWorkStatus()
@@ -135,15 +162,15 @@ class AspiranteModel extends GestionCRUD
 
     public function getOnePuestoInteres(int $id)
     {
-        $this->idAspirantePuestoInteres = $id;
+        $this->Id = $id;
         $sql = "SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK, nombrePuesto, 
                 nombreUsuario
                 FROM PUESTOINTERES AS pi INNER JOIN ASPIRANTE_PUESTOINTERES api 
                 ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN ASPIRANTE AS a
                 ON a.idAspirante = api.idAspiranteFK INNER JOIN USUARIO  AS u
                 ON u.idusuario = a.idUsuarioFK
-                WHERE idAspirantePuestoInteres = {$this->idAspirantePuestoInteres}";
-        return $this->select($sql);
+                WHERE idAspiranteFK = {$this->Id}";
+        return $this->selectAll($sql);
     }
 
     //método para insertar un puesto de interes
@@ -311,5 +338,67 @@ class AspiranteModel extends GestionCRUD
                 ON ela.idEstadoLaboral = a.idEstadoLaboralAspiranteFK
                 WHERE idUsuarioFK = {$this->idUsuarioFK}";
         return $this->selectAll($sql);
+    }
+
+    //======================================EDITAR DATOS=====================================
+
+    public function updateUser(
+        int $idUsuario,
+        string $nombreUsuario,
+        int $idTipoDocumentoFK,
+        string $numTelUsuario,
+        string $numTelFijo,
+        string $numDocUsuario,
+        string $direccionUsuario,
+        int $idBarrioFK
+    ) {
+
+        $this->idUsuario = $idUsuario;
+        $this->nombreUsuario = $nombreUsuario;
+        $this->idTipoDocumentoFK = $idTipoDocumentoFK;
+        $this->numTelUsuario = $numTelUsuario;
+        $this->numTelFijo = $numTelFijo;
+        $this->numDocUsuario = $numDocUsuario;
+        $this->direccionUsuario = $direccionUsuario;
+        $this->idBarrioFK = $idBarrioFK;
+
+        $sql = "UPDATE USUARIO SET 
+                nombreUsuario=?, idTipoDocumentoFK=?, numTelUsuario=?,
+                numTelFijo=?, numDocUsuario=?,  
+                direccionUsuario=?, idBarrioFK=? 
+                WHERE idUsuario  = {$this->idUsuario}";
+        $arrData = array(
+            $this->nombreUsuario,
+            $this->idTipoDocumentoFK,
+            $this->numTelUsuario,
+            $this->numTelFijo,
+            $this->numDocUsuario,
+            $this->direccionUsuario,
+            $this->idBarrioFK
+        );
+
+        return $this->edit($sql, $arrData);
+
+        /*$sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE correoUsuario = '{$this->strUsuario}' AND estadoUsuario != 1";
+        return $this->select($sql);  POR IMPLEMENTAR CUANDO SE REALICE COMPLETAMENTE LA ACTUALIZACION Y RECARGAR LA VARIABLE DE SESION*/
+    }
+
+    public function updateState(int $idUsuario, int $estadoUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        $this->estadoUsuario = $estadoUsuario;
+        $sql = "UPDATE USUARIO SET estadoUsuario =? WHERE idUsuario = {$this->idUsuario}";
+
+        $arrData = array(
+            $this->estadoUsuario
+        );
+        return $this->edit($sql, $arrData);
     }
 }
