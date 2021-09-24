@@ -67,7 +67,7 @@
             <input type="number" name="numDoc" id="numDoc" placeholder="Digite su número de documento" required />
             <input type="number" name="numCel" id="numCel" placeholder="Ingrese su número de teléfono celular" required />
             <input type="number" name="numFijo" id="numFijo" placeholder="Ingrese su número de teléfono fijo" required />
-            <button name="previous" class="previous action-button" style="width: 195px; height:48px" value="Atras">Atras</button>
+            <button name="previous" class="previous action-button" style="width: 195px; height:48px; background: #676766;" value="Atras">Atras</button>
             <button name="next2" class="next action-button" style="width: 195px; height:48px" value="Siguiente" id="siguiente2" onclick="validarCamposFildset2();">Siguiente</button>
         </fieldset>
 
@@ -96,7 +96,7 @@
                     <span class="delPhoto notBlock">X</span>
                     <label for="foto"></label>
                     <div class="prevPhoto__img">
-                        <img id="img" src="<?php echo URL; ?>Assets/Img/upload.png" />
+                        <img id="img" src="<?php echo URL; ?>Assets/Img/file.jpg" />
                     </div>
                 </div>
                 <div class="upimg">
@@ -108,7 +108,7 @@
             <h5 style="font-size: 15px; color: #999999; text-align:left;">Al hacer clic en "Registrarse", aceptas nuestra <a style="color: #009FE0;"  href="Politicas_de_Datos">Politica de datos</a> y la <a style="color: #009FE0;" href="Politicas_de_Datos/Politicas_de_Cookies">Politica de Cookies.</a>
             </h5>
             <br>
-            <button type="button" name="previous" class="previous action-button" style="width: 195px; height:48px" value="Atras"> Atras </button>
+            <button type="button" name="previous" class="previous action-button" style="width: 195px; height:48px; background: #676766;" value="Atras"> Atras </button>
             <button type="submit" name="submit" id="btn_submit" class="action-button" style="width: 195px; height:48px" value="Registrarse"> Registrarse </button>
         </fieldset>
 
