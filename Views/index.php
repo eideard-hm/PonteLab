@@ -17,10 +17,6 @@
 </head>
 
 <body>
-    <?php
-    require_once('Components/TopMenu.php');
-    ?>
-
     <section class="slider-img">
         <div class="slider contenedor active">
             <img src="<?= URL; ?>/Assets/img/image2.jpg" alt="Frameworks de js" />
