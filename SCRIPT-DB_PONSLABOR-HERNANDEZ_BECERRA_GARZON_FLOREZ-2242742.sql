@@ -590,12 +590,25 @@ ON u.idusuario = a.idUsuarioFK;
 
 DROP VIEW IF EXISTS vacanteView;
 CREATE VIEW  vacanteView AS
-SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, 
-sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK,
-token, nombreUsuario
+SELECT v.idVacante, v.nombreVacante, v.cantidadVacante, v.direccionVacante, v.estadoVacante, v.idContratanteFK,
+u.nombreUsuario, u.imagenUsuario 
 FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
-ON u.idUsuario = c.idUsuarioFK;
+ON u.idUsuario = c.idUsuarioFK
+ORDER BY v.idVacante DESC;
+
+DROP VIEW IF EXISTS detailVacanteView;
+CREATE VIEW  detailVacanteView AS
+SELECT v.idVacante, v.nombreVacante, v.cantidadVacante, v.descripcionVacante, v.perfilAspirante, v.tipoContratoVacante, 
+v.sueldoVacante, v.fechaHoraPublicacion, v.fechaHoraCierre, v.direccionVacante, v.estadoVacante, v.idContratanteFK, 
+u.nombreUsuario, u.imagenUsuario, r.idRequisitos,  r.nombreRequisitos, rv.especficacionRequisitos,  s.nombreSector,
+s.idSector
+FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+ON u.idUsuario = c.idUsuarioFK INNER JOIN REQUISITOS_VACANTE AS rv
+ON v.idVacante = rv.idVacanteFK INNER JOIN REQUISITOS AS r
+ON r.idRequisitos = rv.idRequisitosFK INNER JOIN SECTOR AS s
+ON s.idSector = v.idSectorFK;
 
 DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
 CREATE VIEW  recomendacionVacanteSectorusuarioView AS
@@ -692,7 +705,7 @@ letraNombre varchar(20)
 )
 RETURNS tinyint
 BEGIN
-	DECLARE numeroCoincidencias tinyint;
+	DECLARE numeroCoincidencias int;
     SELECT COUNT(*) INTO numeroCoincidencias
     FROM usuario
     WHERE nombreUsuario LIKE CONCAT('%', letraNombre, '%') ;

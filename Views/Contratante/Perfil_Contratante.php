@@ -54,6 +54,11 @@
                                             <h4><?= $_SESSION['user-data']['nombreUsuario'] ?></h4>
                                         </div>
                                     </div>
+                                    <pre>
+          <?php
+            print_r($_SESSION['user-data']);
+            ?>
+        </pre>
                                     <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
                                         <div class="social-links">
                                             <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
@@ -98,7 +103,7 @@
                     </div>
                     <pre>
                         <?php
-                        print_r($_SESSION['aspirante'][0]['idAspirante'])
+                            print_r($_SESSION['aspirante'][0]['idAspirante'])
                         ?>
                     </pre>
                     <div class="col-sm-12">

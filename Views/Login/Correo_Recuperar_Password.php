@@ -15,9 +15,6 @@
 </head>
 
 <body>
-    <?php
-    require_once('./Views/Components/NabvarInicio.php');
-    ?>
 
     <form id="msform" name="msform" action="">
         <br><br><br><br><br><br><br>

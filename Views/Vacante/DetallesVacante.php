@@ -38,9 +38,10 @@
                     <!-- Start of Row -->
                     <div class="row d-flex justify-content-between">
                         <div class="col-md-6 col-xs-12">
-                            <h3>php senior developer</h3>
+                            <h3><?= $data['detail_vacante']['nombreVacante'] ?></h3>
                         </div>
                         <div class="col-md-6 col-xs-12 text-right">
+                            <a href="#" class="btn btn-success capitalize mt15"><?= $data['detail_vacante']['tipoContratoVacante'] ?></a>
                             <a href="#" class="btn btn-success capitalize mt15">full time</a>
                             <!-- <a href="#" class="btn btn-primary mt15"><i class="fa fa-star"></i>Agregar a favoritos</a> -->
                         </div>
@@ -48,13 +49,21 @@
                     <!-- End of Row -->
                 </div>
             </section>
-            <!-- ===== End of Job Header Section ===== -->
 
+            <section class="job-header mtb20">
+                <div class="container">
+                    <!-- Start of Row -->
+                    <div class="row">
+                        <?= $data['detail_vacante']['descripcionVacante'] ?>
+                    </div>
+                </div>
+            </section>
+            <!-- ===== End of Job Header Section ===== -->
             <!-- ===== Start of Main Wrapper Job Section ===== -->
             <section class="ptb80" id="job-page">
                 <div class="container">
                     <!-- Start of Row -->
-                    <div class="row">
+                    <div class="row" id="detail-vacante">
                         <!-- ===== Start of Job Details ===== -->
                         <div class="col-md-8 col-xs-12">
                             <!-- Start of Company Info -->
@@ -63,15 +72,15 @@
                                 <div class="col-md-3">
                                     <div class="job-company">
                                         <a href="company-page.html">
-                                            <img src="images/companies/envato.svg" alt="">
+                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.png' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
                                         </a>
                                     </div>
                                 </div>
 
                                 <!-- Job Company Info -->
-                                <div class="col-md-9">
+                                <div class=" col-md-9">
                                     <div class="job-company-info mt30">
-                                        <h3 class="capitalize">envato</h3>
+                                        <h3 class="capitalize"><?= $data['detail_vacante']['nombreUsuario'] ?></h3>
                                         <ul class="list-inline mt10">
                                             <li><a href="#"><i class="fa fa-link" aria-hidden="true"></i>Website</a></li>
                                             <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i>Facebook</a></li>
@@ -91,34 +100,14 @@
                                     </div>
                                     <!-- Div wrapper -->
                                     <div class="pt40">
-                                        <h5>Job Overview</h5>
-                                        <p class="mt20">Our development team focuses on unit testing, TDD, CI, design patterns and refactoring. Internal and external training is encouraged through mentoring, guided self-learning, conferences, user groups and training courses. We maintain and improve existing codebases, and create new systems, exposing developers to constant variety.</p>
-                                        <p>Our team understands the performance implications of serving more than 25,000 page requests per-hour, crafting awesome user experiences. While we leverage existing tech, we also research new technologies to overcome technical and business challenges, to maintain our industry-leading status.</p>
+                                        <h4>Perfil del aspirante</h4>
+                                        <?= $data['detail_vacante']['perfilAspirante'] ?>
                                     </div>
                                     <!-- Div wrapper -->
                                     <div class="pt40">
-                                        <h5 class="mt40">Key Requirements</h5>
-                                        <!-- Start of List -->
-                                        <ul class="list mt20">
-                                            <li>Personally passionate and up to date with current trends and technologies, committed to quality and comfortable working with adult media.</li>
-                                            <li>Bachelor or Master degree level educational background.</li>
-                                            <li>4 years relevant PHP dev experience.</li>
-                                            <li>Troubleshooting, testing and maintaining the core product software and databases.</li>
-                                        </ul>
-                                        <!-- End of List -->
-                                    </div>
-                                    <!-- Div wrapper -->
-                                    <div class="pt40">
-                                        <h5 class="mt40">We Offer</h5>
-                                        <!-- Start of List -->
-                                        <ul class="list mt20">
-                                            <li>An exciting job where you can assume responsibility and develop professionally.</li>
-                                            <li>A dynamic team with friendly, highly-qualified colleagues from all over the world.</li>
-                                            <li>Strong, sustainable growth and fresh challenges every day.</li>
-                                            <li>Flat hierarchies and short decision paths.</li>
-                                        </ul>
-                                        <!-- End of List -->
-                                        <p class="mt40">If you feel that this is the place where you belong and start your career with a ton of new opportunities, please don't hasitate to apply for the job position.</p>
+                                        <h4 class="mt40">Requisitos</h4>
+                                        <h6 class="mt40"><?= $data['detail_vacante']['nombreRequisitos'] ?></h5>
+                                        <?= $data['detail_vacante']['especficacionRequisitos'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -133,15 +122,23 @@
                                 <ul class="job-overview nopadding mt40">
                                     <li>
                                         <h5><i class="fa fa-calendar"></i>Publicación:</h5>
-                                        <span>Posted 1 year ago</span>
+                                        <span><?= $data['detail_vacante']['fechaHoraPublicacion'] ?></span>
+                                    </li>
+                                    <li>
+                                        <h5><i class="far fa-calendar-times"></i>Cierre:</h5>
+                                        <span><?= $data['detail_vacante']['fechaHoraCierre'] ?></span>
                                     </li>
                                     <li>
                                         <h5><i class="fa fa-map-marker"></i>Dirección:</h5>
-                                        <span>New York, NY, United States</span>
+                                        <span><?= $data['detail_vacante']['direccionVacante'] ?></span>
                                     </li>
                                     <li>
                                         <h5><i class="fa fa-money"></i>Salario:</h5>
-                                        <span>$25.000-$35.000</span>
+                                        <span>$ <?= number_format($data['detail_vacante']['sueldoVacante'], 3, '.', ',') ?></span>
+                                    </li>
+                                    <li>
+                                        <h5><i class="fas fa-question"></i>Estado:</h5>
+                                        <?= $data['detail_vacante']['estadoVacante'] == 1 ? '<a href="#" class="btn btn-success">Activa</a>' : '<a href="#" class="btn btn-danger">Inactiva</a>' ?>
                                     </li>
                                 </ul>
 
@@ -250,6 +247,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script src="<?= URL ?>Assets/js/vacante.js" type="module" defer></script>
 </body>
 
 </html>

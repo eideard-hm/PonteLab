@@ -14,9 +14,6 @@ class AspiranteModel extends GestionCRUD
     private int $idPuesto;
     private string $namePuesto;
 
-    //atributos de la clase - Tabla aspirantePuestoInteres
-    private int $idAspirantePuestoInteres;
-
     //atributos de la clase - Tabla Idioma
     private int $idIdioma;
     private string $nombreIdioma;
@@ -165,15 +162,15 @@ class AspiranteModel extends GestionCRUD
 
     public function getOnePuestoInteres(int $id)
     {
-        $this->idAspirantePuestoInteres = $id;
+        $this->Id = $id;
         $sql = "SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK, nombrePuesto, 
                 nombreUsuario
                 FROM PUESTOINTERES AS pi INNER JOIN ASPIRANTE_PUESTOINTERES api 
                 ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN ASPIRANTE AS a
                 ON a.idAspirante = api.idAspiranteFK INNER JOIN USUARIO  AS u
                 ON u.idusuario = a.idUsuarioFK
-                WHERE idAspirantePuestoInteres = {$this->idAspirantePuestoInteres}";
-        return $this->select($sql);
+                WHERE idAspiranteFK = {$this->Id}";
+        return $this->selectAll($sql);
     }
 
     //método para insertar un puesto de interes

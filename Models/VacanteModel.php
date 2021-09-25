@@ -36,12 +36,7 @@ class VacanteModel extends GestionCRUD
     //metodo para traer todas las vacantes
     public function selectAllVacantes()
     {
-        $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-                tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, 
-                estadoVacante, idContratanteFK, nombreUsuario
-                FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
-                ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
-                ON u.idUsuario = c.idUsuarioFK";
+        $sql = "SELECT * FROM vacanteView";
         return $this->selectAll($sql);
     }
 
@@ -218,5 +213,12 @@ class VacanteModel extends GestionCRUD
                 FROM SECTOR_USUARIO
                 WHERE idUsuarioFK = {$this->idUsuario}";
         return $this->selectAll($sql);
+    }
+
+    public function detailVacante(int $id){
+        $this->idVacante = $id;
+        $sql = "SELECT * FROM detailVacanteView 
+                WHERE idVacante = {$this->idVacante}";
+        return $this->select($sql);
     }
 }
