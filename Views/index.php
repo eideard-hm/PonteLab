@@ -1,253 +1,454 @@
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <title><?= $data['titulo_pagina'] ?></title>
-    <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <!-- Mobile viewport optimized -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
+    <!-- Meta Tags - Description for Search Engine purposes -->
+    <meta name="description" content="Bolsa de Empleo PonteLab">
+    <meta name="keywords" content="Bolsa de Empleo PonteLab">
+    <meta name="author" content="GnoDesign">
+    <!-- Website Title -->
+    <title>Bolsa de Empleo PonteLab</title>
+    <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico">
+
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/bootstrapIndex.min.css" />
 </head>
 
 <body>
-    <?php
-    require_once('Components/TopMenu.php');
-    ?>
+    <header class="header1">
+        <nav class="navbar navbar-default navbar-static-top fluid_header centered">
+            <div class="container">
+                <div class="col-md-2 col-sm-6 col-xs-8 nopadding">
+                    <a class="navbar-brand nomargin" href="index.html"><img src="<?= URL; ?>/Assets/img/Logo_ponslabor.png" width="150" height="750"></a>
+                </div>
+                <div class="col-md-10 col-sm-6 col-xs-4 nopadding">
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle toggle-menu menu-right push-body" data-toggle="collapse" data-target="#main-nav" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="main-nav">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="mobile-title">
+                                <h4>main menu</h4>
+                            </li>
+                            <li class="dropdown simple-menu active">
+                                <a href="#Inicio" class="dropdown-toggle" data-toggle="dropdown" role="button">Inicio</a>
+                            </li>
+                            <li class="dropdown simple-menu">
+                                <a href="#categories" class="dropdown-toggle" data-toggle="dropdown" role="button">Categorías</a>
+                            </li>
+                            <li class="dropdown simple-menu">
+                                <a href="#about" class="dropdown-toggle" data-toggle="dropdown" role="button">ACERCA
+                                    DE</a>
+                            </li>
 
-    <section class="slider-img">
-        <div class="slider contenedor active">
-            <img src="<?= URL; ?>/Assets/img/image2.jpg" alt="Frameworks de js" />
-            <div class="info-slider">
-                <h2>¿Buscas Trabajo?</h2>
-                <p>
-                    Te presentamos a PonsLabor una nueva y actualizada plataforma que te
-                    ayudara en tu valiosa búsqueda de empleo, creando un perfil y una
-                    hoja de vida para que las grandes empresas vean todo tu potencial,
-                    que esperas prepárate para conquistar tu empleo ideal con PonsLabor.
-                </p>
+                            <li class="dropdown simple-menu">
+                                <a href="#testimonials" class="dropdown-toggle" data-toggle="dropdown" role="button">MÓDULOS</a>
+                            </li>
+
+                            <li class="dropdown simple-menu">
+                                <a href="#fucionalidades" class="dropdown-toggle" data-toggle="dropdown" role="button">FUNCIONALIDADES</a>
+                            </li>
+
+                            <li class="dropdown simple-menu">
+                                <a href="#about2" class="dropdown-toggle" data-toggle="dropdown" role="button">Beneficios</a>
+                            </li>
+                            <li class="menu-item login-btn">
+                                <a id="modal_trigger" href="Login" role="button"><i class="fa fa-lock"></i>Iniciar Sesión</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="main2">
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="Inicio">
+                <div class="swiper-slide overlay-black" style="background: url('Assets/img/index/Buscatrabajo.jpg'); background-size: cover; background-position: 50% 50%;">
+                    <div class="slider-content container">
+                        <div class="col-md-6 col-md-offset-6 col-xs-12 text-center">
+                            <div class="section-title">
+                                <h2 class="text-white">¿Buscas Trabajo?</h2>
+                            </div>
+                            <p class="text-white">Te presentamos a PonteLab una nueva y actualizada plataforma que te
+                                ayudara en tu valiosa búsqueda de empleo, creando un perfil y una hoja de vida para que
+                                las grandes empresas vean todo tu potencial, que esperas prepárate para conquistar tu
+                                empleo ideal con PonteLab.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide overlay-black" style="background: url('Assets/img/index/BuscaEmpleo2.jpg'); background-size: cover; background-position: 50% 50%;">
+                    <div class="slider-content container">
+                        <div class="col-md-6 col-xs-12 text-center">
+                            <div class="section-title">
+                                <h2 class="text-white">¿Buscas personal?</h2>
+                            </div>
+                            <p class="text-white">¡Bienvenido!, con PonteLab has que tu negocio crezca cada dia mas
+                                dando la oportunidad a todos nuestros aspirantes disponibles con todas las ganas de
+                                explotar ese maravilloso potencial, que esperas para iniciar tu busqueda.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide overlay-black" style="background: url('Assets/img/index/QueEsperas.jpg'); background-size: cover; background-position: 50% 50%;">
+                    <div class="slider-content container">
+                        <div class="col-md-6 col-xs-12 text-center">
+                            <div class="section-title">
+                                <h2 class="text-white">¡Que esperas para registrarte!</h2>
+                            </div>
+                            <p class="text-white">¡Hola!, ¿aun no has logrado conseguir empleo?, no hay problema con
+                                PonteLab muéstrale al mundo todos tus conocimientos y potencial, te ayudamos a conseguir
+                                tu trabajo deseado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-prev"><i class="fa fa-angle-left"></i></div>
+            <div class="swiper-button-next"><i class="fa fa-angle-right"></i></div>
+        </div>
+    </section>
+    <section class="job-search ptb40">
+        <div class="container">
+
+            <!-- Start of Form -->
+            <form class="job-search-form row" action="#" method="get">
+
+                <!-- Start of keywords input -->
+                <div class="col-md-6 col-sm-12 search-keywords">
+                    <label for="search-keywords">Palabra Clave</label>
+                    <input type="text" name="search-keywords" id="search-keywords" placeholder="Palabra Clave">
+                </div>
+
+                <!-- Start of category input -->
+                <div class="col-md-4 col-sm-12 search-categories">
+                    <label for="search-categories">Categoría </label>
+                    <select name="search-categories" class="selectpicker" id="search-categories" data-live-search="true" title="Categoría" data-size="5" data-container="body">
+                        <option value="1">Accountance</option>
+                        <option value="2">Banking</option>
+                        <option value="3">Design & Art</option>
+                        <option value="4">Developement</option>
+                        <option value="5">Insurance</option>
+                        <option value="6">IT Engineer</option>
+                        <option value="7">Healthcare</option>
+                        <option value="8">Marketing</option>
+                        <option value="9">Management</option>
+                    </select>
+                </div>
+                <!-- Start of submit input -->
+                <div class="col-md-2 col-sm-12  search-categories search-submit">
+                    <button type="submit" class="btn btn-blue btn-effect btn-large"><i class="fas fa-search"></i>Buscar</button>
+                </div>
+
+            </form>
+            <!-- End of Form -->
+
+        </div>
+    </section>
+    <section class="ptb60" id="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: #43B5DD;"><strong>Categorías</strong></h2>
+            </div>
+            <BR> <BR> <BR> <BR>
+            <div class="row nomargin">
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Finanzas</a>
+                        </div>
+                        <br>
+                        <div class="category-descr">
+                            <span>El sector financiero es un sector económico formado por el conjunto
+                                de entidades que ofrecen servicios financieros.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fa fa-university"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Ingeniería</a>
+                        </div>
+                        <br>
+                        <div class="category-descr">
+                            <span>En cuanto al campo laboral, suele trabajar en consultorías, grandes fábricas, empresas
+                                dedicadas
+                                al desarrollo de maquinaria.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Arte y diseño</a>
+                        </div>
+                        <br>
+                        <div class="category-descr">
+                            <span>Pueden trabajar en agencias de Diseño y
+                                Publicidad, empresas del área web y multimedia, editoriales.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Marketing</a>
+                        </div>
+                        <br>
+                        <div class="category-descr">
+                            <span>Trabaja con estrategias de comunicación y ventas en una empresa.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt40 nomargin">
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fa fa-desktop"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Tecnologías</a>
+                        </div>
+                        <div class="category-descr">
+                            <span>Está compuesto por los sectores manufactureros y de servicios cuya actividad principal
+                                está ligada al desarrollo, producción, comercialización y uso intensivo de las
+                                mismas.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Asistente administrativo</a>
+                        </div>
+                        <div class="category-descr">
+                            <span>Encargados de cerciorar el correcto funcionamiento de una empresa u oficina, llevando
+                                a cabo labores
+                                de área administrativa como, planificar, archivar, coordinar actividades, etc.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <!-- Category Info - Title -->
+                        <div class="category-info pt20">
+                            <a href="#">Salud</a>
+                        </div>
+                        <br>
+                        <!-- Category Description -->
+                        <div class="category-descr">
+                            <span>Proporcionar protección social
+                                de la salud e igualdad de acceso a una atención de salud de calidad .</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Control de calidad</a>
+                        </div>
+                        <br>
+                        <div class="category-descr">
+                            <span> Jefe de control de calidad tiene la función de conocer las normas establecidas en la
+                                industria para cumplir los estándares de calidad en los productos,.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 mt60 text-center">
+                <a href="Categorias" class="btn btn-blue btn-effect nomargin">Ver Más..</a>
             </div>
         </div>
-
-        <div class="slider contenedor">
-            <img src="<?= URL; ?>/Assets/img/people_search.svg" alt="React" />
-            <div class="info-slider">
-                <h2>¿Buscas personal?</h2>
-                <p>
-                    ¡Bienvenido!, con PonsLabor has que tu negocio crezca cada dia mas
-                    dando la oportunidad a todos nuestros aspirantes disponibles con todas las ganas de explotar
-                    ese maravilloso potencial, que esperas para iniciar tu busqueda.
-                </p>
+    </section>
+    <br> <br> <br>
+    <br> <br> <br>
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 col-sm-12 ms-3" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
+                    <img src="<?= URL; ?>/Assets/img/index/descripcion.png" class="rounded img-fluid d-block mx-auto" alt="App" style="width: 700px; height: 600px;position: relative;
+                    top: -80px; right: 30px;">
+                </div>
+                <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
+                    <div class="left-heading" style="position: relative;
+                    top: 100px;">
+                        <h2 style="color: #43B5DD;"> <strong>PonteLab</strong></h2>
+                    </div>
+                    <br>
+                    <div class="left-text" style="position: relative;
+                    top: 100px;">
+                        <p><strong>Ponte</strong> corresponde a Puente y <strong>Lab</strong> es un acrónimo de Laborum
+                            que hace referencia a la palabra "trabajo" en griego, siendo así un sistema de
+                            información
+                            donde encontraras ofertas y perfiles laborales de todo tipo</p>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="slider contenedor">
-            <img src="<?= URL; ?>/Assets/img/register.svg" alt="Front-end" />
-            <div class="info-slider">
-                <h2>¡Que esperas para <br> registrarte!</h2>
-                <p>
-                    ¡Hola!, ¿aun no has logrado conseguir empleo?, no hay problema
-                    con PonsLabor muéstrale al mundo todos tus conocimientos y
-                    potencial, te ayudamos a conseguir tu trabajo deseado.
-                </p>
-            </div>
-        </div>
-
-        <div class="slider contenedor">
-            <img src="<?= URL; ?>/Assets/img/work.svg" alt="Programador" />
-            <div class="info-slider">
-                <h2>Sección 5</h2>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                    praesentium quia porro velit voluptatibus quam accusantium obcaecati
-                    sint? Expedita, quasi.
-                </p>
-            </div>
-        </div>
-
-        <div class="btns">
-            <div class="btn active"></div>
-            <div class="btn"></div>
-            <div class="btn"></div>
-            <div class="btn"></div>
-            <div class="btn"></div>
         </div>
     </section>
 
-    <section class="section-welcome contenedor">
-        <div class="section-welcome__welcome">
-            <div class="welcome-title">
-                <h2>¡Te damos la bienvenida a tu comunidad profesional!</h2>
-                <img src="<?= URL; ?>Assets/img/welcome.svg" alt="welcome">
+
+    <section class="" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-white" style="color: #43B5DD;"><strong>Módulos</strong></h2>
             </div>
-            <ul class="list_categories">
-                <li><a href="#search-vacantes">Buscar empleo<i class="fas fa-chevron-right"></i></a></li>
-                <li><a href="Registro">Publicar ofertas de empleo<i class="fas fa-chevron-right"></i></a></li>
+            <div class="owl-carousel testimonial">
+                <div class="item">
+                    <div class="review">
+                        <blockquote>Este modulo permitira a los contratantes visualizar los perfiles de los apirates, de
+                            igual
+                            manera le permitira publicar vacantes y realizar una breve descripcionde su empresa.
+                        </blockquote>
+
+                    </div>
+                    <div class="customer">
+                        <img src="<?= URL; ?>/Assets/img/index/businessman.svg" alt="">
+                        <h4 class="uppercase pt20" style="color: #8A8E8E;">Contratante</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="review">
+                        <blockquote>Este módulo les permitirá a los aspirantes visualizar las vacantes disponibles, de
+                            igual manera le permitirá registrar su información personal, información de estudios,
+                            experiencia laboral y podrá general su hoja de vida.</blockquote>
+                    </div>
+                    <div class="customer">
+                        <img src="<?= URL; ?>/Assets/img/index/search_work.svg" alt="">
+                        <h4 class="uppercase pt20" style="color: #8A8E8E;">Aspirantes</h4>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <br> <br> <br>
+    <br> <br> <br>
+    <section class="section" id="about2">
+        <div class="container">
+            <div class="row">
+                <div class="left-text col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix">
+                    <div class="left-heading">
+                        <h5 style="color: #43B5DD;">Beneficios de <strong>PonteLab</strong></h5>
+                    </div>
+                    <p>Con <strong>Pontelab </strong>encontraran los siguientes beneficios a la hora de buscar su
+                        trabajo ideal .</p>
+                    <ul>
+                        <li>
+                            <img src="<?= URL; ?>/Assets/img/index/beneficio 01.png" alt="">
+                            <div class="text">
+                                <h6 style="color: #8A8E8E;">Filtro </h6>
+                                <p>En <strong>PonteLab</strong> utilizamos un filtro de búsqueda para que encuentres
+                                    más rápido la vácate que deseas y consultes en ella todos sus datos.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="<?= URL; ?>/Assets/img/index/beneficio 02.png" a alt="">
+                            <div class="text">
+                                <h6 style="color: #8A8E8E;">Seguridad </h6>
+                                <p>En <strong>PonteLab</strong> tus datos están mas seguros y con la versión Premium tus
+                                    vacantes y perfiles laborales saldrán en las primeras opciones.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="<?= URL; ?>/Assets/img/index/beneficio 03.png" alt="">
+                            <div class="text">
+                                <h6 style="color: #8A8E8E;">Sin experiencia laboral </h6>
+                                <p><strong>PonteLab</strong> acepta aspirantes sin experiencia laboral previa ya que
+                                    podrá
+                                    encontrar de todo tipo de vacantes.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
+                    <img src="<?= URL; ?>/Assets/img/index/beneficio-general.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                </div>
+            </div>
+        </div>
+    </section>
+    <BR> <BR> <BR> <BR>
+    <div class="wrapper row3" id="fucionalidades">
+        <main class="hoc container clear">
+            <div class="center btmspace-80">
+                <h2 style="color: #43B5DD;"><strong>FUNCIONALIDADES</strong></h2>
+            </div>
+            <ul class="nospace group overview btmspace-80">
+                <li class="one_third">
+                    <article>
+                        <div class="clear"><a href="#"><i class="fas fa-newspaper"></i></a>
+                            <h6 class="heading">Generar Hoja de vida</h6>
+                        </div>
+                        <p>Con nuestra plataforma podrán generar sus propias de vida.</p>
+                    </article>
+                </li>
+                <li class="one_third">
+                    <article>
+                        <div class="clear"><a href="#"><i class="fas fa-filter"></i></a>
+                            <h6 class="heading">Filtro de vacantes</h6>
+                        </div>
+                        <p>Con Pontelab podrán filtrar las vacantes que más se adapten a sus necesidades. </p>
+                    </article>
+                </li>
+                <li class="one_third">
+                    <article>
+                        <div class="clear"><a href="#"><i class="fas fa-search"></i></a>
+                            <h6 class="heading">Filtro de perfiles laborales</h6>
+                        </div>
+                        <p>Con Pontelab podrán buscar los perfiles laborales que más se adapte a su compañía.</p>
+                    </article>
+                </li>
+
             </ul>
+
+        </main>
+    </div>
+    <BR> <BR> <BR> <BR>
+    <footer class="footer1">
+        <div class="copyright ptb40">
+            <div class="container">
+                <div class="col-md-8 col-sm-8 col-xs-12" style="color: ffff;">
+                <!-- © Copyright 2021 <a href="#">Belay Software Solution</a> Todos los derechos reservados. -->
+                    <span>© Copyright 2021 &copy; <a href="#">PonteLab</a>.  Todos los derechos reservados.</span>
+                </div>
+           
         </div>
-        <div class="section_welcome__img">
-            <img src="<?= URL; ?>Assets/img/co-working.svg" alt="co-working">
-        </div>
-    </section>
-
-    <section class="section-aspirantes contenedor">
-        <h2>La forma más fácil de encontrar tu trabajo ideal</h2>
-        <div class="section-aspirante__card">
-            <div class="card-aspirante card">
-                <div class="img-search img">
-                    <img src="<?= URL; ?>/Assets/img/search.svg" alt="Buscador">
-                </div>
-                <div class="info-search info">
-                    <h4>Buscador de empleo</h4>
-                    <p>Registrese y encuentre las ofertas laborales de todos los
-                        prestadores de Bogotá D.C.</p>
-                    <a href="#search-vacantes">Ir</a>
-                </div>
-            </div>
-            <div class="card-contratante card">
-                <div class="img-bussiness img">
-                    <img src="<?= URL; ?>/Assets/img/businessman.svg" alt="Bussiness">
-                </div>
-                <div class="info-contratante info">
-                    <h4>Publicar u ofertar vacantes</h4>
-                    <p>Registre sus vacantes y encuentre el perfil más adecuado a su necesidad.</p>
-                    <a href="#search-aspirantes">Ir</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-contratante contenedor">
-        <h2>Nunca habia sido tan fácil conseguir tu empleo ideal
-        </h2>
-        <div class="section-contratante__container">
-            <div class="section-contratante__aspirante">
-                <h5>Lo puedes hacer en estos simples pasos:</h5>
-                <ul>
-                    <li><i class="fas fa-sign-in-alt icon-pasos"></i>Registrarte y ser parte de la famila PonsLabor, lo puedes hacer <a href="Registro">aquí.</a></li>
-                    <li><i class="fas fa-edit icon-pasos"></i>Registrar tus estudios, experiencia, idiomas, habilidades...</li>
-                    <li><i class="fas fa-eye icon-pasos"></i>Hacemos tu perfil visible para que las empresas te puedan contactar.</li>
-                    <li><i class="fas fa-folder-open icon-pasos"></i>Nosotros te generamos una irresistible y elegante hoja de vida.</li>
-                    <li><i class="fas fa-search icon-pasos"></i><a href="#search-vacantes">Buscar ofertas laborales</a> de acuerdo a tu perfil.</li>
-                    <li><i class="fas fa-clipboard-check icon-pasos"></i>Elegir la que más se acople a tus habilidades y características.</li>
-                    <li><i class="fas fa-paper-plane icon-pasos"></i>Puedes aplicar a dicha vacante.</li>
-                </ul>
-                <p>Todo esto lo puedes hacer desde la comodidad de tu casa <i class="fas fa-laptop-house icon-pasos"></i>, al mismo tiempo que ayudas a la conservación del planeta.</p>
-            </div>
-            <form class="section-contratante__contratante">
-                <input type="search" placeholder="Desarrollador, frontend, backend, ingeniero..." name="" id="search-vacantes">
-                <i class="fas fa-search"></i>
-
-                <ul>
-                    <li>Desarrollador JavaScript</li>
-                    <li>Ingeniero en Sistemas</li>
-                    <li>Manejo de Adoble Ilustration</li>
-                </ul>
-            </form>
-
-        </div>
-    </section>
-
-    <section class="section-contratante-info contenedor">
-        <h2>Nunca habia sido tan fácil registrar sus vacantes y <br> el perfil más adecuado a sus necesidades</h2>
-        <div class="section-info__contratante">
-            <div class="section-contratante-info__info">
-                <h5>Lo puedes hacer en estos simples pasos:</h5>
-                <ul>
-                    <li><i class="fas fa-sign-in-alt icon-pasos"></i>Registrarte y ser parte de la famila PonsLabor, lo puedes hacer <a href="Registro">aquí.</a></li>
-                    <li><i class="fas fa-laptop icon-pasos"></i><i class="fas fa-eye icon-pasos"></i>Registrar sus vacantes y publicarlas para que sean visibles para los aspirantes.</li>
-                    <li><i class="fas fa-search icon-pasos"></i><a href="#search-aspirantes">Buscar tu trabajador ideal</a> para que desempeñe un vacante ofertada.</li>
-                </ul>
-            </div>
-            <form class="section-contratante-search">
-                <input type="search" placeholder="Desarrollador, web, Diseñador, Ingeniero..." name="" id="search-aspirantes">
-                <i class="fas fa-search"></i>
-
-                <ul>
-                    <li>Desarrollador JavaScript</li>
-                    <li>Ingeniero en Sistemas</li>
-                    <li>Manejo de Adoble Ilustration</li>
-                </ul>
-            </form>
-        </div>
-    </section>
-
-    <section class="section-nosotros contenedor" id="section-nosotros">
-
-        <h2>Nosotros</h2>
-
-        <div class="contenedor__card">
-            <div class="card">
-                <div class="img">
-                    <img src="<?= URL ?>Assets/img/Edier.jpeg" alt="Edier">
-                </div>
-                <div class="info__description">
-                    <h6>Edier Heraldo Hernández Molano</h6>
-                    <ul>
-                        <li>👉 Desarrollador fullstack</li>
-                        <li>👉 Lider de proyecto</li>
-                    </ul>
-
-                    <a href="https://drive.google.com/file/d/1sg9x1VuLFnrx7pE6-aXLT2FsazvSCoFd/view?usp=sharing" target="_blank">Leer más<i class="far fa-hand-point-right" style="margin-left: 8px;"></i></a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img">
-                    <img src="<?= URL ?>Assets/img/Yesenia.jpeg" alt="Yesenia">
-                </div>
-                <div class="info__description">
-                    <h6>Yesenia Rodriguez Florez</h6>
-                    <ul>
-                        <li>✔ Administradora de base de datos.</li>
-                        <li></li>
-                    </ul>
-
-                    <a href="#">Leer más<i class="far fa-hand-point-right" style="margin-left: 8px;"></i></a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img">
-                    <img src="<?= URL ?>Assets/img/Santiago.jpeg" alt="Santiago">
-                </div>
-                <div class="info__description">
-                    <h6>Santiago Andres Becerra Espitia</h6>
-                    <ul>
-                        <li>⏭ Diseñador UX</li>
-                        <li>⏭ Documentador</li>
-                    </ul>
-
-                    <a href="#">Leer más<i class="far fa-hand-point-right" style="margin-left: 8px;"></i></a>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="img">
-                    <img src="<?= URL ?>Assets/img/Luisa.jpeg" alt="Luisa">
-                </div>
-                <div class="info__description">
-                    <h6>Luisa Brigith Garzon Martin</h6>
-                    <ul>
-                        <li>✅ Desarrollador Frontend</li>
-                        <li>✅ Aseguradora de calidad</li>
-                    </ul>
-
-                    <a href="#">Leer más<i class="far fa-hand-point-right" style="margin-left: 8px;"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <?php
-    require_once('./Views/Components/ScriptsJs.php');
-    ?>
+    </footer>
+   
+    <script src="https://kit.fontawesome.com/ff77c957bf.js" crossorigin="anonymous"></script>
+    <script src="<?= URL ?>Assets/js/jsindex/jquery-min.js"></script>
+    <script src="<?= URL ?>Assets/js/jsindex/bootstrap01.min.js"></script>
+    <script src="<?= URL ?>Assets/js/jsindex/bootstrap-select.min.js"></script>
+    <script src="<?= URL ?>Assets/js/jsindex/swiper.js"></script>
 </body>
 
 </html>
