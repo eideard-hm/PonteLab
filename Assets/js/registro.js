@@ -70,7 +70,67 @@ document.addEventListener('DOMContentLoaded', async () => {
         const listSectores = document.querySelector('#list_sectores');
         listSectores.addEventListener('click', e => seleccionarSector(e));
     }
-})
+});
+
+function validarCamposFildset2() {
+
+    let numDoc = document.getElementById('numDoc').value;
+    let numCel = document.getElementById('numCel').value;
+    let numFijo = document.getElementById('numFijo').value;
+
+    let numDocRegex = /^\(?(\d{10})\)$/;
+    let numCelRegex = /^\(?(\d{10})\)$/;
+    let numFijoRegex = /^\(?(\d{7})\)$/;
+    
+    if (numDoc === '' || numCel === '' || numFijo === '') {
+        swal("Ups!", "Los datos estan vacios", "error");
+    }
+    else if (numDocRegex.test(numDoc)==false && numDoc.length != 10) {
+        swal("Ups!", "El numero de documento es invalido", "error");
+    }
+    else if ((numCelRegex.test(numCel)==false) && (numCel.length != 10)) {
+        swal("Ups!", "El numero de celular es invalido", "error");
+    }
+    else if ((numFijoRegex.test(numFijo)==false) && (numFijo.length != 7)) {
+        swal("Ups!", "El numero fijo es invalio", "error");
+    }
+    else {
+        $("#siguiente2").click(function (e) {
+            e.preventDefault();
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+            swal("Correcto!", "Siguiente para terminar con el formulario", "success");
+            next_fs.show();
+
+            current_fs.animate({ opacity: 0 }, {
+                step: function (now, mx) {
+                    scale = 1 - (1 - now) * 0.2;
+                    left = (now * 50) + "%";
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    next_fs.css({ 'left': left, 'opacity': opacity });
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                easing: 'easeInOutBack'
+            });
+        }); 
+        // }else{      
+        //   sigForm();
+        // }    
+    }
+}
 
 //Funcionalidad botones
 
@@ -271,65 +331,7 @@ function validarCampos() {
         // }    
     }
 }
-function validarCamposFildset2() {
 
-    let numDoc = document.getElementById('numDoc').value;
-    let numCel = document.getElementById('numCel').value;
-    let numFijo = document.getElementById('numFijo').value;
-
-    let numDocRegex = /^\(?(\d{10})\)$/;
-    let numCelRegex = /^\(?(\d{10})\)$/;
-    let numFijoRegex = /^\(?(\d{7})\)$/;
-    
-    if (numDoc === '' || numCel === '' || numFijo === '') {
-        swal("Ups!", "Los datos estan vacios", "error");
-    }
-    else if (numDocRegex.test(numDoc)==false && numDoc.length != 10) {
-        swal("ERROR!", "El numero de documento es invalido", "error");
-    }
-    else if ((numCelRegex.test(numCel)==false) && (numCel.length != 10)) {
-        swal("ERROR!", "El numero de celular es invalido", "error");
-    }
-    else if ((numFijoRegex.test(numFijo)==false) && (numFijo.length != 7)) {
-        swal("ERROR!", "El numero fijo es invalio", "error");
-    }
-    else {
-        $(".next2").click(function (e) {
-            e.preventDefault();
-            if (animating) return false;
-            animating = true;
-
-            current_fs = $(this).parent();
-            next_fs = $(this).parent().next();
-
-            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-            swal("Correcto!", "Siguiente para terminar con el formulario", "success");
-            next_fs.show();
-
-            current_fs.animate({ opacity: 0 }, {
-                step: function (now, mx) {
-                    scale = 1 - (1 - now) * 0.2;
-                    left = (now * 50) + "%";
-                    opacity = 1 - now;
-                    current_fs.css({
-                        'transform': 'scale(' + scale + ')',
-                        'position': 'absolute'
-                    });
-                    next_fs.css({ 'left': left, 'opacity': opacity });
-                },
-                duration: 800,
-                complete: function () {
-                    current_fs.hide();
-                    animating = false;
-                },
-                easing: 'easeInOutBack'
-            });
-        });
-        // }else{      
-        //   sigForm();
-        // }    
-    }
-}
 
 
 
