@@ -81,17 +81,17 @@ function validarCamposFildset2() {
     let numDocRegex = /^\(?(\d{10})\)$/;
     let numCelRegex = /^\(?(\d{10})\)$/;
     let numFijoRegex = /^\(?(\d{7})\)$/;
-    
+
     if (numDoc === '' || numCel === '' || numFijo === '') {
         swal("Ups!", "Los datos estan vacios", "error");
     }
-    else if (numDocRegex.test(numDoc)==false && numDoc.length != 10) {
+    else if (numDocRegex.test(numDoc) == false && numDoc.length != 10) {
         swal("Ups!", "El numero de documento es invalido", "error");
     }
-    else if ((numCelRegex.test(numCel)==false) && (numCel.length != 10)) {
+    else if ((numCelRegex.test(numCel) == false) && (numCel.length != 10)) {
         swal("Ups!", "El numero de celular es invalido", "error");
     }
-    else if ((numFijoRegex.test(numFijo)==false) && (numFijo.length != 7)) {
+    else if ((numFijoRegex.test(numFijo) == false) && (numFijo.length != 7)) {
         swal("Ups!", "El numero fijo es invalio", "error");
     }
     else {
@@ -125,50 +125,9 @@ function validarCamposFildset2() {
                 },
                 easing: 'easeInOutBack'
             });
-        }); 
-        // }else{      
-        //   sigForm();
-        // }    
+        });
     }
 }
-
-//Funcionalidad botones
-
-// let current_fs, next_fs, previous_fs;
-// let left, opacity, scale;
-// let animating;
-
-// $(".next").click(function (e) {
-//     e.preventDefault();
-//     if (animating) return false;
-//     animating = true;
-
-//     current_fs = $(this).parent();
-//     next_fs = $(this).parent().next();
-
-//     $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-
-//     next_fs.show();
-
-//     current_fs.animate({ opacity: 0 }, {
-//         step: function (now, mx) {
-//             scale = 1 - (1 - now) * 0.2;
-//             left = (now * 50) + "%";
-//             opacity = 1 - now;
-//             current_fs.css({
-//                 'transform': 'scale(' + scale + ')',
-//                 'position': 'absolute'
-//             });
-//             next_fs.css({ 'left': left, 'opacity': opacity });
-//         },
-//         duration: 800,
-//         complete: function () {
-//             current_fs.hide();
-//             animating = false;
-//         },
-//         easing: 'easeInOutBack'
-//     });
-// });
 
 let current_fs, next_fs, previous_fs;
 let left, opacity, scale;
@@ -271,11 +230,11 @@ function validarCampos() {
     let emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     let validnombre = /^[a-zA-ZÀ-ÿ\s]{3,50}$/;
     let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$%*&\-\_])[A-Za-z\d$@$%*&\-\_]{8,16}$/;
-    
+
     if (nombre === '' || email === '' || password === '') {
         swal("Ups!", "Los datos estan vacios", "error");
     }
-    else if (passwordRegex.test(password)==false) {
+    else if (passwordRegex.test(password) == false) {
         swal("Ups!", "La contraseña ingresada debe tener mas de 8 caracteres, mayusculas, minusculas y caracter especial", "error");
     }
     else if (validnombre.test(nombre) == false) {
@@ -325,7 +284,7 @@ function validarCampos() {
             });
         });
 
-        
+
         // }else{      
         //   sigForm();
         // }    
