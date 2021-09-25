@@ -95,7 +95,7 @@
                     <span class="delPhoto notBlock">X</span>
                     <label for="foto"></label>
                     <div class="prevPhoto__img">
-                        <img id="img" src="<?php echo URL; ?>Assets/Img/file.jpg" />
+                        <img id="img"  style="width: 280px;" src="<?php echo URL; ?>Assets/Img/file.jpg" />
                     </div>
                 </div>
                 <div class="upimg">
