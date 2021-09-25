@@ -9,7 +9,6 @@
     <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -68,7 +67,7 @@
             <input type="number" name="numCel" id="numCel" placeholder="Ingrese su número de teléfono celular" required />
             <input type="number" name="numFijo" id="numFijo" placeholder="Ingrese su número de teléfono fijo" required />
             <button name="previous" class="previous action-button" style="width: 195px; height:48px; background: #676766;" value="Atras">Atras</button>
-            <button name="next2" class="next action-button" style="width: 195px; height:48px" value="Siguiente" id="siguiente2" onclick="validarCamposFildset2();">Siguiente</button>
+            <button type="button" name="next2" class="action-button" value="Siguiente" id="siguiente2" style="width: 195px; height:48px;" onclick="validarCamposFildset2();" > Siguiente </button>
         </fieldset>
 
         <fieldset>
@@ -132,9 +131,9 @@
     <img src="<?= URL; ?>Assets/img/wave.jpg" class="wave">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-    <?php
-    require_once('./Views/Components/ScriptsJs.php');
-    ?>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
     <script src="<?= URL; ?>Assets/js/registro.js"></script>
 </body>
 
