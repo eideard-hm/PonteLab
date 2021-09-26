@@ -148,7 +148,7 @@ const getAllVacantes = async () => {
         if (status) {
             data.forEach(vacante => {
                 if (vacante.imagenUsuario === null) {
-                    imagenUsuario = 'upload.png';
+                    imagenUsuario = 'upload.svg';
                 } else {
                     imagenUsuario = vacante.imagenUsuario;
                 }

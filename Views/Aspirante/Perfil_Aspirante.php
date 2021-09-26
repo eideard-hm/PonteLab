@@ -95,11 +95,13 @@
                             </div>
                         </div>
                     </div>
-                    <pre>
-                        <?php
-                        print_r($_SESSION['aspirante'][0]['idAspirante'])
-                        ?>
-                    </pre>
+                    <div class="alert alert-primary" role="alert">
+                        <div class="iq-alert-text">Apreciado usuario <b><?= $_SESSION['user-data']['nombreUsuario'] ?></b>, desde PonteLab
+                            lo invitamos a registrar los datos que se presentan a continuación: <b>Información personal,
+                                el o los puestos de interés que tiene, idiomas, habilidades, educación, experiencia laboral.
+                            </b>
+                        </div>
+                    </div>
                     <div class="col-sm-12">
                         <div class="tab-content">
                             <!-- Información personal  -->
@@ -186,7 +188,7 @@
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="las la-times"></i></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="#" id="perfil-laboral" class="contenedor-form">
+                                                                <form action="#" id="perfil-laboral" class="contenedor-form form-input-w50">
                                                                     <input type="hidden" name="idAspirante" value="<?= isset($_SESSION['data-aspirante']['idAspirante']) ? $_SESSION['data-aspirante']['idAspirante'] : 0 ?>">
 
                                                                     <div class="contenedor-grupo form-group" id="grupo-puesto">
@@ -241,20 +243,11 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title titulo-perfil">Idiomas</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0">
+                                                    <a class="btn" role="button" tabindex="0" id="data-idIdiomas">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#idiomas"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body">
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <div class="col-6 d-flex justify-content-between">
-                                                            <span>Español</span>
-                                                            <span>4</span>
-                                                        </div>
-                                                        <a class="btn col-6 text-right" role="button">
-                                                            <i class="las la-pen" data-toggle="modal" data-target="#idiomas"></i>
-                                                        </a>
-                                                    </div>
+                                                <div class="iq-card-body" id="idiomas-selected">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="idiomas" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -267,14 +260,14 @@
                                                             <div class="modal-body">
                                                                 <form action="#" id="form-idiomas" class="contenedor-form">
                                                                     <input type="hidden" name="idIdioma" id="idIdioma" value="0">
-                                                                    
+
                                                                     <div class="contenedor-grupo w50 form-group" id="grupo-idioma">
                                                                         <div class="agrupar-estrellas" id="agrupar-estrellas-select">
                                                                             <label for="txtListIdioma" id="grupo-idioma-idioma">Idiomas</label>
                                                                             <select name="txtListIdioma" class="form-control" id="txtListIdioma"></select>
                                                                             <label for="txtIdioma" id="grupo-idioma-otro_idioma" style="display: none;">Otro idioma</label>
                                                                             <input type="text" class="form-control" name="txtIdioma" id="txtIdioma" placeholder="Inglés" autofocus style="display: none;" />
-                                                                            <i class="estado-input fa fa-times-circle" style="display: none"></i>
+                                                                            <i class="estado-input estado-input-w50 fa fa-times-circle"></i>
                                                                             <p class="leyenda-input" id="grupo-idioma-leyenda">
                                                                                 El nombre del idioma no debe contener números.
                                                                             </p>
@@ -323,12 +316,6 @@
                                                                         <ul id="select-idiomas-list">
                                                                         </ul>
                                                                     </div>
-
-                                                                    <div class="contenedor-grupo">
-                                                                        <button class="btn btn-primary mr-2 change-name-btn-Idiomas" id="btn-idiomas">
-                                                                            Guardar<i class="far fa-save icon-btn"></i>
-                                                                        </button>
-                                                                    </div>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -348,20 +335,11 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title titulo-perfil">Habilidades</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0">
+                                                    <a class="btn" role="button" tabindex="0" id="data-idHabilidades">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#habilidades"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body">
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <div class="col-6 d-flex justify-content-between">
-                                                            <span>JavaScript</span>
-                                                            <span>4</span>
-                                                        </div>
-                                                        <a class="btn col-6 text-right" role="button">
-                                                            <i class="las la-pen" data-toggle="modal" data-target="#habilidades"></i>
-                                                        </a>
-                                                    </div>
+                                                <div class="iq-card-body" id="list-habilidades-selected">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="habilidades" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -381,7 +359,7 @@
                                                                             <select name="txtListHabilidad" class="form-control" id="txtListHabilidad"></select>
                                                                             <label for="txtHabilidad" id="grupo-idioma-otra_habilidad" style="display: none;">Nueva Habilidad</label>
                                                                             <input type="text" class="form-control" name="txtHabilidad" id="txtHabilidad" placeholder="JavaScript" autofocus style="display: none;" />
-                                                                            <i class="estado-input fa fa-times-circle" style="display: none"></i>
+                                                                            <i class="estado-input estado-input-w50 fa fa-times-circle"></i>
                                                                             <p class="leyenda-input">
                                                                                 El nombre de la habilidad no debe contener números.
                                                                             </p>
@@ -430,12 +408,6 @@
                                                                         <ul id="select-habilidad-list">
                                                                         </ul>
                                                                     </div>
-
-                                                                    <div class="contenedor-grupo btn-enviar">
-                                                                        <button type="submit" class="btns siguiente enviar">
-                                                                            Enviar<i class="fas fa-paper-plane icon-btn"></i>
-                                                                        </button>
-                                                                    </div>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -455,22 +427,11 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title titulo-perfil">Educación</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0">
+                                                    <a class="btn" role="button" tabindex="0" id="data-idEducacion">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#educacion"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body">
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <div class="col-8">
-                                                            <h5>Servicio Nacional de Aprendizaje SENA</h5>
-                                                            <span>Técnico en Programación de Software</span>
-                                                            <br>
-                                                            <span>2019-2020</span>
-                                                        </div>
-                                                        <a class="btn col-4 text-right" role="button">
-                                                            <i class="las la-pen" data-toggle="modal" data-target="#educacion"></i>
-                                                        </a>
-                                                    </div>
+                                                <div class="iq-card-body" id="list-estudios">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="educacion" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -746,19 +707,7 @@
                                                         <i class="las la-plus" data-toggle="modal" data-target="#experiencia-laboral"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body">
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <div class="col-11">
-                                                            <h5>Desarrollador de software web</h5>
-                                                            <p>Microsoft</p>
-                                                            <span>Enero 2020 - Diciembre 2021</span>
-                                                            <p>Calle 219b norte </p>
-                                                            <p>A cargo del PIT (puesto de información técnica) del grupo aeroindustrial perteneciente al comando aéreo de mantenimiento FAC, adicional me encuentro a cargo de las capacidades de mantenimiento del Grupo aeroindustrial perteneciente al comando aéreo de mantenimiento FAC, Manejo de SAP módulo mantenimiento.</p>
-                                                        </div>
-                                                        <a class="btn col-1 text-right" role="button">
-                                                            <i class="las la-pen" data-toggle="modal" data-target="#experiencia-laboral"></i>
-                                                        </a>
-                                                    </div>
+                                                <div class="iq-card-body" id="list-experiencia">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="experiencia-laboral" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -769,7 +718,7 @@
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="las la-times"></i></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="#" id="experiencia-laboral" class="contenedor-form">
+                                                                <form action="#" id="form-experiencia-laboral" class="contenedor-form">
                                                                     <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
                                                                         <label for="txtEmpresa">Empresa laboró</label>
                                                                         <input class="form-control" type="text" name="txtEmpresa" id="txtEmpresa" autofocus placeholder="Microsoft" />
@@ -812,7 +761,7 @@
 
                                                                     <div class="contenedor-grupo w100 form-group" id="grupo-puesto">
                                                                         <label for="txtPuesto">Puesto desempeñado</label>
-                                                                        <input class="form-control" type="text" name="txtPuesto" id="txtPuesto" placeholder="Desarollador de software frontend" />
+                                                                        <input class="form-control" type="text" name="txtPuesto" id="txtPuestoDesempeñado" placeholder="Desarollador de software frontend" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
                                                                         <p class="leyenda-input">
                                                                             El nombre del puesto que desempeño no debe contener números, guines, carácteres
@@ -1015,7 +964,7 @@
 
                                                                     <div class="contenedor-grupo btn-enviar">
                                                                         <button type="submit" class="btns">
-                                                                            Siguiente<i class="fas fa-chevron-right icon-btn"></i>
+                                                                            Guardar<i class="fas fa-chevron-right icon-btn"></i>
                                                                         </button>
                                                                     </div>
                                                                 </form>

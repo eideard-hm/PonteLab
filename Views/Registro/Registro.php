@@ -137,7 +137,7 @@
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
-    <script src="<?= URL; ?>Assets/js/registro.js"></script>
+    <script src="<?= URL; ?>Assets/js/registro.js" defer></script>
 </body>
 
 </html>

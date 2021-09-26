@@ -79,7 +79,7 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="<?= URL ?>Assets/img/upload.png" alt="Edier">
+                                                            <img class="profile-pic" src="<?= URL ?>Assets/img/upload.svg" alt="Edier">
                                                             <div class="p-image">
                                                                 <i class="las la-pencil-alt upload-button"></i>
                                                                 <input class="file-upload" type="file" accept="image/*" />

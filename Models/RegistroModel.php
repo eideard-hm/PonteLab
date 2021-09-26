@@ -70,7 +70,9 @@ class RegistroModel extends GestionCRUD
         int $rol,
         int $barrio,
         string $direccion,
-        string $imagen
+        string $imagen,
+        $created_at,
+        $updated_at
     ) {
         $this->nombre = $nombre;
         $this->correoUsuario = $email;
@@ -89,7 +91,7 @@ class RegistroModel extends GestionCRUD
         //consutar si ya existe ese usuario
         $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
-        direccionUsuario 
+        direccionUsuario
         FROM USUARIO 
         WHERE correoUsuario = '{$this->correoUsuario}' OR 
         numDocUsuario = '{$this->numDocUsuario}' OR numTelUsuario = '{$this->numTelUsuario}'";
@@ -100,8 +102,8 @@ class RegistroModel extends GestionCRUD
         if (empty($request) || $request === '' || $request === null) {
             $sql = "INSERT INTO USUARIO(nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, 
             numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, idRolFK, idBarrioFK, 
-            direccionUsuario, imagenUsuario)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            direccionUsuario, imagenUsuario, created_at, updated_at)
+            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             //almacena los valores en un arreglo
             $arrData = array(
                 $this->nombre,
@@ -115,7 +117,9 @@ class RegistroModel extends GestionCRUD
                 $this->idRolFK,
                 $this->idBarrioFK,
                 $this->direccionUsuario,
-                $this->imagenUsuario
+                $this->imagenUsuario,
+                $created_at,
+                $updated_at
             );
             $return = $this->insert($sql, $arrData);
         } else {

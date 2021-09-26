@@ -63,7 +63,7 @@
                     <div class="featured-job widget mt60">
                         <!-- Start of Company Logo -->
                         <div class="company">
-                            <img src="<?= URL ?>Assets/img/upload.png" class="img-fluid" alt="">
+                            <img src="<?= URL ?>Assets/img/upload.svg" class="img-fluid" alt="">
                         </div>
                         <!-- End of Company Logo -->
                         <!-- Start of Featured Job Info -->
