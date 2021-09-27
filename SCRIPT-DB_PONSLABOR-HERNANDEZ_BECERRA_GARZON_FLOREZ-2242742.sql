@@ -555,7 +555,39 @@ values (NULL, 2, 2 , 1);
 select * from APLICACION_VACANTE;
 
 /*========================= VISTAS ==============================*/
+CREATE VIEW idiomasSeleccionadosView
+AS
+SELECT i.idIdioma, i.nombreIdioma, ia.idIdiomaAspirante, ia.nivelIdioma, ia.idAspiranteFK
+FROM IDIOMA i INNER JOIN IDIOMA_ASPIRANTE ia
+ON i.idIdioma = ia.idIdiomaFK;
 
+CREATE VIEW habilidadesSeleccionadasView
+AS
+SELECT h.idHabilidad, h.nombrehabilidad, ha.idhabilidadAspirante, ha.idAspiranteFK, ha.nivelHabilidad
+FROM HABILIDAD h INNER JOIN HABILIDAD_ASPIRANTE ha
+ON h.idHabilidad = ha.idHabilidadFK;
+
+CREATE VIEW estudiosAspiranteView
+AS
+SELECT idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, añoInicio, mesInicio, añoFin,
+mesFin, idAspiranteFK, s.idSector, s.nombreSector, gs.idGrado, gs.nombreGrado
+FROM ESTUDIO e INNER JOIN SECTOR s
+ON s.idSector = e.idSectorFK INNER JOIN GRADOESTUDIO gs
+ON gs.idGrado = e.idGradoFK;
+
+
+CREATE VIEW experienciaAspiranteView
+AS
+SELECT il.idInfoLaboral, il.empresaLaboro, il.idCiudadLaboroFK, il.nombrePuestoDesempeño, il.añoInicio, il.mesInicio,
+il.añoFin, il.mesFin, il.funcionDesempeño, idAspiranteFK, s.idSector, s.nombreSector, te.idTipoExperiencia, 
+te.nombreTipoExperiencia
+FROM INFOLABORAL il INNER JOIN SECTOR s
+ON s.idSector = il.idSectorFK INNER JOIN TIPOEXPERIENCIA te
+ON te.idTipoExperiencia = il.idTipoExperienciaFK;
+
+SELECT * 
+FROM experienciaAspiranteView 
+WHERE idAspiranteFK = 1;
 /*
 La vista sirve para conocer el nombre de los  tipos de documentos de los usuarios registrados, el nombre del rol 
 con el cual estan registrados,  y el barrio
@@ -682,8 +714,11 @@ VBusqueda varchar(70)
 BEGIN 
 SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
 tipoContratoVacante, sueldoVacante, direccionVacante, estadoVacante, 
-fechaHoraPublicacion, fechaHoraCierre
-FROM VACANTE
+fechaHoraPublicacion, fechaHoraCierre, v.idContratanteFK,
+u.nombreUsuario, u.imagenUsuario 
+FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+ON u.idUsuario = c.idUsuarioFK
 WHERE nombreVacante LIKE CONCAT('%', VBusqueda, '%') OR descripcionVacante LIKE CONCAT('%', VBusqueda, '%')
 OR perfilAspirante LIKE CONCAT('%', VBusqueda, '%') OR tipoContratoVacante LIKE CONCAT('%', VBusqueda, '%')
 OR direccionVacante LIKE CONCAT('%', VBusqueda, '%');
@@ -696,7 +731,6 @@ CALL SP_buscarVacantes('Axa');
 Función que permita obtener el número de coincidencias de usuarios, de acuerdo a un parametro enviado pasado.
 Se debe de pasar como argumento un nombre o letra(s) del nombre de un usuario y de acuerdo a ello
 retornar el número de concidencias.
-*/
 DROP FUNCTION IF EXISTS F_numeroUsuario;
 DELIMITER //
 CREATE FUNCTION F_numeroUsuario
@@ -711,10 +745,57 @@ BEGIN
     WHERE nombreUsuario LIKE CONCAT('%', letraNombre, '%') ;
     RETURN numeroCoincidencias;
 END //
-
 -- usar la vista
 SELECT  F_numeroUsuario('Edier') AS 'Número de coincidencias de nombres de usuarios encontradas para la palabra introducida';
-
+/*======================= TRIGGER BASE DE DATOS==============================*/
+/*
+Se quiere implementar la funcionalidad del cambio de contraseña dentro del sistema de información de PonteLab; se
+debe de tener en cuenta que se debe de crear una nueva tabla (log) con la información, dicha tabla debe contener la 
+información de: nombre del usuario, código, tipo y número de documento, contraseña antigua y nueva. Dicha información
+de esa nueva tabla va a servir para comprobar que las nuevas contraseñas del usuario no concuerden con ninguna de las
+anteriores.
+-- Creando la tabla de log
+DROP TABLE IF EXISTS log;
+CREATE TABLE log
+(
+idLogo int primary key auto_increment,
+idUsuario int not null,
+nombreUsuario varchar(70) not null,
+tipoDocumentoUsuario int not null,
+numeroDocumentoUsuario varchar(10) not null,
+newPassword varchar(100) not null,
+oldPassword varchar(100) not null,
+created_at timestamp DEFAULT CURRENT_TIMESTAMP
+)
+-- Trigger
+DROP TRIGGER IF EXISTS TR_changePasswordUser;
+DELIMITER $$
+CREATE TRIGGER TR_changePasswordUser
+AFTER
+UPDATE
+ON USUARIO
+FOR EACH ROW
+BEGIN
+	IF NEW.passUsuario IS NOT NULL 
+		THEN	BEGIN
+			INSERT INTO log(idUsuario, nombreUsuario, tipoDocumentoUsuario, numeroDocumentoUsuario, 
+            newPassword, oldPassword)
+           VALUES(NEW.idUsuario, NEW.nombreUsuario, NEW.idTipoDocumentoFK, NEW.numDocUsuario, 
+           NEW.passUsuario, OLD.passUsuario);
+		END;
+	END IF;
+END $$        
+DELIMITER ;
+ 
+-- Ejecutat el trigger
+UPDATE USUARIO
+SET passUsuario = '1055550018'
+WHERE idUsuario = 4;
+SELECT *
+FROM USUARIO;
+SELECT * 
+FROM LOG;
+ */
 -- DESCRIBE VACANTE
 /*
 SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
@@ -722,6 +803,4 @@ numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
 FROM USUARIO
 WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
 OR numTelUsuario LIKE'%id%' , numTelFijo LIKE'%id%' ;
-
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
-
