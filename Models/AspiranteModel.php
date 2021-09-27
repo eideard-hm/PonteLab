@@ -27,6 +27,25 @@ class AspiranteModel extends GestionCRUD
     private string $nameHabilidad;
     private string $nivelHabilidad;
 
+    //atributos de la clase - Tabla Estudios
+    private string $nombreInstitucion;
+    private string $tituloObtenido;
+    private int $idCuidad;
+    private string $anioInicio;
+    private string $mesInicio;
+    private string $anioFin;
+    private string $mesFin;
+    private int $idAspirante;
+    private int $idGradoEstudio;
+    private int $idSector;
+
+    //atributos de la clase - Tabla Experiencia
+    private string $empresaLaboro;
+    private string $idCiudadLaboro;
+    private int $idTipoExperiencia;
+    private string $puestoDesempeño;
+    private string $funcion;
+
     public function __construct()
     {
         parent::__construct();
@@ -169,6 +188,15 @@ class AspiranteModel extends GestionCRUD
                 ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN ASPIRANTE AS a
                 ON a.idAspirante = api.idAspiranteFK INNER JOIN USUARIO  AS u
                 ON u.idusuario = a.idUsuarioFK
+                WHERE idAspiranteFK = {$this->Id}";
+        return $this->selectAll($sql);
+    }
+
+    public function getIdiomasSelected(int $id)
+    {
+        $this->Id = $id;
+        $sql = "SELECT * 
+                FROM idiomasSeleccionadosView 
                 WHERE idAspiranteFK = {$this->Id}";
         return $this->selectAll($sql);
     }
@@ -330,6 +358,15 @@ class AspiranteModel extends GestionCRUD
         }
     }
 
+    public function getHabilidadesSelected(int $id)
+    {
+        $this->Id = $id;
+        $sql = "SELECT * 
+                FROM habilidadesSeleccionadasView 
+                WHERE idAspiranteFK = {$this->Id}";
+        return $this->selectAll($sql);
+    }
+
     public function routesAspirante(int $idUsuario)
     {
         $this->idUsuarioFK = $idUsuario;
@@ -337,6 +374,162 @@ class AspiranteModel extends GestionCRUD
                 FROM ASPIRANTE AS a INNER JOIN ESTADOLABORALASPIRANTE AS ela
                 ON ela.idEstadoLaboral = a.idEstadoLaboralAspiranteFK
                 WHERE idUsuarioFK = {$this->idUsuarioFK}";
+        return $this->select($sql);
+    }
+
+    //método para insertar un nuevo estudio
+    public function insertEstudio(
+        string $nombreInstitucion,
+        string $tituloObtenido,
+        int $idCuidad,
+        int $idSector,
+        string $anioInicio,
+        string $mesInicio,
+        string $anioFin,
+        string $mesFin,
+        int $idAspirante,
+        int $idGradoEstudio
+    ) {
+        $this->nombreInstitucion = $nombreInstitucion;
+        $this->tituloObtenido = $tituloObtenido;
+        $this->idCuidad = $idCuidad;
+        $this->idSector = $idSector;
+        $this->anioInicio = $anioInicio;
+        $this->mesInicio = $mesInicio;
+        $this->anioFin = $anioFin;
+        $this->mesFin = $mesFin;
+        $this->idAspirante = $idAspirante;
+        $this->idGradoEstudio = $idGradoEstudio;
+
+        $sql = "SELECT idEstudio, nombreInstitucion, tituloObtenido, idAspiranteFK
+                FROM ESTUDIO 
+                WHERE nombreInstitucion = '{$this->nombreInstitucion}' 
+                AND tituloObtenido = '{$this->tituloObtenido}' AND
+                idAspiranteFK = {$this->idAspirante}";
+        $request = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "INSERT INTO ESTUDIO(nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, 
+                    añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
+                    VALUES(?,?,?,?,?,?,?,?,?,?)";
+            $arrData = [
+                $this->nombreInstitucion,
+                $this->tituloObtenido,
+                $this->idCuidad,
+                $this->idSector,
+                $this->anioInicio,
+                $this->mesInicio,
+                $this->anioFin,
+                $this->mesFin,
+                $this->idAspirante,
+                $this->idGradoEstudio
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
+    }
+
+    //método para traer todos los sectores
+    public function getAllSectores()
+    {
+        $sql = "SELECT idSector, nombreSector
+                FROM SECTOR";
+        return $this->selectAll($sql);
+    }
+
+    //método para traer todos los sectores
+    public function getAllGradoEstudio()
+    {
+        $sql = "SELECT idGrado, nombreGrado
+                FROM GRADOESTUDIO";
+        return $this->selectAll($sql);
+    }
+
+    public function getEstudiosAspirante(int $id)
+    {
+        $this->Id = $id;
+        $sql = "SELECT * 
+                FROM estudiosAspiranteView 
+                WHERE idAspiranteFK = {$this->Id}";
+        return $this->selectAll($sql);
+    }
+
+    //Mètodo para traer todos los tipos de experiencias laborales
+    public function getAllListExperiencia()
+    {
+        $sql = "SELECT idTipoExperiencia, nombreTipoExperiencia
+        FROM TIPOEXPERIENCIA";
+        return $this->selectAll($sql);
+    }
+
+    //método para insertar un nuevo estudio
+    public function insertExperienciaLaboral(
+        string  $empresa,
+        int $sectorLaboro,
+        int $ciudad,
+        int $tipoExperiencia,
+        string $puestoDesempeño,
+        string $anioInicio,
+        string $mesInicio,
+        string $anioFin,
+        string   $mesFin,
+        string $funcion,
+        int $idAspirante
+    ) {
+        $this->empresaLaboro = $empresa;
+        $this->idSector = $sectorLaboro;
+        $this->idCiudadLaboro = $ciudad;
+        $this->idTipoExperiencia = $tipoExperiencia;
+        $this->puestoDesempeño = $puestoDesempeño;
+        $this->anioInicio = $anioInicio;
+        $this->mesInicio = $mesInicio;
+        $this->anioFin = $anioFin;
+        $this->mesFin = $mesFin;
+        $this->funcion = $funcion;
+        $this->idAspirante = $idAspirante;
+
+        $sql = "SELECT idInfoLaboral, empresaLaboro, idSectorFK, nombrePuestoDesempeño, 
+            añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK
+            FROM INFOLABORAL 
+            WHERE empresaLaboro = '{$this->empresaLaboro}' 
+            AND nombrePuestoDesempeño = '{$this->puestoDesempeño}' 
+            AND  idSectorFK = {$this->idSector}
+            AND añoInicio = '{$this->anioInicio}' AND añoFin = '{$this->anioFin}' 
+            AND mesInicio = '{$this->mesInicio}' AND mesFin = '{$this->mesFin}' AND 
+            idAspiranteFK = {$this->idAspirante}";
+        $request = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "INSERT INTO INFOLABORAL(empresaLaboro, idSectorFK, idCiudadLaboroFK, idTipoExperienciaFK, 
+                nombrePuestoDesempeño, añoInicio, mesInicio, añoFin, mesFin, funcionDesempeño, 
+                idAspiranteFK) 
+                VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            $arrData = [
+                $this->empresaLaboro,
+                $this->idSector,
+                $this->idCiudadLaboro,
+                $this->idTipoExperiencia,
+                $this->puestoDesempeño,
+                $this->anioInicio,
+                $this->mesInicio,
+                $this->anioFin,
+                $this->mesFin,
+                $this->funcion,
+                $this->idAspirante
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
+    }
+
+    public function getExperienciaAspirante(int $id)
+    {
+        $this->Id = $id;
+        $sql = "SELECT * 
+                FROM experienciaAspiranteView 
+                WHERE idAspiranteFK = {$this->Id}";
         return $this->selectAll($sql);
     }
 

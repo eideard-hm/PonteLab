@@ -22,13 +22,23 @@ const sweetAlert = (titulo, cuerpo, boton) => {
 }
 
 /**
- * Función para bloquear y desbloquear los iconos de editar y modificar
+ * Función para bloquear los iconos de editar y modificar
  * 
  * @param {string} formulario Nombre que tiene el data-id de cada icono de las diferentes secciones
  */
 
 const lockIconRegister = (formulario) => {
     document.querySelector(`#data-id${formulario}`).style.display = 'none';
+}
+
+/**
+ * Función para desbloquear los iconos de editar y modificar
+ * 
+ * @param {string} formulario Nombre que tiene el data-id de cada icono de las diferentes secciones
+ */
+
+const unLockIconRegister = (formulario) => {
+    document.querySelector(`#data-id${formulario}`).style.display = 'block';
 }
 
 /**
@@ -197,6 +207,7 @@ const campos = {
     institucion: false,
     titulo: false,
     empresa: false,
+    puesto: false,
     otro_puesto_interes: false,
     funcion: false,
     idioma: false,
@@ -214,6 +225,9 @@ const validarFormulario = (e) => {
             break;
         case "txtEmpresa":
             validarCampo(expresiones.nombre, e.target, 'empresa');
+            break;
+        case "txtPuesto":
+            validarCampo(expresiones.nombre, e.target, 'puesto');
             break;
         case "txtOtroPuesto":
             validarCampo(expresiones.nombre, e.target, 'otro_puesto_interes');
@@ -291,6 +305,7 @@ inputsHabilidades.forEach(input => {
 export {
     sweetAlert,
     lockIconRegister,
+    unLockIconRegister,
     changeNameBtn,
     formDataElement,
     mostrarInputOtroPuestoInteres,

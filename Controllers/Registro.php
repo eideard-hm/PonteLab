@@ -83,6 +83,11 @@ class Registro extends Controllers
             $intBarrio = intval($_POST['barrio']);
             $strDireccion = limpiarCadena($_POST['direccion']);
 
+            $Object = new DateTime();
+            $Object->setTimezone(new DateTimeZone('America/Bogota'));
+            $created_at = $Object->format("Y-m-d h:i:s");
+            $update_at = $Object->format("Y-m-d h:i:s");
+
             if ($intRol === 1) {
                 $strNombre = ucwords(limpiarCadena($_POST['nombre']));
             } else {
@@ -116,7 +121,9 @@ class Registro extends Controllers
                     $intRol,
                     $intBarrio,
                     $strDireccion,
-                    $imgPerfil
+                    $imgPerfil,
+                    $created_at,
+                    $update_at
                 );
             } else {
                 /*================== EDITAR USUARIO =======================*/
@@ -133,7 +140,8 @@ class Registro extends Controllers
                     $intRol,
                     $intBarrio,
                     $strDireccion,
-                    $imgPerfil
+                    $imgPerfil,
+                    $update_at
                 );
             }
 

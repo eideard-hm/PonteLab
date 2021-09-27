@@ -7,7 +7,7 @@
 ------------------------------------------------------------------------------*/
 import {
     sweetAlert, lockIconRegister, changeNameBtn, formDataElement, mostrarInputOtroPuestoInteres,
-    inputOtroPuestoInteres, campos, mostrarInputOtroIdioma, mostrarInputOtraHabilidad, initTextEditorTinymce
+    inputOtroPuestoInteres, campos, mostrarInputOtroIdioma, mostrarInputOtraHabilidad, initTextEditorTinymce, unLockIconRegister
 }
     from './functionsGlobals.js';
 
@@ -20,10 +20,8 @@ const formPuestoInteres = document.getElementById('perfil-laboral');
 const formIdioma = document.querySelector('#form-idiomas');
 const formHabilidad = document.querySelector('#form-habilidades');
 const formEstudios = document.getElementById('estudios');
-const experienciaLaboral = document.getElementById('experiencia-laboral');
+const experienciaLaboral = document.getElementById('form-experiencia-laboral');
 //botones
-
-
 
 /*-----------------------------------------------------------------------------
                     Descripción personal
@@ -53,10 +51,10 @@ const saveDataAspirante = async () => {
             lockIconRegister('Aspirante');
 
             //función para cargar los datos que acaba de ingresar el usuario
-            showPersonalDescription(value);
+            await loadPersonalDescription();
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
@@ -79,7 +77,7 @@ const loadDataEditPersonalDescription = async (e) => {
             document.querySelector('#txtEstado').value = data.idEstadoLaboralAspiranteFK;
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
@@ -88,7 +86,7 @@ const loadDataEditPersonalDescription = async (e) => {
  * 
  * @param {object} data  Datos que se va a renderizar en la vista luego de que el usuario los registre
  */
-const showPersonalDescription = (data) => {
+const showPersonalDescription = async (data) => {
     const perfilLaboralAspirante = document.querySelector('#perfil-laboral-aspirante');
 
     perfilLaboralAspirante.innerHTML = `
@@ -204,17 +202,16 @@ const refreshPuestoInteres = async (e) => {
                     <li data-id="${item['idPuestoInteres']}">${item['nombrePuesto']}</li>
                 `;
             });
-            showPuestoInteres();
-        } else {
-            sweetAlert("Error", data, "error");
+            await showPuestoInteres();
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
 /**
- * Función que se encarga de renderizar en la página de perfil la lista de puesto seleccionados por el usuario
+ * Función que se encarga de renderizar en la página de perfil la lista de puesto seleccionados por el 
+ * usuario
  */
 const showPuestoInteres = async () => {
     const puestoInteres = document.getElementById('puesto-interes-aspirante');
@@ -223,7 +220,9 @@ const showPuestoInteres = async () => {
         const req = await fetch(url);
         const { status, data } = await req.json();
         if (status) {
-            document.querySelector('#data-idPuestoInteres i').classList.replace('la-plus', 'la-pen');
+            if (document.querySelector('#data-idPuestoInteres i')) {
+                document.querySelector('#data-idPuestoInteres i').classList.replace('la-plus', 'la-pen');
+            }
             puestoInteres.innerHTML = '';
             data.forEach(puesto => {
                 puestoInteres.innerHTML += `
@@ -238,10 +237,12 @@ const showPuestoInteres = async () => {
                 `;
             })
         } else {
-            sweetAlert("Error", data, "info");
+            puestoInteres.innerHTML = `
+                                        <p class="text-center">No hay puestos de interés asociados al usuario. Puedes registrarlo, es gratis. </p>
+                                    `;
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
@@ -371,6 +372,10 @@ const insertNewIdioma = async () => {
     }
 }
 
+/**
+ * Función que se encarga de traer toda la lista de idiomas de la base de datos y posteriormente 
+ * mostrarlas en el select
+ */
 const refreshIdiomasAspirante = async () => {
     const url = `${base_url}Aspirante/getAllIdiomas`;
     try {
@@ -383,11 +388,53 @@ const refreshIdiomasAspirante = async () => {
                     <option data-id="${item['idIdioma']}" value="${item['idIdioma']}-${item['nombreIdioma']}" class="opciones-idiomas">${item['nombreIdioma']}</option>
                 `;
             });
+            await showIdiomasSelected();
         } else {
-            sweetAlert("Error", data, "error");
+            document.querySelector('#txtListIdioma').innerHTML += `
+                    <option value="" disable selected>--Ha ocurrido un error al cargar la lista de idiomas --</option>
+                `;
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
+    }
+}
+
+/**
+ * Función que se encarga de renderizar en la página de perfil la lista de idiomas seleccionados por el 
+ * usuario
+ */
+const showIdiomasSelected = async () => {
+    const listIdiomas = document.getElementById('idiomas-selected');
+    const url = `${base_url}Aspirante/getIdiomasSelected`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status && data !== 'no') {
+            if (document.querySelector('#data-idIdiomas i')) {
+                document.querySelector('#data-idIdiomas i').classList.replace('la-plus', 'la-pen');
+            }
+            listIdiomas.innerHTML = '';
+            data.forEach(idioma => {
+                listIdiomas.innerHTML += `
+                <div class="d-flex align-items-center justify-content-around mb-2">
+                    <div class="col-6 d-flex justify-content-between">
+                        <span>${idioma.nombreIdioma}</span>
+                        <span>${idioma.nivelIdioma}</span>
+                    </div>
+                    <a class="btn col-6 text-right" role="button">
+                        <i class="las la-pen" data-toggle="modal" data-target="#idiomas"></i>
+                    </a>    
+                </div>
+                <hr/>
+                `;
+            })
+        } else {
+            listIdiomas.innerHTML = `
+                                        <p class="text-center">No hay idiomas asociados al usuario. Puedes registrarlo, es gratis.</p>
+                                    `;
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
@@ -526,11 +573,53 @@ const refreshHabilidadAspirante = async () => {
                     <option data-id="${item['idHabilidad']}" value="${item['idHabilidad']}-${item['nombreHabilidad']}" class="opciones-habilidad">${item['nombreHabilidad']}</option>
                 `;
             });
+            await showHabilidadSelected();
         } else {
-            sweetAlert("Error", data, "error");
+            document.querySelector('#txtListHabilidad').innerHTML += `
+                    <option value="" disabled selected>-- No se ha podido cargar la lista de habilidades. --</option>
+                `;
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.log(error)
+    }
+}
+
+/**
+ * Función que se encarga de renderizar en la página de perfil la lista de habilidades seleccionadas por el 
+ * usuario
+ */
+const showHabilidadSelected = async () => {
+    const listHabilidades = document.getElementById('list-habilidades-selected');
+    const url = `${base_url}Aspirante/getHabilidadesSelected`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status && data !== 'no') {
+            if (document.querySelector('#data-idHabilidades i')) {
+                document.querySelector('#data-idHabilidades i').classList.replace('la-plus', 'la-pen');
+            }
+            listHabilidades.innerHTML = '';
+            data.forEach(habilidad => {
+                listHabilidades.innerHTML += `
+                <div class="d-flex align-items-center justify-content- mb-2">
+                    <div class="col-6 d-flex justify-content-between" data-id="${habilidad.idHabilidad}">
+                        <span>${habilidad.nombrehabilidad}</span>
+                        <span>${habilidad.nivelHabilidad}</span>
+                    </div>
+                    <a class="btn col-6 text-right" role="button">
+                        <i class="las la-pen" data-toggle="modal" data-target="#habilidades"></i>
+                    </a>
+                </div>
+                <hr/>
+                `;
+            })
+        } else {
+            listHabilidades.innerHTML = `
+                                        <p class="text-center">No hay habilidades asociadas al usuario. Puedes registrarlo, es gratis.</p>
+                                    `;
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
@@ -547,15 +636,56 @@ const insertEstudio = async () => {
             body: formData
         });
         const { status, msg } = await req.json();
-        console.log(status)
-        console.log(msg)
         if (status) {
             sweetAlert('Estudios aspirante', msg, 'success');
+            formEstudios.reset();
+            await showEstudios();
         } else {
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
+    }
+}
+
+/**
+ * Función que se encarga de renderizar en la página de perfil la lista de estudios registrados por el usuario.
+ */
+const showEstudios = async () => {
+    const listEstudios = document.getElementById('list-estudios');
+    const url = `${base_url}Aspirante/getEstudiosAspirante`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status && data !== 'no') {
+            // lockIconRegister('Educacion')
+            listEstudios.innerHTML = '';
+            data.forEach(estudio => {
+                listEstudios.innerHTML += `
+                <div class="d-flex align-items-center justify-content-around mb-2">
+                    <div class="col-8">
+                        <h5>${estudio.nombreInstitucion}</h5>
+                        <h6>${estudio.nombreGrado}</h6>
+                        <span>${estudio.tituloObtenido}</span>
+                        <br />
+                        <span>${estudio.nombreSector}</span>
+                        <br>
+                        <span>${estudio.añoInicio} / ${estudio.mesInicio} - ${estudio.añoFin} / ${estudio.mesFin}</span>
+                    </div>
+                    <a class="btn col-4 text-right" role="button">
+                        <i class="las la-pen" data-toggle="modal" data-target="#educacion"></i>
+                    </a>
+                </div>
+                <hr/>
+                `;
+            })
+        } else {
+            listEstudios.innerHTML = `
+                                        <p class="text-center">No hay estudios asociados al usuario. Puedes registrarlo, es gratis.</p>
+                                    `;
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
@@ -573,17 +703,58 @@ const insertExperienciaLaboral = async () => {
             body: formData
         });
         const { status, msg } = await req.json();
-        console.log(status)
-        console.log(msg)
         if (status) {
             sweetAlert('Experiencia laboral aspirante', msg, 'success');
+            experienciaLaboral.reset();
+            await showExperienciaLaboral();
         } else {
             sweetAlert("Experiencia laboral aspirante", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
+
+/**
+ * Función que se encarga de renderizar en la página de perfil la lista de experiencia registrados por el usuario.
+ */
+const showExperienciaLaboral = async () => {
+    const listExperiencia = document.getElementById('list-experiencia');
+    const url = `${base_url}Aspirante/getExperienciaAspirante`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status && data !== 'no') {
+            listExperiencia.innerHTML = '';
+            data.forEach(experiencia => {
+                console.log(experiencia)
+                listExperiencia.innerHTML += `
+                <div class="d-flex align-items-center justify-content-around mb-2">                              
+                    <div class="col-11">
+                        <h5>${experiencia.nombrePuestoDesempeño}</h5>
+                        <p>${experiencia.empresaLaboro}</p>
+                        <span>${experiencia.mesInicio} ${experiencia.añoInicio} - ${experiencia.mesFin} ${experiencia.añoFin}</span>
+                        <p>${experiencia.nombreSector}</p>
+                        <h6>Funciones desempeñadas:</h6>
+                        ${experiencia.funcionDesempeño}
+                    </div>
+                    <a class="btn col-1 text-right" role="button">
+                        <i class="las la-pen" data-toggle="modal" data-target="#experiencia-laboral"></i>
+                    </a>
+                </div>
+                <hr/>
+                `;
+            })
+        } else {
+            listExperiencia.innerHTML = `
+                                        <p class="text-center">No hay experiencia laboral asociada al usuario. Puedes registrarla, es gratis.</p>
+                                    `;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 /*-----------------------------------------------------------------------------
                     Validación antes de enviar el formulario
@@ -642,33 +813,45 @@ const validateFormPuestoInteres = async (e) => {
  * Función que sirve para verificar si el usuario ya tiene información registrada y cargarla a la vista
  */
 const loadPersonalDescription = async () => {
+    const personalDescription = document.querySelector('#perfil-laboral-aspirante');
     const url = `${base_url}Aspirante/getDataAspirante`;
     try {
         const req = await fetch(url);
         const { status, data } = await req.json();
-        if (status) {
-            showPersonalDescription(data[0]);
-            // lockIconRegister('PuestoInteres');
-        }
-    } catch (error) {
-        sweetAlert("Error", error, "error");
-    }
-}
-
-/**
- * Función que sirve para cargar loss puestos de interés del usuario cuando ya los ha registrado
- */
-const loadPuestoInteres = async () => {
-    const url = `${base_url}Aspirante/getDataAspirante`;
-    try {
-        const req = await fetch(url);
-        const { status, data } = await req.json();
-        if (status) {
-            showPersonalDescription(data[0]);
+        /**
+         * if status is true, then the user already register personal description
+         */
+        if (status && data !== 'no') {
+            showPersonalDescription(data);
             lockIconRegister('Aspirante');
+            unLockIconRegister('PuestoInteres');
+            unLockIconRegister('Idiomas');
+            unLockIconRegister('Habilidades');
+            unLockIconRegister('Educacion');
+            unLockIconRegister('Experiencia');
+
+            //cargar los demas elementos
+            /**
+            * Función que se encargar de refrescar y traer todos los puestos de interes regitrados
+            */
+            await refreshPuestoInteres();
+            await refreshIdiomasAspirante();
+            await refreshHabilidadAspirante();
+            await showEstudios();
+            await showExperienciaLaboral();
+        } else {
+            lockIconRegister('PuestoInteres');
+            lockIconRegister('Idiomas');
+            lockIconRegister('Habilidades');
+            lockIconRegister('Educacion');
+            lockIconRegister('Experiencia');
+
+            personalDescription.innerHTML = `
+                                                <p class="text-center">No se ha registrado ninguna descripción personal para esta usuario</p>
+                                            `;
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
@@ -731,16 +914,16 @@ const validateFormExperienciaLaboral = (e) => {
     const sectorLaboro = document.getElementById('txtSectorExp');
     const ciudad = document.getElementById('txtCiudadLab');
     const tipoExperiencia = document.getElementById('txtTipoExp');
-    const puestoDesempeño = document.getElementById('txtPuesto');
+    const puestoDesempeño = document.getElementById('txtPuestoDesempeñado');
     const anioInicio = document.getElementById('txtAnioIniExp');
     const mesInicio = document.getElementById('txtMesIniExp');
     const anioFin = document.getElementById('txtAnioFinExp');
     const mesFin = document.getElementById('txtMesFinExp');
-    const funcionDesempeño = document.getElementById('especificaciones');
+    const funcionDesempeño = document.getElementById('funciones');
 
     if (empresa.value.trim() === '' || sectorLaboro.value.trim() === '' || ciudad.value.trim() === ''
         || tipoExperiencia.value.trim() === '' || puestoDesempeño.value.trim() === '' || anioInicio.value.trim() === '' || mesInicio.value.trim() === ''
-        || anioFin.value.trim() === '' || mesFin.value.trim() === '' || funcionDesempeño.value.trim() === '') {
+        || anioFin.value.trim() === '' || mesFin.value.trim() === '' || funcionDesempeño.value === '') {
         sweetAlert("Error", "Todos los campos son obligatorios!!", "error");
     } else if (parseInt(anioFin.value) < parseInt(anioInicio.value)) {
         sweetAlert("Datos incorrectos", "Apreciado usuario el año de finalización laboral no puede ser menor al año de inicio.", "warning");
@@ -763,15 +946,10 @@ document.addEventListener('DOMContentLoaded', async () => {
      * Función que se encarga de cargar la información del aspirante
      */
     await loadPersonalDescription();
-    await loadPuestoInteres();
+
     if (document.querySelector('#edit-Aspirante')) {
         document.querySelector('#edit-Aspirante').addEventListener('click', (e) => loadDataEditPersonalDescription(e));
     }
-    /**
-     * Función que se encargar de refrescar y traer todos los puestos de interes regitrados
-     */
-    await refreshPuestoInteres();
-    await refreshIdiomasAspirante();
 
     /**
      * Función que permite seleccionar los puestos de interés para el aspirante
@@ -804,8 +982,13 @@ document.querySelector('#btn-puesto-interes').addEventListener('click', validate
 /**
     * Inicializar el editor de texto
 */
-document.querySelector('#data-idAspirante').addEventListener('click', () => {
-    initTextEditorTinymce('especificaciones');
-    formDescripcionPersonal.reset();
-})
-document.querySelector('#data-idExperiencia').addEventListener('click', () => initTextEditorTinymce('funciones'));
+if (document.querySelector('#data-idAspirante')) {
+    document.querySelector('#data-idAspirante').addEventListener('click', () => {
+        initTextEditorTinymce('especificaciones');
+        formDescripcionPersonal.reset();
+    })
+}
+if (document.querySelector('#data-idExperiencia')) {
+    document.querySelector('#data-idExperiencia').addEventListener('click', () => initTextEditorTinymce('funciones'));
+
+}

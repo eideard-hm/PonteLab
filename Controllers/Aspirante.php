@@ -21,6 +21,9 @@ class Aspirante extends Controllers
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
             $data['titulo_pagina'] = 'Perfil Aspirante | PonteLab.';
             $data['list_workStatus'] = $this->model->getAllWorkStatus();
+            $data['list_gradoEstudio'] = $this->model->getAllGradoEstudio();
+            $data['list_sectores'] = $this->model->getAllSectores();
+            $data['list_tipoExperiencia'] = $this->model->getAllListExperiencia();
             $this->views->getView($this, 'Perfil_Aspirante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             header('Location:' . URL . 'Menu/Menu_Contratante');
@@ -122,7 +125,7 @@ class Aspirante extends Controllers
     //método para traer toda la lista de puestos de interés
     public function getPuestoInteresAspirante()
     {
-        $request = $this->model->getOnePuestoInteres(intval($_SESSION['aspirante'][0]['idAspirante']));
+        $request = $this->model->getOnePuestoInteres(intval($_SESSION['data-aspirante']['idAspirante']));
         if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => $request];
         } else {
@@ -180,7 +183,7 @@ class Aspirante extends Controllers
                     $arrResponse = ['status' => true, 'msg' => 'Aspirante registrado correctamente :)', 'value' => $_SESSION['data-aspirante']];
                 } else {
                     //creamos unas variables con los datos del nuevo aspirante
-                    $ultimoAspiranteInsertado = $this->model->selectOneAspirante(intval($_SESSION['aspirante'][0]['idAspirante']));
+                    $ultimoAspiranteInsertado = $this->model->selectOneAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
                     $_SESSION['data-aspirante'] = $ultimoAspiranteInsertado;
                     $arrResponse = ['status' => true, 'msg' => 'Aspirante modificado correctamente :)', 'value' => $_SESSION['data-aspirante']];
                 }
@@ -301,6 +304,19 @@ class Aspirante extends Controllers
             $arrResponse = ['status' => true, 'data' => $request];
         } else {
             $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error en el servidor.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    //método para traer toda la lista de idiomas seleccionados por el usuario
+    public function getIdiomasSelected()
+    {
+        $request = $this->model->getIdiomasSelected(intval($_SESSION['data-aspirante']['idAspirante']));
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
@@ -504,19 +520,33 @@ class Aspirante extends Controllers
         die();
     }
 
+    //método para traer toda la lista de idiomas seleccionados por el usuario
+    public function getHabilidadesSelected()
+    {
+        $request = $this->model->getHabilidadesSelected(intval($_SESSION['data-aspirante']['idAspirante']));
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     /**
-     * Método que sirve para cargar la información del aspirante cada vez que ingresa inica sesión
+     * Método que sirve para cargar la información del aspirante cada vez que ingresa (inica sesión)
      */
     public function getDataAspirante()
     {
         $request = $this->model->routesAspirante(intval($_SESSION['id']));
         if (!empty($request)) {
-            $_SESSION['aspirante'] = $request;
-            $arrResponse = ['status' => true, 'data' =>  $_SESSION['aspirante']];
+            $_SESSION['data-aspirante'] = $request;
+            $arrResponse = ['status' => true, 'data' =>  $_SESSION['data-aspirante'], 'sesion' => $_SESSION['id']];
         } else {
             $arrResponse = ['status' => false, 'data' => 'no'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
     /*============================================================================
@@ -538,7 +568,7 @@ class Aspirante extends Controllers
                 $mesInicio = limpiarCadena($_POST['txtMesIni']);
                 $anioFin = limpiarCadena($_POST['txtAnioFin']);
                 $mesFin = limpiarCadena($_POST['txtMesFin']);
-                $idAspirante = 2;
+                $idAspirante =intval($_SESSION['data-aspirante']['idAspirante']);
                 $gradoEstudio = intval(limpiarCadena($_POST['txtGradoEst']));
 
                 $request = $this->model->insertEstudio(
@@ -567,6 +597,18 @@ class Aspirante extends Controllers
         die();
     }
 
+    //método para traer toda la lista de estudios registrados por el usuario
+    public function getEstudiosAspirante()
+    {
+        $request = $this->model->getEstudiosAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
     /*============================================================================
                             Experiencia laboral
     ==============================================================================*/
@@ -587,7 +629,7 @@ class Aspirante extends Controllers
                 $anioFin = limpiarCadena($_POST['txtAnioFinExp']);
                 $mesFin = limpiarCadena($_POST['txtMesFinExp']);
                 $funcion = $_POST['textFunciones'];
-                $idAspirante = 2;
+                $idAspirante = intval($_SESSION['data-aspirante']['idAspirante']);
 
                 $request = $this->model->insertExperienciaLaboral(
                     $empresa,
@@ -613,6 +655,19 @@ class Aspirante extends Controllers
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
+        die();
+    }
+
+    //método para traer toda la lista de estudios registrados por el usuario
+    public function getExperienciaAspirante()
+    {
+        $request = $this->model->getExperienciaAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'data' => 'no'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }
