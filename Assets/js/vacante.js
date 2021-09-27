@@ -5,6 +5,9 @@ const bntSubmit = document.getElementById('btn_submit');
 
 const listVacantes = document.querySelector('#list-vacantes');
 
+//elementos de la barra de busqueda
+const inputBusqueda = document.querySelector('#txtSearchVacantes');
+
 /*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
 caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 
@@ -185,5 +188,68 @@ const getAllVacantes = async () => {
         }
     } catch (error) {
         sweetAlert("Error", error, "error");
+    }
+}
+
+/*============ TRAER LA LISTA DE VACANTES ==========*/
+if (inputBusqueda) {
+    inputBusqueda.addEventListener('input', e => {
+        getArregloVacantes(e.target.value);
+    })
+}
+
+const getArregloVacantes = async (busqueda) => {
+    const url = `${base_url}Vacante/getArregloVacantes/${busqueda}`;
+    let imagenUsuario = '';
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        listVacantes.innerHTML = '';
+        if (status && data !== 'no') {
+            console.log(data)
+            console.log(status)
+            data.forEach(vacante => {
+                if (vacante.imagenUsuario === null) {
+                    imagenUsuario = 'upload.svg';
+                } else {
+                    imagenUsuario = vacante.imagenUsuario;
+                }
+
+                listVacantes.innerHTML += `
+                <div class="single-job-post row nomargin" data-idVacante="${vacante.idVacante}">
+                    <!-- Job Company -->
+                    <div class="col-md-2 col-xs-3">
+                        <div class="job-company">
+                            <a href="${base_url}Vacante/DetallesVacante/${vacante.idVacante}" data-idVacante="${vacante.idVacante}">
+                                <img src="${base_url}Assets/img/${imagenUsuario}" alt="${vacante.nombreUsuario}" class="img-fluid" />
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Job Title & Info -->
+                    <div class="col-md-7 col-xs-6 ptb20">
+                        <div class="job-title">
+                            <a href="${base_url}Vacante/DetallesVacante/${vacante.idVacante}" data-idVacante="${vacante.idVacante}">${vacante.nombreVacante}</a>
+                        </div>
+                        <div class="job-info">
+                            <span class="company"><i class="fa fa-building-o"></i>${vacante.nombreUsuario}</span>
+                            <span class="location"><i class="fa fa-map-marker"></i>${vacante.direccionVacante}</span>
+                        </div>
+                    </div>
+                    <!-- Job Category -->
+                    <div class="col-md-3 col-xs-3 ptb30">
+                        <div class="job-category">
+                            <a href="${base_url}Vacante/DetallesVacante/${vacante.idVacante}" class="btn btn-success capitalize" data-idVacante="${vacante.idVacante}">full time</a>
+                        </div>
+                    </div>
+                </div>
+                `
+            });
+        } else {
+            listVacantes.innerHTML = `
+                                        <h5 class="text-center">No se encontró nigun resultado con esa busqueda.</h5>
+                                    `;
+        }
+    } catch (error) {
+        console.error(error);
     }
 }

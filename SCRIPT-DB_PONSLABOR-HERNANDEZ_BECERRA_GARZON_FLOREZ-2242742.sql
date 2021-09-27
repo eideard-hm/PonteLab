@@ -714,8 +714,11 @@ VBusqueda varchar(70)
 BEGIN 
 SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
 tipoContratoVacante, sueldoVacante, direccionVacante, estadoVacante, 
-fechaHoraPublicacion, fechaHoraCierre
-FROM VACANTE
+fechaHoraPublicacion, fechaHoraCierre, v.idContratanteFK,
+u.nombreUsuario, u.imagenUsuario 
+FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+ON u.idUsuario = c.idUsuarioFK
 WHERE nombreVacante LIKE CONCAT('%', VBusqueda, '%') OR descripcionVacante LIKE CONCAT('%', VBusqueda, '%')
 OR perfilAspirante LIKE CONCAT('%', VBusqueda, '%') OR tipoContratoVacante LIKE CONCAT('%', VBusqueda, '%')
 OR direccionVacante LIKE CONCAT('%', VBusqueda, '%');

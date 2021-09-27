@@ -148,13 +148,16 @@ class VacanteModel extends GestionCRUD
     {
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
                 tipoContratoVacante, sueldoVacante, direccionVacante, estadoVacante, 
-                fechaHoraPublicacion, fechaHoraCierre
-                FROM VACANTE
+                fechaHoraPublicacion, fechaHoraCierre, v.idContratanteFK,
+                u.nombreUsuario, u.imagenUsuario 
+                FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
+                ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
+                ON u.idUsuario = c.idUsuarioFK
                 WHERE idVacante LIKE '%{$busqueda}%' OR nombreVacante LIKE '%{$busqueda}%' 
                 OR cantidadVacante LIKE '%{$busqueda}%' OR descripcionVacante LIKE '%{$busqueda}%'
                 OR perfilAspirante LIKE'%{$busqueda}%' OR tipoContratoVacante LIKE'%{$busqueda}%'
                 OR sueldoVacante LIKE '%{$busqueda}%' OR direccionVacante LIKE '%{$busqueda}%'
-                OR estadoVacante LIKE '%{$busqueda}%'";
+                OR estadoVacante LIKE '%{$busqueda}%' OR nombreUsuario LIKE '%{$busqueda}%'";
         return $this->selectAll($sql);
     }
 
