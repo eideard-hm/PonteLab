@@ -37,10 +37,9 @@
         <div id="page-content" class="content-page">
             <div class="container">
             <div>
-              <h3 class="mb-3 align-center">Menú Principal | Perfiles Laborales</h3>
+              <h3 class="mb-3 align-center">Menú Contratante | Perfiles Laborales</h3>
               <h5 class="mb-3 align-center">Bienvenido <strong><?= $_SESSION['user-data']['nombreRol'] ?></strong> <b><?= $_SESSION['user-data']['nombreUsuario'] ?></b></h5>
             </div>
-            <br>
             <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
               <div class="alert alert-primary" role="alert">
                 <div class="iq-alert-icon">
@@ -56,21 +55,78 @@
               </div>
               <div class="alert alert-info" role="alert">
                 <div class="iq-alert-icon">
-                <i class="far fa-plus-square"></i>
+                  <a href="<?= URL ?>Vacante/Vacante" class="iq-alert-text">
+                    <i class="far fa-plus-square"></i>
+                  </a>
                 </div>
                 <a href="<?= URL ?>Vacante/Vacante" class="iq-alert-text">
+                  <strong>
                   Crear | Publicar Vacante
+                  </strong>                  
                 </a>
               </div>
               <div class="alert alert-warning" role="alert">
                 <div class="iq-alert-icon">
-                  <i class="fas fa-pen-fancy"></i>
+                  <a href="<?= URL ?>Contratante/Perfil_Contratante" class="iq-alert-text">                  
+                    <i class="fas fa-pen-fancy"></i>
+                  </a>
                 </div>
-                <a href="<?= URL ?>Perfil_Contratante/Perfil_Contratante" class="iq-alert-text">
+                <a href="<?= URL ?>Contratante/Perfil_Contratante" class="iq-alert-text">
+                  <strong>                  
                   Añadir Descripcion Empresarial
+                  </strong>
                 </a>
               </div>
+              <br>
+              <div class="col-sm-12 col-lg-12">
+                <div class="iq-card">
+                  <div class="iq-card-header d-flex justify-content-between">
+                    <div class="iq-header-title">
+                      <h4 class="card-title">Información usuario</h4>
+                    </div>
+                  </div>
+                  <div class="iq-card-body">
+                    <div class="card-deck">
+                      <div class="col-12 col-md-6 col-xl-5">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <img src="../../../assets/images/placeholder.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <img src="../../../assets/images/placeholder.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <img src="../../../assets/images/placeholder.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+
+              
 
 
 
