@@ -12217,7 +12217,6 @@ Author URI: gnodesign.com
     right: -30px;
     top: -20px;
     box-sizing: border-box;
-    z-index: 200px;
 }
 
 #msform fieldset {
@@ -12346,6 +12345,7 @@ Author URI: gnodesign.com
     background: aliceblue;
     border-radius: 3px;
     margin: 0 auto 5px auto;
+    z-index: 100;
 }
 
 /*progressbar connectors*/
@@ -12358,7 +12358,7 @@ Author URI: gnodesign.com
     position: absolute;
     left: -50%;
     top: 9px;
-    z-index: -1;
+    z-index: 1;
     /*put it behind the numbers*/
 }
 
@@ -12376,6 +12376,7 @@ Author URI: gnodesign.com
     background: #009FE0;
     color: #fff;
     font-weight: 500;
+    z-index: 100;
 }
 
 
