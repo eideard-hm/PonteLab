@@ -12191,7 +12191,7 @@ Author URI: gnodesign.com
     width: 64%;
     left: 0;
     bottom: -40%;
-    z-index: -1;
+    z-index: -100;
     background-repeat: no-repeat;
     background-attachment: fixed;
     position: fixed;
@@ -12316,12 +12316,14 @@ Author URI: gnodesign.com
 
 /*progressbar*/
 
+
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
     /*CSS counters to number the steps*/
     counter-reset: step;
 }
+
 
 #progressbar li {
     list-style-type: none;
@@ -12345,7 +12347,6 @@ Author URI: gnodesign.com
     background: aliceblue;
     border-radius: 3px;
     margin: 0 auto 5px auto;
-    z-index: 100;
 }
 
 /*progressbar connectors*/
@@ -12358,7 +12359,7 @@ Author URI: gnodesign.com
     position: absolute;
     left: -50%;
     top: 9px;
-    z-index: 1;
+    z-index: -1;
     /*put it behind the numbers*/
 }
 
@@ -12367,18 +12368,16 @@ Author URI: gnodesign.com
     content: none;
 }
 
-/*marking active/completed steps green/
+/*marking active/completed steps green*/
 
-/The number of the step and the connector before it = green*/
+/*The number of the step and the connector before it = green*/
 
 #progressbar li.active:before,
 #progressbar li.active:after {
     background: #009FE0;
     color: #fff;
     font-weight: 500;
-    z-index: 100;
 }
-
 
 @media screen and (max-width: 1074px){
     .registro {
