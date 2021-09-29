@@ -731,7 +731,6 @@ CALL SP_buscarVacantes('Axa');
 Función que permita obtener el número de coincidencias de usuarios, de acuerdo a un parametro enviado pasado.
 Se debe de pasar como argumento un nombre o letra(s) del nombre de un usuario y de acuerdo a ello
 retornar el número de concidencias.
-
 DROP FUNCTION IF EXISTS F_numeroUsuario;
 DELIMITER //
 CREATE FUNCTION F_numeroUsuario
@@ -746,10 +745,8 @@ BEGIN
     WHERE nombreUsuario LIKE CONCAT('%', letraNombre, '%') ;
     RETURN numeroCoincidencias;
 END //
-
 -- usar la vista
 SELECT  F_numeroUsuario('Edier') AS 'Número de coincidencias de nombres de usuarios encontradas para la palabra introducida';
-
 /*======================= TRIGGER BASE DE DATOS==============================*/
 /*
 Se quiere implementar la funcionalidad del cambio de contraseña dentro del sistema de información de PonteLab; se
@@ -757,7 +754,6 @@ debe de tener en cuenta que se debe de crear una nueva tabla (log) con la inform
 información de: nombre del usuario, código, tipo y número de documento, contraseña antigua y nueva. Dicha información
 de esa nueva tabla va a servir para comprobar que las nuevas contraseñas del usuario no concuerden con ninguna de las
 anteriores.
-
 -- Creando la tabla de log
 DROP TABLE IF EXISTS log;
 CREATE TABLE log
@@ -771,7 +767,6 @@ newPassword varchar(100) not null,
 oldPassword varchar(100) not null,
 created_at timestamp DEFAULT CURRENT_TIMESTAMP
 )
-
 -- Trigger
 DROP TRIGGER IF EXISTS TR_changePasswordUser;
 DELIMITER $$
@@ -810,6 +805,4 @@ numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
 FROM USUARIO
 WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
 OR numTelUsuario LIKE'%id%' , numTelFijo LIKE'%id%' ;
-
 /*--------------------------CONSULTAR LAS VISTAS-----------------------------*/
-
