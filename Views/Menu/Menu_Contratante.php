@@ -79,9 +79,7 @@
           </div>
         </div>
         <br>
-        <br>
         <div class="col-12 col-xl-12 grid-margin stretch-card">
-          <br>
             <h3>Opcion Deck con imagenes</h3>
           <br>
           <div class="card-deck">
