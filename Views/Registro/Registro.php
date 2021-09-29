@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $data['titulo_pagina'] ?></title>
     <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -15,13 +14,14 @@
 
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maxium-scale=1.0, minimum-scale=1.0">
 </head>
 
 <body>
     <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
     <img src="<?= URL; ?>Assets/img/registro.svg" class="registro">
 
-
+<div class="contenedor">
     <form id="msform" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="idUsuario" name="idUsuario" value="0">
         <br><br><br><br><br>
@@ -128,6 +128,7 @@
             <button type="submit" name="submit" id="btn_sector" class="submit action-button">Registrar sector</button>
         </fieldset>
     </form>
+                </div>
     <img src="<?= URL; ?>Assets/img/wave.jpg" class="wave">
     <script>
         const base_url = "<?= URL ?>";
@@ -138,6 +139,7 @@
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
     <script src="<?= URL; ?>Assets/js/registro.js" defer></script>
+        
 </body>
 
 </html>

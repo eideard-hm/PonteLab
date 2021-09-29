@@ -12179,25 +12179,31 @@ Author URI: gnodesign.com
 .pontelab {
     width: 178px;
     height: 40px;
-    position: relative;
-    right: -500px;
+    right: 160px;
     top: 10px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
 }
 
 .wave {
-    position: fixed;
     height: 140%;
     width: 64%;
     left: 0;
     bottom: -40%;
     z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
     /* transform: rotate(-90deg); */
 }
 
 .registro {
     width: 480px;
     height: 500px;
-    position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
     float: left;
     left: 80px;
     z-index: 100;
@@ -12208,9 +12214,10 @@ Author URI: gnodesign.com
     width: 580px;
     margin: 50px auto;
     text-align: center;
-    position: relative;
-    right: -350px;
-    bottom: 120px;
+    position: absolute;
+    right: -30px;
+    bottom: 2px;
+    box-sizing: border-box;
 }
 
 #msform fieldset {
@@ -12370,6 +12377,32 @@ Author URI: gnodesign.com
     color: #fff;
     font-weight: 500;
 }
+
+
+@media screen and (max-width: 1074px){
+    .registro {
+        display: none;
+    }
+}
+
+@media (max-width: 1074px) {
+    .contenedor {
+        width: 70%;
+        text-align: center;
+        margin-bottom: none;
+    }
+
+    /*.pontelab {
+        margin-left: auto;
+        margin-right: auto;
+    }*/
+}
+
+/*@media (max-width: 839px) {
+    #msform {
+        transform: translate( -30%, 5%);
+    }
+}*/
 
 /*--------------------- CÓDIGO DE LA LISTA SECTORES ---------------------------*/
 
