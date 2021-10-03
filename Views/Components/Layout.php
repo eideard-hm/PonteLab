@@ -15,6 +15,12 @@
                         <span>Perfil</span>
                     </a>
                 </li>
+                <li id="list-cv">
+                    <a href="<?= URL ?>Aspirante/HojaVida" class="iq-waves-effect" id="link-cv">
+                        <i class="las la-folder-open" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Hoja de vida"></i>
+                        <span>Hoja de vida</span>
+                    </a>
+                </li>
                 <li>
                     <a href="<?= URL ?>Vacante/ListaEmpleos" class="iq-waves-effect">
                         <i class="las la-briefcase" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Empleos"></i>

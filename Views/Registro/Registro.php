@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maxium-scale=1.0, minimum-scale=1.0">
     <title><?= $data['titulo_pagina'] ?></title>
     <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
@@ -14,7 +15,6 @@
 
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maxium-scale=1.0, minimum-scale=1.0">
 </head>
 
 <body>
