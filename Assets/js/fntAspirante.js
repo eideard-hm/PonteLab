@@ -7,7 +7,8 @@
 ------------------------------------------------------------------------------*/
 import {
     sweetAlert, lockIconRegister, changeNameBtn, formDataElement, mostrarInputOtroPuestoInteres,
-    inputOtroPuestoInteres, campos, mostrarInputOtroIdioma, mostrarInputOtraHabilidad, initTextEditorTinymce, unLockIconRegister
+    inputOtroPuestoInteres, campos, mostrarInputOtroIdioma, mostrarInputOtraHabilidad, initTextEditorTinymce, 
+    unLockIconRegister
 }
     from './functionsGlobals.js';
 
@@ -285,7 +286,6 @@ const seleccionarIdioma = async () => {
             option.classList.add('active');
             option.setAttribute('disabled', 'disabled');
             formIdioma.reset();
-            puntuacionEstrellas(0, 'idioma');
             return false;
         } else {
             if (!option.classList.contains('active')) {
@@ -368,7 +368,7 @@ const insertNewIdioma = async () => {
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
@@ -421,7 +421,7 @@ const showIdiomasSelected = async () => {
                         <span>${idioma.nombreIdioma}</span>
                         <span>${idioma.nivelIdioma}</span>
                     </div>
-                    <a class="btn col-6 text-right" role="button">
+                    <a class="btn col-6 text-right" role="button" data-idestudio="${idioma.idIdioma}">
                         <i class="las la-pen" data-toggle="modal" data-target="#idiomas"></i>
                     </a>    
                 </div>
@@ -638,8 +638,8 @@ const insertEstudio = async () => {
         const { status, msg } = await req.json();
         if (status) {
             sweetAlert('Estudios aspirante', msg, 'success');
-            formEstudios.reset();
             await showEstudios();
+            formEstudios.reset();
         } else {
             sweetAlert("Error", msg, "warning");
         }
@@ -672,8 +672,8 @@ const showEstudios = async () => {
                         <br>
                         <span>${estudio.añoInicio} / ${estudio.mesInicio} - ${estudio.añoFin} / ${estudio.mesFin}</span>
                     </div>
-                    <a class="btn col-4 text-right" role="button">
-                        <i class="las la-pen" data-toggle="modal" data-target="#educacion"></i>
+                    <a class="btn col-4 text-right estudio-aspirante" role="button" data-idestudio="${estudio.idEstudio}">
+                        <i class="las la-pen" data-toggle="modal" data-target="#educacion" data-idestudio="${estudio.idEstudio}"></i>
                     </a>
                 </div>
                 <hr/>
@@ -683,6 +683,34 @@ const showEstudios = async () => {
             listEstudios.innerHTML = `
                                         <p class="text-center">No hay estudios asociados al usuario. Puedes registrarlo, es gratis.</p>
                                     `;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+/**
+ * Función para cargar los datos de los estudios que se van a poder editar.
+ * 
+ * @param {Event} e Información donde se desencadena el evento 
+ */
+const loadDataEditEducation = async (e) => {
+    const id = e.target.dataset.idestudio;
+    const url = `${base_url}Aspirante/getEstudiosAspiranteEdit/${id}`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status) {
+            document.querySelector('#idEducacion').value = data.idEstudio;
+            document.querySelector('#input-institucion').value = data.nombreInstitucion;
+            document.querySelector('#input-titulo').value = data.tituloObtenido;
+            document.querySelector('#txtCiudad').value = data.idCiudadEstudio;
+            document.querySelector('#txtGradoEst').value = data.idGrado;
+            document.querySelector('#txtSector').value = data.idSector;
+            document.querySelector('#txtAnioIni').value = data.añoInicio;
+            document.querySelector('#txtMesIni').value = data.mesInicio;
+            document.querySelector('#txtAnioFin').value = data.añoFin;
+            document.querySelector('#txtMesFin').value = data.mesFin;
         }
     } catch (error) {
         console.error(error);
@@ -705,8 +733,8 @@ const insertExperienciaLaboral = async () => {
         const { status, msg } = await req.json();
         if (status) {
             sweetAlert('Experiencia laboral aspirante', msg, 'success');
-            experienciaLaboral.reset();
             await showExperienciaLaboral();
+            experienciaLaboral.reset();
         } else {
             sweetAlert("Experiencia laboral aspirante", msg, "warning");
         }
@@ -727,7 +755,6 @@ const showExperienciaLaboral = async () => {
         if (status && data !== 'no') {
             listExperiencia.innerHTML = '';
             data.forEach(experiencia => {
-                console.log(experiencia)
                 listExperiencia.innerHTML += `
                 <div class="d-flex align-items-center justify-content-around mb-2">                              
                     <div class="col-11">
@@ -738,8 +765,8 @@ const showExperienciaLaboral = async () => {
                         <h6>Funciones desempeñadas:</h6>
                         ${experiencia.funcionDesempeño}
                     </div>
-                    <a class="btn col-1 text-right" role="button">
-                        <i class="las la-pen" data-toggle="modal" data-target="#experiencia-laboral"></i>
+                    <a class="btn col-1 text-right estudio-experiencia" role="button" data-idexperiencia="${experiencia.idInfoLaboral}">
+                        <i class="las la-pen" data-toggle="modal" data-target="#experiencia-laboral" data-idexperiencia="${experiencia.idInfoLaboral}"></i>
                     </a>
                 </div>
                 <hr/>
@@ -755,7 +782,36 @@ const showExperienciaLaboral = async () => {
     }
 }
 
-
+/**
+ * Función para cargar los datos de la experiencia laboral que se van a poder editar.
+ * 
+ * @param {Event} e Información donde se desencadena el evento 
+ */
+ const loadDataEditExperience = async (e) => {
+    initTextEditorTinymce('funciones');
+    const id = e.target.dataset.idexperiencia;
+    const url = `${base_url}Aspirante/getExperienciaAspiranteEdit/${id}`;
+    try {
+        const req = await fetch(url);
+        const { status, data } = await req.json();
+        if (status) {
+            document.querySelector('#idExperiencia').value = data.idInfoLaboral;
+            document.querySelector('#txtEmpresa').value = data.empresaLaboro;
+            document.querySelector('#txtSectorExp').value = data.idSector;
+            document.querySelector('#txtCiudadLab').value = data.idCiudadLaboroFK;
+            document.querySelector('#txtTipoExp').value = data.idTipoExperiencia;
+            document.querySelector('#txtPuestoDesempeñado').value = data.nombrePuestoDesempeño;
+            document.querySelector('#txtAnioIniExp').value = data.añoInicio;
+            document.querySelector('#txtMesIniExp').value = data.mesInicio;
+            document.querySelector('#txtAnioFinExp').value = data.añoFin;
+            document.querySelector('#txtMesFinExp').value = data.mesFin;
+            tinymce.activeEditor.setContent(data.funcionDesempeño);
+            document.querySelector('#funciones').value = data.funcionDesempeño;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
 /*-----------------------------------------------------------------------------
                     Validación antes de enviar el formulario
 ------------------------------------------------------------------------------*/
@@ -960,6 +1016,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             seleccionarPuestoInteres(e);
         });
     }
+
+    if (document.querySelector('.estudio-aspirante')) {
+        document.querySelectorAll('.estudio-aspirante').forEach(element => element.addEventListener('click', (e) => loadDataEditEducation(e)));
+    }
+
+    if (document.querySelector('.estudio-experiencia')) {
+        document.querySelectorAll('.estudio-experiencia').forEach(element => element.addEventListener('click', (e) => loadDataEditExperience(e)));
+    }
 })
 
 /**
@@ -990,5 +1054,4 @@ if (document.querySelector('#data-idAspirante')) {
 }
 if (document.querySelector('#data-idExperiencia')) {
     document.querySelector('#data-idExperiencia').addEventListener('click', () => initTextEditorTinymce('funciones'));
-
 }

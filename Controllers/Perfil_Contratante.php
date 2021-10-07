@@ -21,13 +21,13 @@ class Perfil_Contratante extends Controllers
     {
         $data['list_tipodoc'] = $this->model->selectTipoDoc();
         $data['list_barrio'] = $this->model->selectBarrio();
-        $data['titulo_pagina'] = 'Perfil Contratante | PonsLabor.';
+        $data['titulo_pagina'] = 'Perfil Contratante | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Perfil_Contratante', $data);
     }
 
     public function Edit_Profile_Contratante()
     {
-        $data['titulo_pagina'] = 'Editar Perfil Contratante | PonteLab.';
+        $data['titulo_pagina'] = 'Editar Perfil Contratante | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Edit_Profile_Contratante', $data);
     }
 

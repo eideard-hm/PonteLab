@@ -17,7 +17,7 @@ class Vacante extends Controllers
     public function Vacante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            $data['titulo_pagina'] = 'Vacante | PonteLab.';
+            $data['titulo_pagina'] = 'Vacante | ' . NOMBRE_EMPRESA . '.';
             $data['list_vacante'] = $this->model->selectAllVacancy();
             $data['list_requisitos'] = $this->model->selectAllReqs();
             $data['list_sector'] = $this->model->selectAllSector();
@@ -31,7 +31,7 @@ class Vacante extends Controllers
 
     public function ListaEmpleos()
     {
-        $data['titulo_pagina'] = 'Lista vacantes | PonteLab.';
+        $data['titulo_pagina'] = 'Lista vacantes | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 

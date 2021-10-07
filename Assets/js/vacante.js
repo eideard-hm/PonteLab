@@ -246,7 +246,7 @@ const getArregloVacantes = async (busqueda) => {
             });
         } else {
             listVacantes.innerHTML = `
-                                        <h5 class="text-center">No se encontró nigun resultado con esa busqueda.</h5>
+                                        <h5 class="text-center mt-3">No se encontró nigún resultado con esa busqueda ${busqueda}.</h5>
                                     `;
         }
     } catch (error) {

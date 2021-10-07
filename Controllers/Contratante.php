@@ -20,7 +20,7 @@ class Contratante extends Controllers
     public function Perfil_Contratante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            $data['titulo_pagina'] = 'Perfil Contratante | PonteLab.';
+            $data['titulo_pagina'] = 'Perfil Contratante | ' . NOMBRE_EMPRESA . '.';
             $this->views->getView($this, 'Perfil_Contratante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
             header('Location:' . URL . 'Menu/Menu_Contratante');
@@ -34,13 +34,13 @@ class Contratante extends Controllers
      */
     public function Edit_Perfil_Contratante()
     {
-        $data['titulo_pagina'] = 'Editar Perfil Contratante | PonteLab.';
+        $data['titulo_pagina'] = 'Editar Perfil Contratante | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Edit_Perfil_Contratante', $data);
     }
 
     public function Contratante()
     {
-        $data['titulo_pagina'] = 'Contratante | PonsLabor.';
+        $data['titulo_pagina'] = 'Contratante | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Contratante', $data);
     }
 

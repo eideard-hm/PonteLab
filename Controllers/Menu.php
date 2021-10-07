@@ -16,7 +16,7 @@ class Menu extends Controllers
     public function Menu()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            $data['titulo_pagina'] = 'Menú Principal | PonsLabor.';
+            $data['titulo_pagina'] = 'Menú Principal | ' . NOMBRE_EMPRESA . '.';
             $this->views->getView($this, 'Menu', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             header('Location:' . URL . 'Menu/Menu_Contratante');
@@ -28,7 +28,7 @@ class Menu extends Controllers
     public function Menu_Contratante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
-            $data['titulo_pagina'] = 'Menu Contratante | PonsLabor.';
+            $data['titulo_pagina'] = 'Menu Contratante | ' . NOMBRE_EMPRESA . '.';
             $this->views->getView($this, 'Menu_Contratante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
             header('Location:' . URL . 'Menu');

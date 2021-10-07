@@ -19,19 +19,19 @@ class Login extends Controllers
 
     public function Login()
     {
-        $data['titulo_pagina'] = 'Iniciar Sesión | PonsLabor.';
+        $data['titulo_pagina'] = 'Iniciar Sesión | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Login', $data);
     }
 
     public function Recuperar_Password()
     {
-        $data['titulo_pagina'] = 'Recuperar Contraseña | PonsLabor.';
+        $data['titulo_pagina'] = 'Recuperar Contraseña | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Recuperar_Password', $data);
     }
 
     public function Correo_Recuperar_Password()
     {
-        $data['titulo_pagina'] = 'Recuperar Contraseña | PonsLabor.';
+        $data['titulo_pagina'] = 'Recuperar Contraseña | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Correo_Recuperar_Password', $data);
     }
 

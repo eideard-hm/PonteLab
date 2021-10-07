@@ -11,7 +11,7 @@ class Index extends Controllers
 
     public function index()
     {
-        $data['titulo_pagina'] = 'Página Inicio | PonsLabor.';
+        $data['titulo_pagina'] = 'Página Inicio | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'index', $data);
     }
 }
