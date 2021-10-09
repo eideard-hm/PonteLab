@@ -80,6 +80,12 @@ class Aspirante extends Controllers
         );
     }
 
+    /**
+     * Método que sirve para actualizar el perfil del aspirante
+     * 
+     * @return void
+     * @author Edier Heraldo Hernandez Molano
+     */
     public function updatePerfilAspirante()
     {
         if ($_POST) {
