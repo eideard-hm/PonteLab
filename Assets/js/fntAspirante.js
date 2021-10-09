@@ -7,7 +7,7 @@
 ------------------------------------------------------------------------------*/
 import {
     sweetAlert, lockIconRegister, changeNameBtn, formDataElement, mostrarInputOtroPuestoInteres,
-    inputOtroPuestoInteres, campos, mostrarInputOtroIdioma, mostrarInputOtraHabilidad, initTextEditorTinymce, 
+    inputOtroPuestoInteres, campos, mostrarInputOtroIdioma, mostrarInputOtraHabilidad, initTextEditorTinymce,
     unLockIconRegister
 }
     from './functionsGlobals.js';
@@ -24,6 +24,8 @@ const formEstudios = document.getElementById('estudios');
 const experienciaLaboral = document.getElementById('form-experiencia-laboral');
 //botones
 
+const listSelectIdiomas = document.getElementById('select-idiomas-list');
+const listSelectHabilidades = document.getElementById('select-habilidad-list');
 /*-----------------------------------------------------------------------------
                     Descripción personal
 ------------------------------------------------------------------------------*/
@@ -124,7 +126,10 @@ const seleccionarPuestoInteres = e => {
     }
 }
 
-//insertar el puesto de interes desde el input
+/**
+ * Función que sirve para insertar el puesto de interes desde el input
+ * @param {Event} e 
+ */
 const insertPuestoInteres = async (e) => {
     e.preventDefault();
     const formData = formDataElement(formPuestoInteres);
@@ -154,11 +159,14 @@ const insertPuestoInteres = async (e) => {
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
-//insertar el puesto de interes desde el select
+/**
+ * Función que sirve para insertar el puesto de interes desde el select
+ * @returns {Promise<any>}
+*/
 const insertPuestoInteresAspirante = async () => {
 
     if (document.getElementById('txtPuesto').value.trim() === '') {
@@ -176,11 +184,13 @@ const insertPuestoInteresAspirante = async () => {
             const { status, msg } = await req.json();
             if (status) {
                 sweetAlert("Puesto interes aspirante", msg, "success");
+                await refreshPuestoInteres();
+                formPuestoInteres.reset();
             } else {
                 sweetAlert("Error", msg, "error");
             }
         } catch (error) {
-            sweetAlert("Error", error, "error");
+            console.error(error);
         }
     }
 }
@@ -253,7 +263,6 @@ const showPuestoInteres = async () => {
 let arrObjIdiomas = [];
 
 const seleccionarIdioma = async () => {
-    const setIdIdioma = new Set();
     const formData = formDataElement(formIdioma);
     const valoresAceptados = /^[0-9]+$/;
     let existeIdioma = false;
@@ -286,7 +295,6 @@ const seleccionarIdioma = async () => {
             option.classList.add('active');
             option.setAttribute('disabled', 'disabled');
             formIdioma.reset();
-            return false;
         } else {
             if (!option.classList.contains('active')) {
                 option.classList.remove('active');
@@ -313,13 +321,12 @@ const seleccionarIdioma = async () => {
 
 document.querySelector('#agregar_idioma').addEventListener('click', seleccionarIdioma);
 
-/**insertar los elementos que vienen desde la lista
- * 
+/**
+ * insertar los elementos que vienen desde la lista
 */
 const insertIdiomaAspirante = async () => {
     const url = `${base_url}Aspirante/setIdiomaAspirante`;
     const formData = formDataElement(formIdioma);
-
     try {
         const req = await fetch(url, {
             method: 'POST',
@@ -330,17 +337,18 @@ const insertIdiomaAspirante = async () => {
 
         if (status) {
             sweetAlert("Idioma aspirante", msg, "success");
+            await refreshIdiomasAspirante();
+            formIdioma.reset();
         } else {
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
 /**
  * Insertar el elemento que viene desde el input
- * 
 */
 const insertNewIdioma = async () => {
     const url = `${base_url}Aspirante/setIdioma`;
@@ -356,6 +364,7 @@ const insertNewIdioma = async () => {
             // listIdiomas.add(id);
             sweetAlert("Idioma", msg, "success");
             await refreshIdiomasAspirante();
+            formIdioma.reset();
             document.querySelectorAll('#txtListIdioma option').forEach(item => {
                 if (parseInt(item.dataset.id) === parseInt(id)) {
                     item.classList.add('active', 'disabled');
@@ -476,9 +485,6 @@ const seleccionarHabilidad = async () => {
 
             option.classList.add('active');
             option.setAttribute('disabled', 'disabled');
-            formHabilidad.reset();
-            puntuacionEstrellas(0, 'habi');
-            return false;
         } else {
             if (!option.classList.contains('active')) {
                 option.classList.remove('active');
@@ -522,14 +528,19 @@ const inserHabilidadAspirante = async () => {
 
         if (status) {
             sweetAlert("Habilidad aspirante", msg, "success");
+            await refreshHabilidadAspirante();
+            formHabilidad.reset();
         } else {
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
+/**
+ * Función que sirve para insertar la habilidad que viene desde el input
+ */
 const insertHabilidad = async () => {
     const url = `${base_url}Aspirante/setHabilidad`;
     const formData = formDataElement(formHabilidad);
@@ -561,6 +572,9 @@ const insertHabilidad = async () => {
     }
 }
 
+/**
+ * Muestra la lista de todas las habilidades registradas en la base de datos y que puede seleccionar el usuario
+ */
 const refreshHabilidadAspirante = async () => {
     const url = `${base_url}Aspirante/getAllHabilidades`;
     try {
@@ -787,7 +801,7 @@ const showExperienciaLaboral = async () => {
  * 
  * @param {Event} e Información donde se desencadena el evento 
  */
- const loadDataEditExperience = async (e) => {
+const loadDataEditExperience = async (e) => {
     initTextEditorTinymce('funciones');
     const id = e.target.dataset.idexperiencia;
     const url = `${base_url}Aspirante/getExperienciaAspiranteEdit/${id}`;
@@ -919,8 +933,6 @@ const validateFormIdiomas = (e) => {
         } else {
             insertNewIdioma();
         }
-    } else if (document.getElementById('txtIdioma').style.display == 'none' || document.getElementById('txtIdioma').style.display === '') {
-        insertIdiomaAspirante();
     }
 }
 
@@ -932,8 +944,6 @@ const validateFormHabilidad = (e) => {
         } else {
             insertHabilidad();
         }
-    } else if (document.getElementById('txtHabilidad').style.display === 'none' || document.getElementById('txtHabilidad').style.display === '') {
-        inserHabilidadAspirante();
     }
 }
 

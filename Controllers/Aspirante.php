@@ -417,8 +417,8 @@ class Aspirante extends Controllers
             if ($idIdioma == 0) {
                 $option = 1;
                 $request = $this->model->insertIdiomaAspirante(
-                    $idAspiranteFK,
                     $idIdiomaFK,
+                    $idAspiranteFK,
                     $nivelIdioma
                 );
             } else {
@@ -431,14 +431,14 @@ class Aspirante extends Controllers
                 );
             }
 
-            if ($request > 0 && is_numeric($request)) {
+            if (intval($request) > 0) {
                 if ($option == 1) {
                     $arrResponse = ['status' => true, 'msg' => 'Idioma almacenado correctamente :)'];
                 } else {
                     $arrResponse = ['status' => true, 'msg' => 'Idioma actualizado correctamente :)'];
                 }
             } elseif ($request == 'exists') {
-                $arrResponse = ['status' => false, 'msg' => 'El aspirante ya tiene ese idioma asociado. Seleccionalo en la lista !!'];
+                $arrResponse = ['status' => false, 'msg' => 'El aspirante ya tiene ese idioma asociado. Seleccione otro !!'];
             } else {
                 $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Por favor intenta más tarde :('];
             }
