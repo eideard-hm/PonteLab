@@ -8,8 +8,6 @@
   <title><?= $data['titulo_pagina'] ?></title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
-  <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" /> -->
   <!-- CSS -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
@@ -159,6 +157,11 @@
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
-  <!-- <script src="<?= URL ?>Assets/js/menuContratante.js"></script> -->
+  <!-- custom js for this page -->
+  <script src="<?= URL ?>Assets/js/jsvacante/wizard.js"></script>
+	<!-- end custom js for this page -->
+  <!-- plugin js for this page -->
+  <script src="<?= URL ?>Assets/js/jsvacante/jquery.steps.min.js"></script>
+	<!-- end plugin js for this page -->
 </body>
 </html>
