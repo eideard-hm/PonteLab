@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <!-- Meta tags -->
   <meta charset="UTF-8" />
@@ -10,7 +9,8 @@
   <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
   <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" /> -->
-  <!-- CSS -->
+  <!-- CSS -->  
+  <!-- Plugin Js -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
   <!-- Style CSS -->
@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
-
 <body class="right-column-fixed" id="menu">
   <!-- loader Start -->
   <div id="loading">
@@ -39,43 +38,45 @@
             <div class="card">
               <div class="card-body">
                 <h4 class="card-title">Registro Vacantes</h4>
-                <div id="wizardVertical">
-                  <h2>First Step</h2>
-                  <section>
-                    <h4>Heading</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a tempor quis, 
-                        sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus. 
-                        Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi.</p>
-                  </section>
-  
-                  <h2>Second Step</h2>
-                  <section>
-                    <h4>Heading</h4>
-                    <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum pellentesque. 
-                        In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum 
-                        dictum, nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien a diam adipiscing consectetur. 
-                        In euismod augue ullamcorper leo dignissim quis elementum arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Vestibulum leo velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis iaculis nec, malesuada a diam. 
-                        Donec non pulvinar urna. Aliquam id velit lacus.</p>
-                  </section>
-  
-                  <h2>Third Step</h2>
-                  <section>
-                    <h4>Heading</h4>
-                    <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
-                        pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat. 
-                        Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
-                        venenatis.</p>
-                  </section>
-  
-                  <h2>Forth Step</h2>
-                  <section>
-                    <h4>Heading</h4>
-                    <p>Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
-                        Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
-                        Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.</p>
-                  </section>
-                </div>
+                
+        <div id="wizardVertical">
+          <h2>First Step</h2>
+          <section>
+            <h4>Heading</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a tempor quis, 
+                sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus. 
+                Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi.</p>
+          </section>
+
+          <h2>Second Step</h2>
+          <section>
+            <h4>Heading</h4>
+            <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum pellentesque. 
+                In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum 
+                dictum, nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien a diam adipiscing consectetur. 
+                In euismod augue ullamcorper leo dignissim quis elementum arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Vestibulum leo velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis iaculis nec, malesuada a diam. 
+                Donec non pulvinar urna. Aliquam id velit lacus.</p>
+          </section>
+
+          <h2>Third Step</h2>
+          <section>
+            <h4>Heading</h4>
+            <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
+                pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat. 
+                Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
+                venenatis.</p>
+          </section>
+
+          <h2>Forth Step</h2>
+          <section>
+            <h4>Heading</h4>
+            <p>Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
+                Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
+                Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.</p>
+          </section>
+        </div>
+        
               </div>
             </div>
           </div>
@@ -91,10 +92,7 @@
   <!-- Scripts  -->
   <?php
   require_once('./Views/Components/ScriptsJs.php');
-  ?>  
-  <script src="<?= URL ?>Assets/js/vacante.js"></script>  
-  <!-- custom js for this page -->
-  <script src="<?= URL ?>Assets/js/wizard.js"></script>
+  ?>
 </body>
 </html>
 
@@ -103,9 +101,6 @@
 <body>
   <header id="header_menu">
     <div class="contenedor barra">
-      <?php
-      require_once('./Views/Components/NabvarLogo.php');
-      ?>
       <nav class="nav nav_menu">
         <a href="<?= URL ?>Menu/Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
         <a href="<?= URL ?>Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
@@ -122,14 +117,8 @@
       </nav>
     </div>
     <div class="info-persona">
-      <?php
-      require_once('./Views/Components/NabvarInfoContratante.php');
-      ?>
     </div>
     <div class="contenedor-responsive">
-      <?php
-      require_once('./Views/Components/NabvarResponsiveContratante.php');
-      ?>
     </div>
   </header>
 
@@ -255,9 +244,6 @@
     </div>
   </div>
   <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <?php
-    require_once('./Views/Components/ScriptsJs.php');
-    ?>
   <script src="<?= URL ?>Assets/js/vacante.js"></script>
 </body>
 

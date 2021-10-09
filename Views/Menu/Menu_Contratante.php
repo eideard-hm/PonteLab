@@ -152,16 +152,9 @@
   <?php
   require_once('./Views/Components/Footer.php');
   ?>
-
   <!-- Scripts  -->
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
-  <!-- custom js for this page -->
-  <script src="<?= URL ?>Assets/js/jsvacante/wizard.js"></script>
-	<!-- end custom js for this page -->
-  <!-- plugin js for this page -->
-  <script src="<?= URL ?>Assets/js/jsvacante/jquery.steps.min.js"></script>
-	<!-- end plugin js for this page -->
 </body>
 </html>
