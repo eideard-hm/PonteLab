@@ -19,7 +19,7 @@ class Aspirante extends Controllers
     public function Perfil_Aspirante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
-            $data['titulo_pagina'] = 'Perfil Aspirante | PonteLab.';
+            $data['titulo_pagina'] = 'Perfil Aspirante | ' . NOMBRE_EMPRESA . '.';
             $data['list_workStatus'] = $this->model->getAllWorkStatus();
             $data['list_gradoEstudio'] = $this->model->getAllGradoEstudio();
             $data['list_sectores'] = $this->model->getAllSectores();
@@ -37,10 +37,38 @@ class Aspirante extends Controllers
      */
     public function Edit_Profile_Aspirante()
     {
-        $data['titulo_pagina'] = 'Editar Perfil Aspirante | PonteLab.';
+        $data['titulo_pagina'] = 'Editar Perfil Aspirante | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Edit_Profile_Aspirante', $data);
     }
 
+    /**
+     * Método que se encarga de mostrar la vista de hoja de vida y además pasarle
+     * alguna información a dicha vista.
+     * 
+     * @return View Retorna una vista y además una data con información que se le va 
+     * a pasar a dicha vista.
+     * @author Edier Heraldo Hernandez Molano
+     */
+    public function HojaVida()
+    {
+        $data['info_aspirante'] = $this->model->routesAspirante(intval($_SESSION['id']));
+        $data['puestos_interes'] = $this->model->getOnePuestoInteres(intval($_SESSION['data-aspirante']['idAspirante']));
+        $data['estudios'] = $this->model->getIdiomasSelected(intval($_SESSION['data-aspirante']['idAspirante']));
+        $data['idiomas'] = $this->model->getIdiomasSelected(intval($_SESSION['data-aspirante']['idAspirante']));
+        $data['habilidades'] = $this->model->getHabilidadesSelected(intval($_SESSION['data-aspirante']['idAspirante']));
+        $data['estudios'] =  $this->model->getEstudiosAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
+        $data['experiencias'] = $this->model->getExperienciaAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
+        $data['titulo_pagina'] = 'Hoja de Vida | ' . NOMBRE_EMPRESA . '.';
+        if (
+            $data['info_aspirante'] && count($data['puestos_interes']) > 0 && count($data['estudios']) > 0
+            && count($data['habilidades']) > 0 && count($data['idiomas']) > 0 && count($data['estudios']) > 0
+            && count($data['experiencias']) > 0
+        ) {
+            $this->views->getView($this, 'HojaVida', $data);
+        } else {
+            header('Location: ' . URL . 'Menu');
+        }
+    }
 
     public function inhabilitarA()
     {
@@ -52,6 +80,12 @@ class Aspirante extends Controllers
         );
     }
 
+    /**
+     * Método que sirve para actualizar el perfil del aspirante
+     * 
+     * @return void
+     * @author Edier Heraldo Hernandez Molano
+     */
     public function updatePerfilAspirante()
     {
         if ($_POST) {
@@ -560,6 +594,7 @@ class Aspirante extends Controllers
             ) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios.'];
             } else {
+                $idEstudio = intval(limpiarCadena($_POST['idEducacion']));
                 $nombreInstitucion = limpiarCadena($_POST['txtInstitucion']);
                 $tituloObtenido = ucfirst(limpiarCadena($_POST['txtTitulo']));
                 $ciudad = intval(limpiarCadena($_POST['txtCiudad']));
@@ -568,24 +603,45 @@ class Aspirante extends Controllers
                 $mesInicio = limpiarCadena($_POST['txtMesIni']);
                 $anioFin = limpiarCadena($_POST['txtAnioFin']);
                 $mesFin = limpiarCadena($_POST['txtMesFin']);
-                $idAspirante =intval($_SESSION['data-aspirante']['idAspirante']);
+                $idAspirante = intval($_SESSION['data-aspirante']['idAspirante']);
                 $gradoEstudio = intval(limpiarCadena($_POST['txtGradoEst']));
 
-                $request = $this->model->insertEstudio(
-                    $nombreInstitucion,
-                    $tituloObtenido,
-                    $ciudad,
-                    $sector,
-                    $anioInicio,
-                    $mesInicio,
-                    $anioFin,
-                    $mesFin,
-                    $idAspirante,
-                    $gradoEstudio,
-                );
+                if ($idEstudio == 0) {
+                    $option = 1;
+                    $request = $this->model->insertEstudio(
+                        $nombreInstitucion,
+                        $tituloObtenido,
+                        $ciudad,
+                        $sector,
+                        $anioInicio,
+                        $mesInicio,
+                        $anioFin,
+                        $mesFin,
+                        $idAspirante,
+                        $gradoEstudio
+                    );
+                } else {
+                    $option = 2;
+                    $request = $this->model->updateEstudio(
+                        $idEstudio,
+                        $nombreInstitucion,
+                        $tituloObtenido,
+                        $ciudad,
+                        $sector,
+                        $anioInicio,
+                        $mesInicio,
+                        $anioFin,
+                        $mesFin,
+                        $gradoEstudio,
+                    );
+                }
 
-                if ($request > 0 && is_numeric($request)) {
-                    $arrResponse = ['status' => true, 'msg' => 'Estudios registrados correctamente :)'];
+                if (intval($request) > 0) {
+                    if ($option == 1) {
+                        $arrResponse = ['status' => true, 'msg' => 'Estudios registrados correctamente :)'];
+                    } else {
+                        $arrResponse = ['status' => true, 'msg' => 'Datos de estudios modificados correctamente :)'];
+                    }
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El usuario ya tiene esos estudios asocidados. Registra otros...'];
                 } else {
@@ -609,6 +665,24 @@ class Aspirante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    //método para traer toda la lista de estudios registrados por el usuario
+    public function getEstudiosAspiranteEdit()
+    {
+        $idEstudio = explode('/', $_GET['url']);
+        if (isset($idEstudio[2])) {
+            $idEstudio = intval($idEstudio[2]);
+            $request = $this->model->getEstudiosAspiranteEdit($idEstudio);
+            if (!empty($request)) {
+                $arrResponse = ['status' => true, 'data' => $request];
+            } else {
+                $arrResponse = ['status' => false, 'data' => 'no'];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
     /*============================================================================
                             Experiencia laboral
     ==============================================================================*/
@@ -619,6 +693,7 @@ class Aspirante extends Controllers
             if (empty($_POST['txtEmpresa']) || empty($_POST['txtPuesto'])) {
                 $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios.'];
             } else {
+                $idExperiencia = intval(limpiarCadena($_POST['idExperiencia']));
                 $empresa = ucfirst(strtolower(limpiarCadena($_POST['txtEmpresa'])));
                 $sectorLaboro = intval(limpiarCadena($_POST['txtSectorExp']));
                 $ciudad = intval(limpiarCadena($_POST['txtCiudadLab']));
@@ -631,22 +706,44 @@ class Aspirante extends Controllers
                 $funcion = $_POST['textFunciones'];
                 $idAspirante = intval($_SESSION['data-aspirante']['idAspirante']);
 
-                $request = $this->model->insertExperienciaLaboral(
-                    $empresa,
-                    $sectorLaboro,
-                    $ciudad,
-                    $tipoExperiencia,
-                    $puestoDesempeño,
-                    $anioInicio,
-                    $mesInicio,
-                    $anioFin,
-                    $mesFin,
-                    $funcion,
-                    $idAspirante
-                );
+                if ($idExperiencia == 0) {
+                    $option = 1;
+                    $request = $this->model->insertExperienciaLaboral(
+                        $empresa,
+                        $sectorLaboro,
+                        $ciudad,
+                        $tipoExperiencia,
+                        $puestoDesempeño,
+                        $anioInicio,
+                        $mesInicio,
+                        $anioFin,
+                        $mesFin,
+                        $funcion,
+                        $idAspirante
+                    );
+                } else {
+                    $option = 2;
+                    $request = $this->model->updateExperienciaLaboral(
+                        $idExperiencia,
+                        $empresa,
+                        $sectorLaboro,
+                        $ciudad,
+                        $tipoExperiencia,
+                        $puestoDesempeño,
+                        $anioInicio,
+                        $mesInicio,
+                        $anioFin,
+                        $mesFin,
+                        $funcion
+                    );
+                }
 
-                if ($request > 0 && is_numeric($request)) {
-                    $arrResponse = ['status' => true, 'msg' => 'Experiencia laboral registrada correctamente :)'];
+                if (intval($request) > 0) {
+                    if ($option == 1) {
+                        $arrResponse = ['status' => true, 'msg' => 'Experiencia laboral registrada correctamente :)'];
+                    } else {
+                        $arrResponse = ['status' => true, 'msg' => 'Experiencia laboral modificada correctamente :)'];
+                    }
                 } elseif ($request === 'exists') {
                     $arrResponse = ['status' => false, 'msg' => 'El usuario ya tiene esa experiencia laboral asocidada. Registra otros...'];
                 } else {
@@ -668,6 +765,23 @@ class Aspirante extends Controllers
             $arrResponse = ['status' => false, 'data' => 'no'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    //método para traer toda la lista de estudios registrados por el usuario
+    public function getExperienciaAspiranteEdit()
+    {
+        $idExperiencia = explode('/', $_GET['url']);
+        if (isset($idExperiencia[2])) {
+            $idExperiencia = intval($idExperiencia[2]);
+            $request = $this->model->getExperienciaAspiranteEdit($idExperiencia);
+            if (!empty($request)) {
+                $arrResponse = ['status' => true, 'data' => $request];
+            } else {
+                $arrResponse = ['status' => false, 'data' => 'no'];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }

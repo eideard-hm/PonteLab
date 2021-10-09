@@ -10,7 +10,7 @@ const DB_PASS = '';
 const DB_NAME = 'db_proyectoponslabor';
 
 //datos para el envió de correo electronico
-const NOMBRE_EMPRESA = 'Team Pontelab';
+const NOMBRE_EMPRESA = 'PonteLab';
 const WEB_EMPRESA = URL;
 const NOMBRE_REMITENTE = 'Team Pontelab';
 const EMAIL_REMITENTE = "team.pontelab@gmail.com";
