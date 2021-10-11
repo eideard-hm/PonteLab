@@ -353,31 +353,35 @@ const insertIdiomaAspirante = async () => {
 const insertNewIdioma = async () => {
     const url = `${base_url}Aspirante/setIdioma`;
     const formData = formDataElement(formIdioma);
-    try {
-        const req = await fetch(url, {
-            method: 'POST',
-            body: formData
-        });
+    if (formData.get('txtIdioma').trim() === null || formData.get('txtNivelIdioma') === null) {
+        sweetAlert('Campos obligatorios', "Debe de introducir un valor en el campo de idioma y asignarle una puntuación.", "warning");
+    } else {
+        try {
+            const req = await fetch(url, {
+                method: 'POST',
+                body: formData
+            });
 
-        const { status, msg, id } = await req.json();
-        if (status) {
-            // listIdiomas.add(id);
-            sweetAlert("Idioma", msg, "success");
-            await refreshIdiomasAspirante();
-            formIdioma.reset();
-            document.querySelectorAll('#txtListIdioma option').forEach(item => {
-                if (parseInt(item.dataset.id) === parseInt(id)) {
-                    item.classList.add('active', 'disabled');
-                    item.setAttribute('disabled', 'disabled');
-                }
-            })
-            document.querySelector('#grupo-puesto-otro_idioma').checked = true;
-            mostrarInputOtroIdioma();
-        } else {
-            sweetAlert("Error", msg, "warning");
+            const { status, msg, id } = await req.json();
+            if (status) {
+                // listIdiomas.add(id);
+                sweetAlert("Idioma", msg, "success");
+                await refreshIdiomasAspirante();
+                formIdioma.reset();
+                document.querySelectorAll('#txtListIdioma option').forEach(item => {
+                    if (parseInt(item.dataset.id) === parseInt(id)) {
+                        item.classList.add('active', 'disabled');
+                        item.setAttribute('disabled', 'disabled');
+                    }
+                })
+                document.querySelector('#grupo-puesto-otro_idioma').checked = true;
+                mostrarInputOtroIdioma();
+            } else {
+                sweetAlert("Error", msg, "warning");
+            }
+        } catch (error) {
+            console.error(error);
         }
-    } catch (error) {
-        console.error(error);
     }
 }
 
@@ -564,11 +568,10 @@ const insertHabilidad = async () => {
             document.querySelector('#grupo-puesto-otra_habilidad').checked = true;
             mostrarInputOtraHabilidad();
         } else {
-            pintarPuntuacion(listaHabilidades, arrListaIdiomas);
             sweetAlert("Error", msg, "warning");
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 

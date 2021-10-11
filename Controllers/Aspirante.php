@@ -290,15 +290,15 @@ class Aspirante extends Controllers
                 foreach ($puestoInteres as $puesto) {
                     $request = $this->model->puestoInteresAspirante(
                         intval($_SESSION['data-aspirante']['idAspirante']),
-                        $puesto
+                        intval($puesto)
                     );
                 }
 
-                if ($request > 0 && is_numeric($request)) {
+                if (intval($request) > 0) {
                     $_SESSION['puestoInteres-aspirante'] = $sesionPuestoInteres;
                     $arrResponse = ['status' => true, 'msg' => 'Puesto de interés almacenado exitosamente :)', 'sesiones' => $_SESSION['puestoInteres-aspirante']];
                 } elseif ($request === 'exists') {
-                    $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Lo puedes seleccionar la lista.'];
+                    $arrResponse = ['status' => false, 'msg' => 'El puesto ya se encuentra registrado. Puedes registrar otro.'];
                 } else {
                     $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error en el servidor. Intenta más tarde :('];
                 }
@@ -380,11 +380,11 @@ class Aspirante extends Controllers
                     );
                 }
 
-                if ($request > 0 && is_numeric($request)) {
+                if (intval($request) > 0) {
                     if ($option == 1) {
                         $idiomaAspirante = $this->model->insertIdiomaAspirante(
-                            $idAspiranteFK,
                             $request,
+                            $idAspiranteFK,
                             $nivelIdioma
                         );
                         if (!empty($idiomaAspirante)) {

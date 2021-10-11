@@ -32,7 +32,7 @@ class VacanteModel extends GestionCRUD
     {
         parent::__construct();
     }
-    
+
     //metodo para traer todas las vacantes
     public function selectAllVacantes()
     {
@@ -40,7 +40,8 @@ class VacanteModel extends GestionCRUD
         return $this->selectAll($sql);
     }
 
-    public function selectOneContractor($idUsuarioFK){
+    public function selectOneContractor($idUsuarioFK)
+    {
         $this->idUsuarioFK = $idUsuarioFK;
         //consulta
         $sql = "SELECT idContratante, descripcionContratante
@@ -143,7 +144,7 @@ class VacanteModel extends GestionCRUD
 
         return $return;
     }
-    
+
     public function getFiltroVacantes($busqueda)
     {
         $sql = "SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
@@ -218,10 +219,52 @@ class VacanteModel extends GestionCRUD
         return $this->selectAll($sql);
     }
 
-    public function detailVacante(int $id){
+    public function detailVacante(int $id)
+    {
         $this->idVacante = $id;
         $sql = "SELECT * FROM detailVacanteView 
                 WHERE idVacante = {$this->idVacante}";
+        return $this->select($sql);
+    }
+
+    public function applyVacancy(
+        int $idAspiranteFK,
+        int $idVacanteFK
+    ) {
+        $this->idUsuarioFK = $idAspiranteFK;
+        $this->idVacanteFK = $idVacanteFK;
+        $sql = "SELECT idAplicacionVacante, idAspiranteFK, idVacanteFK, estadoAplicacionVacante
+                FROM APLICACION_VACANTE
+                WHERE idAspiranteFK = {$this->idUsuarioFK} AND idVacanteFK = {$this->idVacanteFK}";
+        $request = $this->selectAll($sql);
+        if (empty($request)) {
+            $sql = "INSERT INTO APLICACION_VACANTE(idAspiranteFK, idVacanteFK)
+                    VALUES(?,?)";
+            $arrData = [
+                $this->idUsuarioFK,
+                $this->idVacanteFK
+            ];
+            return $this->insert($sql, $arrData);
+        } else {
+            return 'exists';
+        }
+    }
+
+    public function dataAspiranteApplicationVacancy(int $idApplicationVacancy)
+    {
+        $this->idVacante = $idApplicationVacancy;
+        $sql = "SELECT * 
+                FROM dataAspiranteApplicationVacancyView
+                WHERE idAplicacionVacante = {$idApplicationVacancy}";
+        return $this->select($sql);
+    }
+
+    public function dataVacanteApplicationVacancy(int $idApplicationVacancy)
+    {
+        $this->idVacante = $idApplicationVacancy;
+        $sql = "SELECT * 
+                FROM dataVacanteApplicationVacancyView
+                WHERE idAplicacionVacante = {$idApplicationVacancy}";
         return $this->select($sql);
     }
 }

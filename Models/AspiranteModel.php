@@ -234,13 +234,21 @@ class AspiranteModel extends GestionCRUD
         $this->Id = $idAspirante;
         $this->idPuesto = $idPuesto;
 
-        $sql = "INSERT INTO ASPIRANTE_PUESTOINTERES(idAspiranteFK, idPuestoInteresFK)
-                VALUES(?,?)";
-        $arrData = [
-            $this->Id,
-            $this->idPuesto
-        ];
-        return $this->insert($sql, $arrData);
+        $sql = "SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK
+                FROM ASPIRANTE_PUESTOINTERES 
+                WHERE idAspiranteFK = {$this->Id} AND idPuestoInteresFK = {$this->idPuesto}";
+        $request = $this->selectAll($sql);
+        if (empty($request)) {
+            $sql = "INSERT INTO ASPIRANTE_PUESTOINTERES(idAspiranteFK, idPuestoInteresFK)
+                    VALUES(?,?)";
+            $arrData = [
+                $this->Id,
+                $this->idPuesto
+            ];
+            return $this->insert($sql, $arrData);
+        }else{
+            return 'exists';
+        }
     }
 
     //Método para insertar un nuevo idioma
@@ -270,8 +278,8 @@ class AspiranteModel extends GestionCRUD
         int $idAspiranteFK,
         int $nivelIdioma
     ) {
-        $this->Id = $idAspiranteFK;
         $this->idIdioma = $idIdiomaFK;
+        $this->Id = $idAspiranteFK;
         $this->nivelIdioma = $nivelIdioma;
 
         $sql = "SELECT idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma
