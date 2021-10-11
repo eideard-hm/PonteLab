@@ -1,127 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!-- Meta tags -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><?= $data['titulo_pagina'] ?></title>
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
-  <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" /> -->
-  <!-- CSS -->  
-  <!-- Plugin Js -->
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
-  <!-- Style CSS -->
-  <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
-  <!-- Responsive CSS -->
-  <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
-  <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <!-- Meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><?= $data['titulo_pagina'] ?></title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
+    <!-- CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
+
 <body class="right-column-fixed" id="menu">
-  <!-- loader Start -->
-  <div id="loading">
-    <div id="loading-center"></div>
-  </div>
-  <!-- wrapper -->
-  <div class="wrapper">
-    <!-- Menu de navegación -->
-    <?php
+    <!-- loader Start -->
+    <div id="loading">
+        <div id="loading-center"></div>
+    </div>
+    <!-- wrapper -->
+    <div class="wrapper">
+        <!-- Menu de navegación -->
+        <?php
     require_once('./Views/Components/LayoutC.php');
     ?>
-    <!-- Page Content  -->
-    <div id="page-content" class="content-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 stretch-card">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Registro Vacantes</h4>
-                
-        <div id="wizardVertical">
-          <h2>First Step</h2>
-          <section>
-            <h4>Heading</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut nulla nunc. Maecenas arcu sem, hendrerit a tempor quis, 
-                sagittis accumsan tellus. In hac habitasse platea dictumst. Donec a semper dui. Nunc eget quam libero. Nam at felis metus. 
-                Nam tellus dolor, tristique ac tempus nec, iaculis quis nisi.</p>
-          </section>
-
-          <h2>Second Step</h2>
-          <section>
-            <h4>Heading</h4>
-            <p>Donec mi sapien, hendrerit nec egestas a, rutrum vitae dolor. Nullam venenatis diam ac ligula elementum pellentesque. 
-                In lobortis sollicitudin felis non eleifend. Morbi tristique tellus est, sed tempor elit. Morbi varius, nulla quis condimentum 
-                dictum, nisi elit condimentum magna, nec venenatis urna quam in nisi. Integer hendrerit sapien a diam adipiscing consectetur. 
-                In euismod augue ullamcorper leo dignissim quis elementum arcu porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Vestibulum leo velit, blandit ac tempor nec, ultrices id diam. Donec metus lacus, rhoncus sagittis iaculis nec, malesuada a diam. 
-                Donec non pulvinar urna. Aliquam id velit lacus.</p>
-          </section>
-
-          <h2>Third Step</h2>
-          <section>
-            <h4>Heading</h4>
-            <p>Morbi ornare tellus at elit ultrices id dignissim lorem elementum. Sed eget nisl at justo condimentum dapibus. Fusce eros justo, 
-                pellentesque non euismod ac, rutrum sed quam. Ut non mi tortor. Vestibulum eleifend varius ullamcorper. Aliquam erat volutpat. 
-                Donec diam massa, porta vel dictum sit amet, iaculis ac massa. Sed elementum dui commodo lectus sollicitudin in auctor mauris 
-                venenatis.</p>
-          </section>
-
-          <h2>Forth Step</h2>
-          <section>
-            <h4>Heading</h4>
-            <p>Quisque at sem turpis, id sagittis diam. Suspendisse malesuada eros posuere mauris vehicula vulputate. Aliquam sed sem tortor. 
-                Quisque sed felis ut mauris feugiat iaculis nec ac lectus. Sed consequat vestibulum purus, imperdiet varius est pellentesque vitae. 
-                Suspendisse consequat cursus eros, vitae tempus enim euismod non. Nullam ut commodo tortor.</p>
-          </section>
-        </div>
-        
-              </div>
+        <!-- Page Content  -->
+        <div id="page-content" class="content-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Registro de vacantes</h3>
+                                <ul id="top-tab-list" class="p-0">
+                                    <li class="active" id="account">
+                                        <a href="javascript:void();">
+                                            <i class="fas fa-pen-alt"></i><span>Registro Vacante</span>
+                                        </a>
+                                    </li>
+                                    <li id="personal" class="">
+                                        <a href="javascript:void();">
+                                            <i class="fas fa-user-circle"></i><span>Información personal</span>
+                                        </a>
+                                    </li>
+                                    <li id="payment" class="">
+                                        <a href="javascript:void();">
+                                            <i class="far fa-image"></i><span>Imagen</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- fieldsets -->
+                                <fieldset style="position: relative; opacity: 1;">
+                                    <div class="form-card text-left">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <h3 class="mb-2"> Información Vacante</h3>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <form method="POST" id="form-vacancy" class="forms-sample">
+                                                            <div class="form-group">
+                                                                <label for="nombre"> Nombre</label>
+                                                                <input type="text" class="form-control" id="nombre"
+                                                                    autocomplete="off" placeholder="Nombre... vacante"
+                                                                    required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="cantidad"> Cantidad de Vacantes</label>
+                                                                <input type="number" class="form-control" id="cantidad"
+                                                                    placeholder="Cantida de Vacantes..." required>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="especificaciones"> Especificaciones</label>
+                                                                <textarea name="especificaciones" id="especificaciones"
+                                                                    rows="1" placeholder="Especificaciones..."
+                                                                    required></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="especificaciones"> Perfil del
+                                                                    Trabajador</label>
+                                                                <textarea name="perfil" id="perfil" rows="1"
+                                                                    placeholder="Perfil del Trabajador..."
+                                                                    required></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="tipoContrato"> Tipo de Contrato</label>
+                                                                <select class="form-control" name="tipoContrato"
+                                                                    id="tipoContrato" required>
+                                                                    <option value="" disabled selected>Seleccion Tipo de
+                                                                        Contranto</option>
+                                                                    <option value="1">Contrato por Obra o Labor</option>
+                                                                    <option value="2">Contrato a Termino Fijo</option>
+                                                                    <option value="3">Contrato a Termino Indefinido
+                                                                    </option>
+                                                                    <option value="4">Contrato de Aprendizaje</option>
+                                                                    <option value="5">Contrato Temporal, Ocacional o
+                                                                        Accidental</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="sueldo"> Sueldo</label>
+                                                                <input type="number" class="form-control" name="sueldo"
+                                                                    id="sueldo" autocomplete="off"
+                                                                    placeholder="Sueldo..." required>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="form-group">
+                                                            <label for="fechapublicacion"> Fecha de
+                                                                Publicacion</label>
+                                                            <input type="datetime-local" class="form-control"
+                                                                name="fechapublicacion" id="fechapublicacion" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="fechacierre"> Fecha de Cierre</label>
+                                                            <input type="datetime-local" class="form-control"
+                                                                name="fechacierre" id="fechacierre" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="direccion"> Dirección</label>
+                                                            <input type="text" class="form-control" name="direccion"
+                                                                id="direccion" placeholder="Dirección..." required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="tipoContrato"> Tipo de Contrato</label>
+                                                            <select class="form-control" name="tipoContrato"
+                                                                id="tipoContrato" required>
+                                                                <option value="" disabled selected>Seleccion Estado
+                                                                </option>
+                                                                <option value="1">Activo</option>
+                                                                <option value="2">Inactivo</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="idSectorFK"> Sector</label>
+                                                            <select class="form-control" name="tipoContrato"
+                                                                id="tipoContrato" required>
+                                                                <option selected disabled value="">--- Seleccione el
+                                                                    Sector ---</option>
+                                                                <?php foreach ($data['list_sector'] as $sector) : ?>
+                                                                <option value="<?php echo $sector['idSector'] ?>">
+                                                                    <?php echo $sector['nombreSector'] ?></option>
+                                                                <?php endforeach ?>
+                                                            </select>
+                                                        </div>
+                                                        <button type="submit"
+                                                            class="btn btn-primary mr-2 mb-3">  Submit  </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" name="next"
+                                        class="btn btn-primary next action-button float-right"
+                                        value="Next">Siguiente</button>
+                                </fieldset>
+                                <fieldset style="display: none; opacity: 0; position: relative;">
+                                    <div class="form-card text-left">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h3 class="mb-4">Información personal:</h3>
+                                            </div>
+                                            <div class="col-5">
+                                                <h2 class="steps">Paso 2 - 3</h2>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Tipo documento: *</label>
+                                                    <input type="text" class="form-control" name="fname"
+                                                        value="<?= $_SESSION['user-data']['nombreTipoDocumento'] ?>"
+                                                        disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Número documento: *</label>
+                                                    <input type="text" class="form-control" name="lname"
+                                                        value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>N° Télefono: *</label>
+                                                    <input type="text" class="form-control" name="phno"
+                                                        value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>N° teléfono fijo: *</label>
+                                                    <input type="text" class="form-control" name="phno_2"
+                                                        value="<?= $_SESSION['user-data']['numTelFijo'] ?>" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" name="next"
+                                        class="btn btn-primary next action-button float-right"
+                                        value="Next">Siguiente</button>
+                                    <button type="button" name="previous"
+                                        class="btn btn-dark previous action-button-previous float-right mr-3"
+                                        value="Previous">Anterior</button>
+                                </fieldset>
+                                <fieldset style="display: block; opacity: 0; position: relative;">
+                                    <div class="form-card text-left">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <h3 class="mb-4">Imagen:</h3>
+                                            </div>
+                                            <div class="col-5">
+                                                <h2 class="steps">Paso 3 - 3</h2>
+                                            </div>
+                                        </div>
+                                        <div class="user-detail text-center mb-3 form-group">
+                                            <div class="profile-img">
+                                                <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil"
+                                                    data-id="<?php echo $_SESSION['id']; ?>"
+                                                    alt="<?php echo $_SESSION['user-data']['nombreUsuario'] ?>"
+                                                    class="avatar-130 img-fluid" />
+                                            </div>
+                                            <div class="profile-detail">
+                                                <h4><?= $_SESSION['user-data']['nombreUsuario'] ?></h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" name="previous"
+                                        class="btn btn-dark previous action-button-previous float-right mr-3"
+                                        value="Previous">Anterior</button>
+                                </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <!-- Wrapper END -->
-  <!-- Footer -->
-  <?php
+    <!-- Wrapper END -->
+    <!-- Footer -->
+    <?php
   require_once('./Views/Components/Footer.php');
   ?>
-  <!-- Scripts  -->
-  <?php
+    <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin" defer></script>
+    <!-- Scripts  -->
+    <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
+    <script src="<?= URL ?>Assets/js/js.dashboard/lottie.js" defer></script>
+    <script src="<?= URL ?>Assets/js/js.dashboard/chart-custom.js" defer></script>
 </body>
+
 </html>
 
 
 <!-- 
 <body>
-  <header id="header_menu">
-    <div class="contenedor barra">
-      <nav class="nav nav_menu">
-        <a href="<?= URL ?>Menu/Menu_Contratante"><i class="fas fa-home"></i>Inicio</a>
-        <a href="<?= URL ?>Contratante"><i class="fas fa-user-tie"></i>Contratante</a>
-        <a href="#" class="active"><i class="fas fa-business-time"></i>Vacante</a>
-
-        <button class="switch" id="switch">
-          <i class="fas fa-sun sol"></i>
-          <i class="fas fa-moon luna"></i>
-          <span class="circulo"></span>
-        </button>
-        <div class="imagen-persona">
-          <img src="<?php echo $_SESSION['imgProfile']; ?>" id="imagen_perfil" data-id="<?php echo $_SESSION['id']; ?>" alt="<?php echo $_SESSION['user-data']['nombreUsuario'] ?>" />
-        </div>
-      </nav>
-    </div>
-    <div class="info-persona">
-    </div>
-    <div class="contenedor-responsive">
-    </div>
-  </header>
-
   <div class="content">
     <div class="vac-form">
       <h2 class="name"><span>Registro</span> Vacante</h2>
