@@ -267,7 +267,11 @@ const applyVacancy = async () => {
             body: formData
         });
         const { status, msg } = await req.json();
-        console.log(msg);
+        if (status) {
+            sweetAlert('Aplicación a la vacante exitosa', msg, 'success');
+        } else {
+            sweetAlert('Error al aplicar a la vacante', msg, 'error');
+        }
     } catch (error) {
         console.error(error);
     }

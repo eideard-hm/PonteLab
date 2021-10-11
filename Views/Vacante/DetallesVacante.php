@@ -147,7 +147,7 @@
                                         <input type="hidden" id="idVacante" name="idVacante" value="<?= $data['detail_vacante']['idVacante'] ?>" />
                                         <input type="hidden" id="idAspirante" name="idAspirante" value="<?= $_SESSION['data-aspirante']['idAspirante'] ?>" />
                                     </form>
-                                    <a href="#" class="btn btn-primary" id="apply-vacancy">Aplicar a este empleo</a>
+                                    <a class="btn btn-primary" id="apply-vacancy">Aplicar a este empleo</a>
                                 </div>
                             </div>
                             <!-- Start of Job Sidebar -->

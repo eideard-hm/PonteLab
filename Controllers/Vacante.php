@@ -282,9 +282,9 @@ class Vacante extends Controllers
                     $emailAspirante = $this->sendEmailAspirante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany);
                     if ($emailAspirante) {
                         $emailContratante = $this->sendEmailContratanteVacante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany);
-                        if($emailContratante){
+                        if ($emailContratante) {
                             $arrResponse = ['status' => true, 'msg' => 'Se ha aplicado correctamente la vacante!!'];
-                        }else{
+                        } else {
                             $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al enviar el correo electrónico al contratante.'];
                         }
                     } else {
@@ -311,10 +311,10 @@ class Vacante extends Controllers
         $dataAspirante = [
             'nombreUsuario' => $dataAspirante['nombreUsuario'],
             'email' => $dataAspirante['correoUsuario'],
-            'asunto' => "Tu solicitud para el puesto de {$dataVacante['nombreVacante']} en {$dataVacante['nombreUsuario']}"
+            'asunto' => "Has solicitado el siguiente empleo: {$dataVacante['nombreVacante']} en {$dataVacante['nombreUsuario']}"
         ];
 
-        return sendEmail($dataAspirante, 'email_ConfirmarCuenta');
+        return sendEmail($dataAspirante, 'aplicacionVacanteAspirante');
     }
 
     /**
@@ -330,6 +330,6 @@ class Vacante extends Controllers
             'asunto' => "Solicitud de aplicación a la vacante {$dataVacante['nombreVacante']} del usuario {$dataAspirante['nombreUsuario']}"
         ];
 
-        return sendEmail($dataVacante, 'email_ConfirmarCuenta');
+        return sendEmail($dataVacante, 'aplicacionVacanteContratante');
     }
 }
