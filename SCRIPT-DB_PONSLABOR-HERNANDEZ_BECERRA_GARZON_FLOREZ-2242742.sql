@@ -675,9 +675,9 @@ ON a.idAspirante = av.idAspiranteFK;
 DROP VIEW IF EXISTS dataVacanteApplicationVacancyView;
 CREATE VIEW dataVacanteApplicationVacancyView
 AS
-SELECT av.idAplicacionVacante, v.nombreVacante, v.descripcionVacante, v.perfilAspirante,
-v.tipoContratoVacante, v.sueldoVacante, v.fechaHoraPublicacion, v.direccionVacante, c.descripcionContratante,
-us.nombreUsuario, us.correoUsuario, us.numDocUsuario, us.numTelUsuario, 
+SELECT av.idAplicacionVacante, av.idVacanteFK, av.idAspiranteFK, v.nombreVacante, v.descripcionVacante, 
+v.perfilAspirante, v.tipoContratoVacante, v.sueldoVacante, v.fechaHoraPublicacion, v.direccionVacante, 
+c.descripcionContratante, us.nombreUsuario, us.correoUsuario, us.numDocUsuario, us.numTelUsuario, 
 us.imagenUsuario
 FROM APLICACION_VACANTE av INNER JOIN VACANTE v
 ON v.idVacante = av.idVacanteFK INNER JOIN CONTRATANTE c

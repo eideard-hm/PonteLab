@@ -267,4 +267,12 @@ class VacanteModel extends GestionCRUD
                 WHERE idAplicacionVacante = {$idApplicationVacancy}";
         return $this->select($sql);
     }
+
+    public function aspiranteApplyVacancy($idVacante, $idAspirante)
+    {
+        $sql = "SELECT * 
+        FROM dataVacanteApplicationVacancyView
+        WHERE idVacanteFK  = {$idVacante} AND idAspiranteFK = {$idAspirante}";
+        return $this->select($sql);
+    }
 }

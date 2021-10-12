@@ -42,7 +42,8 @@ class Vacante extends Controllers
             $idVacante = intval($idVacante[2]);
             if ($idVacante > 0) {
                 $data['detail_vacante'] = $this->model->detailVacante($idVacante);
-                $data['titulo_pagina'] = 'Detalles vacante | PonteLab.';
+                $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                $data['titulo_pagina'] = 'Detalles vacante | '. NOMBRE_EMPRESA;
                 $this->views->getView($this, 'DetallesVacante', $data);
             }
         }
