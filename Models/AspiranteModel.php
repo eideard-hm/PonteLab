@@ -19,8 +19,7 @@ class AspiranteModel extends GestionCRUD
     private string $nombreIdioma;
 
     //atributos de la clase - Tabla Idioma_Aspirante
-    private int $idIdiomaAspirante;
-    private string $nivelIdioma;
+    private int $nivelIdioma;
 
     //atributos de la clase - Tabla Habilidad
     private int $idHabilidad;
@@ -235,13 +234,21 @@ class AspiranteModel extends GestionCRUD
         $this->Id = $idAspirante;
         $this->idPuesto = $idPuesto;
 
-        $sql = "INSERT INTO ASPIRANTE_PUESTOINTERES(idAspiranteFK, idPuestoInteresFK)
-                VALUES(?,?)";
-        $arrData = [
-            $this->Id,
-            $this->idPuesto
-        ];
-        return $this->insert($sql, $arrData);
+        $sql = "SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK
+                FROM ASPIRANTE_PUESTOINTERES 
+                WHERE idAspiranteFK = {$this->Id} AND idPuestoInteresFK = {$this->idPuesto}";
+        $request = $this->selectAll($sql);
+        if (empty($request)) {
+            $sql = "INSERT INTO ASPIRANTE_PUESTOINTERES(idAspiranteFK, idPuestoInteresFK)
+                    VALUES(?,?)";
+            $arrData = [
+                $this->Id,
+                $this->idPuesto
+            ];
+            return $this->insert($sql, $arrData);
+        }else{
+            return 'exists';
+        }
     }
 
     //Método para insertar un nuevo idioma
@@ -269,7 +276,7 @@ class AspiranteModel extends GestionCRUD
     public function insertIdiomaAspirante(
         int $idIdiomaFK,
         int $idAspiranteFK,
-        string $nivelIdioma
+        int $nivelIdioma
     ) {
         $this->idIdioma = $idIdiomaFK;
         $this->Id = $idAspiranteFK;
@@ -284,8 +291,8 @@ class AspiranteModel extends GestionCRUD
             $sql = "INSERT INTO IDIOMA_ASPIRANTE(idAspiranteFK, idIdiomaFK, nivelIdioma)
                     VALUES(?,?,?)";
             $arrData = [
-                $this->idIdioma,
                 $this->Id,
+                $this->idIdioma,
                 $this->nivelIdioma
             ];
             return $this->insert($sql, $arrData);

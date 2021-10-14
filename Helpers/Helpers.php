@@ -47,17 +47,13 @@ function uploadImages(array $foto, string $nameFoto)
 /**
  * Función para el envió de correos electronicos con PHPMailer
  * 
- * @author Edier Heraldo Hernandez Molano
  * @return boolean true si se envió el correo correctamente
  * @param array $data arreglo con los datos para el envió del correo
  * @param string $template nombre de una plantilla para enviar el correo
  * @author Edier Heraldo Hernandez Molano
-*/
+ */
 function sendEmail(array $data, $template)
 {
-    $asunto = $data['asunto'];
-    $emailDestino = $data['email'];
-    $nombreDestino = $data['nombreUsuario'];
     $empresa = NOMBRE_REMITENTE;
     $remitente = EMAIL_REMITENTE;
     $emailDefault = EMAIL_DEFAULT;
@@ -70,18 +66,21 @@ function sendEmail(array $data, $template)
         //SMTP: Simple Mail Transfer Protocol (Protocolo para transferencia simple de correo)
         // $email->SMTPDebug = SMTP::DEBUG_SERVER;
         $email->isSMTP();
-        $email->Host = 'smtp.gmail.com';
+        $email->Host = HOST;
         $email->SMTPAuth = true;
-        $email->Username = 'team.pontelab@gmail.com';
-        $email->Password = 'Pontelab2021';
+        $email->Username = USER_NAME;
+        $email->Password = PASSWORD;
         $email->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $email->Port = 587;
+        $email->Port = PORT;
+
+        // Activo condificacción utf-8
+        $email->CharSet = 'UTF-8';
 
         //envió
         //setFrom() -> direccion desde donde se van a enviar los correos
         // addAddress() -> direccion a la cual se va a enviar el correo
         $email->setFrom($remitente, $empresa);
-        $email->addAddress($emailDestino, $nombreDestino);
+        $email->addAddress($data['email'], $data['nombreUsuario']);
         $email->addCC($emailDefault);
 
         //enviar archivos en el correo
@@ -90,7 +89,7 @@ function sendEmail(array $data, $template)
         //tipos de correo a enviar
         //isHTML(true) -> definir que vamos a colocar elementos HTML dentro del archivo
         $email->isHTML(true);
-        $email->Subject = $asunto;
+        $email->Subject = $data['asunto'];
         ob_start();
         require_once("Views/Components/Email/{$template}.php");
         $body = ob_get_clean();
@@ -98,6 +97,8 @@ function sendEmail(array $data, $template)
 
         if ($email->send()) {
             $envioEmail = true;
+        }else{
+            $envioEmail = false;
         }
     } catch (Exception $e) {
         // echo $email->ErrorInfo . ' ' . $e;

@@ -14,4 +14,10 @@ class Categorias extends Controllers
         $data['titulo_pagina'] = 'Categorías  | PonsLabor.';
         $this->views->getView($this, 'Categorias', $data);
     }
+
+    public function Aplicacion()
+    {
+        $data['titulo_pagina'] = 'Categorías  | PonsLabor.';
+        $this->views->getView($this, 'aplicacionVacanteAspirante', $data);
+    }
 }
