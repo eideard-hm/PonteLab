@@ -239,12 +239,12 @@
                             <i class="fa fa-desktop"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Tecnologías</a>
+                            <a href="#">Desarrollo empresarial</a>
                         </div>
                         <div class="category-descr">
-                            <span>Está compuesto por los sectores manufactureros y de servicios cuya actividad principal
-                                está ligada al desarrollo, producción, comercialización y uso intensivo de las
-                                mismas.</span>
+                            <span>El desarrollo empresarial es un proceso mediante el cual el empresari@ y
+                                su equipo, adquieren o fortalecen habilidades y
+                                destrezas que favorecen la gestión eficiente de su negocio.</span>
                         </div>
                     </div>
                 </div>
@@ -254,12 +254,13 @@
                             <i class="fas fa-user-tie"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Asistente administrativo</a>
+                            <a href="#">Empleado de tienda</a>
                         </div>
                         <div class="category-descr">
-                            <span>Encargados de cerciorar el correcto funcionamiento de una empresa u oficina, llevando
-                                a cabo labores
-                                de área administrativa como, planificar, archivar, coordinar actividades, etc.</span>
+                            <span> procedimientos de funcionamiento para la tienda,
+                                siguiendo las directrices de la empresa.
+                                Planificar y organizar las actividades de tienda.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -271,13 +272,17 @@
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
-                            <a href="#">Salud</a>
+                            <a href="#">Servicio de atención al cliente</a>
                         </div>
                         <br>
                         <!-- Category Description -->
                         <div class="category-descr">
-                            <span>Proporcionar protección social
-                                de la salud e igualdad de acceso a una atención de salud de calidad .</span>
+                            <span>se refiere a todas las acciones
+                                implementadas para los clientes antes,
+                                durante y después de la compra.
+                                se realiza para cumplir con la satisfacción de un producto
+                                o servicio.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -287,12 +292,13 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Control de calidad</a>
+                            <a href="#">Operaciones</a>
                         </div>
                         <br>
                         <div class="category-descr">
-                            <span> Jefe de control de calidad tiene la función de conocer las normas establecidas en la
-                                industria para cumplir los estándares de calidad en los productos,.</span>
+                            <span> Establecer la estrategia de desarrollo de los productos en los mercados,
+                                tanto si son tradicionales como otros a los que la empresa aspire a ingresar.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -304,12 +310,12 @@
                             <i class="fa fa-desktop"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Tecnologías</a>
+                            <a href="#">Recursos humanos</a>
                         </div>
                         <div class="category-descr">
-                            <span>Está compuesto por los sectores manufactureros y de servicios cuya actividad principal
-                                está ligada al desarrollo, producción, comercialización y uso intensivo de las
-                                mismas.</span>
+                            <span>resuelve los problemas laborales y negocia con los representantes
+                                sindicales de los trabajadores. Esto aborda temas con la contratación,
+                                política salarial.</span>
                         </div>
                     </div>
                 </div>
@@ -319,12 +325,12 @@
                             <i class="fas fa-user-tie"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Asistente administrativo</a>
+                            <a href="#">Servicios sanitarios</a>
                         </div>
                         <div class="category-descr">
-                            <span>Encargados de cerciorar el correcto funcionamiento de una empresa u oficina, llevando
-                                a cabo labores
-                                de área administrativa como, planificar, archivar, coordinar actividades, etc.</span>
+                            <span>las organizaciones que prestan servicios sanitarios
+                                hospitales, centros de salud, funcionarios profesionales y servicios de salud pública
+                                así como otras redes, sectores, instituciones.</span>
                         </div>
                     </div>
                 </div>
@@ -336,13 +342,13 @@
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
-                            <a href="#">Salud</a>
+                            <a href="#">Ventas</a>
                         </div>
                         <br>
                         <!-- Category Description -->
                         <div class="category-descr">
-                            <span>Proporcionar protección social
-                                de la salud e igualdad de acceso a una atención de salud de calidad .</span>
+                            <span>Vender los bienes, productos y servicios de la empresa para obtener ingresos:
+                                Buscar clientes y compradores potenciales.</span>
                         </div>
                     </div>
                 </div>
@@ -352,12 +358,14 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Control de calidad</a>
+                            <a href="#"> Gestión de programas y proyectos </a>
                         </div>
                         <br>
                         <div class="category-descr">
-                            <span> Jefe de control de calidad tiene la función de conocer las normas establecidas en la
-                                industria para cumplir los estándares de calidad en los productos,.</span>
+                            <span> Gestionar el inicio y la evolución de un proyecto;
+                                Controlar y responder ante problemas que surjan durante
+                                un proyecto; Facilitar la finalización y aprobación del
+                                proyecto.</span>
                         </div>
                     </div>
                 </div>
@@ -369,12 +377,12 @@
                             <i class="fa fa-desktop"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Tecnologías</a>
+                            <a href="#">Contabilidad</a>
                         </div>
                         <div class="category-descr">
-                            <span>Está compuesto por los sectores manufactureros y de servicios cuya actividad principal
-                                está ligada al desarrollo, producción, comercialización y uso intensivo de las
-                                mismas.</span>
+                            <span> registrar todas las operaciones económicas que
+                                se lleven a cabo en la empresa, esto incluye el
+                                registro de gastos e ingresos.</span>
                         </div>
                     </div>
                 </div>
@@ -384,12 +392,13 @@
                             <i class="fas fa-user-tie"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Asistente administrativo</a>
+                            <a href="#">Servicios sociales y comunitarios</a>
                         </div>
                         <div class="category-descr">
-                            <span>Encargados de cerciorar el correcto funcionamiento de una empresa u oficina, llevando
-                                a cabo labores
-                                de área administrativa como, planificar, archivar, coordinar actividades, etc.</span>
+                            <span>Aconsejar y proporcionar ayuda a personas que viven en
+                                hogares y sedes intermedias y supervisar sus actividades.
+                                La intervención en casos de crisis o emergencia y servicios.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -401,13 +410,14 @@
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
-                            <a href="#">Salud</a>
+                            <a href="#">Consultoría</a>
                         </div>
                         <br>
                         <!-- Category Description -->
                         <div class="category-descr">
-                            <span>Proporcionar protección social
-                                de la salud e igualdad de acceso a una atención de salud de calidad .</span>
+                            <span>
+                                es aquella persona que brinda estrategias específicas
+                                a los negocios con el objetivo de lograr una meta.</span>
                         </div>
                     </div>
                 </div>
@@ -417,12 +427,14 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Control de calidad</a>
+                            <a href="#">Educación </a>
                         </div>
                         <br>
                         <div class="category-descr">
-                            <span> Jefe de control de calidad tiene la función de conocer las normas establecidas en la
-                                industria para cumplir los estándares de calidad en los productos,.</span>
+                            <span> incorpora en el proceso de formación integral del
+                                estudiante, el método del aprendizaje activo, reflexivo
+                                y vivencial y a partir de la práctica promueve procesos
+                                de producción.</span>
                         </div>
                     </div>
                 </div>
@@ -434,12 +446,13 @@
                             <i class="fa fa-desktop"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Tecnologías</a>
+                            <a href="#">Liderazgo </a>
                         </div>
                         <div class="category-descr">
-                            <span>Está compuesto por los sectores manufactureros y de servicios cuya actividad principal
-                                está ligada al desarrollo, producción, comercialización y uso intensivo de las
-                                mismas.</span>
+                            <span>Escucha consejos de quienes le rodean para resolver
+                                problemas de forma creativa.
+                                Confía en las personas de su entorno.
+                                Delega responsabilidades.</span>
                         </div>
                     </div>
                 </div>
@@ -449,12 +462,12 @@
                             <i class="fas fa-user-tie"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Asistente administrativo</a>
+                            <a href="#">Jurídico </a>
                         </div>
                         <div class="category-descr">
-                            <span>Encargados de cerciorar el correcto funcionamiento de una empresa u oficina, llevando
-                                a cabo labores
-                                de área administrativa como, planificar, archivar, coordinar actividades, etc.</span>
+                            <span>Asistir en atención a juramentos, expedir comparendos,
+                                citaciones, órdenes judiciales, programar audiencias,
+                                velar por el mantenimiento de archivos y expedientes.</span>
                         </div>
                     </div>
                 </div>
@@ -466,13 +479,14 @@
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
-                            <a href="#">Salud</a>
+                            <a href="#">Medios de comunicación</a>
                         </div>
                         <br>
                         <!-- Category Description -->
                         <div class="category-descr">
-                            <span>Proporcionar protección social
-                                de la salud e igualdad de acceso a una atención de salud de calidad .</span>
+                            <span>El propósito principal de los medios de comunicación es, precisamente,
+                                comunicar con objetividad, pero según su tipo de ideología
+                                pueden especializarse en: informar, educar, etc.</span>
                         </div>
                     </div>
                 </div>
@@ -482,12 +496,86 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                         <div class="category-info pt20">
-                            <a href="#">Control de calidad</a>
+                            <a href="#">Servicios militares y de protección</a>
                         </div>
                         <br>
                         <div class="category-descr">
-                            <span> Jefe de control de calidad tiene la función de conocer las normas establecidas en la
-                                industria para cumplir los estándares de calidad en los productos,.</span>
+                            <span> armamentos y todo aquello que integre directa
+                                e inseparablemente de un ejército o de unas fuerzas
+                                armadas..</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt40 nomargin">
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fa fa-desktop"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Gestión de productos </a>
+                        </div>
+                        <div class="category-descr">
+                            <span> es una función organizativa que guía cada etapa del
+                                ciclo de vida de un producto: desde el desarrollo,
+                                hasta el posicionamiento y la fijación de su precio,
+                                centrándose en el producto.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Compras </a>
+                        </div>
+                        <div class="category-descr">
+                            <span>Estudiar las tendencias del mercado.
+                                Analizar los envíos de los proveedores.
+                                Buscar alternativas para optimizar los
+                                costos de la empresa.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <!-- Category Info - Title -->
+                        <div class="category-info pt20">
+                            <a href="#">Agricultura</a>
+                        </div>
+                        <br>
+                        <!-- Category Description -->
+                        <div class="category-descr">
+                            <span>Ees el conjunto de operaciones que se hacen
+                                en el campo, por razón de cultivos u obras de
+                                transformación o bonificación territorial,
+                                o en la ganadería y aprovechamiento forestal..</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
+                    <div class="category ptb30">
+                        <div class="category-icon">
+                            <i class="fas fa-user-check"></i>
+
+                        </div>
+                        <div class="category-info pt20">
+                            <a href="#">Minas y canteras</a>
+                        </div>
+                        <br>
+                        <div class="category-descr">
+                            <span> es el conjunto de actividades que se llevan a cabo
+                                en un yacimiento para obtener recursos de una mina,
+                                a través de la explotación
+                                o extracción de los minerales acumulados en el
+                                suelo,</span>
                         </div>
                     </div>
                 </div>

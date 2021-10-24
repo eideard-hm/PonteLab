@@ -57,4 +57,23 @@ class LoginModel extends gestionCRUD
         WHERE idUsuario = {$this->intId}";
         return $this->select($sql);
     }
+    public function getUserEmail(string $strEmail)
+    {
+        $this->strUsuario = $strEmail;
+        $sql = "SELECT idUsuario, nombreUsuario,estadoUsuario
+         FROM usuario 
+         WHERE correoUsuario ='$this->strUsuario'
+         and estadoUsuario = 0";
+        $request = $this->select($sql);
+        return $request;
+    }
+    public function setTokenUser(int $idUsuario, string $token){
+        $this->intIdUsuario= $idUsuario;
+        $this->strToken = $token;
+        $sql = "UPDATE usuario SET  token = ? WHERE idUsuario = $this->intIdUsuario";
+        $arrData = array ($this ->strToken);
+        $request = $this->edit($sql,$arrData);
+        return $request;
+
+    }
 }

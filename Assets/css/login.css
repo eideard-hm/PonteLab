@@ -58,7 +58,6 @@ body {
   z-index: 100;
   text-align: center;
 }
-
 .input_email {
   position: relative;
 }
@@ -71,6 +70,29 @@ body {
   font-size: 30px;
   color:#009FE0;
 }
+.formCambiarPass{ display: grid;
+  grid-template-columns: 1fr;
+  width: 440px;
+  height: 400px;
+  margin: auto;
+  margin-top: 7.5%;
+  padding: 40px 30px;
+  position: relative;
+  top: 10%;
+  left: -1em;
+  font-family: var(--fuenteRoboto);
+  float: right;
+  z-index: 100;
+  text-align: center;
+}
+  .formCambiarPass h1{
+  margin: 0px;
+  text-align: center;
+  height: 40px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  color:#009FE0;
+  }
 
 .controls {
   font-family: var(--fuenteRoboto);

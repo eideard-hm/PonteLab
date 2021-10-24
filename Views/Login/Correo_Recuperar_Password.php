@@ -9,29 +9,39 @@
     <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
-    <!-- CSS -->
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css">
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= URL; ?>Assets/css/recuperar_Contraseña.css">
 </head>
 
 <body>
-
-    <form id="msform" name="msform" action="">
-        <br><br><br><br><br><br><br>
-        <fieldset id="formRecetPass">
-            <h2 class="fs-title">Recupera tu cuenta</h2>
-            <h3 class="fs-subtitle">Ingresa tu correo electronico, te enviaremos un link para su reestablecimiento</h3>
-            <img src="<?= URL; ?>Assets/img/telefono.png" width="200" height="200" alt="telefono" class="logo3" />
-            <input type="email" id="email" name="email"  placeholder="Email" />
-            <button name="enviarEmail" id="enviarEmail" class="action-button" value="Siguiente">Enviar</button>
-        </fieldset>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <?php
-                require_once('./Views/Components/ScriptsJs.php');
-        ?>
-        <script src="<?= URL; ?>Assets/js/RecuperarContraseña.js"></script>
+    <a class="home" href="<?= URL; ?>"><i id="home" class="fas fa-home"></i>Inicio</a>
+    <div class="login-page">
+        <div class="form">
+            <form id="formRecetPass" name="formRecetPass"class="login-form" action="">
+                <di>
+                <img style="width: 40px;height: 40px;position: absolute;top:5px; left: 5px;" src="<?= URL; ?>Assets/img/Logo_ponslabor.ico" class="job">
+                </di>
+                <br>
+                <div>
+                    <p align="left" style="color: #999999;">Ingrese su correo electrónico, le enviaremos un link para su restablecimiento</p>
+                </div>
+                <input id="txtEmailReset" name="txtEmailReset" type="email" placeholder="Email" />
+                <button type="submit">Enviar</button>
+                <br>
+                <br>
+                <a style="color:#999999; position: relative; right: 35px; " id="Login" href="<?= URL ?>Login" role="button"></i> Regresar al Inicio de Sesión</a>
+            </form>
+        </div>
+    </div>
+    
+    <img src="<?= URL; ?>Assets/img/olvido.svg" class="job">
+    <img src="<?= URL; ?>Assets/img/wave.jpg" class="wave">
+    <?php
+        require_once('./Views/Components/ScriptsJs.php');
+    ?>
+    <script src="<?= URL ?>Assets/js/login.js"></script>
+    
 </body>
 
 </html>
