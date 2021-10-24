@@ -290,7 +290,6 @@ ul.list {
 .icon-btn {
   margin-left: 10px;
 }
-
 .alert .iq-alert-icon {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -300,7 +299,6 @@ ul.list {
   align-items: center;
   padding: 0 1.3rem 0 0;
 }
-
 label {
   color: var(--iq-dark);
 }
@@ -1637,7 +1635,6 @@ a:hover {
   justify-content: enter;
   align-items: center;
 }
-
 .alert {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1646,12 +1643,10 @@ a:hover {
   -ms-flex-align: stretch;
   align-items: stretch;
 }
-
 .alert .iq-alert-icon i {
   font-size: 2.441em;
   line-height: normal;
 }
-
 .alert .iq-alert-text {
   -ms-flex-item-align: center;
   align-self: center;
@@ -1659,16 +1654,13 @@ a:hover {
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
-
 .titulo-perfil {
   color: var(--iq-primary);
 }
-
 .img-welcome {
   max-width: 25%;
   height: auto;
 }
-
 .media-support-info {
   flex: 1;
 }
@@ -5971,11 +5963,9 @@ section#job-page .related-jobs .owl-dots .owl-dot.active span {
   flex-wrap: wrap;
   height: auto;
 }
-
 .contenedor-form.form-input-w50 {
   display: block;
 }
-
 .contenedor-grupo.w100 {
   display: block;
   width: 100%;
@@ -6063,11 +6053,9 @@ section#job-page .related-jobs .owl-dots .owl-dot.active span {
   font-size: 16px;
   opacity: 0;
 }
-
 .contenedor-form .contenedor-grupo .estado-input.estado-input-w50 {
   right: 51%;
 }
-
 .contenedor-form .contenedor-grupo label {
   cursor: pointer;
 }
@@ -6175,4 +6163,256 @@ section#job-page .related-jobs .owl-dots .owl-dot.active span {
 .contenedor-form .contenedor-grupo.incorrecto .estado-input {
   color: var(--error);
   opacity: 1;
+}
+div[disabled="disabled"] {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.contenedor-cv {
+  border-radius: 5px;
+  max-width: 1000px;
+  margin: auto;
+  background-color: #eee;
+  padding: 40px;
+}
+.contenedor-cv .nombre-foto {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #00f;
+}
+.contenedor-cv .nombre-foto .nombre-aspirante {
+  font-size: 26px;
+  font-weight: 700;
+}
+.contenedor-cv .nombre-foto .imagen-aspirante {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+}
+.contenedor-cv .profesion-perfil {
+  padding: 10px 0;
+}
+.contenedor-cv .profesion-perfil .profesion {
+  font-size: 16px;
+  font-weight: 400;
+  color: #add8e6;
+}
+.contenedor-cv .profesion-perfil .perfil-laboral {
+  font-size: 13px;
+}
+.contenedor-cv .contenedor-informacion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.contenedor-cv .contenedor-informacion .encabezado {
+  display: flex;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  align-items: center;
+}
+.contenedor-cv .contenedor-informacion .icono-encabezado {
+  font-size: 18px;
+  margin-right: 10px;
+}
+.contenedor-cv .contenedor-informacion .titulo-encabezado {
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+}
+.contenedor-cv .contenedor-informacion .mt {
+  margin: 10px 0;
+  padding: 10px 0;
+  border-top: 1px solid #aaa;
+}
+.contenedor-cv .contenedor-informacion .df {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+.contenedor-cv .contenedor-informacion .estrellas {
+  cursor: pointer;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w30 {
+  width: 32%;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w30 .perfil {
+  width: 100%;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w30 .perfil .datos-perfil {
+  display: block;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w30
+  .perfil
+  .datos-perfil
+  .datos {
+  margin-bottom: 5px;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w30
+  .perfil
+  .datos-perfil
+  .datos
+  span {
+  font-size: 14px;
+  font-weight: 400;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w30
+  .perfil
+  .datos-perfil
+  .datos
+  p {
+  font-size: 12px;
+  font-weight: 200;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w30 .habilidades {
+  width: 100%;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w30 .habilidades .habilidad {
+  width: 100%;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w70 {
+  width: 64%;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w70 .educacion {
+  width: 100%;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .educacion
+  .estudios-realizados
+  .estudios {
+  display: flex;
+  justify-content: space-between;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .educacion
+  .estudios-realizados
+  .estudios
+  .fechas {
+  display: block;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .educacion
+  .estudios-realizados
+  .estudios
+  .fechas
+  p {
+  font-size: 13px;
+  font-weight: 200;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .educacion
+  .estudios-realizados
+  .estudios
+  .infor-estudios
+  .entidad {
+  font-size: 15px;
+  font-weight: 400;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .educacion
+  .estudios-realizados
+  .estudios
+  .infor-estudios
+  .programa {
+  font-size: 13px;
+  font-weight: 200;
+}
+.contenedor-cv .contenedor-informacion .contenedor-w70 .experiencia-laboral {
+  width: 100%;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia {
+  display: flex;
+  justify-content: space-between;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia
+  .fechas {
+  display: block;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia
+  .fechas
+  p {
+  font-size: 13px;
+  font-weight: 200;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia
+  .informacion-experiencia {
+  display: block;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia
+  .informacion-experiencia
+  .puesto {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia
+  .informacion-experiencia
+  .empresa {
+  font-size: 13px;
+  font-weight: 200;
+}
+.contenedor-cv
+  .contenedor-informacion
+  .contenedor-w70
+  .experiencia-laboral
+  .experiencia
+  .informacion-experiencia
+  ul {
+  margin-left: 20px;
+  font-size: 13px;
+  font-weight: 200;
+}
+
+.ps-4 {
+  padding-left: 1.5rem !important;
+}
+
+.me-2 {
+  margin-right: 0.5rem !important;
 }

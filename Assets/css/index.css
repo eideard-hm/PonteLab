@@ -12179,25 +12179,31 @@ Author URI: gnodesign.com
 .pontelab {
     width: 178px;
     height: 40px;
-    position: relative;
-    right: -500px;
+    right: 160px;
     top: 10px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
 }
 
 .wave {
-    position: fixed;
     height: 140%;
     width: 64%;
     left: 0;
     bottom: -40%;
-    z-index: -1;
+    z-index: -100;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
     /* transform: rotate(-90deg); */
 }
 
 .registro {
     width: 480px;
     height: 500px;
-    position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: fixed;
     float: left;
     left: 80px;
     z-index: 100;
@@ -12206,11 +12212,11 @@ Author URI: gnodesign.com
 
 #msform {
     width: 580px;
-    margin: 50px auto;
     text-align: center;
-    position: relative;
-    right: -350px;
-    bottom: 120px;
+    position: absolute;
+    right: -30px;
+    top: -20px;
+    box-sizing: border-box;
 }
 
 #msform fieldset {
@@ -12310,12 +12316,14 @@ Author URI: gnodesign.com
 
 /*progressbar*/
 
+
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
     /*CSS counters to number the steps*/
     counter-reset: step;
 }
+
 
 #progressbar li {
     list-style-type: none;
@@ -12360,15 +12368,34 @@ Author URI: gnodesign.com
     content: none;
 }
 
-/*marking active/completed steps green/
+/*marking active/completed steps green*/
 
-/The number of the step and the connector before it = green*/
+/*The number of the step and the connector before it = green*/
 
 #progressbar li.active:before,
 #progressbar li.active:after {
     background: #009FE0;
     color: #fff;
     font-weight: 500;
+}
+
+@media screen and (max-width: 1074px){
+    .registro {
+        display: none;
+    }
+}
+
+@media (max-width: 1074px) {
+    .contenedor {
+        width: 70%;
+        text-align: center;
+        margin-bottom: none;
+    }
+
+@media (max-height: 580px) {
+    .contenedor {
+        top: 30px;
+    }
 }
 
 /*--------------------- CÓDIGO DE LA LISTA SECTORES ---------------------------*/
@@ -12466,4 +12493,5 @@ Author URI: gnodesign.com
 
 .imgProductoDelete {
     width: 175px;
+}
 }

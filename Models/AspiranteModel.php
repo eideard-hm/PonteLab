@@ -19,8 +19,7 @@ class AspiranteModel extends GestionCRUD
     private string $nombreIdioma;
 
     //atributos de la clase - Tabla Idioma_Aspirante
-    private int $idIdiomaAspirante;
-    private string $nivelIdioma;
+    private int $nivelIdioma;
 
     //atributos de la clase - Tabla Habilidad
     private int $idHabilidad;
@@ -235,13 +234,21 @@ class AspiranteModel extends GestionCRUD
         $this->Id = $idAspirante;
         $this->idPuesto = $idPuesto;
 
-        $sql = "INSERT INTO ASPIRANTE_PUESTOINTERES(idAspiranteFK, idPuestoInteresFK)
-                VALUES(?,?)";
-        $arrData = [
-            $this->Id,
-            $this->idPuesto
-        ];
-        return $this->insert($sql, $arrData);
+        $sql = "SELECT idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK
+                FROM ASPIRANTE_PUESTOINTERES 
+                WHERE idAspiranteFK = {$this->Id} AND idPuestoInteresFK = {$this->idPuesto}";
+        $request = $this->selectAll($sql);
+        if (empty($request)) {
+            $sql = "INSERT INTO ASPIRANTE_PUESTOINTERES(idAspiranteFK, idPuestoInteresFK)
+                    VALUES(?,?)";
+            $arrData = [
+                $this->Id,
+                $this->idPuesto
+            ];
+            return $this->insert($sql, $arrData);
+        }else{
+            return 'exists';
+        }
     }
 
     //Método para insertar un nuevo idioma
@@ -269,7 +276,7 @@ class AspiranteModel extends GestionCRUD
     public function insertIdiomaAspirante(
         int $idIdiomaFK,
         int $idAspiranteFK,
-        string $nivelIdioma
+        int $nivelIdioma
     ) {
         $this->idIdioma = $idIdiomaFK;
         $this->Id = $idAspiranteFK;
@@ -284,8 +291,8 @@ class AspiranteModel extends GestionCRUD
             $sql = "INSERT INTO IDIOMA_ASPIRANTE(idAspiranteFK, idIdiomaFK, nivelIdioma)
                     VALUES(?,?,?)";
             $arrData = [
-                $this->idIdioma,
                 $this->Id,
+                $this->idIdioma,
                 $this->nivelIdioma
             ];
             return $this->insert($sql, $arrData);
@@ -430,6 +437,47 @@ class AspiranteModel extends GestionCRUD
         }
     }
 
+    //método para insertar un nuevo estudio
+    public function updateEstudio(
+        int $idEstudio,
+        string $nombreInstitucion,
+        string $tituloObtenido,
+        int $idCuidad,
+        int $idSector,
+        string $anioInicio,
+        string $mesInicio,
+        string $anioFin,
+        string $mesFin,
+        int $idGradoEstudio
+    ) {
+        $this->Id = $idEstudio;
+        $this->nombreInstitucion = $nombreInstitucion;
+        $this->tituloObtenido = $tituloObtenido;
+        $this->idCuidad = $idCuidad;
+        $this->idSector = $idSector;
+        $this->anioInicio = $anioInicio;
+        $this->mesInicio = $mesInicio;
+        $this->anioFin = $anioFin;
+        $this->mesFin = $mesFin;
+        $this->idGradoEstudio = $idGradoEstudio;
+        $sql = "UPDATE ESTUDIO
+                    SET nombreInstitucion = ?, tituloObtenido = ?, idCiudadEstudio = ?, idSectorFK = ?, 
+                    añoInicio = ?, mesInicio = ?, añoFin = ?, mesFin = ?, idGradoFK = ?
+                    WHERE idEstudio = {$this->Id}";
+        $arrData = [
+            $this->nombreInstitucion,
+            $this->tituloObtenido,
+            $this->idCuidad,
+            $this->idSector,
+            $this->anioInicio,
+            $this->mesInicio,
+            $this->anioFin,
+            $this->mesFin,
+            $this->idGradoEstudio
+        ];
+        return $this->edit($sql, $arrData);
+    }
+
     //método para traer todos los sectores
     public function getAllSectores()
     {
@@ -453,6 +501,15 @@ class AspiranteModel extends GestionCRUD
                 FROM estudiosAspiranteView 
                 WHERE idAspiranteFK = {$this->Id}";
         return $this->selectAll($sql);
+    }
+
+    public function getEstudiosAspiranteEdit(int $id)
+    {
+        $this->Id = $id;
+        $sql = "SELECT * 
+                FROM estudiosAspiranteView 
+                WHERE idEstudio = {$this->Id}";
+        return $this->select($sql);
     }
 
     //Mètodo para traer todos los tipos de experiencias laborales
@@ -524,6 +581,52 @@ class AspiranteModel extends GestionCRUD
         }
     }
 
+    /**
+     * Método que sirve para actualizar la información de la experiencia laboral de un aspirante
+     */
+    public function updateExperienciaLaboral(
+        int $idExperiencia,
+        string  $empresa,
+        int $sectorLaboro,
+        int $ciudad,
+        int $tipoExperiencia,
+        string $puestoDesempeño,
+        string $anioInicio,
+        string $mesInicio,
+        string $anioFin,
+        string   $mesFin,
+        string $funcion
+    ) {
+        $this->Id = $idExperiencia;
+        $this->empresaLaboro = $empresa;
+        $this->idSector = $sectorLaboro;
+        $this->idCiudadLaboro = $ciudad;
+        $this->idTipoExperiencia = $tipoExperiencia;
+        $this->puestoDesempeño = $puestoDesempeño;
+        $this->anioInicio = $anioInicio;
+        $this->mesInicio = $mesInicio;
+        $this->anioFin = $anioFin;
+        $this->mesFin = $mesFin;
+        $this->funcion = $funcion;
+        $sql = "UPDATE INFOLABORAL
+                SET empresaLaboro = ?, idSectorFK = ?, idCiudadLaboroFK = ?, idTipoExperienciaFK = ?, 
+                nombrePuestoDesempeño = ?, añoInicio = ?, mesInicio = ?, añoFin = ?, mesFin = ?, funcionDesempeño = ? 
+                WHERE idInfoLaboral = {$this->Id}";
+        $arrData = [
+            $this->empresaLaboro,
+            $this->idSector,
+            $this->idCiudadLaboro,
+            $this->idTipoExperiencia,
+            $this->puestoDesempeño,
+            $this->anioInicio,
+            $this->mesInicio,
+            $this->anioFin,
+            $this->mesFin,
+            $this->funcion
+        ];
+        return $this->edit($sql, $arrData);
+    }
+
     public function getExperienciaAspirante(int $id)
     {
         $this->Id = $id;
@@ -531,6 +634,15 @@ class AspiranteModel extends GestionCRUD
                 FROM experienciaAspiranteView 
                 WHERE idAspiranteFK = {$this->Id}";
         return $this->selectAll($sql);
+    }
+
+    public function getExperienciaAspiranteEdit(int $id)
+    {
+        $this->Id = $id;
+        $sql = "SELECT * 
+                FROM experienciaAspiranteView 
+                WHERE idInfoLaboral = {$this->Id}";
+        return $this->select($sql);
     }
 
     //======================================EDITAR DATOS=====================================

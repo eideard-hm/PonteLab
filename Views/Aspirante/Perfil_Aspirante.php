@@ -7,15 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $data['titulo_pagina'] ?></title>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= URL ?>Assets/img/Logo_ponslabor.ico" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
+    <?php
+    require_once('./Views/Components/stylesAspirante.php');
+    ?>
 </head>
 
 <body class="right-column-fixed">
@@ -95,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="alert alert-primary" role="alert">
+                    <div class="alert alert-primary mb-4" role="alert">
                         <div class="iq-alert-text">Apreciado usuario <b><?= $_SESSION['user-data']['nombreUsuario'] ?></b>, desde PonteLab
                             lo invitamos a registrar los datos que se presentan a continuación: <b>Información personal,
                                 el o los puestos de interés que tiene, idiomas, habilidades, educación, experiencia laboral.
@@ -443,6 +437,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form id="estudios" class="contenedor-form">
+                                                                    <input type="hidden" name="idEducacion" id="idEducacion">
                                                                     <div class="contenedor-grupo w50 form-group" id="grupo-institucion">
                                                                         <label for="input-institucion">Institución</label>
                                                                         <input type="text" class="form-control" name="txtInstitucion" id="input-institucion" placeholder="Universidad Nacional de Colombia" />
@@ -719,7 +714,8 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="#" id="form-experiencia-laboral" class="contenedor-form">
-                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
+                                                                <input type="hidden" name="idExperiencia" id="idExperiencia">   
+                                                                <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
                                                                         <label for="txtEmpresa">Empresa laboró</label>
                                                                         <input class="form-control" type="text" name="txtEmpresa" id="txtEmpresa" autofocus placeholder="Microsoft" />
                                                                         <i class="estado-input fa fa-times-circle"></i>

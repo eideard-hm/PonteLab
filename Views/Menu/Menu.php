@@ -34,10 +34,10 @@
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
             <div class="container">
-                <div class="row flex-grow">
+                <div class="row flex-grow mb-5">
                     <div class="col-md-5 grid-margin stretch-card">
                         <div class="card">
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-light" role="alert">
                                 <div class="iq-alert-icon">
                                     <i class="fas fa-business-time"></i>
                                 </div>
@@ -56,13 +56,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 grid-margin stretch-card">
+                    <div class="col-md-3 grid-margin stretch-card" id="hoja-vida">
                         <div class="card">
-                            <div class="alert alert-light" role="alert">
+                            <div class="alert alert-success" role="alert">
                                 <div class="iq-alert-icon">
                                     <i class="far fa-folder-open"></i>
                                 </div>
-                                <a href="<?= URL ?>HojaVida" class="iq-alert-text">Hoja de vida</a>
+                                <a href="<?= URL ?>Aspirante/HojaVida" class="iq-alert-text" id="link-hoja-vida">Hoja de vida</a>
                             </div>
                         </div>
                     </div>
@@ -223,7 +223,6 @@
     ?>
     <script src="<?= URL ?>Assets/js/js.dashboard/lottie.js" defer></script>
     <script src="<?= URL ?>Assets/js/js.dashboard/chart-custom.js" defer></script>
-    <script src="<?= URL ?>Assets/js/menu.js" defer></script>
 </body>
 
 </html>

@@ -107,7 +107,7 @@
                                     <div class="pt40">
                                         <h4 class="mt40">Requisitos</h4>
                                         <h6 class="mt40"><?= $data['detail_vacante']['nombreRequisitos'] ?></h5>
-                                        <?= $data['detail_vacante']['especficacionRequisitos'] ?>
+                                            <?= $data['detail_vacante']['especficacionRequisitos'] ?>
                                     </div>
                                 </div>
                             </div>
@@ -142,9 +142,17 @@
                                     </li>
                                 </ul>
 
-                                <div class="mt20">
-                                    <a href="#" class="btn btn-primary">Aplicar a este empleo</a>
-                                </div>
+                                <?php
+                                if (empty($data['aspiranteApplyVacancy'])) {
+                                ?>
+                                    <div class="mt20">
+                                        <form id="form-aplicar-vacante">
+                                            <input type="hidden" id="idVacante" name="idVacante" value="<?= $data['detail_vacante']['idVacante'] ?>" />
+                                            <input type="hidden" id="idAspirante" name="idAspirante" value="<?= $_SESSION['data-aspirante']['idAspirante'] ?>" />
+                                        </form>
+                                        <a class="btn btn-primary" id="apply-vacancy">Aplicar a este empleo</a>
+                                    </div>
+                                <?php } ?>
                             </div>
                             <!-- Start of Job Sidebar -->
                             <!-- Start of Google Map -->

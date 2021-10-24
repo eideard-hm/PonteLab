@@ -1,10 +1,10 @@
-import { sweetAlert } from "./functionsGlobals.js";
+import { formDataElement, sweetAlert } from "./functionsGlobals.js";
 
 const formVacancy = document.querySelector('#form-vacancy');
 const bntSubmit = document.getElementById('btn_submit');
 
 const listVacantes = document.querySelector('#list-vacantes');
-
+const formApplyVacancy = document.querySelector('#form-aplicar-vacante');
 //elementos de la barra de busqueda
 const inputBusqueda = document.querySelector('#txtSearchVacantes');
 
@@ -187,7 +187,7 @@ const getAllVacantes = async () => {
             });
         }
     } catch (error) {
-        sweetAlert("Error", error, "error");
+        console.error(error);
     }
 }
 
@@ -198,6 +198,10 @@ if (inputBusqueda) {
     })
 }
 
+/**
+ * 
+ * @param {string} busqueda Palabras claves por las cuales se va hacer la busqueda o filtro
+ */
 const getArregloVacantes = async (busqueda) => {
     const url = `${base_url}Vacante/getArregloVacantes/${busqueda}`;
     let imagenUsuario = '';
@@ -246,10 +250,33 @@ const getArregloVacantes = async (busqueda) => {
             });
         } else {
             listVacantes.innerHTML = `
-                                        <h5 class="text-center">No se encontró nigun resultado con esa busqueda.</h5>
+                                        <h5 class="text-center mt-3">No se encontró nigún resultado con esa busqueda ${busqueda}.</h5>
                                     `;
         }
     } catch (error) {
         console.error(error);
     }
+}
+
+const applyVacancy = async () => {
+    const formData = formDataElement(formApplyVacancy);
+    const url = `${base_url}Vacante/applyVacancy`;
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
+        const { status, msg } = await req.json();
+        if (status) {
+            sweetAlert('Aplicación a la vacante exitosa', msg, 'success');
+        } else {
+            sweetAlert('Error al aplicar a la vacante', msg, 'error');
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+if (document.getElementById('apply-vacancy')) {
+    document.getElementById('apply-vacancy').addEventListener('click', applyVacancy);
 }

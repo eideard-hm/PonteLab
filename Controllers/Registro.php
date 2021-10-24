@@ -24,7 +24,7 @@ class Registro extends Controllers
         $data['list_rol'] = $this->model->selectRol();
         $data['list_barrio'] = $this->model->selectBarrio();
         $data['list_sector'] = $this->model->selectAllSector();
-        $data['titulo_pagina'] = 'Registrarme | PonsLabor.';
+        $data['titulo_pagina'] = 'Registrarme | ' . NOMBRE_EMPRESA . '.';
         $this->views->getView($this, 'Registro', $data);
     }
 
@@ -97,7 +97,7 @@ class Registro extends Controllers
             //guardar datos de la foto
             $foto = $_FILES['foto'];
             $nameFoto = $foto['name'];
-            $imgPerfil = 'upload.png';
+            $imgPerfil = 'upload.svg';
 
             if (!empty($nameFoto)) {
                 $imgPerfil = 'img_' . md5(date('d-m-Y H:m:s')) . '.jpg';
@@ -145,7 +145,7 @@ class Registro extends Controllers
                 );
             }
 
-            if ($request > 0 && is_numeric($request)) {
+            if (intval($request) > 0) {
                 if ($option === 1) {
                     $_SESSION['idUser'] = intval($request);
                     //cargar y guardar la imagen en el servidor
