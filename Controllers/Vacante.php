@@ -43,7 +43,7 @@ class Vacante extends Controllers
             if ($idVacante > 0) {
                 $data['detail_vacante'] = $this->model->detailVacante($idVacante);
                 $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
-                $data['titulo_pagina'] = 'Detalles vacante | '. NOMBRE_EMPRESA;
+                $data['titulo_pagina'] = 'Detalles vacante | ' . NOMBRE_EMPRESA;
                 $this->views->getView($this, 'DetallesVacante', $data);
             }
         }
@@ -308,11 +308,17 @@ class Vacante extends Controllers
      */
     private function sendEmailAspirante(array $dataAspirante, array $dataVacante)
     {
+        $token = token();
+        $url_recovery = URL . "Vacante/resultApplyVacancy/{$dataVacante['idAspiranteFK']}/{$token}";
         //arreglo con los datos para el envió del correo electronico al aspirante
         $dataAspirante = [
+            'idAspirante' => $dataVacante['idAspiranteFK'],
             'nombreUsuario' => $dataAspirante['nombreUsuario'],
             'email' => $dataAspirante['correoUsuario'],
-            'asunto' => "Has solicitado el siguiente empleo: {$dataVacante['nombreVacante']} en {$dataVacante['nombreUsuario']}"
+            'asunto' => "Has solicitado el siguiente empleo: {$dataVacante['nombreVacante']} en {$dataVacante['nombreUsuario']}",
+            'url_recovery' => $url_recovery,
+            'nombreVacante' => $dataVacante['nombreVacante'],
+            'nombreContratante' => $dataVacante['nombreUsuario']
         ];
 
         return sendEmail($dataAspirante, 'aplicacionVacanteAspirante');
@@ -324,11 +330,16 @@ class Vacante extends Controllers
      */
     private function sendEmailContratanteVacante(array $dataAspirante, array $dataVacante)
     {
+        $token = token();
+        $url_recovery = URL . "Vacante/resultApplyVacancy/{$dataVacante['idVacanteFK']}/{$token}";
         //Datos de la vacante al contratante
         $dataVacante = [
+            'idVacante' => $dataVacante['idVacanteFK'],
             'nombreUsuario' => $dataVacante['nombreUsuario'],
             'email' => $dataVacante['correoUsuario'],
-            'asunto' => "Solicitud de aplicación a la vacante {$dataVacante['nombreVacante']} del usuario {$dataAspirante['nombreUsuario']}"
+            'asunto' => "Solicitud de aplicación a la vacante {$dataVacante['nombreVacante']} del usuario {$dataAspirante['nombreUsuario']}",
+            'url_recovery' => $url_recovery,
+            'nombreAspirante' => $dataAspirante['nombreUsuario'],
         ];
 
         return sendEmail($dataVacante, 'aplicacionVacanteContratante');
