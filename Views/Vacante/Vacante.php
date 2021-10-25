@@ -6,18 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?= $data['titulo_pagina'] ?></title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
-    <!-- CSS -->
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
-    <link rel="stylesheet"
-        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <?php
+    require_once('./Views/Components/stylesContratante.php');
+    ?>
 </head>
 
 <body class="right-column-fixed" id="menu">
@@ -81,17 +73,18 @@
                                                                     placeholder="Cantida de Vacantes..." required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="especificaciones"> Especificaciones</label>
-                                                                <textarea name="especificaciones" id="especificaciones"
-                                                                    rows="1" placeholder="Especificaciones..."
+                                                                <label> Especificaciones</label>
+                                                                <textarea class="form-control" name="especificaciones"
+                                                                    id="especificaciones"
+                                                                    placeholder="Especificaciones..."
                                                                     required></textarea>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="especificaciones"> Perfil del
-                                                                    Trabajador</label>
-                                                                <textarea name="perfil" id="perfil" rows="1"
-                                                                    placeholder="Perfil del Trabajador..."
-                                                                    required></textarea>
+                                                            <div class="form-group"">
+                                                                <label> Perfil del Trabajador</label>
+                                                                <textarea class="form-control" name="perfil"
+                                                                id="perfil" placeholder="Perfil del Trabajador..."
+                                                                required>
+                                                                </textarea>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="tipoContrato"> Tipo de Contrato</label>
@@ -158,8 +151,8 @@
                                                                 <?php endforeach ?>
                                                             </select>
                                                         </div>
-                                                        <button type="submit"
-                                                            class="btn btn-primary mr-2 mb-3">  Submit  </button>
+                                                        <button type="submit" id="btn_submit" class="btn btn-primary mr-2 mb-3"> Registrar
+                                                        </button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -178,37 +171,6 @@
                                             </div>
                                             <div class="col-5">
                                                 <h2 class="steps">Paso 2 - 3</h2>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Tipo documento: *</label>
-                                                    <input type="text" class="form-control" name="fname"
-                                                        value="<?= $_SESSION['user-data']['nombreTipoDocumento'] ?>"
-                                                        disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Número documento: *</label>
-                                                    <input type="text" class="form-control" name="lname"
-                                                        value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>N° Télefono: *</label>
-                                                    <input type="text" class="form-control" name="phno"
-                                                        value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" disabled>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>N° teléfono fijo: *</label>
-                                                    <input type="text" class="form-control" name="phno_2"
-                                                        value="<?= $_SESSION['user-data']['numTelFijo'] ?>" disabled>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -259,13 +221,15 @@
   require_once('./Views/Components/Footer.php');
   ?>
     <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js"
-        referrerpolicy="origin" defer></script>
+        referrerpolicy="origin"></script>
+    referrerpolicy="origin" defer></script>
     <!-- Scripts  -->
     <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
     <script src="<?= URL ?>Assets/js/js.dashboard/lottie.js" defer></script>
     <script src="<?= URL ?>Assets/js/js.dashboard/chart-custom.js" defer></script>
+    <script src="<?= URL ?>Assets/js/vacante.js" defer type="module"></script>
 </body>
 
 </html>
