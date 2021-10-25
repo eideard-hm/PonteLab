@@ -1,4 +1,4 @@
-import { formDataElement,sweetAlert, initTextEditorTinymce } from "./functionsGlobals.js";
+import { formDataElement, sweetAlert, initTextEditorTinymce } from "./functionsGlobals.js";
 
 const formVacancy = document.querySelector('#form-vacancy');
 const bntSubmit = document.getElementById('btn_submit');

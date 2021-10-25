@@ -1,5 +1,12 @@
+import { initTextEditorTinymce } from "./functionsGlobals.js";
+
 const formContractor = document.querySelector('#form-contractor');
 const bntSubmit = document.getElementById('btn_submit');
+
+document.addEventListener('DOMContentLoaded', async () => {
+    initTextEditorTinymce('especificaciones');
+    initTextEditorTinymce('perfil');
+});
 
 /*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
 caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
@@ -44,7 +51,7 @@ const validateFormContractor = () => {
     if (especificaciones =='') {
         swal(
             'Error',
-            'Todos los campos son obligatorios',
+            'Debe ingresar una descripción...',
             'error'
         )
         return false;
