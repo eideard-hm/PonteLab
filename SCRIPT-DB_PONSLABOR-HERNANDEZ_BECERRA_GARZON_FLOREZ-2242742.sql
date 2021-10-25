@@ -659,6 +659,33 @@ ON u.idUsuario = su.idUsuarioFK;
 
 SELECT * FROM sectorUsuarioView;
 
+
+DROP VIEW IF EXISTS dataAspiranteApplicationVacancyView;
+CREATE VIEW dataAspiranteApplicationVacancyView
+AS
+SELECT av.idAplicacionVacante, u.nombreUsuario, u.correoUsuario, u.numDocUsuario, u.numTelUsuario, 
+u.imagenUsuario, a.descripcionPersonalAspirante, ela.nombreEstado
+FROM USUARIO u INNER JOIN ASPIRANTE a
+ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE ela
+ON ela.idEstadoLaboral = a.idEstadoLaboralAspiranteFK INNER JOIN APLICACION_VACANTE av
+ON a.idAspirante = av.idAspiranteFK;
+
+-- SELECT * FROM dataAspiranteApplicationVacancyView WHERE idAplicacionVacante = 1;
+
+DROP VIEW IF EXISTS dataVacanteApplicationVacancyView;
+CREATE VIEW dataVacanteApplicationVacancyView
+AS
+SELECT av.idAplicacionVacante, av.idVacanteFK, av.idAspiranteFK, v.nombreVacante, v.descripcionVacante, 
+v.perfilAspirante, v.tipoContratoVacante, v.sueldoVacante, v.fechaHoraPublicacion, v.direccionVacante, 
+c.descripcionContratante, us.nombreUsuario, us.correoUsuario, us.numDocUsuario, us.numTelUsuario, 
+us.imagenUsuario
+FROM APLICACION_VACANTE av INNER JOIN VACANTE v
+ON v.idVacante = av.idVacanteFK INNER JOIN CONTRATANTE c
+ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO us
+ON us.idUsuario = c.idUsuarioFK;
+
+-- SELECT * FROM dataVacanteApplicationVacancyView WHERE idAplicacionVacante = 1;
+
 /*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
 /*
 En la plataforma de empleo PonteLab se quiere implementar la funcionalidad de registrar usuarios,

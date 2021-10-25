@@ -35,14 +35,15 @@ class Vacante extends Controllers
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 
-    public function DetallesVacante($id)
+    public function DetallesVacante()
     {
         $idVacante = explode('/', $_GET['url']);
         if (isset($idVacante[2])) {
             $idVacante = intval($idVacante[2]);
             if ($idVacante > 0) {
                 $data['detail_vacante'] = $this->model->detailVacante($idVacante);
-                $data['titulo_pagina'] = 'Detalles vacante | PonteLab.';
+                $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                $data['titulo_pagina'] = 'Detalles vacante | '. NOMBRE_EMPRESA;
                 $this->views->getView($this, 'DetallesVacante', $data);
             }
         }
@@ -254,5 +255,82 @@ class Vacante extends Controllers
         }
 
         echo  json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+
+    public function applyVacancy()
+    {
+        if ($_POST) {
+            if (empty($_POST['idVacante']) || empty($_POST['idAspirante'])) {
+                $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios!!'];
+            } else {
+                $idAspirante = intval(limpiarCadena($_POST['idAspirante']));
+                $idVacante = intval(limpiarCadena($_POST['idVacante']));
+
+                $request = $this->model->applyVacancy($idAspirante, $idVacante);
+
+                if (intval($request) > 0) {
+                    //traer los datos de la aplicación a la vacante, para posteriormente enviar el correo
+                    //trae la información del aspirante que aplicó a la vacante
+                    $dataAspiranteApplicationVacancy = $this->model->dataAspiranteApplicationVacancy(
+                        intval($request)
+                    );
+
+                    //trae la información del contratante que registro la vacante
+                    $dataVacanteApplicationVacany = $this->model->dataVacanteApplicationVacancy(
+                        intval($request)
+                    );
+
+                    $emailAspirante = $this->sendEmailAspirante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany);
+                    if ($emailAspirante) {
+                        $emailContratante = $this->sendEmailContratanteVacante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany);
+                        if ($emailContratante) {
+                            $arrResponse = ['status' => true, 'msg' => 'Se ha aplicado correctamente la vacante!!'];
+                        } else {
+                            $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al enviar el correo electrónico al contratante.'];
+                        }
+                    } else {
+                        $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al enviar el correo electrónico al aspirante.'];
+                    }
+                } elseif ($request === 'exists') {
+                    $arrResponse = ['status' => false, 'msg' => 'El usuario ya aplico a esta vacante.'];
+                } else {
+                    $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error. Por favor intenta nuevamente!!'];
+                }
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    /**
+     * Método para el envió de correo electrónico al aspirante luego de aplicar a una vacante
+     * @return boolean verdadero si el correo se envió correctamente
+     */
+    private function sendEmailAspirante(array $dataAspirante, array $dataVacante)
+    {
+        //arreglo con los datos para el envió del correo electronico al aspirante
+        $dataAspirante = [
+            'nombreUsuario' => $dataAspirante['nombreUsuario'],
+            'email' => $dataAspirante['correoUsuario'],
+            'asunto' => "Has solicitado el siguiente empleo: {$dataVacante['nombreVacante']} en {$dataVacante['nombreUsuario']}"
+        ];
+
+        return sendEmail($dataAspirante, 'aplicacionVacanteAspirante');
+    }
+
+    /**
+     * Método para el envió de correo electrónico al contratante luego de que un aspirante aplique a una vacante que él ha publicado
+     * @return boolean Verdadero si el correo se envió correctamente
+     */
+    private function sendEmailContratanteVacante(array $dataAspirante, array $dataVacante)
+    {
+        //Datos de la vacante al contratante
+        $dataVacante = [
+            'nombreUsuario' => $dataVacante['nombreUsuario'],
+            'email' => $dataVacante['correoUsuario'],
+            'asunto' => "Solicitud de aplicación a la vacante {$dataVacante['nombreVacante']} del usuario {$dataAspirante['nombreUsuario']}"
+        ];
+
+        return sendEmail($dataVacante, 'aplicacionVacanteContratante');
     }
 }
