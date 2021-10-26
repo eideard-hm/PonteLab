@@ -143,7 +143,7 @@
                                 </ul>
 
                                 <?php
-                                if (empty($data['aspiranteApplyVacancy'])) {
+                                if (isset($_SESSION['data-aspirante']['idAspirante']) && empty($data['aspiranteApplyVacancy'])) {
                                 ?>
                                     <div class="mt20">
                                         <form id="form-aplicar-vacante">

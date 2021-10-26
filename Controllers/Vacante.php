@@ -42,7 +42,11 @@ class Vacante extends Controllers
             $idVacante = intval($idVacante[2]);
             if ($idVacante > 0) {
                 $data['detail_vacante'] = $this->model->detailVacante($idVacante);
-                $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                if (isset($_SESSION['data-aspirante']['idAspirante'])) {
+                    $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                } else {
+                    $data['aspiranteApplyVacancy'] = '';
+                }
                 $data['titulo_pagina'] = 'Detalles vacante | ' . NOMBRE_EMPRESA;
                 $this->views->getView($this, 'DetallesVacante', $data);
             }
@@ -339,6 +343,7 @@ class Vacante extends Controllers
             'email' => $dataVacante['correoUsuario'],
             'asunto' => "Solicitud de aplicación a la vacante {$dataVacante['nombreVacante']} del usuario {$dataAspirante['nombreUsuario']}",
             'url_recovery' => $url_recovery,
+            'nombreVacante' => $dataVacante['nombreVacante'],
             'nombreAspirante' => $dataAspirante['nombreUsuario'],
         ];
 

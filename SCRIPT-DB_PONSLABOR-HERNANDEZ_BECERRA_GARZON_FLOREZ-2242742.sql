@@ -434,17 +434,8 @@ values (NULL, 'Samanta', 'samanta85@misena.edu.co', 'camila85', 1, '1087345189',
 'Carrera 29 # 8 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL, NOW(), NOW());
 Insert into USUARIO (idUsuario,  nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
 numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
-values (NULL, 'Sara', 'sara85@misena.edu.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
+values (NULL, 'Sara', 'edier.hernandez@samtel.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
 'Carrera 30 #20 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyz', NULL, NOW(), NOW());
-INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
-VALUES (NULL, 'Edier Hernández', 'ehhernandez81@misena.edu.co', '$2y$10$orH6dJm6/t3F8C5VZLzTuuJef6Iv4tIBKQ64y4Kn9l0xp.02PlSEe', 2, '1055550018', '3134387765', '1234567', 1, 2,2,
-'Calle qc sur', '14WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL, NOW(), NOW());
-INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
-VALUES (NULL, 'Ximena',  'ximena85@gmail.com', '987', 2, '1055552025', '3138569871', '1234567', 1, 1,10,
-'Calle 82 norte', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj', NULL, NOW(), NOW());
-SELECT * FROM USUARIO;
 
 /* ========================== TABLA SECTOR_USUARIO ========================*/
 INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
@@ -452,7 +443,7 @@ VALUES(NULL, 1,2);
 INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
 VALUES(NULL, 2,1);
 INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
-VALUES(NULL, 3,5);
+VALUES(NULL, 1,5);
 
 /* ========================== TABLA CONTRATANTE ========================*/
 Insert into CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
@@ -490,9 +481,9 @@ select * from REQUISITOS_VACANTE;
 
 /* ========================== TABLA ASPIRANTE ========================*/
 Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, created_at, updated_at) 
-values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 3, 1, NOW(), NOW());  
+values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 2, 1, NOW(), NOW());  
 Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, created_at, updated_at) 
-values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 4, 2, NOW(), NOW()); 
+values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 1, 2, NOW(), NOW()); 
 select * from ASPIRANTE; 
 
 /* ========================== TABLA DEBIL ASPIRANTE_PUESTOINTERES ========================*/
