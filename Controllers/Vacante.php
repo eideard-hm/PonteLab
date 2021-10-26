@@ -269,8 +269,13 @@ class Vacante extends Controllers
             } else {
                 $idAspirante = intval(limpiarCadena($_POST['idAspirante']));
                 $idVacante = intval(limpiarCadena($_POST['idVacante']));
+                //Códigos de estado de aplicación a la vacante
+                // 0: Aplicado
+                // 1: Continuar proceso
+                // 2: Cancelar proceso
+                $estadoAplicacion = 0;
 
-                $request = $this->model->applyVacancy($idAspirante, $idVacante);
+                $request = $this->model->applyVacancy($idAspirante, $idVacante, $estadoAplicacion);
 
                 if (intval($request) > 0) {
                     //traer los datos de la aplicación a la vacante, para posteriormente enviar el correo
@@ -283,10 +288,11 @@ class Vacante extends Controllers
                     $dataVacanteApplicationVacany = $this->model->dataVacanteApplicationVacancy(
                         intval($request)
                     );
-
-                    $emailAspirante = $this->sendEmailAspirante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany);
+                    $asunto = "Has solicitado el siguiente empleo: {$dataVacanteApplicationVacany['nombreVacante']} en {$dataVacanteApplicationVacany['nombreUsuario']}";
+                    $emailAspirante = $this->sendEmailAspirante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany, $asunto, 'aplicacionVacanteAspirante');
                     if ($emailAspirante) {
-                        $emailContratante = $this->sendEmailContratanteVacante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany);
+                        $asunto = "Solicitud de aplicación a la vacante {$dataVacanteApplicationVacany['nombreVacante']} del usuario {$dataAspiranteApplicationVacancy['nombreUsuario']}";
+                        $emailContratante = $this->sendEmailContratanteVacante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany, $asunto);
                         if ($emailContratante) {
                             $arrResponse = ['status' => true, 'msg' => 'Se ha aplicado correctamente la vacante!!'];
                         } else {
@@ -310,43 +316,86 @@ class Vacante extends Controllers
      * Método para el envió de correo electrónico al aspirante luego de aplicar a una vacante
      * @return boolean verdadero si el correo se envió correctamente
      */
-    private function sendEmailAspirante(array $dataAspirante, array $dataVacante)
+    private function sendEmailAspirante(array $dataAspirante, array $dataVacante, string $asunto, string $view)
     {
         $token = token();
-        $url_recovery = URL . "Vacante/resultApplyVacancy/{$dataVacante['idAspiranteFK']}/{$token}";
+        $url_recovery = URL . "Vacante/resultApplyVacancy/{$token}/{$dataVacante['idAspiranteFK']}";
         //arreglo con los datos para el envió del correo electronico al aspirante
         $dataAspirante = [
             'idAspirante' => $dataVacante['idAspiranteFK'],
             'nombreUsuario' => $dataAspirante['nombreUsuario'],
             'email' => $dataAspirante['correoUsuario'],
-            'asunto' => "Has solicitado el siguiente empleo: {$dataVacante['nombreVacante']} en {$dataVacante['nombreUsuario']}",
+            'asunto' => $asunto,
             'url_recovery' => $url_recovery,
             'nombreVacante' => $dataVacante['nombreVacante'],
             'nombreContratante' => $dataVacante['nombreUsuario']
         ];
-
-        return sendEmail($dataAspirante, 'aplicacionVacanteAspirante');
+        return sendEmail($dataAspirante, $view);
     }
 
     /**
      * Método para el envió de correo electrónico al contratante luego de que un aspirante aplique a una vacante que él ha publicado
      * @return boolean Verdadero si el correo se envió correctamente
      */
-    private function sendEmailContratanteVacante(array $dataAspirante, array $dataVacante)
+    private function sendEmailContratanteVacante(array $dataAspirante, array $dataVacante, string $asunto)
     {
         $token = token();
-        $url_recovery = URL . "Vacante/resultApplyVacancy/{$dataVacante['idVacanteFK']}/{$token}";
+        $url_recovery_1 = URL . "Vacante/resultApplyVacancy/{$token}/1/{$dataVacante['idAplicacionVacante']}/{$dataVacante['idVacanteFK']}";
+        $url_recovery_2 = URL . "Vacante/resultApplyVacancy/{$token}/2/{$dataVacante['idAplicacionVacante']}/{$dataVacante['idVacanteFK']}";
         //Datos de la vacante al contratante
         $dataVacante = [
             'idVacante' => $dataVacante['idVacanteFK'],
             'nombreUsuario' => $dataVacante['nombreUsuario'],
             'email' => $dataVacante['correoUsuario'],
-            'asunto' => "Solicitud de aplicación a la vacante {$dataVacante['nombreVacante']} del usuario {$dataAspirante['nombreUsuario']}",
-            'url_recovery' => $url_recovery,
+            'asunto' => $asunto,
+            'url_recovery_1' => $url_recovery_1,
+            'url_recovery_2' => $url_recovery_2,
             'nombreVacante' => $dataVacante['nombreVacante'],
             'nombreAspirante' => $dataAspirante['nombreUsuario'],
         ];
-
         return sendEmail($dataVacante, 'aplicacionVacanteContratante');
+    }
+
+    public function resultApplyVacancy()
+    {
+        $urlResult = explode('/', $_GET['url']);
+        var_dump($urlResult[3]);
+        if (isset($urlResult[3]) && isset($urlResult[4])) {
+            $codigoEstadoAplicacion = $urlResult[3];
+            $idAplicacionVacante = $urlResult[4];
+            $request = $this->model->setStatusApplicationVacancy($idAplicacionVacante, $codigoEstadoAplicacion);
+
+            if (!empty($request)) {
+                $dataAspiranteApplicationVacancy = $this->model->dataAspiranteApplicationVacancy(
+                    intval($idAplicacionVacante)
+                );
+
+                //trae la información del contratante que registro la vacante
+                $dataVacanteApplicationVacany = $this->model->dataVacanteApplicationVacancy(
+                    intval($idAplicacionVacante)
+                );
+
+                $asunto = "Tu solicitud para el puesto de {$dataVacanteApplicationVacany['nombreVacante']} en {$dataVacanteApplicationVacany['nombreUsuario']}";
+                if ($codigoEstadoAplicacion == '1') {
+                    $emailConfirmationAspirante = $this->sendEmailAspirante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany, $asunto, 'confirmacionContinuarProceso');
+                    if ($emailConfirmationAspirante) {
+                        $arrResponse = ['status' => true, 'msg' => 'Se ha aplicado enviado correctamente el correo de confirmación de continuación.!!'];
+                    } else {
+                        $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al enviar el correo electrónico al aspirante de confirmación.'];
+                    }
+                } else {
+                    $emailConfirmationAspirante = $this->sendEmailAspirante($dataAspiranteApplicationVacancy, $dataVacanteApplicationVacany, $asunto, 'confirmacionAplicacionVacante');
+                    if ($emailConfirmationAspirante) {
+                        $arrResponse = ['status' => true, 'msg' => 'Se ha aplicado enviado correctamente el correo de cancelación.!!'];
+                    } else {
+                        $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al enviar el correo electrónico al aspirante de cancelación.'];
+                    }
+                }
+            }
+        } else {
+            header('Location: ' . URL . 'Login');
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
     }
 }
