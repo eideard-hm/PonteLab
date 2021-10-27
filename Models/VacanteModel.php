@@ -229,20 +229,23 @@ class VacanteModel extends GestionCRUD
 
     public function applyVacancy(
         int $idAspiranteFK,
-        int $idVacanteFK
+        int $idVacanteFK,
+        int $estadoVacante
     ) {
         $this->idUsuarioFK = $idAspiranteFK;
         $this->idVacanteFK = $idVacanteFK;
+        $this->estadoVacante = $estadoVacante;
         $sql = "SELECT idAplicacionVacante, idAspiranteFK, idVacanteFK, estadoAplicacionVacante
                 FROM APLICACION_VACANTE
                 WHERE idAspiranteFK = {$this->idUsuarioFK} AND idVacanteFK = {$this->idVacanteFK}";
         $request = $this->selectAll($sql);
         if (empty($request)) {
-            $sql = "INSERT INTO APLICACION_VACANTE(idAspiranteFK, idVacanteFK)
-                    VALUES(?,?)";
+            $sql = "INSERT INTO APLICACION_VACANTE(idAspiranteFK, idVacanteFK, estadoAplicacionVacante)
+                    VALUES(?,?,?)";
             $arrData = [
                 $this->idUsuarioFK,
-                $this->idVacanteFK
+                $this->idVacanteFK,
+                $this->estadoVacante
             ];
             return $this->insert($sql, $arrData);
         } else {
@@ -274,5 +277,18 @@ class VacanteModel extends GestionCRUD
         FROM dataVacanteApplicationVacancyView
         WHERE idVacanteFK  = {$idVacante} AND idAspiranteFK = {$idAspirante}";
         return $this->select($sql);
+    }
+
+    public function setStatusApplicationVacancy(string $idAplicacion, string $estado)
+    {
+        $this->idVacante = $idAplicacion;
+        $this->estadoVacante = $estado;
+        $sql = "UPDATE aplicacion_vacante
+                SET estadoAplicacionVacante = ?
+                WHERE idAplicacionVacante  = {$this->idVacante}";
+        $arrData = [
+            $this->estadoVacante
+        ];
+        return $this->edit($sql, $arrData);
     }
 }

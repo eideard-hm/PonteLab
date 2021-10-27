@@ -287,7 +287,7 @@
                 </div>
             </div>
             <div class="col-md-12 mt60 text-center">
-                <a href="Categorias" class="btn btn-blue btn-effect nomargin">Ver Más..</a>
+                <a href="<?= URL?>Index/Categorias" class="btn btn-blue btn-effect nomargin">Ver Más..</a>
             </div>
         </div>
     </section>

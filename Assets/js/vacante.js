@@ -1,4 +1,4 @@
-import { formDataElement, sweetAlert } from "./functionsGlobals.js";
+import { formDataElement, sweetAlert, initTextEditorTinymce } from "./functionsGlobals.js";
 
 const formVacancy = document.querySelector('#form-vacancy');
 const bntSubmit = document.getElementById('btn_submit');
@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (listVacantes) {
         await getAllVacantes();
     }
+    initTextEditorTinymce('especificaciones');
+    initTextEditorTinymce('perfil');
 })
 
 if (bntSubmit) {
