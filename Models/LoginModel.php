@@ -5,6 +5,7 @@ class LoginModel extends gestionCRUD
     private int $intId;
     private string $strUsuario;
     private string $strPassword;
+    private string $strToken;
 
     public function __construct()
     {
@@ -57,34 +58,46 @@ class LoginModel extends gestionCRUD
         WHERE idUsuario = {$this->intId}";
         return $this->select($sql);
     }
+
     public function getUserEmail(string $strEmail)
     {
         $this->strUsuario = $strEmail;
-        $sql = "SELECT idUsuario, nombreUsuario,estadoUsuario
-         FROM usuario 
-         WHERE correoUsuario ='$this->strUsuario'
-         and estadoUsuario = 0";
+        $sql = "SELECT idUsuario, nombreUsuario, estadoUsuario
+                FROM usuario 
+                WHERE correoUsuario ='{$this->strUsuario}' AND estadoUsuario = 0";
         $request = $this->select($sql);
         return $request;
     }
+
     public function setTokenUser(int $idUsuario, string $token)
     {
-        $this->intIdUsuario = $idUsuario;
+        $this->intId = $idUsuario;
         $this->strToken = $token;
-        $sql = "UPDATE usuario SET  token = ? WHERE 
-        idUsuario = $this->intIdUsuario";
+        $sql = "UPDATE usuario 
+                SET token = ? WHERE 
+                idUsuario = {$this->intId}";
         $arrData = array($this->strToken);
-        $request = $this->edit($sql, $arrData);
-        return $request;
+        return $this->edit($sql, $arrData);
     }
+
     public function getUsuario(string $email, string $token)
     {
         $this->strUsuario = $email;
         $this->strToken = $token;
-        $sql = "SELECT idUsuario, correoUsuario FROM USUARIO WHERE
-         correoUsuario= '$this->strUsuario' and
-         token = '$this->strToken' and
-         estadoUsuario = 0";
+        $sql = "SELECT idUsuario, correoUsuario 
+                FROM USUARIO WHERE
+                correoUsuario= '$this->strUsuario' AND token = '$this->strToken' AND estadoUsuario = 0";
         return $this->select($sql);
+    }
+
+    public function insertPassword(int $idUsuario, string $password)
+    {
+        $this->intId = $idUsuario;
+        $this->strPassword = $password;
+        $sql = "UPDATE usuario 
+                SET passUsuario = ?, token =  ?
+                WHERE idUsuario = {$this->intId}";
+        $arrData = array($this->strPassword, "");
+        return $this->edit($sql, $arrData);
     }
 }
