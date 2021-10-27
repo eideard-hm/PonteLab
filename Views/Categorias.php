@@ -11,7 +11,7 @@
     <meta name="keywords" content="Bolsa de Empleo PonteLab">
     <meta name="author" content="GnoDesign">
     <!-- Website Title -->
-    <title>Bolsa de Empleo PonteLab</title>
+    <title><?= $data['titulo_pagina'] ?></title>
     <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico">
 
@@ -63,7 +63,7 @@
                                 <a href="index #about2" class="dropdown-toggle" data-toggle="dropdown" role="button">Beneficios</a>
                             </li>
                             <li class="menu-item login-btn">
-                                <a id="modal_trigger" href="Login" role="button"><i class="fa fa-lock"></i>Iniciar Sesión</a>
+                                <a id="modal_trigger" href="<?= URL ?>Login" role="button"><i class="fa fa-lock"></i>Iniciar Sesión</a>
                             </li>
                         </ul>
                     </div>
