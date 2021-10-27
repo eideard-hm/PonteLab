@@ -17,12 +17,11 @@
 </head>
 
 <body>
-
     <section class="from-logi">
         <form method="POST" action="" id="formCambiarPass" name="formCambiarPass">
             <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
             <h1>Cambiar Contraseña</h5>
-                <input class="controls" type="hidden" name="idUsuario" id="idUsuario" value="<?= $data['idUsuario']; ?>">
+                <input class="controls" type="hidden" name="idUsuario" id="idUsuario" value="<?$data['idUsuario']?>">
                 <input class="controls" type="password" name="txtPassword" id="txtPassword" required placeholder="Nueva Contraseña">
                 <input class="controls" type="password" name="txtPasswordConfirm" id="txtPasswordConfirm" required placeholder="Confirmar Contraseña">
                 <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
