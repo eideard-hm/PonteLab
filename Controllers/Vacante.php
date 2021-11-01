@@ -49,7 +49,10 @@ class Vacante extends Controllers
         $arrSectores = $this->model->loadSectorUser(intval($_SESSION['user-data']['idUsuario']));
         if (!empty($arrSectores)) {
             foreach ($arrSectores as $sector) {
-                $data['recomendados'] = $this->model->getVacantesSector(intval($sector['idSectorFK']));
+                $request = $this->model->getVacantesSector(intval($sector['idSectorFK']));
+                if (!empty($request)) {
+                    $data['recomendados'] = $request;
+                }
             }
         } else {
             $data['recomendados'] = "";
