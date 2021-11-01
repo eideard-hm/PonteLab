@@ -31,7 +31,21 @@ class Vacante extends Controllers
 
     public function ListaEmpleos()
     {
+        $vacantes_por_pagina = 6;
         $data['titulo_pagina'] = 'Lista vacantes | ' . NOMBRE_EMPRESA . '.';
+        $data['count-rows'] = $this->pagination($vacantes_por_pagina);
+        $pagina = explode('/', $_GET['url']);
+        if (isset($pagina[2]) && !empty($pagina[2])) {
+            if ($pagina[2] > $data['count-rows']) {
+                header('Location: ' . URL . 'Vacante/ListaEmpleos/1');
+            }
+            $pagina = $pagina[2];
+        } else {
+            $pagina = 1;
+        }
+        $data['numero_vacante'] = $pagina;
+        $iniciar = ($pagina - 1) * $vacantes_por_pagina;
+        $data['vacantes_pagination'] =  $this->model->selectAllVacantes(intval($iniciar), intval($vacantes_por_pagina));
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 
@@ -212,18 +226,6 @@ class Vacante extends Controllers
         die();
     }
 
-    // método para traer todas las vacantes
-    public function getAllVacantes()
-    {
-        $request = $this->model->selectAllVacantes();
-        if (!empty($request)) {
-            $arrResponse = ['status' => true, 'data' => $request];
-        } else {
-            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
-        }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-    }
-
     //método que retorna el arreglo con las vacantes
     public function getArregloVacantes()
     {
@@ -397,5 +399,13 @@ class Vacante extends Controllers
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
+    }
+
+    private function pagination($num_vacantes_por_pagina)
+    {
+        $vacantes_por_pagina = $num_vacantes_por_pagina;
+        $numeroVacantes = $this->model->countRows();
+        $paginas = ceil($numeroVacantes['total'] / $vacantes_por_pagina);
+        return $paginas;
     }
 }

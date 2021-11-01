@@ -34,9 +34,10 @@ class VacanteModel extends GestionCRUD
     }
 
     //metodo para traer todas las vacantes
-    public function selectAllVacantes()
+    public function selectAllVacantes(int $iniciar, int $vacantes_por_pagina)
     {
-        $sql = "SELECT * FROM vacanteView";
+        $sql = "SELECT * FROM vacanteView
+                LIMIT {$iniciar}, {$vacantes_por_pagina}";
         return $this->selectAll($sql);
     }
 
@@ -290,5 +291,11 @@ class VacanteModel extends GestionCRUD
             $this->estadoVacante
         ];
         return $this->edit($sql, $arrData);
+    }
+
+    public function countRows()
+    {
+        $sql = "SELECT COUNT(*) AS total FROM VACANTE";
+        return $this->select($sql);
     }
 }

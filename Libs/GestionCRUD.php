@@ -74,4 +74,9 @@ class GestionCRUD extends Conexion
         $resDelete =  $stmt->execute();
         return $resDelete;
     }
+
+    public function __destruct()
+    {
+        $this->conexion = null;
+    }
 }
