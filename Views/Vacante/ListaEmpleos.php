@@ -90,45 +90,49 @@
                 </div>
                 <!-- End of Job Post Main -->
                 <!-- Start of Job Post Sidebar -->
-                <div class="col-md-4 col-sm-12 col-xs-12 job-post-sidebar">
-                    <h2 class="capitalize"><i class="fa fa-star"></i>Recomendados</h2>
-                    <!-- Start of Featured Job Widget -->
-                    <div class="featured-job widget mt60">
-                        <!-- Start of Company Logo -->
-                        <div class="company">
-                            <img src="<?= URL ?>Assets/img/upload.svg" class="img-fluid" alt="">
+                <?php if (!empty($data['recomendados'])) { ?>
+                    <div class="col-md-4 col-sm-12 col-xs-12 job-post-sidebar" id="<?= $data['recomendados']['idVacante'] ?>">
+                        <h2 class="capitalize"><i class="fa fa-star"></i>Recomendados</h2>
+                        <!-- Start of Featured Job Widget -->
+                        <div class="featured-job widget mt60">
+                            <!-- Start of Company Logo -->
+                            <div class="company">
+                                <img src="<?= $data['recomendados']['imagenUsuario'] != null ? URL . "Assets/img/{$data['recomendados']['imagenUsuario']}" : URL . "Assets/img/upload.svg" ?>" class="img-fluid" alt="">
+                            </div>
+                            <!-- End of Company Logo -->
+                            <!-- Start of Featured Job Info -->
+                            <div class="featured-job-info">
+                                <!-- Job Title -->
+                                <div class="job-title d-flex justify-content-between align-items-center">
+                                    <h5 class="uppercase pull-left"><?= $data['recomendados']['nombreVacante'] ?></h5>
+                                </div>
+                                <br>
+                                <a href="<?= URL . "Vacante/DetallesVacante/" . $data['recomendados']['idVacante'] ?>" class="btn btn-success capitalize">full time</a>
+                                <!-- Job Info -->
+                                <div class="job-info mt-3">
+                                    <span id="company"><i class="fa fa-building-o"></i><?= $data['recomendados']['nombreUsuario'] ?></span>
+                                    <span id="location" class="mt-2"><i class="fa fa-map-marker"></i><?= $data['recomendados']['direccionVacante'] ?></span>
+                                </div>
+                                <br>
+                                <p class="mt20"><?= $data['recomendados']['descripcionVacante'] ?></p>
+                                <!-- View Job Button -->
+                                <div class="text-center mt20">
+                                    <a href="<?= URL . "Vacante/DetallesVacante/" . $data['recomendados']['idVacante'] ?>" class="btn btn-info capitalize">Ver más ...</a>
+                                </div>
+                            </div>
+                            <!-- End of Featured Job Info -->
                         </div>
-                        <!-- End of Company Logo -->
-                        <!-- Start of Featured Job Info -->
-                        <div class="featured-job-info">
-                            <!-- Job Title -->
-                            <div class="job-title d-flex justify-content-between align-items-center">
-                                <h5 class="uppercase pull-left">ui designer</h5>
-                                <a href="#" class="btn btn-success capitalize">full time</a>
-                            </div>
-                            <!-- Job Info -->
-                            <div class="job-info pt5">
-                                <span id="company"><i class="fa fa-building-o"></i>cloudify</span>
-                                <span id="location"><i class="fa fa-map-marker"></i>london, uk</span>
-                            </div>
-                            <p class="mt20"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                            <!-- View Job Button -->
-                            <div class="text-center mt20">
-                                <a href="#" class="btn btn-info capitalize">view job</a>
-                            </div>
-                        </div>
-                        <!-- End of Featured Job Info -->
-                    </div>
-                    <!-- End of Featured Job Widget -->
-                    <!-- Start of Upload Resume Widget -->
-                    <div class="upload-resume widget mt40 text-center">
+                        <!-- End of Featured Job Widget -->
+                        <!-- Start of Upload Resume Widget -->
+                        <!-- <div class="upload-resume widget mt40 text-center">
                         <h4 class="capitalize">upload your resume</h4>
                         <p class="mtb10"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry...</p>
                         <a href="#" class="btn btn-primary capitalize mt10">upload resume</a>
+                    </div> -->
+                        <!-- End of Upload Resume Widget -->
                     </div>
-                    <!-- End of Upload Resume Widget -->
-                </div>
-                <!-- End of Job Post Sidebar -->
+                    <!-- End of Job Post Sidebar -->
+                <?php } ?>
             </div>
         </section>
         <!-- ===== End of Job Post Section ===== -->

@@ -46,24 +46,42 @@ class Vacante extends Controllers
         $data['numero_vacante'] = $pagina;
         $iniciar = ($pagina - 1) * $vacantes_por_pagina;
         $data['vacantes_pagination'] =  $this->model->selectAllVacantes(intval($iniciar), intval($vacantes_por_pagina));
+        $arrSectores = $this->model->loadSectorUser(intval($_SESSION['user-data']['idUsuario']));
+        if (!empty($arrSectores)) {
+            foreach ($arrSectores as $sector) {
+                $data['recomendados'] = $this->model->getVacantesSector(intval($sector['idSectorFK']));
+            }
+        } else {
+            $data['recomendados'] = "";
+        }
+        // $data['recomendados'] = $this->model->getVacantesSector($arrSectores);
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 
     public function DetallesVacante()
     {
         $idVacante = explode('/', $_GET['url']);
-        if (isset($idVacante[2])) {
+        if (isset($idVacante[2]) && !empty($idVacante[2])) {
             $idVacante = intval($idVacante[2]);
             if ($idVacante > 0) {
                 $data['detail_vacante'] = $this->model->detailVacante($idVacante);
-                if (isset($_SESSION['data-aspirante']['idAspirante'])) {
-                    $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                if (!empty($data['detail_vacante'])) {
+                    if (isset($_SESSION['data-aspirante']['idAspirante'])) {
+                        $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                        $data['sugerencias'] = $this->model->sugerencias(intval($data['detail_vacante']['idSector']));
+                    } else {
+                        $data['aspiranteApplyVacancy'] = '';
+                    }
+                    $data['titulo_pagina'] = 'Detalles vacante | ' . NOMBRE_EMPRESA;
+                    $this->views->getView($this, 'DetallesVacante', $data);
                 } else {
-                    $data['aspiranteApplyVacancy'] = '';
+                    header('Location: ' . URL . 'Vacante/ListaEmpleos');
                 }
-                $data['titulo_pagina'] = 'Detalles vacante | ' . NOMBRE_EMPRESA;
-                $this->views->getView($this, 'DetallesVacante', $data);
+            } else {
+                header('Location: ' . URL . 'Vacante/ListaEmpleos');
             }
+        } else {
+            header('Location: ' . URL . 'Vacante/ListaEmpleos');
         }
     }
 

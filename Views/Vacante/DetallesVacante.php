@@ -71,7 +71,7 @@
                                 <!-- Job Company Image -->
                                 <div class="col-md-3">
                                     <div class="job-company">
-                                        <a href="company-page.html">
+                                        <a href="#<?= $data['detail_vacante']['idContratante'] ?>">
                                             <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.png' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
                                         </a>
                                     </div>
@@ -94,20 +94,68 @@
                             <!-- Start of Job Details -->
                             <div class="row job-details mt40">
                                 <div class="col-md-12">
-                                    <!-- Vimeo Video -->
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/176916362?title=0&amp;byline=0&amp;portrait=0" allowfullscreen=""></iframe>
+                                    <!-- Detalles del perfil del aspirante-->
+                                    <div class="pt40" id="<?= $data['detail_vacante']['idVacante'] ?>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div id="post-modal-data" class="iq-card">
+                                                    <div class="iq-card-header d-flex justify-content-between">
+                                                        <div class="iq-header-title">
+                                                            <h4 class="card-title titulo-perfil">Perfil del aspirante</h4>
+                                                        </div>
+                                                        <a class="btn" role="button" tabindex="0" id="data-idAspirante" style="display: none;">
+                                                            <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="iq-card-body">
+                                                        <?= $data['detail_vacante']['perfilAspirante'] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Div wrapper -->
-                                    <div class="pt40">
-                                        <h4>Perfil del aspirante</h4>
-                                        <?= $data['detail_vacante']['perfilAspirante'] ?>
+
+                                    <!-- Detalles de los requisitos -->
+                                    <div class="pt40" id="<?= $data['detail_vacante']['idRequisitos'] ?>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div id="post-modal-data" class="iq-card">
+                                                    <div class="iq-card-header d-flex justify-content-between">
+                                                        <div class="iq-header-title">
+                                                            <h4 class="card-title titulo-perfil">Requisitos</h4>
+                                                        </div>
+                                                        <a class="btn" role="button" tabindex="0" id="data-idAspirante" style="display: none;">
+                                                            <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="iq-card-body">
+                                                        <h6 class="mt40"><?= $data['detail_vacante']['nombreRequisitos'] ?></h5>
+                                                            <?= $data['detail_vacante']['especficacionRequisitos'] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Div wrapper -->
-                                    <div class="pt40">
-                                        <h4 class="mt40">Requisitos</h4>
-                                        <h6 class="mt40"><?= $data['detail_vacante']['nombreRequisitos'] ?></h5>
-                                            <?= $data['detail_vacante']['especficacionRequisitos'] ?>
+
+                                    <!-- Detalles del contratante -->
+                                    <div class="pt40" id="<?= $data['detail_vacante']['idContratante'] ?>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div id="post-modal-data" class="iq-card">
+                                                    <div class="iq-card-header d-flex justify-content-between">
+                                                        <div class="iq-header-title">
+                                                            <h4 class="card-title titulo-perfil">Acerca de la empresa</h4>
+                                                        </div>
+                                                        <a class="btn" role="button" tabindex="0" id="data-idAspirante" style="display: none;">
+                                                            <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="iq-card-body">
+                                                        <?= $data['detail_vacante']['descripcionContratante'] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -171,6 +219,7 @@
                             <h2 class="capitalize pb40">Trabajos relacionados</h2>
                             <!-- Start of Owl Slider -->
                             <div class="owl-carousel related-jobs">
+                                <?php dep($data['sugerencias']) ?>
                                 <!-- Start of Slide item 1 -->
                                 <div class="item">
                                     <a href="job-page.html">

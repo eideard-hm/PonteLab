@@ -185,28 +185,12 @@ class VacanteModel extends GestionCRUD
         return $this->selectAll($sql);
     }
 
-    public function getVacantesSector(array $sector)
+    public function getVacantesSector(int $sector)
     {
-        $this->nombreSector = $sector;
-        $return = '';
-        $operadorOr = 'OR';
-        for ($i = 0; $i < count($this->nombreSector); $i++) {
-            if (!empty($this->nombreSector[$i])) {
-                if ($this->nombreSector[$i] === $this->nombreSector[count($this->nombreSector) - 2]) {
-                    $return .= "idSectorFK = {$this->nombreSector[$i]}";
-                    break;
-                }
-                $return .= "idSectorFK = {$this->nombreSector[$i]} {$operadorOr} ";
-            }
-        }
-
-        $sql = "SELECT idVacante, nombreVacante, cantidadVacante,   
-                descripcionVacante, perfilAspirante, tipoContratoVacante, 
-                sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, 
-                direccionVacante, estadoVacante, idSectorFK
-                FROM VACANTE 
-                WHERE {$return}";
-        return $this->selectAll($sql);
+        $sql = "SELECT *
+                FROM detailVacanteView 
+                WHERE idSector = {$sector}";
+        return $this->select($sql);
     }
 
     public function loadSectorUser(
@@ -297,5 +281,13 @@ class VacanteModel extends GestionCRUD
     {
         $sql = "SELECT COUNT(*) AS total FROM VACANTE";
         return $this->select($sql);
+    }
+
+    public function sugerencias(int $idSector)
+    {
+        $sql = "SELECT *
+                FROM detailVacanteView
+                WHERE idSector = {$idSector}";
+        return $this->selectAll($sql);
     }
 }
