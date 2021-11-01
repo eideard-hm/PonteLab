@@ -656,7 +656,6 @@ ON v.idVacante = rv.idVacanteFK INNER JOIN REQUISITOS AS r
 ON r.idRequisitos = rv.idRequisitosFK INNER JOIN SECTOR AS s
 ON s.idSector = v.idSectorFK;
 
-select * from detailVacanteView where idSector = 1;
 
 DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
 CREATE VIEW  recomendacionVacanteSectorusuarioView AS

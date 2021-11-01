@@ -72,7 +72,7 @@
                                 <div class="col-md-3">
                                     <div class="job-company">
                                         <a href="#<?= $data['detail_vacante']['idContratante'] ?>">
-                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.png' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
+                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.svg' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
                                         </a>
                                     </div>
                                 </div>
@@ -205,85 +205,37 @@
                             <!-- Start of Job Sidebar -->
                             <!-- Start of Google Map -->
                             <div class="col-md-12 gmaps mt60">
-                                <div id="map"></div>
+                                <div id="map">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9770944903053!2d-74.07823218570651!3d4.598125943819892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a7eccfe58f%3A0x99cb72b35351476!2sBolivar%20Square!5e0!3m2!1sen!2sco!4v1635807453583!5m2!1sen!2sco" width="300" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
                             </div>
                             <!-- End of Google Map -->
                         </div>
                         <!-- ===== End of Job Sidebar ===== -->
                     </div>
                     <!-- End of Row -->
-
                     <!-- Start of Row -->
                     <div class="row mt80">
                         <div class="col-md-12">
                             <h2 class="capitalize pb40">Trabajos relacionados</h2>
                             <!-- Start of Owl Slider -->
                             <div class="owl-carousel related-jobs">
-                                <?php dep($data['sugerencias']) ?>
                                 <!-- Start of Slide item 1 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>UI/UX Designer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-success capitalize mt15">full time</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$25.000-$35.000</h5>
-                                </div>
+                                <?php foreach ($data['sugerencias'] as $sugerencia) : ?>
+                                    <div class="item">
+                                        <a href="job-page.html">
+                                            <h5><?= $sugerencia['nombreVacante'] ?></h5>
+                                        </a>
+                                        <a href="#" class="btn btn-success capitalize mt15">full time</a>
+                                        <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salario:</h5>
+                                        <h5>$ <?= $sugerencia['sueldoVacante'] ?></h5>
+                                        <!-- View Job Button -->
+                                        <div class="text-center mt-2">
+                                            <a href="<?= URL . "Vacante/DetallesVacante/" . $sugerencia['idVacante'] ?>" class="btn btn-info capitalize">Ver más ...</a>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                                 <!-- End of Slide item 1 -->
-
-                                <!-- Start of Slide item 2 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>Restaurant Chef</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-danger capitalize mt15">temporary</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$15.000-$20.000</h5>
-                                </div>
-                                <!-- End of Slide item 2 -->
-
-                                <!-- Start of Slide item 3 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>Social Marketing</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-warning capitalize mt15">part time</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$25.000-$35.000</h5>
-                                </div>
-                                <!-- End of Slide item 3 -->
-
-                                <!-- Start of Slide item 4 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>PHP Developer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-success capitalize mt15">full time</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$35.000-$40.000</h5>
-                                </div>
-                                <!-- End of Slide item 4 -->
-
-                                <!-- Start of Slide item 5 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>IOS Developer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-primary capitalize mt15">freelancer</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$30.000</h5>
-                                </div>
-                                <!-- End of Slide item 5 -->
-                                <!-- Start of Slide item 6 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>Web Developer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-info mt15 capitalize">intership</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$45.000-$50.000</h5>
-                                </div>
-                                <!-- End of Slide item 6 -->
                             </div>
                             <!-- End of Owl Slider -->
                         </div>
