@@ -21,12 +21,6 @@
                         <span>Empleos</span>
                     </a>
                 </li>
-                <li>
-                    <a href="profile-images.html" class="iq-waves-effect">
-                        <i class="las la-image" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Img perfil"></i>
-                        <span>Imagenes de perfil</span>
-                    </a>
-                </li>
             </ul>
         </nav>
         <div class="p-3"></div>
