@@ -582,7 +582,8 @@ class AspiranteModel extends GestionCRUD
     }
 
     /**
-     * Método que sirve para actualizar la información de la experiencia laboral de un aspirante
+     * Método que sirve para actualizar la información de la experiencia laboral de 
+     * un aspirante.
      */
     public function updateExperienciaLaboral(
         int $idExperiencia,
