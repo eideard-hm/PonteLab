@@ -80,6 +80,16 @@ class Aspirante extends Controllers
         );
     }
 
+    public function actualizarImagen()
+    {
+        $idUsuario = intval($_SESSION['user-data']['idUsuario']);
+        $imagenUsuario = limpiarCadena($_POST['imagenUsuario']);
+        $request = $this->model->updateImg(
+            $idUsuario,
+            $imagenUsuario
+        );
+    }
+
     /**
      * Método que sirve para actualizar el perfil del aspirante
      * 

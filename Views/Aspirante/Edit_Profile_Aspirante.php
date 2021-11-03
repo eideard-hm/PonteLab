@@ -79,89 +79,68 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="<?= URL ?>Assets/img/upload.svg" alt="Edier">
-                                                            <div class="p-image">
-                                                                <i class="las la-pencil-alt upload-button"></i>
-                                                                <input class="file-upload" type="file" accept="image/*" />
-                                                            </div>
+                                                            <img class="profile-pic" src="<?php echo $_SESSION['imgProfile']; ?>" alt="Edier">
+                                                        <div class="p-image">
+                                                            <i class="las la-pencil-alt upload-button"></i>
+                                                            <input type="file">
+                                                                <!--<input class="file-upload" type="file" multiple/>-->
+                                                
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <br>
                                                 <div class=" row align-items-center">
                                                     <div class="form-group col-sm-6">
-                                                        <label for="fname">First Name:</label>
-                                                        <input type="text" class="form-control" id="fname" value="Bni">
+                                                        <label for="fname">Nombres y Apellidos:</label>
+                                                        <input type="text" class="form-control" id="nombreApellido" name="nombreApellido"  value="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="lname">Last Name:</label>
-                                                        <input type="text" class="form-control" id="lname" value="Jhon">
+                                                        <label for="lname">Numero de identificacion:</label>
+                                                        <input type="text" class="form-control" id="numDoc" name="numDoc"  value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="uname">User Name:</label>
-                                                        <input type="text" class="form-control" id="uname" value="Bni@01">
+                                                        <label for="uname">Identificacion:</label>
+                                                        <select name="titulo" id="titulo" class="form-control">
+                        <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                    <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
+                                                        <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
+                                                        
+                                                    </div>
+
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="cname"> Numero de celular:</label>
+                                                        <input type="text" class="form-control" id="posicion" name="posicion" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="cname">City:</label>
-                                                        <input type="text" class="form-control" id="cname" value="Atlanta">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="d-block">Gender:</label>
+                                                        <label class="d-block">Estado:</label>
                                                         <div class="custom-control custom-radio custom-control-inline">
                                                             <input type="radio" id="customRadio6" name="customRadio1" class="custom-control-input" checked="">
-                                                            <label class="custom-control-label" for="customRadio6"> Male </label>
+                                                            <label class="custom-control-label" for="customRadio6"> Activo </label>
                                                         </div>
                                                         <div class="custom-control custom-radio custom-control-inline">
                                                             <input type="radio" id="customRadio7" name="customRadio1" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customRadio7"> Female </label>
+                                                            <label class="custom-control-label" for="customRadio7"> Inactivo </label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="dob">Date Of Birth:</label>
-                                                        <input class="form-control" id="dob" value="1984-01-24">
+                                                        <label for="dob">Numero fijo:</label>
+                                                        <input class="form-control" id="numFij" name="numFij" value="<?= $_SESSION['user-data']['numTelFijo'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label>Marital Status:</label>
-                                                        <select class="form-control" id="exampleFormControlSelect1">
-                                                            <option selected="">Single</option>
-                                                            <option>Married</option>
-                                                            <option>Widowed</option>
-                                                            <option>Divorced</option>
-                                                            <option>Separated </option>
-                                                        </select>
+                                                        <label for="dob">Direccion:</label>
+                                                        <input class="form-control" id="direccion" name="direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>">
                                                     </div>
+
                                                     <div class="form-group col-sm-6">
-                                                        <label>Age:</label>
-                                                        <select class="form-control" id="exampleFormControlSelect2">
-                                                            <option>12-18</option>
-                                                            <option>19-32</option>
-                                                            <option selected="">33-45</option>
-                                                            <option>46-62</option>
-                                                            <option>63 > </option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label>Country:</label>
-                                                        <select class="form-control" id="exampleFormControlSelect3">
-                                                            <option>Caneda</option>
-                                                            <option>Noida</option>
-                                                            <option selected="">USA</option>
-                                                            <option>India</option>
-                                                            <option>Africa</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label>State:</label>
-                                                        <select class="form-control" id="exampleFormControlSelect4">
-                                                            <option>California</option>
-                                                            <option>Florida</option>
-                                                            <option selected="">Georgia</option>
-                                                            <option>Connecticut</option>
-                                                            <option>Louisiana</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group col-sm-12">
-                                                        <label>Address:</label>
-                                                        <textarea class="form-control" name="address" rows="5" style="line-height: 22px;"></textarea>
+                                                        <label>Barrio:</label>
+                                                        <select name="Barrio" id="Barrio" class="form-control">
+                        <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
+                                                    <?php foreach ($data['list_barrio'] as $barrio) : ?>
+                                                        <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                    <?php endforeach ?>
+                                                </select>
                                                     </div>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -297,6 +276,7 @@
     </div>
     <!-- Wrapper END -->
     <!-- Footer -->
+    <script src="<?= URL; ?>Assets/js/Perfil_Aspirante.js"></script>
     <?php
     require_once('./Views/Components/Footer.php');
     ?>

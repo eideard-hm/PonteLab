@@ -74,8 +74,9 @@
                             <ul class="nav nav-pills d-flex align-items-center justify-content-center profile-feed-items p-0 m-0">
                                 <li class="col-6 p-0">
                                     <h5 class="card-title titulo-perfil nav-link">Bienvenido usuario <strong><?= $_SESSION['user-data']['nombreRol'] ?></strong> <b><?= $_SESSION['user-data']['nombreUsuario'] ?></b></h5>
-                                    <a href="<?= URL ?>Aspirante/Perfil_Aspirante" class="btn mt-3 mb-3 mx-3 btn-primary"><i class="far fa-user"></i>Ver perfil</a>
-                                    <a href="<?= URL ?>Aspirante/Edit_Profile_Aspirante" class="btn mt-3 mb-3 btn-success"><i class="fas fa-user-edit"></i>Editar perfil perfil</a>
+                                    <a href="<?= URL ?>Aspirante/Perfil_Aspirante" class="btn mt-3 mb-3 mx-3 btn-primary" id="editar"><i class="far fa-user"></i>Ver perfil</a>
+                                    <a href="<?= URL ?>Aspirante/Edit_Profile_Aspirante" class="btn mt-3 mb-3 btn-success"><i class="fas fa-user-edit"></i>Editar perfil</a>
+                                    <button class="btn mt-3 mb-3 btn-danger" id="inhabilitar" type="submit"><i class="fas fa-times"></i>Inactivar Cuenta</button>
                                 </li>
                                 <li class="col-6 p-0">
                                     <div class="job-company text-right mx-4">
@@ -223,6 +224,7 @@
     ?>
     <script src="<?= URL ?>Assets/js/js.dashboard/lottie.js" defer></script>
     <script src="<?= URL ?>Assets/js/js.dashboard/chart-custom.js" defer></script>
+    <script src="<?= URL ?>Assets/js/Perfil_Aspirante.js" defer></script>
 </body>
 
 </html>

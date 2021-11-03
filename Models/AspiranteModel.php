@@ -9,6 +9,7 @@ class AspiranteModel extends GestionCRUD
     private int $idEstadoLaboralAspiranteFK;
     private $created_at;
     private $updated_at;
+    private $imagenUsuario;
 
     //atributos de la clase - Tabla Puesto interes
     private int $idPuesto;
@@ -703,6 +704,18 @@ class AspiranteModel extends GestionCRUD
 
         $arrData = array(
             $this->estadoUsuario
+        );
+        return $this->edit($sql, $arrData);
+    }
+
+    public function updateImg(int $idUsuario, int $imagenUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        $this->imagenUsuario = $imagenUsuario;
+        $sql = "UPDATE USUARIO SET imagenUsuario =? WHERE idUsuario = {$this->idUsuario}";
+
+        $arrData = array(
+            $this->imagenUsuario
         );
         return $this->edit($sql, $arrData);
     }

@@ -97,7 +97,7 @@ if (document.querySelector('#inhabilitar')) {
    
 
 const inhabilitarA = async () => {
-    const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
+    const url = `${base_url}Menu/inhabilitarA`;
     let formData = new FormData(formUser);
     //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
     /* swal({
@@ -162,3 +162,63 @@ function Cancelar() {
 }
 }
 
+const actualizarImagen = async () => {
+    const url = `${base_url}Edit_Profile_Aspirante/actualizarImagen`;
+    let formData = new FormData(formUser);
+    //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
+    /* swal({
+     title: "Completado!",
+     text: "Usuario inhabilitado correctamente.",
+     type: "success",
+     timer: 9000}).then(function(){
+         window.location = 'http://localhost/PonsLabor/logout';
+     });*/
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        swal({
+            title: "Completado!",
+            text: "Imagen Actualizada correctamente.",
+            type: "success",
+            timer: 9000
+        }).then(function () {
+            window.location.href = `${base_url}logout`;
+        });
+        const data = await req.json();
+        console.log(error);
+    } catch (error) {
+        console.log(error);
+    }
+
+    //window.location = `${base_url}logout`; 
+
+    /*try {
+        
+        const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
+        const res = await url;
+        const { statusUser, msg } = await res.json();
+        if (statusUser) {
+            swal("Aspirante", msg, "success");
+        }
+        else {
+            swal("Error", msg, "error");//mostrar la alerta
+        }
+    } catch (error) {
+        swal("Error", error, "error");
+    }*/
+
+
+}
+
+
+$("i").click(function () {
+    $("input[type='file']").trigger('click');
+  });
+  
+  $('input[type="file"]').on('change', function() {
+    var val = $(this).val();
+    $(this).siblings('span').text(val);
+  })
