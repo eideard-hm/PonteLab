@@ -77,7 +77,6 @@ body {
   margin: 0;
   color: var(--iq-body-text);
   background: var(--iq-light);
-  box-sizing: border-box;
 }
 .btn,
 a {
@@ -4867,7 +4866,7 @@ button.close-popup {
   text-align: right;
 }
 #top-tab-list {
-  margin: 0 -10px 60px;
+  margin: 0 -10px 0px;
   overflow: hidden;
   color: var(--iq-body-text);
 }

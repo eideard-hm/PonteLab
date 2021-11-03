@@ -8,8 +8,6 @@
   <title><?= $data['titulo_pagina'] ?></title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
-  <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" /> -->
   <!-- CSS -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
@@ -80,76 +78,7 @@
         </div>
         <br>
         <div class="col-12 col-xl-12 grid-margin stretch-card">
-            <h3>Opcion Deck con imagenes</h3>
-          <br>
-          <div class="card-deck">
-            <!-- CARDS SIN IMAGEN -->
-            <div class="col-12 col-md-5 col-xl-4">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Programador BackEnd</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to content.</p>
-                  <a href="#" class="btn btn-primary">Ver Perfil</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl-4">
-              <div class="card">
-                <div class="card-header">
-                  Tecnologo en gestion empresarial
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Raul Matinez</h5>
-                  <p class="card-text mb-1">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Ver Perfil</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-xl-4 grid-margin grid-margin-md-0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Prospero Becerra</h5>
-                  <p class="card-text mb-1">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Ver Perfil</a>
-                </div>
-              </div>
-            </div>
-          </div><!-- END DIV COLUMS -->
-          <br>
-            <h3>Opcion Deck con imagenes</h3>
-          <br>
-          <div class="card-deck">                      
-            <!-- CARDS CON IMAGEN -->
-            <div class="card">
-              <img src="<?= URL ?>Assets/img/uploads/St.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Programador FrontEnd</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Ver Perfil</a>
-              </div>
-            </div>
-            <div class="card">
-              <img src="<?= URL ?>Assets/img/uploads/spacex-logo-featured.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Diseñador 3D</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Ver Perfil</a>                            
-              </div>
-            </div>
-            <div class="card">
-              <img src="<?= URL ?>Assets/img/brands/Ubi.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Ver Perfil</a>
-              </div>
-            </div>
-          </div>
-          <br>
-            <h3>Opcion con columnas y combinado</h3>
+          <h3>Opcion con columnas y combinado</h3>
           <br>
           <div class="card-columns">
             <div class="card">
@@ -223,11 +152,9 @@
   <?php
   require_once('./Views/Components/Footer.php');
   ?>
-
   <!-- Scripts  -->
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
-  <!-- <script src="<?= URL ?>Assets/js/menuContratante.js"></script> -->
 </body>
 </html>

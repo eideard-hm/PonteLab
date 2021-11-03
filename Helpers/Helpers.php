@@ -16,6 +16,12 @@ function base_url()
     return URL;
 }
 
+function dep ($data){
+    $format  =print_r('<pre>');
+    $format .=print_r($data);
+    $format .=print_r('<pre>');
+    return $format;
+    }
 /**
  * Función para encriptar contraseñas
  * 

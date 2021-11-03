@@ -11,7 +11,7 @@
     <meta name="keywords" content="Bolsa de Empleo PonteLab">
     <meta name="author" content="GnoDesign">
     <!-- Website Title -->
-    <title>Bolsa de Empleo PonteLab</title>
+    <title><?= $data['titulo_pagina'] ?></title>
     <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico">
 
@@ -63,7 +63,7 @@
                                 <a href="#about2" class="dropdown-toggle" data-toggle="dropdown" role="button">Beneficios</a>
                             </li>
                             <li class="menu-item login-btn">
-                                <a id="modal_trigger" href="<?=URL?>Login" role="button"><i class="fa fa-lock"></i>Iniciar Sesión</a>
+                                <a id="modal_trigger" href="<?= URL ?>Login" role="button"><i class="fa fa-lock"></i>Iniciar Sesión</a>
                             </li>
                         </ul>
                     </div>
@@ -287,7 +287,7 @@
                 </div>
             </div>
             <div class="col-md-12 mt60 text-center">
-                <a href="Categorias" class="btn btn-blue btn-effect nomargin">Ver Más..</a>
+                <a href="<?= URL?>Index/Categorias" class="btn btn-blue btn-effect nomargin">Ver Más..</a>
             </div>
         </div>
     </section>
@@ -437,13 +437,13 @@
         <div class="copyright ptb40">
             <div class="container">
                 <div class="col-md-8 col-sm-8 col-xs-12" style="color: ffff;">
-                <!-- © Copyright 2021 <a href="#">Belay Software Solution</a> Todos los derechos reservados. -->
-                    <span>© Copyright 2021 &copy; <a href="#">PonteLab</a>.  Todos los derechos reservados.</span>
+                    <!-- © Copyright 2021 <a href="#">Belay Software Solution</a> Todos los derechos reservados. -->
+                    <span>© Copyright 2021 &copy; <a href="#">PonteLab</a>. Todos los derechos reservados.</span>
                 </div>
-           
-        </div>
+
+            </div>
     </footer>
-   
+
     <script src="https://kit.fontawesome.com/ff77c957bf.js" crossorigin="anonymous"></script>
     <script src="<?= URL ?>Assets/js/jsindex/jquery-min.js"></script>
     <script src="<?= URL ?>Assets/js/jsindex/bootstrap01.min.js"></script>

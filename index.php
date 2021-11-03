@@ -18,17 +18,15 @@ $param = "";
 /*
 Validar si el método viene definido y los parametros también
 */
-if (isset($arrUrl[1]) && $arrUrl !== '') {
+if (isset($arrUrl[1]) && !empty($arrUrl)) {
     $method = $arrUrl[1];
 }
 
-if (!empty($arrurl[2])) {
-    if ($arrurl != '') {
-        for ($i = 2; $i < count($arrurl); $i++) {
-            $param .= $arrurl[$i] . ',';
-        }
-        $param = trim($param, ',');
+if (isset($arrUrl[2]) && !empty($arrurl[2])) {
+    for ($i = 2; $i < count($arrurl); $i++) {
+        $param .= $arrurl[$i] . ',';
     }
+    $param = trim($param, ',');
 }
 
 //requerir el archivo que carga automaticamente las clases de la carpeta Libs

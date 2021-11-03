@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Aplicación a la vacante <?= $data['nombreVacante'] ?></title>
+    <title>Resultado de aplicación a vacante</title>
     <style type="text/css">
         p {
             font-family: arial;
@@ -104,24 +104,17 @@
             <tr>
                 <td>
                     <div class="x_sgwrap">
-                        <p>Hola <?= $data['nombreUsuario']; ?></p>
+                        <p>Hola, <?= $data['nombreUsuario']; ?></p>
                     </div>
-                    <p>Aplicación a la vacante: <strong><?= $data['nombreVacante']; ?></strong> por parte del aspirante <b><?= $data['nombreAspirante'] ?></b></p>
-                    <p>Han aplicado a la vacante <strong><?= $data['nombreVacante']; ?></strong> el aspirante aspirante <b><?= $data['nombreAspirante'] ?></b>.
-                        Ahora puede continuar el proceso con el aspirante o por el contrario cancelarlo; de cualquier forma el aspirate sera notificado.
+                    <p>
+                        Gracias por tu interés en el puesto de Desarrollador de software en <b><?= $data['nombreContratante'] ?></b>
+                        en Bogotá, Distrito Capital, Colombia. Hemos decidido seguir con tu proceso de selección,
+                        agradecemos enormemente tu tiempo e interés en <strong><?= $data['nombreContratante'] ?></strong>.
                     </p>
-                    <p class="x_text_white">
-                        <a href="<?= $data['url_recovery_1']; ?>" target="_blank" class="x_button_link x_link_blue">Continuar el proceso</a>
-                    </p>
-                    <p class="x_text_white">
-                        <a href="<?= $data['url_recovery_2']; ?>" target="_blank" class="x_button_link x_link_blue">Cancelar el proceso</a>
+                    <p>
+                        Saludos, <strong><?= $data['nombreContratante'] ?></strong>
                     </p>
                     <br>
-                    <p>Si no te funciona el botón de <b>Continuar el proceso</b> puedes copiar y pegar la siguiente dirección en tu navegador.</p>
-                    <span><?= $data['url_recovery_1']; ?></span>
-                    <br>
-                    <p>Si no te funciona el botón de <b>Cancelar el proceso</b> puedes copiar y pegar la siguiente dirección en tu navegador.</p>
-                    <span><?= $data['url_recovery_2']; ?></span>
                     <p class="x_title_gray"><a href="<?= WEB_EMPRESA; ?>" target="_blanck"><?= WEB_EMPRESA; ?></a></p>
                 </td>
             </tr>

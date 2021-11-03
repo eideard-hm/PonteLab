@@ -71,8 +71,8 @@
                                 <!-- Job Company Image -->
                                 <div class="col-md-3">
                                     <div class="job-company">
-                                        <a href="company-page.html">
-                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.png' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
+                                        <a href="#<?= $data['detail_vacante']['idContratante'] ?>">
+                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.svg' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
                                         </a>
                                     </div>
                                 </div>
@@ -94,20 +94,68 @@
                             <!-- Start of Job Details -->
                             <div class="row job-details mt40">
                                 <div class="col-md-12">
-                                    <!-- Vimeo Video -->
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/176916362?title=0&amp;byline=0&amp;portrait=0" allowfullscreen=""></iframe>
+                                    <!-- Detalles del perfil del aspirante-->
+                                    <div class="pt40" id="<?= $data['detail_vacante']['idVacante'] ?>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div id="post-modal-data" class="iq-card">
+                                                    <div class="iq-card-header d-flex justify-content-between">
+                                                        <div class="iq-header-title">
+                                                            <h4 class="card-title titulo-perfil">Perfil del aspirante</h4>
+                                                        </div>
+                                                        <a class="btn" role="button" tabindex="0" id="data-idAspirante" style="display: none;">
+                                                            <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="iq-card-body">
+                                                        <?= $data['detail_vacante']['perfilAspirante'] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Div wrapper -->
-                                    <div class="pt40">
-                                        <h4>Perfil del aspirante</h4>
-                                        <?= $data['detail_vacante']['perfilAspirante'] ?>
+
+                                    <!-- Detalles de los requisitos -->
+                                    <div class="pt40" id="<?= $data['detail_vacante']['idRequisitos'] ?>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div id="post-modal-data" class="iq-card">
+                                                    <div class="iq-card-header d-flex justify-content-between">
+                                                        <div class="iq-header-title">
+                                                            <h4 class="card-title titulo-perfil">Requisitos</h4>
+                                                        </div>
+                                                        <a class="btn" role="button" tabindex="0" id="data-idAspirante" style="display: none;">
+                                                            <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="iq-card-body">
+                                                        <h6 class="mt40"><?= $data['detail_vacante']['nombreRequisitos'] ?></h5>
+                                                            <?= $data['detail_vacante']['especficacionRequisitos'] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Div wrapper -->
-                                    <div class="pt40">
-                                        <h4 class="mt40">Requisitos</h4>
-                                        <h6 class="mt40"><?= $data['detail_vacante']['nombreRequisitos'] ?></h5>
-                                            <?= $data['detail_vacante']['especficacionRequisitos'] ?>
+
+                                    <!-- Detalles del contratante -->
+                                    <div class="pt40" id="<?= $data['detail_vacante']['idContratante'] ?>">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div id="post-modal-data" class="iq-card">
+                                                    <div class="iq-card-header d-flex justify-content-between">
+                                                        <div class="iq-header-title">
+                                                            <h4 class="card-title titulo-perfil">Acerca de la empresa</h4>
+                                                        </div>
+                                                        <a class="btn" role="button" tabindex="0" id="data-idAspirante" style="display: none;">
+                                                            <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="iq-card-body">
+                                                        <?= $data['detail_vacante']['descripcionContratante'] ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +191,7 @@
                                 </ul>
 
                                 <?php
-                                if (empty($data['aspiranteApplyVacancy'])) {
+                                if (isset($_SESSION['data-aspirante']['idAspirante']) && empty($data['aspiranteApplyVacancy'])) {
                                 ?>
                                     <div class="mt20">
                                         <form id="form-aplicar-vacante">
@@ -157,14 +205,15 @@
                             <!-- Start of Job Sidebar -->
                             <!-- Start of Google Map -->
                             <div class="col-md-12 gmaps mt60">
-                                <div id="map"></div>
+                                <div id="map">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.9770944903053!2d-74.07823218570651!3d4.598125943819892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a7eccfe58f%3A0x99cb72b35351476!2sBolivar%20Square!5e0!3m2!1sen!2sco!4v1635807453583!5m2!1sen!2sco" width="300" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
                             </div>
                             <!-- End of Google Map -->
                         </div>
                         <!-- ===== End of Job Sidebar ===== -->
                     </div>
                     <!-- End of Row -->
-
                     <!-- Start of Row -->
                     <div class="row mt80">
                         <div class="col-md-12">
@@ -172,69 +221,21 @@
                             <!-- Start of Owl Slider -->
                             <div class="owl-carousel related-jobs">
                                 <!-- Start of Slide item 1 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>UI/UX Designer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-success capitalize mt15">full time</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$25.000-$35.000</h5>
-                                </div>
+                                <?php foreach ($data['sugerencias'] as $sugerencia) : ?>
+                                    <div class="item">
+                                        <a href="job-page.html">
+                                            <h5><?= $sugerencia['nombreVacante'] ?></h5>
+                                        </a>
+                                        <a href="#" class="btn btn-success capitalize mt15">full time</a>
+                                        <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salario:</h5>
+                                        <h5>$ <?= $sugerencia['sueldoVacante'] ?></h5>
+                                        <!-- View Job Button -->
+                                        <div class="text-center mt-2">
+                                            <a href="<?= URL . "Vacante/DetallesVacante/" . $sugerencia['idVacante'] ?>" class="btn btn-info capitalize">Ver más ...</a>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                                 <!-- End of Slide item 1 -->
-
-                                <!-- Start of Slide item 2 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>Restaurant Chef</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-danger capitalize mt15">temporary</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$15.000-$20.000</h5>
-                                </div>
-                                <!-- End of Slide item 2 -->
-
-                                <!-- Start of Slide item 3 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>Social Marketing</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-warning capitalize mt15">part time</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$25.000-$35.000</h5>
-                                </div>
-                                <!-- End of Slide item 3 -->
-
-                                <!-- Start of Slide item 4 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>PHP Developer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-success capitalize mt15">full time</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$35.000-$40.000</h5>
-                                </div>
-                                <!-- End of Slide item 4 -->
-
-                                <!-- Start of Slide item 5 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>IOS Developer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-primary capitalize mt15">freelancer</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$30.000</h5>
-                                </div>
-                                <!-- End of Slide item 5 -->
-                                <!-- Start of Slide item 6 -->
-                                <div class="item">
-                                    <a href="job-page.html">
-                                        <h5>Web Developer</h5>
-                                    </a>
-                                    <a href="#" class="btn btn-info mt15 capitalize">intership</a>
-                                    <h5 class="pt40 pb10"><i class="fa fa-money"></i> Salary:</h5>
-                                    <h5>$45.000-$50.000</h5>
-                                </div>
-                                <!-- End of Slide item 6 -->
                             </div>
                             <!-- End of Owl Slider -->
                         </div>
