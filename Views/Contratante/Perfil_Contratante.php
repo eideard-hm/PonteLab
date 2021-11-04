@@ -54,30 +54,17 @@
                                             <h4><?= $_SESSION['user-data']['nombreUsuario'] ?></h4>
                                         </div>
                                     </div>
-                                    <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
+                                    <!-- <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
                                         <div class="social-links">
                                             <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
-                                                <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/08.png" class="img-fluid rounded" alt="facebook"></a>
-                                                </li>
+
                                                 <li class="text-center pr-3">
                                                     <a href="#"><img src="<?= URL ?>Assets/img/icon/09.png" class="img-fluid rounded" alt="Twitter"></a>
                                                 </li>
-                                                <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/10.png" class="img-fluid rounded" alt="Instagram"></a>
-                                                </li>
-                                                <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/11.png" class="img-fluid rounded" alt="Google plus"></a>
-                                                </li>
-                                                <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/12.png" class="img-fluid rounded" alt="You tube"></a>
-                                                </li>
-                                                <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/13.png" class="img-fluid rounded" alt="linkedin"></a>
-                                                </li>
+                                               
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -130,9 +117,9 @@
                                                                         <label for="txtPerfil">Descripción *</label>
                                                                         <textarea name="especificaciones" id="especificaciones" rows="1" placeholder="Descripción..."></textarea>
                                                                     </div>
-                                                                    
+
                                                                     <input type="hidden" name="idUsuario" id="idUsuario" value="<?= $_SESSION['id'] ?>">
-                                                                    
+
                                                                     <div class="contenedor-grupo btn-enviar mt15">
                                                                         <button class="btn btn-primary mr-2" id="btn_submit">
                                                                             <strong class="btn-save">Guardar</strong><i class="far fa-save icon-btn"></i>
@@ -147,7 +134,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                             <!-- Imprimir datos de Yesenia en el siguiente formOuO -->
                             <!-- Acerca del perfil de la persona  -->
@@ -158,240 +145,97 @@
                                             <div class="col-md-3">
                                                 <ul class="nav nav-pills basic-info-items list-inline d-block p-0 m-0">
                                                     <li>
-                                                        <a class="nav-link active" data-toggle="pill" href="#basicinfo">Contact and Basic Info</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#family">Family and Relationship</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#work">Work and Education</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#lived">Places You've Lived</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#details">Details About You</a>
-                                                    </li>
+                                                        <a class="nav-link active" data-toggle="pill" href="#basicinfo">Información del Usuario Contratante</a>
+                                                    </li>                                                    
                                                 </ul>
                                             </div>
                                             <div class="col-md-9 pl-4">
                                                 <div class="tab-content">
+                                                <div class="tab-pane fade active show" id="basicinfo" role="tabpanel">
+                                                        <h4>Usuario</h4>
+                                                        <hr>
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <h6>Tipo de Usuario</h6>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['nombreRol'] ?></p>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <h6> Estado</h6>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <?php if ($_SESSION['user-data']['estadoUsuario'] == 0) { ?>
+                                                                    <p>Activo</p>
+                                                                <?php } else { ?>
+                                                                    <p>Inactivo</p>
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <div class="tab-pane fade active show" id="basicinfo" role="tabpanel">
-                                                        <h4>Contact Information</h4>
+                                                        <h4>Información Basica </h4>
                                                         <hr>
                                                         <div class="row">
+
                                                             <div class="col-3">
-                                                                <h6>Email</h6>
+                                                                <h6>Nombre</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">Bnijohn@gmail.com</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['nombreUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>Mobile</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">(001) 4544 565 456</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6>Address</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">United States of America</p>
-                                                            </div>
+                                                            <h6>Email</h6>
                                                         </div>
-                                                        <h4 class="mt-3">Websites and Social Links</h4>
-                                                        <hr>
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <h6>Website</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">www.bootstrap.com</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6>Social Link</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">www.bootstrap.com</p>
-                                                            </div>
+                                                        <div class="col-9">
+                                                            <p class="mb-0"><?= $_SESSION['user-data']['correoUsuario'] ?></p>
                                                         </div>
-                                                        <h4 class="mt-3">Basic Information</h4>
-                                                        <hr>
-                                                        <div class="row">
                                                             <div class="col-3">
-                                                                <h6>Birth Date</h6>
+                                                                <h6> Identificación</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">24 January</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['numDocUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>Birth Year</h6>
+                                                                <h6> Tipo de Identificación</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">1994</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6>Gender</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">Female</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6>interested in</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">Designing</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6>language</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">English, French</p>
-                                                            </div>
+                                                                <p class="mb-0"><?php print_r($_SESSION['user-data']['nombreTipoDocumento']) ?></p>
+                                                            </div>                                                          
                                                         </div>
                                                     </div>
-                                                    <div class="tab-pane fade" id="family" role="tabpanel">
-                                                        <h4 class="mb-3">Relationship</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Your Relationship Status</h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mt-3 mb-3">Family Members</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Family Members</h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Paul Molive</h6>
-                                                                    <p class="mb-0">Brothe</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Anna Mull</h6>
-                                                                    <p class="mb-0">Sister</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Paige Turner</h6>
-                                                                    <p class="mb-0">Cousin</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="work" role="tabpanel">
-                                                        <h4 class="mb-3">Work</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Work Place</h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Themeforest</h6>
-                                                                    <p class="mb-0">Web Designer</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>iqonicdesign</h6>
-                                                                    <p class="mb-0">Web Developer</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>W3school</h6>
-                                                                    <p class="mb-0">Designer</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mb-3">Professional Skills</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Professional Skills</h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mt-3 mb-3">College</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add College</h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Lorem ipsum</h6>
-                                                                    <p class="mb-0">USA</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="lived" role="tabpanel">
-                                                        <h4 class="mb-3">Current City and Hometown</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Georgia</h6>
-                                                                    <p class="mb-0">Georgia State</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Atlanta</h6>
-                                                                    <p class="mb-0">Atlanta City</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mt-3 mb-3">Other Places Lived</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Place</h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="details" role="tabpanel">
-                                                        <h4 class="mb-3">About You</h4>
-                                                        <p>Hi, I’m Bni, I’m 26 and I work as a Web Designer for the iqonicdesign.</p>
-                                                        <h4 class="mt-3 mb-3">Other Name</h4>
-                                                        <p>Bini Rock</p>
-                                                        <h4 class="mt-3 mb-3">Favorite Quotes</h4>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                                                    <h4 class="mt-3">Dirección</h4>
+                                                    <hr>
+                                                    <div class="row">
+                                                    <div class="col-3">
+                                                                <h6> Ubicación</h6>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['direccionUsuario'] ?></p>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                <h6> Barrio</h6>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['nombreBarrio'] ?></p>
+                                                            </div>
+                                                        </div>
+                                                    <h4 class="mt-3">Números de Contacto </h4>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <h6>Número Fijó</h6>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <p class="mb-0"><?= $_SESSION['user-data']['numTelFijo'] ?></p>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6>Número Movíl</h6>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <p class="mb-0"><?= $_SESSION['user-data']['numTelUsuario'] ?></p>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -405,14 +249,14 @@
             </div>
         </div>
     </div>
+    </div>
     <!-- Wrapper END -->
     <!-- Footer -->
     <?php
     require_once('./Views/Components/Footer.php');
     ?>
 
-    <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js"
-            referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/x2oub1u70xqw4t9bxdur2k98oz7jsin9tx0vewhh6zf7pc68/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Scripts  -->
     <?php
     require_once('./Views/Components/ScriptsJs.php');

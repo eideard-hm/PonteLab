@@ -16,16 +16,14 @@ if (document.querySelector('#edit')) {
         phone.removeAttribute('disabled');
         const Barrio = document.querySelector('#Barrio');
         Barrio.removeAttribute('disabled');
-        const Dirección = document.querySelector('#Dirección');
+        const Dirección = document.querySelector('#Direccion');
         Dirección.removeAttribute('disabled');
         btnGuardar.style.display = 'block';
         btnCancelar.style.display = 'block';
         document.querySelector('#edit').setAttribute('disabled', 'disabled',);
-        btnEdit.style.display ='none';
-        btnInhabilitar.style.display ='none';
-        
+        btnEdit.style.display = 'none';
+        // btnInhabilitar.style.display ='none';
     })
-    
 }
 
 btnCancelar.style.display = 'none';
@@ -37,7 +35,7 @@ const editPerfil = async () => {
     //enviar los datos mediante una petición fetch
     let formData = new FormData(formUser);
     //formData.forEach(item => console.log(item))
-    const url = `${base_url}Perfil_Contratante/updatePerfilContratante`;
+    const url = `${base_url}Contratante/updatePerfilContratante`;
     try {
         const res = await fetch(url, {
             method: 'POST',
@@ -52,34 +50,34 @@ const editPerfil = async () => {
                 type: "success",
                 timer: 9000
             }).then(function () {
-                window.location.href = `${base_url}Perfil_Contratante`;
+                window.location.href = `${base_url}Contratante`;
             });
         }
         else {
             swal("Error", msg, "error");//mostrar la alerta
         }
-    }
-    catch (error) {
-        swal("Error", error, "error");
+    } catch (error) {
+        console.log(error);
     }
 }
 //campos vacio
+
 document.addEventListener('DOMContentLoaded', () => {
     formUser.onsubmit = function (e) {
         e.preventDefault();
-        var nombre = document.querySelector('#txtNombre').value;
-        var tipoDoc = document.querySelector('#tipoDoc').value;
-        var numDoc = document.querySelector('#numDoc').value;
-        var mobile = document.querySelector('#mobile').value;
-        var phone = document.querySelector('#phone').value;
-        var Barrio = document.querySelector('#Barrio').value;
-        var Dirección = document.querySelector('#Dirección').value;
+        const nombre = document.querySelector('#txtNombre').value;
+        const tipoDoc = document.querySelector('#tipoDoc').value;
+        const numDoc = document.querySelector('#numDoc').value;
+        const mobile = document.querySelector('#mobile').value;
+        const phone = document.querySelector('#phone').value;
+        const Barrio = document.querySelector('#Barrio').value;
+        const Dirección = document.querySelector('#Direccion').value;
         if (nombre == '' || tipoDoc == '' || numDoc == '' || mobile == '' || phone == '' || Barrio == '' || Dirección == '') {
             swal("Atención", "Todos los campos son obligatorios", "error");
             return false;
         } else if (nombre.length > 30) {
             swal("Atención", "El nombre es muy largo", "error");
-        } else if (numDoc.length >10) {
+        } else if (numDoc.length > 10) {
             swal("Atención", "El número de documento no debe ser mayor a 10 caracteres", "error");
         } else if (isNaN(mobile)) {
             swal("Atención", "El número de Documento no contener letras ", "error");
@@ -98,43 +96,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-const btnInhabilitar = document.querySelector('#inhabilitar');
-
-
-if (btnInhabilitar) {
-    btnInhabilitar.addEventListener('click', e => {
-        e.preventDefault();
-        inactivarCuenta();
-    })
-}
-
-const inactivarCuenta = async () => {
-    const formData = new FormData(formUser);
-    formData.forEach(item => console.log(item));
-    // console.log(formData.get('estadoUsuarios'));
-    const url = `${base_url}Perfil_Contratante/inactivarCuenta`;
-    try {
-        const req = await fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        swal({
-            title: "Inactivar cuenta",
-            text: "!Usuario Inhabilitado Correctamente!",
-            type: "success",
-            timer: 9000
-        }).then(function () {
-            window.location.href = `${base_url}logout`;
-        });
-        const data = await req.json();
-        console.log(data);
-    } catch (error) {
-        console.log(error);
-    }
-
-}
-function Cancelar() {
-        alert("Actualizacion cancelada correctamente")
-    window.location.href = `${base_url}Perfil_Contratante`;
-}
+// const btnInhabilitar = document.querySelector('#inhabilitar');
+// if (btnInhabilitar) {
+//     btnInhabilitar.addEventListener('click', e => {
+//         e.preventDefault();
+//         inactivarCuenta();
+//     })
+// }
+// const inactivarCuenta = async () => {
+//     const formData = new FormData(formUser);
+//     formData.forEach(item => console.log(item));
+//     // console.log(formData.get('estadoUsuarios'));
+//     const url = `${base_url}Perfil_Contratante/inactivarCuenta`;
+//     try {
+//         const req = await fetch(url, {
+//             method: 'POST',
+//             body: formData
+//         })
+//         swal({
+//             title: "Inactivar cuenta",
+//             text: "!Usuario Inhabilitado Correctamente!",
+//             type: "success",
+//             timer: 9000
+//         }).then(function () {
+//             window.location.href = `${base_url}logout`;
+//         });
+//         const data = await req.json();
+//         console.log(data);
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+// function Cancelar() {
+//         alert("Actualizacion cancelada correctamente")
+//     window.location.href = `${base_url}Perfil_Contratante`;
+// }
 

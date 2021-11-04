@@ -70,58 +70,63 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="home">
                                     <hr>
-                                    <div class="form" id="registrationForm">
+                                    <!-- <div class="form" id="registrationForm">
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="first_name">
                                                     <h4>Nombre</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="txtNombre" id="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
+                                                <input type="text" class="form-control" name="txtNombre" id="txtNombre" 
+                                                value="<?= $_SESSION['user-data']['nombreUsuario'] ?>" placeholder="Coca-Cola" title="enter your first name if any." disabled style="color:#000000">
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="last_name">
-                                                    <h4> Numero de Identificación</h4>
+                                                    <h4> Número de Identificación</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
+                                                <input type="text" class="form-control" name="numDoc" id="numDoc"
+                                                 value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" placeholder="NIT:14,668,569-3" title="enter your last name if any." disabled>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-xs-6">
+                                        </div> -->
+                                        <!-- <div class="form-group"> -->
+                                            <!-- <div class="col-xs-6">
                                                 <label for="last_name">
                                                     <h4>Identificación</h4>
                                                 </label>
                                                 <select name="tipoDoc" id="tipoDoc" class="form-control" disabled>
-                                                    <option selected disabled value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                    <option selected disabled value="
+                                                    <?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
                                                     <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                                                         <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                     <?php endforeach ?>
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
+                                            </div> -->
+                                        <!-- </div> -->
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="email">
                                                     <h4>Email</h4>
                                                 </label>
-                                                <input type="email" class="form-control" name="email" id="email" value="<?= $_SESSION['user-data']['correoUsuario'] ?>" placeholder="cocacola@gmail.com" title="enter your email." disabled>
+                                                <input type="email" class="form-control" name="email" id="email"
+                                                 value="<?= $_SESSION['user-data']['correoUsuario'] ?>" placeholder="cocacola@gmail.com" title="enter your email." disabled>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="email">
                                                     <h4>Contraseña</h4>
                                                 </label>
                                                 <input type="password" class="form-control" id="password" placeholder="********" title="enter a location" disabled>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="phone">
                                                     <h4>Número de Contacto Fijó</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
+                                                <input type="text" class="form-control" name="phone" id="phone"
+                                                 value="<?= $_SESSION['user-data']['numTelFijo'] ?>" placeholder="303 3333333" title="enter your phone number if any." disabled>
                                             </div>
                                         </div>
                                         <div class="btn-toolbar">
@@ -146,26 +151,27 @@
                                                 <label for="mobile">
                                                     <h4>Número de Contacto Móvil</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
+                                                <input type="text" class="form-control" name="mobile" id="mobile" 
+                                                value="<?= $_SESSION['user-data']['numTelUsuario'] ?>" placeholder="310 3281558" title="enter your mobile number if any." disabled>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                    </div>
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="city">
                                                     <h4>Ciudad</h4>
                                                 </label>
                                                 <input type="text" class="form-control" name="city" id="city" placeholder="Bogotá D.C" title="" disabled>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="rol">
                                                     <h4>Tipo de Usuario</h4>
                                                 </label>
                                                 <input type="text" class="form-control" name="rol" id="rol" value="<?= $_SESSION['user-data']['nombreRol'] ?>" placeholder="Contratante" title="enter your phone number if any." disabled>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="rol">
                                                     <h4>Estado</h4>
@@ -176,8 +182,8 @@
                                                 </select>
 
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> -->
+                                        <!-- <div class="form-group">
                                             <div class="col-xs-6">
                                                 <label for="Barrio">
                                                     <h4>Barrio</h4>
@@ -195,10 +201,11 @@
                                                 <label for="mobile">
                                                     <h4>Dirección</h4>
                                                 </label>
-                                                <input type="text" class="form-control" name="Dirección" id="Dirección" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
+                                                <input type="text" class="form-control" name="Dirección" id="Dirección"
+                                                 value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" placeholder="Cl. 25d ##9550" title="" disabled>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="btn-toolbar">
                                         <div class="col-xs-12">
                                             <br>

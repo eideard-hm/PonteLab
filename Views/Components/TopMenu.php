@@ -54,7 +54,7 @@
                     </li>
                 </ul>
                 <?php
-                require_once('./Views/Components/ListPerfil.php');
+                require_once('./Views/Components/ListPerfilC.php');
                 ?>
             </div>
         </nav>
