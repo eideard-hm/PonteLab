@@ -40,8 +40,8 @@ class ContratanteModel extends GestionCRUD
         string $descrpcion,
         string $direccion
     ) {
-        $this->descripcionContratante = $especificaciones;
-        $this->idUsuarioFK = $idusuario;
+        $this->descripcionContratante = $descrpcion;
+        $this->idUsuarioFK = $direccion;
 
         //verificar si existe el usuario
         $sql = "SELECT * FROM USUARIO WHERE (correoUsuario = '{$this->correoUsuario}' 
@@ -135,5 +135,37 @@ class ContratanteModel extends GestionCRUD
         } else {
             return 'exists';
         }
+    }
+
+    //Método para extraer un unico usuario de la base de datos por el id
+    public function selectOneUser(int $idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        //consulta para extraerlo
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
+        ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
+        ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
+        ON b.idBarrio = u.idBarrioFK
+        WHERE idUsuario = {$this->idUsuario}";
+
+        return $this->select($sql);
+    }
+
+    public function inactivarCuenta(int $idUsuario, int $estadoUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+        $this->estadoUsuario = $estadoUsuario;
+
+        $sql = "UPDATE USUARIO 
+                SET estadoUsuario = ?
+                WHERE idUsuario = ?";
+        $arrData = array(
+            $this->estadoUsuario,
+            $this->idUsuario
+        );
+        return $this->edit($sql, $arrData);
     }
 }

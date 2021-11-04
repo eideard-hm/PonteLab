@@ -90,7 +90,7 @@
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="uname">Tipo de Identificación:</label>
-                                                        <select name="tipoDoc" id="tipoDoc" class="form-control"  value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>"disabled>
+                                                        <select name="tipoDoc" id="tipoDoc" class="form-control" value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>" disabled>
                                                             <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                                                                 <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                             <?php endforeach ?>
@@ -118,9 +118,10 @@
                                                         <input type="text" class="form-control" name="Direccion" id="Direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" disabled>
                                                     </div>
                                                 </div>
-                                                <button type="submit" id="edit" class="btn btn-primary mr-2">Editar</button>
+                                                <button type="button" id="edit" class="btn btn-primary mr-2">Editar</button>
                                                 <button type="submit" id="guardar" class="btn btn-primary mr-2">Guardar</button>
                                                 <button type="reset" id="cancelar" class="btn iq-bg-danger">Cancelar</button>
+                                                <button type="reset" id="inhabilitar" class="btn iq-bg-danger">Inhabilitar</button>
                                             </form>
                                         </div>
                                     </div>

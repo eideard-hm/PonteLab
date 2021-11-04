@@ -103,7 +103,7 @@ class Contratante extends Controllers
             if (
                 empty($_POST['txtNombre']) || empty($_POST['tipoDoc']) || empty($_POST['numDoc'])
                 || empty($_POST['mobile']) || empty($_POST['phone']) || empty($_POST['Barrio'])
-                || empty($_POST['Dirección'])
+                || empty($_POST['Direccion'])
             ) {
                 $arrResponse = ['statusUser' => false, 'msg' => 'Atención, Todos los campos son obligatorios.'];
             } else {
@@ -114,7 +114,7 @@ class Contratante extends Controllers
                 $numMobil = limpiarCadena($_POST['mobile']);
                 $numPhone = limpiarCadena($_POST['phone']);
                 $Barrio = intval($_POST['Barrio']);
-                $direccion = limpiarCadena($_POST['Dirección']);
+                $direccion = limpiarCadena($_POST['Direccion']);
 
                 $request = $this->model->updateUser(
                     $idUsuario,
@@ -126,8 +126,6 @@ class Contratante extends Controllers
                     $Barrio,
                     $direccion
                 );
-                var_dump($request);
-                exit();
                 if ($request > 0) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'value' => $request];
                     $arrData = $this->model->selectOneUser($idUsuario);
@@ -139,8 +137,25 @@ class Contratante extends Controllers
                 } else {
                     $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente', 'value' => $request];
                 }
-                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    public function inactivarCuenta()
+    {
+        if ($_POST) {
+            $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
+            $estadoUsuario = 1;
+            $request = $this->model->inactivarCuenta($idUsuario, $estadoUsuario);
+            
+            if ($request > 0) {
+                $arrResponse = ['statusUser' => true, 'msg' => 'Usuario inactivado correctamente.'];
+            } else {
+                $arrResponse = ['statusUser' => false, 'msg' => 'Ha ocurrido un error en el servidor'];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();
     }

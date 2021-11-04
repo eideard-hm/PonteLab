@@ -42,6 +42,8 @@ const editPerfil = async () => {
             body: formData
         })
         const { statusUser, msg } = await res.json();
+        console.log(statusUser);
+        console.log(msg);
         if (statusUser) {
             // swal("Contratante", msg, "success");
             swal({
@@ -50,7 +52,7 @@ const editPerfil = async () => {
                 type: "success",
                 timer: 9000
             }).then(function () {
-                window.location.href = `${base_url}Contratante`;
+                window.location.href = `${base_url}Contratante/Edit_Perfil_Contratante`;
             });
         }
         else {
@@ -96,39 +98,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
-// const btnInhabilitar = document.querySelector('#inhabilitar');
-// if (btnInhabilitar) {
-//     btnInhabilitar.addEventListener('click', e => {
-//         e.preventDefault();
-//         inactivarCuenta();
-//     })
-// }
-// const inactivarCuenta = async () => {
-//     const formData = new FormData(formUser);
-//     formData.forEach(item => console.log(item));
-//     // console.log(formData.get('estadoUsuarios'));
-//     const url = `${base_url}Perfil_Contratante/inactivarCuenta`;
-//     try {
-//         const req = await fetch(url, {
-//             method: 'POST',
-//             body: formData
-//         })
-//         swal({
-//             title: "Inactivar cuenta",
-//             text: "!Usuario Inhabilitado Correctamente!",
-//             type: "success",
-//             timer: 9000
-//         }).then(function () {
-//             window.location.href = `${base_url}logout`;
-//         });
-//         const data = await req.json();
-//         console.log(data);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-// function Cancelar() {
-//         alert("Actualizacion cancelada correctamente")
-//     window.location.href = `${base_url}Perfil_Contratante`;
-// }
+const btnInhabilitar = document.querySelector('#inhabilitar');
+if (btnInhabilitar) {
+    btnInhabilitar.addEventListener('click', e => {
+        e.preventDefault();
+        inactivarCuenta();
+    })
+}
+const inactivarCuenta = async () => {
+    const formData = new FormData(formUser);
+    formData.forEach(item => console.log(item));
+    // console.log(formData.get('estadoUsuarios'));
+    const url = `${base_url}Contratante/inactivarCuenta`;
+    try {
+        const req = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        const {statusUser, msg} = await req.json();
+        if(statusUser){
+            swal({
+                title: "Inactivar cuenta",
+                text: "!Usuario Inhabilitado Correctamente!",
+                type: "success",
+                timer: 9000
+            }).then(function () {
+                window.location.href = `${base_url}logout`;
+            });
+        }else{
+            swal("Error", msg, "error");//mostrar la alerta
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+function Cancelar() {
+        alert("Actualizacion cancelada correctamente")
+    window.location.href = `${base_url}Perfil_Contratante`;
+}
 

@@ -20,14 +20,14 @@
         <div class="form">
             <form id="formRecetPass" name="formRecetPass"class="login-form" action="">
                 <di>
-                <img style="width: 40px;height: 40px;position: absolute;top:5px; left: 5px;" src="<?= URL; ?>Assets/img/Logo_ponslabor.ico" class="job">
+                <img class="pontelab" src="<?= URL; ?>Assets/img/Logo_ponslabor.ico">
                 </di>
                 <br>
                 <div>
-                    <p align="left" style="color: #999999;">Ingrese su correo electrónico, le enviaremos un link para su restablecimiento</p>
+                    <p class="parrafo">Ingrese su correo electrónico, le enviaremos un link para su restablecimiento</p>
                 </div>
                 <input id="txtEmailReset" name="txtEmailReset" type="email" placeholder="Email" />
-                <button type="submit">Enviar</button>
+                <button class="btn" type="submit">Enviar</button>
                 <br>
                 <br>
                 <a style="color:#999999; position: relative; right: 35px; " id="Login" href="<?= URL ?>Login" role="button"></i> Regresar al Inicio de Sesión</a>
