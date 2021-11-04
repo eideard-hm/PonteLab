@@ -30,7 +30,7 @@
                 <button class="btn" type="submit">Enviar</button>
                 <br>
                 <br>
-                <a style="color:#999999; position: relative; right: 35px; " id="Login" href="<?= URL ?>Login" role="button"></i> Regresar al Inicio de Sesión</a>
+                <a  id="Login" href="<?= URL ?>Login" role="button"></i> Regresar al Inicio de Sesión</a>
             </form>
         </div>
     </div>
