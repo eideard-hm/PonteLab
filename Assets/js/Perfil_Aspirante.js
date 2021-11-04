@@ -1,6 +1,74 @@
 const btnGuardar = document.getElementById('guardar');
 const btnCancelar = document.getElementById('cancelar');
 const btnInhabilitar = document.getElementById('inhabilitar');
+
+let formUser = document.getElementById('form-aspirante');
+
+const editPerfil = async () => {
+    //enviar los datos mediante una petición fetch
+    let formData = new FormData(formUser);
+    //formData.forEach(item => console.log(item))
+    const url = `${base_url}Aspirante/updatePerfilAspirante`;
+
+
+    try {
+        const res = await fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        const { statusUser, msg } = await res.json();
+
+        if (statusUser) {
+         //   swal("Aspirante", msg, "success" );
+
+
+            swal({
+                title: "Aspirante",
+                text: "exito",
+                type: "success",
+                timer: 9000
+            }).then(function () {
+                window.location.href = `${base_url}Perfil_Aspirante`;
+            });
+
+        }
+        else {
+            swal("Error", "falla", "error");//mostrar la alerta
+        }
+    }
+    catch (error) {
+        swal("Error", error, "error");
+    }
+}
+
+
+const inhabilitarAs = async () => {
+    const url = `${base_url}Aspirante/inhabilitarA`;
+    
+
+
+    try {
+        const req = await fetch(url, {
+            method: 'POST'
+            
+        })
+        swal({
+            title: "Completado!",
+            text: "Usuario inhabilitado correctamente.",
+            type: "success",
+            timer: 9000
+        }).then(function () {
+            window.location.href = `${base_url}logout`;
+        });
+        const data = await req.json();
+        console.log(error);
+    } catch (error) {
+        console.log(error);
+    }
+
+
+};
+
 if (document.querySelector('#editar')) {
     document.querySelector('#editar').addEventListener('click', (e) => {
         e.preventDefault();
@@ -27,43 +95,7 @@ if (document.querySelector('#editar')) {
 
 btnCancelar.style.display = 'none';
 btnGuardar.style.display = 'none';
-const formUser = document.querySelector('#form-aspirante');
 
-const editPerfil = async () => {
-    //enviar los datos mediante una petición fetch
-    let formData = new FormData(formUser);
-    //formData.forEach(item => console.log(item))
-    const url = `${base_url}Perfil_Aspirante/updatePerfilAspirante`;
-
-    try {
-        const res = await fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        const { statusUser, msg } = await res.json();
-
-        if (statusUser) {
-         //   swal("Aspirante", msg, "success" );
-
-
-            swal({
-                title: "Aspirante",
-                text: msg,
-                type: "success",
-                timer: 9000
-            }).then(function () {
-                window.location.href = `${base_url}Perfil_Aspirante`;
-            });
-
-        }
-        else {
-            swal("Error", msg, "error");//mostrar la alerta
-        }
-    }
-    catch (error) {
-        swal("Error", error, "error");
-    }
-}
 
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -86,18 +118,22 @@ const editPerfil = async () => {
         }
     })
 
-
-if (document.querySelector('#inhabilitar')) {
+   
     document.querySelector('#inhabilitar').addEventListener('click', (e) => {
         e.preventDefault();
-        inhabilitarA();
+    inhabilitarAs();
     })
-
     
-   
 
-const inhabilitarA = async () => {
-    const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
+
+function Cancelar() {
+    alert ("Actualizacion cancelada correctamente")
+    //swal("Correcto!", "Actualizacion cancelada correctamente", "success");
+    window.location.href =  `${base_url}Perfil_Aspirante`;
+}
+
+const actualizarImagen = async () => {
+    const url = `${base_url}Edit_Profile_Aspirante/actualizarImagen`;
     let formData = new FormData(formUser);
     //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
     /* swal({
@@ -115,7 +151,7 @@ const inhabilitarA = async () => {
         })
         swal({
             title: "Completado!",
-            text: "Usuario inhabilitado correctamente.",
+            text: "Imagen Actualizada correctamente.",
             type: "success",
             timer: 9000
         }).then(function () {
@@ -147,18 +183,12 @@ const inhabilitarA = async () => {
 
 }
 
-if (btnInhabilitar) {
-    btnInhabilitar.addEventListener('click', e => {
-        e.preventDefault();
-        inhabilitarA();
-    })
-    
-}
 
-function Cancelar() {
-    alert ("Actualizacion cancelada correctamente")
-    //swal("Correcto!", "Actualizacion cancelada correctamente", "success");
-    window.location.href =  `${base_url}Perfil_Aspirante`;
-}
-}
-
+$("i").click(function () {
+    $("input[type='file']").trigger('click');
+  });
+  
+  $('input[type="file"]').on('change', function() {
+    var val = $(this).val();
+    $(this).siblings('span').text(val);
+  })

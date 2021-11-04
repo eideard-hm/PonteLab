@@ -1,20 +1,34 @@
 <?php
 
+/**
+ * Controlador de Aspirantes, aqui se cargan las vistas y se ejecutan las acciones, 
+ * tambien se encarga de de recibir las peticiones de los formularios y de enviar 
+ * los datos a la base de datos.
+ */
 class Aspirante extends Controllers
 {
+    /**
+     * Contructor de la clase, aquí se inicializan el contructor de la clase
+     * padre, además se inicializa la libreria de sesiones y se valida si se 
+     * inició o no sesión, de lo contrario se redirecciona al login de la aplicación.
+     */
     public function __construct()
     {
         parent::__construct();
         session_start();
-        // //isset : verifica que la varible de sesion si exista
+        //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
             header('Location:' . URL . 'Login');
         }
     }
 
-    //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
+    /*======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================*/
+
     /**
-     * Método que sirve para cargar la vista del perfil del aspirante
+     * Método que sirve para cargar la vista del perfil del aspirante. Además que enviá información a la vista
+     * en formato de arreglos para que la vista los procese y los muestre.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm 
      */
     public function Perfil_Aspirante()
     {
@@ -33,7 +47,9 @@ class Aspirante extends Controllers
     }
 
     /**
-     * Método para cargar la vista  de editar perfil del aspirante
+     * Método para cargar la vista  de editar perfil del aspirante. Además que enviá información a la vista.
+     * @return view Perfil_Aspirante
+     * @author Edier Heraldo Hernández Molano @eideard-hm
      */
     public function Edit_Profile_Aspirante()
     {
@@ -43,8 +59,7 @@ class Aspirante extends Controllers
 
     /**
      * Método que se encarga de mostrar la vista de hoja de vida y además pasarle
-     * alguna información a dicha vista.
-     * 
+     * alguna información a dicha vista y hacer peticiones a los modelos.
      * @return View Retorna una vista y además una data con información que se le va 
      * a pasar a dicha vista.
      * @author Edier Heraldo Hernandez Molano
@@ -73,18 +88,27 @@ class Aspirante extends Controllers
     public function inhabilitarA()
     {
         $idUsuario = intval($_SESSION['user-data']['idUsuario']);
-        $estadoUsuario = intval($_POST['estado']);
+        $estadoUsuario = intval($_SESSION['user-data']['estadoUsuario']);
         $request = $this->model->updateState(
             $idUsuario,
             $estadoUsuario
         );
     }
 
+    public function actualizarImagen()
+    {
+        $idUsuario = intval($_SESSION['user-data']['idUsuario']);
+        $imagenUsuario = limpiarCadena($_POST['imagenUsuario']);
+        $request = $this->model->updateImg(
+            $idUsuario,
+            $imagenUsuario
+        );
+    }
+
     /**
-     * Método que sirve para actualizar el perfil del aspirante
-     * 
+     * Método que sirve para actualizar la información del perfil del aspirante.
      * @return void
-     * @author Edier Heraldo Hernandez Molano
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
      */
     public function updatePerfilAspirante()
     {
@@ -143,7 +167,12 @@ class Aspirante extends Controllers
         }*/
     }
 
-    //método para traer toda la lista de puestos de interés
+    /**
+     * Método para traer toda la lista de puestos de interés asociados al aspirante. Estos seran mostrados en la vista
+     * cuando cargue la página de perfil del aspirante, a través de JavaScript.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getAllPuestoInteres()
     {
         $request = $this->model->getAllPuestoInteres();
@@ -156,7 +185,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de puestos de interés
+    /**
+     * Método para traer toda la lista de puestos de interés asociados al aspirante. Estos seran mostrados en la vista
+     * cuando cargue la vista de perfil del aspirante, a través de JavaScript.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getPuestoInteresAspirante()
     {
         $request = $this->model->getOnePuestoInteres(intval($_SESSION['data-aspirante']['idAspirante']));
@@ -173,6 +207,8 @@ class Aspirante extends Controllers
      * Función que sirve para guardar y modificar los datos del un aspirante. Si el idAspirante proveniente
      * de la vista es cero, entonces quiere decir que queremos insertar el aspirante, de lo contrario
      * significa que se va hacer una actualización.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
      */
     public function setAspirante()
     {
@@ -229,6 +265,11 @@ class Aspirante extends Controllers
         die();
     }
 
+    /**
+     * Método para obtener los datos de un aspirante. Para ello se recoge el idAspirante que es pasado por la url.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getOneDataAspirante()
     {
         $idAspirante = explode('/', $_GET['url']);
@@ -245,7 +286,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //Método para insertar un puesto de interés
+    /**
+     * Método para insertar un puesto de interés proveniente desde el input. Dichas peticiones son realizadas desde 
+     * JavaScript a través de la API de Fetch.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function savePuestoInteres()
     {
         if ($_POST) {
@@ -278,6 +324,12 @@ class Aspirante extends Controllers
         die();
     }
 
+    /**
+     * Método para insertar un puesto de interés proveniente desde el select. Dichas peticiones son realizadas desde 
+     * JavaScript a través de la API de Fetch.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function insertPuestoInteresAspirante()
     {
         if ($_POST) {
@@ -308,7 +360,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método que retorna el arreglo con los perfiles
+    /**
+     * Método que retorna el arreglo con los perfiles de los aspirantes, dicho valor de busqueda es pasado por 
+     * la URL.
+     * @return void
+     * @author Santiago Andres Becerra Espitia @S4NT1A6O
+     */
     public function getArregloPerfiles()
     {
         $arrUrl = explode('/', implode($_GET));
@@ -319,7 +376,11 @@ class Aspirante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 
-    // método para traer todas los perfiles
+    /** 
+     * Método para traer todas los perfiles de los aspirantes, para posteriormente renderizarlos en la vista.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function getAllPerfiles()
     {
         $request = $this->model->selectAllPerfiles();
@@ -331,6 +392,12 @@ class Aspirante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * Método para obtener todos los idiomas registrados en la base de datos. Luego son enviados a la vista
+     * donde son renderizados y el usuario los va a poder seleccionar y asociar.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function getAllIdiomas()
     {
         $request = $this->model->getAllIdiomas();
@@ -343,7 +410,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de idiomas seleccionados por el usuario
+    /**
+     * Método para traer toda la lista de idiomas seleccionados por el usuario que se encuentra logueado
+     * actualmente.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function getIdiomasSelected()
     {
         $request = $this->model->getIdiomasSelected(intval($_SESSION['data-aspirante']['idAspirante']));
@@ -356,7 +428,13 @@ class Aspirante extends Controllers
         die();
     }
 
-    //Método para insertar un idioma
+    /**
+     * Método para insertar o editar un idioma proveniente desde el input. Si el idIdioma proveniente
+     * de la vista es cero, entonces quiere decir que queremos insertar el idioma, de lo contrario
+     * significa que se va hacer una actualización.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function setIdioma()
     {
         if ($_POST) {
@@ -406,6 +484,13 @@ class Aspirante extends Controllers
         die();
     }
 
+    /**
+     * Método para insertar o editar un idioma proveniente desde el select. Si el idIdioma proveniente
+     * de la vista es cero, entonces quiere decir que queremos insertar el idioma, de lo contrario
+     * significa que se va hacer una actualización.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function setIdiomaAspirante()
     {
         if ($_POST) {
@@ -447,7 +532,13 @@ class Aspirante extends Controllers
         die();
     }
 
-    //Método para insertar una habilidad
+    /**
+     * Método para insertar o editar una habilidad proveniente desde el input. Si el idHabilidad proveniente
+     * de la vista es cero, entonces quiere decir que queremos insertar el habilidad, de lo contrario
+     * significa que se va hacer una actualización.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function setHabilidad()
     {
         if ($_POST) {
@@ -501,6 +592,13 @@ class Aspirante extends Controllers
         die();
     }
 
+    /**
+     * Método para insertar o editar una habilidad proveniente desde el select. Si el idHabilidad proveniente
+     * de la vista es cero, entonces quiere decir que queremos insertar el habilidad, de lo contrario
+     * significa que se va hacer una actualización.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function setHabilidadAspirante()
     {
         if ($_POST) {
@@ -542,6 +640,12 @@ class Aspirante extends Controllers
         die();
     }
 
+    /**
+     * Método para obtener todas las habilidades registradas en la base de datos. Se utiliza para mostrarlas 
+     * en la vista y para el select de habilidades.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getAllHabilidades()
     {
         $request = $this->model->getAllHabilidades();
@@ -554,7 +658,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de idiomas seleccionados por el usuario
+    /**
+     * Método para traer toda la lista de idiomas seleccionados por el usuario, para mostrarselo
+     * al usuario cuando iniciar sesión.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getHabilidadesSelected()
     {
         $request = $this->model->getHabilidadesSelected(intval($_SESSION['data-aspirante']['idAspirante']));
@@ -568,7 +677,9 @@ class Aspirante extends Controllers
     }
 
     /**
-     * Método que sirve para cargar la información del aspirante cada vez que ingresa (inica sesión)
+     * Método que sirve para cargar la información del aspirante cada vez que ingresa (inicia sesión).
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
      */
     public function getDataAspirante()
     {
@@ -586,6 +697,11 @@ class Aspirante extends Controllers
     /*============================================================================
                             Estudios
     ==============================================================================*/
+    /**
+     * Método para insertar un nuevo estudio al aspirante. 
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function insertEstudios()
     {
         if ($_POST) {
@@ -653,7 +769,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de estudios registrados por el usuario
+    /**
+     * Método para traer toda la lista de estudios registrados por el usuario. Para mostrarlo en la vista y que
+     * los pueda seleccionar.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getEstudiosAspirante()
     {
         $request = $this->model->getEstudiosAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
@@ -666,7 +787,11 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de estudios registrados por el usuario
+    /**
+     * Método para traer toda la lista de estudios registrados por el usuario para luego poderlos editar.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getEstudiosAspiranteEdit()
     {
         $idEstudio = explode('/', $_GET['url']);
@@ -686,7 +811,11 @@ class Aspirante extends Controllers
     /*============================================================================
                             Experiencia laboral
     ==============================================================================*/
-    //Mètodo para insertar las experiencias
+    /** 
+     * Método para insertar o registrar una nueva experiencia laboral.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function insertExperiencia()
     {
         if ($_POST) {
@@ -755,7 +884,12 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de estudios registrados por el usuario
+    /**
+     * Método para traer toda la lista de experiencia laboral registrados por el usuario. Estas se cargan
+     * cuando el usuario a iniciado sesión.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getExperienciaAspirante()
     {
         $request = $this->model->getExperienciaAspirante(intval($_SESSION['data-aspirante']['idAspirante']));
@@ -768,7 +902,11 @@ class Aspirante extends Controllers
         die();
     }
 
-    //método para traer toda la lista de estudios registrados por el usuario
+    /** 
+     * Método para obtener la información de una experiencia laboral para luego poderla editar.
+     * @return void
+     * @author Edier Heraldo Hernandez Molano @eideard-hm
+     */
     public function getExperienciaAspiranteEdit()
     {
         $idExperiencia = explode('/', $_GET['url']);

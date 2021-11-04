@@ -12391,10 +12391,18 @@ Author URI: gnodesign.com
         text-align: center;
         margin-bottom: none;
     }
+}
 
 @media (max-height: 580px) {
     .contenedor {
         top: 30px;
+    }
+}
+
+@media (max-width: 553px) {
+    .contenedor {
+        width: 50%;
+        
     }
 }
 
@@ -12493,5 +12501,4 @@ Author URI: gnodesign.com
 
 .imgProductoDelete {
     width: 175px;
-}
 }
