@@ -88,7 +88,7 @@ class Aspirante extends Controllers
     public function inhabilitarA()
     {
         $idUsuario = intval($_SESSION['user-data']['idUsuario']);
-        $estadoUsuario = intval($_POST['estado']);
+        $estadoUsuario = intval($_SESSION['user-data']['estadoUsuario']);
         $request = $this->model->updateState(
             $idUsuario,
             $estadoUsuario

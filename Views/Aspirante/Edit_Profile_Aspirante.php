@@ -75,7 +75,7 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form>
+                                            <form id="form-aspirante" method="POST">
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
@@ -131,7 +131,8 @@
                                                 </select>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary profile-button mr-2" id="guardar">Guardar</button>
+                                                <button type="button" class="btn btn-primary profile-button mr-2" id="guardar" onclick="editPerfil();">Guardar</button>
+                                                <button class="btn btn-danger" id="inhabilitar" type="button" onclick="inhabilitarAs();"><i class="fas fa-times"></i>Inactivar Cuenta</button>
                                                 <button type="reset" class="btn iq-bg-danger">Cancelar</button>
                                             </form>
                                         </div>

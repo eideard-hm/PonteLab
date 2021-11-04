@@ -5,6 +5,7 @@ class GestionCRUD extends Conexion
     //atributos de la clase
     private string $strquery;
     private array $arrValues;
+    //private int $arrValues;
     private $conexion;
 
     /** 
@@ -81,7 +82,7 @@ class GestionCRUD extends Conexion
         $this->arrValues = $arrValues;
 
         $stmt = $this->conexion->prepare($sql);
-        return $stmt->execute($arrValues);
+        return $stmt->execute();
     }
 
     /** 

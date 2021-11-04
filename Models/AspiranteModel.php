@@ -701,10 +701,10 @@ class AspiranteModel extends GestionCRUD
     {
         $this->idUsuario = $idUsuario;
         $this->estadoUsuario = $estadoUsuario;
-        $sql = "UPDATE USUARIO SET estadoUsuario =? WHERE idUsuario = {$this->idUsuario}";
+        $sql = "UPDATE USUARIO SET estadoUsuario =1 WHERE idUsuario = {$this->idUsuario}";
 
         $arrData = array(
-            $this->estadoUsuario
+          $this->estadoUsuario
         );
         return $this->edit($sql, $arrData);
     }
