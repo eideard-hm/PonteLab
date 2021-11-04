@@ -1054,6 +1054,12 @@
                                                             <div class="col-9">
                                                                 <p class="mb-0"><?= $_SESSION['user-data']['numTelFijo'] ?></p>
                                                             </div>
+                                                            <div class="col-3">
+                                                                <h6>Estado</h6>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['estadoUsuario'] ?> - Activo</p>
+                                                            </div>
                                                         </div>
                                                                             </div>
                                                 </div>
@@ -1080,6 +1086,7 @@
     require_once('./Views/Components/ScriptsJs.php');
     ?>
     <script src="<?= URL; ?>Assets/js/fntAspirante.js" type="module" defer></script>
+    <script src="../../Assets/js/Perfil_Aspirante.js" defer></script>
 </body>
 
 </html>

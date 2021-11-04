@@ -1,3 +1,6 @@
+function ejemplo() {
+    alert("a")
+}
 const btnGuardar = document.getElementById('guardar');
 const btnCancelar = document.getElementById('cancelar');
 const btnInhabilitar = document.getElementById('inhabilitar');

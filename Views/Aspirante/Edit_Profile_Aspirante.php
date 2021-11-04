@@ -79,8 +79,8 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="<?php echo $_SESSION['imgProfile']; ?>" alt="Edier">
-                                                        <div class="p-image">
+                                                            <img class="profile-pic" width="250px" height="200px" src="<?php echo $_SESSION['imgProfile']; ?>" alt="Edier">
+                                                            <div class="p-image">
                                                             <i class="las la-pencil-alt upload-button"></i>
                                                             <input type="file">
                                                                 <!--<input class="file-upload" type="file" multiple/>-->
@@ -88,17 +88,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <br>
                                                 <div class=" row align-items-center">
                                                     <div class="form-group col-sm-6">
+                                                    <br><br>
                                                         <label for="fname">Nombres y Apellidos:</label>
                                                         <input type="text" class="form-control" id="nombreApellido" name="nombreApellido"  value="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="lname">Numero de identificacion:</label>
-                                                        <input type="text" class="form-control" id="numDoc" name="numDoc"  value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
+                                                        <br><br>
                                                         <label for="uname">Identificacion:</label>
                                                         <select name="titulo" id="titulo" class="form-control">
                         <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
@@ -108,31 +105,22 @@
                                                 </select>
                                                         
                                                     </div>
-
                                                     <div class="form-group col-sm-6">
                                                         <label for="cname"> Numero de celular:</label>
                                                         <input type="text" class="form-control" id="posicion" name="posicion" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label class="d-block">Estado:</label>
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" id="customRadio6" name="customRadio1" class="custom-control-input" checked="">
-                                                            <label class="custom-control-label" for="customRadio6"> Activo </label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio custom-control-inline">
-                                                            <input type="radio" id="customRadio7" name="customRadio1" class="custom-control-input">
-                                                            <label class="custom-control-label" for="customRadio7"> Inactivo </label>
-                                                        </div>
+                                                        <label for="dob">Numero fijo:</label>
+                                                        <input class="form-control" id="idioma" name="idioma" value="<?= $_SESSION['user-data']['numTelFijo'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="dob">Numero fijo:</label>
-                                                        <input class="form-control" id="numFij" name="numFij" value="<?= $_SESSION['user-data']['numTelFijo'] ?>">
+                                                        <label for="lname">Numero de identificacion:</label>
+                                                        <input type="text" class="form-control" id="numDoc" name="numDoc"  value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="dob">Direccion:</label>
                                                         <input class="form-control" id="direccion" name="direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>">
                                                     </div>
-
                                                     <div class="form-group col-sm-6">
                                                         <label>Barrio:</label>
                                                         <select name="Barrio" id="Barrio" class="form-control">
@@ -143,32 +131,32 @@
                                                 </select>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancle</button>
+                                                <button type="submit" class="btn btn-primary profile-button mr-2" id="guardar">Guardar</button>
+                                                <button type="reset" class="btn iq-bg-danger">Cancelar</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
+                                                    </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">Change Password</h4>
+                                                <h4 class="card-title">Cambio de contraseña</h4>
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="cpass">Current Password:</label>
-                                                    <a href="javascripe:void();" class="float-right">Forgot Password</a>
+                                                    <label for="cpass">Contraseña actual:</label>
                                                     <input type="Password" class="form-control" id="cpass" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="npass">New Password:</label>
+                                                    <label for="npass">Nueva contraseña:</label>
                                                     <input type="Password" class="form-control" id="npass" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="vpass">Verify Password:</label>
+                                                    <label for="vpass">Verificar contraseña:</label>
                                                     <input type="Password" class="form-control" id="vpass" value="">
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
