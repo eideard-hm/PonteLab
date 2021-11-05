@@ -41,7 +41,7 @@
                                     <ul class="iq-edit-profile d-flex nav nav-pills">
                                         <li class="col-md-6 p-0">
                                             <a class="nav-link active" data-toggle="pill" href="#personal-information">
-                                                Personal Information
+                                                Información personal
                                             </a>
                                         </li>
                                         <li class="col-md-6 p-0">
@@ -71,7 +71,7 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="<?= URL ?>Assets/img/upload.svg" alt="Edier">
+                                                            <img class="profile-pic" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                             <div class="p-image">
                                                                 <i class="las la-pencil-alt upload-button"></i>
                                                                 <input class="file-upload" type="file" accept="image/*" />
@@ -90,7 +90,7 @@
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label for="uname">Tipo de Identificación:</label>
-                                                        <select name="tipoDoc" id="tipoDoc" class="form-control" value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>" disabled>
+                                                        <select name="tipoDoc" id="tipoDoc" class="form-control" disabled>
                                                             <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
                                                                 <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>" <?= $tipoDoc['idTipoDocumento'] == $_SESSION['user-data']['idTipoDocumentoFK'] ? 'selected' : '' ?>><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                             <?php endforeach ?>
@@ -107,7 +107,7 @@
 
                                                     <div class="form-group col-sm-6">
                                                         <label for="dob">Barrio:</label>
-                                                        <select name="Barrio" id="Barrio" class="form-control" value="<?= $_SESSION['user-data']['idBarrioFK'] ?>" disabled>
+                                                        <select name="Barrio" id="Barrio" class="form-control" disabled>
                                                             <?php foreach ($data['list_barrio'] as $barrio) : ?>
                                                                 <option value="<?php echo $barrio['idBarrio'] ?>" <?= $barrio['idBarrio'] == $_SESSION['user-data']['idBarrioFK'] ? 'selected' : '' ?>><?php echo $barrio['nombreBarrio'] ?></option>
                                                             <?php endforeach ?>
@@ -130,7 +130,7 @@
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">Change Password</h4>
+                                                <h4 class="card-title">CCambiar contraseña</h4>
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
