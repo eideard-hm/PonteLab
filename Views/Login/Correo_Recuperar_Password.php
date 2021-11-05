@@ -16,32 +16,32 @@
 
 <body>
     <a class="home" href="<?= URL; ?>"><i id="home" class="fas fa-home"></i>Inicio</a>
+    <a class="Login" href="<?= URL; ?>Login"><i id="Login" class="fas fa-sign-in-alt"></i></i>Login</a>
     <div class="login-page">
         <div class="form">
-            <form id="formRecetPass" name="formRecetPass"class="login-form" action="">
+            <form id="formRecetPass" name="formRecetPass" class="login-form" action="">
                 <di>
-                <img class="pontelab" src="<?= URL; ?>Assets/img/Logo_ponslabor.ico">
+                    <img class="pontelab" src="<?= URL; ?>Assets/img/Logo_ponslabor.ico">
                 </di>
                 <br>
                 <div>
-                    <p class="parrafo">Ingrese su correo electrónico, le enviaremos un link para su restablecimiento</p>
+                    <p class="parrafo">Ingrese su correo electrónico, le enviaremos un link para su restablecimiento.</p>
                 </div>
                 <input id="txtEmailReset" name="txtEmailReset" type="email" placeholder="Email" />
                 <button class="btn" type="submit">Enviar</button>
                 <br>
                 <br>
-                <a  id="Login" href="<?= URL ?>Login" role="button"></i> Regresar al Inicio de Sesión</a>
             </form>
         </div>
     </div>
-    
+
     <img src="<?= URL; ?>Assets/img/olvido.svg" class="job">
     <img src="<?= URL; ?>Assets/img/wave.jpg" class="wave">
     <?php
-        require_once('./Views/Components/ScriptsJs.php');
+    require_once('./Views/Components/ScriptsJs.php');
     ?>
     <script src="<?= URL ?>Assets/js/login.js"></script>
-    
+
 </body>
 
 </html>
