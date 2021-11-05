@@ -116,7 +116,7 @@ class ContratanteModel extends GestionCRUD
                 OR (numTelUsuario ='{$this->numTelUsuario}' AND idUsuario != {$this->idUsuario})";
         $request = $this->selectAll($sql);
 
-        if (!empty($request)) {
+        if (empty($request)) {
             $sql = "UPDATE USUARIO SET 
                 nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
                 numTelUsuario=?, numTelFijo=?, 

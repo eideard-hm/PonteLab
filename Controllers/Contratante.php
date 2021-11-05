@@ -127,15 +127,15 @@ class Contratante extends Controllers
                     $direccion
                 );
                 if ($request > 0) {
-                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'value' => $request];
                     $arrData = $this->model->selectOneUser($idUsuario);
                     if (!empty($arrData)) {
                         $_SESSION['user-data'] = $arrData;
+                        $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'session' => $_SESSION['user-data']];
                     }
                 } elseif ($request === 'exists') {
-                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen'];
                 } else {
-                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente', 'value' => $request];
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente'];
                 }
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);

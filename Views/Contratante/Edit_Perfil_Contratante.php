@@ -92,7 +92,7 @@
                                                         <label for="uname">Tipo de Identificación:</label>
                                                         <select name="tipoDoc" id="tipoDoc" class="form-control" value="<?= $_SESSION['user-data']['idTipoDocumentoFK'] ?>" disabled>
                                                             <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
-                                                                <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                                                <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>" <?= $tipoDoc['idTipoDocumento'] == $_SESSION['user-data']['idTipoDocumentoFK'] ? 'selected' : '' ?>><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
@@ -109,7 +109,7 @@
                                                         <label for="dob">Barrio:</label>
                                                         <select name="Barrio" id="Barrio" class="form-control" value="<?= $_SESSION['user-data']['idBarrioFK'] ?>" disabled>
                                                             <?php foreach ($data['list_barrio'] as $barrio) : ?>
-                                                                <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                                <option value="<?php echo $barrio['idBarrio'] ?>" <?= $barrio['idBarrio'] == $_SESSION['user-data']['idBarrioFK'] ? 'selected' : '' ?>><?php echo $barrio['nombreBarrio'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
                                                     </div>
