@@ -7,15 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $data['titulo_pagina'] ?></title>
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= URL ?>Assets/img/Logo_ponslabor.ico" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
+    <?php require_once('./Views/Components/stylesContratante.php'); ?>
 </head>
 
 <body class="right-column-fixed">
@@ -27,6 +19,7 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
+        <?php require_once('./Views/Components/LoadingForms.php'); ?>
         <!-- Menu de navegación -->
         <?php
         require_once('./Views/Components/Layout.php');
@@ -146,12 +139,12 @@
                                                 <ul class="nav nav-pills basic-info-items list-inline d-block p-0 m-0">
                                                     <li>
                                                         <a class="nav-link active" data-toggle="pill" href="#basicinfo">Información del Usuario Contratante</a>
-                                                    </li>                                                    
+                                                    </li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-9 pl-4">
                                                 <div class="tab-content">
-                                                <div class="tab-pane fade active show" id="basicinfo" role="tabpanel">
+                                                    <div class="tab-pane fade active show" id="basicinfo" role="tabpanel">
                                                         <h4>Usuario</h4>
                                                         <hr>
                                                         <div class="row">
@@ -185,11 +178,11 @@
                                                                 <p class="mb-0"><?= $_SESSION['user-data']['nombreUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                            <h6>Email</h6>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <p class="mb-0"><?= $_SESSION['user-data']['correoUsuario'] ?></p>
-                                                        </div>
+                                                                <h6>Email</h6>
+                                                            </div>
+                                                            <div class="col-9">
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['correoUsuario'] ?></p>
+                                                            </div>
                                                             <div class="col-3">
                                                                 <h6> Identificación</h6>
                                                             </div>
@@ -201,25 +194,25 @@
                                                             </div>
                                                             <div class="col-9">
                                                                 <p class="mb-0"><?php print_r($_SESSION['user-data']['nombreTipoDocumento']) ?></p>
-                                                            </div>                                                          
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <h4 class="mt-3">Dirección</h4>
                                                     <hr>
                                                     <div class="row">
-                                                    <div class="col-3">
-                                                                <h6> Ubicación</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0"><?= $_SESSION['user-data']['direccionUsuario'] ?></p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6> Barrio</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0"><?= $_SESSION['user-data']['nombreBarrio'] ?></p>
-                                                            </div>
+                                                        <div class="col-3">
+                                                            <h6> Ubicación</h6>
                                                         </div>
+                                                        <div class="col-9">
+                                                            <p class="mb-0"><?= $_SESSION['user-data']['direccionUsuario'] ?></p>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h6> Barrio</h6>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <p class="mb-0"><?= $_SESSION['user-data']['nombreBarrio'] ?></p>
+                                                        </div>
+                                                    </div>
                                                     <h4 class="mt-3">Números de Contacto </h4>
                                                     <hr>
                                                     <div class="row">
@@ -235,7 +228,7 @@
                                                         <div class="col-9">
                                                             <p class="mb-0"><?= $_SESSION['user-data']['numTelUsuario'] ?></p>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>

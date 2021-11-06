@@ -5,5 +5,6 @@
 <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
 <!-- Style CSS -->
 <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+<link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
 <!-- Responsive CSS -->
 <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
