@@ -107,14 +107,28 @@ class Contratante extends Controllers
             ) {
                 $arrResponse = ['statusUser' => false, 'msg' => 'Atención, Todos los campos son obligatorios.'];
             } else {
-                $idUsuario = intval($_POST['idUsuario']);
+                $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
                 $nombreUsuario = limpiarCadena($_POST['txtNombre']);
-                $TipoDoc = intval($_POST['tipoDoc']);
+                $TipoDoc = intval(limpiarCadena($_POST['tipoDoc']));
                 $numDoc = limpiarCadena($_POST['numDoc']);
                 $numMobil = limpiarCadena($_POST['mobile']);
                 $numPhone = limpiarCadena($_POST['phone']);
-                $Barrio = intval($_POST['Barrio']);
+                $Barrio = intval(limpiarCadena($_POST['Barrio']));
                 $direccion = limpiarCadena($_POST['Direccion']);
+
+                $photo = $_FILES['foto'];
+                $namePhoto = $photo['name'];
+                $imgPerfil = 'upload.svg';
+
+                if (!empty($namePhoto)) {
+                    $imgPerfil = 'img_' . md5(date('d-m-Y H:m:s')) . '.jpg';
+                }
+
+                if (empty($nameFoto)) {
+                    if ($_POST['foto_actual'] != 'upload.svg' && $_POST['foto_remove'] == 0) {
+                        $imgPerfil = $_POST['foto_actual'];
+                    }
+                }
 
                 $request = $this->model->updateUser(
                     $idUsuario,
@@ -124,12 +138,26 @@ class Contratante extends Controllers
                     $numMobil,
                     $numPhone,
                     $Barrio,
-                    $direccion
+                    $direccion,
+                    $imgPerfil
                 );
                 if ($request > 0) {
+                    if (!empty($namePhoto)) {
+                        uploadImages($photo, $imgPerfil);
+                    }
+
+                    if (($namePhoto == '' && $_POST['foto_remove'] == 1 && $_POST['foto_actual'] != 'upload.svg')
+                        || ($namePhoto != '' && $_POST['foto_actual'] != 'upload.svg')
+                    ) {
+                        deleteImage($_POST['foto_actual']);
+                    }
+
                     $arrData = $this->model->selectOneUser($idUsuario);
+                    //petición para cargar la imagen del usuario
+                    $imgProfile = $this->model->selectImgProfile($idUsuario);
                     if (!empty($arrData)) {
                         $_SESSION['user-data'] = $arrData;
+                        $_SESSION['imgProfile'] = URL . "Assets/img/uploads/{$imgProfile['imagenUsuario']}";
                         $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'session' => $_SESSION['user-data']];
                     }
                 } elseif ($request === 'exists') {
@@ -149,7 +177,7 @@ class Contratante extends Controllers
             $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
             $estadoUsuario = 1;
             $request = $this->model->inactivarCuenta($idUsuario, $estadoUsuario);
-            
+
             if ($request > 0) {
                 $arrResponse = ['statusUser' => true, 'msg' => 'Usuario inactivado correctamente.'];
             } else {
