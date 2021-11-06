@@ -49,7 +49,6 @@
                                                 Cambiar contraseña
                                             </a>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -66,7 +65,7 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form id="formPrincipal">
+                                            <form id="formPrincipal" enctype="multipart/form-data">
                                                 <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" value="<?= $_SESSION['user-data']['idUsuario'] ?>" />
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
@@ -134,7 +133,7 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form>
+                                            <form id="change-password">
                                                 <div class="form-group">
                                                     <label for="cpass">Current Password:</label>
                                                     <a href="javascripe:void();" class="float-right">Forgot Password</a>

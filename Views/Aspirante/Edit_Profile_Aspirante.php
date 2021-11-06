@@ -262,7 +262,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- Wrapper END -->
     <!-- Footer -->
     <script src="<?= URL; ?>Assets/js/Perfil_Aspirante.js"></script>
