@@ -28,7 +28,7 @@
     <div class="wrapper">
         <!-- Menu de navegación -->
         <?php
-        require_once('./Views/Components/Layout.php');
+        require_once('./Views/Components/LayoutC.php');
         ?>
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
