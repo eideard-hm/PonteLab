@@ -157,6 +157,10 @@ class Vacante extends Controllers
             $intEstado = boolval($_POST['estado']);
             $intIdContratanteFK = intval($_SESSION['contractor-data']['idContratante']);
             $intIdsectorFK = intval($_POST['idSectorFK']);
+            $time = new DateTime();
+            $time->setTimezone(new DateTimeZone('America/Bogota'));
+            $created_at = $time->format("Y-m-d h:i:s");
+            $updated_at = $time->format("Y-m-d h:i:s");
             /*================== INSERTAR VACANTE =======================*/
             if ($intidVacancy === 0 || empty($intidVacancy)) {
                 $option = 1;
@@ -172,7 +176,9 @@ class Vacante extends Controllers
                     $strDireccion,
                     $intEstado,
                     $intIdContratanteFK,
-                    $intIdsectorFK
+                    $intIdsectorFK,
+                    $created_at,
+                    $updated_at
                 );
             }
             // else {

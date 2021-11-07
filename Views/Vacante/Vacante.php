@@ -225,8 +225,7 @@
                                                                 <option value="3">Contrato a Termino Indefinido
                                                                 </option>
                                                                 <option value="4">Contrato de Aprendizaje</option>
-                                                                <option value="5">Contrato Temporal, Ocacional o
-                                                                    Accidental</option>
+                                                                <option value="5">Contrato Temporal, Ocacional o Accidental</option>
                                                             </select>
                                                         </div>
                                                         <div class="form-group">
@@ -239,8 +238,7 @@
                                                             <label> Perfil del Trabajador *</label>
                                                             <textarea class="form-control" name="perfil"
                                                             id="perfil" placeholder="Perfil del Trabajador..."
-                                                            required>
-                                                            </textarea>
+                                                            required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
