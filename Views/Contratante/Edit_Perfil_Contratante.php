@@ -120,8 +120,8 @@
                                                 </div>
                                                 <button type="button" id="edit" class="btn btn-primary mr-2">Editar</button>
                                                 <button type="submit" id="guardar" class="btn btn-primary mr-2">Guardar</button>
-                                                <button type="reset" id="cancelar" class="btn iq-bg-danger">Cancelar</button>
-                                                <button type="reset" id="inhabilitar" class="btn iq-bg-danger">Inhabilitar</button>
+                                                <button type="reset" id="cancelar" class="btn iq-bg-danger ">Cancelar</button>
+                                                <button type="reset" id="inhabilitar" class="btn iq-bg-danger ">Inhabilitar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -130,25 +130,25 @@
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">CCambiar contraseña</h4>
+                                                <h4 class="card-title">Cambiar contraseña</h4>
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
                                             <form>
                                                 <div class="form-group">
-                                                    <label for="cpass">Current Password:</label>
-                                                    <a href="javascripe:void();" class="float-right">Forgot Password</a>
-                                                    <input type="Password" class="form-control" id="cpass" value="">
+                                                    <label for="cpass">Contraseña Actual:</label>
+                                                    <a href="javascripe:void();" class="float-right">Contraseña Actual</a>
+                                                    <input type="Password" class="form-control" id="actual" name="actual"value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="npass">New Password:</label>
-                                                    <input type="Password" class="form-control" id="npass" value="">
+                                                    <label for="npass">Contraseña Nueva:</label>
+                                                    <input type="Password" class="form-control" id="nueva" name="nueva" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="vpass">Verify Password:</label>
-                                                    <input type="Password" class="form-control" id="vpass" value="">
+                                                    <label for="vpass">Verificar Contraseña:</label>
+                                                    <input type="Password" class="form-control" id="verificar" name="verificar"value="">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                                <button type="submit" id="cambiarC" class="btn btn-primary mr-2">Submit</button>
                                                 <button type="reset" class="btn iq-bg-danger">Cancle</button>
                                             </form>
                                         </div>
@@ -169,7 +169,7 @@
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>
-        <script src="<?= URL; ?>Assets/js/editarPerfil.js"></script>
+        <script src="<?= URL; ?>Assets/js/editarPerfil.js" type="module" defer></script>
 </body>
 
 </html>
