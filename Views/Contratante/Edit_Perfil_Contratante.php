@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -119,22 +120,16 @@
                                                         <input type="text" class="form-control" name="Direccion" id="Direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" disabled>
                                                     </div>
                                                 </div>
-<<<<<<< HEAD
-                                                <button type="button" id="edit" class="btn btn-primary mr-2">Editar</button>
-                                                <button type="submit" id="guardar" class="btn btn-primary mr-2">Guardar</button>
-                                                <button type="reset" id="cancelar" class="btn iq-bg-danger ">Cancelar</button>
-                                                <button type="reset" id="inhabilitar" class="btn iq-bg-danger ">Inhabilitar</button>
-=======
                                                 <button type="button" id="edit" class="btn btn-primary mr-2"><i class="fas fa-edit"></i> Editar</button>
                                                 <button type="submit" id="guardar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                                 <button type="reset" id="cancelar" class="btn iq-bg-danger mr-2"><i class="fas fa-ban text-danger"></i> Cancelar</button>
                                                 <button type="reset" id="inhabilitar" class="btn iq-bg-danger"><i class="fas fa-exclamation-triangle text-danger"></i> Inhabilitar</button>
->>>>>>> 8abffae15fdcee9cc66300f6170790a583b0ad25
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                                    <?php require_once('./Views/Components/LoadingForms.php'); ?>
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
@@ -144,20 +139,18 @@
                                         <div class="iq-card-body">
                                             <form id="change-password">
                                                 <div class="form-group">
-                                                    <label for="cpass">Contraseña Actual:</label>
-                                                    <a href="javascripe:void();" class="float-right">Contraseña Actual</a>
-                                                    <input type="Password" class="form-control" id="actual" name="actual"value="">
+                                                    <label for="actual">Contraseña Actual</label>
+                                                    <input type="Password" class="form-control" id="actual" name="actual" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="npass">Contraseña Nueva:</label>
+                                                    <label for="nueva">Contraseña Nueva:</label>
                                                     <input type="Password" class="form-control" id="nueva" name="nueva" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="vpass">Verificar Contraseña:</label>
-                                                    <input type="Password" class="form-control" id="verificar" name="verificar"value="">
+                                                    <label for="verificar">Verificar Contraseña:</label>
+                                                    <input type="Password" class="form-control" id="verificar" name="verificar" value="">
                                                 </div>
-                                                <button type="submit" id="cambiarC" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancle</button>
+                                                <button type="submit" id="cambiar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                             </form>
                                         </div>
                                     </div>

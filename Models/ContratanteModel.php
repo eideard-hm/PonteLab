@@ -191,4 +191,12 @@ class ContratanteModel extends GestionCRUD
         );
         return $this->edit($sql, $arrData);
     }
+
+    public function currentPassword(int $idUsuario)
+    {
+        $sql = "SELECT idUsuario, passUsuario
+                FROM USUARIO
+                WHERE idUsuario = {$idUsuario}";
+        return $this->select($sql);
+    }
 }

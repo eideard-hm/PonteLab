@@ -1,8 +1,11 @@
+import { sweetAlert, formDataElement, divLoading } from "./functionsGlobals.js";
+
 const btnGuardar = document.getElementById("guardar");
 const btnCancelar = document.getElementById("cancelar");
 const btnEdit = document.getElementById("edit");
 // constante que nos permite traer el formulario principal que corresponde a este ID
 const formUser = document.querySelector("#formPrincipal");
+const formChangePass = document.querySelector('#change-password');
 
 if (document.querySelector("#edit")) {
   document.querySelector("#edit").addEventListener("click", (e) => {
@@ -32,12 +35,12 @@ const editPerfil = async () => {
   //formData.forEach(item => console.log(item))
   const url = `${base_url}Contratante/updatePerfilContratante`;
   try {
+    divLoading.style.display = 'flex';
     const res = await fetch(url, {
       method: "POST",
       body: formData,
     });
-    const { statusUser, msg, session } = await res.json();
-    console.log(session);
+    const { statusUser, msg } = await res.json();
     if (statusUser) {
       swal({
         title: "Contratante",
@@ -50,6 +53,7 @@ const editPerfil = async () => {
     } else {
       swal("Error", msg, "error"); //mostrar la alerta
     }
+    divLoading.style.display = 'none';
   } catch (error) {
     console.log(error);
   }
@@ -167,3 +171,44 @@ const fileValidation = () => {
 };
 
 document.querySelector("#foto").addEventListener("change", fileValidation);
+
+const changePassword = async () => {
+  const formData = formDataElement(formChangePass);
+  const url = `${base_url}Contratante/changePassword`;
+  try {
+    divLoading.style.display = 'flex';
+    const req = await fetch(url, {
+      method: 'POST',
+      body: formData
+    });
+    const { status, msg } = await req.json();
+    if (status) {
+      sweetAlert('Cambio de contraseña', msg, 'success');
+      formChangePass.reset();
+    } else {
+      sweetAlert('Error', msg, 'error');
+    }
+    divLoading.style.display = 'none';
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+const validatePasswordsChange = (e) => {
+  e.preventDefault();
+
+  const currentPass = document.querySelector('#actual');
+  const newPass = document.querySelector('#nueva');
+  const confirmPass = document.querySelector('#verificar');
+
+  if (currentPass.value.trim() === '' || newPass.value.trim() === ''
+    || confirmPass.value.trim() === '') {
+    sweetAlert("Campos obligatorios !!", "Debe de completar todos los campos correctamente.", "error");
+  } else if (newPass.value !== confirmPass.value) {
+    sweetAlert("Las contraseñas no coinciden.", "Las contraseñas ingresadas nos coinciden. Por favor intenta nuevamente !!", "error");
+  } else {
+    changePassword();
+  }
+}
+
+formChangePass.addEventListener('submit', validatePasswordsChange)
