@@ -1,5 +1,8 @@
 <?php
-// creamos la clase
+
+/** 
+ * Clase que se encargar de hacer la conexión a la base de datos.
+ */
 class Conexion
 {
     //declarar los atributos de la clase
@@ -10,7 +13,11 @@ class Conexion
 
     private $dbh; // instrucción sql - database handler
 
-    // creamos nuestro método constructor
+    /** 
+     * Método constructor de la clase que se encarga de hacer la conexión a la base de datos.
+     * La conexión se realiza mediante PDO y es utilizada para hacer operaciones.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function __construct()
     {
         // variable para concatenar nombre del servidor, y name de la base de datos
@@ -19,7 +26,7 @@ class Conexion
 
         // array de opciones para identicar errores
         $options = array(
-       //parametro para detectar errores posibles
+            //parametro para detectar errores posibles
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
         );
@@ -31,7 +38,11 @@ class Conexion
         }
     }
 
-    //Método que retorna el resultado de la conexión
+    /**
+     * Método que se encarga de retornar la conexión a la base de datos.
+     * @return $dbh con la conexión establecida.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function Connect()
     {
         return $this->dbh;

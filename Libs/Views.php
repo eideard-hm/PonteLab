@@ -1,11 +1,16 @@
 <?php
 
+/** 
+ * Clase que se encarga de renderizar las vistas.
+ */
 class Views
 {
-    /*
-    * getView(), este método se va encargar de cargar las vistas de acuerdo al controlador
-    * que estemos cargando
-    */
+    /**
+     * Este método se va encargar de cargar las vistas de acuerdo al controlador
+     * que estemos cargando.
+     * @param object $controller el controlador que se esta cargando. 
+     * @param string $view, el nombre de la vista que se va a cargar
+     */
     public function getView($controller, $view, $data = '')
     {
         $controller = get_class($controller);

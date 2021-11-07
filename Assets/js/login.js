@@ -1,3 +1,5 @@
+import { divLoading } from "./functionsGlobals.js";
+
 //función para ver contraseña
 if (document.getElementById("spanMostrar")) {
   document.getElementById("spanMostrar").addEventListener("click", function () {
@@ -22,6 +24,7 @@ const signIn = async (e) => {
   //peticion mediante la API de fetch, peticion de tipo post
   const url = `${base_url}Login/loginUser`;
   try {
+    divLoading.style.display = "flex";
     const res = await fetch(url, {
       method: "POST",
       body: formData,
@@ -37,10 +40,12 @@ const signIn = async (e) => {
       form.reset();
       swal("Error", msg, "error"); //mostrar la alerta
     }
+    divLoading.style.display = "none";
   } catch (error) {
-    swal("Error", error, "error");
+    console.error(error);
   }
 };
+
 if (form) {
   form.addEventListener("submit", signIn);
 }
@@ -53,6 +58,7 @@ const recoverPassword = () => {
       swal("Por favor", "Escriba su correo electrónico.", "error");
       return false;
     } else {
+      divLoading.style.display = "flex";
       let request = window.XMLHttpRequest
         ? new XMLHttpRequest()
         : new ActiveXObject(Microsoft.XMLHttP);
@@ -82,6 +88,7 @@ const recoverPassword = () => {
         } else {
           swal("Atención", "Error en el proceso", "error");
         }
+        divLoading.style.display = "none";
         return false;
       };
     }
@@ -114,7 +121,7 @@ if (document.querySelector("#formCambiarPass")) {
         swal("Atención", "Las contraseñas no son iguales.", "error");
         return false;
       }
-      // divLoading.style.display = "flex";
+      divLoading.style.display = "flex";
       let request = window.XMLHttpRequest
         ? new XMLHttpRequest()
         : new ActiveXObject("Microsoft.XMLHTTP");
@@ -125,7 +132,7 @@ if (document.querySelector("#formCambiarPass")) {
       request.onreadystatechange = function () {
         if (request.readyState != 4) return;
         if (request.status == 200) {
-          var objData = JSON.parse(request.responseText);
+          let objData = JSON.parse(request.responseText);
           if (objData.status) {
             swal({
               title: "",
@@ -143,7 +150,7 @@ if (document.querySelector("#formCambiarPass")) {
         } else {
           swal("Atención", "Error en el proceso", "error");
         }
-        // divLoading.style.display = "none";
+        divLoading.style.display = "none";
       };
     }
   };

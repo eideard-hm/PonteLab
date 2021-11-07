@@ -1,9 +1,9 @@
 <?php
 
-/*
-requerir el archivo de autoload, que sirve para cargar de forma automatica las clases
-que estemos pasando por la url
-*/
+/**
+ * Autoloader-> requerir el archivo de autoload, que sirve para cargar de forma automatica las clases
+ * que estemos pasando por la url.
+ */
 
 function autoload($class)
 {

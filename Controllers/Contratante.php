@@ -35,6 +35,8 @@ class Contratante extends Controllers
     public function Edit_Perfil_Contratante()
     {
         $data['titulo_pagina'] = 'Editar Perfil Contratante | ' . NOMBRE_EMPRESA . '.';
+        $data['list_tipodoc'] = $this->model->selectTipoDoc();
+        $data['list_barrio'] = $this->model->selectBarrio();
         $this->views->getView($this, 'Edit_Perfil_Contratante', $data);
     }
 
@@ -88,6 +90,98 @@ class Contratante extends Controllers
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el contratante ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    //editar perfil
+    public function updatePerfilContratante()
+    {
+        if ($_POST) {
+            if (
+                empty($_POST['txtNombre']) || empty($_POST['tipoDoc']) || empty($_POST['numDoc'])
+                || empty($_POST['mobile']) || empty($_POST['phone']) || empty($_POST['Barrio'])
+                || empty($_POST['Direccion'])
+            ) {
+                $arrResponse = ['statusUser' => false, 'msg' => 'Atención, Todos los campos son obligatorios.'];
+            } else {
+                $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
+                $nombreUsuario = limpiarCadena($_POST['txtNombre']);
+                $TipoDoc = intval(limpiarCadena($_POST['tipoDoc']));
+                $numDoc = limpiarCadena($_POST['numDoc']);
+                $numMobil = limpiarCadena($_POST['mobile']);
+                $numPhone = limpiarCadena($_POST['phone']);
+                $Barrio = intval(limpiarCadena($_POST['Barrio']));
+                $direccion = limpiarCadena($_POST['Direccion']);
+
+                $photo = $_FILES['foto'];
+                $namePhoto = $photo['name'];
+                $imgPerfil = 'upload.svg';
+
+                if (!empty($namePhoto)) {
+                    $imgPerfil = 'img_' . md5(date('d-m-Y H:m:s')) . '.jpg';
+                }
+
+                if (empty($nameFoto)) {
+                    if ($_POST['foto_actual'] != 'upload.svg' && $_POST['foto_remove'] == 0) {
+                        $imgPerfil = $_POST['foto_actual'];
+                    }
+                }
+
+                $request = $this->model->updateUser(
+                    $idUsuario,
+                    $nombreUsuario,
+                    $TipoDoc,
+                    $numDoc,
+                    $numMobil,
+                    $numPhone,
+                    $Barrio,
+                    $direccion,
+                    $imgPerfil
+                );
+                if ($request > 0) {
+                    if (!empty($namePhoto)) {
+                        uploadImages($photo, $imgPerfil);
+                    }
+
+                    if (($namePhoto == '' && $_POST['foto_remove'] == 1 && $_POST['foto_actual'] != 'upload.svg')
+                        || ($namePhoto != '' && $_POST['foto_actual'] != 'upload.svg')
+                    ) {
+                        deleteImage($_POST['foto_actual']);
+                    }
+
+                    $arrData = $this->model->selectOneUser($idUsuario);
+                    //petición para cargar la imagen del usuario
+                    $imgProfile = $this->model->selectImgProfile($idUsuario);
+                    if (!empty($arrData)) {
+                        $_SESSION['user-data'] = $arrData;
+                        $_SESSION['imgProfile'] = URL . "Assets/img/uploads/{$imgProfile['imagenUsuario']}";
+                        $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'session' => $_SESSION['user-data']];
+                    }
+                } elseif ($request === 'exists') {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen'];
+                } else {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente'];
+                }
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    public function inactivarCuenta()
+    {
+        if ($_POST) {
+            $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
+            $estadoUsuario = 1;
+            $request = $this->model->inactivarCuenta($idUsuario, $estadoUsuario);
+
+            if ($request > 0) {
+                $arrResponse = ['statusUser' => true, 'msg' => 'Usuario inactivado correctamente.'];
+            } else {
+                $arrResponse = ['statusUser' => false, 'msg' => 'Ha ocurrido un error en el servidor'];
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

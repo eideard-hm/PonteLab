@@ -461,11 +461,34 @@ Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacan
 tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
 idContratanteFK, idSectorFK, created_at, updated_at)
  values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2, 3, NOW(), NOW());
- Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
 tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
 idContratanteFK, idSectorFK, created_at, updated_at)
  values (NULL,'Desarrollador de software web', 10, 'Sohe Innovation Software requiere un desarrollador web con experiencia en react, java', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
- Select * from VACANTE;
+
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+values (NULL,'Desarrollador Frontend Javascript', 3, 'Buscamos un ingeniero de software frontend apasionado por el diseño y desarrollo de soluciones de software en Javascript Idealmente, el candidato debería poder construir software de alta calidad, innovador y de pleno rendimiento de conformidad con los estándares de codificación y el diseño técnico.', 
+'Profesional en derechos especialista en seguros', 'Contrato por obra', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+values (NULL,'React Native Developer', 1, 'Toptal developers work with speed and efficiency to deliver the highest quality of work. We are looking for someone who is passionate about their client’s business, and ready to work on exciting projects with Fortune 500 companies and Silicon Valley startups, with great rates and zero hassles. If you are looking for a place to advance your career, enhance your skill set, and build connections around the globe, Toptal is right for you.', 
+'We are looking for a React Native developer interested in building performant mobile apps on both the iOS and Android platforms. Your primary responsibilities might vary from: (1) build smooth UIs across both mobile platforms, (2) leverage native APIs for deep integrations with both platforms, (3) diagnose and fix bugs and performance bottlenecks for performance that feels native', 
+'Contrato por obra', '6000000', '2021-11-02 10:15:00', '2021-12-03 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+values (NULL,'React Developer', 5, 'Toptal developers work with speed and efficiency to deliver the highest quality of work. We are looking for someone who is passionate about their client’s business, and ready to work on exciting projects with Fortune 500 companies and Silicon Valley startups, with great rates and zero hassles. If you are looking for a place to advance your career, enhance your skill set, and build connections around the globe, Toptal is right for you.', 
+'We are looking for a great developer who is proficient with React.js. Your primary focus might vary from: (1) developing new user-facing features using React.js, (2) translating designs and wireframes into high-quality code, (3) building reusable components and front-end libraries for future use.', 
+'Contrato por obra', '5000000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 1, 10, NOW(), NOW());
+Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
+tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
+idContratanteFK, idSectorFK, created_at, updated_at)
+values (NULL,'Node.js Developer', 2, 'Toptal developers work with speed and efficiency to deliver the highest quality of work. We are looking for someone who is passionate about their client’s business, and ready to work on exciting projects with Fortune 500 companies and Silicon Valley startups.', 
+'We are looking for a Node.js Developer responsible for managing the interchange of data between the server and the users. Your primary responsibilities might vary from: (1) integration of user-facing elements developed by front-end developers with server side logic, (2) writing reusable, testable, and efficient code', 
+'Contrato por obra', '6000000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 1, 10, NOW(), NOW());
 
 /* ========================== TABLA REQUISITOS ========================*/
 Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Ingeniero Industrial');  
@@ -625,13 +648,14 @@ CREATE VIEW  detailVacanteView AS
 SELECT v.idVacante, v.nombreVacante, v.cantidadVacante, v.descripcionVacante, v.perfilAspirante, v.tipoContratoVacante, 
 v.sueldoVacante, v.fechaHoraPublicacion, v.fechaHoraCierre, v.direccionVacante, v.estadoVacante, v.idContratanteFK, 
 u.nombreUsuario, u.imagenUsuario, r.idRequisitos,  r.nombreRequisitos, rv.especficacionRequisitos,  s.nombreSector,
-s.idSector
+s.idSector, c.descripcionContratante, c.idContratante
 FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
 ON u.idUsuario = c.idUsuarioFK INNER JOIN REQUISITOS_VACANTE AS rv
 ON v.idVacante = rv.idVacanteFK INNER JOIN REQUISITOS AS r
 ON r.idRequisitos = rv.idRequisitosFK INNER JOIN SECTOR AS s
 ON s.idSector = v.idSectorFK;
+
 
 DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
 CREATE VIEW  recomendacionVacanteSectorusuarioView AS

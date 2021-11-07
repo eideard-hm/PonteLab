@@ -19,7 +19,7 @@
             if (isset($url[1]) && $url[1] == 'ListaEmpleos') {
             ?>
                 <div class="iq-search-bar">
-                    <form action="#" class="searchbox">
+                    <form action="#" id="searchbox" class="searchbox">
                         <input type="search" id="txtSearchVacantes" class="text search-input" name="txtSearchVacantes" placeholder="Ingrese lo que desea buscar" />
                         <a class="search-link" href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar">
                             <i class="las la-search"></i>

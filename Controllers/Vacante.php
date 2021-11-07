@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * Clase que controla las acciones de las vacantes, aqui se carga la vistas, se reciben
+ * las peticiones de los usuarios y se devuelven los resultados.
+ */
 class Vacante extends Controllers
 {
+    /**
+     * Método constructor de la clase. Se ejecuta cuando se crea el objeto.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -14,6 +21,11 @@ class Vacante extends Controllers
 
     //======================== EVIAR Y RECIBIR INFORMACIÓN DEL MODELO =======================
 
+    /**
+     * Método que muestra la vista de vacante
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function Vacante()
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
@@ -29,31 +41,83 @@ class Vacante extends Controllers
         }
     }
 
+    /**
+     * Método que muestra la vista de lista de empleos o vacantes, además que contiene
+     * la paginación de los registros.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function ListaEmpleos()
     {
+        $vacantes_por_pagina = 6;
         $data['titulo_pagina'] = 'Lista vacantes | ' . NOMBRE_EMPRESA . '.';
+        $data['count-rows'] = $this->pagination($vacantes_por_pagina);
+        $pagina = explode('/', $_GET['url']);
+        if (isset($pagina[2]) && !empty($pagina[2])) {
+            if ($pagina[2] > $data['count-rows']) {
+                header('Location: ' . URL . 'Vacante/ListaEmpleos/1');
+            }
+            $pagina = $pagina[2];
+        } else {
+            $pagina = 1;
+        }
+        $data['numero_vacante'] = $pagina;
+        $iniciar = ($pagina - 1) * $vacantes_por_pagina;
+        $data['vacantes_pagination'] =  $this->model->selectAllVacantes(intval($iniciar), intval($vacantes_por_pagina));
+        $arrSectores = $this->model->loadSectorUser(intval($_SESSION['user-data']['idUsuario']));
+        if (!empty($arrSectores)) {
+            foreach ($arrSectores as $sector) {
+                $request = $this->model->getVacantesSector(intval($sector['idSectorFK']));
+                if (!empty($request)) {
+                    $data['recomendados'] = $request;
+                }
+            }
+        } else {
+            $data['recomendados'] = "";
+        }
+        // $data['recomendados'] = $this->model->getVacantesSector($arrSectores);
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 
+    /**
+     * Método que muestra la vista de detalle de vacante y sus requisitos.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function DetallesVacante()
     {
         $idVacante = explode('/', $_GET['url']);
-        if (isset($idVacante[2])) {
+        if (isset($idVacante[2]) && !empty($idVacante[2])) {
             $idVacante = intval($idVacante[2]);
             if ($idVacante > 0) {
                 $data['detail_vacante'] = $this->model->detailVacante($idVacante);
-                if (isset($_SESSION['data-aspirante']['idAspirante'])) {
-                    $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                if (!empty($data['detail_vacante'])) {
+                    if (isset($_SESSION['data-aspirante']['idAspirante'])) {
+                        $data['aspiranteApplyVacancy'] = $this->model->aspiranteApplyVacancy($idVacante, $_SESSION['data-aspirante']['idAspirante']);
+                        $data['sugerencias'] = $this->model->sugerencias(intval($data['detail_vacante']['idSector']));
+                    } else {
+                        $data['aspiranteApplyVacancy'] = '';
+                    }
+                    $data['titulo_pagina'] = 'Detalles vacante | ' . NOMBRE_EMPRESA;
+                    $this->views->getView($this, 'DetallesVacante', $data);
                 } else {
-                    $data['aspiranteApplyVacancy'] = '';
+                    header('Location: ' . URL . 'Vacante/ListaEmpleos');
                 }
-                $data['titulo_pagina'] = 'Detalles vacante | ' . NOMBRE_EMPRESA;
-                $this->views->getView($this, 'DetallesVacante', $data);
+            } else {
+                header('Location: ' . URL . 'Vacante/ListaEmpleos');
             }
+        } else {
+            header('Location: ' . URL . 'Vacante/ListaEmpleos');
         }
     }
 
-    //Método controlador para insertar y/o editar vacantes
+    /** 
+     * Método controlador para insertar y/o editar vacantes, esto de acuerdo al
+     * valor que traiga el idVacante, si es mayor a 0, entonces se edita, si es 0
+     * se inserta.
+     * @return void
+     * @author Santiago Andres Becerra Espitia @S4NT1A6O
+     */
     public function setVacante()
     {
         if ($_POST) {
@@ -145,7 +209,11 @@ class Vacante extends Controllers
         die();
     }
 
-    // método para registrar los requerimientos de las vacantes
+    /** 
+     * Método para registrar los requerimientos de las vacantes.
+     * @return void
+     * @author Santiago Andres Becerra Espitia @S4NT1A6O
+     */
     public function setRequirement()
     {
         if ($_POST) {
@@ -195,8 +263,12 @@ class Vacante extends Controllers
         die();
     }
 
-    //Método para mostrar las vacantes relacionadas con los sectores que el
-    //usuario registro
+    /**
+     * Método para mostrar las vacantes relacionadas con los sectores que el 
+     * usuario registro.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function getVacantesSector()
     {
         if (isset($_SESSION['data-sector-user'])) {
@@ -212,24 +284,14 @@ class Vacante extends Controllers
         die();
     }
 
-    // método para traer todas las vacantes
-    public function getAllVacantes()
-    {
-        $request = $this->model->selectAllVacantes();
-        if (!empty($request)) {
-            $arrResponse = ['status' => true, 'data' => $request];
-        } else {
-            $arrResponse = ['status' => false, 'data' => 'Ha ocurrido un error interno. Por favor intenta más tarde !!'];
-        }
-        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-    }
-
-    //método que retorna el arreglo con las vacantes
+    /**
+     * Método que retorna el arreglo con las vacantes para mostrarlas en la vista.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function getArregloVacantes()
     {
-        $arrUrl = explode('/', implode($_GET));
-        $busqueda = limpiarCadena(strtolower($arrUrl[2]));
-
+        $busqueda = $_POST['txtSearchVacantes'];
         $request = $this->model->getFiltroVacantes($busqueda);
         if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => $request];
@@ -239,7 +301,11 @@ class Vacante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 
-    //Método para cargar el sector o los sectores que el usuario tiene asociado
+    /**
+     * Método para cargar el sector o los sectores que el usuario tiene asociado.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function getUserVacanteSector()
     {
         $idUsuario = intval($_SESSION['id']);
@@ -261,6 +327,13 @@ class Vacante extends Controllers
         echo  json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 
+    /** 
+     * Método para que un usuario aspirante pueda aplicar a una vacante, y también
+     * controla el envió de correo electrónico al usuario que creó la vacante y que
+     * aplico.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function applyVacancy()
     {
         if ($_POST) {
@@ -313,8 +386,11 @@ class Vacante extends Controllers
     }
 
     /**
-     * Método para el envió de correo electrónico al aspirante luego de aplicar a una vacante
-     * @return boolean verdadero si el correo se envió correctamente
+     * Método para el envió de correo electrónico al aspirante luego de aplicar a una
+     * vacante.
+     * @return boolean verdadero si el correo se envió correctamente, de lo 
+     * contrario falso.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
      */
     private function sendEmailAspirante(array $dataAspirante, array $dataVacante, string $asunto, string $view)
     {
@@ -334,8 +410,11 @@ class Vacante extends Controllers
     }
 
     /**
-     * Método para el envió de correo electrónico al contratante luego de que un aspirante aplique a una vacante que él ha publicado
-     * @return boolean Verdadero si el correo se envió correctamente
+     * Método para el envió de correo electrónico al contratante luego de que un 
+     * aspirante aplique a una vacante que él ha publicado.
+     * @return boolean Verdadero si el correo se envió correctamente, falso de lo
+     * contrario.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
      */
     private function sendEmailContratanteVacante(array $dataAspirante, array $dataVacante, string $asunto)
     {
@@ -356,6 +435,12 @@ class Vacante extends Controllers
         return sendEmail($dataVacante, 'aplicacionVacanteContratante');
     }
 
+    /** 
+     * Método para procesar la solicitud de un contratante, y dar el resultado a los 
+     * aspirante, si continuan el proceso de seleccion o lo cancelan.
+     * @return void
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
     public function resultApplyVacancy()
     {
         $urlResult = explode('/', $_GET['url']);
@@ -397,5 +482,20 @@ class Vacante extends Controllers
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
+    }
+
+    /**
+     * Método que trae el número de vacantes registradas y hace el calculo para 
+     * la paginación.
+     * @param int $num_vacantes_por_pagina Número de vacantes a mostrar por página.
+     * @return int $paginas Número de páginas que va a tener la paginación.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
+    private function pagination($num_vacantes_por_pagina)
+    {
+        $vacantes_por_pagina = $num_vacantes_por_pagina;
+        $numeroVacantes = $this->model->countRows();
+        $paginas = ceil($numeroVacantes['total'] / $vacantes_por_pagina);
+        return $paginas;
     }
 }

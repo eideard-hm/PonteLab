@@ -20,6 +20,7 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
+        <?php require_once('./Views/Components/LoadingForms.php'); ?>
         <!-- Menu de navegación -->
         <?php
         require_once('./Views/Components/Layout.php');
@@ -714,8 +715,8 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="#" id="form-experiencia-laboral" class="contenedor-form">
-                                                                <input type="hidden" name="idExperiencia" id="idExperiencia">   
-                                                                <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
+                                                                    <input type="hidden" name="idExperiencia" id="idExperiencia">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
                                                                         <label for="txtEmpresa">Empresa laboró</label>
                                                                         <input class="form-control" type="text" name="txtEmpresa" id="txtEmpresa" autofocus placeholder="Microsoft" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
@@ -981,45 +982,33 @@
                                             <div class="col-md-3">
                                                 <ul class="nav nav-pills basic-info-items list-inline d-block p-0 m-0">
                                                     <li>
-                                                        <a class="nav-link active" data-toggle="pill" href="#basicinfo">Contact and Basic Info</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#family">Family and Relationship</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#work">Work and Education</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#lived">Places You've Lived</a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="nav-link" data-toggle="pill" href="#details">Details About You</a>
+                                                        <a class="nav-link active" data-toggle="pill" href="#basicinfo">Contacto e Informacion Basica</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="col-md-9 pl-4">
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade active show" id="basicinfo" role="tabpanel">
-                                                        <h4>Contact Information</h4>
+                                                        <h4>Información de Contacto</h4>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-3">
                                                                 <h6>Email</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">Bnijohn@gmail.com</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['correoUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>Mobile</h6>
+                                                                <h6>Celular</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">(001) 4544 565 456</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['numTelUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>Address</h6>
+                                                                <h6>Direccion</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">United States of America</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['direccionUsuario'] ?></p>
                                                             </div>
                                                         </div>
                                                         <h4 class="mt-3">Websites and Social Links</h4>
@@ -1038,183 +1027,41 @@
                                                                 <p class="mb-0">www.bootstrap.com</p>
                                                             </div>
                                                         </div>
-                                                        <h4 class="mt-3">Basic Information</h4>
+                                                        <h4 class="mt-3">Informacion Basica</h4>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <h6>Birth Date</h6>
+                                                                <h6>Identificacion</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">24 January</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                                </p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>Birth Year</h6>
+                                                                <h6>Numero ID</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">1994</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['numDocUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>Gender</h6>
+                                                                <h6>Barrio</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">Female</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['nombreBarrio'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>interested in</h6>
+                                                                <h6>Num Fijo</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">Designing</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['numTelFijo'] ?></p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <h6>language</h6>
+                                                                <h6>Estado</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0">English, French</p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['estadoUsuario'] ?> - Activo</p>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="family" role="tabpanel">
-                                                        <h4 class="mb-3">Relationship</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Your Relationship Status</h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mt-3 mb-3">Family Members</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Family Members</h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Paul Molive</h6>
-                                                                    <p class="mb-0">Brothe</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Anna Mull</h6>
-                                                                    <p class="mb-0">Sister</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Paige Turner</h6>
-                                                                    <p class="mb-0">Cousin</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="work" role="tabpanel">
-                                                        <h4 class="mb-3">Work</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Work Place</h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Themeforest</h6>
-                                                                    <p class="mb-0">Web Designer</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>iqonicdesign</h6>
-                                                                    <p class="mb-0">Web Developer</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>W3school</h6>
-                                                                    <p class="mb-0">Designer</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mb-3">Professional Skills</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Professional Skills</h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mt-3 mb-3">College</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add College</h6>
-                                                                </div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Lorem ipsum</h6>
-                                                                    <p class="mb-0">USA</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="lived" role="tabpanel">
-                                                        <h4 class="mb-3">Current City and Hometown</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Georgia</h6>
-                                                                    <p class="mb-0">Georgia State</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Atlanta</h6>
-                                                                    <p class="mb-0">Atlanta City</p>
-                                                                </div>
-                                                                <div class="edit-relation"><a href="javascript:void();"><i class="ri-edit-line mr-2"></i>Edit</a></div>
-                                                            </li>
-                                                        </ul>
-                                                        <h4 class="mt-3 mb-3">Other Places Lived</h4>
-                                                        <ul class="suggestions-lists m-0 p-0">
-                                                            <li class="d-flex mb-4 align-items-center">
-                                                                <div class="user-img img-fluid"><i class="ri-add-fill"></i></div>
-                                                                <div class="media-support-info ml-3">
-                                                                    <h6>Add Place</h6>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="details" role="tabpanel">
-                                                        <h4 class="mb-3">About You</h4>
-                                                        <p>Hi, I’m Bni, I’m 26 and I work as a Web Designer for the iqonicdesign.</p>
-                                                        <h4 class="mt-3 mb-3">Other Name</h4>
-                                                        <p>Bini Rock</p>
-                                                        <h4 class="mt-3 mb-3">Favorite Quotes</h4>
-                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                                                     </div>
                                                 </div>
                                             </div>
