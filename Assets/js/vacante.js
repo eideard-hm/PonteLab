@@ -1,4 +1,9 @@
-import {formDataElement, sweetAlert, initTextEditorTinymce, divLoading} from "./functionsGlobals.js";
+import {
+  formDataElement,
+  sweetAlert,
+  initTextEditorTinymce,
+  divLoading,
+} from "./functionsGlobals.js";
 
 const formVacancy = document.querySelector("#form-vacancy");
 const bntSubmit = document.getElementById("btn_submit");
@@ -13,22 +18,23 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 document.addEventListener("DOMContentLoaded", async () => {
   initTextEditorTinymce("especificaciones");
   initTextEditorTinymce("perfil");
-  try { 
-    divLoading.style.display = "flex";
-    const req = await fetch(url);
-    const { status, data } = await req.json();
-    if (status) {
-      document.querySelector("#idAspirante").value = data.idAspirante;
-      tinymce.activeEditor.setContent(data.descripcionPersonalAspirante);
-      document.querySelector("#especificaciones").value =
-        data.descripcionPersonalAspirante;
-      document.querySelector("#txtEstado").value =
-        data.idEstadoLaboralAspiranteFK;
-    }
-    divLoading.style.display = "none";
-  } catch (error) {
-    console.error(error);
-  }
+  // const url = `${base_url}Vacante/getVacantes`;
+  // try {
+  //   divLoading.style.display = "flex";
+  //   const req = await fetch(url);
+  //   const { status, data } = await req.json();
+  //   if (status) {
+  //     document.querySelector("#idAspirante").value = data.idAspirante;
+  //     tinymce.activeEditor.setContent(data.descripcionPersonalAspirante);
+  //     document.querySelector("#especificaciones").value =
+  //       data.descripcionPersonalAspirante;
+  //     document.querySelector("#txtEstado").value =
+  //       data.idEstadoLaboralAspiranteFK;
+  //   }
+  //   divLoading.style.display = "none";
+  // } catch (error) {
+  //   console.error(error);
+  // }
 });
 
 if (bntSubmit) {
