@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
@@ -32,6 +33,7 @@
         ?>
 
         <div id="content-page" class="content-page">
+            <?php require_once('./Views/Components/LoadingForms.php') ?>
             <!-- ===== Start of Job Header Section ===== -->
             <section class="job-header mtb20">
                 <div class="container">

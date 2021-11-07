@@ -291,9 +291,7 @@ class Vacante extends Controllers
      */
     public function getArregloVacantes()
     {
-        $arrUrl = explode('/', implode($_GET));
-        $busqueda = limpiarCadena(strtolower($arrUrl[2]));
-
+        $busqueda = $_POST['txtSearchVacantes'];
         $request = $this->model->getFiltroVacantes($busqueda);
         if (!empty($request)) {
             $arrResponse = ['status' => true, 'data' => $request];

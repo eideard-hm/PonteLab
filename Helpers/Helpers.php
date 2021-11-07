@@ -16,12 +16,13 @@ function base_url()
     return URL;
 }
 
-function dep ($data){
-    $format  =print_r('<pre>');
-    $format .=print_r($data);
-    $format .=print_r('<pre>');
+function dep($data)
+{
+    $format  = print_r('<pre>');
+    $format .= print_r($data);
+    $format .= print_r('<pre>');
     return $format;
-    }
+}
 /**
  * Función para encriptar contraseñas
  * 
@@ -48,6 +49,18 @@ function uploadImages(array $foto, string $nameFoto)
     $destino = "Assets/img/uploads/{$nameFoto}";
     $move = move_uploaded_file($url_tmp, $destino);
     return $move;
+}
+
+/** 
+ * Función para eliminar un archivo del servidor.
+ * @param string $nameFoto Nombre del archivo que se va a eliminar.
+ * @return boolean true si se ha eliminado correctamente el archivo
+ * @author Edier Heraldo Hernandez Molano
+ */
+function deleteImage(string $nameFoto)
+{
+    $destino = "Assets/img/uploads/{$nameFoto}";
+    return unlink($destino);
 }
 
 /**
@@ -103,7 +116,7 @@ function sendEmail(array $data, $template)
 
         if ($email->send()) {
             $envioEmail = true;
-        }else{
+        } else {
             $envioEmail = false;
         }
     } catch (Exception $e) {

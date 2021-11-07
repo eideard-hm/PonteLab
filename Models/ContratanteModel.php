@@ -5,6 +5,7 @@ class ContratanteModel extends GestionCRUD
     //atributos de la clase
     private string $descripcionContratante;
     private int $idUsuarioFK;
+    private string $imagenUsuario;
 
     public function __construct()
     {
@@ -99,9 +100,9 @@ class ContratanteModel extends GestionCRUD
         string $numTelUsuario,
         string $numTelFijo,
         int $idBarrioFK,
-        string $direccionUsuario
+        string $direccionUsuario,
+        $imagenUsuario
     ) {
-
         $this->idUsuario = $idUsuario;
         $this->nombreUsuario = $nombreUsuario;
         $this->numDocUsuario = $numDocUsuario;
@@ -110,6 +111,7 @@ class ContratanteModel extends GestionCRUD
         $this->numTelFijo = $numTelFijo;
         $this->idBarrioFK = $idBarrioFK;
         $this->direccionUsuario = $direccionUsuario;
+        $this->imagenUsuario = $imagenUsuario;
 
         $sql = "SELECT * FROM USUARIO 
                 WHERE (numDocUsuario ='{$this->numDocUsuario}' AND idUsuario != {$this->idUsuario})
@@ -118,10 +120,10 @@ class ContratanteModel extends GestionCRUD
 
         if (empty($request)) {
             $sql = "UPDATE USUARIO SET 
-                nombreUsuario=?, numDocUsuario=?,idTipoDocumentoFK=?,
-                numTelUsuario=?, numTelFijo=?, 
-                idBarrioFK=?, direccionUsuario=? 
-                WHERE idUsuario  = {$this->idUsuario}";
+                nombreUsuario= ?, numDocUsuario= ?,idTipoDocumentoFK= ?,
+                numTelUsuario= ?, numTelFijo= ?, 
+                idBarrioFK= ?, direccionUsuario= ?, imagenUsuario= ?
+                WHERE idUsuario= ?";
             $arrData = array(
                 $this->nombreUsuario,
                 $this->numDocUsuario,
@@ -129,7 +131,9 @@ class ContratanteModel extends GestionCRUD
                 $this->numTelUsuario,
                 $this->numTelFijo,
                 $this->idBarrioFK,
-                $this->direccionUsuario
+                $this->direccionUsuario,
+                $this->imagenUsuario,
+                $this->idUsuario
             );
             return $this->edit($sql, $arrData);
         } else {
@@ -154,13 +158,22 @@ class ContratanteModel extends GestionCRUD
         //consulta para extraerlo
         $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
-        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK, imagenUsuario
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
         ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
         ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
         ON b.idBarrio = u.idBarrioFK
         WHERE idUsuario = {$this->idUsuario}";
 
+        return $this->select($sql);
+    }
+
+    public function selectImgProfile(int $id)
+    {
+        $this->intId = $id;
+        $sql = "SELECT idUsuario, imagenUsuario
+        FROM USUARIO 
+        WHERE idUsuario = {$this->intId}";
         return $this->select($sql);
     }
 

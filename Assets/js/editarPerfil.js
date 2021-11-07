@@ -1,6 +1,9 @@
 const btnGuardar = document.getElementById("guardar");
 const btnCancelar = document.getElementById("cancelar");
 const btnEdit = document.getElementById("edit");
+// constante que nos permite traer el formulario principal que corresponde a este ID
+const formUser = document.querySelector("#formPrincipal");
+
 if (document.querySelector("#edit")) {
   document.querySelector("#edit").addEventListener("click", (e) => {
     e.preventDefault();
@@ -11,8 +14,8 @@ if (document.querySelector("#edit")) {
     document.querySelector("#phone").removeAttribute("disabled");
     document.querySelector("#Barrio").removeAttribute("disabled");
     document.querySelector("#Direccion").removeAttribute("disabled");
-    btnGuardar.style.display = "block";
-    btnCancelar.style.display = "block";
+    btnGuardar.style.display = "inline-block";
+    btnCancelar.style.display = "inline-block";
     document.querySelector("#edit").setAttribute("disabled", "disabled");
     btnEdit.style.display = "none";
     // btnInhabilitar.style.display ='none';
@@ -21,8 +24,7 @@ if (document.querySelector("#edit")) {
 
 btnCancelar.style.display = "none";
 btnGuardar.style.display = "none";
-// constante que nos permite traer el formulario principal que corresponde a este ID
-const formUser = document.querySelector("#formPrincipal");
+
 
 const editPerfil = async () => {
   //enviar los datos mediante una petición fetch
@@ -55,57 +57,59 @@ const editPerfil = async () => {
 //campos vacio
 
 document.addEventListener("DOMContentLoaded", () => {
-  formUser.onsubmit = function (e) {
-    e.preventDefault();
-    const nombre = document.querySelector("#txtNombre").value;
-    const tipoDoc = document.querySelector("#tipoDoc").value;
-    const numDoc = document.querySelector("#numDoc").value;
-    const mobile = document.querySelector("#mobile").value;
-    const phone = document.querySelector("#phone").value;
-    const Barrio = document.querySelector("#Barrio").value;
-    const Dirección = document.querySelector("#Direccion").value;
-    if (
-      nombre == "" ||
-      tipoDoc == "" ||
-      numDoc == "" ||
-      mobile == "" ||
-      phone == "" ||
-      Barrio == "" ||
-      Dirección == ""
-    ) {
-      swal("Atención", "Todos los campos son obligatorios", "error");
-      return false;
-    } else if (nombre.length > 70) {
-      swal("Atención", "El nombre es muy largo", "error");
-    } else if (numDoc.length > 10) {
-      swal(
-        "Atención",
-        "El número de documento no debe ser mayor a 10 caracteres",
-        "error"
-      );
-    } else if (isNaN(mobile)) {
-      swal("Atención", "El número de Documento no contener letras ", "error");
-    } else if (mobile.length > 10) {
-      swal(
-        "Atención",
-        "El número de telefónico no debe ser mayor a 10 caracteres",
-        "error"
-      );
-    } else if (isNaN(mobile)) {
-      swal("Atención", "El número de telefónico no contener letras ", "error");
-    } else if (phone.length > 7) {
-      swal(
-        "Atención",
-        "El número de teléfono no debe ser mayor a 10 caracteres",
-        "error"
-      );
-    } else if (isNaN(mobile)) {
-      swal("Atención", "El número de teléfono no contener letras ", "error");
-    } else {
-      editPerfil();
-    }
-  };
+  formUser.addEventListener("submit", validateFormEdit);
 });
+
+const validateFormEdit = (e) => {
+  e.preventDefault();
+  const nombre = document.querySelector("#txtNombre").value;
+  const tipoDoc = document.querySelector("#tipoDoc").value;
+  const numDoc = document.querySelector("#numDoc").value;
+  const mobile = document.querySelector("#mobile").value;
+  const phone = document.querySelector("#phone").value;
+  const Barrio = document.querySelector("#Barrio").value;
+  const Dirección = document.querySelector("#Direccion").value;
+  if (
+    nombre == "" ||
+    tipoDoc == "" ||
+    numDoc == "" ||
+    mobile == "" ||
+    phone == "" ||
+    Barrio == "" ||
+    Dirección == ""
+  ) {
+    swal("Atención", "Todos los campos son obligatorios", "error");
+    return false;
+  } else if (nombre.length > 70) {
+    swal("Atención", "El nombre es muy largo", "error");
+  } else if (numDoc.length > 10) {
+    swal(
+      "Atención",
+      "El número de documento no debe ser mayor a 10 caracteres",
+      "error"
+    );
+  } else if (isNaN(mobile)) {
+    swal("Atención", "El número de Documento no contener letras ", "error");
+  } else if (mobile.length > 10) {
+    swal(
+      "Atención",
+      "El número de telefónico no debe ser mayor a 10 caracteres",
+      "error"
+    );
+  } else if (isNaN(mobile)) {
+    swal("Atención", "El número de telefónico no contener letras ", "error");
+  } else if (phone.length > 7) {
+    swal(
+      "Atención",
+      "El número de teléfono no debe ser mayor a 10 caracteres",
+      "error"
+    );
+  } else if (isNaN(mobile)) {
+    swal("Atención", "El número de teléfono no contener letras ", "error");
+  } else {
+    editPerfil();
+  }
+};
 
 const btnInhabilitar = document.querySelector("#inhabilitar");
 if (btnInhabilitar) {
@@ -114,6 +118,7 @@ if (btnInhabilitar) {
     inactivarCuenta();
   });
 }
+
 const inactivarCuenta = async () => {
   const formData = new FormData(formUser);
   formData.forEach((item) => console.log(item));
@@ -141,7 +146,24 @@ const inactivarCuenta = async () => {
     console.log(error);
   }
 };
+
 function Cancelar() {
   alert("Actualizacion cancelada correctamente");
   window.location.href = `${base_url}Contratante/Edit_Perfil_Contratante`;
 }
+
+const fileValidation = () => {
+  const fileInput = document.getElementById("foto");
+  const filePath = fileInput.value;
+  const allowedExtensions = /(.jpg|.jpeg|.png|.svg)$/i;
+  if (!allowedExtensions.exec(filePath)) {
+    swal("Atención", "Solo se permiten imagenes.", "warning");
+    fileInput.value = "";
+    return false;
+  } else {
+    document.querySelector("#foto_remove").value = 1;
+    // validateFormEdit();
+  }
+};
+
+document.querySelector("#foto").addEventListener("change", fileValidation);

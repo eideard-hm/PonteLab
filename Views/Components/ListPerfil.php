@@ -45,7 +45,7 @@
                         </div>
                     </a>
                     <div class="d-inline-block w-100 text-center p-3">
-                        <a class="bg-primary iq-sign-btn" href="<?= URL ?>logout" role="button">Cerrar sesión<i class="ri-login-box-line ml-2"></i></a>
+                        <a class="bg-primary iq-sign-btn" href="<?= URL ?>logout" role="button"><i class="fas fa-sign-out-alt"></i> Cerrar sesión<i class="ri-login-box-line ml-2"></i></a>
                     </div>
                 </div>
             </div>

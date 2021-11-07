@@ -41,7 +41,7 @@ class LoginModel extends gestionCRUD
 
         $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
-        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK, imagenUsuario
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
         ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
         ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b

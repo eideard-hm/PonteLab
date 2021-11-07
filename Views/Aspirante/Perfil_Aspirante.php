@@ -20,6 +20,7 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
+        <?php require_once('./Views/Components/LoadingForms.php'); ?>
         <!-- Menu de navegación -->
         <?php
         require_once('./Views/Components/Layout.php');
@@ -714,8 +715,8 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="#" id="form-experiencia-laboral" class="contenedor-form">
-                                                                <input type="hidden" name="idExperiencia" id="idExperiencia">   
-                                                                <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
+                                                                    <input type="hidden" name="idExperiencia" id="idExperiencia">
+                                                                    <div class="contenedor-grupo w50 form-group" id="grupo-empresa">
                                                                         <label for="txtEmpresa">Empresa laboró</label>
                                                                         <input class="form-control" type="text" name="txtEmpresa" id="txtEmpresa" autofocus placeholder="Microsoft" />
                                                                         <i class="estado-input fa fa-times-circle"></i>
@@ -995,7 +996,7 @@
                                                                 <h6>Email</h6>
                                                             </div>
                                                             <div class="col-9">
-                                                                <p class="mb-0" ><?= $_SESSION['user-data']['correoUsuario'] ?></p>
+                                                                <p class="mb-0"><?= $_SESSION['user-data']['correoUsuario'] ?></p>
                                                             </div>
                                                             <div class="col-3">
                                                                 <h6>Celular</h6>
@@ -1034,7 +1035,7 @@
                                                             </div>
                                                             <div class="col-9">
                                                                 <p class="mb-0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
-                                                            </p>
+                                                                </p>
                                                             </div>
                                                             <div class="col-3">
                                                                 <h6>Numero ID</h6>
@@ -1061,7 +1062,7 @@
                                                                 <p class="mb-0"><?= $_SESSION['user-data']['estadoUsuario'] ?> - Activo</p>
                                                             </div>
                                                         </div>
-                                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1086,7 +1087,6 @@
     require_once('./Views/Components/ScriptsJs.php');
     ?>
     <script src="<?= URL; ?>Assets/js/fntAspirante.js" type="module" defer></script>
-    <script src="../../Assets/js/Perfil_Aspirante.js" defer></script>
 </body>
 
 </html>

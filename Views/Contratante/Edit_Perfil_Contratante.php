@@ -28,7 +28,7 @@
     <div class="wrapper">
         <!-- Menu de navegación -->
         <?php
-        require_once('./Views/Components/Layout.php');
+        require_once('./Views/Components/LayoutC.php');
         ?>
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
@@ -49,7 +49,6 @@
                                                 Cambiar contraseña
                                             </a>
                                         </li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -66,15 +65,17 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form id="formPrincipal">
+                                            <form id="formPrincipal" enctype="multipart/form-data">
                                                 <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" value="<?= $_SESSION['user-data']['idUsuario'] ?>" />
+                                                <input type="hidden" name="foto_actual" id="foto_actual" value="<?= $_SESSION['user-data']['imagenUsuario'] ?>" />
+                                                <input type="hidden" name="foto_remove" id="foto_remove" value="0" />
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
                                                             <img class="profile-pic" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                             <div class="p-image">
                                                                 <i class="las la-pencil-alt upload-button"></i>
-                                                                <input class="file-upload" type="file" accept="image/*" />
+                                                                <input class="file-upload" name="foto" id="foto" type="file" accept="image/*" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,10 +119,17 @@
                                                         <input type="text" class="form-control" name="Direccion" id="Direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>" disabled>
                                                     </div>
                                                 </div>
+<<<<<<< HEAD
                                                 <button type="button" id="edit" class="btn btn-primary mr-2">Editar</button>
                                                 <button type="submit" id="guardar" class="btn btn-primary mr-2">Guardar</button>
                                                 <button type="reset" id="cancelar" class="btn iq-bg-danger ">Cancelar</button>
                                                 <button type="reset" id="inhabilitar" class="btn iq-bg-danger ">Inhabilitar</button>
+=======
+                                                <button type="button" id="edit" class="btn btn-primary mr-2"><i class="fas fa-edit"></i> Editar</button>
+                                                <button type="submit" id="guardar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
+                                                <button type="reset" id="cancelar" class="btn iq-bg-danger mr-2"><i class="fas fa-ban text-danger"></i> Cancelar</button>
+                                                <button type="reset" id="inhabilitar" class="btn iq-bg-danger"><i class="fas fa-exclamation-triangle text-danger"></i> Inhabilitar</button>
+>>>>>>> 8abffae15fdcee9cc66300f6170790a583b0ad25
                                             </form>
                                         </div>
                                     </div>
@@ -134,7 +142,7 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form>
+                                            <form id="change-password">
                                                 <div class="form-group">
                                                     <label for="cpass">Contraseña Actual:</label>
                                                     <a href="javascripe:void();" class="float-right">Contraseña Actual</a>
