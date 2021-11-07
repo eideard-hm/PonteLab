@@ -140,15 +140,15 @@
                                             <form id="change-password">
                                                 <div class="form-group">
                                                     <label for="actual">Contraseña Actual</label>
-                                                    <input type="Password" class="form-control" id="actual" name="actual" value="">
+                                                    <input type="Password" class="form-control" id="actual" name="actual" placeholder="Ingrese su contraseña actual...">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nueva">Contraseña Nueva:</label>
-                                                    <input type="Password" class="form-control" id="nueva" name="nueva" value="">
+                                                    <input type="Password" class="form-control" id="nueva" name="nueva" placeholder="Ingrese su nueva contraseña...">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="verificar">Verificar Contraseña:</label>
-                                                    <input type="Password" class="form-control" id="verificar" name="verificar" value="">
+                                                    <input type="Password" class="form-control" id="verificar" name="verificar" placeholder="Confirme la nueva contraseña...">
                                                 </div>
                                                 <button type="submit" id="cambiar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                             </form>
