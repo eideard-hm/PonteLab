@@ -140,6 +140,16 @@ class ContratanteModel extends GestionCRUD
             return 'exists';
         }
     }
+    public function updateContraseña(int $idUsuario, string $password)
+    {
+        $this->intId = $idUsuario;
+        $this->strPassword = $password;
+        $sql = "UPDATE usuario 
+                SET passUsuario = ?, token =  ?
+                WHERE idUsuario = {$this->intId}";
+        $arrData = array($this->strPassword, "");
+        return $this->edit($sql, $arrData);
+    }
 
     //Método para extraer un unico usuario de la base de datos por el id
     public function selectOneUser(int $idUsuario)
@@ -180,5 +190,13 @@ class ContratanteModel extends GestionCRUD
             $this->idUsuario
         );
         return $this->edit($sql, $arrData);
+    }
+
+    public function currentPassword(int $idUsuario)
+    {
+        $sql = "SELECT idUsuario, passUsuario
+                FROM USUARIO
+                WHERE idUsuario = {$idUsuario}";
+        return $this->select($sql);
     }
 }

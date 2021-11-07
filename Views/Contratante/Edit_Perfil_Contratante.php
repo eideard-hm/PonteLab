@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -128,29 +129,28 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                                    <?php require_once('./Views/Components/LoadingForms.php'); ?>
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">CCambiar contraseña</h4>
+                                                <h4 class="card-title">Cambiar contraseña</h4>
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
                                             <form id="change-password">
                                                 <div class="form-group">
-                                                    <label for="cpass">Current Password:</label>
-                                                    <a href="javascripe:void();" class="float-right">Forgot Password</a>
-                                                    <input type="Password" class="form-control" id="cpass" value="">
+                                                    <label for="actual">Contraseña Actual</label>
+                                                    <input type="Password" class="form-control" id="actual" name="actual" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="npass">New Password:</label>
-                                                    <input type="Password" class="form-control" id="npass" value="">
+                                                    <label for="nueva">Contraseña Nueva:</label>
+                                                    <input type="Password" class="form-control" id="nueva" name="nueva" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="vpass">Verify Password:</label>
-                                                    <input type="Password" class="form-control" id="vpass" value="">
+                                                    <label for="verificar">Verificar Contraseña:</label>
+                                                    <input type="Password" class="form-control" id="verificar" name="verificar" value="">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancle</button>
+                                                <button type="submit" id="cambiar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -170,7 +170,7 @@
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>
-        <script src="<?= URL; ?>Assets/js/editarPerfil.js"></script>
+        <script src="<?= URL; ?>Assets/js/editarPerfil.js" type="module" defer></script>
 </body>
 
 </html>
