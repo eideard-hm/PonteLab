@@ -22,7 +22,7 @@ CREATE TABLE USUARIO
 (
 idUsuario int primary key auto_increment not null,
 nombreUsuario varchar(70) not null,
-correoUsuario varchar(70) not null unique,
+correoUsuario varchar(30) not null unique,
 passUsuario varchar(100) not null,
 idTipoDocumentoFK int,
 numDocUsuario varchar(10) not null unique,
