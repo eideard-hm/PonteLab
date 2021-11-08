@@ -46,7 +46,7 @@
                                 <div class="col-md-2 col-xs-3">
                                     <div class="job-company">
                                         <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" data-idVacante="<?= $vacante['idVacante'] ?>">
-                                            <img src="<?= $vacante['imagenUsuario'] != null ? URL . "Assets/img/" . $vacante['imagenUsuario'] : URL . "Assets/img/upload.svg" ?>" alt="<?= $vacante['nombreUsuario'] ?>" class="img-fluid" />
+                                            <img src="<?= $vacante['imagenUsuario'] != null ? assets_url_img() . "uploads/" . $vacante['imagenUsuario'] : URL . "Assets/img/upload.svg" ?>" alt="<?= $vacante['nombreUsuario'] ?>" class="img-fluid" />
                                         </a>
                                     </div>
                                 </div>
