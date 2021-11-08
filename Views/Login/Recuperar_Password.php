@@ -18,6 +18,7 @@
 
 <body>
     <section class="from-logi">
+        <?php require_once('./Views/Components/LoadingForms.php'); ?>
         <form method="POST" action="" id="formCambiarPass" name="formCambiarPass">
             <img src="<?= URL ?>Assets/img/Logo_ponslabor.png" class="pontelab">
             <h1>Cambiar Contraseña</h5>
@@ -36,7 +37,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script src="<?= URL ?>Assets/js/login.js" defer></script>
+    <script src="<?= URL ?>Assets/js/login.js" type="module" defer></script>
 </body>
 
 </html>
