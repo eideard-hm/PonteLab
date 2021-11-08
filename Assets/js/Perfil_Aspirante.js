@@ -2,6 +2,10 @@ const btnGuardar = document.getElementById('guardar');
 const btnCancelar = document.getElementById('cancelar');
 const btnInhabilitar = document.getElementById('inhabilitar');
 
+document.getElementById("attachment").addEventListener('click', function() {
+    document.getElementById("file-input").click();
+});
+
 let formUser = document.getElementById('form-aspirante');
 
 const editPerfil = async () => {
@@ -65,39 +69,7 @@ const inhabilitarAs = async () => {
     } catch (error) {
         console.log(error);
     }
-
-
 };
-
-if (document.querySelector('#editar')) {
-    document.querySelector('#editar').addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const nombre = document.querySelector('#nombreApellido');
-        nombre.removeAttribute('disabled');
-        const titulo = document.querySelector('#titulo');
-        titulo.removeAttribute('disabled');
-        const posicion = document.querySelector('#posicion');
-        posicion.removeAttribute('disabled');
-        const idioma = document.querySelector('#idioma');
-        idioma.removeAttribute('disabled');
-        const numDoc = document.querySelector('#numDoc');
-        numDoc.removeAttribute('disabled');
-        const direccion = document.querySelector('#direccion');
-        direccion.removeAttribute('disabled');
-        const Barrio = document.querySelector('#Barrio');
-        Barrio.removeAttribute('disabled');
-        btnGuardar.style.display = 'block';
-        btnCancelar.style.display = 'block';
-        document.querySelector('#editar').setAttribute('disabled', 'disabled');
-    })
-}
-
-btnCancelar.style.display = 'none';
-btnGuardar.style.display = 'none';
-
-
-
     document.addEventListener('DOMContentLoaded', () => {
 
         formUser.onsubmit = function (e) {
@@ -184,11 +156,11 @@ const actualizarImagen = async () => {
 }
 
 
-$("i").click(function () {
+/*$("i").click(function () {
     $("input[type='file']").trigger('click');
   });
   
   $('input[type="file"]').on('change', function() {
     var val = $(this).val();
     $(this).siblings('span').text(val);
-  })
+  })*/
