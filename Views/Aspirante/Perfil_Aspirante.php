@@ -1011,22 +1011,7 @@
                                                                 <p class="mb-0"><?= $_SESSION['user-data']['direccionUsuario'] ?></p>
                                                             </div>
                                                         </div>
-                                                        <h4 class="mt-3">Websites and Social Links</h4>
-                                                        <hr>
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <h6>Website</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">www.bootstrap.com</p>
-                                                            </div>
-                                                            <div class="col-3">
-                                                                <h6>Social Link</h6>
-                                                            </div>
-                                                            <div class="col-9">
-                                                                <p class="mb-0">www.bootstrap.com</p>
-                                                            </div>
-                                                        </div>
+                            
                                                         <h4 class="mt-3">Informacion Basica</h4>
                                                         <hr>
                                                         <div class="row">
