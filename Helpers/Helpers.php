@@ -15,6 +15,25 @@ function base_url()
 {
     return URL;
 }
+/**
+ * Función que retorna la ruta de los archivos css del proyecto
+ * 
+ * @return string Ruta raiz del proyecto
+ */
+function assets_url_css()
+{
+    return URL . 'Assets/css/';
+}
+
+/**
+ * Función que retorna la ruta de los javascript del proyecto
+ * 
+ * @return string Ruta raiz del proyecto
+ */
+function assets_url_js()
+{
+    return URL . 'Assets/js/';
+}
 
 function dep($data)
 {

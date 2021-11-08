@@ -439,4 +439,18 @@ class VacanteModel extends GestionCRUD
                 WHERE idSector = {$idSector} AND estadoVacante != 0";
         return $this->selectAll($sql);
     }
+
+    /**
+     * Método para obtener los datos de la vacante a la cual aplico un aspirante.
+     * @param int $idApplicationVacancy id de la aplicación a la vacante.
+     * @return array Retorna un arreglo con los datos de la vacante.
+     * @author Edier Heraldo Hernández Molano @eideard-hm 
+     */
+    public function getApplyVacancys($idUsuario)
+    {
+        $sql = "SELECT *
+                FROM dataVacanteApplicationVacancyView
+                WHERE idAspiranteFK = {$idUsuario}";
+        return $this->selectAll($sql);
+    }
 }

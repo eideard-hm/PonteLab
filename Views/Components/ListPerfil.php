@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="account-setting.html" class="iq-sub-card iq-bg-info-hover">
+                    <a href="<?= URL ?>Aspirante/Account_Seetings" class="iq-sub-card iq-bg-info-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-info">
                                 <i class="las la-user-cog"></i>

@@ -504,4 +504,20 @@ class Vacante extends Controllers
         $paginas = ceil($numeroVacantes['total'] / $vacantes_por_pagina);
         return $paginas;
     }
+
+    /**
+     * Método que retorna la información de las vacantes a las cuales ha aplicado un aspirante.
+     * @return int $data Vacantes a las cuales ha aplicado un aspirante.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
+    public function getApplyVacancys()
+    {
+        if (isset($_SESSION['data-aspirante']['idAspirante'])) {
+            $idUsuario = intval($_SESSION['data-aspirante']['idAspirante']);
+            $data = $this->model->getApplyVacancys($idUsuario);
+            $arrResponse = ['status' => true, 'data' => $data];
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
 }
