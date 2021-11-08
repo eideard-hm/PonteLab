@@ -223,10 +223,6 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script src="<?= URL ?>Assets/js/js.dashboard/lottie.js" defer></script>
-    <script src="<?= URL ?>Assets/js/js.dashboard/chart-custom.js" defer></script>
-    <script src="<?= URL ?>Assets/js/Perfil_Aspirante.js" defer></script>
-    
 </body>
 
 </html>
