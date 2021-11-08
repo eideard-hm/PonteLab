@@ -33,7 +33,19 @@
                             </div>
                         </div>
                     </a>
-                    <a href="account-setting.html" class="iq-sub-card iq-bg-info-hover">
+                    <a href="<?= URL ?>Aspirante/Aplicaciones_Vacante" class="iq-sub-card iq-bg-warning-hover">
+                        <div class="media align-items-center">
+                            <div class="rounded iq-card-icon iq-bg-success">
+                                <i class="las la-clipboard-check"></i>
+                            </div>
+                            <div class="media-body ml-3">
+                                <h6 class="mb-0 ">Aplicaciones a vacantes</h6>
+                                <p class="mb-0 font-size-12">
+                                    Revisa las vacantes a las cuales ha aplicado.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="<?= URL ?>Aspirante/Account_Seetings" class="iq-sub-card iq-bg-info-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-info">
                                 <i class="las la-user-cog"></i>
@@ -45,7 +57,7 @@
                         </div>
                     </a>
                     <div class="d-inline-block w-100 text-center p-3">
-                        <a class="bg-primary iq-sign-btn" href="<?= URL ?>logout" role="button">Cerrar sesión<i class="ri-login-box-line ml-2"></i></a>
+                        <a class="bg-primary iq-sign-btn" href="<?= URL ?>logout" role="button"><i class="fas fa-sign-out-alt"></i> Cerrar sesión<i class="ri-login-box-line ml-2"></i></a>
                     </div>
                 </div>
             </div>

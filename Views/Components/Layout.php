@@ -27,6 +27,12 @@
                         <span>Empleos</span>
                     </a>
                 </li>
+                <li>
+                    <a href="<?= URL ?>Aspirante/Aplicaciones_Vacante" class="iq-waves-effect">
+                        <i class="las la-clipboard-check" data-toggle="tooltip" data-placement="right" title="" data-original-title="Aplicaciones a vacantes"></i>
+                        <span>Aplicaciones vacantes</span>
+                    </a>
+                </li>
             </ul>
         </nav>
         <div class="p-3"></div>

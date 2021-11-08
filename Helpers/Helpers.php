@@ -15,13 +15,40 @@ function base_url()
 {
     return URL;
 }
+/**
+ * Función que retorna la ruta de los archivos css del proyecto
+ * @return string Ruta raiz del proyecto
+ */
+function assets_url_css()
+{
+    return URL . 'Assets/css/';
+}
 
-function dep ($data){
-    $format  =print_r('<pre>');
-    $format .=print_r($data);
-    $format .=print_r('<pre>');
+/**
+ * Función que retorna la ruta de los javascript del proyecto
+ * @return string Ruta raiz del proyecto
+ */
+function assets_url_js()
+{
+    return URL . 'Assets/js/';
+}
+
+/**
+ * Función que retorna la ruta de las imagenes del proyecto.
+ * @return string Ruta raiz del proyecto
+ */
+function assets_url_img()
+{
+    return URL . 'Assets/img/';
+}
+
+function dep($data)
+{
+    $format  = print_r('<pre>');
+    $format .= print_r($data);
+    $format .= print_r('<pre>');
     return $format;
-    }
+}
 /**
  * Función para encriptar contraseñas
  * 
@@ -48,6 +75,18 @@ function uploadImages(array $foto, string $nameFoto)
     $destino = "Assets/img/uploads/{$nameFoto}";
     $move = move_uploaded_file($url_tmp, $destino);
     return $move;
+}
+
+/** 
+ * Función para eliminar un archivo del servidor.
+ * @param string $nameFoto Nombre del archivo que se va a eliminar.
+ * @return boolean true si se ha eliminado correctamente el archivo
+ * @author Edier Heraldo Hernandez Molano
+ */
+function deleteImage(string $nameFoto)
+{
+    $destino = "Assets/img/uploads/{$nameFoto}";
+    return unlink($destino);
 }
 
 /**
@@ -103,7 +142,7 @@ function sendEmail(array $data, $template)
 
         if ($email->send()) {
             $envioEmail = true;
-        }else{
+        } else {
             $envioEmail = false;
         }
     } catch (Exception $e) {

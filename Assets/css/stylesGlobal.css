@@ -138,3 +138,23 @@ body {
 .imgProductoDelete {
   width: 175px;
 }
+
+#divLoading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(254, 254, 254, 0.65);
+  z-index: 1000;
+  display: none;
+}
+
+#divLoading img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 250px;
+}

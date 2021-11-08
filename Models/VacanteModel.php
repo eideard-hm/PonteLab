@@ -124,7 +124,9 @@ class VacanteModel extends GestionCRUD
         string $direccionVacante,
         int $estadoVacante,
         int $idContratante,
-        int $idSectorFK
+        int $idSectorFK,
+        $created_at,
+        $updated_at
     ) {
         $this->nombreVacante = $nombreVacante;
         $this->cantidadVacante = $cantidadVacante;
@@ -138,13 +140,13 @@ class VacanteModel extends GestionCRUD
         $this->estadoVacante = $estadoVacante;
         $this->idContratanteFK = $idContratante;
         $this->idSectorFK = $idSectorFK;
-
         $return = 0;
 
         $sql = "INSERT INTO VACANTE (nombreVacante, cantidadVacante, descripcionVacante,
         perfilAspirante, tipoContratoVacante, sueldoVacante, fechaHoraPublicacion,
-        fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK)
-        values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        fechaHoraCierre, direccionVacante, estadoVacante, idContratanteFK, idSectorFK,
+        created_at, updated_at)
+        values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         //almacena los valores en un arreglo
         $arrData = array(
             $this->nombreVacante,
@@ -158,7 +160,9 @@ class VacanteModel extends GestionCRUD
             $this->direccionVacante,
             $this->estadoVacante,
             $this->idContratanteFK,
-            $this->idSectorFK
+            $this->idSectorFK,
+            $created_at,
+            $updated_at
         );
         $return = $this->insert($sql, $arrData);
         return $return;
@@ -433,6 +437,20 @@ class VacanteModel extends GestionCRUD
         $sql = "SELECT *
                 FROM detailVacanteView
                 WHERE idSector = {$idSector} AND estadoVacante != 0";
+        return $this->selectAll($sql);
+    }
+
+    /**
+     * Método para obtener los datos de la vacante a la cual aplico un aspirante.
+     * @param int $idApplicationVacancy id de la aplicación a la vacante.
+     * @return array Retorna un arreglo con los datos de la vacante.
+     * @author Edier Heraldo Hernández Molano @eideard-hm 
+     */
+    public function getApplyVacancys($idUsuario)
+    {
+        $sql = "SELECT *
+                FROM dataVacanteApplicationVacancyView
+                WHERE idAspiranteFK = {$idUsuario}";
         return $this->selectAll($sql);
     }
 }

@@ -82,7 +82,7 @@ class GestionCRUD extends Conexion
         $this->arrValues = $arrValues;
 
         $stmt = $this->conexion->prepare($sql);
-        return $stmt->execute();
+        return $stmt->execute($this->arrValues);
     }
 
     /** 

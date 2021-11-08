@@ -5,7 +5,7 @@ const checkOtroPuestoInteres = document.querySelector('#grupo-puesto-otro_puesto
 const checkOtroIdioma = document.querySelector('#grupo-puesto-otro_idioma');
 export const inputOtroPuestoInteres = document.getElementById('grupo-otro_puesto_interes');
 const checkOtraHabilidad = document.querySelector('#grupo-puesto-otra_habilidad');
-
+export const divLoading = document.getElementById('divLoading');
 /**
  * Función para ejecutar una alerta de sweet alert
  * @param {string} titulo Titulo que va a tener la alerta
@@ -167,6 +167,7 @@ estrellas.forEach(elemento => {
  */
 const initTextEditorTinymce = (selector) => {
     if (document.querySelector(`#${selector}`)) {
+        divLoading.style.display = 'flex';
         tinymce.init({
             selector: `#${selector}`,
             language: 'es',
@@ -182,6 +183,7 @@ const initTextEditorTinymce = (selector) => {
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
         });
+        divLoading.style.display = 'none';
     }
 }
 

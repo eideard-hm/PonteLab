@@ -1,6 +1,6 @@
-const btnGuardar = document.getElementById('guardar');
-const btnCancelar = document.getElementById('cancelar');
-const btnInhabilitar = document.getElementById('inhabilitar');
+const btnGuardar = document.getElementById("guardar");
+const btnCancelar = document.getElementById("cancelar");
+const btnInhabilitar = document.getElementById("inhabilitar");
 
 document.getElementById("attachment").addEventListener('click', function() {
     document.getElementById("file-input").click();
@@ -9,42 +9,36 @@ document.getElementById("attachment").addEventListener('click', function() {
 let formUser = document.getElementById('form-aspirante');
 
 const editPerfil = async () => {
-    //enviar los datos mediante una petición fetch
-    let formData = new FormData(formUser);
-    //formData.forEach(item => console.log(item))
-    const url = `${base_url}Aspirante/updatePerfilAspirante`;
+  //enviar los datos mediante una petición fetch
+  let formData = new FormData(formUser);
+  //formData.forEach(item => console.log(item))
+  const url = `${base_url}Aspirante/updatePerfilAspirante`;
 
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    const { statusUser, msg } = await res.json();
 
-    try {
-        const res = await fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        const { statusUser, msg } = await res.json();
+    if (statusUser) {
+      //   swal("Aspirante", msg, "success" );
 
-        if (statusUser) {
-         //   swal("Aspirante", msg, "success" );
-
-
-            swal({
-                title: "Aspirante",
-                text: "exito",
-                type: "success",
-                timer: 9000
-            }).then(function () {
-                window.location.href = `${base_url}Perfil_Aspirante`;
-            });
-
-        }
-        else {
-            swal("Error", "falla", "error");//mostrar la alerta
-        }
+      swal({
+        title: "Aspirante",
+        text: "exito",
+        type: "success",
+        timer: 9000,
+      }).then(function () {
+        window.location.href = `${base_url}Perfil_Aspirante`;
+      });
+    } else {
+      swal("Error", "falla", "error"); //mostrar la alerta
     }
-    catch (error) {
-        swal("Error", error, "error");
-    }
-}
-
+  } catch (error) {
+    swal("Error", error, "error");
+  }
+};
 
 const inhabilitarAs = async () => {
     const url = `${base_url}Aspirante/inhabilitarA`;
@@ -97,18 +91,22 @@ const inhabilitarAs = async () => {
     })
     
 
+document.querySelector("#inhabilitar").addEventListener("click", (e) => {
+  e.preventDefault();
+  inhabilitarAs();
+});
 
 function Cancelar() {
-    alert ("Actualizacion cancelada correctamente")
-    //swal("Correcto!", "Actualizacion cancelada correctamente", "success");
-    window.location.href =  `${base_url}Perfil_Aspirante`;
+  alert("Actualizacion cancelada correctamente");
+  //swal("Correcto!", "Actualizacion cancelada correctamente", "success");
+  window.location.href = `${base_url}Perfil_Aspirante`;
 }
 
 const actualizarImagen = async () => {
-    const url = `${base_url}Edit_Profile_Aspirante/actualizarImagen`;
-    let formData = new FormData(formUser);
-    //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
-    /* swal({
+  const url = `${base_url}Edit_Profile_Aspirante/actualizarImagen`;
+  let formData = new FormData(formUser);
+  //swal("Atención", "Usuario inhabilitado correctamente", "error", timer= '1500');
+  /* swal({
      title: "Completado!",
      text: "Usuario inhabilitado correctamente.",
      type: "success",
@@ -116,28 +114,28 @@ const actualizarImagen = async () => {
          window.location = 'http://localhost/PonsLabor/logout';
      });*/
 
-    try {
-        const req = await fetch(url, {
-            method: 'POST',
-            body: formData
-        })
-        swal({
-            title: "Completado!",
-            text: "Imagen Actualizada correctamente.",
-            type: "success",
-            timer: 9000
-        }).then(function () {
-            window.location.href = `${base_url}logout`;
-        });
-        const data = await req.json();
-        console.log(error);
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const req = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    swal({
+      title: "Completado!",
+      text: "Imagen Actualizada correctamente.",
+      type: "success",
+      timer: 9000,
+    }).then(function () {
+      window.location.href = `${base_url}logout`;
+    });
+    const data = await req.json();
+    console.log(error);
+  } catch (error) {
+    console.log(error);
+  }
 
-    //window.location = `${base_url}logout`; 
+  //window.location = `${base_url}logout`;
 
-    /*try {
+  /*try {
         
         const url = `${base_url}Perfil_Aspirante/inhabilitarA`;
         const res = await url;
@@ -151,10 +149,7 @@ const actualizarImagen = async () => {
     } catch (error) {
         swal("Error", error, "error");
     }*/
-
-
-}
-
+};
 
 /*$("i").click(function () {
     $("input[type='file']").trigger('click');

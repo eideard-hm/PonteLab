@@ -70,6 +70,7 @@
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
                                                             <img class="profile-pic" width="250px" height="200px" src="<?php echo $_SESSION['imgProfile']; ?>" alt="Edier">
+                                    
                                                                 <div id="attachment"  class="p-image"><i class="las la-pencil-alt upload-button"></i></div>
                                                               <input id="file-input" type="file" style="display:none" multiple/>
 
@@ -127,7 +128,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                                    </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
@@ -149,8 +149,8 @@
                                                     <label for="vpass">Verificar contraseña:</label>
                                                     <input type="Password" class="form-control" id="vpass" value="">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancle</button>
+                                                <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+                                                <button type="reset" class="btn iq-bg-danger">Cancelar</button>
                                             </form>
                                         </div>
                                     </div>

@@ -19,6 +19,8 @@ class Aspirante extends Controllers
         //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
             header('Location:' . URL . 'Login');
+        } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
+            header('Location:' . URL . 'Menu/Menu_Contratante');
         }
     }
 
@@ -83,6 +85,32 @@ class Aspirante extends Controllers
         } else {
             header('Location: ' . URL . 'Menu');
         }
+    }
+
+    /**
+     * Método que se encarga de mostrar la vista de configuracion de la cuenta y además pasarle
+     * alguna información a dicha vista y hacer peticiones a los modelos.
+     * @return View Retorna una vista y además una data con información que se le va 
+     * a pasar a dicha vista.
+     * @author Edier Heraldo Hernandez Molano
+     */
+    public function Account_Seetings()
+    {
+        $data['titulo_pagina'] = 'Configuración de Cuenta | ' . NOMBRE_EMPRESA . '.';
+        $this->views->getView($this, 'Account_Seetings', $data);
+    }
+
+    /**
+     * Método que se encarga de mostrar la vista de aplicaciones a vacantes y además pasarle
+     * alguna información a dicha vista y hacer peticiones a los modelos.
+     * @return View Retorna una vista y además una data con información que se le va 
+     * a pasar a dicha vista.
+     * @author Edier Heraldo Hernandez Molano
+     */
+    public function Aplicaciones_Vacante()
+    {
+        $data['titulo_pagina'] = 'Aplicaciones a Vacantes | ' . NOMBRE_EMPRESA . '.';
+        $this->views->getView($this, 'Aplicaciones_Vacante', $data);
     }
 
     public function inhabilitarA()

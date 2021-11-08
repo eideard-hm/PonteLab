@@ -1,136 +1,172 @@
 /*===========================reecuperar contraseña=============*/
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+/* @import url(https://fonts.googleapis.com/css?family=Roboto:300); */
+:root {
+  --fuenteRoboto: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
 
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-.form {
-  position: relative;
-  top: 121px;
-  left: 356px;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 480px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
+*,
+*:after,
+*:before {
   box-sizing: border-box;
-  font-size: 14px;
-}
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background: #009FE0;
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-.form button:hover,.form button:active,.form button:focus {
-  background: #81d8fa;
+  margin: 0;
+  padding: 0%;
 }
 
-.form .register-form {
-  display: none;
+body {
+  background: #fff;
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--fuenteRoboto);
 }
-.container {
+#home {
   position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
+  font-size: 34px;
+  color: #999999;
+  margin: 4px;
 }
-.container:before, .container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-.container .info {
-  margin: 50px auto;
+.home {
+  text-decoration: none;
+  color: #999999;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 2.5em 3em 0em 0em;
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
 }
-.container .info h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  font-size: 36px;
-  font-weight: 300;
-  color: #1a1a1a;
+#Login{
+  position: relative;
+  font-size: 34px;
+  color: #999999;
+  margin: 4px;
 }
-.container .info span {
-  color: #4d4d4d;
-  font-size: 12px;
-}
-.container .info span a {
-  color: #000000;
+.Login{
   text-decoration: none;
+  color: #999999;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 2.5em 3em 0em 0em;
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
-.container .info span .fa {
-  color: #EF3B3A;
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 440px;
+  height: 400px;
+  margin: auto;
+  margin-top: 7.5%;
+  padding: 0px 0px;
+  position: relative;
+  top: 20px;
+  right: -5em;
+  font-family: var(--fuenteRoboto);
+  float: right;
+  z-index: 100;
+  text-align: center;
 }
-body {
-  background: #fff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #fff, #fff);
-  background: -moz-linear-gradient(right, #fff, #fff);
-  background: -o-linear-gradient(right, #fff, #fff);
-  background: linear-gradient(to left, #fff, #fff);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+.login-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 420px;
+  height: 490px;
+  margin: auto;
+  margin-top: 7.5%;
+  padding: 40px 30px;
+  position: relative;
+  top: -30px;
+  left: -1em;
+  font-family: var(--fuenteRoboto);
+  float: right;
+  z-index: 100;
+  text-align: center;
 }
-#home{
-    position: relative;
-    font-size: 34px;
-    color: #999999;
-    margin: 4px;
-  }
-  .home{
-    text-decoration: none;
-    color: #999999;
-    font-size: 16px;
-    font-weight: 500;  
-    margin: 2.5em 3em 0em 0em;
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-  }
-  .job {
-    width: 610px;
-    height: 640px;
-    position: absolute;
-    float: left;
-    left: 5%;
-    z-index: 100;
-    top:50px;
-  }
-  
-  .wave {
-    position: fixed;
-    height: 140%;
-    width: 74%;
-    left: 0;
-    bottom: -40%;
-    z-index: -1;
-  }
-  
+.parrafo {
+  margin: 0px;
+  text-align: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+  font-size: 19px;
+  color: #009fe0;
+}
+
+#txtEmailReset {
+  font-family: var(--fuenteRoboto);
+  width: 100%;
+  height: 45px;
+  border: 2px solid rgb(187, 187, 187);
+  margin-bottom: -6px;
+  border-radius: 13px;
+  padding: 10px 12px;
+  background: #fff;
+  font-size: 18px;
+  color: #000000;
+  position: relative;
+  right: center;
+  outline: none;
+  font-weight: 400;
+  transition: 0.3s ease all;
+}
+.btn {
+  cursor: pointer;
+  text-decoration: none;
+  height: 45px;
+  width: 100%;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  background-color: #009fe0;
+  border-radius: 13px;
+  border: 2px solid #009fe0;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  position: relative;
+  top: -2px;
+  left: center;
+}
+.btn :hover {
+  box-shadow: 3px 0px 38px rgba(163, 163, 163, 1);
+  background-color: #676766;
+  border: none;
+}
+
+.job {
+  width: 510px;
+  height: 540px;
+  position: relative;
+  float: left;
+  left: 8%;
+  z-index: 1;
+  top: 7em;
+}
+
+.wave {
+  position: fixed;
+  height: 140%;
+  width: 74%;
+  left: 0;
+  bottom: -40%;
+  z-index: -1;
+}
+
+.pontelab {
+  width: 80px;
+  height: 70px;
+  position: center;
+  margin-bottom: -1em;
+}
