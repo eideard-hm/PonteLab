@@ -33,6 +33,18 @@
                             </div>
                         </div>
                     </a>
+                    <a href="<?= URL ?>Aspirante/Aplicaciones_Vacante" class="iq-sub-card iq-bg-warning-hover">
+                        <div class="media align-items-center">
+                            <div class="rounded iq-card-icon iq-bg-success">
+                                <i class="las la-clipboard-check"></i>
+                            </div>
+                            <div class="media-body ml-3">
+                                <h6 class="mb-0 ">Aplicaciones a vacantes</h6>
+                                <p class="mb-0 font-size-12">
+                                    Revisa las vacantes a las cuales ha aplicado.</p>
+                            </div>
+                        </div>
+                    </a>
                     <a href="<?= URL ?>Aspirante/Account_Seetings" class="iq-sub-card iq-bg-info-hover">
                         <div class="media align-items-center">
                             <div class="rounded iq-card-icon iq-bg-info">

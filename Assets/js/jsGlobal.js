@@ -748,25 +748,14 @@ const applyVacant = async () => {
     const { status, data } = await req.json();
 
     if (status && data.length > 0) {
-        tableAplicacionVacantes.innerHTML = '';
+      tableAplicacionVacantes.innerHTML = "";
       data.forEach((vacante) => {
         tableAplicacionVacantes.innerHTML += `
         <tr>
           <td>${vacante.idAplicacionVacante}</td>
           <td>${vacante.nombreVacante}</td>
-          <td>${vacante.descripcionVacante}</td>
           <td>${vacante.nombreUsuario}</td>
-          <td>
-          ${
-            if(vacante.estadoAplicacionVacante === '0'){   
-                '<span class="badge badge-info">Solicitud enviada</span>'; 
-            }else if(vacante.estadoAplicacionVacante === '1'){
-                '<span class="badge badge-success">Aceptado</span>'; 
-            }else{
-                '<span class="badge badge-danger">Rechazado</span>';
-            }
-          }
-          </td>
+          <td>${vacante.estadoAplicacionVacante}</td>
         </tr>
         `;
       });
