@@ -515,6 +515,18 @@ class Vacante extends Controllers
         if (isset($_SESSION['data-aspirante']['idAspirante'])) {
             $idUsuario = intval($_SESSION['data-aspirante']['idAspirante']);
             $data = $this->model->getApplyVacancys($idUsuario);
+            if (!empty($data)) {
+                if ($data[0]['estadoAplicacionVacante'] == '0') {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-info">Solicitud enviada</span>';
+                } elseif ($data[0]['estadoAplicacionVacante'] == '1') {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-success">Aceptado</span>';
+                } elseif ($data[0]['estadoAplicacionVacante'] == '2') {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-danger">Rechazado</span>';
+                } else {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-warning">En proceso</span>';
+                }
+            }
+
             $arrResponse = ['status' => true, 'data' => $data];
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }

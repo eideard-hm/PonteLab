@@ -55,7 +55,6 @@
                                                             <tr>
                                                                 <th>Id aplicación</th>
                                                                 <th>Nombre vacante</th>
-                                                                <th>Descripción</th>
                                                                 <th>Contratante</th>
                                                                 <th>Estado</th>
                                                             </tr>
