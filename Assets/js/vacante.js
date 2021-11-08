@@ -18,6 +18,23 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 document.addEventListener("DOMContentLoaded", async () => {
   initTextEditorTinymce("especificaciones");
   initTextEditorTinymce("perfil");
+  // const url = `${base_url}Vacante/getVacantes`;
+  // try {
+  //   divLoading.style.display = "flex";
+  //   const req = await fetch(url);
+  //   const { status, data } = await req.json();
+  //   if (status) {
+  //     document.querySelector("#idAspirante").value = data.idAspirante;
+  //     tinymce.activeEditor.setContent(data.descripcionPersonalAspirante);
+  //     document.querySelector("#especificaciones").value =
+  //       data.descripcionPersonalAspirante;
+  //     document.querySelector("#txtEstado").value =
+  //       data.idEstadoLaboralAspiranteFK;
+  //   }
+  //   divLoading.style.display = "none";
+  // } catch (error) {
+  //   console.error(error);
+  // }
 });
 
 if (bntSubmit) {

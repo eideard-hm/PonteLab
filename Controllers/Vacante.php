@@ -157,6 +157,10 @@ class Vacante extends Controllers
             $intEstado = boolval($_POST['estado']);
             $intIdContratanteFK = intval($_SESSION['contractor-data']['idContratante']);
             $intIdsectorFK = intval($_POST['idSectorFK']);
+            $time = new DateTime();
+            $time->setTimezone(new DateTimeZone('America/Bogota'));
+            $created_at = $time->format("Y-m-d h:i:s");
+            $updated_at = $time->format("Y-m-d h:i:s");
             /*================== INSERTAR VACANTE =======================*/
             if ($intidVacancy === 0 || empty($intidVacancy)) {
                 $option = 1;
@@ -172,7 +176,9 @@ class Vacante extends Controllers
                     $strDireccion,
                     $intEstado,
                     $intIdContratanteFK,
-                    $intIdsectorFK
+                    $intIdsectorFK,
+                    $created_at,
+                    $updated_at
                 );
             }
             // else {
@@ -497,5 +503,33 @@ class Vacante extends Controllers
         $numeroVacantes = $this->model->countRows();
         $paginas = ceil($numeroVacantes['total'] / $vacantes_por_pagina);
         return $paginas;
+    }
+
+    /**
+     * Método que retorna la información de las vacantes a las cuales ha aplicado un aspirante.
+     * @return int $data Vacantes a las cuales ha aplicado un aspirante.
+     * @author Edier Heraldo Hernández Molano @eideard-hm
+     */
+    public function getApplyVacancys()
+    {
+        if (isset($_SESSION['data-aspirante']['idAspirante'])) {
+            $idUsuario = intval($_SESSION['data-aspirante']['idAspirante']);
+            $data = $this->model->getApplyVacancys($idUsuario);
+            if (!empty($data)) {
+                if ($data[0]['estadoAplicacionVacante'] == '0') {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-info">Solicitud enviada</span>';
+                } elseif ($data[0]['estadoAplicacionVacante'] == '1') {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-success">Aceptado</span>';
+                } elseif ($data[0]['estadoAplicacionVacante'] == '2') {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-danger">Rechazado</span>';
+                } else {
+                    $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-warning">En proceso</span>';
+                }
+            }
+
+            $arrResponse = ['status' => true, 'data' => $data];
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
     }
 }

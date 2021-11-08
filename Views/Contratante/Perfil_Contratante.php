@@ -254,7 +254,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
-    <script src="<?= URL ?>Assets/js/contratante.js" defer type="module"></script>
+    <script src="<?= URL ?>Assets/js/contratante.js" type="module" defer></script>
 </body>
 
 </html>
