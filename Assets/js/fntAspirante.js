@@ -61,6 +61,7 @@ const saveDataAspirante = async () => {
       sweetAlert("Aspirante", msg, "success");
       changeNameBtn("Aspirante");
       lockIconRegister("Aspirante");
+      document.querySelector('#idAspirante').value = value.idAspirante;
 
       //función para cargar los datos que acaba de ingresar el usuario
       await loadPersonalDescription();
@@ -1239,7 +1240,6 @@ document
 if (document.querySelector("#data-idAspirante")) {
   document.querySelector("#data-idAspirante").addEventListener("click", () => {
     initTextEditorTinymce("especificaciones");
-    formDescripcionPersonal.reset();
   });
 }
 if (document.querySelector("#data-idExperiencia")) {

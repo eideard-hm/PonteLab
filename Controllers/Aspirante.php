@@ -254,7 +254,7 @@ class Aspirante extends Controllers
             $created_at = $Object->format("Y-m-d h:i:s");
             $update_at = $Object->format("Y-m-d h:i:s");
 
-            if ($idAspirante === 0) {
+            if ($idAspirante == 0) {
                 $option = 1;
                 $request = $this->model->insertAspirante(
                     $strDescription,
@@ -274,7 +274,7 @@ class Aspirante extends Controllers
             }
 
             if (intval($request) > 0) {
-                if ($option === 1) {
+                if ($option == 1) {
                     //creamos unas variables con los datos del nuevo aspirante
                     $ultimoAspiranteInsertado = $this->model->selectOneAspirante(intval($request));
                     $_SESSION['data-aspirante'] = $ultimoAspiranteInsertado;
