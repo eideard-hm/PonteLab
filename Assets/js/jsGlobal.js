@@ -715,7 +715,7 @@ const generarPdf = () => {
  *                             ICONO DE HOJA DE VIDA
  =============================================================================*/
 
-const getDataAspirante = async () => {
+export const getDataAspirante = async () => {
   const url = `${base_url}Aspirante/getDataAspirante`;
   try {
     const req = await fetch(url);
@@ -727,9 +727,28 @@ const getDataAspirante = async () => {
           .setAttribute("disabled", "disabled");
         document.querySelector("#link-hoja-vida").setAttribute("href", "#");
       }
+
       if (document.querySelector("#list-cv")) {
         document.querySelector("#list-cv").setAttribute("disabled", "disabled");
         document.querySelector("#link-cv").setAttribute("href", "#");
+      } else {
+        document.querySelector("#list-cv").removeAttribute("disabled");
+        document
+          .querySelector("#link-cv")
+          .setAttribute("href", "<?= URL ?>Aspirante/HojaVida");
+      }
+    } else {
+      if (document.querySelector("#hoja-vida")) {
+        document.querySelector("#hoja-vida").removeAttribute("disabled");
+        document
+          .querySelector("#link-hoja-vida")
+          .setAttribute("href", `${base_url}Aspirante/HojaVida`);
+      }
+      if (document.querySelector("#list-cv")) {
+        document.querySelector("#list-cv").removeAttribute("disabled");
+        document
+          .querySelector("#link-cv")
+          .setAttribute("href", `${base_url}Aspirante/HojaVida`);
       }
     }
   } catch (error) {

@@ -3,13 +3,13 @@
 /**
  * Contiene la ruta raiz del proyecto
  */
-const URL = 'http://localhost/PonteLab/';
+const URL = 'https://pontelab.000webhostapp.com/pontelab/';
 
 // constante de conexión a la base de datos
 const DB_HOST = 'localhost';
-const DB_USER = 'root';
-const DB_PASS = '';
-const DB_NAME = 'db_proyectoponslabor';
+const DB_USER = 'id17916925_admin';
+const DB_PASS = 'RQ\ezqIc*y~+iz3D';
+const DB_NAME = 'id17916925_db_pontelab';
 
 //datos para el envió de correo electronico
 const NOMBRE_EMPRESA = 'PonteLab';
@@ -32,7 +32,7 @@ const USER_NAME = 'team.pontelab@gmail.com';
 /**
  * Contraseña del usuario de correo eletronico
  */
-const PASSWORD = 'Pontelab2021';
+const PASSWORD = 'PonteLab2021';
 /**
  * Número del puerto del servidor al cual se va a enviar el correo electrónico
  */
