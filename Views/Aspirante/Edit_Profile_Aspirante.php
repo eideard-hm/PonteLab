@@ -69,61 +69,60 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" width="250px" height="200px" src="<?php echo $_SESSION['imgProfile']; ?>" alt="Edier">
-                                    
-                                                                <div id="attachment"  class="p-image"><i class="las la-pencil-alt upload-button"></i></div>
-                                                              <input id="file-input" type="file" style="display:none" multiple/>
-
-                                                
+                                                            <img class="profile-pic" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
+                                                            <div class="p-image">
+                                                                <i class="las la-pencil-alt upload-button"></i>
+                                                                <input class="file-upload" name="foto" id="foto" type="file" accept="image/*" />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class=" row align-items-center">
                                                     <div class="form-group col-sm-6">
-                                                    <br><br>
+                                                        <br><br>
                                                         <label for="fname">Nombres y Apellidos:</label>
-                                                        <input type="text" class="form-control" id="nombreApellido" name="nombreApellido"  value="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
+                                                        <input type="text" class="form-control" id="nombreApellido" name="nombreApellido" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <br><br>
                                                         <label for="uname">Identificacion:</label>
                                                         <select name="titulo" id="titulo" class="form-control">
-                        <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
-                                                    <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
-                                                        <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
-                                                    <?php endforeach ?>
-                                                </select>
-                                                        
+                                                            <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                            <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
+                                                                <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                                            <?php endforeach ?>
+                                                        </select>
+
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="cname"> Numero de celular:</label>
+                                                        <label for="cname"> Número de celular:</label>
                                                         <input type="text" class="form-control" id="posicion" name="posicion" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="dob">Numero fijo:</label>
+                                                        <label for="dob">Número fijo:</label>
                                                         <input class="form-control" id="idioma" name="idioma" value="<?= $_SESSION['user-data']['numTelFijo'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="lname">Numero de identificacion:</label>
-                                                        <input type="text" class="form-control" id="numDoc" name="numDoc"  value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
+                                                        <label for="lname">Número de identificación:</label>
+                                                        <input type="text" class="form-control" id="numDoc" name="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="dob">Direccion:</label>
+                                                        <label for="dob">Dirección:</label>
                                                         <input class="form-control" id="direccion" name="direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label>Barrio:</label>
                                                         <select name="Barrio" id="Barrio" class="form-control">
-                        <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
-                                                    <?php foreach ($data['list_barrio'] as $barrio) : ?>
-                                                        <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
-                                                    <?php endforeach ?>
-                                                </select>
+                                                            <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
+                                                            <?php foreach ($data['list_barrio'] as $barrio) : ?>
+                                                                <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                            <?php endforeach ?>
+                                                        </select>
                                                     </div>
                                                 </div>
-                                                <button type="button" class="btn btn-primary profile-button mr-2" id="guardar" onclick="editPerfil();">Guardar</button>
-                                                <button class="btn btn-danger" id="inhabilitar" type="button" onclick="inhabilitarAs();"><i class="fas fa-times"></i>Inactivar Cuenta</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancelar</button>
+                                                <button type="button" class="btn btn-primary profile-button mr-2" id="guardar" onclick="editPerfil();"><i class="fas fa-save"></i> Guardar</button>
+                                                <button class="btn btn-danger" id="inhabilitar" type="button" onclick="inhabilitarAs();"><i class="fas fa-times"></i> Inactivar Cuenta</button>
+                                                <button type="reset" class="btn iq-bg-danger mr-2"><i class="fas fa-ban text-danger"></i>Cancelar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -149,13 +148,12 @@
                                                     <label for="vpass">Verificar contraseña:</label>
                                                     <input type="Password" class="form-control" id="vpass" value="">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2">Guardar</button>
+                                                <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                                 <button type="reset" class="btn iq-bg-danger">Cancelar</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -165,7 +163,6 @@
     </div>
     <!-- Wrapper END -->
     <!-- Footer -->
-    <script src="<?= URL; ?>Assets/js/Perfil_Aspirante.js"></script>
     <?php
     require_once('./Views/Components/Footer.php');
     ?>
@@ -173,6 +170,7 @@
     <?php
     require_once('./Views/Components/ScriptsJs.php');
     ?>
+    <script src="<?= URL; ?>Assets/js/Perfil_Aspirante.js" type="module" defer></script>
 </body>
 
 </html>

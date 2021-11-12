@@ -11,8 +11,8 @@ class Vacante extends Controllers
      */
     public function __construct()
     {
-        parent::__construct();
         session_start();
+        parent::__construct();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
             header('Location: ' . URL . 'Login');
@@ -526,10 +526,11 @@ class Vacante extends Controllers
                     $data[0]['estadoAplicacionVacante'] = '<span class="badge badge-warning">En proceso</span>';
                 }
             }
-
             $arrResponse = ['status' => true, 'data' => $data];
-            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        } else {
+            $arrResponse = ['status' => false, 'data' => []];
         }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

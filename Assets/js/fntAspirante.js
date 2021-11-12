@@ -19,6 +19,7 @@ import {
   unLockIconRegister,
   divLoading,
 } from "./functionsGlobals.js";
+import { getDataAspirante } from "./jsGlobal.js";
 
 /*-----------------------------------------------------------------------------
                     Declaración de variables globales
@@ -61,9 +62,11 @@ const saveDataAspirante = async () => {
       sweetAlert("Aspirante", msg, "success");
       changeNameBtn("Aspirante");
       lockIconRegister("Aspirante");
+      document.querySelector('#idAspirante').value = value.idAspirante;
 
       //función para cargar los datos que acaba de ingresar el usuario
       await loadPersonalDescription();
+      getDataAspirante();
     }
     divLoading.style.display = "none";
   } catch (error) {
@@ -174,6 +177,7 @@ const insertPuestoInteres = async (e) => {
         .querySelector("#data-idPuestoInteres i")
         .classList.replace("la-plus", "la-pen");
       listPuestoInteres.delete(data);
+      getDataAspirante();
     } else {
       sweetAlert("Error", msg, "warning");
     }
@@ -209,6 +213,7 @@ const insertPuestoInteresAspirante = async () => {
         sweetAlert("Puesto interes aspirante", msg, "success");
         await refreshPuestoInteres();
         formPuestoInteres.reset();
+        getDataAspirante();
       } else {
         sweetAlert("Error", msg, "error");
       }
@@ -382,6 +387,7 @@ const insertIdiomaAspirante = async () => {
       sweetAlert("Idioma aspirante", msg, "success");
       await refreshIdiomasAspirante();
       formIdioma.reset();
+      getDataAspirante();
     } else {
       sweetAlert("Error", msg, "warning");
     }
@@ -428,6 +434,7 @@ const insertNewIdioma = async () => {
         });
         document.querySelector("#grupo-puesto-otro_idioma").checked = true;
         mostrarInputOtroIdioma();
+        getDataAspirante();
       } else {
         sweetAlert("Error", msg, "warning");
       }
@@ -608,6 +615,7 @@ const inserHabilidadAspirante = async () => {
       sweetAlert("Habilidad aspirante", msg, "success");
       await refreshHabilidadAspirante();
       formHabilidad.reset();
+      getDataAspirante();
     } else {
       sweetAlert("Error", msg, "warning");
     }
@@ -643,6 +651,7 @@ const insertHabilidad = async () => {
       });
       document.querySelector("#grupo-puesto-otra_habilidad").checked = true;
       mostrarInputOtraHabilidad();
+      getDataAspirante();
     } else {
       sweetAlert("Error", msg, "warning");
     }
@@ -742,6 +751,7 @@ const insertEstudio = async () => {
       sweetAlert("Estudios aspirante", msg, "success");
       await showEstudios();
       formEstudios.reset();
+      getDataAspirante();
     } else {
       sweetAlert("Error", msg, "warning");
     }
@@ -844,6 +854,7 @@ const insertExperienciaLaboral = async () => {
       sweetAlert("Experiencia laboral aspirante", msg, "success");
       await showExperienciaLaboral();
       experienciaLaboral.reset();
+      getDataAspirante();
     } else {
       sweetAlert("Experiencia laboral aspirante", msg, "warning");
     }
@@ -1239,7 +1250,6 @@ document
 if (document.querySelector("#data-idAspirante")) {
   document.querySelector("#data-idAspirante").addEventListener("click", () => {
     initTextEditorTinymce("especificaciones");
-    formDescripcionPersonal.reset();
   });
 }
 if (document.querySelector("#data-idExperiencia")) {

@@ -35,61 +35,70 @@
         <!-- ===== Start of Job Post Section ===== -->
         <section class="ptb80" id="job-post">
             <div class="container d-flex">
-                <!-- Start of Job Post Main -->
-                <div class="col-md-8 col-sm-12 col-xs-12 job-post-main">
-                    <h2 class="capitalize"><i class="las la-briefcase"></i>Últimos trabajos</h2>
-                    <!-- Start of Job Post Wrapper -->
-                    <div class="job-post-wrapper mt60" id="list-vacantes">
-                        <?php foreach ($data['vacantes_pagination'] as $vacante) : ?>
-                            <div class="single-job-post row nomargin" data-idVacante="<?= $vacante['idVacante'] ?>">
-                                <!-- Job Company -->
-                                <div class="col-md-2 col-xs-3">
-                                    <div class="job-company">
-                                        <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" data-idVacante="<?= $vacante['idVacante'] ?>">
-                                            <img src="<?= $vacante['imagenUsuario'] != null ? URL . "Assets/img/" . $vacante['imagenUsuario'] : URL . "Assets/img/upload.svg" ?>" alt="<?= $vacante['nombreUsuario'] ?>" class="img-fluid" />
-                                        </a>
+                <?php if (count($data['vacantes_pagination']) > 0) { ?>
+                    <!-- Start of Job Post Main -->
+                    <div class="col-md-8 col-sm-12 col-xs-12 job-post-main">
+                        <h2 class="capitalize"><i class="las la-briefcase"></i>Últimos trabajos</h2>
+                        <!-- Start of Job Post Wrapper -->
+                        <div class="job-post-wrapper mt60" id="list-vacantes">
+                            <?php foreach ($data['vacantes_pagination'] as $vacante) : ?>
+                                <div class="single-job-post row nomargin" data-idVacante="<?= $vacante['idVacante'] ?>">
+                                    <!-- Job Company -->
+                                    <div class="col-md-2 col-xs-3">
+                                        <div class="job-company">
+                                            <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" data-idVacante="<?= $vacante['idVacante'] ?>">
+                                                <img src="<?= $vacante['imagenUsuario'] != null ? assets_url_img() . "uploads/" . $vacante['imagenUsuario'] : URL . "Assets/img/upload.svg" ?>" alt="<?= $vacante['nombreUsuario'] ?>" class="img-fluid" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- Job Title & Info -->
+                                    <div class="col-md-7 col-xs-6 ptb20">
+                                        <div class="job-title">
+                                            <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" data-idVacante="<?= $vacante['idVacante'] ?>"><?= $vacante['nombreVacante'] ?></a>
+                                        </div>
+                                        <div class="job-info">
+                                            <span class="company"><i class="fa fa-building-o"></i><?= $vacante['nombreUsuario'] ?></span>
+                                            <span class="location"><i class="fa fa-map-marker"></i><?= $vacante['direccionVacante'] ?></span>
+                                        </div>
+                                    </div>
+                                    <!-- Job Category -->
+                                    <div class="col-md-3 col-xs-3 ptb30">
+                                        <div class="job-category">
+                                            <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" class="btn btn-success capitalize" data-idVacante="<?= $vacante['idVacante'] ?>">full time</a>
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Job Title & Info -->
-                                <div class="col-md-7 col-xs-6 ptb20">
-                                    <div class="job-title">
-                                        <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" data-idVacante="<?= $vacante['idVacante'] ?>"><?= $vacante['nombreVacante'] ?></a>
-                                    </div>
-                                    <div class="job-info">
-                                        <span class="company"><i class="fa fa-building-o"></i><?= $vacante['nombreUsuario'] ?></span>
-                                        <span class="location"><i class="fa fa-map-marker"></i><?= $vacante['direccionVacante'] ?></span>
-                                    </div>
-                                </div>
-                                <!-- Job Category -->
-                                <div class="col-md-3 col-xs-3 ptb30">
-                                    <div class="job-category">
-                                        <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" class="btn btn-success capitalize" data-idVacante="<?= $vacante['idVacante'] ?>">full time</a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <!-- End of Job Post Wrapper -->
-                    <!-- Start of Pagination -->
-                    <ul class="pagination justify-content-center mt-3">
-                        <li class="page-item <?php echo $data['numero_vacante'] <= 1 ? 'disabled' : '' ?>">
-                            <a href="<?= URL ?>Vacante/ListaEmpleos/<?= $data['numero_vacante'] - 1 ?>" class="page-link">Anterior</a>
-                        </li>
-
-                        <?php for ($i = 0; $i < $data['count-rows']; $i++) : ?>
-                            <li class="page-item <?php echo $data['numero_vacante']  == $i + 1 ? 'active' : '' ?>">
-                                <a class="page-link" href="<?= URL ?>Vacante/ListaEmpleos/<?= $i + 1 ?>">
-                                    <?= $i + 1 ?>
-                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- End of Job Post Wrapper -->
+                        <!-- Start of Pagination -->
+                        <ul class="pagination justify-content-center mt-3">
+                            <li class="page-item <?php echo $data['numero_vacante'] <= 1 ? 'disabled' : '' ?>">
+                                <a href="<?= URL ?>Vacante/ListaEmpleos/<?= $data['numero_vacante'] - 1 ?>" class="page-link">Anterior</a>
                             </li>
-                        <?php endfor; ?>
 
-                        <li class="page-item <?php echo $data['numero_vacante'] >= $data['count-rows'] ? 'disabled' : '' ?>">
-                            <a href="<?= URL ?>Vacante/ListaEmpleos/<?= $data['numero_vacante'] + 1 ?>" class="page-link">Siguiente</a>
-                        </li>
-                    </ul>
-                    <!-- End of Pagination -->
-                </div>
+                            <?php for ($i = 0; $i < $data['count-rows']; $i++) : ?>
+                                <li class="page-item <?php echo $data['numero_vacante']  == $i + 1 ? 'active' : '' ?>">
+                                    <a class="page-link" href="<?= URL ?>Vacante/ListaEmpleos/<?= $i + 1 ?>">
+                                        <?= $i + 1 ?>
+                                    </a>
+                                </li>
+                            <?php endfor; ?>
+
+                            <li class="page-item <?php echo $data['numero_vacante'] >= $data['count-rows'] ? 'disabled' : '' ?>">
+                                <a href="<?= URL ?>Vacante/ListaEmpleos/<?= $data['numero_vacante'] + 1 ?>" class="page-link">Siguiente</a>
+                            </li>
+                        </ul>
+                        <!-- End of Pagination -->
+                    </div>
+                <?php } else { ?>
+                    <div class="alert alert-warning" role="alert">
+                        <div class="iq-alert-icon">
+                            <i class="las la-exclamation-triangle"></i>
+                        </div>
+                        <div class="iq-alert-text"><b>No hay vacantes disponibles.</b> No se encontraron vacantes disponibles para mostrar.</div>
+                    </div>
+                <?php } ?>
                 <!-- End of Job Post Main -->
                 <!-- Start of Job Post Sidebar -->
                 <?php if (!empty($data['recomendados'])) { ?>

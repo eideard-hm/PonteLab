@@ -1,7 +1,8 @@
-DROP DATABASE IF EXISTS db_proyectoponslabor;
-CREATE DATABASE db_proyectoponslabor character set utf8mb4 collate utf8mb4_spanish_ci;
-USE db_proyectoponslabor;
-
+/*
+DROP DATABASE IF EXISTS id17916925_db_pontelab;
+CREATE DATABASE id17916925_db_pontelab character set utf8mb4 collate utf8mb4_spanish_ci;
+USE id17916925_db_pontelab;
+*/
 DROP TABLE IF EXISTS CIUDAD;
 CREATE TABLE CIUDAD
 (
@@ -362,12 +363,6 @@ values (NULL, 'Empleado');
 Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
 values (NULL , 'Independiente');
 select * from ESTADOLABORALASPIRANTE;
--- DESCRIBE ESTADOLABORALASPIRANTE;
-
-/* ========================== TABLA PUESTO_INTERES ========================*/
-Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Ingeniera Industrial');  
-Insert into PUESTOINTERES (idPuestoInteres, nombrePuesto) values (NULL, 'Abogada Penalista');
-select * from PUESTOINTERES;
 
 /* ========================== TABLA GRADO_ESTUDIO ========================*/
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Preescolar');  
@@ -381,7 +376,6 @@ Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Especialización'
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Maestria');
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Doctorado');  
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'PosDoctorado');
-Select * from GRADOESTUDIO;
 
 /* ========================== TABLA SECTOR ========================*/
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ingeniería');  
@@ -413,7 +407,6 @@ Insert into SECTOR (idSector, nombreSector) values (NULL, 'Bienes raíces');
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Investigación');  
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Administración');	
 Insert into SECTOR (idSector, nombreSector) values (NULL, 'Ayuda');	
-Select * from SECTOR;
 
 /* ========================== TABLA TIPOEXPERIENCIA ========================*/
 Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
@@ -427,111 +420,6 @@ values (NULL, 'Práctica laboral');
 Insert into TIPOEXPERIENCIA (idTipoExperiencia, nombreTipoExperiencia) 
 values (NULL, 'Aprendiz'); 
 
-/* ========================== TABLA USUARIO ========================*/
-Insert into USUARIO (idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
-values (NULL, 'Samanta', 'samanta85@misena.edu.co', 'camila85', 1, '1087345189', '3214458790', '4536781',1, 2, 3, 
-'Carrera 29 # 8 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL, NOW(), NOW());
-Insert into USUARIO (idUsuario,  nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario, created_at, updated_at)
-values (NULL, 'Sara', 'edier.hernandez@samtel.co', 'sara85', 2, '1025346789', '3213348800', '4565481',1, 1, 10, 
-'Carrera 30 #20 - 19', '7WK5T79u5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyz', NULL, NOW(), NOW());
-
-/* ========================== TABLA SECTOR_USUARIO ========================*/
-INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
-VALUES(NULL, 1,2);
-INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
-VALUES(NULL, 2,1);
-INSERT INTO SECTOR_USUARIO(idSectorUsuario, idUsuarioFK, idSectorFK)
-VALUES(NULL, 1,5);
-
-/* ========================== TABLA CONTRATANTE ========================*/
-Insert into CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
-values (NULL ,'Soy ingeniero industrial con mi propia empresa, tengo 28 años y busco dar una oportunidad de trabajo a las personas', 1); 
-Insert into  CONTRATANTE (idContratante, descripcionContratante, idUsuarioFK) 
-values (NULL, 'Soy abogada penalista y busco empesar a crear mi propio bufete de abogados', 2);
-Select * from CONTRATANTE;
-
-/* ========================== TABLA VACANTE ========================*/
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
-values (NULL, 'Ingeniero Industrial Direccion Adminiistrativa', 5, 'Importante empresa busca ingeniero industrial o civil con especializacion e gerencia de proyectos, con minimo 2 años de experiencia en direccion administrativa', 'Ingeniero Industrial o Civil con especializacion en Gerencia de Proyectos', 'Contrato a Termino Indefinido', '6.500.000', '2021-04-25 12:30:38', '2021-05-12 12:00:00', 'Calle 85 #35-28', 1, 1, 1, NOW(), NOW());  
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
- values (NULL,'Abogado/a Especialista', 3, 'Axa Colpatria requiere abogado especialista Objetivo del cargo: Soportar el canal de alianzas y masivos de la compañia en la estructura legal de los negocios con aliados', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Diagonal 8b #10-03', 1, 2, 3, NOW(), NOW());
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
- values (NULL,'Desarrollador de software web', 10, 'Sohe Innovation Software requiere un desarrollador web con experiencia en react, java', 'Profesional en derechos especialista en seguros', 'Contrato a termino fijo', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
-
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
-values (NULL,'Desarrollador Frontend Javascript', 3, 'Buscamos un ingeniero de software frontend apasionado por el diseño y desarrollo de soluciones de software en Javascript Idealmente, el candidato debería poder construir software de alta calidad, innovador y de pleno rendimiento de conformidad con los estándares de codificación y el diseño técnico.', 
-'Profesional en derechos especialista en seguros', 'Contrato por obra', '4.350.000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
-values (NULL,'React Native Developer', 1, 'Toptal developers work with speed and efficiency to deliver the highest quality of work. We are looking for someone who is passionate about their client’s business, and ready to work on exciting projects with Fortune 500 companies and Silicon Valley startups, with great rates and zero hassles. If you are looking for a place to advance your career, enhance your skill set, and build connections around the globe, Toptal is right for you.', 
-'We are looking for a React Native developer interested in building performant mobile apps on both the iOS and Android platforms. Your primary responsibilities might vary from: (1) build smooth UIs across both mobile platforms, (2) leverage native APIs for deep integrations with both platforms, (3) diagnose and fix bugs and performance bottlenecks for performance that feels native', 
-'Contrato por obra', '6000000', '2021-11-02 10:15:00', '2021-12-03 20:30:00', 'Calle 8c sur #8c-27', 1, 2, 10, NOW(), NOW());
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
-values (NULL,'React Developer', 5, 'Toptal developers work with speed and efficiency to deliver the highest quality of work. We are looking for someone who is passionate about their client’s business, and ready to work on exciting projects with Fortune 500 companies and Silicon Valley startups, with great rates and zero hassles. If you are looking for a place to advance your career, enhance your skill set, and build connections around the globe, Toptal is right for you.', 
-'We are looking for a great developer who is proficient with React.js. Your primary focus might vary from: (1) developing new user-facing features using React.js, (2) translating designs and wireframes into high-quality code, (3) building reusable components and front-end libraries for future use.', 
-'Contrato por obra', '5000000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 1, 10, NOW(), NOW());
-Insert into VACANTE (idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, fechaHoraPublicacion, fechaHoraCierre, direccionVacante, estadoVacante, 
-idContratanteFK, idSectorFK, created_at, updated_at)
-values (NULL,'Node.js Developer', 2, 'Toptal developers work with speed and efficiency to deliver the highest quality of work. We are looking for someone who is passionate about their client’s business, and ready to work on exciting projects with Fortune 500 companies and Silicon Valley startups.', 
-'We are looking for a Node.js Developer responsible for managing the interchange of data between the server and the users. Your primary responsibilities might vary from: (1) integration of user-facing elements developed by front-end developers with server side logic, (2) writing reusable, testable, and efficient code', 
-'Contrato por obra', '6000000', '2021-07-02 10:15:00', '2021-07-30 20:30:00', 'Calle 8c sur #8c-27', 1, 1, 10, NOW(), NOW());
-
-/* ========================== TABLA REQUISITOS ========================*/
-Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Ingeniero Industrial');  
-Insert into REQUISITOS (idRequisitos, nombreRequisitos) values (NULL, 'Requisitos para Axa Colpatria'); 
-Select * from REQUISITOS; 
-
-/* ========================== TABLA DEBIL REQUISITOS_VACANTE ========================*/
-Insert into REQUISITOS_VACANTE (idRequisitosVacante, idVacanteFK, idRequisitosFK, especficacionRequisitos)
- values (NULL, 1, 1, 'Para esta vacante es necesario ser mayor de 24 años, tener minimo 2 años de experiencia y tener una especializacion en gerencia de proyectos');  
-Insert into  REQUISITOS_VACANTE (idRequisitosVacante, idVacanteFK, idRequisitosFK, especficacionRequisitos) 
-values (NULL, 2, 2, 'Es necesario ser mayor de edad, tener un minimo de 5 años de experiencia y ser profesional en derecho especialistas en seguros');
-select * from REQUISITOS_VACANTE;
-
-/* ========================== TABLA ASPIRANTE ========================*/
-Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, created_at, updated_at) 
-values (NULL, 'Tengo 23 con un titulo profesional en Ingenieria Industrial, con experiencia de 3 años', 2, 1, NOW(), NOW());  
-Insert into ASPIRANTE (idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, created_at, updated_at) 
-values (NULL,  'Tengo 20 años con un titulo profesional de Abogada especializada en derecho penal, sin experiencia', 1, 2, NOW(), NOW()); 
-select * from ASPIRANTE; 
-
-/* ========================== TABLA DEBIL ASPIRANTE_PUESTOINTERES ========================*/
-Insert into ASPIRANTE_PUESTOINTERES (idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK) 
-values (NULL, 1, 1);  
-Insert into ASPIRANTE_PUESTOINTERES (idAspirantePuestoInteres, idAspiranteFK, idPuestoInteresFK) 
-values (NULL, 2, 2);
-select * from ASPIRANTE_PUESTOINTERES;
-
-/* ========================== TABLA ESTUDIO ========================*/
-Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
-values (NULL, 'Sergio Arboleda', 'Ingeniera Industrial', 1, 1, 2012, 2, 2017, 12, 1, 1);  
-Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
-values (NULL, 'Jorge Tadeo Lozano', 'Abogada', 1, 2, 2015, 1, 2020, 11, 2, 2);
-Insert into ESTUDIO (idEstudio, nombreInstitucion, tituloObtenido, idCiudadEstudio, idSectorFK, añoInicio, mesInicio, añoFin, mesFin, idAspiranteFK, idGradoFK) 
-values (NULL, '4545454', 'Abogada', 1, 2, 2015, 1, 2020, 11, 1, 2);
-select * from ESTUDIO;
-
-/* ========================== TABLA INFOLABORAL ========================*/
-Insert into INFOLABORAL (idInfoLaboral, empresaLaboro, idSectorFK, idCiudadLaboroFK, idTipoExperienciaFK, nombrePuestoDesempeño, añoInicio, mesInicio, añoFin, mesFin, funcionDesempeño, idAspiranteFK) 
-values (NULL, 'Constructora Onix', 1, 1, 1,'Gerencia de proyectos', 2017, 04, 2019, 12, 'planificar, captar, dinamizar y organizar talentos y administrar recursos', 1);  
-Insert into INFOLABORAL (idInfoLaboral, empresaLaboro, idSectorFK, idCiudadLaboroFK, idTipoExperienciaFK, nombrePuestoDesempeño, añoInicio, mesInicio, añoFin, mesFin, funcionDesempeño, idAspiranteFK) 
-values (NULL, 'C Legal Abogados', 2, 2, 2, 'Revisor Fiscal', 2015, 05, 2018, 05, 'Inspeccionar bienes de la sociedad y procurar su conservacion y seguridad', 2);
-select * from INFOLABORAL;
-
 /* ========================== TABLA IDIOMA ========================*/
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Inglés');  
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Chino mandarín');
@@ -543,30 +431,10 @@ Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Bengalí');
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Ruso');
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Portugués');  
 Insert into IDIOMA (idIdioma, nombreIdioma) values (NULL, 'Indonesio');
-select * from IDIOMA;
-
-/* ========================== TABLA DEBIL IDIOMA_ASPIRANTE ========================*/
-Insert into IDIOMA_ASPIRANTE (idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma) values (NULL, 1, 1, 3);  
-Insert into IDIOMA_ASPIRANTE (idIdiomaAspirante, idAspiranteFK, idIdiomaFK, nivelIdioma) values (NULL, 2, 2, 4);
-select * from IDIOMA_ASPIRANTE;
 
 /* ========================== TABLA HABILIDAD ========================*/
 Insert into HABILIDAD (idHabilidad, nombreHabilidad) values (NULL, 'Innovacion y Trabajar en equipo');  
 Insert into HABILIDAD (idHabilidad, nombreHabilidad) values (NULL, 'Hablar mas de un idioma y Habilidades informaticas');
-select * from HABILIDAD;
-
-/* ========================== TABLA DEBIL HABILIDAD_ASPIRANTE ========================*/
-INSERT INTO HABILIDAD_ASPIRANTE(idHabilidadAspirante, idAspiranteFK, idHabilidadFK, nivelHabilidad)
-VALUES(NULL, 1, 2, 4);
-INSERT INTO HABILIDAD_ASPIRANTE(idHabilidadAspirante, idAspiranteFK, idHabilidadFK, nivelHabilidad)
-VALUES(NULL, 2, 1, 3);
-
-/* ========================== TABLA DEBIL APLICACION_VACANTE ========================*/
-Insert into APLICACION_VACANTE (idAplicacionVacante, idAspiranteFK, idVacanteFK, estadoAplicacionVacante) 
-values (NULL, 1, 1, 1);  
-Insert into APLICACION_VACANTE (idAplicacionVacante, idAspiranteFK, idVacanteFK, estadoAplicacionVacante) 
-values (NULL, 2, 2 , 1);
-select * from APLICACION_VACANTE;
 
 /*========================= VISTAS ==============================*/
 CREATE VIEW idiomasSeleccionadosView
@@ -589,7 +457,6 @@ FROM ESTUDIO e INNER JOIN SECTOR s
 ON s.idSector = e.idSectorFK INNER JOIN GRADOESTUDIO gs
 ON gs.idGrado = e.idGradoFK;
 
-
 CREATE VIEW experienciaAspiranteView
 AS
 SELECT il.idInfoLaboral, il.empresaLaboro, il.idCiudadLaboroFK, il.nombrePuestoDesempeño, il.añoInicio, il.mesInicio,
@@ -599,9 +466,6 @@ FROM INFOLABORAL il INNER JOIN SECTOR s
 ON s.idSector = il.idSectorFK INNER JOIN TIPOEXPERIENCIA te
 ON te.idTipoExperiencia = il.idTipoExperienciaFK;
 
-SELECT * 
-FROM experienciaAspiranteView 
-WHERE idAspiranteFK = 1;
 /*
 La vista sirve para conocer el nombre de los  tipos de documentos de los usuarios registrados, el nombre del rol 
 con el cual estan registrados,  y el barrio
@@ -656,7 +520,6 @@ ON v.idVacante = rv.idVacanteFK INNER JOIN REQUISITOS AS r
 ON r.idRequisitos = rv.idRequisitosFK INNER JOIN SECTOR AS s
 ON s.idSector = v.idSectorFK;
 
-
 DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
 CREATE VIEW  recomendacionVacanteSectorusuarioView AS
 SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, tipoContratoVacante, 
@@ -671,9 +534,6 @@ SELECT idSectorUsuario, idSectorFK, idUsuarioFK, nombreSector, nombreUsuario
 FROM SECTOR AS s INNER JOIN SECTOR_USUARIO AS su
 ON s.idSector = su.idSectorFK INNER JOIN USUARIO AS u 
 ON u.idUsuario = su.idUsuarioFK;
-
-SELECT * FROM sectorUsuarioView;
-
 
 DROP VIEW IF EXISTS dataAspiranteApplicationVacancyView;
 CREATE VIEW dataAspiranteApplicationVacancyView
@@ -698,153 +558,3 @@ FROM APLICACION_VACANTE av INNER JOIN VACANTE v
 ON v.idVacante = av.idVacanteFK INNER JOIN CONTRATANTE c
 ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO us
 ON us.idUsuario = c.idUsuarioFK;
-
--- SELECT * FROM dataVacanteApplicationVacancyView WHERE idAplicacionVacante = 1;
-
-/*======================= PROCEDIMIENTOS ALMACENADOS LUISA		 ==============================*/
-/*
-En la plataforma de empleo PonteLab se quiere implementar la funcionalidad de registrar usuarios,
-por ello que se necesita un procedimiento de almacenado que lleve a cabo dicha funcionalidad; es con el fin
-de proveer una mayor seguridad al usuario.
-*/
-
-DELIMITER $$
-CREATE PROCEDURE insertUser(
-UidUsuario int,
-UnombreUsuario varchar(100),
-UcorreoUsuario varchar(30),
-UpassUsuario varchar(16),
-UidTipoDocumentoFK int,
-UnumDocUsuario varchar(10),
-UnumTelUsuario char(10),
-UnumTelFijo varchar(7),
-UestadoUsuario bool,
-UidRolFK int,
-UidBarrioFK int,
-UdireccionUsuario varchar(30),
-Utoken varchar(100),
-UimagenUsuario varchar(70)
-)
-BEGIN
-INSERT INTO USUARIO(idUsuario, nombreUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, token, imagenUsuario)
-VALUES (UidUsuario, UnombreUsuario, UcorreoUsuario, UpassUsuario, UidTipoDocumentoFK, UnumDocUsuario,
-UnumTelUsuario, UnumTelFijo, UestadoUsuario, UidRolFK, UidBarrioFK, UdireccionUsuario, Utoken,
-UimagenUsuario);
-END $$
-
-CALL insertUser(NULL, 'Edier Heraldo', 'edierhernandezmo@gmail.c', '1234', 01, '1002623988', '3132069129', '1234567', 1, 01,07,
-'Calle 6B', '7WK5Tu5mIzjIXXi2oI9Fglmgivv7RAJ7izyj9tUyQ', NULL);
-SELECT * FROM USUARIO;
-
-/*======================= PROCEDIMIENTOS ALMACENADOS  EDIER==============================*/
-
-/*
-Se desea implementar un busacador en la plataforma de PonteLab con el fin de poder mostrar al usuario todos
-aquellas vacantes que cumplan o que concuerden con la palabra clave ingresada. Se va a implementar un 
-procedimiento de almacenado el cual debe de recibir como parametro la palabra clave ingresada por el usuario
-y de acuerdo a eso compararla con el nombre de la vacante, la descripcion, perfil del aspirante, tipo de contrato
-para dicha vacante y la direccion; se debe de retornar todas las coincidencias.
-*/
-
-DROP PROCEDURE IF EXISTS SP_buscarVacantes;
-DELIMITER $$
-CREATE PROCEDURE SP_buscarVacantes
-(
-VBusqueda varchar(70)
-)
-BEGIN 
-SELECT idVacante, nombreVacante, cantidadVacante, descripcionVacante, perfilAspirante, 
-tipoContratoVacante, sueldoVacante, direccionVacante, estadoVacante, 
-fechaHoraPublicacion, fechaHoraCierre, v.idContratanteFK,
-u.nombreUsuario, u.imagenUsuario 
-FROM VACANTE AS v INNER JOIN CONTRATANTE AS c 
-ON c.idContratante = v.idContratanteFK INNER JOIN USUARIO AS u
-ON u.idUsuario = c.idUsuarioFK
-WHERE nombreVacante LIKE CONCAT('%', VBusqueda, '%') OR descripcionVacante LIKE CONCAT('%', VBusqueda, '%')
-OR perfilAspirante LIKE CONCAT('%', VBusqueda, '%') OR tipoContratoVacante LIKE CONCAT('%', VBusqueda, '%')
-OR direccionVacante LIKE CONCAT('%', VBusqueda, '%');
-END $$
-
-CALL SP_buscarVacantes('Axa');
-
-/*======================= FUNCIÓN BASE DE DATOS==============================*/
-/*
-Función que permita obtener el número de coincidencias de usuarios, de acuerdo a un parametro enviado pasado.
-Se debe de pasar como argumento un nombre o letra(s) del nombre de un usuario y de acuerdo a ello
-retornar el número de concidencias.
-DROP FUNCTION IF EXISTS F_numeroUsuario;
-DELIMITER //
-CREATE FUNCTION F_numeroUsuario
-(
-letraNombre varchar(20)
-)
-RETURNS tinyint
-BEGIN
-	DECLARE numeroCoincidencias int;
-    SELECT COUNT(*) INTO numeroCoincidencias
-    FROM usuario
-    WHERE nombreUsuario LIKE CONCAT('%', letraNombre, '%') ;
-    RETURN numeroCoincidencias;
-END //
--- usar la vista
-SELECT  F_numeroUsuario('Edier') AS 'Número de coincidencias de nombres de usuarios encontradas para la palabra introducida';
-/*======================= TRIGGER BASE DE DATOS==============================*/
-/*
-Se quiere implementar la funcionalidad del cambio de contraseña dentro del sistema de información de PonteLab; se
-debe de tener en cuenta que se debe de crear una nueva tabla (log) con la información, dicha tabla debe contener la 
-información de: nombre del usuario, código, tipo y número de documento, contraseña antigua y nueva. Dicha información
-de esa nueva tabla va a servir para comprobar que las nuevas contraseñas del usuario no concuerden con ninguna de las
-anteriores.
--- Creando la tabla de log
-DROP TABLE IF EXISTS log;
-CREATE TABLE log
-(
-idLogo int primary key auto_increment,
-idUsuario int not null,
-nombreUsuario varchar(70) not null,
-tipoDocumentoUsuario int not null,
-numeroDocumentoUsuario varchar(10) not null,
-newPassword varchar(100) not null,
-oldPassword varchar(100) not null,
-created_at timestamp DEFAULT CURRENT_TIMESTAMP
-)
--- Trigger
-DROP TRIGGER IF EXISTS TR_changePasswordUser;
-DELIMITER $$
-CREATE TRIGGER TR_changePasswordUser
-AFTER
-UPDATE
-ON USUARIO
-FOR EACH ROW
-BEGIN
-	IF NEW.passUsuario IS NOT NULL 
-		THEN	BEGIN
-			INSERT INTO log(idUsuario, nombreUsuario, tipoDocumentoUsuario, numeroDocumentoUsuario, 
-            newPassword, oldPassword)
-           VALUES(NEW.idUsuario, NEW.nombreUsuario, NEW.idTipoDocumentoFK, NEW.numDocUsuario, 
-           NEW.passUsuario, OLD.passUsuario);
-		END;
-	END IF;
-END $$        
-DELIMITER ;
- 
--- Ejecutat el trigger
-UPDATE USUARIO
-SET passUsuario = '1055550018'
-WHERE idUsuario = 4;
-
-SELECT *
-FROM USUARIO;
-
-SELECT * 
-FROM LOG;
- */
--- DESCRIBE VACANTE
-/*
-SELECT idUsuario, correoUsuario, passUsuario, idTipoDocumentoFK, numDocUsuario, numTelUsuario,
-numTelFijo, estadoUsuario, idRolFK, idBarrioFK, direccionUsuario, imagenUsuario
-FROM USUARIO
-WHERE  idUsuario LIKE'%id%' OR correoUsuario LIKE '%correo%' OR numDocUsuario'%numDocumento%'
-OR numTelUsuario LIKE'%id%' , numTelFijo LIKE'%id%' ;
-/*--------------------------CONSULTAR LAS VISTAS-----------------------------*/

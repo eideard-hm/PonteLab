@@ -1,6 +1,6 @@
 <?php
 
-class RegistroModel extends GestionCRUD
+class RegistroModel extends Mysql
 {
     //atributos de la clase
     private int $idUsuario;

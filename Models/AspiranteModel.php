@@ -1,6 +1,6 @@
 <?php
 
-class AspiranteModel extends GestionCRUD
+class AspiranteModel extends Mysql
 {
     //atributos de la clase - Tabla Aspirante
     private int $Id;

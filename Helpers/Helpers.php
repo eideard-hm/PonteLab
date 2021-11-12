@@ -111,6 +111,7 @@ function sendEmail(array $data, $template)
         //SMTP: Simple Mail Transfer Protocol (Protocolo para transferencia simple de correo)
         // $email->SMTPDebug = SMTP::DEBUG_SERVER;
         $email->isSMTP();
+        $email->SMTPSecure = 'tls';
         $email->Host = HOST;
         $email->SMTPAuth = true;
         $email->Username = USER_NAME;
@@ -126,7 +127,7 @@ function sendEmail(array $data, $template)
         // addAddress() -> direccion a la cual se va a enviar el correo
         $email->setFrom($remitente, $empresa);
         $email->addAddress($data['email'], $data['nombreUsuario']);
-        $email->addCC($emailDefault);
+        // $email->addCC($emailDefault);
 
         //enviar archivos en el correo
         // $email->addAttachment('archivo', nombre);

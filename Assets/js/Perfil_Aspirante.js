@@ -2,9 +2,11 @@ const btnGuardar = document.getElementById("guardar");
 const btnCancelar = document.getElementById("cancelar");
 const btnInhabilitar = document.getElementById("inhabilitar");
 
-document.getElementById("attachment").addEventListener("click", function () {
-  document.getElementById("file-input").click();
-});
+if (document.getElementById("attachment")) {
+  document.getElementById("attachment").addEventListener("click", function () {
+    document.getElementById("file-input").click();
+  });
+}
 
 let formUser = document.getElementById("form-aspirante");
 
@@ -62,41 +64,40 @@ const inhabilitarAs = async () => {
   }
 };
 document.addEventListener("DOMContentLoaded", () => {
-  formUser.onsubmit = function (e) {
+  if (formUser) {
+    formUser.onsubmit = function (e) {
+      e.preventDefault();
+      var nombre = document.querySelector("#nombreApellido").value;
+      var titulo = document.querySelector("#titulo").value;
+      var posicion = document.querySelector("#posicion").value;
+      var idioma = document.querySelector("#idioma").value;
+      var numDoc = document.querySelector("#numDoc").value;
+      var direccion = document.querySelector("#direccion").value;
+      var Barrio = document.querySelector("#Barrio").value;
+      if (
+        nombre == "" ||
+        titulo == "" ||
+        posicion == "" ||
+        idioma == "" ||
+        numDoc == "" ||
+        direccion == "" ||
+        Barrio == ""
+      ) {
+        swal("Atención", "Todos los campos son obligatorios", "error");
+        return false;
+      } else {
+        editPerfil();
+      }
+    };
+  }
+});
+
+if (document.querySelector("#inhabilitar")) {
+  document.querySelector("#inhabilitar").addEventListener("click", (e) => {
     e.preventDefault();
-    var nombre = document.querySelector("#nombreApellido").value;
-    var titulo = document.querySelector("#titulo").value;
-    var posicion = document.querySelector("#posicion").value;
-    var idioma = document.querySelector("#idioma").value;
-    var numDoc = document.querySelector("#numDoc").value;
-    var direccion = document.querySelector("#direccion").value;
-    var Barrio = document.querySelector("#Barrio").value;
-    if (
-      nombre == "" ||
-      titulo == "" ||
-      posicion == "" ||
-      idioma == "" ||
-      numDoc == "" ||
-      direccion == "" ||
-      Barrio == ""
-    ) {
-      swal("Atención", "Todos los campos son obligatorios", "error");
-      return false;
-    } else {
-      editPerfil();
-    }
-  };
-});
-
-document.querySelector("#inhabilitar").addEventListener("click", (e) => {
-  e.preventDefault();
-  inhabilitarAs();
-});
-
-document.querySelector("#inhabilitar").addEventListener("click", (e) => {
-  e.preventDefault();
-  inhabilitarAs();
-});
+    inhabilitarAs();
+  });
+}
 
 function Cancelar() {
   alert("Actualizacion cancelada correctamente");
