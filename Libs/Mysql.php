@@ -1,6 +1,6 @@
 <?php
 
-class GestionCRUD extends Conexion
+class Mysql extends Conexion
 {
     //atributos de la clase
     private string $strquery;

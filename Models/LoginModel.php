@@ -1,6 +1,6 @@
 <?php
 
-class LoginModel extends gestionCRUD
+class LoginModel extends Mysql
 {
     private int $intId;
     private string $strUsuario;
@@ -63,7 +63,7 @@ class LoginModel extends gestionCRUD
     {
         $this->strUsuario = $strEmail;
         $sql = "SELECT idUsuario, nombreUsuario, estadoUsuario
-                FROM usuario 
+                FROM USUARIO 
                 WHERE correoUsuario ='{$this->strUsuario}' AND estadoUsuario = 0";
         $request = $this->select($sql);
         return $request;
@@ -73,7 +73,7 @@ class LoginModel extends gestionCRUD
     {
         $this->intId = $idUsuario;
         $this->strToken = $token;
-        $sql = "UPDATE usuario 
+        $sql = "UPDATE USUARIO 
                 SET token = ? WHERE 
                 idUsuario = {$this->intId}";
         $arrData = array($this->strToken);
@@ -94,7 +94,7 @@ class LoginModel extends gestionCRUD
     {
         $this->intId = $idUsuario;
         $this->strPassword = $password;
-        $sql = "UPDATE usuario 
+        $sql = "UPDATE USUARIO 
                 SET passUsuario = ?, token =  ?
                 WHERE idUsuario = {$this->intId}";
         $arrData = array($this->strPassword, "");

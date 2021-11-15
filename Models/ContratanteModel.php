@@ -1,6 +1,6 @@
 <?php
 
-class ContratanteModel extends GestionCRUD
+class ContratanteModel extends Mysql
 {
     //atributos de la clase
     private string $descripcionContratante;
@@ -23,7 +23,7 @@ class ContratanteModel extends GestionCRUD
         //validar si ya existe el usuario
         //si esta vacio lo que trae request, es decir que si podemos alamcenar ese usuario
 
-        $sql = "INSERT INTO contratante(descripcionContratante, idUsuarioFK)
+        $sql = "INSERT INTO CONTRATANTE(descripcionContratante, idUsuarioFK)
             VALUES(?,?)";
         //almacena los valores en un arreglo
         $arrData = array(
@@ -144,14 +144,14 @@ class ContratanteModel extends GestionCRUD
     {
         $this->intId = $idUsuario;
         $this->strPassword = $password;
-        $sql = "UPDATE usuario 
+        $sql = "UPDATE USUARIO 
                 SET passUsuario = ?, token =  ?
                 WHERE idUsuario = {$this->intId}";
         $arrData = array($this->strPassword, "");
         return $this->edit($sql, $arrData);
     }
 
-    //Método para extraer un unico usuario de la base de datos por el id
+    //Método para extraer un unico USUARIO de la base de datos por el id
     public function selectOneUser(int $idUsuario)
     {
         $this->idUsuario = $idUsuario;
