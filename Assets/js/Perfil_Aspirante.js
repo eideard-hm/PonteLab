@@ -1,12 +1,61 @@
+import { sweetAlert, formDataElement, divLoading } from "./functionsGlobals.js";
+
 const btnGuardar = document.getElementById("guardar");
 const btnCancelar = document.getElementById("cancelar");
 const btnInhabilitar = document.getElementById("inhabilitar");
+const formChangePass = document.querySelector('#change-password');
+
+
+const changePassword = async () => {
+  const formData = formDataElement(formChangePass);
+  const url = `${base_url}Aspirante/changePassword`;
+  try {
+    divLoading.style.display = 'flex';
+    const req = await fetch(url, {
+      method: 'POST',
+      body: formData
+    });
+    const { status, msg } = await req.json();
+    if (status) {
+      sweetAlert('Cambio de contraseña', msg, 'success');
+      formChangePass.reset();
+    } else {
+      sweetAlert('Error', msg, 'error');
+    }
+    divLoading.style.display = 'none';
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+
+const validatePasswordsChange = (e) => {
+  e.preventDefault();
+
+  const currentPass = document.querySelector('#actual');
+  const newPass = document.querySelector('#nueva');
+  const confirmPass = document.querySelector('#verificar');
+
+  if (currentPass.value.trim() === '' || newPass.value.trim() === ''
+    || confirmPass.value.trim() === '') {
+    sweetAlert("Campos obligatorios !!", "Debe de completar todos los campos correctamente.", "error");
+  } else if (newPass.value !== confirmPass.value) {
+    sweetAlert("Las contraseñas no coinciden.", "Las contraseñas ingresadas nos coinciden. Por favor intenta nuevamente !!", "error");
+  } else {
+    changePassword();
+  }
+}
+
+formChangePass.addEventListener('submit', validatePasswordsChange)
+
 
 if (document.getElementById("attachment")) {
   document.getElementById("attachment").addEventListener("click", function () {
     document.getElementById("file-input").click();
   });
 }
+
 
 let formUser = document.getElementById("form-aspirante");
 
@@ -152,13 +201,4 @@ const actualizarImagen = async () => {
     } catch (error) {
         swal("Error", error, "error");
     }*/
-};
-
-/*$("i").click(function () {
-    $("input[type='file']").trigger('click');
-  });
-  
-  $('input[type="file"]').on('change', function() {
-    var val = $(this).val();
-    $(this).siblings('span').text(val);
-  })*/
+  };

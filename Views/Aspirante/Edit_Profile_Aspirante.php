@@ -69,7 +69,7 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
+                                                            <img class="profile-pic" width="180" height="200" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                             <div class="p-image">
                                                                 <i class="las la-pencil-alt upload-button"></i>
                                                                 <input class="file-upload" name="foto" id="foto" type="file" accept="image/*" />
@@ -124,32 +124,31 @@
                                                 <button class="btn btn-danger" id="inhabilitar" type="button" onclick="inhabilitarAs();"><i class="fas fa-times"></i> Inactivar Cuenta</button>
                                                 <button type="reset" class="btn iq-bg-danger mr-2"><i class="fas fa-ban text-danger"></i>Cancelar</button>
                                             </form>
-                                        </div>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
-                                                <h4 class="card-title">Cambio de contraseña</h4>
+                                                <h4 class="card-title">Cambiar contraseña</h4>
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form>
+                                            <form id="change-password">
                                                 <div class="form-group">
-                                                    <label for="cpass">Contraseña actual:</label>
-                                                    <input type="Password" class="form-control" id="cpass" value="">
+                                                    <label for="actual">Contraseña Actual</label>
+                                                    <input type="Password" class="form-control" id="actual" name="actual" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="npass">Nueva contraseña:</label>
-                                                    <input type="Password" class="form-control" id="npass" value="">
+                                                    <label for="nueva">Contraseña Nueva:</label>
+                                                    <input type="Password" class="form-control" id="nueva" name="nueva" value="">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="vpass">Verificar contraseña:</label>
-                                                    <input type="Password" class="form-control" id="vpass" value="">
+                                                    <label for="verificar">Verificar Contraseña:</label>
+                                                    <input type="Password" class="form-control" id="verificar" name="verificar" value="">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
-                                                <button type="reset" class="btn iq-bg-danger">Cancelar</button>
+                                                <button type="submit" id="cambiar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -160,7 +159,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <!-- Wrapper END -->
     <!-- Footer -->
     <?php

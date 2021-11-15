@@ -912,6 +912,42 @@ class Aspirante extends Controllers
         die();
     }
 
+
+    public function changePassword()
+    {
+        if ($_POST) {
+            if (
+                empty($_POST['actual']) || empty($_POST['nueva'])
+                || empty($_POST['verificar'])
+            ) {
+                $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
+            } else {
+                $idUsuario = intval(limpiarCadena($_SESSION['user-data']['idUsuario']));
+                $currentPass = limpiarCadena($_POST['actual']);
+                $newPass = limpiarCadena($_POST['nueva']);
+                $newPass = encriptarPassword($newPass);
+
+                $request = $this->model->currentPassword($idUsuario);
+                if(!empty($request)){
+                    if(password_verify($currentPass, $request['passUsuario'])){
+                        if($this->model->updateContraseña($idUsuario, $newPass)){
+                            $arrResponse = ['status' => true, 'msg' => 'Se ha modificado exitosamente la contraseña.'];
+                        }else{
+                            $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al intentar actualizar la contraseña.'];
+                        }
+                    }else{
+                        $arrResponse = ['status' => false, 'msg' => 'La contraseña actual ingresada no coincide con la registrada.'];
+                    }
+                }else{
+                    $arrResponse = ['status' => false, 'msg' => 'No se encontro el usuario con esa identificación.'];
+                }
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+
     /**
      * Método para traer toda la lista de experiencia laboral registrados por el usuario. Estas se cargan
      * cuando el usuario a iniciado sesión.

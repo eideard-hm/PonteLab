@@ -649,6 +649,25 @@ class AspiranteModel extends GestionCRUD
 
     //======================================EDITAR DATOS=====================================
 
+    public function currentPassword(int $idUsuario)
+    {
+        $sql = "SELECT idUsuario, passUsuario
+                FROM USUARIO
+                WHERE idUsuario = {$idUsuario}";
+        return $this->select($sql);
+    }
+
+    public function updateContraseña(int $idUsuario, string $password)
+    {
+        $this->intId = $idUsuario;
+        $this->strPassword = $password;
+        $sql = "UPDATE usuario 
+                SET passUsuario = ?, token =  ?
+                WHERE idUsuario = {$this->intId}";
+        $arrData = array($this->strPassword, "");
+        return $this->edit($sql, $arrData);
+    }
+
     public function updateUser(
         int $idUsuario,
         string $nombreUsuario,
