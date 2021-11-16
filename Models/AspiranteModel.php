@@ -9,7 +9,7 @@ class AspiranteModel extends Mysql
     private int $idEstadoLaboralAspiranteFK;
     private $created_at;
     private $updated_at;
-    private $imagenUsuario;
+    private string $imagenUsuario;
 
     //atributos de la clase - Tabla Puesto interes
     private int $idPuesto;
@@ -649,6 +649,81 @@ class AspiranteModel extends Mysql
 
     //======================================EDITAR DATOS=====================================
 
+    public function updateUser(
+        int $idUsuario,
+        string $nombreUsuario,
+        int $idTipoDocumentoFK,
+        string $numDocUsuario,
+        string $numTelUsuario,
+        string $numTelFijo,
+        int $idBarrioFK,
+        string $direccionUsuario,
+        $imagenUsuario
+    ) {
+        $this->idUsuario = $idUsuario;
+        $this->nombreUsuario = $nombreUsuario;
+        $this->numDocUsuario = $numDocUsuario;
+        $this->idTipoDocumentoFK = $idTipoDocumentoFK;
+        $this->numTelUsuario = $numTelUsuario;
+        $this->numTelFijo = $numTelFijo;
+        $this->idBarrioFK = $idBarrioFK;
+        $this->direccionUsuario = $direccionUsuario;
+        $this->imagenUsuario = $imagenUsuario;
+
+        $sql = "SELECT * FROM USUARIO 
+                WHERE (numDocUsuario ='{$this->numDocUsuario}' AND idUsuario != {$this->idUsuario})
+                OR (numTelUsuario ='{$this->numTelUsuario}' AND idUsuario != {$this->idUsuario})";
+        $request = $this->selectAll($sql);
+
+        if (empty($request)) {
+            $sql = "UPDATE USUARIO SET 
+                nombreUsuario= ?, numDocUsuario= ?,idTipoDocumentoFK= ?,
+                numTelUsuario= ?, numTelFijo= ?, 
+                idBarrioFK= ?, direccionUsuario= ?, imagenUsuario= ?
+                WHERE idUsuario= ?";
+            $arrData = array(
+                $this->nombreUsuario,
+                $this->numDocUsuario,
+                $this->idTipoDocumentoFK,
+                $this->numTelUsuario,
+                $this->numTelFijo,
+                $this->idBarrioFK,
+                $this->direccionUsuario,
+                $this->imagenUsuario,
+                $this->idUsuario
+            );
+            return $this->edit($sql, $arrData);
+        } else {
+            return 'exists';
+        }
+    }
+
+    //Método para traer los tipos de documentos registrados
+    public function selectTipoDoc()
+    {
+        $sql = "SELECT idTipoDocumento, nombreTipoDocumento FROM TIPODOCUMENTO";
+        $request = $this->selectAll($sql);
+        return $request;
+    }
+    //Método para seleccionar todos los barrios registrador en la base de datos
+    public function selectBarrio()
+    {
+        $sql = "SELECT idBarrio, nombreBarrio FROM BARRIO";
+        $request = $this->selectAll($sql);
+        return $request;
+    }
+
+    public function updateContraseña(int $idUsuario, string $password)
+    {
+        $this->intId = $idUsuario;
+        $this->strPassword = $password;
+        $sql = "UPDATE USUARIO 
+                SET passUsuario = ?, token =  ?
+                WHERE idUsuario = {$this->intId}";
+        $arrData = array($this->strPassword, "");
+        return $this->edit($sql, $arrData);
+    }
+    
     public function currentPassword(int $idUsuario)
     {
         $sql = "SELECT idUsuario, passUsuario
@@ -657,73 +732,43 @@ class AspiranteModel extends Mysql
         return $this->select($sql);
     }
 
-    public function updateContraseña(int $idUsuario, string $password)
+    //Método para extraer un unico USUARIO de la base de datos por el id
+    public function selectOneUser(int $idUsuario)
     {
-        $this->intId = $idUsuario;
-        $this->strPassword = $password;
-        $sql = "UPDATE usuario 
-                SET passUsuario = ?, token =  ?
-                WHERE idUsuario = {$this->intId}";
-        $arrData = array($this->strPassword, "");
-        return $this->edit($sql, $arrData);
-    }
-
-    public function updateUser(
-        int $idUsuario,
-        string $nombreUsuario,
-        int $idTipoDocumentoFK,
-        string $numTelUsuario,
-        string $numTelFijo,
-        string $numDocUsuario,
-        string $direccionUsuario,
-        int $idBarrioFK
-    ) {
-
         $this->idUsuario = $idUsuario;
-        $this->nombreUsuario = $nombreUsuario;
-        $this->idTipoDocumentoFK = $idTipoDocumentoFK;
-        $this->numTelUsuario = $numTelUsuario;
-        $this->numTelFijo = $numTelFijo;
-        $this->numDocUsuario = $numDocUsuario;
-        $this->direccionUsuario = $direccionUsuario;
-        $this->idBarrioFK = $idBarrioFK;
-
-        $sql = "UPDATE USUARIO SET 
-                nombreUsuario=?, idTipoDocumentoFK=?, numTelUsuario=?,
-                numTelFijo=?, numDocUsuario=?,  
-                direccionUsuario=?, idBarrioFK=? 
-                WHERE idUsuario  = {$this->idUsuario}";
-        $arrData = array(
-            $this->nombreUsuario,
-            $this->idTipoDocumentoFK,
-            $this->numTelUsuario,
-            $this->numTelFijo,
-            $this->numDocUsuario,
-            $this->direccionUsuario,
-            $this->idBarrioFK
-        );
-
-        return $this->edit($sql, $arrData);
-
-        /*$sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
+        //consulta para extraerlo
+        $sql = "SELECT idUsuario, nombreUsuario, correoUsuario, nombreTipoDocumento, 
         numDocUsuario, numTelUsuario, numTelFijo, estadoUsuario, nombreRol, 
-        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK
+        nombreBarrio, direccionUsuario, idTipoDocumentoFK, idBarrioFK, imagenUsuario
         FROM USUARIO AS u INNER JOIN TIPODOCUMENTO AS td
         ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL AS r
         ON r.idRol = u.idRolFK INNER JOIN BARRIO AS b
         ON b.idBarrio = u.idBarrioFK
-        WHERE correoUsuario = '{$this->strUsuario}' AND estadoUsuario != 1";
-        return $this->select($sql);  POR IMPLEMENTAR CUANDO SE REALICE COMPLETAMENTE LA ACTUALIZACION Y RECARGAR LA VARIABLE DE SESION*/
+        WHERE idUsuario = {$this->idUsuario}";
+
+        return $this->select($sql);
+    }
+
+    public function selectImgProfile(int $id)
+    {
+        $this->intId = $id;
+        $sql = "SELECT idUsuario, imagenUsuario
+        FROM USUARIO 
+        WHERE idUsuario = {$this->intId}";
+        return $this->select($sql);
     }
 
     public function updateState(int $idUsuario, int $estadoUsuario)
     {
         $this->idUsuario = $idUsuario;
         $this->estadoUsuario = $estadoUsuario;
-        $sql = "UPDATE USUARIO SET estadoUsuario =1 WHERE idUsuario = {$this->idUsuario}";
 
+        $sql = "UPDATE USUARIO 
+                SET estadoUsuario = ?
+                WHERE idUsuario = ?";
         $arrData = array(
-          $this->estadoUsuario
+            $this->estadoUsuario,
+            $this->idUsuario
         );
         return $this->edit($sql, $arrData);
     }

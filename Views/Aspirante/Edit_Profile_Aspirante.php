@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
     <!-- Style CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
@@ -65,7 +66,10 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form id="form-aspirante" method="POST" enctype="multipart/form-data">
+                                            <form id="form-aspirante"  enctype="multipart/form-data">
+                                                <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" value="<?= $_SESSION['user-data']['idUsuario'] ?>" />
+                                                <input type="hidden" name="foto_actual" id="foto_actual" value="<?= $_SESSION['user-data']['imagenUsuario'] ?>" />
+                                                <input type="hidden" name="foto_remove" id="foto_remove" value="0" />
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
@@ -77,57 +81,55 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <br><br>
                                                 <div class=" row align-items-center">
-                                                    <div class="form-group col-sm-6">
-                                                        <br><br>
-                                                        <label for="fname">Nombres y Apellidos:</label>
-                                                        <input type="text" class="form-control" id="nombreApellido" name="nombreApellido" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
+                                                    <div class="form-group col-sm-12">
+                                                        <label for="fname">Nombre:</label>
+                                                        <input type="text" class="form-control" id="txtNombre" name="txtNombre" value="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                     </div>
                                                     <div class="form-group col-sm-6">
-                                                        <br><br>
-                                                        <label for="uname">Identificacion:</label>
-                                                        <select name="titulo" id="titulo" class="form-control">
-                                                            <option selected disabled value="0"><?= $_SESSION['user-data']['nombreTipoDocumento'] ?></option>
+                                                        <label for="lname">Identificación:</label>
+                                                        <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="uname">Tipo de Identificación:</label>
+                                                        <select name="tipoDoc" id="tipoDoc" class="form-control">
                                                             <?php foreach ($data['list_tipodoc'] as $tipoDoc) : ?>
-                                                                <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>"><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
+                                                                <option value="<?php echo $tipoDoc['idTipoDocumento'] ?>" <?= $tipoDoc['idTipoDocumento'] == $_SESSION['user-data']['idTipoDocumentoFK'] ? 'selected' : '' ?>><?php echo $tipoDoc['nombreTipoDocumento'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="cname">Número de Contacto Fijó:</label>
+                                                        <input type="text" class="form-control" name="phone" id="phone" value="<?= $_SESSION['user-data']['numTelFijo'] ?>">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="cname">Número de Contacto Móvil:</label>
+                                                        <input type="text" class="form-control" name="mobile" id="mobile" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>">
+                                                    </div>
 
-                                                    </div>
                                                     <div class="form-group col-sm-6">
-                                                        <label for="cname"> Número de celular:</label>
-                                                        <input type="text" class="form-control" id="posicion" name="posicion" value="<?= $_SESSION['user-data']['numTelUsuario'] ?>">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="dob">Número fijo:</label>
-                                                        <input class="form-control" id="idioma" name="idioma" value="<?= $_SESSION['user-data']['numTelFijo'] ?>">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="lname">Número de identificación:</label>
-                                                        <input type="text" class="form-control" id="numDoc" name="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="dob">Dirección:</label>
-                                                        <input class="form-control" id="direccion" name="direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label>Barrio:</label>
+                                                        <label for="dob">Barrio:</label>
                                                         <select name="Barrio" id="Barrio" class="form-control">
-                                                            <option selected value=""> <?= $_SESSION['user-data']['nombreBarrio'] ?></option>
                                                             <?php foreach ($data['list_barrio'] as $barrio) : ?>
-                                                                <option value="<?php echo $barrio['idBarrio'] ?>"><?php echo $barrio['nombreBarrio'] ?></option>
+                                                                <option value="<?php echo $barrio['idBarrio'] ?>" <?= $barrio['idBarrio'] == $_SESSION['user-data']['idBarrioFK'] ? 'selected' : '' ?>><?php echo $barrio['nombreBarrio'] ?></option>
                                                             <?php endforeach ?>
                                                         </select>
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label>Dirección:</label>
+                                                        <input type="text" class="form-control" name="Direccion" id="Direccion" value="<?= $_SESSION['user-data']['direccionUsuario'] ?>">
                                                     </div>
                                                 </div>
-                                                <button type="button" class="btn btn-primary profile-button mr-2" id="guardar" onclick="editPerfil();"><i class="fas fa-save"></i> Guardar</button>
-                                                <button class="btn btn-danger" id="inhabilitar" type="button" onclick="inhabilitarAs();"><i class="fas fa-times"></i> Inactivar Cuenta</button>
-                                                <button type="reset" class="btn iq-bg-danger mr-2"><i class="fas fa-ban text-danger"></i>Cancelar</button>
+                                                <button type="submit" class="btn btn-primary profile-button mr-2" id="guardar"><i class="fas fa-save"></i> Guardar</button>
+                                                <button type="reset" id="inhabilitar" class="btn btn-danger"><i class="fas fa-times"></i> Inactivar Cuenta</button>
+                                                <button type="reset" id="cancelar" class="btn iq-bg-danger mr-2"><i class="fas fa-ban text-danger"></i> Cancelar</button>
                                             </form>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
+                                    <?php require_once('./Views/Components/LoadingForms.php'); ?>
                                     <div class="iq-card">
                                         <div class="iq-card-header d-flex justify-content-between">
                                             <div class="iq-header-title">
@@ -135,7 +137,7 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form id="change-password">
+                                            <form id="change-password" method="POST">
                                                 <div class="form-group">
                                                     <label for="actual">Contraseña Actual</label>
                                                     <input type="Password" class="form-control" id="actual" name="actual" value="">
@@ -148,7 +150,7 @@
                                                     <label for="verificar">Verificar Contraseña:</label>
                                                     <input type="Password" class="form-control" id="verificar" name="verificar" value="">
                                                 </div>
-                                                <button type="submit" id="cambiar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
+                                                <button type="submit" id="cambiar" class="btn btn-primary mr-2" onclick="validatePasswordsChange();"><i class="fas fa-save"></i> Guardar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -159,6 +161,7 @@
                 </div>
             </div>
         </div>
+    </div>
     <!-- Wrapper END -->
     <!-- Footer -->
     <?php
