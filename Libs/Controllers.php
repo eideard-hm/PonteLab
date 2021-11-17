@@ -1,4 +1,5 @@
 <?php
+
 /** 
  * Clase que contiene los métodos para el controlador de la aplicación.
  * Aqui se cargan los controladores y los métodos que se ejecutarán. De igual
@@ -26,8 +27,8 @@ class Controllers
         get_class(): Returns the name of the class of an object, es decir devuleve el nombre
         de la clase de un objeto
         */
-        $model = get_class($this) . "Model";
-
+        $model = ucwords(get_class($this)) . "Model";
+        $model = ucwords($model);
         $routClass = "Models/" . $model . ".php";
         if (file_exists($routClass)) {
             require_once($routClass);

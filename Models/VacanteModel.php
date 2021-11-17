@@ -4,7 +4,7 @@
  * Modelo asociado a la tabla de Vacante en la base de datos; y además el encargado
  * de procesar las solicitudes del controlador de vacante
  */
-class VacanteModel extends GestionCRUD
+class VacanteModel extends Mysql
 {
     /**
      * Atributos de la clase que mapean un campo en la base de datos.

@@ -4,8 +4,8 @@ class Menu extends Controllers
 {
     public function __construct()
     {
-        parent::__construct();
         session_start();
+        parent::__construct();
         // //isset : verifica que la varible de sesion si exista
         if (!isset($_SESSION['login'])) {
             header('Location:' . URL . 'Login');
