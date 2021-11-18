@@ -78,11 +78,10 @@
         </div>
         <br>
         <div class="col-12 col-xl-12 grid-margin stretch-card">
-          <h3>Opcion con columnas y combinado</h3>
           <br>
           <div class="card-columns">
             <div class="card">
-                <img src="<?= URL ?>Assets/img/uploads/St.jpg" class="card-img-top" alt="...">
+                <img src="<?= URL ?>Assets/img/uploads/spacex-logo-featured.jpg" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Programador FrontEnd</h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

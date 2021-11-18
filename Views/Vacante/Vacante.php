@@ -211,58 +211,7 @@
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                                 <fieldset style="display: block; opacity: 0; position: relative;">
-                                    <div class="form-card text-left">
-                                        <div class="row">
-                                            <div class="col-md-6 grid-margin stretch-card">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <form method="POST" id="form-vacancy" class="forms-sample">
-                                                            <input type="hidden" id="idVacancy" name="idVacancy" value="">
-                                                            <div class="form-group">
-                                                                <label for="nombre"> Nombre Vacante *</label>
-                                                                <input type="text" class="form-control" id="nombre" name="nombre" autocomplete="off" placeholder="Nombre Vacante..." required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="cantidad"> Cantidad de Vacantes *</label>
-                                                                <input type="number" class="form-control" id="cantidad" name="cantidad" placeholder="Cantida de Vacantes..." required>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label> Especificaciones *</label>
-                                                                <textarea class="form-control" name="especificaciones" id="especificaciones" placeholder="Especificaciones..." required></textarea>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 grid-margin stretch-card">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="tipoContrato"> Tipo de Contrato *</label>
-                                                            <select class="form-control" name="tipoContrato" id="tipoContrato" required>
-                                                                <option value="" disabled selected>Seleccion Tipo de
-                                                                    Contranto</option>
-                                                                <option value="1">Contrato por Obra o Labor</option>
-                                                                <option value="2">Contrato a Termino Fijo</option>
-                                                                <option value="3">Contrato a Termino Indefinido
-                                                                </option>
-                                                                <option value="4">Contrato de Aprendizaje</option>
-                                                                <option value="5">Contrato Temporal, Ocacional o Accidental</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="sueldo"> Sueldo *</label>
-                                                            <input type="number" class="form-control" name="sueldo" id="sueldo" autocomplete="off" placeholder="Sueldo..." required>
-                                                        </div>
-                                                        <div class="form-group"">
-                                                            <label> Perfil del Trabajador *</label>
-                                                            <textarea class=" form-control" name="perfil" id="perfil" placeholder="Perfil del Trabajador..." required></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                             </div>
