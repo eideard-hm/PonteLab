@@ -38,7 +38,7 @@
                     <div class="collapse navbar-collapse cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="main-nav">
                         <ul class="nav navbar-nav pull-right">
                             <li class="mobile-title">
-                                <h4>main menu</h4>
+                                <h4>menu</h4>
                             </li>
                             <li class="dropdown simple-menu active">
                                 <a href="#Inicio" class="dropdown-toggle" data-toggle="dropdown" role="button">Inicio</a>
@@ -297,7 +297,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-sm-12 ms-3" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <img src="<?= URL; ?>/Assets/img/index/descripcion.png" class="rounded img-fluid d-block mx-auto" alt="App" style="width: 700px; height: 600px;position: relative;
+                    <img src="<?= URL; ?>/Assets/img/index/descripcion.png" id="img1" class="rounded img-fluid d-block mx-auto" alt="App" style="width: 700px; height: 600px;position: relative;
                     top: -80px; right: 30px;">
                 </div>
                 <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">
@@ -364,7 +364,7 @@
                         trabajo ideal .</p>
                     <ul>
                         <li>
-                            <img src="<?= URL; ?>/Assets/img/index/beneficio 01.png" alt="">
+                            <img  src="<?= URL; ?>/Assets/img/index/beneficio 01.png" alt="">
                             <div class="text">
                                 <h6 style="color: #8A8E8E;">Filtro </h6>
                                 <p>En <strong>PonteLab</strong> utilizamos un filtro de búsqueda para que encuentres
@@ -391,7 +391,7 @@
                     </ul>
                 </div>
                 <div class="right-image col-lg-7 col-md-12 col-sm-12 mobile-bottom-fix-big" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
-                    <img src="<?= URL; ?>/Assets/img/index/beneficio-general.png" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img id="img2"src="<?= URL; ?>/Assets/img/index/beneficio-general.png" class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
             </div>
         </div>
@@ -402,15 +402,16 @@
             <div class="center btmspace-80">
                 <h2 style="color: #43B5DD;"><strong>FUNCIONALIDADES</strong></h2>
             </div>
-            <ul class="nospace group overview btmspace-80">
+            <ul id="bloque" class="nospace group overview btmspace-80">
                 <li class="one_third">
                     <article>
                         <div class="clear"><a href="#"><i class="fas fa-newspaper"></i></a>
                             <h6 class="heading">Generar Hoja de vida</h6>
                         </div>
-                        <p>Con nuestra plataforma podrán generar sus propias de vida.</p>
+                        <p>Con nuestra plataforma podrán generar sus propias hojas de vida.</p>
                     </article>
                 </li>
+               
                 <li class="one_third">
                     <article>
                         <div class="clear"><a href="#"><i class="fas fa-filter"></i></a>

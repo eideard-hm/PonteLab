@@ -1630,7 +1630,7 @@ div#main-nav {
 
 .nav>li>a:focus,
 .nav>li>a:hover {
-    background: none !important;
+    background: #8bd4fb !important;
 }
 
 .nav>li>a:focus {
@@ -2022,6 +2022,7 @@ header.sticky {
         height: 70px;
         line-height: 70px;
     }
+
 }
 
 .cd-form {
@@ -2390,7 +2391,7 @@ form.mailchimp label {
     -ms-transition: all .6s ease;
     -o-transition: all .6s ease;
     transition: all .6s ease;
-   }
+}
 
 form.mailchimp label.valid,
 form.mailchimp label.error {
@@ -4368,7 +4369,7 @@ form#contact-form div#contact-result {
     -ms-transition: all .6s ease;
     -o-transition: all .6s ease;
     transition: all .6s ease;
-   }
+}
 
 form#contact-form div#contact-result.valid,
 form#contact-form div#contact-result.error {
@@ -6144,7 +6145,7 @@ section#blog-post .post-quote blockquote:before {
     font-family: 'fontawesome';
     position: absolute;
     display: inline-block;
-  
+
     color: #f6f6f6;
     font-size: 72px;
     left: 30px;
@@ -7181,7 +7182,7 @@ h6,
 .one_third,
 .two_third,
 .three_quarter {
-    float:left;
+    float: left;
     display: inline-block;
     margin: 0 0 0 4.21052%;
     list-style: none;
@@ -7774,10 +7775,12 @@ button.swiper-pagination-bullet {
     background-image: -o-linear-gradient(top, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0))
 }
+
 .swiper-container-cube,
 .swiper-container-flip {
     overflow: visible
 }
+
 .swiper-container-cube .swiper-slide,
 .swiper-container-flip .swiper-slide {
     pointer-events: none;
@@ -7787,6 +7790,7 @@ button.swiper-pagination-bullet {
     backface-visibility: hidden;
     z-index: 1
 }
+
 .swiper-container-cube .swiper-slide .swiper-slide,
 .swiper-container-flip .swiper-slide .swiper-slide {
     pointer-events: none
@@ -8197,7 +8201,7 @@ Author URI: gnodesign.com
     }
 
     div#main-nav ul li.login-btn a:hover {
-        color: #f6f6f6 !important;
+        color: #29b2fe  !important;
     }
 
     div#main-nav ul li.login-btn a i {
@@ -8688,7 +8692,23 @@ Author URI: gnodesign.com
 
 /* ---- Start of min-width 480px and max-width 768px CSS ---- */
 
-@media all and (min-width: 480px) and (max-width: 768px) {}
+@media all and (min-width: 480px) and (max-width: 768px) {
+    #about #img1 {
+        display: none;
+    }
+
+    #about2 #img2 {
+        display: none;
+    }
+
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
+        width: 100%;
+    }
+}
 
 
 /* ---- End of min-width 480px and max-width 768px CSS ---- */
@@ -8811,6 +8831,22 @@ Author URI: gnodesign.com
     table.cart .quantity .plus,
     table.cart .quantity .qty {
         float: none;
+        width: 100%;
+    }
+
+    /*imagenes*/
+    #about #img1 {
+        display: none;
+    }
+
+    #about2 #img2 {
+        display: none;
+    }
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
         width: 100%;
     }
 }
@@ -8965,6 +9001,13 @@ Author URI: gnodesign.com
         color: #999;
         opacity: .5;
     }
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
+        width: 100%;
+    }
 }
 
 
@@ -9104,6 +9147,22 @@ Author URI: gnodesign.com
         margin: 0;
         padding: 5px 0;
     }
+
+    /*imagenes*/
+    #about #img1 {
+        display: none;
+    }
+
+    #about2 #img2 {
+        display: none;
+    }
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
+        width: 100%;
+    }
 }
 
 
@@ -9130,6 +9189,22 @@ Author URI: gnodesign.com
         text-align: center;
         padding-top: 10px;
     }
+
+    /*imagenes*/
+    #about #img1 {
+        display: none;
+    }
+
+    #about2 #img2 {
+        display: none;
+    }
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
+        width: 100%;
+    }
 }
 
 
@@ -9145,6 +9220,22 @@ Author URI: gnodesign.com
 	****************/
     section.cariera-app .app-wrapper {
         height: 200px;
+    }
+
+    /*imagnes*/
+    #about #img1 {
+        display: none;
+    }
+
+    #about2 #img2 {
+        display: none;
+    }
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
+        width: 100%;
     }
 }
 
@@ -9175,6 +9266,22 @@ Author URI: gnodesign.com
     /****** Single Blog Post ********/
     #blog-comments .comments-list .comment-body .comment-reply {
         margin: 0;
+    }
+
+    /*imagnes*/
+    #about #img1 {
+        display: none;
+    }
+
+    #about2 #img2 {
+        display: none;
+    }
+    #fucionalidades #bloque {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    #fucionalidades #bloque .one_third{
+        width: 100%;
     }
 }
 
@@ -9220,7 +9327,7 @@ Author URI: gnodesign.com
 .owl-carousel .owl-stage-outer {
     position: relative;
     overflow: hidden;
-   
+
 }
 
 
@@ -12379,7 +12486,7 @@ Author URI: gnodesign.com
     font-weight: 500;
 }
 
-@media screen and (max-width: 1074px){
+@media screen and (max-width: 1074px) {
     .registro {
         display: none;
     }
@@ -12402,7 +12509,7 @@ Author URI: gnodesign.com
 @media (max-width: 553px) {
     .contenedor {
         width: 50%;
-        
+
     }
 }
 
