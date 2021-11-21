@@ -56,6 +56,8 @@ class Aspirante extends Controllers
     public function Edit_Profile_Aspirante()
     {
         $data['titulo_pagina'] = 'Editar Perfil Aspirante | ' . NOMBRE_EMPRESA . '.';
+        $data['list_tipodoc'] = $this->model->selectTipoDoc();
+        $data['list_barrio'] = $this->model->selectBarrio();
         $this->views->getView($this, 'Edit_Profile_Aspirante', $data);
     }
 
@@ -116,83 +118,95 @@ class Aspirante extends Controllers
     public function inhabilitarA()
     {
         $idUsuario = intval($_SESSION['user-data']['idUsuario']);
-        $estadoUsuario = intval($_SESSION['user-data']['estadoUsuario']);
-        $request = $this->model->updateState(
-            $idUsuario,
-            $estadoUsuario
-        );
+        $estadoUsuario = 1;
+        $request = $this->model->updateState($idUsuario, $estadoUsuario);
+
+        if ($request > 0) {
+            $arrResponse = ['statusUser' => true, 'msg' => 'Usuario inactivado correctamente.'];
+        } else {
+            $arrResponse = ['statusUser' => false, 'msg' => 'Ha ocurrido un error en el servidor'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+
     }
 
-    public function actualizarImagen()
-    {
-        $idUsuario = intval($_SESSION['user-data']['idUsuario']);
-        $imagenUsuario = limpiarCadena($_POST['imagenUsuario']);
-        $request = $this->model->updateImg(
-            $idUsuario,
-            $imagenUsuario
-        );
-    }
 
-    /**
-     * Método que sirve para actualizar la información del perfil del aspirante.
-     * @return void
-     * @author Edier Heraldo Hernandez Molano @eideard-hm
-     */
     public function updatePerfilAspirante()
     {
         if ($_POST) {
             if (
-                empty($_POST['nombreApellido']) || empty($_POST['titulo']) || empty($_POST['posicion'])
-                || empty($_POST['idioma']) || empty($_POST['numDoc']) || empty($_POST['direccion']) || empty($_POST['Barrio'])
+                empty($_POST['txtNombre']) || empty($_POST['tipoDoc']) || empty($_POST['numDoc'])
+                || empty($_POST['mobile']) || empty($_POST['phone']) || empty($_POST['Barrio'])
+                || empty($_POST['Direccion'])
             ) {
-                $arrResponse = ['statusUser' => false, 'msg' => '¡ERROR!, Debe llenar todo los campos.'];
+                $arrResponse = ['statusUser' => false, 'msg' => 'Atención, Todos los campos son obligatorios.'];
             } else {
-                $idUsuario = intval($_SESSION['id']);
-                $nombreApellido = limpiarCadena($_POST['nombreApellido']);
-                $titulo = intval($_POST['titulo']);
-                $posicion = intval($_POST['posicion']);
-                $idioma = intval($_POST['idioma']);
-                $numDoc = intval($_POST['numDoc']);
-                $direccion = limpiarCadena($_POST['direccion']);
-                $Barrio = limpiarCadena($_POST['Barrio']);
+                $idUsuario = intval(limpiarCadena($_POST['idUsuario']));
+                $nombreUsuario = limpiarCadena($_POST['txtNombre']);
+                $TipoDoc = intval(limpiarCadena($_POST['tipoDoc']));
+                $numDoc = limpiarCadena($_POST['numDoc']);
+                $numMobil = limpiarCadena($_POST['mobile']);
+                $numPhone = limpiarCadena($_POST['phone']);
+                $Barrio = intval(limpiarCadena($_POST['Barrio']));
+                $direccion = limpiarCadena($_POST['Direccion']);
 
-                $option = 2;
+                $photo = $_FILES['foto'];
+                $namePhoto = $photo['name'];
+                $imgPerfil = 'upload.svg';
+
+                if (!empty($namePhoto)) {
+                    $imgPerfil = 'img_' . md5(date('d-m-Y H:m:s')) . '.jpg';
+                }
+
+                if (empty($nameFoto)) {
+                    if ($_POST['foto_actual'] != 'upload.svg' && $_POST['foto_remove'] == 0) {
+                        $imgPerfil = $_POST['foto_actual'];
+                    }
+                }
+
                 $request = $this->model->updateUser(
                     $idUsuario,
-                    $nombreApellido,
-                    $titulo,
-                    $posicion,
-                    $idioma,
+                    $nombreUsuario,
+                    $TipoDoc,
                     $numDoc,
+                    $numMobil,
+                    $numPhone,
+                    $Barrio,
                     $direccion,
-                    $Barrio
+                    $imgPerfil
                 );
+                
+                if ($request > 0) {
+                    if (!empty($namePhoto)) {
+                        $url_tmp = $photo['tmp_name'];
+                        $destino = "Assets/img/uploads/{$imgPerfil}";
+                        $move = move_uploaded_file($url_tmp, $destino);
+                        return $move;
+                    }
 
-                if ($option === 2) {
-                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizaron correctamente', 'value' => $request];
+                    if (($namePhoto == '' && $_POST['foto_remove'] == 1 && $_POST['foto_actual'] != 'upload.svg')
+                        || ($namePhoto != '' && $_POST['foto_actual'] != 'upload.svg')
+                    ) {
+                        deleteImage($_POST['foto_actual']);
+                    }
+
                     $arrData = $this->model->selectOneUser($idUsuario);
+                    //petición para cargar la imagen del usuario
+                    $imgProfile = $this->model->selectImgProfile($idUsuario);
                     if (!empty($arrData)) {
                         $_SESSION['user-data'] = $arrData;
-                        //header ('location: http/localhost/PonteLab/Perfil_Aspirante');
-                        //echo '<script type="text/JavaScript"> location.reload(); </script>';
+                        $_SESSION['imgProfile'] = URL . "Assets/img/uploads/{$imgProfile['imagenUsuario']}";
+                        $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'session' => $_SESSION['user-data']];
                     }
-                } elseif ($request === 'exits') {
-                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen', 'value' => $request];
+                } elseif ($request === 'exists') {
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen'];
                 } else {
-                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente', 'value' => $request];
+                    $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos no se actualizaron correctamente'];
                 }
-                echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
-
         die();
-
-
-        /* $arrDataAsp = $this->model->selectOneUser($request);
-            if (!empty($arrDataAsp)) {
-                $_SESSION['user-data'] = $arrDataAsp;        
-        
-        }*/
     }
 
     /**
@@ -949,5 +963,36 @@ class Aspirante extends Controllers
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
         die();
+    }
+
+    public function changePassword()
+    {
+        if (
+            empty($_POST['actual']) || empty($_POST['nueva'])
+            || empty($_POST['verificar'])
+        ) {
+            $arrResponse = ['status' => false, 'msg' => 'Todos los campos son obligatorios !!'];
+        } else {
+            $idUsuario = intval($_SESSION['user-data']['idUsuario']);
+            $currentPass = limpiarCadena($_POST['actual']);
+            $newPass = limpiarCadena($_POST['nueva']);
+            $newPass = encriptarPassword($newPass);
+
+            $request = $this->model->currentPassword($idUsuario);
+            if(!empty($request)){
+                if(password_verify($currentPass, $request['passUsuario'])){
+                    if($this->model->updateContraseña($idUsuario, $newPass)){
+                        $arrResponse = ['status' => true, 'msg' => 'Se ha modificado exitosamente la contraseña.'];
+                    }else{
+                        $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al intentar actualizar la contraseña.'];
+                    }
+                }else{
+                    $arrResponse = ['status' => false, 'msg' => 'La contraseña actual ingresada no coincide con la registrada.'];
+                }
+            }else{
+                $arrResponse = ['status' => false, 'msg' => 'No se encontro el usuario con esa identificación.'];
+            }
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }
 }

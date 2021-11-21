@@ -44,7 +44,7 @@ const USER_NAME = 'team.pontelab@gmail.com';
 /**
  * Contraseña del usuario de correo eletronico
  */
-const PASSWORD = 'PonteLab2021';
+const PASSWORD = 'Pontelab2021';
 /**
  * Número del puerto del servidor al cual se va a enviar el correo electrónico
  */

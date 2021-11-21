@@ -90,6 +90,7 @@
                                                         <label for="lname">Identificación:</label>
                                                         <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" disabled>
                                                     </div>
+        
                                                     <div class="form-group col-sm-6">
                                                         <label for="uname">Tipo de Identificación:</label>
                                                         <select name="tipoDoc" id="tipoDoc" class="form-control" disabled>
