@@ -168,7 +168,7 @@ const validateFormRequirement = () => {
 };
 
 /*============ TRAER LA LISTA DE VACANTES ==========*/
-if (inputBusqueda) {
+if (inputBusqueda && listVacantes) {
   inputBusqueda.addEventListener("input", (e) => {
     e.preventDefault();
     const formData = formDataElement(document.querySelector("#searchbox"));
