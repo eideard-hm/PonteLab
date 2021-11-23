@@ -29,6 +29,7 @@
     <div class="wrapper">
         <!-- Menu de navegación -->
         <?php
+        require_once('./Views/Components/LoadingForms.php');
         require_once('./Views/Components/LayoutC.php');
         ?>
         <!-- Page Content  -->

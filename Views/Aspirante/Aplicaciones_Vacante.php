@@ -26,9 +26,9 @@
     <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
-        <?php require_once('./Views/Components/LoadingForms.php'); ?>
         <!-- Menu de navegación -->
         <?php
+        require_once('./Views/Components/LoadingForms.php');
         require_once('./Views/Components/Layout.php');
         ?>
 

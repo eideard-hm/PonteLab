@@ -138,7 +138,7 @@ const inactivarCuenta = async() => {
             swal({
                 title: "Inactivar cuenta",
                 text: "!Usuario Inhabilitado Correctamente!",
-                type: "success",
+                icon: "success",
                 timer: 9000,
             }).then(function() {
                 window.location.href = `${base_url}logout`;
