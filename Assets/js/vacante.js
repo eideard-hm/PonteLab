@@ -205,7 +205,7 @@ const getArregloVacantes = async (busqueda) => {
                     <div class="col-md-2 col-xs-3">
                         <div class="job-company">
                             <a href="${base_url}Vacante/DetallesVacante/${vacante.idVacante}" data-idVacante="${vacante.idVacante}">
-                                <img src="${base_url}Assets/img/${imagenUsuario}" alt="${vacante.nombreUsuario}" class="img-fluid" />
+                                <img src="${base_url}Assets/img/uploads/${imagenUsuario}" alt="${vacante.nombreUsuario}" class="img-fluid" />
                             </a>
                         </div>
                     </div>

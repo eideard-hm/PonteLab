@@ -74,7 +74,7 @@
                                 <div class="col-md-3">
                                     <div class="job-company">
                                         <a href="#<?= $data['detail_vacante']['idContratante'] ?>">
-                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? URL . 'Assets/img/upload.svg' : URL . 'Assets/img/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
+                                            <img src="<?= empty($data['detail_vacante']['imagenUsuario']) ? assets_url_img() . 'uploads/upload.svg' : assets_url_img() . 'uploads/' . $data['detail_vacante']['imagenUsuario'] ?>" alt="<?= $data['detail_vacante']['nombreUsuario'] ?>" class="img-fluid" />
                                         </a>
                                     </div>
                                 </div>
