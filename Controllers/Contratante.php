@@ -221,4 +221,15 @@ class Contratante extends Controllers
         }
         die();
     }
+
+    public function getProfilesAspirantes(){
+        $request = $this->model->getProfilesAspirantes();
+        if(!empty($request)){
+            $arrResponse = ['status' => true, 'profiles' => $request];
+        }else{
+            $arrResponse = ['status' => false, 'msg' => 'No se encontraron registros.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }

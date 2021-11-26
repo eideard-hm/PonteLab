@@ -199,4 +199,11 @@ class ContratanteModel extends Mysql
                 WHERE idUsuario = {$idUsuario}";
         return $this->select($sql);
     }
+
+    public function getProfilesAspirantes()
+    {
+        $sql = "SELECT *
+                FROM selectAspirante";
+        return $this->selectAll($sql);
+    }
 }
