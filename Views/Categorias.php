@@ -71,34 +71,6 @@
             </div>
         </nav>
     </header>
-
-    <!-- <section class="job-search ptb40">
-        <div class="container">
-            <form class="job-search-form row" action="#" method="get">
-<div class="col-md-6 col-sm-12 search-keywords">
-                    <label for="search-keywords">Palabra Clave</label>
-                    <input type="text" name="search-keywords" id="search-keywords" placeholder="Keywords">
-                </div>
-                <div class="col-md-4 col-sm-12 search-categories">
-                    <label for="search-categories">Categoría </label>
-                    <select name="search-categories" class="selectpicker" id="search-categories" data-live-search="true" title="Any Category" data-size="5" data-container="body">
-                        <option value="1">Accountance</option>
-                        <option value="2">Banking</option>
-                        <option value="3">Design & Art</option>
-                        <option value="4">Developement</option>
-                        <option value="5">Insurance</option>
-                        <option value="6">IT Engineer</option>
-                        <option value="7">Healthcare</option>
-                        <option value="8">Marketing</option>
-                        <option value="9">Management</option>
-                    </select>
-                </div>
-                <div class="col-md-2 col-sm-12  search-categories search-submit">
-                    <button type="submit" class="btn btn-blue btn-effect btn-large"><i class="fas fa-search"></i>Buscar</button>
-                </div>
-            </form>
-        </div>
-    </section> -->
     <section class="ptb60" id="categories">
         <div class="container">
             <div class="section-title">
