@@ -127,7 +127,6 @@ class Aspirante extends Controllers
             $arrResponse = ['statusUser' => false, 'msg' => 'Ha ocurrido un error en el servidor'];
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
-
     }
 
 
@@ -175,13 +174,10 @@ class Aspirante extends Controllers
                     $direccion,
                     $imgPerfil
                 );
-                
+
                 if ($request > 0) {
                     if (!empty($namePhoto)) {
-                        $url_tmp = $photo['tmp_name'];
-                        $destino = "Assets/img/uploads/{$imgPerfil}";
-                        $move = move_uploaded_file($url_tmp, $destino);
-                        return $move;
+                        uploadImages($photo, $imgPerfil);
                     }
 
                     if (($namePhoto == '' && $_POST['foto_remove'] == 1 && $_POST['foto_actual'] != 'upload.svg')
@@ -195,8 +191,8 @@ class Aspirante extends Controllers
                     $imgProfile = $this->model->selectImgProfile($idUsuario);
                     if (!empty($arrData)) {
                         $_SESSION['user-data'] = $arrData;
-                        $_SESSION['imgProfile'] = URL . "Assets/img/uploads/{$imgProfile['imagenUsuario']}";
-                        $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!', 'session' => $_SESSION['user-data']];
+                        $_SESSION['imgProfile'] = assets_url_img() . "uploads/{$imgProfile['imagenUsuario']}";
+                        $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!'];
                     }
                 } elseif ($request === 'exists') {
                     $arrResponse = ['statusUser' => false, 'msg' => 'Atención, los datos ya existen'];
@@ -979,17 +975,17 @@ class Aspirante extends Controllers
             $newPass = encriptarPassword($newPass);
 
             $request = $this->model->currentPassword($idUsuario);
-            if(!empty($request)){
-                if(password_verify($currentPass, $request['passUsuario'])){
-                    if($this->model->updateContraseña($idUsuario, $newPass)){
+            if (!empty($request)) {
+                if (password_verify($currentPass, $request['passUsuario'])) {
+                    if ($this->model->updateContraseña($idUsuario, $newPass)) {
                         $arrResponse = ['status' => true, 'msg' => 'Se ha modificado exitosamente la contraseña.'];
-                    }else{
+                    } else {
                         $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al intentar actualizar la contraseña.'];
                     }
-                }else{
+                } else {
                     $arrResponse = ['status' => false, 'msg' => 'La contraseña actual ingresada no coincide con la registrada.'];
                 }
-            }else{
+            } else {
                 $arrResponse = ['status' => false, 'msg' => 'No se encontro el usuario con esa identificación.'];
             }
         }

@@ -7,14 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= $data['titulo_pagina'] ?></title>
   <!-- Favicon -->
-  <link rel="shortcut icon" href="<?= URL; ?>Assets/img/Logo_ponslabor.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?= assets_url_img(); ?>Logo_ponslabor.ico" type="image/x-icon" />
   <!-- CSS -->
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrap.min.css">
   <!-- Style CSS -->
-  <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+  <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesMenu.css">
+  <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesGlobal.css">
   <!-- Responsive CSS -->
-  <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
+  <link rel="stylesheet" href="<?= assets_url_css(); ?>responsive.css">
   <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
 </head>
@@ -28,6 +29,7 @@
   <div class="wrapper">
     <!-- Menu de navegación -->
     <?php
+    require_once('./Views/Components/LoadingForms.php');
     require_once('./Views/Components/LayoutC.php');
     ?>
     <!-- Page Content  -->
@@ -81,6 +83,7 @@
         <br>
         <div class="col-12 col-xl-12 grid-margin stretch-card">
           <br>
+<<<<<<< HEAD
           <div class="card-columns">
             <div class="card">
               <img src="<?= URL ?>Assets/img/uploads/spacex-logo-featured.jpg" class="card-img-top" alt="...">
@@ -143,6 +146,9 @@
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
+=======
+          <div class="card-columns" id="perfiles-aspirante">
+>>>>>>> 62f1693a53569639e0ffb6a6e6dcc23302e040fc
           </div>
         </div>
       </div>
@@ -157,6 +163,7 @@
   <?php
   require_once('./Views/Components/ScriptsJs.php');
   ?>
+  <script src="<?= assets_url_js(); ?>editarPerfil.js" type="module" defer></script>
 </body>
 
 </html>

@@ -34,7 +34,7 @@
                             <div class="iq-card-body profile-page p-0">
                                 <div class="profile-header">
                                     <div class="cover-container">
-                                        <img src="<?= URL ?>Assets/img/page-img/fondoAzul2.jpg" alt="profile-bg" class="rounded img-fluid"style=" width: 1550px; Height: 250px;">
+                                        <img src="<?= assets_url_img(); ?>page-img/fondoAzul2.jpg" alt="profile-bg" class="rounded img-fluid"style=" width: 1550px; Height: 250px;">
                                         <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
                                             <li><a href="javascript:void();"><i class="las la-pencil-alt"></i></a></li>
                                         </ul>

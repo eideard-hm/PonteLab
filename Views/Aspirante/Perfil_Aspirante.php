@@ -35,7 +35,7 @@
                             <div class="iq-card-body profile-page p-0">
                                 <div class="profile-header">
                                     <div class="cover-container">
-                                        <img src="<?= URL ?>Assets/img/page-img/fondoAzul.jpg" alt="profile-bg" class="rounded img-fluid" width: 1550px; style=" Height: 250px;">
+                                        <img src="<?= assets_url_img(); ?>page-img/fondoAzul2.jpg" alt="profile-bg" class="rounded img-fluid" style=" width: 1550px; Height: 250px;">
                                         <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
                                             <li><a href="javascript:void();"><i class="las la-pencil-alt"></i></a></li>
                                         </ul>
@@ -52,22 +52,22 @@
                                         <div class="social-links">
                                             <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
                                                 <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/08.png" class="img-fluid rounded" alt="facebook"></a>
+                                                    <a href="#"><img src="<?= assets_url_img(); ?>icon/08.png" class="img-fluid rounded" alt="facebook"></a>
                                                 </li>
                                                 <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/09.png" class="img-fluid rounded" alt="Twitter"></a>
+                                                    <a href="#"><img src="<?= assets_url_img(); ?>icon/09.png" class="img-fluid rounded" alt="Twitter"></a>
                                                 </li>
                                                 <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/10.png" class="img-fluid rounded" alt="Instagram"></a>
+                                                    <a href="#"><img src="<?= assets_url_img(); ?>icon/10.png" class="img-fluid rounded" alt="Instagram"></a>
                                                 </li>
                                                 <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/11.png" class="img-fluid rounded" alt="Google plus"></a>
+                                                    <a href="#"><img src="<?= assets_url_img(); ?>icon/11.png" class="img-fluid rounded" alt="Google plus"></a>
                                                 </li>
                                                 <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/12.png" class="img-fluid rounded" alt="You tube"></a>
+                                                    <a href="#"><img src="<?= assets_url_img(); ?>icon/12.png" class="img-fluid rounded" alt="You tube"></a>
                                                 </li>
                                                 <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/13.png" class="img-fluid rounded" alt="linkedin"></a>
+                                                    <a href="#"><img src="<?= assets_url_img(); ?>icon/13.png" class="img-fluid rounded" alt="linkedin"></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1011,7 +1011,7 @@
                                                                 <p class="mb-0"><?= $_SESSION['user-data']['direccionUsuario'] ?></p>
                                                             </div>
                                                         </div>
-                            
+
                                                         <h4 class="mt-3">Informacion Basica</h4>
                                                         <hr>
                                                         <div class="row">

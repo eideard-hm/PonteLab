@@ -46,6 +46,23 @@ class Contratante extends Controllers
         $this->views->getView($this, 'Contratante', $data);
     }
 
+    public function Detail_Perfil_Aspirante()
+    {
+        $url = explode('/', $_GET['url']);
+        if (isset($url[2]) && !empty($url[2])) {
+            $idAspirante = intval($url[2]);
+            if ($idAspirante > 0) {
+                $data['perfil'] = $this->model->getInfoPerfilAspirante($idAspirante);
+            } else {
+                header('Location: ' . URL . 'Menu/Menu_Contratante');
+            }
+        } else {
+            header('Location: ' . URL . 'Menu/Menu_Contratante');
+        }
+        $data['titulo_pagina'] = 'Detalle perfil aspirante | ' . NOMBRE_EMPRESA . '.';
+        $this->views->getView($this, 'Detail_Perfil_Aspirante', $data);
+    }
+
     //Método controlador para insertar y/o editar usuarios
     public function setContractor()
     {
@@ -203,22 +220,34 @@ class Contratante extends Controllers
                 $newPass = encriptarPassword($newPass);
 
                 $request = $this->model->currentPassword($idUsuario);
-                if(!empty($request)){
-                    if(password_verify($currentPass, $request['passUsuario'])){
-                        if($this->model->updateContraseña($idUsuario, $newPass)){
+                if (!empty($request)) {
+                    if (password_verify($currentPass, $request['passUsuario'])) {
+                        if ($this->model->updateContraseña($idUsuario, $newPass)) {
                             $arrResponse = ['status' => true, 'msg' => 'Se ha modificado exitosamente la contraseña.'];
-                        }else{
+                        } else {
                             $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al intentar actualizar la contraseña.'];
                         }
-                    }else{
+                    } else {
                         $arrResponse = ['status' => false, 'msg' => 'La contraseña actual ingresada no coincide con la registrada.'];
                     }
-                }else{
+                } else {
                     $arrResponse = ['status' => false, 'msg' => 'No se encontro el usuario con esa identificación.'];
                 }
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
+        die();
+    }
+
+    public function getProfilesAspirantes()
+    {
+        $request = $this->model->getProfilesAspirantes();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'profiles' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'msg' => 'No se encontraron registros.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

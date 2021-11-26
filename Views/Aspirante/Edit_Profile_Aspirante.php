@@ -29,6 +29,7 @@
     <div class="wrapper">
         <!-- Menu de navegación -->
         <?php
+        require_once('./Views/Components/LoadingForms.php');
         require_once('./Views/Components/Layout.php');
         ?>
         <!-- Page Content  -->
@@ -42,7 +43,7 @@
                                     <ul class="iq-edit-profile d-flex nav nav-pills">
                                         <li class="col-md-6 p-0">
                                             <a class="nav-link active" data-toggle="pill" href="#personal-information">
-                                                Personal Information
+                                                Información personal
                                             </a>
                                         </li>
                                         <li class="col-md-6 p-0">
@@ -66,7 +67,7 @@
                                             </div>
                                         </div>
                                         <div class="iq-card-body">
-                                            <form id="form-aspirante"  enctype="multipart/form-data">
+                                            <form id="form-aspirante" enctype="multipart/form-data">
                                                 <input type="hidden" class="form-control" name="idUsuario" id="idUsuario" value="<?= $_SESSION['user-data']['idUsuario'] ?>" />
                                                 <input type="hidden" name="foto_actual" id="foto_actual" value="<?= $_SESSION['user-data']['imagenUsuario'] ?>" />
                                                 <input type="hidden" name="foto_remove" id="foto_remove" value="0" />
