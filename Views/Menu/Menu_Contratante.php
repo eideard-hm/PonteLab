@@ -83,7 +83,6 @@
         <br>
         <div class="col-12 col-xl-12 grid-margin stretch-card">
           <br>
-<<<<<<< HEAD
           <div class="card-columns">
             <div class="card">
               <img src="<?= URL ?>Assets/img/uploads/spacex-logo-featured.jpg" class="card-img-top" alt="...">
@@ -146,9 +145,6 @@
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
               </div>
             </div>
-=======
-          <div class="card-columns" id="perfiles-aspirante">
->>>>>>> 62f1693a53569639e0ffb6a6e6dcc23302e040fc
           </div>
         </div>
       </div>
