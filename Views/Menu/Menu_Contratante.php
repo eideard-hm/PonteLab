@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<!-- Meta tags -->
+  <!-- Meta tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= $data['titulo_pagina'] ?></title>
@@ -31,12 +31,14 @@
     require_once('./Views/Components/LayoutC.php');
     ?>
     <!-- Page Content  -->
+    
     <div id="page-content" class="content-page">
-      <div class="container">
+      <div class="container">     
         <div>
           <h3 class="mb-3 align-center">Menú Contratante | Perfiles Laborales</h3>
           <h5 class="mb-3 align-center">Bienvenido <strong><?= $_SESSION['user-data']['nombreRol'] ?></strong> <b><?= $_SESSION['user-data']['nombreUsuario'] ?></b></h5>
         </div>
+
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
           <div class="alert alert-primary" role="alert">
             <div class="iq-alert-icon">
@@ -44,11 +46,11 @@
             </div>
             <div class="iq-alert-text">
               <?php
-                // Definicion de la zona horaria
-                date_default_timezone_set('America/Bogota');
-                // Obteniendo la fecha actual con hora, minutos y segundos en PHP
-                echo date('d F  Y h:i:s A');
-              ?>                                                                       
+              // Definicion de la zona horaria
+              date_default_timezone_set('America/Bogota');
+              // Obteniendo la fecha actual con hora, minutos y segundos en PHP
+              echo date('d F  Y h:i:s A');
+              ?>
             </div>
           </div>
           <div class="alert alert-info" role="alert">
@@ -59,19 +61,19 @@
             </div>
             <a href="<?= URL ?>Vacante/Vacante" class="iq-alert-text">
               <strong>
-              Crear | Publicar Vacante
-              </strong>                  
+                Crear | Publicar Vacante
+              </strong>
             </a>
           </div>
           <div class="alert alert-warning" role="alert">
             <div class="iq-alert-icon">
-              <a href="<?= URL ?>Contratante/Perfil_Contratante" class="iq-alert-text">                  
+              <a href="<?= URL ?>Contratante/Perfil_Contratante" class="iq-alert-text">
                 <i class="fas fa-pen-fancy"></i>
               </a>
             </div>
             <a href="<?= URL ?>Contratante/Perfil_Contratante" class="iq-alert-text">
-              <strong>                  
-              Añadir Descripcion Empresarial
+              <strong>
+                Añadir Descripcion Empresarial
               </strong>
             </a>
           </div>
@@ -81,7 +83,7 @@
           <br>
           <div class="card-columns">
             <div class="card">
-                <img src="<?= URL ?>Assets/img/uploads/spacex-logo-featured.jpg" class="card-img-top" alt="...">
+              <img src="<?= URL ?>Assets/img/uploads/spacex-logo-featured.jpg" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">Programador FrontEnd</h5>
                 <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -105,7 +107,7 @@
                 <h5 class="card-title">Diseñador 3D</h5>
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                <a href="#" class="btn btn-primary">Ver Perfil</a>                            
+                <a href="#" class="btn btn-primary">Ver Perfil</a>
               </div>
             </div>
             <div class="card bg-primary text-white text-center p-3">
@@ -156,4 +158,5 @@
   require_once('./Views/Components/ScriptsJs.php');
   ?>
 </body>
+
 </html>
