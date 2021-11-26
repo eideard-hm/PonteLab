@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $data['titulo_pagina'] ?></title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= URL ?>Assets/img/Logo_ponslabor.ico" />
+    <link rel="shortcut icon" href="<?= assets_url_img(); ?>Logo_ponslabor.ico" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrap.min.css">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesMenu.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>responsive.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesGlobal.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 

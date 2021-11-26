@@ -206,4 +206,11 @@ class ContratanteModel extends Mysql
                 FROM selectAspirante";
         return $this->selectAll($sql);
     }
+
+    public function getInfoPerfilAspirante(int $id){
+        $sql = "SELECT *
+                FROM detailAspiranteView
+                WHERE idAspirante = {$id}";
+        return $this->select($sql);
+    }
 }

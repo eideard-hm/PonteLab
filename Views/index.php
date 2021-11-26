@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,14 @@
     <!-- Meta Tags - Description for Search Engine purposes -->
     <meta name="description" content="Bolsa de Empleo PonteLab">
     <meta name="keywords" content="Bolsa de Empleo PonteLab">
-    <meta name="author" content="GnoDesign">
+    <meta name="author" content="Team PonteLab">
     <!-- Website Title -->
     <title><?= $data['titulo_pagina'] ?></title>
-    <link rel="shortcut icon" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico" type="image/x-icon">
-    <link rel="apple-touch-icon-precomposed" href="<?= URL; ?>/Assets/img/index/Logo_ponslabor.ico">
+    <link rel="shortcut icon" href="<?= assets_url_img(); ?>index/Logo_ponslabor.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="<?= assets_url_img(); ?>index/Logo_ponslabor.ico">
 
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
-    <link rel="stylesheet" href="<?= URL; ?>Assets/css/bootstrapIndex.min.css" />
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>index.css" />
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrapIndex.min.css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-default navbar-static-top fluid_header centered">
             <div class="container">
                 <div class="col-md-2 col-sm-6 col-xs-8 nopadding">
-                    <a class="navbar-brand nomargin" href="index.html"><img src="<?= URL; ?>/Assets/img/Logo_ponslabor.png" width="150" height="750"></a>
+                    <a class="navbar-brand nomargin" href="index.html"><img src="<?= assets_url_img(); ?>Logo_ponslabor.png" width="150" height="750"></a>
                 </div>
                 <div class="col-md-10 col-sm-6 col-xs-4 nopadding">
                     <div class="navbar-header page-scroll">

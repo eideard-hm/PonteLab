@@ -191,7 +191,7 @@ class Aspirante extends Controllers
                     $imgProfile = $this->model->selectImgProfile($idUsuario);
                     if (!empty($arrData)) {
                         $_SESSION['user-data'] = $arrData;
-                        $_SESSION['imgProfile'] = assets_url_img() ."uploads/{$imgProfile['imagenUsuario']}";
+                        $_SESSION['imgProfile'] = assets_url_img() . "uploads/{$imgProfile['imagenUsuario']}";
                         $arrResponse = ['statusUser' => true, 'msg' => 'Los datos se actualizarón correctamente !!'];
                     }
                 } elseif ($request === 'exists') {

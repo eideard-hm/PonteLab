@@ -269,7 +269,7 @@ const getProfilesAspirantes = async () => {
                         <p class="card-text">${profile.descripcionPersonalAspirante}</p>
                         <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
                         <p class="card-text"><small class="text-muted">${profile.created_at}</small></p>
-                        <a href="${base_url}Aspirante/Detail_Perfil_Aspirante" class="btn btn-primary">Ver Perfil</a>
+                        <a href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
                     </div>
                 </div>
           `;
