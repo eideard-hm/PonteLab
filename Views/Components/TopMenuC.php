@@ -14,14 +14,19 @@
                     </div>
                 </div>
             </div>
-            <div class="iq-search-bar">
-                <form action="#" class="searchbox">
-                    <input type="search" id="txtSearchVacantes" class="text search-input" name="txtSearchVacantes" placeholder="Ingrese lo que desea buscar" />
-                    <a class="search-link" href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar">
-                        <i class="las la-search"></i>
-                    </a>
-                </form>
-            </div>
+            <?php
+            $url = explode('/', $_GET['url']);
+            if (isset($url[1]) && $url[1] == 'Menu_Contratante') {
+            ?>
+                <div class="iq-search-bar">
+                    <form action="#" id="search-form" class="searchbox">
+                        <input type="search" id="txtSearchVacantes" class="text search-input" name="txtSearchVacantes" placeholder="Ingrese lo que desea buscar" />
+                        <a class="search-link" href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Buscar">
+                            <i class="las la-search"></i>
+                        </a>
+                    </form>
+                </div>
+            <?php } ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
                 <i class="las la-bars"></i>
             </button>

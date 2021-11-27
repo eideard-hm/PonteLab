@@ -8,6 +8,7 @@ const formUser = document.querySelector("#formPrincipal");
 const formChangePass = document.querySelector("#change-password");
 
 const listPerfilesAspirante = document.querySelector("#perfiles-aspirante");
+const inputSearch = document.querySelector("#txtSearchVacantes");
 
 if (document.querySelector("#edit")) {
   document.querySelector("#edit").addEventListener("click", (e) => {
@@ -274,6 +275,68 @@ const getProfilesAspirantes = async () => {
                 </div>
           `;
       });
+    }
+    divLoading.style.display = "none";
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+if (inputSearch) {
+  inputSearch.addEventListener("input", (e) => {
+    e.preventDefault();
+    searchProfilesAspirantes(
+      formDataElement(document.querySelector("#search-form"))
+    );
+
+    if (inputSearch.value.trim() === "") {
+      getProfilesAspirantes();
+    }
+  });
+}
+
+const searchProfilesAspirantes = async (formData) => {
+  const url = `${base_url}Contratante/searchProfilesAspirantes`;
+  try {
+    divLoading.style.display = "flex";
+    const res = await fetch(url, {
+      method: "POST",
+      body: formData,
+    });
+    const { status, profiles, msg } = await res.json();
+    let imagenUsuario = "";
+    if (status && profiles.length > 0) {
+      listPerfilesAspirante.classList.add("card-columns");
+      listPerfilesAspirante.innerHTML = "";
+      profiles.forEach((profile) => {
+        if (profile.imagenUsuario === null) {
+          imagenUsuario = `${base_url}Assets/img/uploads/upload.svg`;
+        } else {
+          imagenUsuario = `${base_url}Assets/img/uploads/${profile.imagenUsuario}`;
+        }
+        listPerfilesAspirante.innerHTML += `
+          <div class="card">
+              <img src="${imagenUsuario}" class="card-img-top" alt="${profile.nombreUsuario}">
+              <div class="card-body">
+                  <h5 class="card-title">${profile.nombreUsuario}</h5>
+                  <p class="card-text">${profile.descripcionPersonalAspirante}</p>
+                  <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
+                  <p class="card-text"><small class="text-muted">${profile.created_at}</small></p>
+                  <a href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
+              </div>
+          </div>
+      `;
+      });
+    } else {
+      listPerfilesAspirante.classList.remove("card-columns");
+      listPerfilesAspirante.innerHTML = `
+      <div class="alert alert-warning" style="width:100%" role="alert">
+        <div class="iq-alert-icon">
+          <i class="las la-exclamation-triangle"></i>
+        </div>
+        <div class="iq-alert-text"><b>${msg}</b></div>
+      </div>
+      `;
     }
     divLoading.style.display = "none";
   } catch (error) {

@@ -207,10 +207,23 @@ class ContratanteModel extends Mysql
         return $this->selectAll($sql);
     }
 
-    public function getInfoPerfilAspirante(int $id){
+    public function getInfoPerfilAspirante(int $id)
+    {
         $sql = "SELECT *
                 FROM detailAspiranteView
                 WHERE idAspirante = {$id}";
         return $this->select($sql);
+    }
+
+    public function searchProfilesAspirantes(string $search)
+    {
+        $sql = "SELECT idAspirante, descripcionPersonalAspirante, 
+                nombreEstado, nombreUsuario, imagenUsuario, u.created_at
+                FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
+                ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
+                ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK
+                WHERE idAspirante LIKE '%{$search}%' OR descripcionPersonalAspirante LIKE '%{$search}%' 
+                OR nombreEstado LIKE '%{$search}%' OR nombreUsuario LIKE '%{$search}%'";
+        return $this->selectAll($sql);
     }
 }

@@ -250,4 +250,19 @@ class Contratante extends Controllers
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function searchProfilesAspirantes()
+    {
+        if ($_POST) {
+            $search = strtolower(limpiarCadena($_POST['txtSearchVacantes']));
+            $request = $this->model->searchProfilesAspirantes($search);
+            if (!empty($request)) {
+                $arrResponse = ['status' => true, 'profiles' => $request];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'No se encontraron registros.'];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
 }
