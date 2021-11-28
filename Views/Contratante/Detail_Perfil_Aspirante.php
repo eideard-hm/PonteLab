@@ -9,15 +9,19 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= assets_url_img(); ?>Logo_ponslabor.ico" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrapIndex.min.css" />
-    <link rel="stylesheet" href="<?= assets_url_css(); ?>index.css" />
-
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>detail_perfilA/bootstrap.css">
+       <link rel="stylesheet" href="<?= assets_url_css(); ?>detail_perfilA/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>detail_perfilA/style.css">
     <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrap.min.css">
-    <!-- Style CSS -->
     <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesMenu.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<?= assets_url_css(); ?>responsive.css">
     <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesGlobal.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>responsive.css">
+
+
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <!-- Responsive CSS -->
+
+
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
@@ -36,55 +40,58 @@
         ?>
         <div id="content-page" class="content-page">
             <?php require_once('./Views/Components/LoadingForms.php') ?>
+            <!-- ===== Start of Candidate Profile Header Section ===== -->
+            <section class="profile-header">
+            </section>
             <!-- ===== End of Main Wrapper Job Section ===== -->
-            <section class="pb80" id="candidate-profile">
+            <section class="pb80 d-flex flex-wrap justify-content-center align-items-center" id="candidate-profile">
                 <div class="container">
                     <!-- Start of Row -->
                     <?php if (isset($data['perfil']) && count($data['perfil']) > 0) {  ?>
-                            <div class="row candidate-profile">
-                                <!-- Start of Profile Picture -->
-                                <div class="col-md-3 col-xs-12">
-                                    <div class="profile-photo">
-                                        <img src="<?= assets_url_img(); ?>uploads/upload.svg" class="img-responsive" alt="">
-                                    </div>
+                        <div class="row candidate-profile">
+                            <!-- Start of Profile Picture -->
+                            <div class="col-md-3 col-xs-12">
+                                <div class="profile-photo">
+                                    <img src="<?= assets_url_img(); ?>uploads/upload.svg" class="img-responsive" alt="">
                                 </div>
-                                <!-- End of Profile Picture -->
-
-                                <!-- Start of Profile Description -->
-                                <div class="col-md-9 col-xs-12">
-                                    <div class="profile-descr">
-
-                                        <!-- Profile Title -->
-                                        <div class="profile-title">
-                                            <h2 class="capitalize"><?= $data['perfil']['nombreUsuario'] ?></h2>
-                                            <h5 class="pt10"><?= $data['perfil']['nombrePuesto'] ?></h5>
-                                        </div>
-
-                                        <!-- Profile Details -->
-                                        <div class="profile-details mt20">
-                                            <?= $data['perfil']['descripcionPersonalAspirante'] ?>
-                                        </div>
-
-                                        <ul class="profile-info mt20 nopadding">
-                                            <li>
-                                                <i class="fa fa-map-marker"></i>
-                                                <span><?= $data['perfil']['nombreBarrio'] ?>, <?= $data['perfil']['nombreCiudad'] ?></span>
-                                            </li>
-                                            <li>
-                                                <i class="fa fa-phone"></i>
-                                                <span><?= $data['perfil']['numTelUsuario'] ?></span>
-                                            </li>
-
-                                            <li>
-                                                <i class="fa fa-envelope"></i>
-                                                <a href="#"><?= $data['perfil']['correoUsuario'] ?></a>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                                <!-- End of Profile Description -->
                             </div>
+                            <!-- End of Profile Picture -->
+
+                            <!-- Start of Profile Description -->
+                            <div class="col-md-9 col-xs-12">
+                                <div class="profile-descr">
+
+                                    <!-- Profile Title -->
+                                    <div class="profile-title">
+                                        <h2 class="capitalize"><?= $data['perfil']['nombreUsuario'] ?></h2>
+                                        <h5 class="pt10"><?= $data['perfil']['nombrePuesto'] ?></h5>
+                                    </div>
+
+                                    <!-- Profile Details -->
+                                    <div class="profile-details mt20">
+                                        <?= $data['perfil']['descripcionPersonalAspirante'] ?>
+                                    </div>
+
+                                    <ul class="profile-info mt20 nopadding">
+                                        <li>
+                                            <i class="fa fa-map-marker"></i>
+                                            <span><?= $data['perfil']['nombreBarrio'] ?>, <?= $data['perfil']['nombreCiudad'] ?></span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-phone"></i>
+                                            <span><?= $data['perfil']['numTelUsuario'] ?></span>
+                                        </li>
+
+                                        <li>
+                                            <i class="fa fa-envelope"></i>
+                                            <a href="#"><?= $data['perfil']['correoUsuario'] ?></a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <!-- End of Profile Description -->
+                        </div>
                     <?php } else { ?>
                         <div class="row candidate-profile">
                             <div class="col-md-12 col-xs-12">
