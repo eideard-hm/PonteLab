@@ -158,3 +158,16 @@ body {
   width: 200px;
   height: 250px;
 }
+
+.card_perfil_aspirante{
+  height: 492px;
+}
+
+.descripcion_aspirante{
+  height: 80px;
+  overflow-y: auto;
+}
+
+.boton-perfil{
+  margin-top: 10px;
+}

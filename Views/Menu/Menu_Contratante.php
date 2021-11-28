@@ -81,10 +81,7 @@
           </div>
         </div>
         <br>
-        <div class="col-12 col-xl-12 grid-margin stretch-card">
-          <br>
-          <div class="card-columns" id="perfiles-aspirante">
-          </div>
+        <div class="row" id="perfiles-aspirante">
         </div>
       </div>
     </div>

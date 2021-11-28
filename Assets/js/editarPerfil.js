@@ -263,16 +263,35 @@ const getProfilesAspirantes = async () => {
           imagenUsuario = `${base_url}Assets/img/uploads/${profile.imagenUsuario}`;
         }
         listPerfilesAspirante.innerHTML += `
-                <div class="card">
-                    <img src="${imagenUsuario}" class="card-img-top" alt="${profile.nombreUsuario}">
-                    <div class="card-body">
-                        <h5 class="card-title">${profile.nombreUsuario}</h5>
-                        <p class="card-text">${profile.descripcionPersonalAspirante}</p>
-                        <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
-                        <p class="card-text"><small class="text-muted">${profile.created_at}</small></p>
-                        <a href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
+          <div class="col-md-6" class="card_perfil_aspirante">
+            <div class="iq-card">
+              <div class="iq-card-body profile-page p-0">
+                <div class="profile-header-image">
+                  <div class="cover-container">
+                    <img src="${base_url}Assets/img/page-img/fondo.jpeg" alt="${profile.nombreUsuario}" class="rounded w-100">
+                  </div>
+                  <div class="profile-info p-4">
+                    <div class="user-detail">
+                      <div class="d-flex flex-wrap justify-content-between align-items-start">
+                        <div class="profile-detail d-flex">
+                          <div class="profile-img pr-4 text-center">
+                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="avatar-130">
+                            <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
+                            <p class="card-text"><small>${profile.created_at}</small></p>
+                            </div>
+                          <div class="user-data-block">
+                            <h4>${profile.nombreUsuario}</h4>
+                            <p class="descripcion_aspirante"> ${profile.descripcionPersonalAspirante}</p>
+                          </div>
+                        </div>
+                        <a class="btn btn-primary boton-perfil" role="buttom" href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
           `;
       });
     }
@@ -306,7 +325,6 @@ const searchProfilesAspirantes = async (formData) => {
     const { status, profiles, msg } = await res.json();
     let imagenUsuario = "";
     if (status && profiles.length > 0) {
-      listPerfilesAspirante.classList.add("card-columns");
       listPerfilesAspirante.innerHTML = "";
       profiles.forEach((profile) => {
         if (profile.imagenUsuario === null) {
@@ -315,20 +333,38 @@ const searchProfilesAspirantes = async (formData) => {
           imagenUsuario = `${base_url}Assets/img/uploads/${profile.imagenUsuario}`;
         }
         listPerfilesAspirante.innerHTML += `
-          <div class="card">
-              <img src="${imagenUsuario}" class="card-img-top" alt="${profile.nombreUsuario}">
-              <div class="card-body">
-                  <h5 class="card-title">${profile.nombreUsuario}</h5>
-                  <p class="card-text">${profile.descripcionPersonalAspirante}</p>
-                  <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
-                  <p class="card-text"><small class="text-muted">${profile.created_at}</small></p>
-                  <a href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
+        <div class="col-md-6" class="card_perfil_aspirante">
+            <div class="iq-card">
+              <div class="iq-card-body profile-page p-0">
+                <div class="profile-header-image">
+                  <div class="cover-container">
+                    <img src="${base_url}Assets/img/page-img/fondo.jpeg" alt="${profile.nombreUsuario}" class="rounded w-100">
+                  </div>
+                  <div class="profile-info p-4">
+                    <div class="user-detail">
+                      <div class="d-flex flex-wrap justify-content-between align-items-start">
+                        <div class="profile-detail d-flex">
+                          <div class="profile-img pr-4 text-center">
+                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="avatar-130">
+                            <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
+                            <p class="card-text"><small>${profile.created_at}</small></p>
+                            </div>
+                          <div class="user-data-block">
+                            <h4>${profile.nombreUsuario}</h4>
+                            <p class="descripcion_aspirante"> ${profile.descripcionPersonalAspirante}</p>
+                          </div>
+                        </div>
+                        <a class="btn btn-primary text-right boton-perfil" role="buttom" href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-          </div>
+            </div>
+        </div>
       `;
       });
     } else {
-      listPerfilesAspirante.classList.remove("card-columns");
       listPerfilesAspirante.innerHTML = `
       <div class="alert alert-warning" style="width:100%" role="alert">
         <div class="iq-alert-icon">
