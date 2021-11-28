@@ -33,10 +33,22 @@
         require_once('./Views/Components/Layout.php');
         ?>
         <!-- ===== Start of Job Post Section ===== -->
+        
+            <div class="container"style="position:relative; top:110px;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú </a></li>
+                        <li class="mx-1"> / </li>
+                        <li> Hoja De Vida</li>
+                    </ol>
+                </nav>
+            </div>
+       
         <section class="ptb80" id="job-post">
             <div class="container d-flex">
                 <?php if (count($data['vacantes_pagination']) > 0) { ?>
                     <!-- Start of Job Post Main -->
+
                     <div class="col-md-8 col-sm-12 col-xs-12 job-post-main">
                         <h2 class="capitalize"><i class="las la-briefcase"></i>Últimos trabajos</h2>
                         <!-- Start of Job Post Wrapper -->

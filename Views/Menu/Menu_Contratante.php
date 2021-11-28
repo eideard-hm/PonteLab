@@ -32,10 +32,12 @@
     require_once('./Views/Components/LoadingForms.php');
     require_once('./Views/Components/LayoutC.php');
     ?>
+
     <!-- Page Content  -->
     <div id="page-content" class="content-page">
+      
       <div class="container">
-        <div>
+         <div>
           <h3 class="mb-3 align-center">Menú Contratante | Perfiles Laborales</h3>
           <h5 class="mb-3 align-center">Bienvenido <strong><?= $_SESSION['user-data']['nombreRol'] ?></strong> <b><?= $_SESSION['user-data']['nombreUsuario'] ?></b></h5>
         </div>

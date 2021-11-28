@@ -31,7 +31,15 @@
         <?php
         require_once('./Views/Components/Layout.php');
         ?>
-
+        <div class="container" style="position:relative; top:110px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú </a></li>
+                    <li class="mx-1"> / </li>
+                    <li> Detalles de la Vacante</li>
+                </ol>
+            </nav>
+        </div>
         <div id="content-page" class="content-page">
             <?php require_once('./Views/Components/LoadingForms.php') ?>
             <!-- ===== Start of Job Header Section ===== -->

@@ -27,6 +27,13 @@
         <!-- Page Content  -->
         <div id="page-content" class="content-page">
             <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú</a></li>
+                        <li class="mx-1">/</li>
+                        <li >Registro de Vacantes</li>
+                    </ol>
+                </nav>
                 <div class="row">
                     <div class="col-md-12 stretch-card">
                         <div class="card">
@@ -98,7 +105,7 @@
                                                             <label for="sueldo"> Sueldo *</label>
                                                             <input type="number" class="form-control" name="sueldo" id="sueldo" autocomplete="off" placeholder="Sueldo..." required>
                                                         </div>
-                                                        <div class="form-group"">
+                                                        <div class="form-group">
                                                             <label> Perfil del Trabajador *</label>
                                                             <textarea class=" form-control" name="perfil" id="perfil" placeholder="Perfil del Trabajador..." required>
                                                             </textarea>
@@ -211,7 +218,7 @@
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                                 <fieldset style="display: block; opacity: 0; position: relative;">
-                                    
+
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                             </div>
