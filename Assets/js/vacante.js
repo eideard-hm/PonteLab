@@ -18,6 +18,7 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 document.addEventListener("DOMContentLoaded", async () => {
   initTextEditorTinymce("especificaciones");
   initTextEditorTinymce("perfil");
+  initTextEditorTinymce("especficacionRequisitos");
 });
 
 if (bntSubmit) {

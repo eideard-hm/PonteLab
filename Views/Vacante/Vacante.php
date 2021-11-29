@@ -170,44 +170,39 @@
                                 <fieldset style="display: none; opacity: 0; position: relative;">
                                     <div class="form-card text-left">
                                         <div class="row">
-                                            <div class="col-md-12 grid-margin stretch-card">
+                                            <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="fechapublicacion"> Fecha de
-                                                                Publicacion *</label>
-                                                            <input type="datetime-local" class="form-control" name="fechapublicacion" id="fechapublicacion" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="fechacierre"> Fecha de Cierre *</label>
-                                                            <input type="datetime-local" class="form-control" name="fechacierre" id="fechacierre" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="direccion"> Dirección *</label>
-                                                            <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección..." required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="estado"> Estado *</label>
-                                                            <select class="form-control" name="estado" id="estado" required>
-                                                                <option value="" disabled selected>Seleccion Estado
-                                                                </option>
-                                                                <option value="1">Activo</option>
-                                                                <option value="2">Inactivo</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="idSectorFK"> Sector *</label>
-                                                            <select class="form-control" name="idSectorFK" id="idSectorFK" required>
-                                                                <option selected disabled value="">--- Seleccione el
-                                                                    Sector ---</option>
-                                                                <?php foreach ($data['list_sector'] as $sector) : ?>
-                                                                    <option value="<?php echo $sector['idSector'] ?>">
-                                                                        <?php echo $sector['nombreSector'] ?></option>
-                                                                <?php endforeach ?>
-                                                            </select>
-                                                        </div>
-                                                        <button type="submit" id="btn_submit" class="btn btn-primary mr-2 mb-3"> Registrar
-                                                        </button>
+                                                        <form id="form-requirements" method="post">
+                                                            <input type="hidden" id="idRequisitos" name="idRequisitos" value="0">
+                                                            <div class="form-group">
+                                                                <label for="nombreRequisitos">Nombre Requerimiento</label>
+                                                                <input type="text" class="form-control" name="nombreRequisitos" id="nombreRequisitos" autocomplete="off" placeholder="Nombre del requerimiento..." required>
+                                                            </div>
+                                                            <button type="submit" id="btn_submit_r" class="btn btn-primary mr-2 mb-3"> Registrar</button>
+                                                        </form>                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 grid-margin stretch-card">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <form id="form-requirement" method="post">
+                                                            <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
+                                                            <div class="form-group">
+                                                                <label for="idVacanteFK">Vacante</label>
+                                                                <select class="form-control" name="idVacanteFK" id="idVacanteFK">
+                                                                    <option selected disabled value="">--- Seleccione la Vacante ---</option>
+                                                                    <?php foreach ($data['list_vacante'] as $vacs) : ?>
+                                                                    <option value="<?php echo $vacs['idVacante'] ?>"><?php echo $vacs['nombreVacante'] ?></option>
+                                                                    <?php endforeach ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="especficacionRequisitos"> Especificación Requisitos</label>
+                                                                <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especficación requisitos..."></textarea>
+                                                            </div>
+                                                            <button type="submit" id="btn_submit" class="btn btn-primary mr-2 mb-3"> Registrar</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -215,10 +210,6 @@
                                         </div>
                                     </div>
                                     <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
-                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
-                                </fieldset>
-                                <fieldset style="display: block; opacity: 0; position: relative;">
-
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                             </div>
