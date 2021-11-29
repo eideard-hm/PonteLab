@@ -208,7 +208,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fa fa-desktop"></i>
+                        <i class="fas fa-briefcase"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Desarrollo empresarial</a>
@@ -223,7 +223,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-tie"></i>
+                        <i class="fas fa-shopping-cart"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Empleado de tienda</a>
@@ -240,7 +240,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-md"></i>
+                        <i class="fas fa-headset"></i>
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
@@ -261,7 +261,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-check"></i>
+                        <i class="fab fa-redhat"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Operaciones</a>
@@ -279,7 +279,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fa fa-desktop"></i>
+                        <i class="fab fa-font-awesome"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Recursos humanos</a>
@@ -294,7 +294,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-tie"></i>
+                        <i class="fas fa-user-md"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Servicios sanitarios</a>
@@ -310,7 +310,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-md"></i>
+                        <i class="fas fa-balance-scale-left"></i>
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
@@ -327,7 +327,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-check"></i>
+                        <i class="fas fa-tasks"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#"> Gestión de programas y proyectos </a>
@@ -346,7 +346,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fa fa-desktop"></i>
+                        <i class="fas fa-sort-numeric-up"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Contabilidad</a>
@@ -361,7 +361,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-tie"></i>
+                        <i class="fas fa-users"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Servicios sociales y comunitarios</a>
@@ -378,7 +378,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-md"></i>
+                        <i class="fas fa-handshake"></i>
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
@@ -396,7 +396,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-check"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Educación </a>
@@ -415,7 +415,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fa fa-desktop"></i>
+                        <i class="fab fa-slideshare"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Liderazgo </a>
@@ -431,7 +431,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-tie"></i>
+                        <i class="fas fa-balance-scale"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Jurídico </a>
@@ -447,7 +447,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-md"></i>
+                        <i class="fas fa-rss"></i>
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
@@ -465,7 +465,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-check"></i>
+                        <i class="fas fa-male"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Servicios militares y de protección</a>
@@ -483,7 +483,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fa fa-desktop"></i>
+                        <i class="fab fa-product-hunt"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Gestión de productos </a>
@@ -499,7 +499,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-tie"></i>
+                        <i class="fas fa-shopping-cart"></i>
                         </div>
                         <div class="category-info pt20">
                             <a href="#">Compras </a>
@@ -516,7 +516,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-md"></i>
+                        <i class="fas fa-seedling"></i>
                         </div>
                         <!-- Category Info - Title -->
                         <div class="category-info pt20">
@@ -535,7 +535,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12 cat-wrapper">
                     <div class="category ptb30">
                         <div class="category-icon">
-                            <i class="fas fa-user-check"></i>
+                        <i class="fas fa-tools"></i>
 
                         </div>
                         <div class="category-info pt20">
