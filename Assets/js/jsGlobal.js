@@ -731,11 +731,6 @@ export const getDataAspirante = async () => {
       if (document.querySelector("#list-cv")) {
         document.querySelector("#list-cv").setAttribute("disabled", "disabled");
         document.querySelector("#link-cv").setAttribute("href", "#");
-      } else {
-        document.querySelector("#list-cv").removeAttribute("disabled");
-        document
-          .querySelector("#link-cv")
-          .setAttribute("href", "<?= URL ?>Aspirante/HojaVida");
       }
     } else {
       if (document.querySelector("#hoja-vida")) {
