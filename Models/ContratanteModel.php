@@ -3,6 +3,7 @@
 class ContratanteModel extends Mysql
 {
     //atributos de la clase
+    private int $id;
     private string $descripcionContratante;
     private int $idUsuarioFK;
     private string $imagenUsuario;
@@ -38,44 +39,20 @@ class ContratanteModel extends Mysql
     //Método para actualizar usuarios
     public function updateContractor(
         int $id,
-        string $descrpcion,
-        string $direccion
+        string $descripcion
     ) {
-        $this->descripcionContratante = $descrpcion;
-        $this->idUsuarioFK = $direccion;
+        $this->id = $id;
+        $this->descripcionContratante = $descripcion;
 
-        //verificar si existe el usuario
-        $sql = "SELECT * FROM USUARIO WHERE (correoUsuario = '{$this->correoUsuario}' 
-        AND idUsuario != '{$this->idUsuario}')
-        OR (numDocUsuario = '{$this->numDocUsuario}' AND idUsuario !='{$this->idUsuario}')";
-        $request = $this->selectAll($sql);
+        $query = "UPDATE CONTRATANTE 
+                      SET descripcionContratante = ?
+                      WHERE idContratante = ?";
 
-        //comprobar si existe para pasar a actualizar el registro
-        if (empty($request) || $request === '' || $request === null) {
-            $query = "UPDATE USUARIO 
-            SET correoUsuario=?, passUsuario=?, idTipoDocumentoFK=?, numDocUsuario=?, 
-            numTelUsuario=?, numTelFijo=?, estadoUsuario=?, idRolFK=?, idBarrioFK=?, 
-            direccionUsuario=?, imagenUsuario =?
-            WHERE idUsuario={$this->idUsuario}";
-
-            $arrData = array(
-                $this->strEmail,
-                $this->passUsuario,
-                $this->idTipoDocumentoFK,
-                $this->intNumDoc,
-                $this->numTelUsuario,
-                $this->numTelFijo,
-                $this->estadoUsuario,
-                $this->idRolFK,
-                $this->idBarrioFK,
-                $this->direccionUsuario,
-                $this->imagenUsuario
-            );
-            $request = $this->edit($query, $arrData);
-        } else {
-            $request = "exist";
-        }
-        return $request;
+        $arrData = array(
+            $this->descripcionContratante,
+            $this->id
+        );
+        return $this->edit($query, $arrData);
     }
     //Método para traer los tipos de documentos registrados
     public function selectTipoDoc()
@@ -225,5 +202,13 @@ class ContratanteModel extends Mysql
                 WHERE idAspirante LIKE '%{$search}%' OR descripcionPersonalAspirante LIKE '%{$search}%' 
                 OR nombreEstado LIKE '%{$search}%' OR nombreUsuario LIKE '%{$search}%'";
         return $this->selectAll($sql);
+    }
+
+    public function getDataContractor(int $id)
+    {
+        $sql = "SELECT idContratante, descripcionContratante
+                FROM CONTRATANTE
+                WHERE idUsuarioFK = {$id}";
+        return $this->select($sql);
     }
 }
