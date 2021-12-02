@@ -59,7 +59,6 @@
                 <input type="hidden" name="apellido" id="apellido" placeholder="Arturo" />
                 <input type="email" name="email" id="email" placeholder="example@example.com" />
                 <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
-                <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span>
                 <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
                 <button name="next" class="next action-button" value="Siguiente" id="siguiente1" style="width: 413px; height:48px" onclick="validarCampos();"> Siguiente </button>
             </fieldset>

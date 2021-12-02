@@ -4,25 +4,25 @@
  * Contiene la ruta raiz del proyecto
  */
 
-//const URL = 'http://localhost/PonteLab/';
+const URL = 'http://localhost/PonteLab/';
 
 // constante de conexión a la base de datos
- /*const DB_HOST = 'localhost';
+ const DB_HOST = 'localhost';
 const DB_USER = 'root';
 const DB_PASS = '';
-const DB_NAME = 'db_proyectoponslabor';*/
+const DB_NAME = 'db_proyectoponslabor';
  
 
 /**
  * Contiene la ruta raiz del proyecto
  */
-const URL = 'https://pontelab.000webhostapp.com/pontelab/';
+//const URL = 'https://pontelab.000webhostapp.com/pontelab/';
 
 // constante de conexión a la base de datos
-const DB_HOST = 'localhost';
+/*const DB_HOST = 'localhost';
 const DB_USER = 'id17916925_admin';
 const DB_PASS = 'RQ\ezqIc*y~+iz3D';
-const DB_NAME = 'id17916925_db_pontelab';
+const DB_NAME = 'id17916925_db_pontelab';*/
 
 //datos para el envió de correo electronico
 const NOMBRE_EMPRESA = 'PonteLab';
