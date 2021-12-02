@@ -23,8 +23,6 @@
 
     <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
     <img src="<?= URL; ?>Assets/img/registro.svg" class="registro">
-    <a href="<?= URL ?>" style="color:#006790;" class="btn mt-3 mb-3 mx-3">Ver perfil</a>
-
 
     <!--<a href="<?= URL; ?>" class="btn mt-3 mb-3 mx-3 btn-success"><i class="fas fa-sign-in-alt"></i>Inicio</a>-->
     <!--<i class="fas fa-sign-in-alt" href=""></i>Inicio-->
@@ -42,7 +40,7 @@
                 <li>Sector</li>
             </ul>
 
-            <fieldset>
+            <fieldset id="formu">
                 <h2 class="fs-title">Crear cuenta</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <select name="rol" id="rol">
@@ -60,10 +58,14 @@
                 <input type="email" name="email" id="email" placeholder="example@example.com" />
                 <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
                 <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
+                <br>
+                <h5 style="font-size: 15px; color: #999999; text-align:left;">Prefiero <a style="color: #009FE0;" href="Login">Iniciar Sesion</a>
+                </h5>
+                <br>
                 <button name="next" class="next action-button" value="Siguiente" id="siguiente1" style="width: 413px; height:48px" onclick="validarCampos();"> Siguiente </button>
             </fieldset>
 
-            <fieldset>
+            <fieldset id="formu">
                 <h2 class="fs-title">Crear cuenta</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <select name="documento" id="documento">
@@ -79,7 +81,7 @@
                 <button type="button" name="next2" class="action-button" value="Siguiente" id="siguiente2" style="width: 195px; height:48px;" onclick="validarCamposFildset2();"> Siguiente </button>
             </fieldset>
 
-            <fieldset>
+            <fieldset id="formu">
                 <h2 class="fs-title">Crear cuenta</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <!-- <select name="estado" id="estado">
@@ -120,7 +122,7 @@
                 <button type="submit" name="submit" id="btn_submit" class="action-button" style="width: 195px; height:48px" value="Registrarse"> Registrarse </button>
             </fieldset>
 
-            <fieldset>
+            <fieldset id="formu">
                 <h2 class="fs-title">Registro sector</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <br>
