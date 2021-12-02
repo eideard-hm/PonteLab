@@ -26,17 +26,25 @@
         ?>
 
         <!-- Page Content  -->
+
         <div id="content-page" class="content-page">
             <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú </a></li>
+                        <li class="mx-1"> / </li>
+                        <li> Perfil</li>
+                    </ol>
+                </nav>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="iq-card">
                             <div class="iq-card-body profile-page p-0">
                                 <div class="profile-header">
                                     <div class="cover-container">
-                                        <img src="<?= URL ?>Assets/img/page-img/profile-bg1.jpg" alt="profile-bg" class="rounded img-fluid">
+                                        <img src="<?= assets_url_img(); ?>page-img/fondoAzul2.jpg" alt="profile-bg" class="rounded img-fluid" style=" width: 1550px; Height: 250px;">
                                         <ul class="header-nav d-flex flex-wrap justify-end p-0 m-0">
-                                            <li><a href="javascript:void();"><i class="las la-pencil-alt"></i></a></li>
+
                                         </ul>
                                     </div>
                                     <div class="user-detail text-center mb-3">
@@ -47,17 +55,6 @@
                                             <h4><?= $_SESSION['user-data']['nombreUsuario'] ?></h4>
                                         </div>
                                     </div>
-                                    <!-- <div class="profile-info p-4 d-flex align-items-center justify-content-between position-relative">
-                                        <div class="social-links">
-                                            <ul class="social-data-block d-flex align-items-center justify-content-between list-inline p-0 m-0">
-
-                                                <li class="text-center pr-3">
-                                                    <a href="#"><img src="<?= URL ?>Assets/img/icon/09.png" class="img-fluid rounded" alt="Twitter"></a>
-                                                </li>
-                                               
-                                            </ul>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -88,11 +85,11 @@
                                                     <div class="iq-header-title">
                                                         <h4 class="card-title">Descripción Contratante</h4>
                                                     </div>
-                                                    <a class="btn" role="button" tabindex="0" id="data-idAspirante">
+                                                    <a class="btn" role="button" tabindex="0" id="data-idContratante">
                                                         <i class="las la-plus" data-toggle="modal" data-target="#informacion-personal"></i>
                                                     </a>
                                                 </div>
-                                                <div class="iq-card-body" id="perfil-laboral-aspirante">
+                                                <div class="iq-card-body" id="perfil-contratante">
                                                 </div>
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="informacion-personal" tabindex="-1" role="dialog" aria-labelledby="post-modalLabel" aria-hidden="true" style="display: none;">
@@ -100,18 +97,17 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="post-modalLabel">Descripción Contratante</h5>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="las la-times"></i></button>
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="las la-times" id="icon-reg-edit"></i></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="#" id="form-contractor" class="contenedor-form">
-                                                                    <input type="hidden" name="idContractor" id="idContractor">
+                                                                    <input type="hidden" name="idContractor" id="idContractor" value="">
+                                                                    <input type="hidden" name="idUsuario" id="idUsuario" value="<?= $_SESSION['id'] ?>">
 
                                                                     <div class="contenedor-grupo w100 form-group" id="grupo-perfil">
                                                                         <label for="txtPerfil">Descripción *</label>
                                                                         <textarea name="especificaciones" id="especificaciones" rows="1" placeholder="Descripción..."></textarea>
                                                                     </div>
-
-                                                                    <input type="hidden" name="idUsuario" id="idUsuario" value="<?= $_SESSION['id'] ?>">
 
                                                                     <div class="contenedor-grupo btn-enviar mt15">
                                                                         <button class="btn btn-primary mr-2" id="btn_submit">

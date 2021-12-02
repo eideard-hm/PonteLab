@@ -33,10 +33,22 @@
         require_once('./Views/Components/Layout.php');
         ?>
         <!-- ===== Start of Job Post Section ===== -->
+        
+            <div class="container"style="position:relative; top:110px;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú </a></li>
+                        <li class="mx-1"> / </li>
+                        <li> Hoja De Vida</li>
+                    </ol>
+                </nav>
+            </div>
+       
         <section class="ptb80" id="job-post">
             <div class="container d-flex">
                 <?php if (count($data['vacantes_pagination']) > 0) { ?>
                     <!-- Start of Job Post Main -->
+
                     <div class="col-md-8 col-sm-12 col-xs-12 job-post-main">
                         <h2 class="capitalize"><i class="las la-briefcase"></i>Últimos trabajos</h2>
                         <!-- Start of Job Post Wrapper -->
@@ -47,7 +59,7 @@
                                     <div class="col-md-2 col-xs-3">
                                         <div class="job-company">
                                             <a href="<?= URL . "Vacante/DetallesVacante/" . $vacante['idVacante'] ?>" data-idVacante="<?= $vacante['idVacante'] ?>">
-                                                <img src="<?= $vacante['imagenUsuario'] != null ? assets_url_img() . "uploads/" . $vacante['imagenUsuario'] : URL . "Assets/img/upload.svg" ?>" alt="<?= $vacante['nombreUsuario'] ?>" class="img-fluid" />
+                                                <img src="<?= $vacante['imagenUsuario'] != null ? assets_url_img() . "uploads/" . $vacante['imagenUsuario'] : assets_url_img() . "uploads/upload.svg" ?>" alt="<?= $vacante['nombreUsuario'] ?>" class="img-fluid" />
                                             </a>
                                         </div>
                                     </div>
@@ -108,7 +120,7 @@
                         <div class="featured-job widget mt60">
                             <!-- Start of Company Logo -->
                             <div class="company">
-                                <img src="<?= $data['recomendados']['imagenUsuario'] != null ? URL . "Assets/img/{$data['recomendados']['imagenUsuario']}" : URL . "Assets/img/upload.svg" ?>" class="img-fluid" alt="">
+                                <img src="<?= $data['recomendados']['imagenUsuario'] != null ? assets_url_img() . "uploads/{$data['recomendados']['imagenUsuario']}" : assets_url_img() . "uploads/upload.svg" ?>" class="img-fluid" alt="">
                             </div>
                             <!-- End of Company Logo -->
                             <!-- Start of Featured Job Info -->

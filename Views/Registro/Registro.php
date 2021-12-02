@@ -23,14 +23,14 @@
 
     <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
     <img src="<?= URL; ?>Assets/img/registro.svg" class="registro">
-    <a href="<?= URL ?>" style="color:#006790;" class="btn mt-3 mb-3 mx-3" >Ver perfil</a>
-   
-    
-  <!--<a href="<?= URL; ?>" class="btn mt-3 mb-3 mx-3 btn-success"><i class="fas fa-sign-in-alt"></i>Inicio</a>-->
+    <a href="<?= URL ?>" style="color:#006790;" class="btn mt-3 mb-3 mx-3">Ver perfil</a>
+
+
+    <!--<a href="<?= URL; ?>" class="btn mt-3 mb-3 mx-3 btn-success"><i class="fas fa-sign-in-alt"></i>Inicio</a>-->
     <!--<i class="fas fa-sign-in-alt" href=""></i>Inicio-->
 
     <div class="contenedor">
-        
+
         <form id="msform" method="POST" enctype="multipart/form-data">
             <?php require_once('./Views/Components/LoadingForms.php') ?>
             <input type="hidden" id="idUsuario" name="idUsuario" value="0">
@@ -104,7 +104,7 @@
                         <span class="delPhoto notBlock">X</span>
                         <label for="foto"></label>
                         <div class="prevPhoto__img">
-                            <img id="img" style="width: 280px;" src="<?php echo URL; ?>Assets/Img/file.jpg" />
+                            <img id="img" style="width: 280px;" src="<?= assets_url_img(); ?>file.jpg" />
                         </div>
                     </div>
                     <div class="upimg">

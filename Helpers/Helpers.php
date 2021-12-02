@@ -73,8 +73,7 @@ function uploadImages(array $foto, string $nameFoto)
 {
     $url_tmp = $foto['tmp_name'];
     $destino = "Assets/img/uploads/{$nameFoto}";
-    $move = move_uploaded_file($url_tmp, $destino);
-    return $move;
+    return move_uploaded_file($url_tmp, $destino);
 }
 
 /** 

@@ -1,3 +1,3 @@
 <div class="col-sm-12 text-center">
-    <img src="<?= URL ?>Assets/img/page-load-loader.gif" alt="loader" style="height: 100px;">
+    <img src="<?= assets_url_img(); ?>page-load-loader.gif" alt="Loading..." style="height: 100px;">
 </div>

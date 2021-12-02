@@ -18,23 +18,7 @@ caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 document.addEventListener("DOMContentLoaded", async () => {
   initTextEditorTinymce("especificaciones");
   initTextEditorTinymce("perfil");
-  // const url = `${base_url}Vacante/getVacantes`;
-  // try {
-  //   divLoading.style.display = "flex";
-  //   const req = await fetch(url);
-  //   const { status, data } = await req.json();
-  //   if (status) {
-  //     document.querySelector("#idAspirante").value = data.idAspirante;
-  //     tinymce.activeEditor.setContent(data.descripcionPersonalAspirante);
-  //     document.querySelector("#especificaciones").value =
-  //       data.descripcionPersonalAspirante;
-  //     document.querySelector("#txtEstado").value =
-  //       data.idEstadoLaboralAspiranteFK;
-  //   }
-  //   divLoading.style.display = "none";
-  // } catch (error) {
-  //   console.error(error);
-  // }
+  initTextEditorTinymce("especficacionRequisitos");
 });
 
 if (bntSubmit) {
@@ -53,6 +37,7 @@ const insertVacancy = async () => {
   const url = `${base_url}Vacante/setVacante`;
 
   try {
+    divLoading.style.display = "flex";
     const res = await fetch(url, {
       method: "POST",
       body: formData,
@@ -64,8 +49,9 @@ const insertVacancy = async () => {
     } else {
       sweetAlert("Error", msg, "error"); //mostrar la alerta
     }
+    divLoading.style.display = "none";
   } catch (error) {
-    sweetAlert("Error", error, "error");
+    console.log(error);
   }
 };
 
@@ -140,7 +126,7 @@ const insertRequirement = async () => {
       swal("Error", msg, "error"); //mostrar la alerta
     }
   } catch (error) {
-    swal("Error", error, "error");
+    console.log(error)
   }
 };
 
@@ -168,7 +154,7 @@ const validateFormRequirement = () => {
 };
 
 /*============ TRAER LA LISTA DE VACANTES ==========*/
-if (inputBusqueda) {
+if (inputBusqueda && listVacantes) {
   inputBusqueda.addEventListener("input", (e) => {
     e.preventDefault();
     const formData = formDataElement(document.querySelector("#searchbox"));
@@ -205,7 +191,7 @@ const getArregloVacantes = async (busqueda) => {
                     <div class="col-md-2 col-xs-3">
                         <div class="job-company">
                             <a href="${base_url}Vacante/DetallesVacante/${vacante.idVacante}" data-idVacante="${vacante.idVacante}">
-                                <img src="${base_url}Assets/img/${imagenUsuario}" alt="${vacante.nombreUsuario}" class="img-fluid" />
+                                <img src="${base_url}Assets/img/uploads/${imagenUsuario}" alt="${vacante.nombreUsuario}" class="img-fluid" />
                             </a>
                         </div>
                     </div>

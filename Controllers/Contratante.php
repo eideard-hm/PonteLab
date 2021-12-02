@@ -46,6 +46,23 @@ class Contratante extends Controllers
         $this->views->getView($this, 'Contratante', $data);
     }
 
+    public function Detail_Perfil_Aspirante()
+    {
+        $url = explode('/', $_GET['url']);
+        if (isset($url[2]) && !empty($url[2])) {
+            $idAspirante = intval($url[2]);
+            if ($idAspirante > 0) {
+                $data['perfil'] = $this->model->getInfoPerfilAspirante($idAspirante);
+            } else {
+                header('Location: ' . URL . 'Menu/Menu_Contratante');
+            }
+        } else {
+            header('Location: ' . URL . 'Menu/Menu_Contratante');
+        }
+        $data['titulo_pagina'] = 'Detalle perfil aspirante | ' . NOMBRE_EMPRESA . '.';
+        $this->views->getView($this, 'Detail_Perfil_Aspirante', $data);
+    }
+
     //Método controlador para insertar y/o editar usuarios
     public function setContractor()
     {
@@ -78,15 +95,14 @@ class Contratante extends Controllers
                 );
             }
 
-            if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {
+            if (intval($request) > 0) {
+                if ($option == 1) {
                     $_SESSION['idContractorFK'] = intval($request);
-
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro del contrante ha sido exitoso :)', 'value' => $request];
                 } elseif ($option === 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del contratante han sido modificado existosamente :)', 'value' => $request];
                 }
-            } elseif ($request === 'exits') {
+            } elseif ($request === 'exist') {
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el contratante ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
@@ -203,22 +219,62 @@ class Contratante extends Controllers
                 $newPass = encriptarPassword($newPass);
 
                 $request = $this->model->currentPassword($idUsuario);
-                if(!empty($request)){
-                    if(password_verify($currentPass, $request['passUsuario'])){
-                        if($this->model->updateContraseña($idUsuario, $newPass)){
+                if (!empty($request)) {
+                    if (password_verify($currentPass, $request['passUsuario'])) {
+                        if ($this->model->updateContraseña($idUsuario, $newPass)) {
                             $arrResponse = ['status' => true, 'msg' => 'Se ha modificado exitosamente la contraseña.'];
-                        }else{
+                        } else {
                             $arrResponse = ['status' => false, 'msg' => 'Ha ocurrido un error al intentar actualizar la contraseña.'];
                         }
-                    }else{
+                    } else {
                         $arrResponse = ['status' => false, 'msg' => 'La contraseña actual ingresada no coincide con la registrada.'];
                     }
-                }else{
+                } else {
                     $arrResponse = ['status' => false, 'msg' => 'No se encontro el usuario con esa identificación.'];
                 }
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }
+        die();
+    }
+
+    public function getProfilesAspirantes()
+    {
+        $request = $this->model->getProfilesAspirantes();
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'profiles' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'msg' => 'No se encontraron registros.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function searchProfilesAspirantes()
+    {
+        if ($_POST) {
+            $search = strtolower(limpiarCadena($_POST['txtSearchVacantes']));
+            $request = $this->model->searchProfilesAspirantes($search);
+            if (!empty($request)) {
+                $arrResponse = ['status' => true, 'profiles' => $request];
+            } else {
+                $arrResponse = ['status' => false, 'msg' => 'No se encontraron registros.'];
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+    public function getDataContractor()
+    {
+        $id = intval(limpiarCadena($_SESSION['id']));
+        $request = $this->model->getDataContractor($id);
+        if (!empty($request)) {
+            $arrResponse = ['status' => true, 'data' => $request];
+        } else {
+            $arrResponse = ['status' => false, 'msg' => 'No se ha registrado ninguna descripción aún.'];
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 }

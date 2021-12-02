@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?= $data['titulo_pagina'] ?></title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= URL ?>Assets/img/Logo_ponslabor.ico" />
+    <link rel="shortcut icon" href="<?= assets_url_img(); ?>Logo_ponslabor.ico" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrap.min.css">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesMenu.css">
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/stylesGlobal.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesMenu.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesGlobal.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<?= URL ?>Assets/css/responsive.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>responsive.css">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 
@@ -29,11 +29,19 @@
     <div class="wrapper">
         <!-- Menu de navegación -->
         <?php
+        require_once('./Views/Components/LoadingForms.php');
         require_once('./Views/Components/LayoutC.php');
         ?>
         <!-- Page Content  -->
         <div id="content-page" class="content-page">
             <div class="container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú </a></li>
+                        <li class="mx-1"> / </li>
+                        <li> Editar Perfil</li>
+                    </ol>
+                </nav>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="iq-card">
@@ -73,7 +81,7 @@
                                                 <div class="form-group row align-items-center">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-edit">
-                                                            <img class="profile-pic" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
+                                                            <img class="profile-pic" width="180" height="200" src="<?= $_SESSION['imgProfile'] ?>" alt="<?= $_SESSION['user-data']['nombreUsuario'] ?>">
                                                             <div class="p-image">
                                                                 <i class="las la-pencil-alt upload-button"></i>
                                                                 <input class="file-upload" name="foto" id="foto" type="file" accept="image/*" />
@@ -81,6 +89,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <br><br>
                                                 <div class=" row align-items-center">
                                                     <div class="form-group col-sm-12">
                                                         <label for="fname">Nombre:</label>
@@ -90,7 +99,7 @@
                                                         <label for="lname">Identificación:</label>
                                                         <input type="text" class="form-control" name="numDoc" id="numDoc" value="<?= $_SESSION['user-data']['numDocUsuario'] ?>" disabled>
                                                     </div>
-        
+
                                                     <div class="form-group col-sm-6">
                                                         <label for="uname">Tipo de Identificación:</label>
                                                         <select name="tipoDoc" id="tipoDoc" class="form-control" disabled>
@@ -141,15 +150,15 @@
                                             <form id="change-password">
                                                 <div class="form-group">
                                                     <label for="actual">Contraseña Actual</label>
-                                                    <input type="Password" class="form-control" id="actual" name="actual" value="">
+                                                    <input type="Password" class="form-control" id="actual" name="actual" placeholder="Ingrese su contraseña actual...">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="nueva">Contraseña Nueva:</label>
-                                                    <input type="Password" class="form-control" id="nueva" name="nueva" value="">
+                                                    <input type="Password" class="form-control" id="nueva" name="nueva" placeholder="Ingrese su nueva contraseña...">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="verificar">Verificar Contraseña:</label>
-                                                    <input type="Password" class="form-control" id="verificar" name="verificar" value="">
+                                                    <input type="Password" class="form-control" id="verificar" name="verificar" placeholder="Confirme la nueva contraseña...">
                                                 </div>
                                                 <button type="submit" id="cambiar" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Guardar</button>
                                             </form>
@@ -171,7 +180,7 @@
         <?php
         require_once('./Views/Components/ScriptsJs.php');
         ?>
-        <script src="<?= URL; ?>Assets/js/editarPerfil.js" type="module" defer></script>
+        <script src="<?= assets_url_js(); ?>editarPerfil.js" type="module" defer></script>
 </body>
 
 </html>

@@ -274,7 +274,6 @@ INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Cartagena de Indias');
 INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Soacha');
 INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Cúcuta');
 INSERT INTO CIUDAD(idCiudad, nombreCiudad)VALUES(NULL, 'Medellín');
-SELECT * FROM CIUDAD;
 
 /* ========================== TABLA BARRIO ========================*/
 INSERT INTO BARRIO(idBarrio, nombreBarrio, idCiudadFK)
@@ -336,7 +335,6 @@ VALUES(NULL, 'San Diego-Bosa', 1),
 (NULL, 'Cerro Norte', 1),
 (NULL, 'Danubio', 1),
 (NULL, 'Jiménez De Quesada', 1);
-SELECT * FROM BARRIO;
 
 /* ========================== TABLA TIPODOCUMENTO ========================*/
 INSERT INTO TIPODOCUMENTO(idTipoDocumento, nombreTipoDocumento)
@@ -345,13 +343,11 @@ VALUES(NULL, 'CC'),
 (NULL, 'RC'),
 (NULL, 'CE'),
 (NULL, 'PE');
-SELECT * FROM TIPODOCUMENTO;
 
 /* ========================== TABLA ROL ========================*/
 INSERT INTO ROL(idRol, nombreRol)
 VALUES(NULL, 'Contratante'),
 (NULL, 'Aspirante');
-SELECT * FROM ROL;
 
 /* ========================== TABLA ESTADO LABORAL ========================*/
 Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
@@ -362,7 +358,6 @@ Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado)
 values (NULL, 'Empleado');  
 Insert into ESTADOLABORALASPIRANTE (idEstadoLaboral, nombreEstado) 
 values (NULL , 'Independiente');
-select * from ESTADOLABORALASPIRANTE;
 
 /* ========================== TABLA GRADO_ESTUDIO ========================*/
 Insert into GRADOESTUDIO (idGrado, nombreGrado) values (NULL, 'Preescolar');  
@@ -457,6 +452,7 @@ FROM ESTUDIO e INNER JOIN SECTOR s
 ON s.idSector = e.idSectorFK INNER JOIN GRADOESTUDIO gs
 ON gs.idGrado = e.idGradoFK;
 
+
 CREATE VIEW experienciaAspiranteView
 AS
 SELECT il.idInfoLaboral, il.empresaLaboro, il.idCiudadLaboroFK, il.nombrePuestoDesempeño, il.añoInicio, il.mesInicio,
@@ -466,6 +462,9 @@ FROM INFOLABORAL il INNER JOIN SECTOR s
 ON s.idSector = il.idSectorFK INNER JOIN TIPOEXPERIENCIA te
 ON te.idTipoExperiencia = il.idTipoExperienciaFK;
 
+SELECT * 
+FROM experienciaAspiranteView 
+WHERE idAspiranteFK = 1;
 /*
 La vista sirve para conocer el nombre de los  tipos de documentos de los usuarios registrados, el nombre del rol 
 con el cual estan registrados,  y el barrio
@@ -481,7 +480,7 @@ ON b.idBarrio = u.idBarrioFK;
 
 CREATE VIEW selectAspirante AS
 SELECT idAspirante, descripcionPersonalAspirante, idUsuarioFK, idEstadoLaboralAspiranteFK, nombreEstado,
-nombreUsuario, token, imagenUsuario
+nombreUsuario, token, imagenUsuario, u.created_at
 FROM ASPIRANTE AS a INNER JOIN USUARIO AS u 
 ON u.idUsuario = a.idUsuarioFK INNER JOIN ESTADOLABORALASPIRANTE AS el
 ON el.idEstadoLaboral = a.idEstadoLaboralAspiranteFK;
@@ -519,6 +518,25 @@ ON u.idUsuario = c.idUsuarioFK INNER JOIN REQUISITOS_VACANTE AS rv
 ON v.idVacante = rv.idVacanteFK INNER JOIN REQUISITOS AS r
 ON r.idRequisitos = rv.idRequisitosFK INNER JOIN SECTOR AS s
 ON s.idSector = v.idSectorFK;
+
+DROP VIEW IF EXISTS detailAspiranteView;
+CREATE VIEW detailAspiranteView 
+AS 
+SELECT a.idAspirante, a.descripcionPersonalAspirante, a.created_at, ela.idEstadoLaboral, 
+ela.nombreEstado, u.idUsuario, u.nombreUsuario, u.correoUsuario, u.numDocUsuario, 
+u.numTelUsuario, u.numTelFijo, u.estadoUsuario, u.direccionUsuario, u.imagenUsuario, 
+td.idTipoDocumento, td.nombreTipoDocumento, r.idRol, r.nombreRol, b.idBarrio,
+b.nombreBarrio, pi.nombrePuesto, c.nombreCiudad
+FROM ASPIRANTE a INNER JOIN ESTADOLABORALASPIRANTE ela ON
+ela.idEstadoLaboral = a.idEstadoLaboralAspiranteFK
+INNER JOIN USUARIO u ON
+u.idUsuario = a.idUsuarioFK INNER JOIN TIPODOCUMENTO td
+ON td.idTipoDocumento = u.idTipoDocumentoFK INNER JOIN ROL r
+ON r.idRol = u.idRolFK INNER JOIN BARRIO b
+ON b.idBarrio = u.idBarrioFK INNER JOIN ASPIRANTE_PUESTOINTERES api
+ON a.idAspirante = api.idAspiranteFK INNER JOIN PUESTOINTERES pi
+ON pi.idPuestoInteres = api.idPuestoInteresFK INNER JOIN CIUDAD c
+ON c.idCiudad = b.idCiudadFK;
 
 DROP VIEW IF EXISTS recomendacionVacanteSectorusuarioView;
 CREATE VIEW  recomendacionVacanteSectorusuarioView AS
