@@ -121,18 +121,9 @@ const insertRequirements = async () => {
     const { statusUser, msg } = await res.json();
 
     if (statusUser) {
+      sweetAlert("Registro exitoso !!", msg, "success");
       document.querySelector("#name-reque").style.display = "none";
       document.querySelector("#especificaciones-req").style.display = "block";
-      swal({
-        title: "Requisito Vacante",
-        text: msg,
-        icon: "success",
-        dangerMode: false,
-      }).then((willDelete) => {
-        if (willDelete) {
-          window.location.href = `${base_url}Menu/Menu_Contratante`;
-        }
-      });
     } else {
       sweetAlert("Error", msg, "error"); //mostrar la alerta
     }
@@ -191,7 +182,16 @@ const insertRequirement = async () => {
     const { statusUser, msg } = await res.json();
 
     if (statusUser) {
-      swal("Requisito Vacante", msg, "success");
+      swal({
+        title: "Requisito Vacante",
+        text: msg,
+        icon: "success",
+        dangerMode: false,
+      }).then((willDelete) => {
+        if (willDelete) {
+          window.location.href = `${base_url}Menu/Menu_Contratante`;
+        }
+      });
     } else {
       swal("Error", msg, "error"); //mostrar la alerta
     }
