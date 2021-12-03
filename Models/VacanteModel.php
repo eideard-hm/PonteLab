@@ -425,7 +425,7 @@ class VacanteModel extends Mysql
     {
         $this->idVacante = $idAplicacion;
         $this->estadoVacante = $estado;
-        $sql = "UPDATE aplicacion_vacante
+        $sql = "UPDATE APLICACION_VACANTE
                 SET estadoAplicacionVacante = ?
                 WHERE idAplicacionVacante  = {$this->idVacante}";
         $arrData = [
