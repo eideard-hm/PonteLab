@@ -39,7 +39,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= URL ?>Menu">Menú </a></li>
                         <li class="mx-1"> / </li>
-                        <li> Hoja De Vida</li>
+                        <li> Lista de empleos</li>
                     </ol>
                 </nav>
             </div>

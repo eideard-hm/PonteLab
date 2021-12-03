@@ -30,8 +30,6 @@ class Vacante extends Controllers
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             $data['titulo_pagina'] = 'Vacante | ' . NOMBRE_EMPRESA . '.';
-            $data['list_vacante'] = $this->model->selectAllVacancy();
-            $data['list_requisitos'] = $this->model->selectAllReqs();
             $data['list_sector'] = $this->model->selectAllSector();
             $this->views->getView($this, 'Vacante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
@@ -199,13 +197,15 @@ class Vacante extends Controllers
             //     );
             // }
 
-            if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {
+            if (intval($request) > 0) {
+                if ($option == 1) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro de la vacante ha sido exitoso :)', 'value' => $request];
-                } elseif ($option === 2) {
+                    $_SESSION['idVacante'] = $request;
+                } elseif ($option == 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)', 'value' => $request];
+                    $_SESSION['idVacante'] = $request;
                 }
-            } elseif ($request === 'exits') {
+            } elseif ($request == 'exits') {
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
@@ -214,6 +214,60 @@ class Vacante extends Controllers
         }
         die();
     }
+
+    
+    /** 
+     * Método para registrar los requerimiento para las vacantes.
+     * @return void
+     * @author Santiago Andres Becerra Espitia @S4NT1A6O
+     */
+    public function setRequirements()
+    {
+        if ($_POST) {
+            if (
+                empty($_POST['nombreRequisitos'])
+                )
+            {
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios!!'];
+            }
+            //DEFINICION DE VARIABLES DE RECEPCION
+            $idRequisitos = intval($_POST['idRequisitos']);
+            $nombreRequisitos = limpiarCadena($_POST['nombreRequisitos']);
+            /*================== INSERTAR REQUERIMIENTO =======================*/
+            if ($idRequisitos === 0 || empty($nombreRequisitos)) {
+                $option = 1;
+                $request = $this->model->insertRequirements(
+                    $idRequisitos,
+                    $nombreRequisitos
+                );
+            } else {
+                /*================== EDITAR REQUERIMIENTO =======================*/
+                $option = 2;
+                $request = $this->model->updateRequirements(
+                    $idRequisitos,
+                    $nombreRequisitos
+                );
+            }
+
+            if (intval($request) > 0) {
+                if ($option == 1) {
+                    $data['list_requisitos'] = $this->model->selectAllReqs();
+                    $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso =)', 'value' => $request];
+                    $_SESSION['idRequisito'] = $request;
+                } elseif ($option == 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
+                    $_SESSION['idRequisito'] = $request;
+                }
+            } elseif ($request == 'exits') {
+                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! los requisitos ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
+            } else {
+                $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
 
     /** 
      * Método para registrar los requerimientos de las vacantes.
@@ -224,18 +278,17 @@ class Vacante extends Controllers
     {
         if ($_POST) {
             if (
-                empty($_POST['idVacanteFK']) || empty($_POST['idRequisitosFK'])
-                || empty($_POST['especficacionRequisitos'])
-            ) {
-                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, ctrl!!'];
+               empty($_POST['especficacionRequisitos'])
+            ){
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, !!'];
             }
             //DEFINICION DE VARIABLES DE RECEPCION
-            $intidRequisitosVacante = intval($_POST['idRequisitosVacante']);
-            $intidVacanteFK = intval($_POST['idVacanteFK']);
-            $intidRequisitosFK = intval($_POST['idRequisitosFK']);
+            $intidRequisitosVacante = limpiarCadena($_POST['idRequisitosVacante']);
+            $intidVacanteFK = intval($_SESSION['idVacante']);
+            $intidRequisitosFK = intval($_SESSION['idRequisito']);
             $strEspecificaciones = limpiarCadena($_POST['especficacionRequisitos']);
-            /*================== INSERTAR USUARIO =======================*/
-            if ($intidRequisitosVacante === 0 || empty($intidRequisitosVacante)) {
+            /*================== INSERTAR VACANTE =======================*/
+            if ($intidRequisitosVacante == 0) {
                 $option = 1;
                 $request = $this->model->insertRequirement(
                     $intidVacanteFK,
@@ -253,13 +306,13 @@ class Vacante extends Controllers
                 );
             }
 
-            if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {
+            if (intval($request)> 0) {
+                if ($option == 1) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso :)', 'value' => $request];
-                } elseif ($option === 2) {
+                } elseif ($option == 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
                 }
-            } elseif ($request === 'exits') {
+            } elseif ($request == 'exits') {
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! los requisitos ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
@@ -268,6 +321,8 @@ class Vacante extends Controllers
         }
         die();
     }
+
+
 
     /**
      * Método para mostrar las vacantes relacionadas con los sectores que el 

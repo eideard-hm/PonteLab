@@ -29,6 +29,7 @@ class VacanteModel extends Mysql
     private int $idVacanteFK;
     private int $idRequisitosFK;
     private string $especficacionRequisitos;
+    private string $nombreRequisitos;
 
     /**
      * Constructor de la clase VacanteModel, que inicializar el método constructor 
@@ -201,6 +202,29 @@ class VacanteModel extends Mysql
 
         return $return;
     }
+    
+    public function insertRequirements(
+        int $idRequisitos,
+        string $nombreRequisitos
+    ) {
+        $this->idRequisitos = $idRequisitos;
+        $this->nombreRequisitos = $nombreRequisitos;
+
+        $return = 0;
+
+        $sql = "INSERT INTO REQUISITOS
+        (idRequisitos, nombreRequisitos)
+        VALUES (?,?)";
+        $arrData = array(
+            $this->idRequisitos,
+            $this->nombreRequisitos,
+        );
+
+        $return = $this->insert($sql, $arrData);
+
+        return $return;
+    }
+
 
     /**
      * Método para implementar el buscador de vacantes. Recibe la cadena de texto

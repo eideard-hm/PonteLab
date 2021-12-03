@@ -5,6 +5,9 @@ import {
   divLoading,
 } from "./functionsGlobals.js";
 
+const refresh_vacancies = document.getElementById("refresh-vacancies");
+
+
 const formVacancy = document.querySelector("#form-vacancy");
 const bntSubmit = document.getElementById("btn_submit");
 const listVacantes = document.querySelector("#list-vacantes");
@@ -33,7 +36,6 @@ const insertVacancy = async () => {
   //enviar los datos mediante una petición fetch
   tinyMCE.triggerSave();
   let formData = new FormData(formVacancy);
-
   const url = `${base_url}Vacante/setVacante`;
 
   try {
@@ -46,6 +48,9 @@ const insertVacancy = async () => {
 
     if (statusUser) {
       sweetAlert("Vacante", msg, "success");
+      bntSubmit.style.display = "none";
+      refresh_vacancies.style.display = "block";
+      document.querySelector("#ant-p2").style.display = "none";
     } else {
       sweetAlert("Error", msg, "error"); //mostrar la alerta
     }
@@ -89,21 +94,79 @@ const validateFormVacancy = () => {
       "error"
     );
     return false;
-  } else {
+  }
+  else if (fechapublicacion>fechacierre){
+    sweetAlert(
+      "Datos erroneos",
+      "La fecha de cierre no puede ser anterior a la de publicación",
+      "error"
+    )
+  }
+  else {
     insertVacancy();
+  }
+};
+
+const formRequirements = document.querySelector("#form-requirements");
+const bntSub = document.getElementById("btn_sub");
+
+const insertRequirements = async () => {
+  //enviar los datos mediante una petición fetch
+  tinyMCE.triggerSave();
+  let formD = new FormData(formRequirements);
+  const url = `${base_url}Vacante/setRequirements`;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: formD,
+    });
+    const { statusUser, msg } = await res.json();
+
+    if (statusUser) {
+      sweetAlert("Registro exitoso !!", msg, "success");
+      document.querySelector("#name-reque").style.display = "none";
+      document.querySelector("#especificaciones-req").style.display = "block";
+    } else {
+      sweetAlert("Error", msg, "error"); //mostrar la alerta
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+if (bntSub) {
+  bntSub.addEventListener("click", (e) => {
+    e.preventDefault();
+    validateFormRequirements();
+  });
+}
+const validateFormRequirements = () => {
+  tinyMCE.triggerSave();
+  const nombreRequisitos = document.querySelector("#nombreRequisitos").value;
+  if (
+    nombreRequisitos === "" ||
+    nombreRequisitos === "null" ||
+    nombreRequisitos === "0"
+  ) {
+    sweetAlert(
+      "Ha ocurrido un error",
+      "Todos los campos son obligatorios.",
+      "error"
+    );
+    return false;
+  } else {
+    insertRequirements();
   }
 };
 
 const formRequirement = document.querySelector("#form-requirement");
 const bntSubmit_ = document.getElementById("btn_submit_");
-
 /*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
 caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 
 if (bntSubmit_) {
   bntSubmit_.addEventListener("click", (e) => {
     e.preventDefault();
-
     validateFormRequirement();
   });
 }
@@ -121,27 +184,30 @@ const insertRequirement = async () => {
     const { statusUser, msg } = await res.json();
 
     if (statusUser) {
-      swal("Requisito Vacante", msg, "success");
+      swal({
+        title: "Requisito Vacante",
+        text: msg,
+        icon: "success",
+        dangerMode: false,
+      }).then((willDelete) => {
+        if (willDelete) {
+          window.location.href = `${base_url}Menu/Menu_Contratante`;
+        }
+      });
     } else {
       swal("Error", msg, "error"); //mostrar la alerta
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 const validateFormRequirement = () => {
   tinyMCE.triggerSave();
-  const idVacanteFK = document.querySelector("#idVacanteFK").value;
-  const idRequisitosFK = document.querySelector("#idRequisitosFK").value;
   const especficacionRequisitos = document.querySelector(
     "#especficacionRequisitos"
   ).value;
-  if (
-    especficacionRequisitos === "" ||
-    idRequisitosFK === "" ||
-    idVacanteFK === ""
-  ) {
+  if (especficacionRequisitos === "") {
     sweetAlert(
       "Ha ocurrido un error",
       "Todos los campos son obligatorios.",

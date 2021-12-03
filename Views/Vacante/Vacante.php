@@ -56,7 +56,7 @@
                                     </li>
                                     <li id="payment" class="">
                                         <a href="javascript:void();">
-                                            <i class="far fa-image"></i><span>Requisitos</span>
+                                        <i class="fas fa-check-square"></i></i><span>Requisitos</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -91,13 +91,14 @@
                                                             <label for="tipoContrato"> Tipo de Contrato *</label>
                                                             <select class="form-control" name="tipoContrato" id="tipoContrato" required>
                                                                 <option value="" disabled selected>Seleccion Tipo de
-                                                                    Contranto</option>
-                                                                <option value="1">Contrato por Obra o Labor</option>
-                                                                <option value="2">Contrato a Termino Fijo</option>
-                                                                <option value="3">Contrato a Termino Indefinido
+                                                                    Contrato</option>
+                                                                <option value="Contrato por Obra o Labor">Contrato por Obra o Labor</option>
+                                                                <option value="Contrato a Termino Fijo">Contrato a Termino Fijo</option>
+                                                                <option value="Contrato a Termino Indefinido">Contrato a Termino Indefinido
                                                                 </option>
-                                                                <option value="4">Contrato de Aprendizaje</option>
-                                                                <option value="5">Contrato Temporal, Ocacional o
+                                                                <option value="Contrato de Aprendizaje">Contrato de Aprendizaje</option>
+                                                                <option value="Contrato Temporal, Ocacional o
+                                                                    Accidental">Contrato Temporal, Ocacional o
                                                                     Accidental</option>
                                                             </select>
                                                         </div>
@@ -125,7 +126,7 @@
                                                     <div class="card-body">
                                                         <div class="form-group">
                                                             <label for="fechapublicacion"> Fecha de
-                                                                Publicacion *</label>
+                                                                publicación *</label>
                                                             <input type="datetime-local" class="form-control" name="fechapublicacion" id="fechapublicacion" required>
                                                         </div>
                                                         <div class="form-group">
@@ -139,7 +140,7 @@
                                                         <div class="form-group">
                                                             <label for="estado"> Estado *</label>
                                                             <select class="form-control" name="estado" id="estado" required>
-                                                                <option value="" disabled selected>Seleccion Estado
+                                                                <option value="" disabled selected>Seleccione el estado
                                                                 </option>
                                                                 <option value="1">Activo</option>
                                                                 <option value="2">Inactivo</option>
@@ -164,53 +165,51 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
-                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
+                                    <button id="refresh-vacancies" style="display: none;" type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
+                                    <button type="button" id="ant-p2" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                                 <fieldset style="display: none; opacity: 0; position: relative;">
                                     <div class="form-card text-left">
                                         <div class="row">
-                                            <div class="col-md-6 grid-margin stretch-card">
+                                            <div class="col-md-12 grid-margin stretch-card" id="name-reque">
                                                 <div class="card">
-                                                    <div class="card-body">
-                                                        <form id="form-requirements" method="post">
+                                                    <div class="card-body">                                                        
+                                                        <div class="alert alert-info" role="alert">
+                                                            <div class="iq-alert-icon">
+                                                            <i class="fas fa-exclamation-circle"></i>                                                            </div>
+                                                            <strong>
+                                                                Registre primero el nombre del requerimiento.
+                                                            </strong>
+                                                        </div>
+                                                        <br>
+                                                        <form id="form-requirements" method="POST">
                                                             <input type="hidden" id="idRequisitos" name="idRequisitos" value="0">
                                                             <div class="form-group">
                                                                 <label for="nombreRequisitos">Nombre Requerimiento</label>
                                                                 <input type="text" class="form-control" name="nombreRequisitos" id="nombreRequisitos" autocomplete="off" placeholder="Nombre del requerimiento..." required>
                                                             </div>
-                                                            <button type="submit" id="btn_submit_r" class="btn btn-primary mr-2 mb-3"> Registrar</button>
+                                                            <button type="submit" id="btn_sub" class="btn btn-primary mr-2 mb-3"> Registrar</button>
                                                         </form>                                    
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 grid-margin stretch-card">
+                                            <div class="col-md-12 grid-margin stretch-card" style="display: none;" id="especificaciones-req">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form id="form-requirement" method="post">
+                                                        <form id="form-requirement" method="POST">
                                                             <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
                                                             <div class="form-group">
-                                                                <label for="idVacanteFK">Vacante</label>
-                                                                <select class="form-control" name="idVacanteFK" id="idVacanteFK">
-                                                                    <option selected disabled value="">--- Seleccione la Vacante ---</option>
-                                                                    <?php foreach ($data['list_vacante'] as $vacs) : ?>
-                                                                    <option value="<?php echo $vacs['idVacante'] ?>"><?php echo $vacs['nombreVacante'] ?></option>
-                                                                    <?php endforeach ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
                                                                 <label for="especficacionRequisitos"> Especificación Requisitos</label>
-                                                                <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especficación requisitos..."></textarea>
+                                                                <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especificación requisitos..."></textarea>
                                                             </div>
-                                                            <button type="submit" id="btn_submit" class="btn btn-primary mr-2 mb-3"> Registrar</button>
+                                                            <button type="submit" id="btn_submit_" class="btn btn-primary mr-2 mb-3"> Registrar</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
-                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
+                                    <button type="button" style="display: none;" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                             </div>
                         </div>

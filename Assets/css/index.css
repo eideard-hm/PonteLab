@@ -10065,9 +10065,9 @@
     }
     
     .flipInX {
-        -webkit-backface-visibility: visible !important;
-        -ms-backface-visibility: visible !important;
-        backface-visibility: visible !important;
+        -webkit-backface-visibility: visible!important;
+        -ms-backface-visibility: visible!important;
+        backface-visibility: visible!important;
         -webkit-animation-name: flipInX;
         animation-name: flipInX
     }
@@ -10119,9 +10119,9 @@
     }
     
     .flipInY {
-        -webkit-backface-visibility: visible !important;
-        -ms-backface-visibility: visible !important;
-        backface-visibility: visible !important;
+        -webkit-backface-visibility: visible!important;
+        -ms-backface-visibility: visible!important;
+        backface-visibility: visible!important;
         -webkit-animation-name: flipInY;
         animation-name: flipInY
     }
@@ -10157,9 +10157,9 @@
     .flipOutX {
         -webkit-animation-name: flipOutX;
         animation-name: flipOutX;
-        -webkit-backface-visibility: visible !important;
-        -ms-backface-visibility: visible !important;
-        backface-visibility: visible !important
+        -webkit-backface-visibility: visible!important;
+        -ms-backface-visibility: visible!important;
+        backface-visibility: visible!important
     }
     
     @-webkit-keyframes flipOutY {
@@ -10191,9 +10191,9 @@
     }
     
     .flipOutY {
-        -webkit-backface-visibility: visible !important;
-        -ms-backface-visibility: visible !important;
-        backface-visibility: visible !important;
+        -webkit-backface-visibility: visible!important;
+        -ms-backface-visibility: visible!important;
+        backface-visibility: visible!important;
         -webkit-animation-name: flipOutY;
         animation-name: flipOutY
     }
@@ -11158,7 +11158,7 @@
         font-size: 24px;
         position: absolute;
         top: 0;
-        right: 0 !important
+        right: 0!important
     }
     
     #spanMostrar {
@@ -11276,21 +11276,21 @@
         }
     }
     
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width:540px) {
         #msform {
             width: 100%;
             position: fixed;
             float: left;
-            left: 5px;
+            left: 5px
         }
     }
     
-    @media screen and (max-width: 540px) {
+    @media screen and (max-width:540px) {
         #formu {
             width: 100%;
             position: fixed;
             float: left;
-            left: -52px;
+            left: -52px
         }
     }
     
@@ -11348,7 +11348,7 @@
     
     .notBlock,
     .upimg {
-        display: none !important
+        display: none!important
     }
     
     .errorArchivo {
