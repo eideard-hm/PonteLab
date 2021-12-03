@@ -275,13 +275,13 @@ const getProfilesAspirantes = async () => {
                       <div class="d-flex flex-wrap justify-content-between align-items-start">
                         <div class="profile-detail d-flex">
                           <div class="profile-img pr-4 text-center">
-                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="avatar-130">
+                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="img-fluid rounded-circle avatar-130">
                             <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
                             <p class="card-text"><small>${profile.created_at}</small></p>
                             </div>
                           <div class="user-data-block">
-                            <h4>${profile.nombreUsuario}</h4>
-                            <p class="descripcion_aspirante"> ${profile.descripcionPersonalAspirante}</p>
+                            <h5>${profile.nombreUsuario}</h5>
+                            <div class="descripcion_aspirante">${profile.descripcionPersonalAspirante}</div>
                           </div>
                         </div>
                         <a class="btn btn-primary boton-perfil" role="buttom" href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
@@ -345,13 +345,13 @@ const searchProfilesAspirantes = async (formData) => {
                       <div class="d-flex flex-wrap justify-content-between align-items-start">
                         <div class="profile-detail d-flex">
                           <div class="profile-img pr-4 text-center">
-                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="avatar-130">
+                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="img-fluid rounded-circle avatar-130">
                             <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
                             <p class="card-text"><small>${profile.created_at}</small></p>
                             </div>
                           <div class="user-data-block">
-                            <h4>${profile.nombreUsuario}</h4>
-                            <p class="descripcion_aspirante"> ${profile.descripcionPersonalAspirante}</p>
+                            <h5>${profile.nombreUsuario}</h5>
+                            <div class="descripcion_aspirante"> ${profile.descripcionPersonalAspirante}</div>
                           </div>
                         </div>
                         <a class="btn btn-primary text-right boton-perfil" role="buttom" href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
