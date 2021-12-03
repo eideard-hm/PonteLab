@@ -30,8 +30,6 @@ class Vacante extends Controllers
     {
         if (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Contratante') {
             $data['titulo_pagina'] = 'Vacante | ' . NOMBRE_EMPRESA . '.';
-            $data['list_vacante'] = $this->model->selectAllVacancy();
-            $data['list_requisitos'] = $this->model->selectAllReqs();
             $data['list_sector'] = $this->model->selectAllSector();
             $this->views->getView($this, 'Vacante', $data);
         } elseif (isset($_SESSION['login']) && $_SESSION['user-data']['nombreRol'] === 'Aspirante') {
@@ -78,6 +76,10 @@ class Vacante extends Controllers
         // $data['recomendados'] = $this->model->getVacantesSector($arrSectores);
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
+
+    // public function loadVacancy(){
+    //     if()
+    // }
 
     /**
      * Método que muestra la vista de detalle de vacante y sus requisitos.
@@ -215,6 +217,59 @@ class Vacante extends Controllers
         die();
     }
 
+    
+    /** 
+     * Método para registrar los requerimiento para las vacantes.
+     * @return void
+     * @author Santiago Andres Becerra Espitia @S4NT1A6O
+     */
+
+    public function setRequirements()
+    {
+        if ($_POST) {
+            if (
+                empty($_POST['nombreRequisitos'])
+                )
+            {
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios!!'];
+            }
+            //DEFINICION DE VARIABLES DE RECEPCION
+            $idRequisitos = intval($_POST['idRequisitos']);
+            $nombreRequisitos = limpiarCadena($_POST['nombreRequisitos']);
+            /*================== INSERTAR REQUERIMIENTO =======================*/
+            if ($idRequisitos === 0 || empty($nombreRequisitos)) {
+                $option = 1;
+                $request = $this->model->insertRequirements(
+                    $idRequisitos,
+                    $nombreRequisitos
+                );
+            } else {
+                /*================== EDITAR USUARIO =======================*/
+                $option = 2;
+                $request = $this->model->updateRequirements(
+                    $idRequisitos,
+                    $nombreRequisitos
+                );
+            }
+
+            if ($request) {
+                if ($option === 1) {
+                    $data['list_requisitos'] = $this->model->selectAllReqs();
+                    $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso =)', 'value' => $request];
+                } elseif ($option === 2) {
+                    $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
+                }
+            } elseif ($request === 'exits') {
+                $arrResponse = array('statusUser' => false, 'msg' => '!Atención! los requisitos ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
+            } else {
+                $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
+    }
+
+
     /** 
      * Método para registrar los requerimientos de las vacantes.
      * @return void
@@ -234,7 +289,7 @@ class Vacante extends Controllers
             $intidVacanteFK = intval($_POST['idVacanteFK']);
             $intidRequisitosFK = intval($_POST['idRequisitosFK']);
             $strEspecificaciones = limpiarCadena($_POST['especficacionRequisitos']);
-            /*================== INSERTAR USUARIO =======================*/
+            /*================== INSERTAR VACANTE =======================*/
             if ($intidRequisitosVacante === 0 || empty($intidRequisitosVacante)) {
                 $option = 1;
                 $request = $this->model->insertRequirement(
@@ -268,6 +323,8 @@ class Vacante extends Controllers
         }
         die();
     }
+
+
 
     /**
      * Método para mostrar las vacantes relacionadas con los sectores que el 

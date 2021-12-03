@@ -5,6 +5,16 @@ import {
   divLoading,
 } from "./functionsGlobals.js";
 
+
+const refresh_vacancies = document.getElementById("refresh-vacancies");
+
+if (refresh_vacancies) {
+  refresh_vacancies.addEventListener("click", (e) => {
+    e.preventDefault();
+
+});
+
+
 const formVacancy = document.querySelector("#form-vacancy");
 const bntSubmit = document.getElementById("btn_submit");
 const listVacantes = document.querySelector("#list-vacantes");
@@ -94,16 +104,63 @@ const validateFormVacancy = () => {
   }
 };
 
+const formRequirements = document.querySelector("#form-requirements");
+const bntSub = document.getElementById("btn_sub");
+
+const insertRequirements = async () => {
+  //enviar los datos mediante una petición fetch
+  tinyMCE.triggerSave();
+  let formD = new FormData(formRequirements);
+  const url = `${base_url}Vacante/setRequirements`;
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      body: formD,
+    });
+    const { statusUser, msg } = await res.json();
+
+    if (statusUser) {
+      swal("Requisito Vacante", msg, "success");
+    } else {
+      swal("Error", msg, "error"); //mostrar la alerta
+    }
+  } catch (error) {
+    console.log(error)
+  }
+};
+
+if (bntSub) {
+  bntSub.addEventListener("click", (e) =>{
+    e.preventDefault();
+    validateFormRequirements();
+  });
+}
+const validateFormRequirements = () =>{
+  tinyMCE.triggerSave();
+  const nombreRequisitos = document.querySelector("#nombreRequisitos").value;
+  if (nombreRequisitos === "" ||
+      nombreRequisitos === "null" ||
+      nombreRequisitos === "0")
+  { sweetAlert(
+      "Ha ocurrido un error",
+      "Todos los campos son obligatorios.",
+      "error"
+    );
+    return false;
+  }
+  else {
+    insertRequirements();
+  }
+}
+
 const formRequirement = document.querySelector("#form-requirement");
 const bntSubmit_ = document.getElementById("btn_submit_");
-
 /*  RECEPCION DE VALOR DEL ELEMENTO DEFINIDO btn_submit, previniendo el evento por defecto en
 caso de ser este btn clicado y ejecutanfdo el metodo validateFormUser*/
 
 if (bntSubmit_) {
   bntSubmit_.addEventListener("click", (e) => {
     e.preventDefault();
-
     validateFormRequirement();
   });
 }
@@ -134,9 +191,7 @@ const validateFormRequirement = () => {
   tinyMCE.triggerSave();
   const idVacanteFK = document.querySelector("#idVacanteFK").value;
   const idRequisitosFK = document.querySelector("#idRequisitosFK").value;
-  const especficacionRequisitos = document.querySelector(
-    "#especficacionRequisitos"
-  ).value;
+  const especficacionRequisitos = document.querySelector("#especficacionRequisitos").value;
   if (
     especficacionRequisitos === "" ||
     idRequisitosFK === "" ||

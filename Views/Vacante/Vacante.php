@@ -56,7 +56,7 @@
                                     </li>
                                     <li id="payment" class="">
                                         <a href="javascript:void();">
-                                            <i class="far fa-image"></i><span>Requisitos</span>
+                                        <i class="fas fa-check-square"></i></i><span>Requisitos</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -164,7 +164,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
+                                    <button id="refresh-vacancies" type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                                 <fieldset style="display: none; opacity: 0; position: relative;">
@@ -172,14 +172,22 @@
                                         <div class="row">
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
-                                                    <div class="card-body">
-                                                        <form id="form-requirements" method="post">
+                                                    <div class="card-body">                                                        
+                                                        <div class="alert alert-info" role="alert">
+                                                            <div class="iq-alert-icon">
+                                                            <i class="fas fa-exclamation-circle"></i>                                                            </div>
+                                                            <strong>
+                                                                Registre primero el nombre del requerimiento.
+                                                            </strong>
+                                                        </div>
+                                                        <br>
+                                                        <form id="form-requirements" method="POST">
                                                             <input type="hidden" id="idRequisitos" name="idRequisitos" value="0">
                                                             <div class="form-group">
                                                                 <label for="nombreRequisitos">Nombre Requerimiento</label>
                                                                 <input type="text" class="form-control" name="nombreRequisitos" id="nombreRequisitos" autocomplete="off" placeholder="Nombre del requerimiento..." required>
                                                             </div>
-                                                            <button type="submit" id="btn_submit_r" class="btn btn-primary mr-2 mb-3"> Registrar</button>
+                                                            <button type="submit" id="btn_sub" class="btn btn-primary mr-2 mb-3"> Registrar</button>
                                                         </form>                                    
                                                     </div>
                                                 </div>
@@ -187,7 +195,7 @@
                                             <div class="col-md-6 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <form id="form-requirement" method="post">
+                                                        <form id="form-requirement" method="POST">
                                                             <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
                                                             <div class="form-group">
                                                                 <label for="idVacanteFK">Vacante</label>
@@ -202,14 +210,13 @@
                                                                 <label for="especficacionRequisitos"> Especificación Requisitos</label>
                                                                 <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especficación requisitos..."></textarea>
                                                             </div>
-                                                            <button type="submit" id="btn_submit" class="btn btn-primary mr-2 mb-3"> Registrar</button>
+                                                            <button type="submit" id="btn_submit_" class="btn btn-primary mr-2 mb-3"> Registrar</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
                                     <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                             </div>
