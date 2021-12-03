@@ -77,10 +77,6 @@ class Vacante extends Controllers
         $this->views->getView($this, 'ListaEmpleos', $data);
     }
 
-    // public function loadVacancy(){
-    //     if()
-    // }
-
     /**
      * Método que muestra la vista de detalle de vacante y sus requisitos.
      * @return void
@@ -201,13 +197,15 @@ class Vacante extends Controllers
             //     );
             // }
 
-            if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {
+            if (intval($request) > 0) {
+                if ($option == 1) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro de la vacante ha sido exitoso :)', 'value' => $request];
-                } elseif ($option === 2) {
+                    $_SESSION['idVacante'] = $request;
+                } elseif ($option == 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos del usuario han sido modificado existosamente :)', 'value' => $request];
+                    $_SESSION['idVacante'] = $request;
                 }
-            } elseif ($request === 'exits') {
+            } elseif ($request == 'exits') {
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! el usuario ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
@@ -223,7 +221,6 @@ class Vacante extends Controllers
      * @return void
      * @author Santiago Andres Becerra Espitia @S4NT1A6O
      */
-
     public function setRequirements()
     {
         if ($_POST) {
@@ -244,7 +241,7 @@ class Vacante extends Controllers
                     $nombreRequisitos
                 );
             } else {
-                /*================== EDITAR USUARIO =======================*/
+                /*================== EDITAR REQUERIMIENTO =======================*/
                 $option = 2;
                 $request = $this->model->updateRequirements(
                     $idRequisitos,
@@ -252,14 +249,16 @@ class Vacante extends Controllers
                 );
             }
 
-            if ($request) {
-                if ($option === 1) {
+            if (intval($request) > 0) {
+                if ($option == 1) {
                     $data['list_requisitos'] = $this->model->selectAllReqs();
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso =)', 'value' => $request];
-                } elseif ($option === 2) {
+                    $_SESSION['idRequisito'] = $request;
+                } elseif ($option == 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
+                    $_SESSION['idRequisito'] = $request;
                 }
-            } elseif ($request === 'exits') {
+            } elseif ($request == 'exits') {
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! los requisitos ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);
@@ -279,18 +278,17 @@ class Vacante extends Controllers
     {
         if ($_POST) {
             if (
-                empty($_POST['idVacanteFK']) || empty($_POST['idRequisitosFK'])
-                || empty($_POST['especficacionRequisitos'])
-            ) {
-                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, ctrl!!'];
+               empty($_POST['especficacionRequisitos'])
+            ){
+                $arrResponse = ['statusUser' => false, 'msg' => 'Todos los campos son obligatorios, !!'];
             }
             //DEFINICION DE VARIABLES DE RECEPCION
-            $intidRequisitosVacante = intval($_POST['idRequisitosVacante']);
-            $intidVacanteFK = intval($_POST['idVacanteFK']);
-            $intidRequisitosFK = intval($_POST['idRequisitosFK']);
+            $intidRequisitosVacante = limpiarCadena($_POST['idRequisitosVacante']);
+            $intidVacanteFK = intval($_SESSION['idVacante']);
+            $intidRequisitosFK = intval($_SESSION['idRequisito']);
             $strEspecificaciones = limpiarCadena($_POST['especficacionRequisitos']);
             /*================== INSERTAR VACANTE =======================*/
-            if ($intidRequisitosVacante === 0 || empty($intidRequisitosVacante)) {
+            if ($intidRequisitosVacante == 0) {
                 $option = 1;
                 $request = $this->model->insertRequirement(
                     $intidVacanteFK,
@@ -308,13 +306,13 @@ class Vacante extends Controllers
                 );
             }
 
-            if ($request > 0 && is_numeric($request)) {
-                if ($option === 1) {
+            if (intval($request)> 0) {
+                if ($option == 1) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'El registro ha sido exitoso :)', 'value' => $request];
-                } elseif ($option === 2) {
+                } elseif ($option == 2) {
                     $arrResponse = ['statusUser' => true, 'msg' => 'Los datos de los requisitos han sido modificado existosamente :)', 'value' => $request];
                 }
-            } elseif ($request === 'exits') {
+            } elseif ($request == 'exits') {
                 $arrResponse = array('statusUser' => false, 'msg' => '!Atención! los requisitos ya se encuentra registrado!!. Intenta con otro', 'value' => $request);
             } else {
                 $arrResponse = array('statusUser' => false, 'msg' => 'No es posible almacenar los datos :(', 'value' => $request);

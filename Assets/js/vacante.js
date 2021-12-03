@@ -8,11 +8,12 @@ import {
 
 const refresh_vacancies = document.getElementById("refresh-vacancies");
 
-if (refresh_vacancies) {
-  refresh_vacancies.addEventListener("click", (e) => {
-    e.preventDefault();
-
-});
+// if (refresh_vacancies) {
+//   bntSubmit.addEventListener("click", (e) => {
+//     e.preventDefault();
+    
+//   });
+// }
 
 
 const formVacancy = document.querySelector("#form-vacancy");
@@ -189,13 +190,9 @@ const insertRequirement = async () => {
 
 const validateFormRequirement = () => {
   tinyMCE.triggerSave();
-  const idVacanteFK = document.querySelector("#idVacanteFK").value;
-  const idRequisitosFK = document.querySelector("#idRequisitosFK").value;
   const especficacionRequisitos = document.querySelector("#especficacionRequisitos").value;
   if (
-    especficacionRequisitos === "" ||
-    idRequisitosFK === "" ||
-    idVacanteFK === ""
+    especficacionRequisitos === ""
   ) {
     sweetAlert(
       "Ha ocurrido un error",

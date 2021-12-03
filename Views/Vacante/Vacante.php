@@ -91,7 +91,7 @@
                                                             <label for="tipoContrato"> Tipo de Contrato *</label>
                                                             <select class="form-control" name="tipoContrato" id="tipoContrato" required>
                                                                 <option value="" disabled selected>Seleccion Tipo de
-                                                                    Contranto</option>
+                                                                    Contrato</option>
                                                                 <option value="1">Contrato por Obra o Labor</option>
                                                                 <option value="2">Contrato a Termino Fijo</option>
                                                                 <option value="3">Contrato a Termino Indefinido
@@ -198,17 +198,8 @@
                                                         <form id="form-requirement" method="POST">
                                                             <input type="hidden" id="idRequisitosVacante" name="idRequisitosVacante" value="0">
                                                             <div class="form-group">
-                                                                <label for="idVacanteFK">Vacante</label>
-                                                                <select class="form-control" name="idVacanteFK" id="idVacanteFK">
-                                                                    <option selected disabled value="">--- Seleccione la Vacante ---</option>
-                                                                    <?php foreach ($data['list_vacante'] as $vacs) : ?>
-                                                                    <option value="<?php echo $vacs['idVacante'] ?>"><?php echo $vacs['nombreVacante'] ?></option>
-                                                                    <?php endforeach ?>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
                                                                 <label for="especficacionRequisitos"> Especificación Requisitos</label>
-                                                                <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especficación requisitos..."></textarea>
+                                                                <textarea name="especficacionRequisitos" id="especficacionRequisitos" placeholder="Especificación requisitos..."></textarea>
                                                             </div>
                                                             <button type="submit" id="btn_submit_" class="btn btn-primary mr-2 mb-3"> Registrar</button>
                                                         </form>
