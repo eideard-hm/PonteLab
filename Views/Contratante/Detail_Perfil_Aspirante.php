@@ -98,7 +98,7 @@
                                             <div class="col-md-9 pl-4">
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade active show" id="basicinfo" role="tabpanel">
-                                                        <h4><?= $data['perfil']['nombrePuesto'] ?></h4>
+                                                        <h6><?= $data['perfil']['nombrePuesto'] ?></h6>
                                                         <hr>
                                                         <div class="row">
 
