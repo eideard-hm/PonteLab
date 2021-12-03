@@ -92,12 +92,13 @@
                                                             <select class="form-control" name="tipoContrato" id="tipoContrato" required>
                                                                 <option value="" disabled selected>Seleccion Tipo de
                                                                     Contrato</option>
-                                                                <option value="1">Contrato por Obra o Labor</option>
-                                                                <option value="2">Contrato a Termino Fijo</option>
-                                                                <option value="3">Contrato a Termino Indefinido
+                                                                <option value="Contrato por Obra o Labor">Contrato por Obra o Labor</option>
+                                                                <option value="Contrato a Termino Fijo">Contrato a Termino Fijo</option>
+                                                                <option value="Contrato a Termino Indefinido">Contrato a Termino Indefinido
                                                                 </option>
-                                                                <option value="4">Contrato de Aprendizaje</option>
-                                                                <option value="5">Contrato Temporal, Ocacional o
+                                                                <option value="Contrato de Aprendizaje">Contrato de Aprendizaje</option>
+                                                                <option value="Contrato Temporal, Ocacional o
+                                                                    Accidental">Contrato Temporal, Ocacional o
                                                                     Accidental</option>
                                                             </select>
                                                         </div>
