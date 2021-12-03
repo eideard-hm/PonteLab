@@ -9,6 +9,9 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= assets_url_img(); ?>Logo_ponslabor.ico" />
     <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="<?= assets_url_css(); ?>detail_perfilA/bootstrap.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>detail_perfilA/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?= assets_url_css(); ?>detail_perfilA/style.css"> -->
     <link rel="stylesheet" href="<?= assets_url_css(); ?>bootstrap.min.css">
     <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesMenu.css">
     <link rel="stylesheet" href="<?= assets_url_css(); ?>stylesGlobal.css">
