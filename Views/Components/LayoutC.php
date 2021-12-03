@@ -16,9 +16,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= URL ?>Vacante/ListaEmpleos" class="iq-waves-effect">
-                        <i class="las la-briefcase" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Empleos"></i>
-                        <span>Empleos</span>
+                    <a href="<?= URL ?>Vacante/Vacante" class="iq-waves-effect">
+                        <i class="far fa-plus-square" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Vacantes"></i>
+                        <span>Vacantes</span>
                     </a>
                 </li>
             </ul>
