@@ -65,11 +65,12 @@
                 <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
                 <!-- <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span> -->
                 <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
+                <div style="margin-top:-30px;">
                 <input type="checkbox" class="mostrar_contrasena" name="mostrar_contrasena"id="mostrar_contrasena" title="clic para mostrar contraseña">Mostrar Contraseña
                 <br>
                 <h5 style="font-size: 15px; color: #999999; text-align:center;">Prefiero <a style="color: #009FE0;" href="Login">Iniciar Sesion</a>
                 </h5>
-                <br>
+                    </div>
                 <button name="next" class="next action-button" value="Siguiente" id="siguiente1" style="width: 413px; height:48px" onclick="validarCampos();"> Siguiente </button>
             </fieldset>
             <fieldset>
@@ -84,7 +85,7 @@
                 <input type="number" name="numDoc" id="numDoc" placeholder="Digite su número de documento" required />
                 <input type="number" name="numCel" id="numCel" placeholder="Ingrese su número de teléfono celular" required />
                 <input type="number" name="numFijo" id="numFijo" placeholder="Ingrese su número de teléfono fijo" required />
-                <button name="previous" class="previous action-button" style="width: 195px; height:48px; background: #676766;" value="Atras">Atras</button>
+                <button name="previous" class="previous action-button" id="siguiente2" style="width: 195px; height:48px; background: #676766;" value="Atras">Atras</button>
                 <button type="button" name="next2" class="action-button" value="Siguiente" id="siguiente2" style="width: 195px; height:48px;" onclick="validarCamposFildset2();"> Siguiente </button>
             </fieldset>
 
@@ -125,8 +126,8 @@
                 <h5 style="font-size: 15px; color: #999999; text-align:left;">Al hacer clic en "Registrarse", aceptas nuestra <a style="color: #009FE0;" href="Politicas_de_Datos">Politica de datos</a> y la <a style="color: #009FE0;" href="Politicas_de_Datos/Politicas_de_Cookies">Politica de Cookies.</a>
                 </h5>
                 <br>
-                <button type="button" name="previous" class="previous action-button" style="width: 195px; height:48px; background: #676766;" value="Atras"> Atras </button>
-                <button type="submit" name="submit" id="btn_submit" class="action-button" style="width: 195px; height:48px" value="Registrarse"> Registrarse </button>
+                <button type="button" name="previous" class="previous action-button" id="siguiente2" style="width: 195px; height:48px; background: #676766;" value="Atras"> Atras </button>
+                <button type="submit" name="submit" id="btn_submit" class="action-button" id="siguiente2" style="width: 195px; height:48px" value="Registrarse"> Registrarse </button>
             </fieldset>
 
             <fieldset>
@@ -143,7 +144,7 @@
                     <?php endforeach ?>
                 </ul>
                 <br>
-                <button type="submit" name="submit" id="btn_sector" class="submit action-button">Registrar sector</button>
+                <button type="submit" name="submit" id="btn_sector" id="siguiente2" class="submit action-button">Registrar sector</button>
             </fieldset>
         </form>
     </div>
