@@ -1024,22 +1024,31 @@
         right: 30px;
         visibility: visible
     }
+    /*** ====== 4.1.3 check button ====== ***/
+    /* Base for label styling */
     
-    [type=checkbox]:checked,
-    [type=checkbox]:not(:checked) {
+    [type="checkbox"]:checked,
+    [type="checkbox"]:not(:checked) {
         position: absolute;
         left: -9999px
     }
     
-    [type=checkbox]:checked+label,
-    [type=checkbox]:not(:checked)+label {
+    [type="checkbox"]:not(:checked),
+    [type="checkbox"]:checked {
+        top: 27px;
+        left: -75px;
+        position: relative;
+    }
+    
+    [type="checkbox"]:checked+label,
+    [type="checkbox"]:not(:checked)+label {
         position: relative;
         padding-left: 25px;
         cursor: pointer
     }
     
-    [type=checkbox]:checked+label:before,
-    [type=checkbox]:not(:checked)+label:before {
+    [type="checkbox"]:checked+label:before,
+    [type="checkbox"]:not(:checked)+label:before {
         content: '';
         position: absolute;
         left: 0;
