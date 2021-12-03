@@ -11281,16 +11281,54 @@
             width: 100%;
             position: fixed;
             float: left;
-            left: 5px
+            left: 5px;
+            top: -62px;
         }
     }
     
     @media screen and (max-width:540px) {
         #formu {
             width: 100%;
+            height: 120px;
             position: fixed;
             float: left;
-            left: -52px
+            left: -52px;
+        }
+    }
+    
+    @media screen and (max-width:542px) {
+        button {
+            width: 100%;
+            position: relative;
+            left: -25px;
+            top: -2px;
+        }
+    }
+    
+    @media screen and (max-width:531px) {
+        button {
+            width: 60%;
+            position: relative;
+            left: -28px;
+            top: -2px;
+        }
+    }
+    
+    @media screen and (max-width:518px) {
+        button {
+            width: 30%;
+            position: relative;
+            left: -28px;
+            top: -2px;
+        }
+    }
+    
+    @media screen and (max-width:510px) {
+        button {
+            width: 30px;
+            position: relative;
+            left: -28px;
+            top: -2px;
         }
     }
     
