@@ -125,7 +125,7 @@
                                                     <div class="card-body">
                                                         <div class="form-group">
                                                             <label for="fechapublicacion"> Fecha de
-                                                                Publicacion *</label>
+                                                                publicación *</label>
                                                             <input type="datetime-local" class="form-control" name="fechapublicacion" id="fechapublicacion" required>
                                                         </div>
                                                         <div class="form-group">
@@ -139,7 +139,7 @@
                                                         <div class="form-group">
                                                             <label for="estado"> Estado *</label>
                                                             <select class="form-control" name="estado" id="estado" required>
-                                                                <option value="" disabled selected>Seleccion Estado
+                                                                <option value="" disabled selected>Seleccione el estado
                                                                 </option>
                                                                 <option value="1">Activo</option>
                                                                 <option value="2">Inactivo</option>
@@ -164,13 +164,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="refresh-vacancies" type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
-                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
+                                    <button id="refresh-vacancies" style="display: none;" type="button" name="next" class="btn btn-primary next action-button float-right" value="Next">Siguiente</button>
+                                    <button type="button" id="ant-p2" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                                 <fieldset style="display: none; opacity: 0; position: relative;">
                                     <div class="form-card text-left">
                                         <div class="row">
-                                            <div class="col-md-6 grid-margin stretch-card">
+                                            <div class="col-md-12 grid-margin stretch-card" id="name-reque">
                                                 <div class="card">
                                                     <div class="card-body">                                                        
                                                         <div class="alert alert-info" role="alert">
@@ -192,7 +192,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 grid-margin stretch-card">
+                                            <div class="col-md-12 grid-margin stretch-card" style="display: none;" id="especificaciones-req">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <form id="form-requirement" method="POST">
@@ -208,7 +208,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
+                                    <button type="button" style="display: none;" name="previous" class="btn btn-dark previous action-button-previous float-right mr-3" value="Previous">Anterior</button>
                                 </fieldset>
                             </div>
                         </div>

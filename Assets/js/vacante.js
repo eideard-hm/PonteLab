@@ -5,16 +5,14 @@ import {
   divLoading,
 } from "./functionsGlobals.js";
 
-
 const refresh_vacancies = document.getElementById("refresh-vacancies");
 
 // if (refresh_vacancies) {
 //   bntSubmit.addEventListener("click", (e) => {
 //     e.preventDefault();
-    
+
 //   });
 // }
-
 
 const formVacancy = document.querySelector("#form-vacancy");
 const bntSubmit = document.getElementById("btn_submit");
@@ -44,7 +42,6 @@ const insertVacancy = async () => {
   //enviar los datos mediante una petición fetch
   tinyMCE.triggerSave();
   let formData = new FormData(formVacancy);
-
   const url = `${base_url}Vacante/setVacante`;
 
   try {
@@ -57,6 +54,9 @@ const insertVacancy = async () => {
 
     if (statusUser) {
       sweetAlert("Vacante", msg, "success");
+      bntSubmit.style.display = "none";
+      refresh_vacancies.style.display = "block";
+      document.querySelector("#ant-p2").style.display = "none";
     } else {
       sweetAlert("Error", msg, "error"); //mostrar la alerta
     }
@@ -121,38 +121,50 @@ const insertRequirements = async () => {
     const { statusUser, msg } = await res.json();
 
     if (statusUser) {
-      swal("Requisito Vacante", msg, "success");
+      document.querySelector("#name-reque").style.display = "none";
+      document.querySelector("#especificaciones-req").style.display = "block";
+      swal({
+        title: "Requisito Vacante",
+        text: msg,
+        icon: "success",
+        dangerMode: false,
+      }).then((willDelete) => {
+        if (willDelete) {
+          window.location.href = `${base_url}Menu/Menu_Contratante`;
+        }
+      });
     } else {
-      swal("Error", msg, "error"); //mostrar la alerta
+      sweetAlert("Error", msg, "error"); //mostrar la alerta
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 if (bntSub) {
-  bntSub.addEventListener("click", (e) =>{
+  bntSub.addEventListener("click", (e) => {
     e.preventDefault();
     validateFormRequirements();
   });
 }
-const validateFormRequirements = () =>{
+const validateFormRequirements = () => {
   tinyMCE.triggerSave();
   const nombreRequisitos = document.querySelector("#nombreRequisitos").value;
-  if (nombreRequisitos === "" ||
-      nombreRequisitos === "null" ||
-      nombreRequisitos === "0")
-  { sweetAlert(
+  if (
+    nombreRequisitos === "" ||
+    nombreRequisitos === "null" ||
+    nombreRequisitos === "0"
+  ) {
+    sweetAlert(
       "Ha ocurrido un error",
       "Todos los campos son obligatorios.",
       "error"
     );
     return false;
-  }
-  else {
+  } else {
     insertRequirements();
   }
-}
+};
 
 const formRequirement = document.querySelector("#form-requirement");
 const bntSubmit_ = document.getElementById("btn_submit_");
@@ -184,16 +196,16 @@ const insertRequirement = async () => {
       swal("Error", msg, "error"); //mostrar la alerta
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 
 const validateFormRequirement = () => {
   tinyMCE.triggerSave();
-  const especficacionRequisitos = document.querySelector("#especficacionRequisitos").value;
-  if (
-    especficacionRequisitos === ""
-  ) {
+  const especficacionRequisitos = document.querySelector(
+    "#especficacionRequisitos"
+  ).value;
+  if (especficacionRequisitos === "") {
     sweetAlert(
       "Ha ocurrido un error",
       "Todos los campos son obligatorios.",
