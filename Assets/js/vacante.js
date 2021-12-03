@@ -6,15 +6,6 @@ import {
 } from "./functionsGlobals.js";
 
 
-const refresh_vacancies = document.getElementById("refresh-vacancies");
-
-// if (refresh_vacancies) {
-//   bntSubmit.addEventListener("click", (e) => {
-//     e.preventDefault();
-    
-//   });
-// }
-
 
 const formVacancy = document.querySelector("#form-vacancy");
 const bntSubmit = document.getElementById("btn_submit");
@@ -100,7 +91,15 @@ const validateFormVacancy = () => {
       "error"
     );
     return false;
-  } else {
+  }
+  else if (fechapublicacion>fechacierre){
+    sweetAlert(
+      "Datos erroneos",
+      "La fecha de cierre no puede ser anterior a la de publicación",
+      "error"
+    )
+  }
+  else {
     insertVacancy();
   }
 };

@@ -75,7 +75,7 @@
             </div>
             <a href="<?= URL ?>Contratante/Perfil_Contratante" class="iq-alert-text">
               <strong>
-                Añadir Descripcion Empresarial
+                Añadir Descripción Empresarial
               </strong>
             </a>
           </div>
