@@ -160,7 +160,8 @@ body {
 }
 
 .card_perfil_aspirante{
-  height: 492px;
+  width: 492px;
+  height: 343px;
 }
 
 .descripcion_aspirante{
@@ -170,4 +171,9 @@ body {
 
 .boton-perfil{
   margin-top: 10px;
+}
+
+#img-perfil-aspi{
+  width: 123px;
+  height: 123px;
 }

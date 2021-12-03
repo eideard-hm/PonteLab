@@ -263,7 +263,7 @@ const getProfilesAspirantes = async () => {
           imagenUsuario = `${base_url}Assets/img/uploads/${profile.imagenUsuario}`;
         }
         listPerfilesAspirante.innerHTML += `
-          <div class="col-md-6" class="card_perfil_aspirante">
+          <div class="col-md-6 card_perfil_aspirante">
             <div class="iq-card">
               <div class="iq-card-body profile-page p-0">
                 <div class="profile-header-image">
@@ -275,7 +275,7 @@ const getProfilesAspirantes = async () => {
                       <div class="d-flex flex-wrap justify-content-between align-items-start">
                         <div class="profile-detail d-flex">
                           <div class="profile-img pr-4 text-center">
-                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="img-fluid rounded-circle avatar-130">
+                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="avatar-130" id="img-perfil-aspi">
                             <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
                             <p class="card-text"><small>${profile.created_at}</small></p>
                             </div>
@@ -333,35 +333,35 @@ const searchProfilesAspirantes = async (formData) => {
           imagenUsuario = `${base_url}Assets/img/uploads/${profile.imagenUsuario}`;
         }
         listPerfilesAspirante.innerHTML += `
-        <div class="col-md-6" class="card_perfil_aspirante">
-            <div class="iq-card">
-              <div class="iq-card-body profile-page p-0">
-                <div class="profile-header-image">
-                  <div class="cover-container">
-                    <img src="${base_url}Assets/img/page-img/fondo.jpeg" alt="${profile.nombreUsuario}" class="rounded w-100">
-                  </div>
-                  <div class="profile-info p-4">
-                    <div class="user-detail">
-                      <div class="d-flex flex-wrap justify-content-between align-items-start">
-                        <div class="profile-detail d-flex">
-                          <div class="profile-img pr-4 text-center">
-                            <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="img-fluid rounded-circle avatar-130">
-                            <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
-                            <p class="card-text"><small>${profile.created_at}</small></p>
-                            </div>
-                          <div class="user-data-block">
-                            <h5>${profile.nombreUsuario}</h5>
-                            <div class="descripcion_aspirante"> ${profile.descripcionPersonalAspirante}</div>
+        <div class="col-md-6 card_perfil_aspirante">
+          <div class="iq-card">
+            <div class="iq-card-body profile-page p-0">
+              <div class="profile-header-image">
+                <div class="cover-container">
+                  <img src="${base_url}Assets/img/page-img/fondo.jpeg" alt="${profile.nombreUsuario}" class="rounded w-100">
+                </div>
+                <div class="profile-info p-4">
+                  <div class="user-detail">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start">
+                      <div class="profile-detail d-flex">
+                        <div class="profile-img pr-4 text-center">
+                          <img src="${imagenUsuario}" alt="${profile.nombreUsuario}" class="avatar-130" id="img-perfil-aspi">
+                          <p class="card-text"><span class="badge bg-primary">${profile.nombreEstado}</span></p>
+                          <p class="card-text"><small>${profile.created_at}</small></p>
                           </div>
+                        <div class="user-data-block">
+                          <h5>${profile.nombreUsuario}</h5>
+                          <div class="descripcion_aspirante">${profile.descripcionPersonalAspirante}</div>
                         </div>
-                        <a class="btn btn-primary text-right boton-perfil" role="buttom" href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
                       </div>
+                      <a class="btn btn-primary boton-perfil" role="buttom" href="${base_url}Contratante/Detail_Perfil_Aspirante/${profile.idAspirante}" class="btn btn-primary">Ver Perfil</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-        </div>
+          </div>
+      </div>
       `;
       });
     } else {
