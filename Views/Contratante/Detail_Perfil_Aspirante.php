@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="user-detail text-center mb-3">
                                         <div class="profile-img">
-                                            <img src="<?= assets_url_img(); ?>uploads/upload.svg" class="avatar-130 img-fluid" alt="">
+                                            <img src="<?= $data['perfil']['imagenUsuario'] != null ? assets_url_img() . "uploads/" . $data['perfil']['imagenUsuario'] : assets_url_img() . "uploads/upload.svg" ?>" class="avatar-130 img-fluid" alt="<?= $data['perfil']['nombreUsuario'] ?>">
                                         </div>
                                         <div class="profile-detail">
                                             <h4><?= $data['perfil']['nombreUsuario'] ?></h4>
