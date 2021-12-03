@@ -12,7 +12,12 @@
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="Assets/js/js.dashboard/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/index.css" />
     <link rel="stylesheet" href="<?= URL; ?>Assets/css/stylesGlobal.css" />
 </head>
@@ -23,12 +28,13 @@
 
     <img src="./Assets/img/Logo_ponslabor.png" class="pontelab">
     <img src="<?= URL; ?>Assets/img/registro.svg" class="registro">
-
-    <!--<a href="<?= URL; ?>" class="btn mt-3 mb-3 mx-3 btn-success"><i class="fas fa-sign-in-alt"></i>Inicio</a>-->
+   
+    
+  <!--<a href="<?= URL; ?>" class="btn mt-3 mb-3 mx-3 btn-success"><i class="fas fa-sign-in-alt"></i>Inicio</a>-->
     <!--<i class="fas fa-sign-in-alt" href=""></i>Inicio-->
 
     <div class="contenedor">
-
+        
         <form id="msform" method="POST" enctype="multipart/form-data">
             <?php require_once('./Views/Components/LoadingForms.php') ?>
             <input type="hidden" id="idUsuario" name="idUsuario" value="0">
@@ -40,7 +46,7 @@
                 <li>Sector</li>
             </ul>
 
-            <fieldset id="formu">
+            <fieldset>
                 <h2 class="fs-title">Crear cuenta</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <select name="rol" id="rol">
@@ -57,15 +63,16 @@
                 <input type="hidden" name="apellido" id="apellido" placeholder="Arturo" />
                 <input type="email" name="email" id="email" placeholder="example@example.com" />
                 <input id="inputPassword" type="password" placeholder="Contraseña" name="pass" />
+                <!-- <span id="spanMostrar" class="form-clear d-none"><i id="iconMostrar" class="material-icons mdc-text-field__icon">visibility</i></span> -->
                 <input type="password" placeholder="Confirmar contraseña" name="pass2" id="pass2" />
+                <input type="checkbox" class="mostrar_contrasena" name="mostrar_contrasena"id="mostrar_contrasena" title="clic para mostrar contraseña">Mostrar Contraseña
                 <br>
-                <h5 style="font-size: 15px; color: #999999; text-align:left;">Prefiero <a style="color: #009FE0;" href="Login">Iniciar Sesion</a>
+                <h5 style="font-size: 15px; color: #999999; text-align:center;">Prefiero <a style="color: #009FE0;" href="Login">Iniciar Sesion</a>
                 </h5>
                 <br>
                 <button name="next" class="next action-button" value="Siguiente" id="siguiente1" style="width: 413px; height:48px" onclick="validarCampos();"> Siguiente </button>
             </fieldset>
-
-            <fieldset id="formu">
+            <fieldset>
                 <h2 class="fs-title">Crear cuenta</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <select name="documento" id="documento">
@@ -81,7 +88,7 @@
                 <button type="button" name="next2" class="action-button" value="Siguiente" id="siguiente2" style="width: 195px; height:48px;" onclick="validarCamposFildset2();"> Siguiente </button>
             </fieldset>
 
-            <fieldset id="formu">
+            <fieldset>
                 <h2 class="fs-title">Crear cuenta</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <!-- <select name="estado" id="estado">
@@ -106,7 +113,7 @@
                         <span class="delPhoto notBlock">X</span>
                         <label for="foto"></label>
                         <div class="prevPhoto__img">
-                            <img id="img" style="width: 280px;" src="<?= assets_url_img(); ?>file.jpg" />
+                            <img id="img" style="width: 280px;" src="<?php echo URL; ?>Assets/Img/file.jpg" />
                         </div>
                     </div>
                     <div class="upimg">
@@ -122,7 +129,7 @@
                 <button type="submit" name="submit" id="btn_submit" class="action-button" style="width: 195px; height:48px" value="Registrarse"> Registrarse </button>
             </fieldset>
 
-            <fieldset id="formu">
+            <fieldset>
                 <h2 class="fs-title">Registro sector</h2>
                 <h3 class="fs-subtitle">Ingrese los datos solicitados</h3>
                 <br>
@@ -144,6 +151,20 @@
     <script>
         const base_url = "<?= URL ?>";
     </script>
+            <script>
+                $(document).ready(function () {
+                $('#mostrar_contrasena').click(function () {
+                    if ($('#mostrar_contrasena').is(':checked')) {
+                    $('#inputPassword').attr('type', 'text');
+                    $('#pass2').attr('type', 'text');
+                    } else {
+                    $('#inputPassword').attr('type', 'password');
+                    $('#pass2').attr('type', 'password');
+                    }
+                });
+                });
+            </script>
+    <script src="Assets/js/js.dashboard/jquery-3.3.1.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>

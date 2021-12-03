@@ -18,10 +18,10 @@ const DB_NAME = 'db_proyectoponslabor';
 // const URL = 'https://pontelab.000webhostapp.com/pontelab/';
 
 // constante de conexión a la base de datos
-// const DB_HOST = 'localhost';
-// const DB_USER = 'id17916925_admin';
-// const DB_PASS = 'ndj$K+^9=7awkpa7';
-// const DB_NAME = 'id17916925_db_pontelab';
+//const DB_HOST = 'localhost';
+//const DB_USER = 'id17916925_admin';
+//const DB_PASS = 'ndj$K+^9=7awkpa7';
+//const DB_NAME = 'id17916925_db_pontelab';
 
 //datos para el envió de correo electronico
 const NOMBRE_EMPRESA = 'PonteLab';
