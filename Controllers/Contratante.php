@@ -53,14 +53,18 @@ class Contratante extends Controllers
             $idAspirante = intval($url[2]);
             if ($idAspirante > 0) {
                 $data['perfil'] = $this->model->getInfoPerfilAspirante($idAspirante);
+                if (!empty($data['perfil'])) {
+                    $data['titulo_pagina'] = 'Detalle Perfil Aspirante | ' . NOMBRE_EMPRESA . '.';
+                    $this->views->getView($this, 'Detail_Perfil_Aspirante', $data);
+                } else {
+                    header('Location: ' . URL . 'Menu/Menu_Contratante');
+                }
             } else {
                 header('Location: ' . URL . 'Menu/Menu_Contratante');
             }
         } else {
             header('Location: ' . URL . 'Menu/Menu_Contratante');
         }
-        $data['titulo_pagina'] = 'Detalle perfil aspirante | ' . NOMBRE_EMPRESA . '.';
-        $this->views->getView($this, 'Detail_Perfil_Aspirante', $data);
     }
 
     //Método controlador para insertar y/o editar usuarios
